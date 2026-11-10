@@ -166,7 +166,7 @@ const FoodView = {
   render() {
     const sec = $('[data-sec="food"]'), F = window.FOODS || [], f = this.f;
     const hubs = [...new Set(F.map((x) => x.hub))], cuis = [...new Set(F.map((x) => x.cuisine))];
-    sec.innerHTML = `<div class="sec-head"><h1>ร้านอาหาร</h1><p class="lead">${F.length} ร้านดังและอาหารประจำถิ่น เวลาเปิด/ราคาเป็นค่าประมาณ ร้านดังคิวยาว ตรวจรีวิวและเวลาล่าสุดใน Google Maps ก่อนไป • ใส่ร้านในแผนรายวันได้ ระบบจะใช้แทนมื้อกลางวันอัตโนมัติ</p></div>
+    sec.innerHTML = `<div class="sec-head"><h1>ร้านอาหาร</h1><p class="lead">${F.length} ร้านดังและอาหารประจำถิ่น เวลาเปิด/ราคาเป็นค่าประมาณ ร้านดังคิวยาว ตรวจรีวิวและเวลาล่าสุดใน Google Maps ก่อนไป • ใส่ร้านในแผนรายวันได้ ระบบจะใช้แทนช่วงกินข้าวที่กันไว้อัตโนมัติ</p></div>
       <div class="filters no-print"><div class="row"><input type="search" aria-label="ค้นหาร้านอาหาร" placeholder="ค้นหาร้าน/เมนู..." data-ff="q" value="${esc(f.q)}" style="flex:1;min-width:160px">
         <select data-ff="hub"><option value="">ทุกเมือง</option>${hubs.map((h) => `<option value="${h}" ${f.hub === h ? "selected" : ""}>${esc(HUB[h]?.name || h)}</option>`).join("")}</select>
         <select data-ff="cuisine"><option value="">ทุกประเภท</option>${cuis.map((c) => `<option ${f.cuisine === c ? "selected" : ""}>${esc(c)}</option>`).join("")}</select>

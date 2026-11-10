@@ -19,13 +19,22 @@ const PlanView = {
   // แก้แผน: เก็บประวัติให้ย้อนกลับได้ → บันทึก → วาดใหม่
   mut(fn) { Hist.push(); fn(); save(); App.renderAll(); },
 
+  // แถบลำดับการใช้งาน: บอกคนใหม่ว่าต้องทำอะไรก่อนหลัง และขั้นไหนทำแล้ว
+  steps(cur) {
+    const P = S.plan, pr = PrepView.progress();
+    const hotelsDone = !!P && P.bases.slice(0, tripNights()).every((b) => hotelOf(b)?.name);
+    const st = [["setup", "ข้อมูลทริป + เลือกรูท", !!P], ["trip", "ปรับแผนรายวัน", false], ["stays", "ใส่ที่พักที่จองแล้ว", hotelsDone], ["prep", `เตรียมตัว ${pr.pct}%`, pr.pct === 100]];
+    return `<ol class="steps no-print">${st.map(([id, t, done], k) => `<li class="${done ? "done" : ""} ${id === cur ? "cur" : ""}"><a href="#${id}"><b>${done ? I("circle-check") : k + 1}</b>${t}</a></li>`).join("")}</ol>`;
+  },
+
   // ================= ข้อมูลทริป / เที่ยวบิน / เลือกรูท =================
   renderSetup() {
     const t = S.trip, N = tripNights(), b = t.buf, of = t.outFlight, inf = t.inFlight;
     const num = (k, v, min, max, lbl) => `<label class="f">${lbl}<input type="number" min="${min}" max="${max}" data-buf="${k}" value="${v}"></label>`;
-    $('[data-sec="setup"]').innerHTML = `
+    $('[data-sec="setup"]').innerHTML = `${this.steps("setup")}
       <div class="sec-head"><h1>ข้อมูลทริปและเที่ยวบิน</h1>
         <p class="lead">กรอกเที่ยวบินขาไป-ขากลับ แล้วเลือกรูท ระบบจะจัดที่พักรายคืนและที่เที่ยวรายวันให้ คำนวณเวลาเผื่อตรวจคนเข้าเมือง รับรถ และเวลาที่ต้องถึงสนามบินให้เอง</p></div>
+      <h2 class="step-h"><b>1</b> วันและเที่ยวบิน</h2>
       <div class="grid g2">
         <div class="card"><h2>${I("plane")} ขาไป</h2><div class="form">
           <label class="f">เลขเที่ยวบิน<input type="text" data-of="no" value="${esc(of.no)}" placeholder="เช่น TG670"></label>
@@ -56,7 +65,8 @@ const PlanView = {
         ${num("ret", b.ret, 0, 120, "คืนรถ + เติมน้ำมัน (นาที)")}
         <label class="f">วันแรก<select data-k="firstDay"><option value="auto" ${t.firstDay === "auto" ? "selected" : ""}>อัตโนมัติ (บินกลางคืน = เบาๆ)</option><option value="light" ${t.firstDay === "light" ? "selected" : ""}>เบาๆ 1 ที่</option><option value="full" ${t.firstDay === "full" ? "selected" : ""}>เที่ยวเต็มที่</option></select></label>
       </div></details>
-      <div class="card"><h2>คนและสไตล์</h2>
+      <h2 class="step-h"><b>2</b> คนและสไตล์ <small class="mute">ใช้กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง และคิดงบ</small></h2>
+      <div class="card">
         <div class="form">
           <label class="f">ผู้ใหญ่<input type="number" min="1" max="20" data-k="adults" value="${t.adults}"></label>
           <label class="f">เด็ก (≤11 ปี)<input type="number" min="0" max="10" data-k="kids" value="${t.kids}"></label>
@@ -71,8 +81,9 @@ const PlanView = {
           <div class="chips">${Object.entries(INTEREST).map(([k, v]) => `<button class="chip ${t.interests.includes(k) ? "on" : ""}" data-int="${k}">${v}</button>`).join("")}</div></div>
         <p class="mute small" style="margin:10px 0 0">ชิล: ขับ ≤2 ชม./วัน ≤3 ที่ จบวัน 18:00 • กลางๆ: ≤3.5 ชม. ≤4 ที่ จบ 19:30 • แน่น: ≤5 ชม. ≤6 ที่ จบ 21:00 • หน้าหนาวเวลาขับคูณ 1.5 เผื่อหิมะให้แล้ว • ทับค่าได้ใน ${I("settings")} ตั้งค่า</p>
       </div>
-      <div class="card"><h2>เลือกรูท</h2>
-        <p class="mute">เรียงตามความเหมาะกับข้อมูลด้านบน กดเลือกแล้วระบบจะจัดแผนให้${S.plan ? " (แผนเดิมจะถูกแทนที่ ที่พักที่กรอกไว้ยังอยู่ กด ↶ เพื่อย้อนได้)" : ""}</p>
+      <h2 class="step-h"><b>3</b> เลือกรูท = สร้างแผนรายวัน</h2>
+      <div class="card">
+        <p class="mute">รูทคือลำดับเมืองที่จะพักแต่ละคืน เรียงตามความเหมาะกับข้อ 1-2 กดการ์ดแล้วระบบจะจัดที่พักรายคืนและที่เที่ยวรายวันให้ทันที แล้วพาไปหน้าแผนรายวัน${S.plan ? ` <b>มีแผนอยู่แล้ว: กดรูทใหม่ = แผนเดิมถูกแทนที่</b> (ที่พักที่กรอกไว้ยังอยู่ กด ↶ ย้อนได้) ถ้าแค่แก้วันหรือเที่ยวบิน ไม่ต้องกดรูทใหม่` : ""}</p>
         <div class="grid g3">${Planner.rankTemplates().map((r) => this.tplCard(r)).join("")}
           <div class="card tpl blank" data-blank tabindex="0" role="button"><h3>เริ่มแผนเปล่า</h3><p class="small">เลือกเมืองที่พักแต่ละคืนและที่เที่ยวเองทั้งหมด</p></div></div>
       </div>`;
@@ -108,7 +119,7 @@ const PlanView = {
     const nightsBy = [];
     S.plan.bases.forEach((b) => { const l = nightsBy[nightsBy.length - 1]; if (l && l.b === b) l.n++; else nightsBy.push({ b, n: 1 }); });
     const left = daysBetween(todayIso(), t.start), B = BudgetView.calc();
-    sec.innerHTML = `
+    sec.innerHTML = `${this.steps("trip")}
       <div class="card overview"><div class="row"><h1 style="margin:0">แผนทริป</h1><span class="badge b-${overall}">${LVL_ICON[overall]} ${LVL_TXT[overall]}</span>
         <div class="spacer"></div><div class="row no-print"><button class="btn small" data-act="refillAll" title="ที่ใส่เองและที่ล็อกเวลาไว้จะไม่ถูกลบ">${I("refresh-ccw")} จัดสถานที่ใหม่ทั้งทริป</button><a class="btn small" href="#setup">${I("pencil")} ข้อมูลทริป</a><button class="btn small" data-ics title="เพิ่มทุกจุด เที่ยวบิน และเวลาออกจากที่พักลงปฏิทินมือถือ">${I("calendar-plus")} ลงปฏิทิน</button><button class="btn small" data-act="print">${I("printer")} พิมพ์</button></div></div>
         <p class="print-only">${thDate(t.start)} - ${thDate(t.end)} • ${t.adults + t.kids} คน • ${MODE[t.mode]} • สไตล์${PACE[t.pace].name}${t.outFlight.no ? ` • ขาไป ${esc(t.outFlight.no)} ลง ${t.arrive} ${t.arriveTime}` : ""}${t.inFlight.no ? ` • ขากลับ ${esc(t.inFlight.no)} ออก ${t.depart} ${t.departTime}` : ""}</p>
@@ -157,12 +168,12 @@ const PlanView = {
     return L.find((id) => findLabel(id).toLowerCase() === t) ?? L.find((id) => names(point(id)).some((n) => n.toLowerCase() === t)) ?? null;
   },
 
-  // แถบเวลาทั้งทริป 06:00-24:00 ต่อวัน
+  // แถบเวลาทั้งทริป 06:00-24:00 ต่อวัน (ยืดถึงตีสองถ้ามีวันที่จบหลังเที่ยงคืน)
   gantt(evals) {
-    const x0 = 6, span = 18, pos = (h) => Math.max(0, Math.min(100, ((h - x0) / span) * 100));
+    const x0 = 6, x1 = Math.min(26, Math.max(24, Math.ceil(Math.max(...evals.map((e) => e.end))))), span = x1 - x0, pos = (h) => Math.max(0, Math.min(100, ((h - x0) / span) * 100));
     const seg = (cls, a, h, title) => h > 0.02 ? `<i class="${cls}" style="left:${pos(a)}%;width:${Math.max(0.4, pos(a + h) - pos(a))}%" title="${esc(title)}"></i>` : "";
     return `<div class="gantt-trip" role="img" aria-label="แถบเวลารายวัน">
-      <div class="gt-axis"><span></span><div>${[6, 9, 12, 15, 18, 21, 24].map((h) => `<b style="left:${pos(h)}%">${h}</b>`).join("")}</div></div>
+      <div class="gt-axis"><span></span><div>${[6, 9, 12, 15, 18, 21, 24, ...(x1 > 24 ? [x1] : [])].map((h) => `<b style="left:${pos(h)}%">${h > 24 ? "+" + (h - 24) : h}</b>`).join("")}</div></div>
       ${evals.map((e) => `<div class="gt-row" data-goto="${e.i}" tabindex="0"><span class="gt-lbl ${e.lvl}">D${e.i + 1} <small>${thDate(e.iso, false).replace(/ \d+$/, "")}</small></span>
         <div class="gt-track"><i class="dark" style="left:${pos(e.sun.set)}%;right:0"></i><i class="dark" style="left:0;width:${pos(e.sun.rise)}%"></i>
         ${e.tl.map((x) => x.kind === "move" ? seg(x.mode === "car" && !x.city ? "mv" : "mv tr", x.t, x.h, `${fmtT(x.t)} ${LEG_MODE[x.mode]?.name || ""} ${fmtH(x.h)} → ${short(x.to)}`)
@@ -229,7 +240,7 @@ const PlanView = {
         <span class="wx" data-wx="${ref.lat},${ref.lng},${e.iso}"></span>
         <span class="badge b-${e.lvl}">${LVL_ICON[e.lvl]} ${LVL_TXT[e.lvl]}</span>
         <button class="btn small day-tog no-print" data-tog="${i}" aria-expanded="${open}">${open ? "ย่อ" : "ดูทั้งวัน"}</button></div>
-      <div class="day-meta" style="margin-top:2px"><b>${esc(short(e.from))}</b> → <b>${esc(short(e.to))}</b>${e.driveH ? ` • ขับรวม ${fmtH(e.driveH)}` : ""} • จบวัน ~${fmtT(e.end)}${e.leaveBy != null ? ` • <b>ออกจากที่พักไม่เกิน ${fmtT(e.leaveBy)}</b>` : ""}</div>
+      <div class="day-meta" style="margin-top:2px"><b>${esc(short(e.from))}</b> → <b>${esc(short(e.to))}</b>${i < N && !hotelOf(e.to)?.name ? ` <a class="badge b-warn no-print" href="#stays">${I("hotel")} ยังไม่ใส่ที่พัก</a>` : ""}${e.driveH ? ` • ขับรวม ${fmtH(e.driveH)}` : ""} • จบวัน ~${fmtT(e.end)}${e.leaveBy != null ? ` • <b>ออกจากที่พักไม่เกิน ${fmtT(e.leaveBy)}</b>` : ""}</div>
       <div class="day-body">
         <div><ul class="tl" data-day="${i}">${rows}</ul>${this.maybeBox(i)}</div>
         <div><details class="no-print daymap-box" ${matchMedia("(min-width: 900px)").matches ? "open" : ""}><summary>${I("map")} แผนที่วันนี้</summary><div class="daymap" data-daymap="${i}"></div></details>
@@ -337,7 +348,7 @@ const PlanView = {
     const it = S.plan.days[i].items[idx], p = point(it.id), N = tripNights(), cu = S.plan.custom[it.id];
     Modal.open(`<h2>${nameHtml(p)}</h2><div class="form">
       ${cu ? `<label class="f">ชื่อ<input type="text" id="eName" value="${esc(cu.name)}"></label>
-      <label class="f">ลิงก์ Google Maps / พิกัด<input type="text" id="eLoc" value="${esc(cu.url || (cu.lat ? `${cu.lat}, ${cu.lng}` : ""))}"></label>` : ""}
+      ${LocPick.html("ตำแหน่ง", 'id="eLoc"', cu.lat ? `${cu.lat}, ${cu.lng}` : cu.url || "", point(Planner.ends(i).to))}` : ""}
       <label class="f">วิธีไปที่นี่<select id="eMode">${legOpts(it.m)}</select></label>
       <label class="f">ล็อกเวลาเริ่ม (จองรอบ/จองร้าน) <small>ว่าง = ให้ระบบคำนวณ</small><input type="time" id="eAt" value="${esc(it.at || "")}"></label>
       <label class="f">เวลาที่ใช้ (ชม.) <small>ปกติ ${fmtH(p.hours ?? p.dur ?? 1)}</small><input type="number" step="0.25" min="0.25" max="12" id="eDur" value="${it.dur ?? ""}"></label>
@@ -353,7 +364,8 @@ const PlanView = {
         const name = $("#eName").value.trim(), raw = $("#eLoc").value.trim();
         ll = parseLatLng(raw);
         if (!name) return toast("ใส่ชื่อก่อน");
-        if (raw && !ll) return toast("อ่านพิกัดไม่ได้ หรืออยู่นอกฮอกไกโด: ลองคัดลอกลิงก์จากแถบที่อยู่ของ Google Maps");
+        if (raw && !ll && !/^https?:/.test(raw)) return toast("อ่านพิกัดไม่ได้ หรืออยู่นอกฮอกไกโด ลองกด แตะบนแผนที่");
+        if (raw && !ll) { toast("เก็บลิงก์ไว้แล้ว แต่ลิงก์นี้ไม่มีพิกัด จึงไม่คิดเวลาเดินทาง (กด แตะบนแผนที่ เพื่อปักหมุด)"); delete cu.lat; delete cu.lng; }
         delete cu.hub; // ฐานใกล้สุดคิดใหม่จากพิกัดใหม่
         if (!raw) { delete cu.lat; delete cu.lng; }
         Object.assign(cu, { name, url: /^https?:/.test(raw) ? raw : "" }, ll || {});
@@ -372,7 +384,7 @@ const PlanView = {
   addMenu(i) {
     const hasMeal = S.plan.days[i].items.some((x) => S.plan.custom[x.id]?.meal);
     Modal.open(`<h2>+ เพิ่มในวันที่ ${i + 1}</h2><div class="menu-list">
-      <button class="btn" data-m="meal">${I("soup")} <b>ช่วงกินข้าว${hasMeal ? "เย็น" : "กลางวัน"}</b><small>ใส่เวลากินไว้ก่อน ยังไม่ต้องเลือกร้าน</small></button>
+      <button class="btn" data-m="meal">${I("soup")} <b>เวลากินข้าว</b><small>กันเวลากินไว้ก่อน เลือกเวลาเอง ยังไม่ต้องเลือกร้าน</small></button>
       <button class="btn" data-m="food">${I("utensils")} <b>ร้านอาหารใกล้เส้นทาง</b><small>เลือกจากร้านดังในฐานข้อมูล</small></button>
       <button class="btn" data-m="custom">${I("star")} <b>จุดของฉัน</b><small>ร้านที่เพื่อนแนะนำ หรือปักหมุดจาก Google Maps</small></button></div>
       <p class="mute small" style="margin-top:10px">ค้นหาสถานที่ในฐานข้อมูล: ใช้ช่องเพิ่มสถานที่ ท้ายวัน</p>`);
@@ -381,9 +393,21 @@ const PlanView = {
       const m = ev.target.closest("[data-m]")?.dataset.m;
       if (!m) return;
       Modal.close();
-      if (m === "meal") this.mut(() => { S.plan.days[i].items = Planner.softPlace(i, S.plan.days[i].items, hasMeal ? Planner.newMeal("มื้อเย็น", "18:00") : Planner.newMeal()); });
+      if (m === "meal") this.addMeal(i, hasMeal);
       else if (m === "food") this.addFood(i);
       else this.addCustom(i);
+    };
+  },
+  // ---- กันเวลากินข้าว: เวลาโดยประมาณ ระบบหาช่องใกล้เวลานั้นให้ (ไม่บังคับรอ) ----
+  addMeal(i, hasMeal) {
+    Modal.open(`<h2>${I("soup")} เวลากินข้าว วันที่ ${i + 1}</h2><p class="mute small">ระบบจะแทรกช่วงกินข้าว ~45 นาที ใกล้เวลานี้ที่สุดในเส้นทาง ใส่ร้านทีหลังได้ (กด ${I("pencil")} เปลี่ยนชื่อ)</p>
+      <div class="form"><label class="f">ประมาณกี่โมง<input type="time" id="mlT" value="${hasMeal ? "18:00" : "12:00"}"></label>
+        <label class="f">ชื่อ <small>ไม่ใส่ก็ได้</small><input type="text" id="mlN" placeholder="กินข้าว"></label></div>
+      <div class="row" style="margin-top:12px"><button class="btn primary" id="mlSave">เพิ่มในวันที่ ${i + 1}</button></div>`);
+    $("#mlSave").onclick = () => {
+      const t = $("#mlT").value || "12:00";
+      this.mut(() => { S.plan.days[i].items = Planner.softPlace(i, S.plan.days[i].items, Planner.newMeal($("#mlN").value.trim() || "กินข้าว", t)); });
+      Modal.close();
     };
   },
   // ---- เมนู ⋯ ของวัน: สลับวัน (เช่น พายุเข้า) / จัดวันนี้ใหม่ ----
@@ -417,16 +441,17 @@ const PlanView = {
 
   // ---- เพิ่มจุดของฉัน (ร้านที่เพื่อนแนะนำ ปักหมุดเอง) ----
   addCustom(i) {
-    Modal.open(`<h2>${I("star")} เพิ่มจุดของฉัน</h2><p class="mute small">วางลิงก์ Google Maps (แบบที่มีพิกัด @43.06,141.35) หรือพิมพ์ "ละติจูด, ลองจิจูด" ถ้าไม่ใส่พิกัด ระบบจะไม่คิดเวลาเดินทางไปจุดนี้</p>
+    Modal.open(`<h2>${I("star")} เพิ่มจุดของฉัน</h2><p class="mute small">บนมือถือ: กด <b>แตะบนแผนที่</b> แล้วจิ้มจุดที่จะไป หรือ <b>ตำแหน่งตอนนี้</b> ถ้ายืนอยู่ตรงนั้น • วางลิงก์ Google Maps ได้ด้วย (ลิงก์แชร์แบบสั้นไม่มีพิกัด ระบบจะเก็บไว้เป็นลิงก์ แต่ไม่คิดเวลาเดินทาง)</p>
       <div class="form"><label class="f">ชื่อ<input type="text" id="cName" placeholder="เช่น ร้านราเมนที่เพื่อนแนะนำ"></label>
-        <label class="f">ลิงก์ Google Maps / พิกัด<input type="text" id="cLoc" placeholder="https://www.google.com/maps/…@43.05,141.35…"></label>
+        ${LocPick.html("ตำแหน่ง", 'id="cLoc"', "", point(Planner.ends(i).to))}
         <label class="f">เวลาที่ใช้ (ชม.)<input type="number" id="cDur" step="0.25" min="0.25" value="1"></label>
         <label class="f">ล็อกเวลา (ถ้ามี)<input type="time" id="cAt"></label></div>
       <div class="row" style="margin-top:12px"><button class="btn primary" id="cSave">เพิ่มในวันที่ ${i + 1}</button></div>`);
     $("#cSave").onclick = () => {
       const name = $("#cName").value.trim(), raw = $("#cLoc").value.trim(), ll = parseLatLng(raw);
       if (!name) return toast("ใส่ชื่อก่อน");
-      if (raw && !ll) return toast("อ่านพิกัดไม่ได้ หรืออยู่นอกฮอกไกโด: ลองคัดลอกลิงก์จากแถบที่อยู่ของ Google Maps");
+      if (raw && !ll && !/^https?:/.test(raw)) return toast("อ่านพิกัดไม่ได้ หรืออยู่นอกฮอกไกโด ลองกด แตะบนแผนที่");
+      if (raw && !ll) toast("เก็บลิงก์ไว้แล้ว แต่ลิงก์นี้ไม่มีพิกัด จึงไม่คิดเวลาเดินทาง");
       const id = "c" + Date.now().toString(36);
       this.mut(() => {
         S.plan.custom[id] = { name, hours: Math.max(0.25, +$("#cDur").value || 1), url: /^https?:/.test(raw) ? raw : "", ...(ll || {}) };
@@ -480,7 +505,7 @@ const PlanView = {
     const blocks = [];
     S.plan.bases.forEach((b, i) => { const l = blocks[blocks.length - 1]; if (l && l.b === b) l.n.push(i); else blocks.push({ b, n: [i] }); });
     const ids = [...new Set(S.plan.bases)];
-    sec.innerHTML = `<div class="sec-head"><h1>ที่พัก</h1><p class="lead">กรอกที่พักที่จองแล้ว ระบบจะใช้พิกัดจริงคำนวณเวลาเดินทาง และเตือนเวลาเช็กอิน • เปลี่ยนเมืองที่พักแต่ละคืนได้ในหน้า <a href="#trip">แผนรายวัน</a></p></div>
+    sec.innerHTML = `${this.steps("stays")}<div class="sec-head"><h1>ที่พักและการจอง</h1><p class="lead">ทำหลังจองที่พักแล้ว (ก่อนจอง ระบบใช้จุดกลางเมืองไปก่อน) กรอกที่พักที่จองแล้ว ระบบจะใช้พิกัดจริงคำนวณเวลาเดินทาง และเตือนเวลาเช็กอิน • เปลี่ยนเมืองที่พักแต่ละคืนได้ในหน้า <a href="#trip">แผนรายวัน</a></p></div>
       ${this.bookings()}
       <details class="callout info"><summary><b>หลักเลือกที่พักหน้าหนาว</b></summary>${STAY_TIPS}</details>
       <div class="card"><div class="map" id="stayMap"></div></div>
@@ -490,7 +515,7 @@ const PlanView = {
           <label class="f">ชื่อที่พัก<input type="text" data-h="name" value="${esc(h.name || "")}"></label>
           <label class="f">ชื่อญี่ปุ่น (โชว์แท็กซี่)<input type="text" data-h="nameJa" value="${esc(h.nameJa || "")}"></label>
           <label class="f">ที่อยู่<input type="text" data-h="addr" value="${esc(h.addr || "")}"></label>
-          <label class="f">ลิงก์ Google Maps / พิกัด<input type="text" data-h="loc" value="${esc(h.loc || "")}" placeholder="วางลิงก์ที่มี @lat,lng"></label>
+          ${LocPick.html("ตำแหน่งที่พัก", 'data-h="loc"', h.loc || "", hb)}
           <label class="f">เช็กอิน<input type="time" data-h="checkIn" value="${esc(h.checkIn || "15:00")}"></label>
           <label class="f">เช็กเอาท์<input type="time" data-h="checkOut" value="${esc(h.checkOut || "10:00")}"></label>
           <label class="f">เลขที่จอง<input type="text" data-h="ref" value="${esc(h.ref || "")}"></label>
@@ -644,7 +669,6 @@ const PlanView = {
       else if (d.addmenu) this.addMenu(+d.addmenu);
       else if (d.daymenu) this.dayMenu(+d.daymenu);
       else if (d.addcustom) this.addCustom(+d.addcustom);
-      else if (d.addmeal) this.mut(() => { const k = +d.addmeal, has = S.plan.days[k].items.some((x) => S.plan.custom[x.id]?.meal); S.plan.days[k].items = Planner.softPlace(k, S.plan.days[k].items, has ? Planner.newMeal("มื้อเย็น", "18:00") : Planner.newMeal()); });
       else if (d.act === "opt") { this.mut(() => Planner.optimize(+d.i)); toast("เรียงเส้นทางแล้ว"); }
       else if (d.act === "refill") { const i = +d.i; this.mut(() => Planner.autofillDay(i, Planner.usedSet(i))); }
       else if (d.act === "refillAll") { if (!confirm("จัดสถานที่ใหม่ทั้งทริป? จุดที่ระบบเลือกให้จะถูกแทนที่ (ที่ใส่เอง/ล็อกเวลาไว้ยังอยู่ กด ↶ ย้อนได้)")) return; this.mut(() => Planner.autofillAll()); toast("จัดสถานที่ใหม่แล้ว"); }
@@ -659,7 +683,7 @@ const PlanView = {
       this.mut(() => {
         const h = (S.plan.hotels[hub] ||= {});
         h[k] = el.value.trim();
-        if (k === "loc") { const ll = parseLatLng(h.loc); if (ll) Object.assign(h, ll); else { delete h.lat; delete h.lng; if (h.loc) toast("อ่านพิกัดจากลิงก์ไม่ได้ (ต้องมี @lat,lng หรือ 'lat, lng' ในฮอกไกโด)"); } }
+        if (k === "loc") { const ll = parseLatLng(h.loc); if (ll) Object.assign(h, ll); else { delete h.lat; delete h.lng; if (h.loc) toast("ลิงก์นี้ไม่มีพิกัด (ลิงก์แชร์แบบสั้น) ใช้ปุ่ม แตะบนแผนที่ แทน"); } }
       });
     });
     stays.addEventListener("click", (ev) => {

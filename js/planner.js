@@ -95,7 +95,7 @@ const Planner = {
   },
 
   // มื้ออาหาร = รายการธรรมดาในวัน (จุดของฉันไม่มีพิกัด) ย้าย/ลบ/เพิ่มเองได้; near = เวลาประมาณ ใช้ตอนจัดลำดับ ไม่บังคับรอ
-  newMeal(name = "มื้อกลางวัน", near = "12:00") {
+  newMeal(name = "กินข้าว", near = "12:00") {
     const id = "m" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
     S.plan.custom[id] = { name, hours: 0.75, meal: true };
     return { id, u: true, near };
@@ -204,7 +204,7 @@ const Planner = {
     const visit = (it, night) => {
       const p = point(it.id);
       if (it.at) {
-        const at = parseT(it.at);
+        const at = parseT(it.at) + (night && parseT(it.at) < 6 ? 24 : 0); // ตอนค่ำล็อก 00:30 = หลังเที่ยงคืนคืนนั้น (เช่น เคาท์ดาวน์)
         if (time < at - 0.08) { if (at - time >= 0.33) tl.push({ t: time, kind: "wait", h: at - time }); time = at; }
         else if (time > at + 0.1) add("bad", `ไปถึง ${pname(it.id)} ${fmtT(time)} ไม่ทันเวลาที่ล็อกไว้ ${it.at}`);
       }
@@ -244,7 +244,8 @@ const Planner = {
       leaveBy = need - this.leg(from, to, mode, iso).h;
       if (arrive > need + 0.01) add("bad", `ถึงสนามบิน ${fmtT(arrive)} ช้าไป ต้องถึงก่อน ${fmtT(need)} (${mode === "car" ? "คืนรถ + " : ""}เช็กอิน${t.domOut ? "ในประเทศ" : "ระหว่างประเทศ"})`);
       if (parseT(t.departTime) <= 11.5 && !opts.live) add("info", `เครื่องออก ${t.departTime} วันสุดท้ายแทบไม่มีเวลาเที่ยว ต้องออกจากที่พักไม่เกิน ${fmtT(leaveBy)}`);
-    } else if (end > pc.end + 1) add("bad", `จบวัน ${fmtT(end)} ดึกเกินไปสำหรับสไตล์${pc.name}`);
+    } else if (nightI.some((it) => it.at) && end > pc.end) add("info", `กลับถึงที่พัก ~${fmtT(end)} (ล็อกเวลาตอนค่ำไว้เอง)${end >= 24 ? " ข้ามเที่ยงคืน ตั้ง เริ่มวัน ของพรุ่งนี้ให้สายหน่อย" : ""}`);
+    else if (end > pc.end + 1) add("bad", `จบวัน ${fmtT(end)} ดึกเกินไปสำหรับสไตล์${pc.name}`);
     else if (end > pc.end) add("warn", `จบวัน ${fmtT(end)} ค่อนข้างดึก`);
     if (i === 0 && !opts.live) {
       if (mode === "car" && parseT(t.arriveTime) >= 20) add("warn", `เครื่องลง ${t.arriveTime} ร้านรถเช่าส่วนใหญ่ปิด ~20:00-21:00 คืนแรกพักใกล้สนามบินแล้วรับรถเช้า`);

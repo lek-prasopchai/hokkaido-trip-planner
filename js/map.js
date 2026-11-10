@@ -273,3 +273,45 @@ const TripMap = {
     refitMap(M);
   },
 };
+
+// ---------- ช่องตำแหน่ง: วางลิงก์/พิกัด แตะบนแผนที่ หรือใช้ตำแหน่งตอนนี้ ----------
+// มือถือ: ลิงก์แชร์ของ Google Maps เป็นลิงก์สั้นไม่มีพิกัด จึงต้องมีทางปักหมุดในเว็บเอง
+const LocPick = {
+  // attrs = แอตทริบิวต์ของ input (id/data-*), c = จุดกลางแผนที่ถ้ายังไม่มีพิกัด
+  html(label, attrs, value = "", c = null) {
+    return `<div class="lp"${c ? ` data-c="${c.lat},${c.lng}"` : ""}><label class="f">${label}<input type="text" ${attrs} value="${esc(value)}" placeholder="ลิงก์ Google Maps หรือ 43.06, 141.35"></label>
+      <div class="row lp-btns"><button type="button" class="btn small" data-lp="map">${I("map-pin")} แตะบนแผนที่</button><button type="button" class="btn small" data-lp="gps">${I("navigation")} ตำแหน่งตอนนี้</button></div>
+      <div class="lp-map" hidden></div></div>`;
+  },
+};
+document.addEventListener("click", (ev) => {
+  const b = ev.target.closest("[data-lp]");
+  if (!b) return;
+  const box = b.closest(".lp"), inp = box.querySelector("input");
+  const set = (lat, lng) => { inp.value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`; inp.dispatchEvent(new Event("change", { bubbles: true })); };
+  if (b.dataset.lp === "gps") {
+    if (!navigator.geolocation) return toast("เครื่องนี้หาตำแหน่งไม่ได้");
+    toast("กำลังหาตำแหน่ง…");
+    return navigator.geolocation.getCurrentPosition((p) => {
+      if (!parseLatLng(`${p.coords.latitude}, ${p.coords.longitude}`)) return toast("ตำแหน่งตอนนี้อยู่นอกฮอกไกโด ใช้แตะบนแผนที่แทน");
+      set(p.coords.latitude, p.coords.longitude); toast("ใส่ตำแหน่งตอนนี้แล้ว");
+    }, () => toast("หาตำแหน่งไม่ได้ ต้องอนุญาตตำแหน่งในเบราว์เซอร์ก่อน"), { enableHighAccuracy: true, timeout: 15000 });
+  }
+  const el = box.querySelector(".lp-map");
+  el.hidden = !el.hidden;
+  if (el.hidden) return;
+  if (!el._m) {
+    const ll = parseLatLng(inp.value), [cLat, cLng] = (box.dataset.c || "43.0618,141.3545").split(",").map(Number);
+    const m = L.map(el, { zoomSnap: 0.25 }).setView(ll ? [ll.lat, ll.lng] : [cLat, cLng], ll ? 15 : 12);
+    const [url, attribution] = Object.values(TILE_SOURCES)[0];
+    L.tileLayer(url, { maxZoom: 18, attribution }).addTo(m);
+    let mk = ll ? L.marker([ll.lat, ll.lng], { icon: pin(I("map-pin"), "#c8374a") }).addTo(m) : null;
+    m.on("click", (e) => {
+      if (!parseLatLng(`${e.latlng.lat}, ${e.latlng.lng}`)) return toast("จุดนี้อยู่นอกฮอกไกโด");
+      mk ? mk.setLatLng(e.latlng) : (mk = L.marker(e.latlng, { icon: pin(I("map-pin"), "#c8374a") }).addTo(m));
+      set(e.latlng.lat, e.latlng.lng);
+    });
+    el._m = m;
+  }
+  setTimeout(() => el._m.invalidateSize(), 0);
+});

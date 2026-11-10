@@ -559,3 +559,22 @@ b.over { background: none; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --star: #d29b14; } }
 :root[data-theme="dark"] { --star: #d29b14; }
 .stars { color: var(--star); }
+
+/* ---- แถบลำดับการใช้งาน ---- */
+.steps { display: flex; gap: 6px; list-style: none; margin: 0 0 14px; padding: 0; overflow-x: auto; scrollbar-width: none; }
+.steps li { flex: 1 0 auto; }
+.steps a { display: flex; align-items: center; gap: 6px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 99px; background: var(--paper);
+  color: var(--ink2); text-decoration: none; font-size: .82rem; white-space: nowrap; }
+.steps b { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--line); color: var(--ink); font-size: .75rem; }
+.steps b svg { width: 14px; height: 14px; }
+.steps .done b { background: var(--good-soft); color: var(--good); }
+.steps .cur a { border-color: var(--ice); color: var(--ink); font-weight: 600; box-shadow: inset 0 0 0 1px var(--ice); }
+.step-h { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; font-size: 1.05rem; margin: 18px 0 8px; }
+.step-h > b { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--ice); color: var(--on); font-size: .85rem; }
+.step-h small { font-weight: 400; font-size: .8rem; }
+
+/* ---- ช่องตำแหน่ง (ปักหมุด) ---- */
+.lp { grid-column: 1 / -1; }
+.lp-btns { gap: 6px; margin-top: 6px; }
+.lp-map { height: 280px; margin-top: 8px; border-radius: 10px; border: 1px solid var(--line); }
+@media print { .lp-btns, .lp-map { display: none !important; } }

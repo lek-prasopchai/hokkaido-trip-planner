@@ -1,6 +1,6 @@
 // โครงแอป: แท็บหลัก 4 แท็บ + หัวข้อย่อย, ตั้งค่า, แชร์ลิงก์, ย้อนกลับ, PWA
 const TABS = [
-  { id: "mytrip", ic: "map", name: "ทริปของฉัน", subs: [["trip", "แผนรายวัน"], ["today", "วันนี้"], ["setup", "ข้อมูลทริป"], ["stays", "ที่พัก"]] },
+  { id: "mytrip", ic: "map", name: "ทริปของฉัน", subs: [["trip", "แผนรายวัน"], ["today", "วันนี้"], ["setup", "ข้อมูลทริป"], ["stays", "ที่พัก+จอง"]] },
   { id: "explore", ic: "search", name: "ค้นหา", subs: [["places", "สถานที่"], ["food", "ร้านอาหาร"], ["fest", "เทศกาล"]] },
   { id: "ready", ic: "backpack", name: "เตรียมตัว", subs: [["prep", "สิ่งที่ต้องทำ"], ["packing", "จัดกระเป๋า"], ["budget", "งบประมาณ"]] },
   { id: "guide", ic: "book-open", name: "คู่มือ", subs: [["know", "รู้จักฮอกไกโด"], ["transport", "การเดินทาง"], ["life", "ใช้ชีวิตที่นั่น"], ["apps", "แอป"], ["emergency", "เอกสาร + ฉุกเฉิน"]] },
