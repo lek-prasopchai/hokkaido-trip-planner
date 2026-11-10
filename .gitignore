@@ -1,0 +1,7 @@
+.playwright-mcp/
+.ruff_cache/
+__pycache__/
+*.pyc
+Thumbs.db
+desktop.ini
+.DS_Store
