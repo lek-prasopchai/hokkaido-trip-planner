@@ -10,7 +10,7 @@ const airOptions = (sel) => AIRPORTS.map((a) => `<option value="${a.id}" ${a.id 
 const idOf = (s) => (isNaN(s) ? s : +s);
 // ป้ายในช่องค้นหา: ทุกชื่อ (อังกฤษ/ไทย/ญี่ปุ่น) จึงพิมพ์ภาษาไหนก็เจอ
 const findLabel = (id) => { const p = point(id); return `${names(p).join(" · ")} (${p.area || short(id)})`; };
-const KIND_IC = (id) => I(FOOD[id] ? "utensils" : isPlace(id) ? "map-pin" : S.plan.custom[id]?.meal ? "soup" : "star");
+const KIND_IC = (id) => I(isPlace(id) ? "map-pin" : S.plan.custom[id]?.meal ? "soup" : "star");
 // ตัวเลือกวิธีเดินทางรายช่วง ("" = ค่าเริ่มต้นของทริป)
 const legOpts = (cur) => `<option value="">${LEG_MODE[Planner.modeOf()].name} (ค่าเริ่มต้น)</option>${Object.entries(LEG_MODE).map(([v, m]) => `<option value="${v}" ${cur === v ? "selected" : ""}>${m.name}</option>`).join("")}`;
 const PlanView = {
@@ -175,7 +175,7 @@ const PlanView = {
       <input type="search" class="find" list="dlAll" data-wishadd aria-label="เพิ่มที่อยากไป" placeholder="พิมพ์ชื่อสถานที่/ร้าน (ไทย/อังกฤษ/ญี่ปุ่น) เพื่อเก็บไว้ในอยากไป">
       <datalist id="dlAll">${this.findList().map((id) => `<option value="${esc(findLabel(id))}">`).join("")}</datalist></div>`;
   },
-  findList() { return [...PLACES.map((p) => p.id), ...(window.FOODS || []).map((f) => f.id)]; },
+  findList() { return PLACES.map((p) => p.id); },
   // ข้อความที่พิมพ์/เลือก → id
   findId(text) {
     const t = text.trim().toLowerCase();
@@ -193,7 +193,7 @@ const PlanView = {
       ${evals.map((e) => `<div class="gt-row" data-goto="${e.i}" tabindex="0"><span class="gt-lbl ${e.lvl}">D${e.i + 1} <small>${thDate(e.iso, false).replace(/ \d+$/, "")}</small></span>
         <div class="gt-track"><i class="dark" style="left:${pos(e.sun.set)}%;right:0"></i><i class="dark" style="left:0;width:${pos(e.sun.rise)}%"></i>
         ${e.tl.map((x) => x.kind === "move" ? seg(x.mode === "car" && !x.city ? "mv" : "mv tr", x.t, x.h, `${fmtT(x.t)} ${LEG_MODE[x.mode]?.name || ""} ${fmtH(x.h)} → ${short(x.to)}`)
-          : x.kind === "visit" ? seg(FOOD[x.id] || S.plan.custom[x.id]?.meal ? "ml" : x.night ? "vs nt" : "vs", x.t, x.h, `${fmtT(x.t)} ${pname(x.id)}`)
+          : x.kind === "visit" ? seg(S.plan.custom[x.id]?.meal ? "ml" : x.night ? "vs nt" : "vs", x.t, x.h, `${fmtT(x.t)} ${pname(x.id)}`)
           : x.kind === "wait" ? seg("wt", x.t, x.h, `${fmtT(x.t)} รอ ${fmtH(x.h)}`) : "").join("")}
         <i class="end" style="left:${pos(e.end)}%" title="จบวัน ${fmtT(e.end)}"></i></div>
         <span class="gt-to">${esc(short(e.to))}</span></div>`).join("")}
@@ -203,12 +203,12 @@ const PlanView = {
   itemRow(e, x, n) {
     const i = e.i, it = x.it, p = point(x.id), last = e.items.filter((y) => !y.night).length;
     const idx = S.plan.days[i].items.indexOf(it);
-    const meta = [fmtH(x.h), p.fee, FOOD[x.id] ? p.cuisine : "", e.mode === "transit" && isPlace(x.id) ? ACCESS_TXT[access(p)] : ""].filter(Boolean).map(esc).join(" • ");
+    const meta = [fmtH(x.h), p.fee, e.mode === "transit" && isPlace(x.id) ? ACCESS_TXT[access(p)] : ""].filter(Boolean).map(esc).join(" • ");
     return `<li class="it" draggable="true" data-i="${i}" data-idx="${idx}"><span class="tm">${fmtT(x.t)}</span><span class="ic">${x.night ? I("moon") : KIND_IC(x.id)}</span>
       <span class="visit ${x.night ? "night" : ""}">${p.img ? `<img class="thumb" src="${p.img}" alt="" loading="lazy" data-lb="${x.id}">` : ""}
         <b class="nm" data-detail="${x.id}">${nameHtml(p)}</b>${p.stars ? ` <span class="stars">${"★".repeat(p.stars)}</span>` : ""}
         ${it.at ? ` <span class="badge b-info">${I("lock")} ${esc(it.at)}</span>` : ""}
-        <br><small>${x.onWay ? `กินระหว่างทาง: ${x.onWay === "car" ? "แวะจุดพักรถ/มิจิโนะเอกิ ~30 นาที" : "ซื้อข้าวกล่อง (เอกิเบ็น)/คอนบินีกินบนรถ"}` : meta}</small>${S.plan.custom[x.id]?.meal ? ` <button class="linkbtn no-print" data-addfood="${i}">เลือกร้านใกล้ๆ</button>` : ""}${it.note ? `<div class="note">📝 ${esc(it.note)}</div>` : ""}</span>
+        <br><small>${x.onWay ? `กินระหว่างทาง: ${x.onWay === "car" ? "แวะจุดพักรถ/มิจิโนะเอกิ ~30 นาที" : "ซื้อข้าวกล่อง (เอกิเบ็น)/คอนบินีกินบนรถ"}` : meta}</small>${it.note ? `<div class="note">📝 ${esc(it.note)}</div>` : ""}</span>
       <span class="it-tools no-print"><button data-up="${i}:${idx}" ${n === 0 || x.night ? "disabled" : ""} aria-label="เลื่อนขึ้น">${I("arrow-up")}</button><button data-down="${i}:${idx}" ${n >= last - 1 || x.night ? "disabled" : ""} aria-label="เลื่อนลง">${I("arrow-down")}</button>
         <button data-move="${i}:${idx}" aria-label="ย้าย" title="ย้ายวัน / เป็นจุดสำรอง / เก็บไว้ในอยากไป">${I("arrow-left-right")}</button><button data-edit="${i}:${idx}" aria-label="แก้ไข" title="ล็อกเวลา/เวลาที่ใช้/โน้ต/ย้ายวัน">${I("pencil")}</button><button data-rm="${i}:${idx}" aria-label="เอาออก" title="เอาออก">${I("x")}</button></span></li>`;
   },
@@ -398,12 +398,11 @@ const PlanView = {
     $("#eDel").onclick = () => { this.mut(() => S.plan.days[i].items.splice(S.plan.days[i].items.indexOf(it), 1)); Modal.close(); };
   },
 
-  // ---- เมนู "+ เพิ่ม": รวมมื้อ/ร้าน/จุดของฉันไว้ที่เดียว ----
+  // ---- เมนู "+ เพิ่ม": รวมมื้อ/จุดของฉันไว้ที่เดียว ----
   addMenu(i) {
     const hasMeal = S.plan.days[i].items.some((x) => S.plan.custom[x.id]?.meal);
     Modal.open(`<h2>+ เพิ่มในวันที่ ${i + 1}</h2><div class="menu-list">
       <button class="btn" data-m="meal">${I("soup")} <b>เวลากินข้าว</b><small>กันเวลากินไว้ก่อน เลือกเวลาเอง ยังไม่ต้องเลือกร้าน</small></button>
-      <button class="btn" data-m="food">${I("utensils")} <b>ร้านอาหารใกล้เส้นทาง</b><small>เลือกจากร้านดังในฐานข้อมูล</small></button>
       <button class="btn" data-m="custom">${I("star")} <b>จุดของฉัน</b><small>ร้านที่เพื่อนแนะนำ หรือปักหมุดจาก Google Maps</small></button></div>
       <p class="mute small" style="margin-top:10px">ค้นหาสถานที่ในฐานข้อมูล: ใช้ช่องเพิ่มสถานที่ ท้ายวัน</p>`);
     $("#modal").onclick = (ev) => {
@@ -412,7 +411,6 @@ const PlanView = {
       if (!m) return;
       Modal.close();
       if (m === "meal") this.addMeal(i, hasMeal);
-      else if (m === "food") this.addFood(i);
       else this.addCustom(i);
     };
   },
@@ -463,24 +461,6 @@ const PlanView = {
         Planner.insertBest(i, it);
       });
       Modal.close();
-    };
-  },
-
-  // ---- เลือกร้านอาหารใกล้เส้นทางวันนั้น ----
-  addFood(i) {
-    const e = Planner.evaluate(i), hubs = new Set([hubOf(e.from), hubOf(e.to), ...e.items.map((it) => hubOf(it.id))]);
-    const pts = [point(e.from), ...e.items.map((it) => point(it.id)).filter((p) => p.lat), point(e.to)];
-    const dist = (f) => Math.min(...pts.map((p) => km(p, f)));
-    const list = (window.FOODS || []).filter((f) => hubs.has(f.hub) || dist(f) < 25).sort((a, b) => dist(a) - dist(b)).slice(0, 30);
-    Modal.open(`<h2>${I("utensils")} ร้านอาหารใกล้เส้นทางวันที่ ${i + 1}</h2>
-      ${list.length ? `<div class="food-pick">${list.map((f) => `<div class="fp"><div><b>${nameHtml(f)}</b><br><small>${esc(f.cuisine)} • ${esc(f.signature || "")} • ¥${fmtN(f.price[0])}-${fmtN(f.price[1])} • ${I("clock")} ${esc(f.open)}${f.closedDays ? ` • หยุด ${esc(f.closedDays)}` : ""} • ห่างเส้นทาง ~${Math.round(dist(f))} กม.</small></div>
-        <button class="btn small primary" data-pickfood="${f.id}">เพิ่ม</button></div>`).join("")}</div>` : '<p class="empty">ยังไม่มีร้านในฐานข้อมูลแถวนี้ ใช้ "จุดของฉัน" (ปุ่ม + เพิ่ม) เพิ่มร้านเองได้</p>'}`, "wide");
-    $("#modal").onclick = (ev) => {
-      const id = ev.target.dataset?.pickfood;
-      if (ev.target === $("#modal") || ev.target.closest("[data-close]")) return Modal.close();
-      if (!id) return;
-      this.mut(() => Planner.insertBest(i, { id, u: true }));
-      Modal.close(); toast(`เพิ่ม ${FOOD[id].name} ในวันที่ ${i + 1}`);
     };
   },
 
@@ -673,7 +653,6 @@ const PlanView = {
       else if (d.maybe) { const [i, idx] = pair(d.maybe); this.mut(() => { const it = S.plan.days[i].items.splice(idx, 1)[0]; delete it.maybe; Planner.insertBest(i, it); Planner.resoft(i); }); }
       else if (d.wishrm) this.mut(() => { S.plan.wish = S.plan.wish.filter((x) => x !== idOf(d.wishrm)); });
       else if (d.act === "placeWish") { let n = 0; this.mut(() => { n = Planner.placeWish(); }); toast(`ลงวันให้แล้ว ${n} ที่`); }
-      else if (d.addfood) this.addFood(+d.addfood);
       else if (d.addmenu) this.addMenu(+d.addmenu);
       else if (d.daymenu) this.dayMenu(+d.daymenu);
       else if (d.addcustom) this.addCustom(+d.addcustom);

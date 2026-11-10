@@ -1,4 +1,4 @@
-// แท็บ "ค้นหา": สถานที่ (ทุกฤดู), ร้านอาหาร, เทศกาล + หน้ารายละเอียด
+// แท็บ "ค้นหา": สถานที่ (ทุกฤดู รวมคาเฟ่/ของหวาน), เทศกาล + หน้ารายละเอียด
 const tripMonths = () => { const out = new Set(); for (let d = S.trip.start; d <= S.trip.end; d = addDays(d, 1)) out.add(monthOf(d)); return [...out]; };
 const seasonBadges = (p) => seasonsOf(p).map((k) => `<span title="${SEASONS[k].name}">${I(SEASONS[k].ic)}</span>`).join("");
 const inPlanMap = () => { const m = {}; if (S.plan) S.plan.days.forEach((d, i) => d.items.forEach((it) => (m[it.id] = i + 1))); return m; };
@@ -7,13 +7,13 @@ const addSelect = (id) => S.plan ? `<select data-addto="${esc(id)}" class="addse
 const listView = () => (S.set.view || (matchMedia("(max-width: 899px)").matches ? "list" : "card")) === "list";
 const viewToggle = (n) => `<div class="row list-head"><span class="mute">${n}</span><span class="spacer"></span><div class="seg no-print">${[["list", "รายการ"], ["card", "การ์ดมีรูป"]].map(([k, v]) => `<button data-view="${k}" class="${listView() === (k === "list") ? "on" : ""}">${v}</button>`).join("")}</div></div>`;
 // แถวสั้น: รูปเล็ก ชื่อ ข้อมูลบรรทัดเดียว ปุ่มใส่แผน • กดชื่อ/รูป = เปิดรายละเอียด
-const lrow = (x, attr, sub, inPlan) => `<div class="lrow ${inPlan ? "in" : ""}"><span class="lth" ${attr}>${x.img ? `<img src="${x.img}" alt="" loading="lazy">` : I(FOOD[x.id] ? "utensils" : "map-pin")}</span>
+const lrow = (x, attr, sub, inPlan) => `<div class="lrow ${inPlan ? "in" : ""}"><span class="lth" ${attr}>${x.img ? `<img src="${x.img}" alt="" loading="lazy">` : I("map-pin")}</span>
   <div class="lmain" ${attr}><b>${esc(names(x)[0])}</b><small>${sub}</small></div><div class="lact">${inPlan ? `<span class="badge b-good">วันที่ ${inPlan}</span>` : addSelect(x.id)}</div></div>`;
 document.addEventListener("click", (e) => {
   const v = e.target.closest("[data-view]")?.dataset.view;
   if (!v) return;
   S.set.view = v; save(false);
-  if (App.cur === "places") PlacesView.list(); else if (App.cur === "food") FoodView.list();
+  if (App.cur === "places") PlacesView.list();
 });
 const reviewLinks = (p) => {
   const q = p.ja || p.name, qe = p.en || q;
@@ -89,28 +89,27 @@ const PlacesView = {
     setTimeout(() => TripMap.drawPlaces(this.M, L), 30);
   },
 
-  // ---- หน้ารายละเอียด (ใช้ได้ทั้งสถานที่และร้านอาหาร/จุดของฉัน) ----
+  // ---- หน้ารายละเอียด (ใช้ได้ทั้งสถานที่และจุดของฉัน) ----
   detail(id) {
     const p = point(id);
     if (!p) return;
-    if (!p.stars && !FOOD[id]) return Modal.open(`<h2>${I("star")} ${esc(p.name)}</h2>${p.url ? `<a class="btn" href="${esc(p.url)}" target="_blank" rel="noopener">เปิดลิงก์</a>` : ""}${p.lat ? ` <a class="btn" href="${llUrl(p)}" target="_blank" rel="noopener">Google Maps</a>` : ""}`);
-    const imgs = placeImgs(p), plan = inPlanMap(), food = !!FOOD[id];
+    if (!p.stars) return Modal.open(`<h2>${I("star")} ${esc(p.name)}</h2>${p.url ? `<a class="btn" href="${esc(p.url)}" target="_blank" rel="noopener">เปิดลิงก์</a>` : ""}${p.lat ? ` <a class="btn" href="${llUrl(p)}" target="_blank" rel="noopener">Google Maps</a>` : ""}`);
+    const imgs = placeImgs(p), plan = inPlanMap();
     const sn = p.sn || {};
     const row = (k, v) => v ? `<dt>${k}</dt><dd>${v}</dd>` : "";
     Modal.open(`
       ${imgs.length ? `<div class="gal">${imgs.map((x, i) => `<img src="${x.img}" alt="" loading="lazy" data-gi="${i}">`).join("")}</div>` : ""}
       <h2 style="margin-top:10px">${nameHtml(p)}</h2>
-      <div class="row" style="gap:6px">${p.stars ? `<span class="stars">${"★".repeat(p.stars)}</span>` : ""}<span class="badge b-mute">${esc(p.type || p.cuisine)}</span><span class="badge b-mute">${I("map-pin")} ${esc(p.area || HUB[p.hub]?.name || "")}</span>
+      <div class="row" style="gap:6px">${p.stars ? `<span class="stars">${"★".repeat(p.stars)}</span>` : ""}<span class="badge b-mute">${esc(p.type)}</span><span class="badge b-mute">${I("map-pin")} ${esc(p.area || HUB[p.hub]?.name || "")}</span>
         <span class="sea-inline">${seasonBadges(p)} ${monthRange(monthsOf(p))}</span>${plan[id] ? `<span class="badge b-good">อยู่ในวันที่ ${plan[id]}</span>` : ""}</div>
-      <p style="margin-top:8px">${esc(p.highlight || p.signature || "")}</p>
+      <p style="margin-top:8px">${esc(p.highlight || "")}</p>
       ${Object.keys(sn).length ? `<div class="sn">${Object.entries(SEASONS).filter(([k]) => sn[k]).map(([k, s]) => `<div><b>${I(s.ic)} ${s.name}</b> ${esc(sn[k])}</div>`).join("")}</div>` : ""}
       ${p.caution ? `<div class="callout">${I("triangle-alert")} ${esc(p.caution)}</div>` : ""}
       <dl class="kv">
-        ${row("เวลาเปิด", esc(p.open))}${row("วันหยุด", esc(p.closed === "-" ? "" : p.closed || p.closedDays))}${row(food ? "ราคา" : "ค่าเข้า", food ? `¥${fmtN(p.price[0])}-${fmtN(p.price[1])} ต่อคน` : esc(p.fee))}
-        ${row("ใช้เวลา", esc(p.dur ? p.dur : fmtH(p.hours || 1)))}${row("ช่วงที่ดีที่สุด", esc(p.best))}${row("เมนูเด่น", esc(food ? p.signature : ""))}
-        ${row("คิว / จอง", esc(p.queue || (p.reserve ? "ควรจอง" : "")))}${row("จ่ายเงิน", esc({ cash: "เงินสดเท่านั้น", card: "รับบัตร", ic: "บัตร + IC" }[p.pay] || ""))}
+        ${row("เวลาเปิด", esc(p.open))}${row("วันหยุด", esc(p.closed === "-" ? "" : p.closed || p.closedDays))}${row("ค่าเข้า", esc(p.fee))}
+        ${row("ใช้เวลา", esc(p.dur ? p.dur : fmtH(p.hours || 1)))}${row("ช่วงที่ดีที่สุด", esc(p.best))}
         ${Planner.usedModes().has("car") ? row("ที่จอดรถ", esc(p.parking === "-" ? "" : p.parking)) : ""}
-        ${!food ? row("รถไฟ/บัส", `${ACCESS_TXT[access(p)]}${p.tr?.t ? `: ${esc(p.tr.t)}` : " (ประมาณจากระยะทาง ตรวจตารางจริง)"}${p.tr?.last ? `<br><b>รถเที่ยวสุดท้ายกลับ ~${esc(p.tr.last)}</b>` : ""}`) : ""}
+        ${row("รถไฟ/บัส", `${ACCESS_TXT[access(p)]}${p.tr?.t ? `: ${esc(p.tr.t)}` : " (ประมาณจากระยะทาง ตรวจตารางจริง)"}${p.tr?.last ? `<br><b>รถเที่ยวสุดท้ายกลับ ~${esc(p.tr.last)}</b>` : ""}`)}
         ${String(p.acc || "").startsWith("ประมาณ") ? row("ตำแหน่งบนแผนที่", "ประมาณ: ใช้ปุ่มรีวิว Google Maps เพื่อดูตำแหน่งจริง") : ""}${row("ชื่อญี่ปุ่น", esc(p.ja))}${row("ที่อยู่", esc(p.addrJa))}${row("โทร", esc(p.phone))}${row("MAPCODE", esc(p.mapcode))}
         ${row("ตรวจข้อมูล", esc(p.checked || "พ.ย. 2026 (ประมาณ)"))}</dl>
       ${(p.videos || []).length ? `<div class="vids">${p.videos.map((v) => `<iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/${esc(v)}" title="YouTube" allowfullscreen></iframe>`).join("")}</div>` : ""}
@@ -156,57 +155,3 @@ const PlacesView = {
   },
 };
 
-// ---------- ร้านอาหาร ----------
-const FoodView = {
-  M: null, f: { hub: "", cuisine: "", q: "", tag: "" },
-  render() {
-    const sec = $('[data-sec="food"]'), F = window.FOODS || [], f = this.f;
-    const hubs = [...new Set(F.map((x) => x.hub))], cuis = [...new Set(F.map((x) => x.cuisine))];
-    sec.innerHTML = `<div class="sec-head"><h1>ร้านอาหาร</h1><p class="lead">${F.length} ร้านดังและอาหารประจำถิ่น เวลาเปิด/ราคาเป็นค่าประมาณ ร้านดังคิวยาว ตรวจรีวิวและเวลาล่าสุดใน Google Maps ก่อนไป • ใส่ร้านในแผนรายวันได้ ระบบจะใช้แทนช่วงกินข้าวที่กันไว้อัตโนมัติ</p></div>
-      <div class="filters no-print"><div class="row"><input type="search" aria-label="ค้นหาร้านอาหาร" placeholder="ค้นหาร้าน/เมนู..." data-ff="q" value="${esc(f.q)}" style="flex:1;min-width:160px">
-        <select data-ff="hub"><option value="">ทุกเมือง</option>${hubs.map((h) => `<option value="${h}" ${f.hub === h ? "selected" : ""}>${esc(HUB[h]?.name || h)}</option>`).join("")}</select>
-        <select data-ff="cuisine"><option value="">ทุกประเภท</option>${cuis.map((c) => `<option ${f.cuisine === c ? "selected" : ""}>${esc(c)}</option>`).join("")}</select>
-        <select data-ff="tag"><option value="">ทั้งหมด</option><option value="halal" ${f.tag === "halal" ? "selected" : ""}>ฮาลาล/ไม่มีหมู</option><option value="veg" ${f.tag === "veg" ? "selected" : ""}>มีเมนูมังสวิรัติ</option><option value="kids" ${f.tag === "kids" ? "selected" : ""}>เหมาะกับเด็ก</option><option value="late" ${f.tag === "late" ? "selected" : ""}>เปิดดึก</option></select></div></div>
-      <details class="card mapbox"><summary><b>แผนที่ร้าน</b></summary><div class="map" id="foodMap"></div></details>
-      <div id="foodList"></div>`;
-    this.M = makeMap($("#foodMap"));
-    this.list();
-  },
-  filtered() {
-    const f = this.f, q = f.q.trim().toLowerCase();
-    return (window.FOODS || []).filter((x) => (!f.hub || x.hub === f.hub) && (!f.cuisine || x.cuisine === f.cuisine) && (!f.tag || (x.tags || []).includes(f.tag))
-      && (!q || [x.name, x.en, x.ja, x.signature, x.cuisine, x.area].join(" ").toLowerCase().includes(q)));
-  },
-  list() {
-    const L = this.filtered(), plan = inPlanMap();
-    const by = {};
-    L.forEach((x) => (by[x.hub] ||= []).push(x));
-    if (listView()) {
-      $("#foodList").innerHTML = `${viewToggle(L.length + " ร้าน")}${Object.entries(by).map(([h, xs]) => `<h3>${esc(HUB[h]?.name || h)}</h3><div class="card llist">${xs.map((x) =>
-        lrow(x, `data-fdetail="${x.id}"`, `${esc(x.cuisine)} • ${esc(x.signature || "")} • ¥${fmtN(x.price[0])}-${fmtN(x.price[1])}`, plan[x.id])).join("")}</div>`).join("") || '<p class="empty">ไม่พบร้าน</p>'}`;
-      return setTimeout(() => TripMap.drawPlaces(this.M, L), 30);
-    }
-    $("#foodList").innerHTML = `${viewToggle(L.length + " ร้าน")}${Object.entries(by).map(([h, xs]) => `<h3>${esc(HUB[h]?.name || h)}</h3><div class="grid g3">${xs.map((x) => `
-      <div class="card fcard ${plan[x.id] ? "in" : ""}">
-        <div class="ph" data-fdetail="${x.id}">${x.img ? `<img src="${x.img}" alt="${esc(x.name)}" loading="lazy">${x.imgNote ? `<span class="cnt">${esc(x.imgNote)}</span>` : ""}` : I("utensils")}</div>
-        <div class="row" style="gap:6px"><span class="badge b-mute">${esc(x.cuisine)}</span>${(x.tags || []).map((t) => `<span class="badge b-info">${{ halal: "ฮาลาล/ไม่มีหมู", veg: "มังสวิรัติ", kids: "เด็ก", late: "ดึก", famous: "ดังมาก" }[t] || t}</span>`).join("")}</div>
-        <h4 data-fdetail="${x.id}">${nameHtml(x)}</h4>
-        <div class="hl">${I("utensils")} ${esc(x.signature)}</div>
-        <div class="meta"><span>${I("banknote")} ¥${fmtN(x.price[0])}-${fmtN(x.price[1])}</span><span>${I("clock")} ${esc(x.open)}</span>${x.closedDays ? `<span>หยุด ${esc(x.closedDays)}</span>` : ""}<span>${I("map-pin")} ${esc(x.area)}</span></div>
-        ${x.queue ? `<div class="cau">${I("hourglass")} ${esc(x.queue)}</div>` : ""}
-        <div class="act"><button class="btn small" data-fdetail="${x.id}">รายละเอียด</button><a class="btn small" href="${mapsUrl(x.ja || x.name)}" target="_blank" rel="noopener">${I("star")} รีวิว</a>
-          ${x.tabelog ? `<a class="btn small" href="${esc(x.tabelog)}" target="_blank" rel="noopener">Tabelog</a>` : `<a class="btn small" href="https://tabelog.com/en/rstLst/?sk=${encodeURIComponent(x.ja || x.name)}" target="_blank" rel="noopener">Tabelog</a>`}
-          ${plan[x.id] ? `<span class="badge b-good">วันที่ ${plan[x.id]}</span>` : addSelect(x.id)}</div></div>`).join("")}</div>`).join("") || '<p class="empty">ไม่พบร้าน</p>'}`;
-    setTimeout(() => TripMap.drawPlaces(this.M, L), 30);
-  },
-  bind() {
-    const sec = $('[data-sec="food"]');
-    sec.addEventListener("input", (e) => { if (e.target.dataset.ff === "q") { this.f.q = e.target.value; this.list(); } });
-    sec.addEventListener("change", (e) => {
-      const el = e.target;
-      if (el.dataset.ff && el.dataset.ff !== "q") { this.f[el.dataset.ff] = el.value; this.list(); }
-      if (el.dataset.addto && el.value !== "") PlanView.addTo(el.dataset.addto, /^(auto|wish)$/.test(el.value) ? el.value : +el.value);
-    });
-    sec.addEventListener("click", (e) => { const id = e.target.closest("[data-fdetail]")?.dataset.fdetail; if (id) PlacesView.detail(id); });
-  },
-};

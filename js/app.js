@@ -1,14 +1,14 @@
 // โครงแอป: แท็บหลัก 4 แท็บ + หัวข้อย่อย, ตั้งค่า, แชร์ลิงก์, ย้อนกลับ, PWA
 const TABS = [
   { id: "mytrip", ic: "map", name: "ทริปของฉัน", subs: [["trip", "แผนรายวัน"], ["today", "วันนี้"], ["setup", "ข้อมูลทริป"], ["stays", "ที่พัก+จอง"]] },
-  { id: "explore", ic: "search", name: "ค้นหา", subs: [["places", "สถานที่"], ["food", "ร้านอาหาร"]] },
+  { id: "explore", ic: "search", name: "ค้นหา", subs: [["places", "สถานที่"]] },
   { id: "ready", ic: "backpack", name: "เตรียมตัว", subs: [["prep", "สิ่งที่ต้องทำ"], ["packing", "ของจำเป็น"], ["budget", "งบประมาณ"]] },
   { id: "guide", ic: "book-open", name: "คู่มือ", subs: [["guide", "คู่มือฉบับย่อ"], ["emergency", "เอกสาร + ฉุกเฉิน"]] },
 ];
 const TAB_OF = Object.fromEntries(TABS.flatMap((t) => t.subs.map(([id]) => [id, t])));
 const RENDER = {
   trip: () => PlanView.render(), setup: () => PlanView.renderSetup(), stays: () => PlanView.renderStays(), today: () => PlanView.renderToday(),
-  places: () => PlacesView.render(), food: () => FoodView.render(),
+  places: () => PlacesView.render(),
   packing: () => PackingView.render(), prep: () => PrepView.render(), budget: () => BudgetView.render(),
   guide: () => GuideView.guide(),
   emergency: () => GuideView.emergency(),
@@ -181,7 +181,7 @@ const App = {
   },
 
   init() {
-    Safety.bind(); PlanView.bind(); PlacesView.bind(); FoodView.bind(); PrepView.bind(); PackingView.bind(); BudgetView.bind();
+    Safety.bind(); PlanView.bind(); PlacesView.bind(); PrepView.bind(); PackingView.bind(); BudgetView.bind();
     window.addEventListener("hashchange", () => { const h = location.hash.slice(1); if (h.startsWith("share=")) this.loadShared(h.slice(6)); else this.show(h); });
     const h = location.hash.slice(1);
     const N = tripNights(), now = jstNow().iso;

@@ -245,13 +245,13 @@ details.card.opt[open] > summary { margin-bottom: 10px; }
 .daymap { height: 210px; border-radius: 10px; border: 1px solid var(--line); margin-bottom: 8px; background: var(--map-bg); z-index: 0; }
 
 /* ---------- photos ---------- */
-.pcard .ph, .fcard .ph { margin: -16px -18px 6px; height: 150px; border-radius: var(--r) var(--r) 0 0; overflow: hidden; background: linear-gradient(135deg, #dfe8f0, #f4f6f8); display: grid; place-items: center; font-size: 42px; }
-.pcard .ph img, .fcard .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pcard .ph { margin: -16px -18px 6px; height: 150px; border-radius: var(--r) var(--r) 0 0; overflow: hidden; background: linear-gradient(135deg, #dfe8f0, #f4f6f8); display: grid; place-items: center; font-size: 42px; }
+.pcard .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .credit { font-size: .68rem; color: var(--mute); }
 .tl .thumb { width: 44px; height: 44px; border-radius: 6px; object-fit: cover; float: right; margin-left: 8px; }
 
 /* ---------- festival timeline ---------- */
-@media print { .daymap { display: none; } .pcard .ph, .fcard .ph { display: none; } }
+@media print { .daymap { display: none; } .pcard .ph { display: none; } }
 .marker-cluster-small, .marker-cluster-medium, .marker-cluster-large { background: rgba(44,110,155,.25); }
 .marker-cluster-small div, .marker-cluster-medium div, .marker-cluster-large div { background: #2c6e9b; color: #fff; font: 700 12px var(--font); }
 .lb { position: fixed; inset: 0; z-index: 3000; background: rgba(10,15,25,.88); display: none; align-items: center; justify-content: center; }
@@ -335,19 +335,11 @@ dialog#modal::backdrop { background: rgba(10,15,25,.6); }
 .showcard { text-align: center; padding: 10px 0; }
 .big-ja { font-size: clamp(2rem, 7vw, 3.6rem); font-weight: 700; line-height: 1.25; margin: 10px 0; word-break: break-all; }
 .addr-ja { font-size: 1.3rem; margin-bottom: 6px; }
-.food-pick { display: grid; gap: 6px; }
-.fp { display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; }
 
 /* การ์ดสถานที่/ร้าน */
-.pcard h4, .fcard h4 { cursor: pointer; }
-.pcard h4:hover, .fcard h4:hover { color: var(--ice); }
+.pcard h4 { cursor: pointer; }
+.pcard h4:hover { color: var(--ice); }
 .ph .sea { position: absolute; left: 8px; bottom: 8px; background: rgba(255,255,255,.88); border-radius: 99px; padding: 0 6px; font-size: .8rem; }
-.fcard { display: flex; flex-direction: column; gap: 6px; }
-.fcard .meta { font-size: .8rem; color: var(--ink2); display: flex; gap: 8px; flex-wrap: wrap; }
-.fcard .hl { font-size: .9rem; }
-.fcard .cau { font-size: .8rem; color: var(--warn); }
-.fcard .act { margin-top: auto; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
-.fcard.in { border-color: var(--good); }
 .addsel { font-size: .8rem; padding: 4px 6px; }
 details.mapbox summary { cursor: pointer; margin-bottom: 8px; }
 input[type=search] { border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px; background: var(--paper); min-width: 0; }
@@ -440,7 +432,7 @@ button:focus-visible, summary:focus-visible, .legmode:focus-within { outline: 2p
 .tl .ic { color: var(--ice); }
 .tl li.mv .ic { color: var(--mute); }
 .ph > .i { stroke-width: 1.5; }
-.pcard .ph > .i, .fcard .ph > .i { width: 56px; height: 56px; color: var(--mute); }
+.pcard .ph > .i { width: 56px; height: 56px; color: var(--mute); }
 .maplbl .i { width: 1.1em; height: 1.1em; vertical-align: -.2em; }
 .it-tools button .i { width: 16px; height: 16px; vertical-align: middle; }
 .pk-cat h3 > .i { color: var(--ice); }

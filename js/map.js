@@ -57,8 +57,8 @@ function labelIcon(html, bg = "#142033") {
 }
 function placePopup(p, extra = "") {
   const n = placeImgs(p).length, id = JSON.stringify(p.id ?? "");
-  if (!p.stars && !FOOD[p.id]) return `<div class="pop"><b>${esc(p.name)}</b>${extra}</div>`; // จุดของฉัน
-  const meta = FOOD[p.id] ? `${esc(p.cuisine)} • ¥${fmtN(p.price[0])}-${fmtN(p.price[1])} • ${I("clock")} ${esc(p.open)}` : `<span class="stars">${"★".repeat(p.stars)}</span> ${esc(p.type)} • ${I("timer")} ${esc(p.dur)} • ${esc(p.fee)}`;
+  if (!p.stars) return `<div class="pop"><b>${esc(p.name)}</b>${extra}</div>`; // จุดของฉัน
+  const meta = `<span class="stars">${"★".repeat(p.stars)}</span> ${esc(p.type)} • ${I("timer")} ${esc(p.dur)} • ${esc(p.fee)}`;
   return `<div class="pop">${p.img ? `<img src="${p.img}" alt="" loading="lazy" onclick='Lightbox.place(${id})' title="กดดูรูปใหญ่${n > 1 ? ` (${n} รูป)` : ""}">` : ""}
     <b>${nameHtml(p)}</b><div>${meta}</div>
     <div>${esc(p.highlight || p.signature || "")}</div>${extra}
@@ -120,7 +120,7 @@ function drawDayStops(M, e, color, { faded = false } = {}) {
     const p = point(x.id);
     n++;
     if (!p.lat) return;
-    L.marker([p.lat, p.lng], { icon: pin(x.night ? I("moon") : FOOD[x.id] ? I("utensils") : n, color, "num" + (faded ? " faded" : "")), zIndexOffset: faded ? 0 : 500 })
+    L.marker([p.lat, p.lng], { icon: pin(x.night ? I("moon") : n, color, "num" + (faded ? " faded" : "")), zIndexOffset: faded ? 0 : 500 })
       .bindPopup(placePopup(p, `<div class="mute">วันที่ ${e.i + 1} • จุดที่ ${n} • ${fmtT(x.t)}</div>`), { maxWidth: 260 }).addTo(M.layer);
     M.bounds.push([p.lat, p.lng]);
   });
@@ -190,7 +190,7 @@ const TripMap = {
     for (const p of list) {
       if (!p.lat) continue;
       const border = inPlan.has(p.id) ? "#2f8a57" : p.stars === 3 ? "#c8374a" : p.stars === 2 ? "#2c6e9b" : "#9aa5b1";
-      const ic = I(FOOD[p.id] ? "utensils" : TAG_ICON[p.tags[0]] || "map-pin"), st = p.stars || 1;
+      const ic = I(TAG_ICON[p.tags[0]] || "map-pin"), st = p.stars || 1;
       L.marker([p.lat, p.lng], { icon: pin(ic, border, "emo s" + st), zIndexOffset: st * 100 })
         .bindPopup(placePopup(p), { maxWidth: 260 }).addTo(group);
       M.bounds.push([p.lat, p.lng]);

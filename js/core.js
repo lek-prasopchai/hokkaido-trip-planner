@@ -31,6 +31,16 @@ const monthOf = (iso) => +iso.slice(5, 7);
 // ---------- เก็บข้อมูลในเบราว์เซอร์ ----------
 const STORE_KEY = "hokkaido-planner-v2";
 const BUF = { imm: 75, car: 45, pass: 30, dom: 20, before: 150, beforeDom: 60, ret: 45 }; // นาที
+// เมนูร้านอาหารถูกยุบ: ร้านเดิม (f…) ในแผน/ลิงก์แชร์เก่า → คาเฟ่ที่ย้ายเป็นสถานที่ หรือจุดของฉัน (ชื่อ+พิกัดเดิม)
+const dropFoods = (P) => {
+  P.custom ||= {};
+  const OLD = {"f1":["ราเมนชินเง็น",43.0686,141.3508],"f2":["ราเมนซุมิเระ สาขาหลัก",43.032639,141.361711],"f3":["จิงกิสคังดารุมะ สาขาหลัก",43.0686,141.3508],"f4":["ซุปแกงกะหรี่ GARAKU",43.058052,141.355098],"f5":["ซุปแกงกะหรี่ Suage+",43.0686,141.3508],"f6":["Kita no Gurume-tei",43.070763,141.320005],"f7":["Donburi Chaya ตลาดนิโจ",43.0686,141.3508],"f8":["Sapporo Beer Garden (จิงกิสคังไม่อั้น)",43.070894,141.368838],"f9":["Kani Honke (ปู)",43.0686,141.3508],"f10":279,"f11":280,"f12":["Nemuro Hanamaru (ซูชิสายพาน)",43.0686,141.3508],"f13":["Masazushi สาขาหลัก",43.1975,140.9947],"f14":281,"f15":["Otaru Beer โกดังที่ 1",43.1975,140.9947],"f16":["Naruto (ไก่ทอดครึ่งตัว)",43.1975,140.9947],"f17":["Lucky Pierrot เบย์แอเรีย",41.765794,140.714894],"f18":["ราเมนอาจิไซ",41.794601,140.753273],"f19":["Kikuyo Shokudo (ข้าวหน้าซีฟู้ด)",41.7737,140.7266],"f20":["Uni Murakami (ข้าวหน้าอูนิ)",41.771938,140.724383],"f21":["Hasegawa Store (ข้าวกล่องยากิโทริ)",41.765648,140.715024],"f22":["Aji no Daio (ราเมนนรก)",42.492592,141.143313],"f23":282,"f24":["Hokkaido Ramen Dojo (สนามบิน)",42.7752,141.6923],"f25":29,"f26":["ราเมนฮาจิยะ",43.7631,142.3584],"f27":["ราเมนซันโตกะ สาขาหลัก",43.7631,142.3584],"f28":["ราเมนไบโคเค็น สาขาหลัก",43.7631,142.3584],"f29":["Junpei (ข้าวหน้ากุ้งทอด)",43.589323,142.468153],"f30":["Yuiga Doxon (แกงกะหรี่ไส้กรอก)",43.344879,142.389476],"f31":284,"f32":285,"f33":["Kita no Yatai (หมู่บ้านร้านแผงลอย)",42.921027,143.20343],"f34":["Indian Curry (แกงกะหรี่ท้องถิ่น)",42.921225,143.202039],"f35":["Butadon Tonta (ข้าวหน้าหมูย่าง)",42.918,143.203],"f36":["Izumiya (สปาเก็ตตีกระทะเหล็ก)",42.99,144.382],"f37":["Kawamura (ราเมนคุชิโระ)",42.984307,144.386431],"f38":["Poronno (อาหารไอนุ)",43.433,144.096],"f39":["Abashiri Beer Kan",44.021449,144.261755]};
+  const to = (id) => { const o = OLD[id]; if (!o) return null; if (typeof o === "number") return o;
+    const c = "c" + id; P.custom[c] ||= { name: o[0], hours: 1, lat: o[1], lng: o[2] }; return c; };
+  P.days.forEach((d) => (d.items || []).forEach((it) => { if (/^f\d+$/.test(it.id)) it.id = to(it.id) ?? it.id; }));
+  P.wish = (P.wish || []).map((id) => (/^f\d+$/.test(id) ? to(id) ?? id : id));
+  return P;
+};
 const Store = {
   defaults() {
     return {
@@ -47,6 +57,7 @@ const Store = {
   },
   merge(s) {
     const d = this.defaults();
+    if (s.plan?.days) dropFoods(s.plan);
     return { ...d, ...s, trip: { ...d.trip, ...s.trip, buf: { ...BUF, ...(s.trip || {}).buf } }, set: { ...d.set, ...s.set, ...(s.set?.langV ? {} : { lang: "en", langV: 2 }) } }; // langV: ค่า lang เดิมความหมายต่างจากตอนนี้ รีเซ็ตเป็นอังกฤษก่อน
   },
   load() {
@@ -106,13 +117,12 @@ function toast(msg) {
 const HUB = Object.fromEntries(HUBS.map((h) => [h.id, h]));
 const AIR = Object.fromEntries(AIRPORTS.map((a) => [a.id, a]));
 const PLACE = Object.fromEntries(PLACES.map((p) => [p.id, p]));
-const FOOD = Object.fromEntries((window.FOODS || []).map((f) => [f.id, f]));
 const isPlace = (id) => typeof id === "number";
 // ที่พักที่ผู้ใช้กรอก (พิกัดจริง) ทับจุดกลางเมืองของฐาน
 const hotelOf = (hub) => S.plan?.hotels?.[hub];
 function point(id) {
   if (HUB[id]) { const h = hotelOf(id); return h && h.lat ? { ...HUB[id], lat: h.lat, lng: h.lng, hotel: h.name } : HUB[id]; }
-  return AIR[id] || PLACE[id] || FOOD[id] || S.plan?.custom?.[id];
+  return AIR[id] || PLACE[id] || S.plan?.custom?.[id];
 }
 function nearestHub(p) {
   let best = null, d = Infinity;

@@ -1,6 +1,6 @@
 // ตรรกะวางแผน: เลือกรูท, แจกคืน, เติมสถานที่, จัดลำดับ, ตรวจว่าเวลาพอไหม
 // รายการในแต่ละวัน (day.items) = [{ id, at?, dur?, note?, night?, u?, st? }]
-//   id: ตัวเลข = สถานที่, "f…" = ร้านอาหาร, "c…" = จุดที่ผู้ใช้เพิ่มเอง (S.plan.custom)
+//   id: ตัวเลข = สถานที่, "c…" = จุดที่ผู้ใช้เพิ่มเอง (S.plan.custom)
 //   at = ล็อกเวลา "HH:MM", dur = ทับเวลาที่ใช้ (ชม.), night = ไปหลังเช็กอิน, u = ผู้ใช้ใส่เอง (จัดอัตโนมัติไม่ลบ), st = done/skip (โหมดวันนี้)
 const SEV = { bad: 10, warn: 1 };
 const sevOf = (ev) => ev.checks.reduce((a, c) => a + (SEV[c.lvl] || 0), 0);
@@ -59,6 +59,7 @@ const Planner = {
     this.autofillAll();
     S.plan.days.forEach((d, i) => { if (!d.items.some((it) => S.plan.custom[it.id]?.meal)) this.placeMeal(i); }); // หลังเติมที่เที่ยว ถึงรู้ว่าเที่ยงอยู่ตรงไหน
   },
+
 
   // ให้จำนวนวันในแผนตรงกับวันเดินทาง (เมื่อผู้ใช้เปลี่ยนวัน)
   syncDays() {
@@ -261,7 +262,7 @@ const Planner = {
       const p = point(it.id), nm = pname(it.id);
       const closed = p.closed || p.closedDays;
       if (closed && String(closed).includes(wd)) add("warn", `${nm}: อาจปิดวัน${wd} (${closed})`);
-      if ((isPlace(it.id) || FOOD[it.id]) && !inSeason(p, iso)) add(p.season ? "warn" : "bad", p.season ? `${nm}: วันนี้นอกช่วงงาน (${p.season.join(" ถึง ")})` : `${nm}: ปิด/ไม่มีอะไรให้ดูช่วงนี้ (เปิด ${monthRange(monthsOf(p))})`);
+      if (isPlace(it.id) && !inSeason(p, iso)) add(p.season ? "warn" : "bad", p.season ? `${nm}: วันนี้นอกช่วงงาน (${p.season.join(" ถึง ")})` : `${nm}: ปิด/ไม่มีอะไรให้ดูช่วงนี้ (เปิด ${monthRange(monthsOf(p))})`);
       if ((it.m || mode) === "transit" && isPlace(it.id)) {
         const a = access(p);
         if (a === "car") add("bad", `${nm}: รถไฟ/บัสไปไม่ถึง ต้องใช้ทัวร์/แท็กซี่ หรือเปลี่ยนวิธีไปช่วงนี้เป็นขับรถ/แท็กซี่`);

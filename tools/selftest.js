@@ -4,7 +4,7 @@ global.window = global;
 global.localStorage = { getItem: () => null, setItem() {} };
 global.App = { viewOnly: false };
 const root = path.join(__dirname, "..");
-for (const f of ["places", "foods", "festivals", "drive", "hubs", "transit", "templates", "guide"]) vm.runInThisContext(fs.readFileSync(`${root}/data/${f}.js`, "utf8"));
+for (const f of ["places", "festivals", "drive", "hubs", "transit", "templates", "guide"]) vm.runInThisContext(fs.readFileSync(`${root}/data/${f}.js`, "utf8"));
 for (const f of ["core", "planner"]) vm.runInThisContext(fs.readFileSync(`${root}/js/${f}.js`, "utf8").replace(/^(const|let) /gm, "var "));
 const trip = (o) => { S = Store.defaults(); Object.assign(S.trip, o); S.trip.nights = tripNights(); };
 
@@ -14,8 +14,13 @@ assert(Math.abs(sun.set - 16.35) < 0.25, "sunset " + fmtT(sun.set));
 assert(transitPath("CTS", "hakodate"), "ต้องมีเส้นทางรถไฟ CTS→ฮาโกดาเตะ");
 assert(PLACES.every((p) => HUB[p.hub] && p.lat), "ทุกสถานที่ต้องมีฐานและพิกัด");
 assert(new Set(PLACES.map((p) => p.id)).size === PLACES.length, "id สถานที่ซ้ำ");
-assert(FOODS.every((f) => HUB[f.hub] && f.lat && f.id.startsWith("f")), "ทุกร้านต้องมีฐาน พิกัด และ id ขึ้นต้น f");
 assert(PLACES.every((p) => !p.months || p.months.every((m) => m >= 1 && m <= 12)), "months ต้องเป็น 1–12");
+
+// ร้านอาหารเดิม (f…) ในแผนเก่า: คาเฟ่ → สถานที่, ร้านอื่น → จุดของฉัน
+{ const P = dropFoods({ days: [{ items: [{ id: "f10" }, { id: "f1" }, { id: 5 }] }], wish: ["f2"] });
+  assert(PLACE[P.days[0].items[0].id], "คาเฟ่ต้องกลายเป็นสถานที่");
+  assert.strictEqual(P.custom[P.days[0].items[1].id].name, "ราเมนชินเง็น");
+  assert(P.custom[P.wish[0]]?.lat && P.days[0].items[2].id === 5, "รายการอยากไป/สถานที่เดิมต้องไม่พัง"); }
 
 // ทุกรูท × จำนวนคืน × โหมด สร้างแผนได้ เวลาไม่พัง
 for (const tp of TEMPLATES) for (const nights of [3, 5, 7, 10]) for (const mode of ["car", "transit", "mixed"]) {
