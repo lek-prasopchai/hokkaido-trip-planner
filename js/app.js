@@ -49,7 +49,16 @@ const Safety = {
 
 const App = {
   cur: null, viewOnly: false,
-  renderAll() { if (this.cur) RENDER[this.cur](); this.refreshChrome(); },
+  renderAll() {
+    if (this.cur) {
+      // วาดใหม่ทั้งหน้าแล้วกล่องพับ (details) จะกลับเป็นค่าเริ่มต้น: จำสถานะเปิด/ปิดไว้แล้วคืนให้ (key = id หรือหัวข้อไม่รวมตัวเลข เพราะตัวเลขนับเปลี่ยนได้)
+      const sec = $(`[data-sec="${this.cur}"]`), key = (d) => d.id || d.querySelector("summary")?.textContent.replace(/[\d\s]/g, "").slice(0, 40);
+      const st = new Map(sec ? $$("details", sec).map((d) => [key(d), d.open]) : []);
+      RENDER[this.cur]();
+      if (sec) $$("details", sec).forEach((d) => { const k = key(d); if (st.has(k)) d.open = st.get(k); });
+    }
+    this.refreshChrome();
+  },
 
   refreshChrome() {
     const t = S.trip, N = tripNights();
