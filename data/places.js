@@ -7865,7 +7865,19 @@ window.PLACES = [
   "lat": 43.3591,
   "lng": 142.374,
   "checked": "2026-11",
-  "acc": "ประมาณ"
+  "acc": "ประมาณ",
+  "imgs": [
+   {
+    "img": "img/places/164_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Furano_Winery.jpg"
+   },
+   {
+    "img": "img/places/164_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Furano_Winery-2.jpg"
+   }
+  ],
+  "img": "img/places/164_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Furano_Winery.jpg"
  },
  {
   "hub": "furano",
@@ -8005,7 +8017,15 @@ window.PLACES = [
   "lat": 43.719056,
   "lng": 142.977167,
   "checked": "2026-11",
-  "acc": "จาก Wikipedia"
+  "acc": "จาก Wikipedia",
+  "imgs": [
+   {
+    "img": "img/places/167_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E7%A7%8B%E5%87%BD%EF%BC%88Autumn_in_valley%EF%BC%89_-_panoramio.jpg"
+   }
+  ],
+  "img": "img/places/167_2.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%A7%8B%E5%87%BD%EF%BC%88Autumn_in_valley%EF%BC%89_-_panoramio.jpg"
  },
  {
   "hub": "asahikawa",
@@ -8799,7 +8819,15 @@ window.PLACES = [
   "lat": 42.564,
   "lng": 140.812,
   "checked": "2026-11",
-  "acc": "ประมาณ"
+  "acc": "ประมาณ",
+  "imgs": [
+   {
+    "img": "img/places/183_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:130921_Toyako_Onsen_Toyako_Hokkaido_Japan00s.jpg"
+   }
+  ],
+  "img": "img/places/183_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:130921_Toyako_Onsen_Toyako_Hokkaido_Japan00s.jpg"
  },
  {
   "hub": "noboribetsu",
@@ -9728,7 +9756,15 @@ window.PLACES = [
   "lat": 44.0219,
   "lng": 145.1897,
   "checked": "2026-11",
-  "acc": "ประมาณ"
+  "acc": "ประมาณ",
+  "imgs": [
+   {
+    "img": "img/places/202_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Hokkaido-Orca_of_rausu-xl.jpg"
+   }
+  ],
+  "img": "img/places/202_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokkaido-Orca_of_rausu-xl.jpg"
  },
  {
   "hub": "rausu",
@@ -9911,7 +9947,23 @@ window.PLACES = [
   "lat": 45.48,
   "lng": 141.96,
   "checked": "2026-11",
-  "acc": "ประมาณ"
+  "acc": "ประมาณ",
+  "imgs": [
+   {
+    "img": "img/places/206_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Hokkaido-wakkanai-soyakyuryo-1977.jpg"
+   },
+   {
+    "img": "img/places/206_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Karafuto_SakhalinISLAND.JPG"
+   },
+   {
+    "img": "img/places/206_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Soya_Hills_White_Shell_Road.jpg"
+   }
+  ],
+  "img": "img/places/206_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokkaido-wakkanai-soyakyuryo-1977.jpg"
  },
  {
   "hub": "sapporo",
@@ -10420,7 +10472,19 @@ window.PLACES = [
   "lat": 41.764,
   "lng": 140.71,
   "checked": "2026-11",
-  "acc": "ประมาณ"
+  "acc": "ประมาณ",
+  "imgs": [
+   {
+    "img": "img/places/216_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E8%88%B9%E9%AD%82%E7%A5%9E%E7%A4%BE_%E6%96%B0%E5%B1%8B%E6%95%B7%E7%94%BA.jpg"
+   },
+   {
+    "img": "img/places/216_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Funadama_Jinja.jpg"
+   }
+  ],
+  "img": "img/places/216_2.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E8%88%B9%E9%AD%82%E7%A5%9E%E7%A4%BE_%E6%96%B0%E5%B1%8B%E6%95%B7%E7%94%BA.jpg"
  },
  {
   "hub": "hakodate",
@@ -10829,7 +10893,15 @@ window.PLACES = [
   "lat": 41.433,
   "lng": 140.105,
   "checked": "2026-11",
-  "acc": "ประมาณ"
+  "acc": "ประมาณ",
+  "imgs": [
+   {
+    "img": "img/places/224_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E6%A1%9C%E5%89%8D%E7%B7%9A%E6%9C%AC%E9%81%93%E4%B8%8A%E9%99%B8%E6%A8%99%E6%BA%96%E6%9C%A8_%E6%9D%BE%E5%89%8D%E5%9F%8E_Apr_23%2C_2008.jpg"
+   }
+  ],
+  "img": "img/places/224_3.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%A1%9C%E5%89%8D%E7%B7%9A%E6%9C%AC%E9%81%93%E4%B8%8A%E9%99%B8%E6%A8%99%E6%BA%96%E6%9C%A8_%E6%9D%BE%E5%89%8D%E5%9F%8E_Apr_23%2C_2008.jpg"
  },
  {
   "hub": "hakodate",
@@ -11620,7 +11692,23 @@ window.PLACES = [
   "lat": 43.0683,
   "lng": 141.3505,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/240_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Sapporo_STELLAR_PLACE01.jpg"
+   },
+   {
+    "img": "img/places/240_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Solar-powered_clock_of_the_Sapporo_Station%2C_Hokkaido%2C_Japan%3B_August_2009.jpg"
+   },
+   {
+    "img": "img/places/240_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Stellar_Place_Sapporo_B1_2014.jpg"
+   }
+  ],
+  "img": "img/places/240_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_STELLAR_PLACE01.jpg"
  },
  {
   "hub": "sapporo",
@@ -11671,7 +11759,23 @@ window.PLACES = [
   "lat": 43.062,
   "lng": 141.354,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/241_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Sapporo_Underground_Pedestrian_Space_Station_Road01s3.jpg"
+   },
+   {
+    "img": "img/places/241_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Sapporo_Underground_Pedestrian_Space_Station_Road_shops_2014.jpg"
+   },
+   {
+    "img": "img/places/241_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Sapporo_Underground_Pedestrian_Space_seating_area_2014.jpg"
+   }
+  ],
+  "img": "img/places/241_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Underground_Pedestrian_Space_Station_Road01s3.jpg"
  },
  {
   "hub": "sapporo",
@@ -11719,7 +11823,19 @@ window.PLACES = [
   "lat": 43.057,
   "lng": 141.353,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/242_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Tanukikoji_01.jpg"
+   },
+   {
+    "img": "img/places/242_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E7%8B%B8%E5%B0%8F%E8%B7%AF7%E4%B8%81%E7%9B%AE.jpg"
+   }
+  ],
+  "img": "img/places/242_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Tanukikoji_01.jpg"
  },
  {
   "hub": "sapporo",
@@ -11767,7 +11883,15 @@ window.PLACES = [
   "lat": 43.066,
   "lng": 141.348,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/243_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Yodobashi-Camera.Multimedia-Sapporo01.JPG"
+   }
+  ],
+  "img": "img/places/243_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Yodobashi-Camera.Multimedia-Sapporo01.JPG"
  },
  {
   "hub": "sapporo",
@@ -11817,7 +11941,19 @@ window.PLACES = [
   "lat": 43.056,
   "lng": 141.3535,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/244_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:AOAO_SAPPORO_Penguin.jpg"
+   },
+   {
+    "img": "img/places/244_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:MOYUK_SAPPORO.jpg"
+   }
+  ],
+  "img": "img/places/244_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:AOAO_SAPPORO_Penguin.jpg"
  },
  {
   "hub": "sapporo",
@@ -11866,7 +12002,23 @@ window.PLACES = [
   "lat": 43.0605,
   "lng": 141.3305,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/245_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:AoyamaKumaji-1907-Profile_of_an_Ainu_Woman.png"
+   },
+   {
+    "img": "img/places/245_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:HayashiTakejir%C5%8D-1906-Morning_Prayer.png"
+   },
+   {
+    "img": "img/places/245_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:JulesPascin-1906-Girls_and_Dogs.png"
+   }
+  ],
+  "img": "img/places/245_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:AoyamaKumaji-1907-Profile_of_an_Ainu_Woman.png"
  },
  {
   "hub": "sapporo",
@@ -11916,7 +12068,23 @@ window.PLACES = [
   "lat": 43.0633,
   "lng": 141.3437,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/246_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:131103_Hokkaido_University_Botanical_Gardens_Sapporo_Hokkaido_Japan05s3.jpg"
+   },
+   {
+    "img": "img/places/246_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:131103_Hokkaido_University_Botanical_Gardens_Sapporo_Hokkaido_Japan08bs.jpg"
+   },
+   {
+    "img": "img/places/246_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:131103_Hokkaido_University_Botanical_Gardens_Sapporo_Hokkaido_Japan18o.jpg"
+   }
+  ],
+  "img": "img/places/246_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:131103_Hokkaido_University_Botanical_Gardens_Sapporo_Hokkaido_Japan05s3.jpg"
  },
  {
   "hub": "sapporo",
@@ -11957,7 +12125,15 @@ window.PLACES = [
   "lat": 43.009,
   "lng": 141.461,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/247_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Hiraoka_Park.jpg"
+   }
+  ],
+  "img": "img/places/247_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hiraoka_Park.jpg"
  },
  {
   "hub": "otaru",
@@ -12007,7 +12183,15 @@ window.PLACES = [
   "lat": 43.1925,
   "lng": 141.004,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/248_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Otaru_Sakaimachi_Dori_Shopping_Street%2C_Otaru%2C_Hokkaido%2C_Japan%2C_%E5%B0%8F%E6%A8%BD%E5%A0%BA%E7%94%BA%E9%80%9A%E5%95%86%E5%BA%97%E8%A1%97%2C_%E5%B0%8F%E6%A8%BD%2C_%E5%8C%97%E6%B5%B7%E9%81%93%2C_%E6%97%A5%E6%9C%AC%2C_%E5%B0%8F%E6%A8%BD%E5%A0%BA%E7%94%BA%E9%80%9A%E3%82%8A%E5%95%86%E5%BA%97%E8%A1%97%2C_%E3%81%8A%E3%81%9F%E3%82%8B%E3%81%97%2C_%E3%81%BB%E3%81%A3%E3%81%8B%E3%81%84%E3%81%A9%E3%81%86%2C_%E3%81%AB%E3%81%A3%E3%81%BD%E3%82%93%2C_%E3%81%AB%E3%81%BB%E3%82%93_%2816099851034%29.jpg"
+   }
+  ],
+  "img": "img/places/248_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Otaru_Sakaimachi_Dori_Shopping_Street%2C_Otaru%2C_Hokkaido%2C_Japan%2C_%E5%B0%8F%E6%A8%BD%E5%A0%BA%E7%94%BA%E9%80%9A%E5%95%86%E5%BA%97%E8%A1%97%2C_%E5%B0%8F%E6%A8%BD%2C_%E5%8C%97%E6%B5%B7%E9%81%93%2C_%E6%97%A5%E6%9C%AC%2C_%E5%B0%8F%E6%A8%BD%E5%A0%BA%E7%94%BA%E9%80%9A%E3%82%8A%E5%95%86%E5%BA%97%E8%A1%97%2C_%E3%81%8A%E3%81%9F%E3%82%8B%E3%81%97%2C_%E3%81%BB%E3%81%A3%E3%81%8B%E3%81%84%E3%81%A9%E3%81%86%2C_%E3%81%AB%E3%81%A3%E3%81%BD%E3%82%93%2C_%E3%81%AB%E3%81%BB%E3%82%93_%2816099851034%29.jpg"
  },
  {
   "hub": "otaru",
@@ -12105,7 +12289,23 @@ window.PLACES = [
   "lat": 43.1985,
   "lng": 140.996,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/250_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:220721_Former_Hokkaido_Takushoku_Bank_Otaru_Branch_Otaru_Hokkaido_Japan01bs.jpg"
+   },
+   {
+    "img": "img/places/250_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:220721_Former_Mitsui_Bank_Otaru_Branch_Otaru_Hokkaido_Japan03s3.jpg"
+   },
+   {
+    "img": "img/places/250_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:220721_Former_Naniwa_Warehouse_Otaru_Hokkaido_Japan01s3.jpg"
+   }
+  ],
+  "img": "img/places/250_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:220721_Former_Hokkaido_Takushoku_Bank_Otaru_Branch_Otaru_Hokkaido_Japan01bs.jpg"
  },
  {
   "hub": "otaru",
@@ -12154,7 +12354,19 @@ window.PLACES = [
   "lat": 43.195,
   "lng": 140.989,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/251_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Funamizaka_31499166415_d62859617d_o.jpg"
+   },
+   {
+    "img": "img/places/251_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Otaru_Funamizaka_Slope_DSC_1723.jpg"
+   }
+  ],
+  "img": "img/places/251_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Funamizaka_31499166415_d62859617d_o.jpg"
  },
  {
   "hub": "otaru",
@@ -12198,7 +12410,19 @@ window.PLACES = [
   "lat": 43.194,
   "lng": 140.8,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/252_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Fugoppe_Cave.jpg"
+   },
+   {
+    "img": "img/places/252_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Fugoppe_Cave_Entrance.jpg"
+   }
+  ],
+  "img": "img/places/252_2.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Fugoppe_Cave.jpg"
  },
  {
   "hub": "niseko",
@@ -12250,7 +12474,15 @@ window.PLACES = [
   "lat": 42.8267,
   "lng": 140.8114,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/253_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Mount_Yotei_from_Mount_Shiribetsu.jpg"
+   }
+  ],
+  "img": "img/places/253_3.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Mount_Yotei_from_Mount_Shiribetsu.jpg"
  },
  {
   "hub": "shikotsu",
@@ -12294,7 +12526,19 @@ window.PLACES = [
   "lat": 42.69,
   "lng": 141.377,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/254_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Lake_Shikotsu_Mt_Tarumae01n3200.jpg"
+   },
+   {
+    "img": "img/places/254_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Mount_Tarumae_seen_from_the_SSE.jpg"
+   }
+  ],
+  "img": "img/places/254_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake_Shikotsu_Mt_Tarumae01n3200.jpg"
  },
  {
   "hub": "chitose",
@@ -12342,7 +12586,23 @@ window.PLACES = [
   "lat": 42.632,
   "lng": 141.629,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/255_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E5%AF%84%E8%B2%9D%E5%92%96%E5%93%A9%E9%A3%AF_%2847025944004%29.jpg"
+   },
+   {
+    "img": "img/places/255_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E3%83%9E%E3%83%AB%E3%83%88%E3%83%9E%E9%A3%9F%E5%A0%82_-_panoramio.jpg"
+   },
+   {
+    "img": "img/places/255_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E5%AF%84%E9%A3%AF_%2833938232788%29.jpg"
+   }
+  ],
+  "img": "img/places/255_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E5%AF%84%E8%B2%9D%E5%92%96%E5%93%A9%E9%A3%AF_%2847025944004%29.jpg"
  },
  {
   "hub": "chitose",
@@ -12382,7 +12642,23 @@ window.PLACES = [
   "lat": 42.437,
   "lng": 142.444,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/256_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E4%BA%8C%E5%8D%81%E9%96%93%E9%81%93%E8%B7%AF%E6%AB%BB%E4%B8%A6%E6%9C%A8.jpg"
+   },
+   {
+    "img": "img/places/256_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Shizunai_Cherry_blossom_01.jpg"
+   },
+   {
+    "img": "img/places/256_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Shizunai_Cherry_blossom_02.jpg"
+   }
+  ],
+  "img": "img/places/256_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E4%BA%8C%E5%8D%81%E9%96%93%E9%81%93%E8%B7%AF%E6%AB%BB%E4%B8%A6%E6%9C%A8.jpg"
  },
  {
   "hub": "hakodate",
@@ -12431,7 +12707,19 @@ window.PLACES = [
   "lat": 41.772,
   "lng": 140.728,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/257_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Hakodate_Daimon_Yokocho.jpg"
+   },
+   {
+    "img": "img/places/257_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E5%A4%A7%E9%96%80%E6%A8%AA%E4%B8%81%E3%81%AE%E8%A1%A8%E7%A4%BA_%E5%AF%8C%E5%A3%AB%E3%83%A1%E3%82%AC%E3%83%8D%E5%87%BD%E9%A4%A8%E9%A7%85%E5%89%8D%E5%BA%97_%E5%87%BD%E9%A4%A8%E5%B8%82%E8%8B%A5%E6%9D%BE%E7%94%BA_January_2008.jpg"
+   }
+  ],
+  "img": "img/places/257_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Daimon_Yokocho.jpg"
  },
  {
   "hub": "hakodate",
@@ -12483,7 +12771,23 @@ window.PLACES = [
   "lat": 41.786,
   "lng": 140.799,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/258_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Miharashi_Park_%28Kosetsuen%29_Entei_20181019-001.jpg"
+   },
+   {
+    "img": "img/places/258_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Miharashi_Park_%28Kosetsuen%29_Entei_20181019-002.jpg"
+   },
+   {
+    "img": "img/places/258_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Miharashi_Park_%28Kosetsuen%29_Entei_20181019-003.jpg"
+   }
+  ],
+  "img": "img/places/258_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Miharashi_Park_%28Kosetsuen%29_Entei_20181019-001.jpg"
  },
  {
   "hub": "hakodate",
@@ -12532,7 +12836,15 @@ window.PLACES = [
   "lat": 41.868,
   "lng": 140.129,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/259_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E6%B1%9F%E5%B7%AE%E3%83%BB%E3%81%84%E3%81%AB%E3%81%97%E3%81%88%E3%81%AE%E8%A1%97%E9%81%93.jpg"
+   }
+  ],
+  "img": "img/places/259_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%B1%9F%E5%B7%AE%E3%83%BB%E3%81%84%E3%81%AB%E3%81%97%E3%81%88%E3%81%AE%E8%A1%97%E9%81%93.jpg"
  },
  {
   "hub": "obihiro",
@@ -12581,7 +12893,15 @@ window.PLACES = [
   "lat": 42.921,
   "lng": 143.199,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/260_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Kitanoyatai-Obihiro01.JPG"
+   }
+  ],
+  "img": "img/places/260_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kitanoyatai-Obihiro01.JPG"
  },
  {
   "hub": "kushiro",
@@ -12634,7 +12954,23 @@ window.PLACES = [
   "lat": 43.144,
   "lng": 144.518,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/261_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Kushiro_Riv_1.JPG"
+   },
+   {
+    "img": "img/places/261_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Kushiro_Riv_2.JPG"
+   },
+   {
+    "img": "img/places/261_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Kushiro_river01.jpg"
+   }
+  ],
+  "img": "img/places/261_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kushiro_Riv_1.JPG"
  },
  {
   "hub": "abashiri",
@@ -12682,7 +13018,23 @@ window.PLACES = [
   "lat": 44.004,
   "lng": 144.24,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/262_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:130713_Hokkaido_Museum_of_Northern_Peoples_Abashiri_Hokkaido_Japan02s3.jpg"
+   },
+   {
+    "img": "img/places/262_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:130713_Hokkaido_Museum_of_Northern_Peoples_Abashiri_Hokkaido_Japan04s5.jpg"
+   },
+   {
+    "img": "img/places/262_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:130713_Hokkaido_Museum_of_Northern_Peoples_Abashiri_Hokkaido_Japan14s5.jpg"
+   }
+  ],
+  "img": "img/places/262_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:130713_Hokkaido_Museum_of_Northern_Peoples_Abashiri_Hokkaido_Japan02s3.jpg"
  },
  {
   "hub": "utoro",
@@ -12722,7 +13074,23 @@ window.PLACES = [
   "lat": 44.137,
   "lng": 145.09,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/263_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:140828_Kamuiwakka_Falls_and_Mount_Io_Shiretoko_Hokkaido_Japan02sbs13.jpg"
+   },
+   {
+    "img": "img/places/263_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Kamuiwakka_Falls01s3.jpg"
+   },
+   {
+    "img": "img/places/263_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Kamuiwakka_Falls03s5.jpg"
+   }
+  ],
+  "img": "img/places/263_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:140828_Kamuiwakka_Falls_and_Mount_Io_Shiretoko_Hokkaido_Japan02sbs13.jpg"
  },
  {
   "hub": "sapporo",
@@ -12773,7 +13141,19 @@ window.PLACES = [
   "lat": 43.0553,
   "lng": 141.3531,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/264_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Chuo_Sapporo_S4W4S4W3_01s4s3200.jpg"
+   },
+   {
+    "img": "img/places/264_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Chuo_Sapporo_S4W4S4W3_02n3200.jpg"
+   }
+  ],
+  "img": "img/places/264_2.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Chuo_Sapporo_S4W4S4W3_01s4s3200.jpg"
  },
  {
   "hub": "sapporo",
@@ -12817,7 +13197,15 @@ window.PLACES = [
   "lat": 43.207,
   "lng": 141.764,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/265_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E6%B5%B7%E9%81%93%E3%82%B0%E3%83%AA%E3%83%BC%E3%83%B3%E3%83%A9%E3%83%B3%E3%83%89_-_panoramio.jpg"
+   }
+  ],
+  "img": "img/places/265_3.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E6%B5%B7%E9%81%93%E3%82%B0%E3%83%AA%E3%83%BC%E3%83%B3%E3%83%A9%E3%83%B3%E3%83%89_-_panoramio.jpg"
  },
  {
   "hub": "shikotsu",
@@ -12859,7 +13247,15 @@ window.PLACES = [
   "lat": 42.7745,
   "lng": 141.4045,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/266_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:LakeShikotsu-kayaks-GR-Aug15-2016.jpg"
+   }
+  ],
+  "img": "img/places/266_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:LakeShikotsu-kayaks-GR-Aug15-2016.jpg"
  },
  {
   "hub": "toya",
@@ -12912,7 +13308,23 @@ window.PLACES = [
   "lat": 42.565,
   "lng": 140.819,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/267_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:130921_Toyako_Onsen_Toyako_Hokkaido_Japan00s.jpg"
+   },
+   {
+    "img": "img/places/267_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:130922_Toyako_Onsen_Toyako_Hokkaido_Japan03s5.jpg"
+   },
+   {
+    "img": "img/places/267_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:130922_Toyako_Onsen_Toyako_Hokkaido_Japan04bs.jpg"
+   }
+  ],
+  "img": "img/places/267_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:130921_Toyako_Onsen_Toyako_Hokkaido_Japan00s.jpg"
  },
  {
   "hub": "sounkyo",
@@ -13002,7 +13414,23 @@ window.PLACES = [
   "lat": 42.69,
   "lng": 143.085,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/269_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:131013_Rokka-no-Mori_Nakasatsunai_Hokkaido_Japan14s5.jpg"
+   },
+   {
+    "img": "img/places/269_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:131013_Rokka-no-Mori_Nakasatsunai_Hokkaido_Japan18s3.jpg"
+   },
+   {
+    "img": "img/places/269_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:131013_Rokka-no-Mori_Nakasatsunai_Hokkaido_Japan01bs5.jpg"
+   }
+  ],
+  "img": "img/places/269_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:131013_Rokka-no-Mori_Nakasatsunai_Hokkaido_Japan14s5.jpg"
  },
  {
   "hub": "monbetsu",
@@ -13042,7 +13470,23 @@ window.PLACES = [
   "lat": 44.201,
   "lng": 143.621,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/270_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Kamiyubetsu-Tulip-Park01.JPG"
+   },
+   {
+    "img": "img/places/270_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Kamiyubetsu-Tulip-Park02Panoramic.JPG"
+   },
+   {
+    "img": "img/places/270_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Kamiyubetsu-Tulip-Park03.JPG"
+   }
+  ],
+  "img": "img/places/270_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kamiyubetsu-Tulip-Park01.JPG"
  },
  {
   "hub": "monbetsu",
@@ -13093,7 +13537,23 @@ window.PLACES = [
   "lat": 44.358,
   "lng": 143.369,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/271_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Tokkari_cemter2.jpg"
+   },
+   {
+    "img": "img/places/271_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Tokkari_center1.jpg"
+   },
+   {
+    "img": "img/places/271_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Tokkari_center3.jpg"
+   }
+  ],
+  "img": "img/places/271_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Tokkari_cemter2.jpg"
  },
  {
   "hub": "abashiri",
@@ -13143,7 +13603,23 @@ window.PLACES = [
   "lat": 43.785,
   "lng": 143.62,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/272_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E3%81%8D%E3%81%A4%E3%81%AD%E7%89%A7%E5%A0%B41.jpg"
+   },
+   {
+    "img": "img/places/272_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E3%81%8D%E3%81%A4%E3%81%AD%E7%89%A7%E5%A0%B42.jpg"
+   },
+   {
+    "img": "img/places/272_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E3%81%8D%E3%81%A4%E3%81%AD%E7%89%A7%E5%A0%B43.jpg"
+   }
+  ],
+  "img": "img/places/272_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E3%81%8D%E3%81%A4%E3%81%AD%E7%89%A7%E5%A0%B41.jpg"
  },
  {
   "hub": "niseko",
@@ -13191,7 +13667,23 @@ window.PLACES = [
   "lat": 42.866,
   "lng": 140.701,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/273_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Michinoeki_Niseko_View_Plaza.jpg"
+   },
+   {
+    "img": "img/places/273_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:NisekoViewPlaza-and-Yotei.JPG"
+   },
+   {
+    "img": "img/places/273_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Yoteizan_from_Niseko.jpg"
+   }
+  ],
+  "img": "img/places/273_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki_Niseko_View_Plaza.jpg"
  },
  {
   "hub": "toya",
@@ -13239,7 +13731,15 @@ window.PLACES = [
   "lat": 42.624,
   "lng": 140.77,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/274_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Michinoeki_Toyako.jpg"
+   }
+  ],
+  "img": "img/places/274_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki_Toyako.jpg"
  },
  {
   "hub": "biei",
@@ -13288,7 +13788,23 @@ window.PLACES = [
   "lat": 43.589,
   "lng": 142.466,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/275_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Michinoeki_Biei_Okanokura.JPG"
+   },
+   {
+    "img": "img/places/275_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Biei_Okanokura_%28Michi_no_Eki%2C_Hokkaido%29.JPG"
+   },
+   {
+    "img": "img/places/275_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Michinoeki_Biei_Okanokura_Biei_Hokkaido_Japan03bs5.jpg"
+   }
+  ],
+  "img": "img/places/275_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki_Biei_Okanokura.JPG"
  },
  {
   "hub": "utoro",
@@ -13337,7 +13853,23 @@ window.PLACES = [
   "lat": 44.07,
   "lng": 144.993,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/276_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Michinoeki_Utoro_sir-etok03s3.jpg"
+   },
+   {
+    "img": "img/places/276_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Shiretoko_World_Heritage_Conservation_Center02n.jpg"
+   },
+   {
+    "img": "img/places/276_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Michinoeki%2Cutoro-shiriesuku%2Csyari-town%2Cjapan.JPG"
+   }
+  ],
+  "img": "img/places/276_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki_Utoro_sir-etok03s3.jpg"
  },
  {
   "hub": "sounkyo",
@@ -13387,7 +13919,23 @@ window.PLACES = [
   "lat": 43.577,
   "lng": 143.155,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/277_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Mikuni_Pass_amountainpath_north.jpg"
+   },
+   {
+    "img": "img/places/277_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E4%B8%89%E5%9B%BD%E5%B3%A0_%E5%A4%8F%EF%BC%88Mikuni_mountain_pass%E3%80%81summer%EF%BC%89_-_panoramio.jpg"
+   },
+   {
+    "img": "img/places/277_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E4%B8%89%E5%9B%BD%E5%B3%A0_%E5%86%AC%EF%BC%88Mikuni_mountain_pass%2C_winter%EF%BC%89_-_panoramio.jpg"
+   }
+  ],
+  "img": "img/places/277_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Mikuni_Pass_amountainpath_north.jpg"
  },
  {
   "hub": "akan",
@@ -13437,7 +13985,19 @@ window.PLACES = [
   "lat": 43.433,
   "lng": 144.165,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/278_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Lake_pennke2.jpg"
+   },
+   {
+    "img": "img/places/278_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Soukodai.jpg"
+   }
+  ],
+  "img": "img/places/278_2.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake_pennke2.jpg"
  },
  {
   "id": 279,
@@ -13498,7 +14058,8 @@ window.PLACES = [
   "acc": "จาก OpenStreetMap",
   "en": "Parfait, Coffee, Liquor Sato",
   "checked": "2026-11",
-  "evening": true
+  "evening": true,
+  "imgs": []
  },
  {
   "id": 281,

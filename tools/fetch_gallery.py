@@ -1,8 +1,8 @@
 """รูปเพิ่มต่อสถานที่ (แกลเลอรี สูงสุด 3 รูปรวมรูปหลัก) -> field imgs ใน data/places.js
 ลำดับแหล่ง: รูปในบทความ Wikipedia (ja) ของที่นั้น -> ค้นใน Wikimedia Commons
-รันซ้ำได้: ข้ามที่มีครบแล้ว   ใช้: cd tools && python fetch_gallery.py
+รันซ้ำได้: ข้ามที่มีครบแล้ว   ใช้: cd tools && python fetch_gallery.py [noimg]   (noimg = เฉพาะที่ยังไม่มีรูปเลย)
 """
-import json, re, time, urllib.parse
+import json, re, sys, time, urllib.parse
 from pathlib import Path
 from enrich_places import ROOT, DATA, OVERRIDE, fetch, get
 
@@ -52,7 +52,7 @@ def main():
     places = json.loads(body.rstrip().rstrip(";"))
     for p in places:
         imgs = p.get("imgs") or ([{"img": p["img"], "credit": p["imgCredit"]}] if p.get("img") else [])
-        if len(imgs) >= MAX:
+        if len(imgs) >= MAX or ("noimg" in sys.argv and imgs):
             continue
         have = {urllib.parse.unquote(i["credit"].rsplit("File:", 1)[1]).replace("_", " ") for i in imgs}
         try:
