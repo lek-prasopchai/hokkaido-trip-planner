@@ -119,7 +119,7 @@ const PlanView = {
     const nightsBy = [];
     S.plan.bases.forEach((b) => { const l = nightsBy[nightsBy.length - 1]; if (l && l.b === b) l.n++; else nightsBy.push({ b, n: 1 }); });
     const left = daysBetween(todayIso(), t.start), B = BudgetView.calc();
-    sec.innerHTML = `${this.steps("trip")}
+    sec.innerHTML = `${this.steps("trip")}${Safety.banner()}
       <div class="card overview"><div class="row"><h1 style="margin:0">แผนทริป</h1><span class="badge b-${overall}">${LVL_ICON[overall]} ${LVL_TXT[overall]}</span>
         <div class="spacer"></div><div class="row no-print"><button class="btn small" data-act="refillAll" title="ที่ใส่เองและที่ล็อกเวลาไว้จะไม่ถูกลบ">${I("refresh-ccw")} จัดสถานที่ใหม่ทั้งทริป</button><a class="btn small" href="#setup">${I("pencil")} ข้อมูลทริป</a><button class="btn small" data-ics title="เพิ่มทุกจุด เที่ยวบิน และเวลาออกจากที่พักลงปฏิทินมือถือ">${I("calendar-plus")} ลงปฏิทิน</button><button class="btn small" data-act="print">${I("printer")} พิมพ์</button></div></div>
         <p class="print-only">${thDate(t.start)} - ${thDate(t.end)} • ${t.adults + t.kids} คน • ${MODE[t.mode]} • สไตล์${PACE[t.pace].name}${t.outFlight.no ? ` • ขาไป ${esc(t.outFlight.no)} ลง ${t.arrive} ${t.arriveTime}` : ""}${t.inFlight.no ? ` • ขากลับ ${esc(t.inFlight.no)} ออก ${t.depart} ${t.departTime}` : ""}</p>

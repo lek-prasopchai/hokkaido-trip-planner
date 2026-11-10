@@ -578,3 +578,10 @@ b.over { background: none; }
 .lp-btns { gap: 6px; margin-top: 6px; }
 .lp-map { height: 280px; margin-top: 8px; border-radius: 10px; border: 1px solid var(--line); }
 @media print { .lp-btns, .lp-map { display: none !important; } }
+.lp-pick { margin-top: 8px; }
+.lp-find { display: flex; gap: 6px; }
+.lp-find input { flex: 1; min-width: 0; }
+.lp-res { display: grid; gap: 4px; margin: 6px 0; }
+.lp-res .btn { display: grid; justify-items: start; text-align: left; padding: 6px 10px; }
+.lp-res small { color: var(--mute); }
+@media print { .lp-pick { display: none !important; } }

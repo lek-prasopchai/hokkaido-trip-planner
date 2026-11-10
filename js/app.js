@@ -14,6 +14,39 @@ const RENDER = {
   apps: () => GuideView.apps(), emergency: () => GuideView.emergency(),
 };
 
+// ---------- กันแผนหาย: แผนอยู่ในเบราว์เซอร์เครื่องเดียว ----------
+// iPhone: Safari ลบข้อมูลเว็บที่ไม่ได้เปิด 7 วัน (ยกเว้นเพิ่มไว้หน้าจอโฮม) จึงชวนติดตั้ง + เตือนสำรองไฟล์
+const Safety = {
+  prompt: null, // beforeinstallprompt ของ Android/Chrome: กดติดตั้งได้ในปุ่มเดียว
+  standalone: () => matchMedia("(display-mode: standalone)").matches || navigator.standalone === true,
+  ios: () => /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1),
+  banner() {
+    if (!S.plan || App.viewOnly || Date.now() < (S.set.nagUntil || 0)) return "";
+    const mobile = matchMedia("(pointer: coarse)").matches, n = S.bkN || 0;
+    const install = mobile && !this.standalone(), backup = n >= 30 || (!S.bkAt && n >= 15);
+    if (!install && !backup) return "";
+    const how = this.prompt ? `<button class="btn small primary" data-safe="install">${I("download")} ติดตั้งเป็นแอป</button>`
+      : this.ios() ? `<span class="small">Safari: กด <b>แชร์</b> (สี่เหลี่ยมลูกศรขึ้น) → <b>เพิ่มไปยังหน้าจอโฮม</b> แล้วเปิดจากไอคอนนั้น</span>`
+      : `<span class="small">Chrome: กด <b>⋮</b> → <b>ติดตั้งแอป</b> หรือ <b>เพิ่มลงในหน้าจอหลัก</b></span>`;
+    return `<div class="callout warn safe no-print"><b>${I("triangle-alert")} ${install ? "กันแผนหาย: เพิ่มเว็บนี้ไว้หน้าจอโฮม" : `แก้แผนไป ${n} ครั้งแล้ว ยังไม่ได้สำรอง`}</b>
+      <p class="small" style="margin:4px 0 8px">${install ? `แผนเก็บอยู่ในเบราว์เซอร์เครื่องนี้เท่านั้น${this.ios() ? " และ iPhone จะลบข้อมูลเว็บที่ไม่ได้เปิดเกิน 7 วัน" : " ถ้าล้างข้อมูลเบราว์เซอร์แผนจะหาย"} เปิดจากไอคอนหน้าจอโฮมจะปลอดภัยกว่า และใช้ออฟไลน์ได้` : "แผนอยู่ในเบราว์เซอร์เครื่องเดียว สำรองเป็นไฟล์ไว้ (ส่งเข้า LINE/อีเมลตัวเอง) ถ้าหายหรือเปลี่ยนเครื่อง นำเข้าได้ใน ตั้งค่า"}</p>
+      <div class="row">${install ? how : ""}<button class="btn small" data-safe="backup">${I("download")} สำรองไฟล์ .json</button><span class="spacer"></span><button class="btn small" data-safe="later">ไว้ทีหลัง</button></div></div>`;
+  },
+  bind() {
+    window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); this.prompt = e; App.renderAll(); });
+    window.addEventListener("appinstalled", () => { this.prompt = null; App.renderAll(); });
+    document.addEventListener("click", async (ev) => {
+      const a = ev.target.closest("[data-safe]")?.dataset.safe;
+      if (!a) return;
+      if (a === "backup") { Store.export(); toast("สำรองแล้ว เก็บไฟล์ไว้ที่ปลอดภัย"); }
+      else if (a === "later") { S.set.nagUntil = Date.now() + 3 * 864e5; save(false); toast("จะเตือนอีกครั้งใน 3 วัน"); }
+      else if (a === "install" && this.prompt) { this.prompt.prompt(); await this.prompt.userChoice; this.prompt = null; }
+      App.renderAll();
+    });
+    navigator.storage?.persist?.().catch(() => null); // ขอให้เบราว์เซอร์ไม่ลบข้อมูลเองเมื่อพื้นที่เหลือน้อย
+  },
+};
+
 const App = {
   cur: null, viewOnly: false,
   renderAll() { if (this.cur) RENDER[this.cur](); this.refreshChrome(); },
@@ -139,7 +172,7 @@ const App = {
   },
 
   init() {
-    PlanView.bind(); PlacesView.bind(); FoodView.bind(); PrepView.bind(); PackingView.bind(); BudgetView.bind();
+    Safety.bind(); PlanView.bind(); PlacesView.bind(); FoodView.bind(); PrepView.bind(); PackingView.bind(); BudgetView.bind();
     window.addEventListener("hashchange", () => { const h = location.hash.slice(1); if (h.startsWith("share=")) this.loadShared(h.slice(6)); else this.show(h); });
     const h = location.hash.slice(1);
     const N = tripNights(), now = jstNow().iso;

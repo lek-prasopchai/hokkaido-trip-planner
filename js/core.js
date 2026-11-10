@@ -53,8 +53,10 @@ const Store = {
     try { const raw = localStorage.getItem(STORE_KEY); if (raw) return this.merge(JSON.parse(raw)); } catch (e) { console.warn("โหลดข้อมูลไม่ได้", e); }
     return this.defaults();
   },
-  save() {
+  // count = นับเป็นการแก้ (ใช้เตือนให้สำรองไฟล์); bkN = แก้ไปกี่ครั้งตั้งแต่สำรองล่าสุด, bkAt = เวลาสำรองล่าสุด
+  save(count = true) {
     if (App.viewOnly) return;
+    if (count) S.bkN = (S.bkN || 0) + 1;
     try { localStorage.setItem(STORE_KEY, JSON.stringify(S)); } catch (e) { toast("บันทึกในเบราว์เซอร์ไม่ได้: ใช้ปุ่มส่งออกไฟล์แทน"); }
   },
   export() {
@@ -64,6 +66,7 @@ const Store = {
     a.download = `hokkaido-plan-${S.trip.start}.json`;
     a.click();
     URL.revokeObjectURL(a.href);
+    S.bkN = 0; S.bkAt = Date.now(); this.save(false);
   },
   import(file) {
     const r = new FileReader();
@@ -79,7 +82,7 @@ const Store = {
   },
 };
 let S = Store.load();
-const save = () => Store.save();
+const save = (count) => Store.save(count);
 const tripNights = () => Math.max(0, daysBetween(S.trip.start, S.trip.end));
 
 // ย้อนกลับ (undo) เก็บสำเนาทริป+แผนก่อนแก้แต่ละครั้ง
@@ -373,6 +376,6 @@ async function refreshRate() {
   if (!S.set.rateAuto || Date.now() - (S.rateAt || 0) < 864e5 || navigator.onLine === false) return;
   try {
     const j = await (await fetch("https://open.er-api.com/v6/latest/JPY")).json();
-    if (j.result === "success" && j.rates.THB) { S.rate = +j.rates.THB.toFixed(4); S.rateAt = Date.now(); save(); App.renderAll(); }
+    if (j.result === "success" && j.rates.THB) { S.rate = +j.rates.THB.toFixed(4); S.rateAt = Date.now(); save(false); App.renderAll(); }
   } catch { /* ไม่มีเน็ต ใช้ค่าเดิม */ }
 }

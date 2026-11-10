@@ -277,11 +277,34 @@ const TripMap = {
 // ---------- ช่องตำแหน่ง: วางลิงก์/พิกัด แตะบนแผนที่ หรือใช้ตำแหน่งตอนนี้ ----------
 // มือถือ: ลิงก์แชร์ของ Google Maps เป็นลิงก์สั้นไม่มีพิกัด จึงต้องมีทางปักหมุดในเว็บเอง
 const LocPick = {
+  // ปักหมุดบนแผนที่ของช่องนี้ (zoom 0 = ไม่เลื่อนแผนที่)
+  drop(box, lat, lng, zoom = 15) {
+    const el = box.querySelector(".lp-map"), m = el._m;
+    el._mk ? el._mk.setLatLng([lat, lng]) : (el._mk = L.marker([lat, lng], { icon: pin(I("map-pin"), "#c8374a") }).addTo(m));
+    if (zoom) m.setView([lat, lng], zoom);
+  },
+  // ค้นชื่อสถานที่ด้วย Photon (OpenStreetMap, ฟรี ไม่ต้องใช้คีย์) จำกัดในฮอกไกโด เรียงใกล้จุดกลางแผนที่ก่อน
+  async find(box) {
+    const q = box.querySelector(".lp-find input").value.trim(), res = box.querySelector(".lp-res");
+    if (!q) return;
+    if (navigator.onLine === false) return toast("ค้นหาต้องใช้เน็ต ใช้แตะบนแผนที่แทน");
+    res.innerHTML = `<p class="mute small">กำลังค้นหา…</p>`;
+    const c = box.querySelector(".lp-map")._m.getCenter();
+    try {
+      const r = await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=6&lat=${c.lat}&lon=${c.lng}&bbox=139,41,146,46`);
+      const F = (await r.json()).features || [];
+      res.innerHTML = F.length ? F.map((f) => { const p = f.properties, [lng, lat] = f.geometry.coordinates, name = p.name || p.street || q;
+        const sub = [p.street && p.name ? p.street : "", p.district, p.city || p.county].filter(Boolean).join(", ");
+        return `<button type="button" class="btn" data-lp="res" data-ll="${lat},${lng}" data-name="${esc(name)}"><b>${esc(name)}</b><small>${esc(sub)}</small></button>`; }).join("")
+        : `<p class="mute small">ไม่เจอ ลองพิมพ์ชื่ออังกฤษ/ญี่ปุ่น หรือชื่อเมืองต่อท้าย หรือแตะบนแผนที่แทน</p>`;
+    } catch { res.innerHTML = `<p class="mute small">ค้นหาไม่ได้ตอนนี้ ใช้แตะบนแผนที่แทน</p>`; }
+  },
   // attrs = แอตทริบิวต์ของ input (id/data-*), c = จุดกลางแผนที่ถ้ายังไม่มีพิกัด
   html(label, attrs, value = "", c = null) {
     return `<div class="lp"${c ? ` data-c="${c.lat},${c.lng}"` : ""}><label class="f">${label}<input type="text" ${attrs} value="${esc(value)}" placeholder="ลิงก์ Google Maps หรือ 43.06, 141.35"></label>
       <div class="row lp-btns"><button type="button" class="btn small" data-lp="map">${I("map-pin")} แตะบนแผนที่</button><button type="button" class="btn small" data-lp="gps">${I("navigation")} ตำแหน่งตอนนี้</button></div>
-      <div class="lp-map" hidden></div></div>`;
+      <div class="lp-pick" hidden><div class="lp-find"><input type="search" placeholder="ค้นหาชื่อร้าน สถานที่ ที่อยู่ (ญี่ปุ่น/อังกฤษ)" enterkeyhint="search"><button type="button" class="btn small" data-lp="find">${I("search")}</button></div>
+        <div class="lp-res"></div><div class="lp-map"></div></div></div>`;
   },
 };
 document.addEventListener("click", (ev) => {
@@ -297,21 +320,28 @@ document.addEventListener("click", (ev) => {
       set(p.coords.latitude, p.coords.longitude); toast("ใส่ตำแหน่งตอนนี้แล้ว");
     }, () => toast("หาตำแหน่งไม่ได้ ต้องอนุญาตตำแหน่งในเบราว์เซอร์ก่อน"), { enableHighAccuracy: true, timeout: 15000 });
   }
-  const el = box.querySelector(".lp-map");
-  el.hidden = !el.hidden;
-  if (el.hidden) return;
+  if (b.dataset.lp === "find") return LocPick.find(box);
+  if (b.dataset.lp === "res") { const [lat, lng] = b.dataset.ll.split(",").map(Number); LocPick.drop(box, lat, lng, 16); set(lat, lng);
+    const nm = box.closest(".modal-body")?.querySelector("#cName"); if (nm && !nm.value) nm.value = b.dataset.name;
+    box.querySelector(".lp-res").innerHTML = ""; return; }
+  const pick = box.querySelector(".lp-pick"), el = box.querySelector(".lp-map");
+  pick.hidden = !pick.hidden;
+  if (pick.hidden) return;
   if (!el._m) {
     const ll = parseLatLng(inp.value), [cLat, cLng] = (box.dataset.c || "43.0618,141.3545").split(",").map(Number);
     const m = L.map(el, { zoomSnap: 0.25 }).setView(ll ? [ll.lat, ll.lng] : [cLat, cLng], ll ? 15 : 12);
     const [url, attribution] = Object.values(TILE_SOURCES)[0];
     L.tileLayer(url, { maxZoom: 18, attribution }).addTo(m);
-    let mk = ll ? L.marker([ll.lat, ll.lng], { icon: pin(I("map-pin"), "#c8374a") }).addTo(m) : null;
+    el._m = m;
+    if (ll) LocPick.drop(box, ll.lat, ll.lng);
     m.on("click", (e) => {
       if (!parseLatLng(`${e.latlng.lat}, ${e.latlng.lng}`)) return toast("จุดนี้อยู่นอกฮอกไกโด");
-      mk ? mk.setLatLng(e.latlng) : (mk = L.marker(e.latlng, { icon: pin(I("map-pin"), "#c8374a") }).addTo(m));
+      LocPick.drop(box, e.latlng.lat, e.latlng.lng, 0);
       set(e.latlng.lat, e.latlng.lng);
     });
-    el._m = m;
   }
   setTimeout(() => el._m.invalidateSize(), 0);
+});
+document.addEventListener("keydown", (ev) => {
+  if (ev.key === "Enter" && ev.target.closest(".lp-find")) { ev.preventDefault(); LocPick.find(ev.target.closest(".lp")); }
 });
