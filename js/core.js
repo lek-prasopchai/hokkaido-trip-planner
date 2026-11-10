@@ -327,7 +327,7 @@ const Lightbox = {
   show() {
     const it = this.list[this.i];
     $("img", this.el).src = it.img;
-    $("figcaption", this.el).innerHTML = `${esc(this.title)} • ${this.i + 1}/${this.list.length}${it.credit ? ` • <a href="${esc(it.credit)}" target="_blank" rel="noopener">ที่มาภาพ (Wikimedia Commons)</a>` : ""}`;
+    $("figcaption", this.el).innerHTML = `${esc(this.title)} • ${this.i + 1}/${this.list.length}${it.credit ? ` • <a href="${esc(it.credit)}" target="_blank" rel="noopener">ที่มาภาพ (${esc(it.by || "Wikimedia Commons")})</a>` : ""}`;
     $$(".lb-p, .lb-n", this.el).forEach((b) => (b.style.display = this.list.length > 1 ? "" : "none"));
   },
   close() { this.el.classList.remove("show"); },

@@ -1187,11 +1187,29 @@ window.PLACES = [
   "lat": 42.8613,
   "lng": 140.7347,
   "acc": "ใกล้เคียง (เติมมือ)",
-  "imgs": [],
+  "imgs": [
+   {
+    "img": "img/places/25_1.jpg",
+    "credit": "https://www.flickr.com/photos/9921010@N03/48043048311",
+    "by": "mwmosser / CC BY-NC-SA 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/25_2.jpg",
+    "credit": "https://www.flickr.com/photos/9921010@N03/48043138492",
+    "by": "mwmosser / CC BY-NC-SA 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/25_3.jpg",
+    "credit": "https://www.flickr.com/photos/9921010@N03/48048221352",
+    "by": "mwmosser / CC BY-NC-SA 2.0 (Flickr)"
+   }
+  ],
   "en": "Milk Kobo (Takahashi Farm)",
   "tr": {
    "lv": "car"
-  }
+  },
+  "img": "img/places/25_1.jpg",
+  "imgCredit": "https://www.flickr.com/photos/9921010@N03/48043048311"
  },
  {
   "id": 26,
@@ -7623,7 +7641,26 @@ window.PLACES = [
   "lat": 43.6146,
   "lng": 142.4318,
   "checked": "2026-11",
-  "acc": "ประมาณ"
+  "acc": "ประมาณ",
+  "imgs": [
+   {
+    "img": "img/places/159_1.jpg",
+    "credit": "https://www.flickr.com/photos/39846933@N06/3704376696",
+    "by": "double-h_by_phone / CC BY-NC-ND 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/159_2.jpg",
+    "credit": "https://www.flickr.com/photos/33361678@N08/31595642775",
+    "by": "takaakiito / CC BY-NC 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/159_3.jpg",
+    "credit": "https://www.flickr.com/photos/26556814@N07/3431735924",
+    "by": "underclasscameraman / CC BY-NC-ND 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/159_1.jpg",
+  "imgCredit": "https://www.flickr.com/photos/39846933@N06/3704376696"
  },
  {
   "hub": "biei",
@@ -7672,7 +7709,21 @@ window.PLACES = [
   "lat": 43.6058,
   "lng": 142.4363,
   "checked": "2026-11",
-  "acc": "ประมาณ"
+  "acc": "ประมาณ",
+  "imgs": [
+   {
+    "img": "img/places/160_1.jpg",
+    "credit": "https://www.flickr.com/photos/48701008@N00/5092615205",
+    "by": "Party0 / CC BY-NC-ND 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/160_2.jpg",
+    "credit": "https://www.flickr.com/photos/48701008@N00/5092609449",
+    "by": "Party0 / CC BY-NC-ND 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/160_1.jpg",
+  "imgCredit": "https://www.flickr.com/photos/48701008@N00/5092615205"
  },
  {
   "hub": "biei",
@@ -8421,7 +8472,21 @@ window.PLACES = [
   "lat": 43.2245,
   "lng": 141.0255,
   "checked": "2026-11",
-  "acc": "ประมาณ"
+  "acc": "ประมาณ",
+  "imgs": [
+   {
+    "img": "img/places/175_1.jpg",
+    "credit": "https://www.flickr.com/photos/40595948@N00/53675859897",
+    "by": "A.Davey / CC BY-NC-ND 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/175_2.jpg",
+    "credit": "https://www.flickr.com/photos/40595948@N00/53676937388",
+    "by": "A.Davey / CC BY-NC-ND 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/175_1.jpg",
+  "imgCredit": "https://www.flickr.com/photos/40595948@N00/53675859897"
  },
  {
   "hub": "otaru",

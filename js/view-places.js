@@ -115,7 +115,7 @@ const PlacesView = {
       ${(p.videos || []).length ? `<div class="vids">${p.videos.map((v) => `<iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/${esc(v)}" title="YouTube" allowfullscreen></iframe>`).join("")}</div>` : ""}
       <div class="row" style="margin-top:10px">${reviewLinks(p)}<button class="btn small" data-show="1">${I("car-taxi-front")} การ์ดโชว์คนขับ</button></div>
       ${S.plan && !plan[id] ? `<div class="row" style="margin-top:10px">${addSelect(id)}</div>` : ""}
-      ${imgs[0]?.credit ? `<p class="credit">รูป: Wikimedia Commons (กดรูปเพื่อดูที่มา)</p>` : ""}`, "wide");
+      ${imgs[0]?.credit ? `<p class="credit">รูป: Wikimedia Commons / Flickr สัญญาอนุญาต CC (กดรูปเพื่อดูที่มาและผู้ถ่าย)</p>` : ""}`, "wide");
     const d = $("#modal");
     d.onclick = (e) => {
       if (e.target === d || e.target.closest("[data-close]")) return d.close();
