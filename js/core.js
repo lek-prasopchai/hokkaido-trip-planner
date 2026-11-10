@@ -39,7 +39,7 @@ const Store = {
         start: "2027-01-15", end: "2027-01-22", nights: 7, arrive: "CTS", depart: "CTS", arriveTime: "08:30", departTime: "16:00",
         outFlight: { no: "", from: "BKK", dep: "", via: "" }, inFlight: { no: "", to: "BKK", via: "" }, domIn: false, domOut: false,
         adults: 2, kids: 0, drivers: 1, pace: "balanced", interests: ["city", "food", "nature", "onsen"], mode: "car", level: 1,
-        firstDay: "auto", buf: { ...BUF },
+        firstDay: "auto", buf: { ...BUF }, carPick: true, carRet: true, // รับ/คืนรถที่สนามบินตอนถึง/ก่อนบิน (ปิด = ใส่เองในแผน)
       },
       plan: null, packing: {}, custom: [], prep: {}, budget: {}, spend: [], docs: [], rate: 0.23, rateAt: 0,
       set: { lang: "en", langV: 2, theme: "auto", font: "m", slack: 0, maxDrive: "", dayStart: "", dayEnd: "", rateAuto: true },

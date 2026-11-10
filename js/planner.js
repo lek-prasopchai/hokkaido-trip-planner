@@ -134,8 +134,9 @@ const Planner = {
   // ---- เที่ยวบิน: เวลาที่ออกจากสนามบินได้ / ต้องถึงสนามบิน ----
   overnight() { const d = S.trip.outFlight?.dep; return !!d && d.slice(0, 10) < S.trip.start; },
   firstDayLight() { const t = S.trip; return t.firstDay === "light" || (t.firstDay === "auto" && this.overnight() && parseT(t.arriveTime) < 10); },
-  leaveAirport(mode) { const t = S.trip, b = t.buf; return parseT(t.arriveTime) + ((t.domIn ? b.dom : b.imm) + (mode === "car" ? b.car : b.pass)) / 60; },
-  needAirport(mode) { const t = S.trip, b = t.buf; return parseT(t.departTime) - ((t.domOut ? b.beforeDom : b.before) + (mode === "car" ? b.ret : 0)) / 60; },
+  // รับ/คืนรถบวกเวลาเฉพาะเมื่อรับ/คืนที่สนามบิน (carPick/carRet) ไม่งั้นผู้ใช้ใส่ "รับรถ" เป็นจุดในแผนเอง
+  leaveAirport(mode) { const t = S.trip, b = t.buf; return parseT(t.arriveTime) + ((t.domIn ? b.dom : b.imm) + (mode === "car" ? (t.carPick ? b.car : 0) : b.pass)) / 60; },
+  needAirport(mode) { const t = S.trip, b = t.buf; return parseT(t.departTime) - ((t.domOut ? b.beforeDom : b.before) + (mode === "car" && t.carRet ? b.ret : 0)) / 60; },
 
   // เวลาเดินทางระหว่าง 2 จุด ตามโหมด (รวมตัวคูณหิมะตามเดือน + เวลาเผื่อจากหน้าตั้งค่า)
   leg(a, b, mode, iso) {
@@ -199,7 +200,7 @@ const Planner = {
     };
     if (i === 0 && !opts.live) {
       const b = t.buf;
-      tl.push({ t: parseT(t.arriveTime), kind: "info", ic: "plane", text: `เครื่องลง ${t.arriveTime}${t.outFlight?.no ? ` (${t.outFlight.no})` : ""} • ${t.domIn ? "เที่ยวบินในประเทศ" : "ตรวจคนเข้าเมือง + รับกระเป๋า"} ~${t.domIn ? b.dom : b.imm} นาที • ${mode === "car" ? `รับรถเช่า ~${b.car} นาที` : `ซื้อพาส/IC/ซิม ~${b.pass} นาที`}` });
+      tl.push({ t: parseT(t.arriveTime), kind: "info", ic: "plane", text: `เครื่องลง ${t.arriveTime}${t.outFlight?.no ? ` (${t.outFlight.no})` : ""} • ${t.domIn ? "เที่ยวบินในประเทศ" : "ตรวจคนเข้าเมือง + รับกระเป๋า"} ~${t.domIn ? b.dom : b.imm} นาที • ${mode === "car" ? (t.carPick ? `รับรถเช่า ~${b.car} นาที` : "ไม่รวมเวลารับรถ (ใส่เองในแผน)") : `ซื้อพาส/IC/ซิม ~${b.pass} นาที`}` });
     }
     const visit = (it, night) => {
       const p = point(it.id);
@@ -248,7 +249,7 @@ const Planner = {
     else if (end > pc.end + 1) add("bad", `จบวัน ${fmtT(end)} ดึกเกินไปสำหรับสไตล์${pc.name}`);
     else if (end > pc.end) add("warn", `จบวัน ${fmtT(end)} ค่อนข้างดึก`);
     if (i === 0 && !opts.live) {
-      if (mode === "car" && parseT(t.arriveTime) >= 20) add("warn", `เครื่องลง ${t.arriveTime} ร้านรถเช่าส่วนใหญ่ปิด ~20:00-21:00 คืนแรกพักใกล้สนามบินแล้วรับรถเช้า`);
+      if (mode === "car" && t.carPick && parseT(t.arriveTime) >= 20) add("warn", `เครื่องลง ${t.arriveTime} ร้านรถเช่าส่วนใหญ่ปิด ~20:00-21:00 คืนแรกพักใกล้สนามบินแล้วรับรถเช้า`);
       if (this.overnight()) add("info", "บินกลางคืนมา นอนน้อย วันแรกเที่ยวเบาๆ ฝากกระเป๋าที่โรงแรมได้ก่อนเช็กอิน");
     }
     const nVisit = items.filter((it) => isPlace(it.id)).length;

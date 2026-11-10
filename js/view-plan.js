@@ -67,11 +67,15 @@ const PlanView = {
       </div>
       <div class="callout ${N < 1 ? "" : "info"}">${N < 1 ? "วันกลับต้องหลังวันไปอย่างน้อย 1 วัน" : `เที่ยว <b>${N + 1} วัน ${N} คืน</b> (${thDate(t.start)} - ${thDate(t.end)})${Planner.overnight() ? " • บินกลางคืนมาถึงเช้า" : ""} •
         ออกจากสนามบินได้ราว <b>${fmtT(Planner.leaveAirport(t.mode === "transit" ? "transit" : "car"))}</b> • วันกลับต้องถึงสนามบินก่อน <b>${fmtT(Planner.needAirport(t.mode === "transit" ? "transit" : "car"))}</b>`}</div>
-      <details class="card"><summary><b>เวลาเผื่อที่สนามบิน</b> <span class="mute">(แก้ได้)</span></summary><div class="form" style="margin-top:10px">
+      <details class="card"><summary><b>เวลาเผื่อที่สนามบิน + รับ/คืนรถ</b> <span class="mute">(แก้ได้)</span></summary><div class="form" style="margin-top:10px">
         ${num("imm", b.imm, 15, 240, "ตม. + รับกระเป๋า (นาที)")}${num("dom", b.dom, 0, 120, "ลงจากเที่ยวบินในประเทศ (นาที)")}
-        ${num("car", b.car, 0, 180, "รับรถเช่า (นาที)")}${num("pass", b.pass, 0, 120, "ซื้อพาส/IC/ซิม (นาที)")}
+        ${num("pass", b.pass, 0, 120, "ซื้อพาส/IC/ซิม (นาที)")}
         ${num("before", b.before, 60, 300, "ถึงสนามบินก่อนเครื่องออก ระหว่างประเทศ (นาที)")}${num("beforeDom", b.beforeDom, 30, 180, "…ในประเทศ (นาที)")}
-        ${num("ret", b.ret, 0, 120, "คืนรถ + เติมน้ำมัน (นาที)")}
+        <label class="f chk"><input type="checkbox" data-k="carPick" ${t.carPick ? "checked" : ""}> รับรถเช่าที่สนามบินทันทีที่ถึง</label>
+        ${t.carPick ? num("car", b.car, 0, 180, "…ใช้เวลารับรถ (นาที)") : ""}
+        <label class="f chk"><input type="checkbox" data-k="carRet" ${t.carRet ? "checked" : ""}> คืนรถที่สนามบินก่อนบินกลับ</label>
+        ${t.carRet ? num("ret", b.ret, 0, 120, "…คืนรถ + เติมน้ำมัน (นาที)") : ""}
+        <p class="mute small" style="grid-column:1/-1;margin:0">รับ/คืนรถที่อื่นหรือวันอื่น: เอาติ๊กออก แล้วเพิ่ม <b>จุดของฉัน</b> ชื่อ "รับรถ" / "คืนรถ" ในวันนั้น ปักหมุดสาขา ล็อกเวลา และใส่เวลาที่ใช้เอง • ช่วงก่อนมีรถ เปลี่ยนวิธีเดินทางรายช่วงเป็นรถไฟ/บัสได้ในแผนรายวัน</p>
         <label class="f">วันแรก<select data-k="firstDay"><option value="auto" ${t.firstDay === "auto" ? "selected" : ""}>อัตโนมัติ (บินกลางคืน = เบาๆ)</option><option value="light" ${t.firstDay === "light" ? "selected" : ""}>เบาๆ 1 ที่</option><option value="full" ${t.firstDay === "full" ? "selected" : ""}>เที่ยวเต็มที่</option></select></label>
       </div></details>
       ${fresh ? `</details><details class="fold-sec"><summary><b>${I("settings")} สไตล์และความสนใจ</b> <span class="mute">ไม่บังคับ: กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง</span></summary>` : `<h2 class="step-h"><b>2</b> คนและสไตล์ <small class="mute">ใช้กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง และคิดงบ</small></h2>`}
