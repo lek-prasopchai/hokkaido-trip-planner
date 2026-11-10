@@ -140,21 +140,26 @@ const Docs = {
     const fl = (f, lbl, iso, tm, ap) => `<li><span class="dk">${I("plane")} ${lbl}</span><div><b>${esc(f.no || "ยังไม่กรอกเลขเที่ยวบิน")}</b> ${thDate(iso)} ${tm} ${ap}
       ${f.no ? `<br><a href="https://www.flightradar24.com/data/flights/${encodeURIComponent(f.no.replace(/\s/g, "").toLowerCase())}" target="_blank" rel="noopener">เช็กสถานะเที่ยวบิน</a>` : ""}</div></li>`;
     const hotels = S.plan ? Object.entries(S.plan.hotels || {}).filter(([, h]) => h.name) : [];
+    const noHotel = S.plan ? [...new Set(S.plan.bases)].filter((b) => !hotelOf(b)?.name) : [];
+    // จุดที่ล็อกเวลา/มีโน้ต (จองรอบ จองร้าน) จากแผนรายวัน
+    const booked = S.plan ? S.plan.days.flatMap((d, k) => d.items.filter((it) => it.at || it.note).map((it) => ({ it, k }))) : [];
     return `<div class="card docs"><div class="row"><h2 style="margin:0">เอกสารและการจอง</h2><span class="spacer"></span><button class="btn small no-print" onclick="window.print()">${I("printer")} พิมพ์</button><button class="btn small primary no-print" data-doc>+ เพิ่ม</button></div>
       <ul class="doc-list">
         ${fl(t.outFlight, "ขาไป", t.start, `ลง ${t.arriveTime}`, t.arrive)}
         ${fl(t.inFlight, "ขากลับ", t.end, `ออก ${t.departTime}`, t.depart)}
         ${hotels.map(([id, h]) => `<li><span class="dk">${I("hotel")} ${esc(short(id))}</span><div><b>${esc(h.name)}</b>${h.nameJa ? ` (${esc(h.nameJa)})` : ""}${h.ref ? ` • จอง <b>${esc(h.ref)}</b>` : ""}${tel(h.phone)}${link(h.url)}
           ${h.addr ? `<br><small>${esc(h.addr)}</small>` : ""}</div></li>`).join("")}
+        ${noHotel.map((id) => `<li><span class="dk">${I("hotel")} ${esc(short(id))}</span><div class="mute">ยังไม่ใส่ที่พัก <a class="no-print" href="#stays">กรอก</a></div></li>`).join("")}
+        ${booked.map(({ it, k }) => `<li><span class="dk">${KIND_IC(it.id)} ${thDate(Planner.dayIso(k), false)}</span><div><b>${esc(pname(it.id))}</b>${it.at ? ` • ${I("lock")} ${esc(it.at)}` : ""}${it.note ? `<br><small>${esc(it.note)}</small>` : ""}</div></li>`).join("")}
         ${S.docs.map((d, i) => `<li><span class="dk">${I({ "รถเช่า": "car", "ประกันเดินทาง": "life-buoy", "เที่ยวบิน": "plane", "ตั๋ว/ทัวร์": "stamp" }[d.kind] || "file-text")} ${esc(d.kind)}</span><div><b>${esc(d.title)}</b>${d.ref ? ` • <b>${esc(d.ref)}</b>` : ""}${d.when ? ` • ${esc(d.when)}` : ""}${tel(d.phone)}${link(d.url)}
           ${d.note ? `<br><small>${esc(d.note)}</small>` : ""} <button class="linkbtn no-print" data-docedit="${i}">${I("pencil")} แก้</button></div></li>`).join("")}
-      </ul><p class="mute small">ที่พักกรอกในหน้า <a href="#stays">ที่พัก</a> • เก็บในเครื่องนี้เท่านั้น ไม่ติดไปกับลิงก์แชร์ • ใช้ได้ตอนออฟไลน์</p></div>`;
+      </ul><p class="mute small">ที่พักกรอกในหน้า <a href="#stays">ที่พัก+จอง</a> • จองรอบ/ร้าน: ล็อกเวลาหรือใส่เลขจองในโน้ตของจุดนั้นในแผนรายวัน • เก็บในเครื่องนี้เท่านั้น ไม่ติดไปกับลิงก์แชร์ • ใช้ได้ตอนออฟไลน์</p></div>`;
   },
 };
 
 // ปุ่ม/ลิงก์ของเครื่องมือเหล่านี้ใช้ได้จากทุกหน้า
 document.addEventListener("click", (e) => {
-  const el = e.target.closest("[data-spend], [data-spedit], [data-doc], [data-docedit], [data-ics]");
+  const el = e.target.closest("[data-spend], [data-spedit], [data-doc], [data-docedit], [data-ics], [data-calc]");
   if (!el) return;
   const d = el.dataset;
   if (d.spend != null) Spend.open();
@@ -162,4 +167,5 @@ document.addEventListener("click", (e) => {
   else if (d.doc != null) Docs.open();
   else if (d.docedit != null) Docs.open(+d.docedit);
   else if (d.ics != null) Ics.download();
+  else if (d.calc != null) YenCalc.open();
 });

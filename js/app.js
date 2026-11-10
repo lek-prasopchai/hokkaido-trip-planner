@@ -86,13 +86,14 @@ const App = {
       <label class="f">ชื่อสถานที่แสดงภาษา<select data-s="lang">${opt("en", "English ก่อน + ไทย", s.lang)}${opt("th", "ไทยก่อน + English", s.lang)}${opt("ja", "English + 日本語 + ไทย", s.lang)}${opt("all", "ไทย + English + 日本語", s.lang)}</select></label>
       <label class="f">ธีม<select data-s="theme">${opt("auto", "ตามเครื่อง", s.theme)}${opt("light", "สว่าง", s.theme)}${opt("dark", "มืด", s.theme)}</select></label>
       <label class="f">ขนาดตัวอักษร<select data-s="font">${opt("s", "เล็ก", s.font)}${opt("m", "กลาง", s.font)}${opt("l", "ใหญ่", s.font)}</select></label>
+    </div><details class="adv"><summary>ขั้นสูง: เวลาเดินทาง เวลาเริ่ม/จบวัน อัตราแลกเงิน</summary><div class="form set-form">
       <label class="f">เผื่อเวลาเดินทางเพิ่ม (%)<input type="number" min="0" max="100" step="5" data-s="slack" value="${s.slack}"></label>
       <label class="f">ขับสูงสุดต่อวัน (ชม.) <small>ว่าง = ตามสไตล์</small><input type="number" min="1" max="10" step="0.5" data-s="maxDrive" value="${s.maxDrive}"></label>
       <label class="f">เริ่มวัน <small>ว่าง = ตามสไตล์</small><input type="time" data-s="dayStart" value="${s.dayStart}"></label>
       <label class="f">จบวัน <small>ว่าง = ตามสไตล์</small><input type="time" data-s="dayEnd" value="${s.dayEnd}"></label>
       <label class="f">อัตราแลกเงิน 1 เยน = ? บาท<input type="number" step="0.0001" data-s="rate" value="${S.rate}"></label>
       <label class="f row" style="flex-direction:row;align-items:center"><input type="checkbox" data-s="rateAuto" ${s.rateAuto ? "checked" : ""}> อัปเดตอัตราแลกเงินอัตโนมัติวันละครั้ง</label>
-    </div>
+    </div></details>
     <h3 style="margin-top:16px">ข้อมูลและออฟไลน์</h3>
     <div class="row"><button class="btn" data-a="offline">${I("download")} ดาวน์โหลดรูปทั้งหมดไว้ใช้ออฟไลน์</button><button class="btn" data-a="export">ส่งออกไฟล์ .json</button>
       <label class="btn">นำเข้าไฟล์ .json<input type="file" data-a="import" accept=".json,application/json" hidden></label>
@@ -120,7 +121,7 @@ const App = {
   print() {
     if (!S.plan) return toast("สร้างแผนก่อน แล้วค่อยพิมพ์");
     location.hash = "#trip";
-    setTimeout(() => window.print(), 300);
+    setTimeout(() => { $$(".gantt-box").forEach((d) => (d.open = true)); window.print(); }, 300);
   },
 
   async downloadOffline() {
@@ -143,7 +144,7 @@ const App = {
   async share() {
     if (!S.plan) return toast("สร้างแผนก่อน แล้วค่อยแชร์");
     const url = await Share.link();
-    Modal.open(`<h2>แชร์แผนนี้</h2><p class="mute">คนที่เปิดลิงก์จะเห็นแผนเหมือนคุณ และกด "คัดลอกเป็นแผนของฉัน" เพื่อแก้ต่อได้ แก้ทีหลังต้องส่งลิงก์ใหม่ (ไม่ได้ซิงก์กัน)</p>
+    Modal.open(`<h2>ส่งแผนให้เพื่อนดู</h2><p class="mute">คนที่เปิดลิงก์จะเห็นแผนเหมือนคุณ และกด "คัดลอกเป็นแผนของฉัน" เพื่อแก้ต่อได้ แก้ทีหลังต้องส่งลิงก์ใหม่ (ไม่ได้ซิงก์กัน)</p>
       <textarea readonly rows="4" style="width:100%" id="shareUrl">${esc(url)}</textarea>
       <div class="row" style="margin-top:8px"><button class="btn primary" id="shareCopy">คัดลอกลิงก์</button>${navigator.share ? '<button class="btn" id="shareNative">ส่งผ่านแอป…</button>' : ""}
       <span class="mute small">ลิงก์ยาว ${fmtN(url.length)} ตัวอักษร${url.length > 6000 ? ": ยาวมาก บางแอปแชตตัดลิงก์ ใช้ส่งออกไฟล์ .json ในหน้าตั้งค่าแทนได้" : ""}</span></div>`);
@@ -180,7 +181,7 @@ const App = {
     if (h.startsWith("share=")) this.loadShared(h.slice(6));
     else this.show(h || (during ? "today" : S.plan ? "trip" : "setup"));
     $("#btnSet").onclick = () => this.settings();
-    $("#btnCalc").innerHTML = I("calculator");
+    $("#btnCalc").innerHTML = I("calculator") + '<span class="lbl">เงินเยน</span>';
     $("#btnCalc").onclick = () => YenCalc.open();
     $("#btnShare").onclick = () => this.share();
     $("#btnUndo").onclick = () => Hist.undo();

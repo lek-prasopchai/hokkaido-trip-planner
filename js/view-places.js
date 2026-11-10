@@ -3,6 +3,18 @@ const tripMonths = () => { const out = new Set(); for (let d = S.trip.start; d <
 const seasonBadges = (p) => seasonsOf(p).map((k) => `<span title="${SEASONS[k].name}">${I(SEASONS[k].ic)}</span>`).join("");
 const inPlanMap = () => { const m = {}; if (S.plan) S.plan.days.forEach((d, i) => d.items.forEach((it) => (m[it.id] = i + 1))); return m; };
 const addSelect = (id) => S.plan ? `<select data-addto="${esc(id)}" class="addsel"><option value="">+ ใส่ในแผน</option><option value="auto">วันที่เหมาะที่สุด</option><option value="wish">♡ อยากไป (เลือกวันทีหลัง)</option>${S.plan.days.map((_, i) => `<option value="${i}">วันที่ ${i + 1} (${esc(short(Planner.ends(i).to))})</option>`).join("")}</select>` : "";
+// มุมมองรายการสั้น (ค่าเริ่มต้นบนมือถือ) / การ์ดมีรูป: จำไว้ใน S.set.view
+const listView = () => (S.set.view || (matchMedia("(max-width: 899px)").matches ? "list" : "card")) === "list";
+const viewToggle = (n) => `<div class="row list-head"><span class="mute">${n}</span><span class="spacer"></span><div class="seg no-print">${[["list", "รายการ"], ["card", "การ์ดมีรูป"]].map(([k, v]) => `<button data-view="${k}" class="${listView() === (k === "list") ? "on" : ""}">${v}</button>`).join("")}</div></div>`;
+// แถวสั้น: รูปเล็ก ชื่อ ข้อมูลบรรทัดเดียว ปุ่มใส่แผน • กดชื่อ/รูป = เปิดรายละเอียด
+const lrow = (x, attr, sub, inPlan) => `<div class="lrow ${inPlan ? "in" : ""}"><span class="lth" ${attr}>${x.img ? `<img src="${x.img}" alt="" loading="lazy">` : I(FOOD[x.id] ? "utensils" : "map-pin")}</span>
+  <div class="lmain" ${attr}><b>${esc(names(x)[0])}</b><small>${sub}</small></div><div class="lact">${inPlan ? `<span class="badge b-good">วันที่ ${inPlan}</span>` : addSelect(x.id)}</div></div>`;
+document.addEventListener("click", (e) => {
+  const v = e.target.closest("[data-view]")?.dataset.view;
+  if (!v) return;
+  S.set.view = v; save(false);
+  if (App.cur === "places") PlacesView.list(); else if (App.cur === "food") FoodView.list();
+});
 const reviewLinks = (p) => {
   const q = p.ja || p.name, qe = p.en || q;
   return `<a class="btn small" href="${mapsUrl(q)}" target="_blank" rel="noopener">${I("star")} รีวิว Google Maps</a>
@@ -68,7 +80,10 @@ const PlacesView = {
 
   list() {
     const L = this.filtered(), plan = inPlanMap();
-    $("#placeList").innerHTML = `<p class="mute">${L.length} ที่</p><div class="grid g3">${L.slice(0, this.lim).map((p) => this.card(p, plan)).join("")}</div>
+    const rows = L.slice(0, this.lim);
+    $("#placeList").innerHTML = `${viewToggle(L.length + " ที่")}${listView()
+      ? `<div class="card llist">${rows.map((p) => lrow(p, `data-detail="${p.id}"`, `<span class="stars">${"★".repeat(p.stars)}</span> ${esc(p.area)} • ${esc(p.dur)} • ${esc(p.fee)}`, plan[p.id])).join("")}</div>`
+      : `<div class="grid g3">${rows.map((p) => this.card(p, plan)).join("")}</div>`}
       ${L.length > this.lim ? `<div class="more"><button class="btn" data-more>แสดงเพิ่ม (เหลืออีก ${L.length - this.lim} ที่)</button></div>` : ""}`;
     setTimeout(() => TripMap.drawPlaces(this.M, L), 30);
   },
@@ -185,7 +200,12 @@ const FoodView = {
     const L = this.filtered(), plan = inPlanMap();
     const by = {};
     L.forEach((x) => (by[x.hub] ||= []).push(x));
-    $("#foodList").innerHTML = `<p class="mute">${L.length} ร้าน</p>${Object.entries(by).map(([h, xs]) => `<h3>${esc(HUB[h]?.name || h)}</h3><div class="grid g3">${xs.map((x) => `
+    if (listView()) {
+      $("#foodList").innerHTML = `${viewToggle(L.length + " ร้าน")}${Object.entries(by).map(([h, xs]) => `<h3>${esc(HUB[h]?.name || h)}</h3><div class="card llist">${xs.map((x) =>
+        lrow(x, `data-fdetail="${x.id}"`, `${esc(x.cuisine)} • ${esc(x.signature || "")} • ¥${fmtN(x.price[0])}-${fmtN(x.price[1])}`, plan[x.id])).join("")}</div>`).join("") || '<p class="empty">ไม่พบร้าน</p>'}`;
+      return setTimeout(() => TripMap.drawPlaces(this.M, L), 30);
+    }
+    $("#foodList").innerHTML = `${viewToggle(L.length + " ร้าน")}${Object.entries(by).map(([h, xs]) => `<h3>${esc(HUB[h]?.name || h)}</h3><div class="grid g3">${xs.map((x) => `
       <div class="card fcard ${plan[x.id] ? "in" : ""}">
         <div class="ph" data-fdetail="${x.id}">${x.img ? `<img src="${x.img}" alt="${esc(x.name)}" loading="lazy">${x.imgNote ? `<span class="cnt">${esc(x.imgNote)}</span>` : ""}` : I("utensils")}</div>
         <div class="row" style="gap:6px"><span class="badge b-mute">${esc(x.cuisine)}</span>${(x.tags || []).map((t) => `<span class="badge b-info">${{ halal: "ฮาลาล/ไม่มีหมู", veg: "มังสวิรัติ", kids: "เด็ก", late: "ดึก", famous: "ดังมาก" }[t] || t}</span>`).join("")}</div>

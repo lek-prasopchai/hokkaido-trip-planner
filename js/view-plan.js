@@ -30,16 +30,25 @@ const PlanView = {
   // ================= ข้อมูลทริป / เที่ยวบิน / เลือกรูท =================
   renderSetup() {
     const t = S.trip, N = tripNights(), b = t.buf, of = t.outFlight, inf = t.inFlight;
+    const fresh = !S.plan; // คนใหม่: เริ่มจากกล่องสั้นๆ เที่ยวบิน/สไตล์พับไว้ (ไม่ต้องมีตั๋วก็วางแผนได้)
+    const modeSeg = `<div class="seg" data-seg="mode">${Object.entries(MODE).map(([k, v]) => `<button data-v="${k}" class="${t.mode === k ? "on" : ""}">${I(k === "car" ? "car" : "train-front")} ${v}</button>`).join("")}</div>`;
     const num = (k, v, min, max, lbl) => `<label class="f">${lbl}<input type="number" min="${min}" max="${max}" data-buf="${k}" value="${v}"></label>`;
     $('[data-sec="setup"]').innerHTML = `${this.steps("setup")}
       <div class="sec-head"><h1>ข้อมูลทริปและเที่ยวบิน</h1>
         <p class="lead">กรอกเที่ยวบินขาไป-ขากลับ แล้วเลือกรูท ระบบจะจัดที่พักรายคืนและที่เที่ยวรายวันให้ คำนวณเวลาเผื่อตรวจคนเข้าเมือง รับรถ และเวลาที่ต้องถึงสนามบินให้เอง</p></div>
-      <h2 class="step-h"><b>1</b> วันและเที่ยวบิน</h2>
+      ${fresh ? `<div class="card start"><h2>เริ่มวางแผนใน 1 นาที</h2>
+        <p>ใส่วันเที่ยว จำนวนคน และวิธีเดินทาง แล้วเลือกรูทด้านล่าง ระบบจะจัดแผนรายวันพร้อมเวลาขับหน้าหนาวให้ทันที <b>ยังไม่ต้องมีตั๋วเครื่องบิน</b></p>
+        <div class="form"><label class="f">วันถึงฮอกไกโด<input type="date" data-k="start" value="${t.start}"></label><label class="f">วันบินกลับ<input type="date" data-k="end" value="${t.end}"></label>
+          <label class="f">ผู้ใหญ่<input type="number" min="1" max="20" data-k="adults" value="${t.adults}"></label><label class="f">เด็ก (≤11 ปี)<input type="number" min="0" max="10" data-k="kids" value="${t.kids}"></label></div>
+        <div style="margin-top:12px">${modeSeg}</div>
+        <p class="mute small" style="margin:10px 0">วันที่ใส่ไว้เป็นตัวอย่าง แก้ได้ • เที่ยวบิน สไตล์ และความสนใจ ปรับทีหลังได้ (ด้านล่าง)</p>
+        <button class="btn primary" data-scroll="routes">ดูรูทแนะนำ ↓</button></div>
+      <details class="fold-sec"><summary><b>${I("plane")} เที่ยวบิน</b> <span class="mute">กรอกหลังจองตั๋ว ไม่บังคับ</span></summary>` : `<h2 class="step-h"><b>1</b> วันและเที่ยวบิน</h2>`}
       <div class="grid g2">
         <div class="card"><h2>${I("plane")} ขาไป</h2><div class="form">
           <label class="f">เลขเที่ยวบิน<input type="text" data-of="no" value="${esc(of.no)}" placeholder="เช่น TG670"></label>
           <label class="f">บินจาก<input type="text" data-of="from" value="${esc(of.from)}" placeholder="BKK"></label>
-          <label class="f">ออกจากไทย (เวลาไทย)<input type="datetime-local" data-of="dep" value="${esc(of.dep)}"></label>
+          <label class="f">ออกจากไทย (ถ้ามี เวลาไทย)<input type="datetime-local" data-of="dep" value="${esc(of.dep)}"></label>
           <label class="f">ต่อเครื่องที่ (ถ้ามี)<input type="text" data-of="via" value="${esc(of.via)}" placeholder="เช่น HND"></label>
           <label class="f">ลงที่สนามบิน<select data-k="arrive">${airOptions(t.arrive)}</select></label>
           <label class="f">วันที่ลง (เวลาญี่ปุ่น)<input type="date" data-k="start" value="${t.start}"></label>
@@ -65,7 +74,7 @@ const PlanView = {
         ${num("ret", b.ret, 0, 120, "คืนรถ + เติมน้ำมัน (นาที)")}
         <label class="f">วันแรก<select data-k="firstDay"><option value="auto" ${t.firstDay === "auto" ? "selected" : ""}>อัตโนมัติ (บินกลางคืน = เบาๆ)</option><option value="light" ${t.firstDay === "light" ? "selected" : ""}>เบาๆ 1 ที่</option><option value="full" ${t.firstDay === "full" ? "selected" : ""}>เที่ยวเต็มที่</option></select></label>
       </div></details>
-      <h2 class="step-h"><b>2</b> คนและสไตล์ <small class="mute">ใช้กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง และคิดงบ</small></h2>
+      ${fresh ? `</details><details class="fold-sec"><summary><b>${I("settings")} สไตล์และความสนใจ</b> <span class="mute">ไม่บังคับ: กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง</span></summary>` : `<h2 class="step-h"><b>2</b> คนและสไตล์ <small class="mute">ใช้กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง และคิดงบ</small></h2>`}
       <div class="card">
         <div class="form">
           <label class="f">ผู้ใหญ่<input type="number" min="1" max="20" data-k="adults" value="${t.adults}"></label>
@@ -75,13 +84,13 @@ const PlanView = {
         </div>
         <div class="row" style="margin-top:14px">
           <div><div class="mute small">สไตล์</div><div class="seg" data-seg="pace">${Object.entries(PACE).map(([k, v]) => `<button data-v="${k}" class="${t.pace === k ? "on" : ""}">${v.name}</button>`).join("")}</div></div>
-          <div><div class="mute small">การเดินทาง</div><div class="seg" data-seg="mode">${Object.entries(MODE).map(([k, v]) => `<button data-v="${k}" class="${t.mode === k ? "on" : ""}">${I(k === "car" ? "car" : "train-front")} ${v}</button>`).join("")}</div><small class="mute">ค่าเริ่มต้นของทุกช่วง เปลี่ยนรายช่วงได้ในแผนรายวัน</small></div>
+          <div><div class="mute small">การเดินทาง</div>${modeSeg}<small class="mute">ค่าเริ่มต้นของทุกช่วง เปลี่ยนรายช่วงได้ในแผนรายวัน</small></div>
         </div>
         <div style="margin-top:12px"><div class="mute small">สนใจอะไร (เลือกได้หลายข้อ)</div>
           <div class="chips">${Object.entries(INTEREST).map(([k, v]) => `<button class="chip ${t.interests.includes(k) ? "on" : ""}" data-int="${k}">${v}</button>`).join("")}</div></div>
         <p class="mute small" style="margin:10px 0 0">ชิล: ขับ ≤2 ชม./วัน ≤3 ที่ จบวัน 18:00 • กลางๆ: ≤3.5 ชม. ≤4 ที่ จบ 19:30 • แน่น: ≤5 ชม. ≤6 ที่ จบ 21:00 • หน้าหนาวเวลาขับคูณ 1.5 เผื่อหิมะให้แล้ว • ทับค่าได้ใน ${I("settings")} ตั้งค่า</p>
       </div>
-      <h2 class="step-h"><b>3</b> เลือกรูท = สร้างแผนรายวัน</h2>
+      ${fresh ? "</details>" : ""}<h2 class="step-h" id="routes"><b>${fresh ? 2 : 3}</b> เลือกรูท = สร้างแผนรายวัน</h2>
       <div class="card">
         <p class="mute">รูทคือลำดับเมืองที่จะพักแต่ละคืน เรียงตามความเหมาะกับข้อ 1-2 กดการ์ดแล้วระบบจะจัดที่พักรายคืนและที่เที่ยวรายวันให้ทันที แล้วพาไปหน้าแผนรายวัน${S.plan ? ` <b>มีแผนอยู่แล้ว: กดรูทใหม่ = แผนเดิมถูกแทนที่</b> (ที่พักที่กรอกไว้ยังอยู่ กด ↶ ย้อนได้) ถ้าแค่แก้วันหรือเที่ยวบิน ไม่ต้องกดรูทใหม่` : ""}</p>
         <div class="grid g3">${Planner.rankTemplates().map((r) => this.tplCard(r)).join("")}
@@ -121,7 +130,11 @@ const PlanView = {
     const left = daysBetween(todayIso(), t.start), B = BudgetView.calc();
     sec.innerHTML = `${this.steps("trip")}${Safety.banner()}
       <div class="card overview"><div class="row"><h1 style="margin:0">แผนทริป</h1><span class="badge b-${overall}">${LVL_ICON[overall]} ${LVL_TXT[overall]}</span>
-        <div class="spacer"></div><div class="row no-print"><button class="btn small" data-act="refillAll" title="ที่ใส่เองและที่ล็อกเวลาไว้จะไม่ถูกลบ">${I("refresh-ccw")} จัดสถานที่ใหม่ทั้งทริป</button><a class="btn small" href="#setup">${I("pencil")} ข้อมูลทริป</a><button class="btn small" data-ics title="เพิ่มทุกจุด เที่ยวบิน และเวลาออกจากที่พักลงปฏิทินมือถือ">${I("calendar-plus")} ลงปฏิทิน</button><button class="btn small" data-act="print">${I("printer")} พิมพ์</button></div></div>
+        <div class="spacer"></div><div class="row no-print"><a class="btn small" href="#setup">${I("pencil")} ข้อมูลทริป</a>
+          <details class="more-menu"><summary class="btn small" aria-label="เมนูเพิ่มเติม">⋯ เพิ่มเติม</summary><div class="menu-pop">
+            <button class="btn small" data-act="refillAll" title="ที่ใส่เองและที่ล็อกเวลาไว้จะไม่ถูกลบ">${I("refresh-ccw")} จัดสถานที่ใหม่ทั้งทริป</button>
+            <button class="btn small" data-ics title="เพิ่มทุกจุด เที่ยวบิน และเวลาออกจากที่พักลงปฏิทินมือถือ">${I("calendar-plus")} ลงปฏิทินมือถือ</button>
+            <button class="btn small" data-act="print">${I("printer")} พิมพ์ / PDF</button></div></details></div></div>
         <p class="print-only">${thDate(t.start)} - ${thDate(t.end)} • ${t.adults + t.kids} คน • ${MODE[t.mode]} • สไตล์${PACE[t.pace].name}${t.outFlight.no ? ` • ขาไป ${esc(t.outFlight.no)} ลง ${t.arrive} ${t.arriveTime}` : ""}${t.inFlight.no ? ` • ขากลับ ${esc(t.inFlight.no)} ออก ${t.depart} ${t.departTime}` : ""}</p>
         <div class="summary" style="margin-top:10px">
           <div class="k"><b>${left > 0 ? `อีก ${fmtN(left)} วัน` : left === 0 ? "วันนี้!" : "กำลังเที่ยว/จบแล้ว"}</b><span>${thDate(t.start, false)} - ${thDate(t.end, false)}</span></div>
@@ -131,7 +144,7 @@ const PlanView = {
           <div class="k"><b>${nPlaces} ที่</b><span>${nightsBy.map((x) => `${esc(short(x.b))} ${x.n}`).join(" • ")}</span></div>
           <div class="k"><b>${fmtN(B.total / B.ppl)} ฿</b><span><a href="#budget">งบต่อคนโดยประมาณ</a></span></div>
         </div>
-        ${this.gantt(evals)}
+        <details class="gantt-box" ${matchMedia("(min-width: 900px)").matches ? "open" : ""}><summary>${I("clock")} แถบเวลาทั้งทริป <small class="mute">ดูว่าวันไหนแน่น</small></summary>${this.gantt(evals)}</details>
         <ul class="checks">${sum.map((c) => `<li class="${c.lvl}">${esc(c.text)}</li>`).join("")}
           ${fests.length ? `<li class="fest">${I("party-popper")} ช่วงนี้มี: ${fests.map(esc).join(" • ")}</li>` : ""}</ul>
       </div>
@@ -425,20 +438,6 @@ const PlanView = {
     };
   },
 
-  // ---- สรุปการจองทั้งหมด: เที่ยวบิน ที่พัก และจุดที่ล็อกเวลา/มีโน้ต ----
-  bookings() {
-    const t = S.trip, rows = [];
-    const fl = (lbl, f, d, tm) => rows.push([`${I("plane")} ${lbl}`, `${thDate(d, false)} ${tm}`, f.no ? `<b>${esc(f.no)}</b>` : '<span class="mute">ยังไม่ใส่เลขเที่ยวบิน</span>']);
-    fl("ขาไป", t.outFlight, t.start, `ลง ${t.arriveTime}`);
-    [...new Set(S.plan.bases)].forEach((b) => { const h = hotelOf(b) || {}, n = S.plan.bases.map((x, k) => (x === b ? k : -1)).filter((k) => k >= 0);
-      rows.push([`${I("hotel")} ${esc(short(b))}`, `${thDate(Planner.dayIso(n[0]), false)} • ${n.length} คืน`, h.name ? `<b>${esc(h.name)}</b>${h.ref ? ` • เลขจอง <b>${esc(h.ref)}</b>` : ""}${h.phone ? ` • ${I("phone")} ${esc(h.phone)}` : ""}` : '<span class="mute">ยังไม่ใส่ที่พัก (กรอกด้านล่าง)</span>']); });
-    S.plan.days.forEach((d, k) => d.items.filter((it) => it.at || it.note).forEach((it) =>
-      rows.push([`${KIND_IC(it.id)} ${esc(pname(it.id))}`, `${thDate(Planner.dayIso(k), false)}${it.at ? ` ${I("lock")} ${esc(it.at)}` : ""}`, it.note ? esc(it.note) : '<span class="mute">ล็อกเวลาไว้</span>'])));
-    fl("ขากลับ", t.inFlight, t.end, `ออก ${t.departTime}`);
-    return `<div class="card"><h2>${I("clipboard-list")} สรุปการจอง</h2><p class="mute small">รวมเที่ยวบิน ที่พัก และจุดที่ล็อกเวลาหรือมีโน้ต (ใส่เลขจองในโน้ตของแต่ละจุดผ่านปุ่ม ${I("pencil")} ในแผน) เปิดหน้านี้โชว์พนักงานได้เลย</p>
-      <div class="tbl-wrap"><table class="t"><tbody>${rows.map((r) => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</tbody></table></div></div>`;
-  },
-
   // ---- เพิ่มจุดของฉัน (ร้านที่เพื่อนแนะนำ ปักหมุดเอง) ----
   addCustom(i) {
     Modal.open(`<h2>${I("star")} เพิ่มจุดของฉัน</h2><p class="mute small">บนมือถือ: กด <b>แตะบนแผนที่</b> แล้วจิ้มจุดที่จะไป หรือ <b>ตำแหน่งตอนนี้</b> ถ้ายืนอยู่ตรงนั้น • วางลิงก์ Google Maps ได้ด้วย (ลิงก์แชร์แบบสั้นไม่มีพิกัด ระบบจะเก็บไว้เป็นลิงก์ แต่ไม่คิดเวลาเดินทาง)</p>
@@ -506,7 +505,7 @@ const PlanView = {
     S.plan.bases.forEach((b, i) => { const l = blocks[blocks.length - 1]; if (l && l.b === b) l.n.push(i); else blocks.push({ b, n: [i] }); });
     const ids = [...new Set(S.plan.bases)];
     sec.innerHTML = `${this.steps("stays")}<div class="sec-head"><h1>ที่พักและการจอง</h1><p class="lead">ทำหลังจองที่พักแล้ว (ก่อนจอง ระบบใช้จุดกลางเมืองไปก่อน) กรอกที่พักที่จองแล้ว ระบบจะใช้พิกัดจริงคำนวณเวลาเดินทาง และเตือนเวลาเช็กอิน • เปลี่ยนเมืองที่พักแต่ละคืนได้ในหน้า <a href="#trip">แผนรายวัน</a></p></div>
-      ${this.bookings()}
+      <a class="callout info" href="#emergency" style="display:block;text-decoration:none;color:inherit">${I("clipboard-list")} <b>สรุปการจองทั้งหมด</b> (เที่ยวบิน ที่พัก รอบที่จอง เอกสาร) อยู่ที่หน้า <u>เอกสาร + ฉุกเฉิน</u> เปิดโชว์พนักงานได้ ใช้ออฟไลน์ได้ →</a>
       <details class="callout info"><summary><b>หลักเลือกที่พักหน้าหนาว</b></summary>${STAY_TIPS}</details>
       <div class="card"><div class="map" id="stayMap"></div></div>
       ${ids.map((id) => { const h = hotelOf(id) || {}, nights = blocks.filter((x) => x.b === id).flatMap((x) => x.n), hb = HUB[id]; return `<div class="card stay-card" data-hub="${id}">
@@ -552,6 +551,10 @@ const PlanView = {
     sec.innerHTML = `<div class="sec-head"><h1>วันนี้</h1>
       <p class="lead">${during ? `วันที่ ${real + 1} ของทริป • ตอนนี้ ${fmtT(now.h)} (เวลาญี่ปุ่น)` : real < 0 ? `ทริปเริ่มอีก ${-real} วัน: ดูตัวอย่างหน้าวันนี้ได้ด้านล่าง` : "ทริปจบแล้ว"}</p>
       <div class="row"><label class="f">ดูวัน<select id="tdDay">${S.plan.days.map((_, k) => `<option value="${k}" ${k === i ? "selected" : ""}>วันที่ ${k + 1} • ${thDate(Planner.dayIso(k), false)}</option>`).join("")}</select></label></div></div>
+      ${(() => { const spent = S.spend.filter((x) => x.d === e.iso).reduce((a, x) => a + Spend.thb(x), 0), h = hotelOf(e.to);
+        return `<div class="quick no-print"><button class="btn primary" data-spend>${I("banknote")}<span>จ่าย</span></button><button class="btn" data-calc>${I("calculator")}<span>แปลงเยน</span></button>
+          ${h?.nameJa || h?.addr ? `<button class="btn" data-showcard="${esc(e.to)}">${I("car-taxi-front")}<span>การ์ดที่พัก</span></button>` : ""}<a class="btn red" href="#emergency">${I("life-buoy")}<span>ฉุกเฉิน</span></a></div>
+          ${spent ? `<p class="mute small" style="margin:-6px 0 12px">วันนี้ใช้ไป ~${fmtN(spent)} บาท • <a href="#budget">ดูทั้งหมด</a></p>` : ""}`; })()}
       <div class="card today-head"><div class="row"><b>${thDate(e.iso)}</b><span>${I("sun")} ${fmtT(e.sun.rise)}-${fmtT(e.sun.set)}</span><span class="wx" data-wx="${ref.lat},${ref.lng},${e.iso}"></span><span class="badge b-${e.lvl}">${LVL_TXT[e.lvl]}</span></div>
         <div class="day-meta">${esc(short(e.from))} → ${esc(short(e.to))}${e.leaveBy != null ? ` • ต้องออกจากที่พักไม่เกิน <b>${fmtT(e.leaveBy)}</b>` : ""}</div></div>
       ${np ? `<div class="card next-card"><div class="kicker">ถัดไป ${fmtT(next.t)}</div>
@@ -572,8 +575,8 @@ const PlanView = {
         <ul class="checks">${e.checks.map((c) => `<li class="${c.lvl}">${LVL_ICON[c.lvl] || ""} ${esc(c.text)}</li>`).join("")}</ul>
         ${day.note || day.planB ? `<div class="callout info">${day.note ? `${I("notebook-pen")} ${esc(day.note)}` : ""}${day.planB ? `<br>${I("route")} แผนสำรอง: ${esc(day.planB)}` : ""}</div>` : ""}</div>
       <div class="card"><h3>ลิงก์ด่วน</h3><div class="row">
-        <button class="btn small primary" data-spend>+ บันทึกค่าใช้จ่าย</button>
-        <a class="btn small red" href="#emergency">${I("life-buoy")} เอกสาร + ฉุกเฉิน</a>
+        ${Planner.modeOf(i) === "car" && isWinter(e.iso) ? `<a class="btn small" href="#transport">${I("snowflake")} ขับบนหิมะ อ่านก่อนออก</a>` : ""}
+        <a class="btn small" href="#life">${I("store")} คอนบินิ ห้องน้ำ ภาษี ทิป</a>
         <a class="btn small" href="https://www.jartic.or.jp/" target="_blank" rel="noopener">สภาพถนน (JARTIC)</a>
         <a class="btn small" href="https://tenki.jp/forecast/1/" target="_blank" rel="noopener">พยากรณ์ tenki.jp</a>
         <a class="btn small" href="https://www.jrhokkaido.co.jp/global/english/" target="_blank" rel="noopener">JR Hokkaido (รถเลื่อน/ยกเลิก)</a>
@@ -604,6 +607,7 @@ const PlanView = {
     setup.addEventListener("click", (ev) => {
       const el = ev.target.closest("button, [data-tpl], [data-blank]");
       if (!el) return;
+      if (el.dataset.scroll) return $("#" + el.dataset.scroll).scrollIntoView({ behavior: "smooth" });
       const t = S.trip;
       if (el.dataset.tpl) {
         if (S.plan && !confirm("สร้างแผนใหม่จากรูทนี้? แผนรายวันเดิมจะถูกแทนที่ (กด ↶ ย้อนได้)")) return;
@@ -702,6 +706,7 @@ const PlanView = {
       } else if (el.id === "tdLive") { this.live = !(this.live ?? true); this.renderToday(); }
       else if (el.id === "tdReset") { S.plan.days.forEach((d) => d.items.forEach((x) => delete x.st)); save(); this.renderToday(); }
       else if (el.dataset.showcardId) { const raw = el.dataset.showcardId; showCard(point(isNaN(raw) ? raw : +raw)); }
+      else if (el.dataset.showcard) { const h = hotelOf(el.dataset.showcard); showCard({ name: h.name, ja: h.nameJa || h.name, addrJa: h.addr, phone: h.phone }); }
     });
   },
 };

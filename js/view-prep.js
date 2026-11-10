@@ -18,7 +18,7 @@ const PrepView = {
     const phases = [...new Set(T.map((x) => x.phase))];
     const row = (x) => { const due = addDays(S.trip.start, -x.days), d = !!S.prep[x.id];
       return `<tr class="${d ? "done" : due < today && !x.opt ? "over" : ""}"><td><input type="checkbox" data-task="${x.id}" ${d ? "checked" : ""} aria-label="เสร็จแล้ว"></td>
-      <td>${thDate(due, false)}</td><td><b>${esc(x.task)}</b></td><td>${esc(x.detail)}</td><td><span class="badge b-mute">${esc(x.cat)}</span></td></tr>`; };
+      <td>${thDate(due, false)}</td><td><b>${esc(x.task)}</b>${TASK_LINK[x.id] ? ` <a class="small no-print" href="#${TASK_LINK[x.id]}">ไปหน้า ${pageName(TASK_LINK[x.id])} →</a>` : ""}</td><td>${esc(x.detail)}</td><td><span class="badge b-mute">${esc(x.cat)}</span></td></tr>`; };
     const head = '<thead><tr><th style="width:34px"></th><th style="width:110px">ครบกำหนด</th><th>งาน</th><th>ทำไม / รายละเอียด</th><th>หมวด</th></tr></thead>';
     $('[data-sec="prep"]').innerHTML = `
       <div class="sec-head"><h1>สิ่งที่ต้องทำก่อนบิน</h1>
@@ -46,6 +46,10 @@ const CAT_ICON = { "เอกสาร": "file-text", "เงิน": "banknote"
   "ยาและสุขภาพ": "pill", "อิเล็กทรอนิกส์": "plug", "แอปและข้อมูลในมือถือ": "smartphone", "ของในรถ": "car", "กระเป๋าและจัดเก็บ": "luggage", "ของจิปาถะ": "paperclip",
   "กิจกรรม": "cable-car", "กล้องและความทรงจำ": "camera", "เด็กเล็ก": "baby", "ขากลับ": "plane-takeoff" };
 const STATUS = { todo: "ยังไม่พร้อม", ready: "พร้อมแล้ว", packed: "แพ็กแล้ว" };
+// งานที่มีหน้าในเว็บช่วยทำ: ใส่ลิงก์ไปหน้านั้นตรงงาน (คู่มือโผล่ตอนที่ต้องใช้)
+const TASK_LINK = { x2: "stays", x8: "trip", x9: "trip", x10: "packing", x11: "packing", x13: "transport", x17: "apps", x18: "stays", x21: "emergency", x24: "packing", x33: "transport" };
+const pageName = (id) => TAB_OF[id]?.subs.find(([k]) => k === id)?.[1] || id;
+
 const PackingView = {
   tab: "cat",
   items() { return [...PACKING, ...S.custom]; },
@@ -75,27 +79,46 @@ const PackingView = {
     const ok = L.filter((x) => this.st(x).status !== "todo").length;
     return { ok, total: L.length, pct: L.length ? Math.round((ok / L.length) * 100) : 0 };
   },
+  // แถวสั้น: ติ๊ก = พร้อมแล้ว • ตัวเลือก (เอาไปไหม/หาที่ไหน/แพ็กแล้ว) พับไว้ใน "ตัวเลือก"
   row(x) {
     const s = this.st(x);
     const im = (window.ITEM_IMG || {})[x.id], q = x.name.replace(/\(.*?\)/g, "").trim();
-    return `<div class="pk ${s.on ? "" : "off"} ${s.status === "packed" ? "packed" : ""}">
-      <input type="checkbox" data-on="${x.id}" ${s.on ? "checked" : ""} aria-label="เอาไป">
+    return `<div class="pk pk2 ${s.on ? "" : "off"} ${s.status === "packed" ? "packed" : ""}">
+      <input type="checkbox" data-ready="${x.id}" ${s.status !== "todo" ? "checked" : ""} aria-label="พร้อมแล้ว">
       ${im ? `<span class="pk-img" role="button" tabindex="0" title="ดูรูปใหญ่" onclick='Lightbox.open([${esc(JSON.stringify(im))}], 0, ${esc(JSON.stringify(x.name))})'><img src="${im.img}" alt="" loading="lazy"></span>`
         : `<a class="pk-img noimg" href="${gimgUrl(q)}" target="_blank" rel="noopener" title="ดูรูปใน Google">${I(CAT_ICON[x.cat] || "package")}</a>`}
-      <div class="nm"><span class="${x.prio === 1 ? "prio1" : ""}">${esc(x.name)}</span>${x.prio === 1 ? ' <span class="badge b-bad">ขาดไม่ได้</span>' : x.prio === 4 ? ' <span class="badge b-mute">ตามกิจกรรม</span>' : ""}
-        ${x.spec ? `<small>${esc(x.spec)}${x.shop ? ` • ร้าน: ${esc(x.shop)}` : ""}${x.bag ? ` • เก็บ: ${esc(x.bag)}` : ""}</small>` : ""}${x.custom ? ` <button class="btn small" data-del="${x.id}">ลบ</button>` : ""}
-        <a class="gimg" href="${gimgUrl(q)}" target="_blank" rel="noopener">${I("image")} ดูรูปใน Google</a></div>
-      <div class="num"><b>${this.qty(x)}</b> <small>${esc(x.per === "คน×วัน" ? "ชิ้น" : x.per === "คัน" ? "/คัน" : "ชิ้น")}</small></div>
-      <select data-src="${x.id}" aria-label="หาที่ไหน">${SOURCES.map((v) => `<option ${v === s.src ? "selected" : ""}>${v}</option>`).join("")}</select>
-      <select data-st="${x.id}" aria-label="สถานะ">${Object.entries(STATUS).map(([k, v]) => `<option value="${k}" ${k === s.status ? "selected" : ""}>${v}</option>`).join("")}</select></div>`;
+      <div class="nm"><span class="${x.prio === 1 ? "prio1" : ""}">${esc(x.name)}</span> <b class="qty">×${this.qty(x)}</b>${s.on ? "" : ' <span class="badge b-mute">ไม่เอาไป</span>'}
+        ${x.spec ? `<small>${esc(x.spec)}</small>` : ""}
+        <details class="pk-more no-print"><summary>ตัวเลือก</summary><div class="row">
+          <label class="chk"><input type="checkbox" data-on="${x.id}" ${s.on ? "checked" : ""}> เอาไป</label>
+          <select data-src="${x.id}" aria-label="หาที่ไหน">${SOURCES.map((v) => `<option ${v === s.src ? "selected" : ""}>${v}</option>`).join("")}</select>
+          <select data-st="${x.id}" aria-label="สถานะ">${Object.entries(STATUS).map(([k, v]) => `<option value="${k}" ${k === s.status ? "selected" : ""}>${v}</option>`).join("")}</select>
+          <a class="gimg" href="${gimgUrl(q)}" target="_blank" rel="noopener">${I("image")} ดูรูป</a>${x.custom ? ` <button class="btn small" data-del="${x.id}">ลบ</button>` : ""}</div>
+          ${x.shop || x.bag ? `<small>${x.shop ? `ร้าน: ${esc(x.shop)} ` : ""}${x.bag ? `• เก็บ: ${esc(x.bag)}` : ""}</small>` : ""}</details></div></div>`;
   },
+  // รายการตามหมวด; fold = พับไว้ใน details (id จำสถานะเปิด/ปิด)
+  catCards(xs) {
+    const g = {}; xs.forEach((x) => (g[x.cat] ||= []).push(x));
+    return Object.entries(g).map(([c, ys]) => `<div class="pk-cat card"><h3>${I(CAT_ICON[c] || "package")} ${esc(c)} <small>${ys.filter((x) => this.st(x).status !== "todo").length}/${ys.length}</small></h3>${ys.map((x) => this.row(x)).join("")}</div>`).join("");
+  },
+  fold(id, title, sub, xs) {
+    if (!xs.length) return "";
+    const ok = xs.filter((x) => this.st(x).status !== "todo").length;
+    return `<details class="fold-sec" id="${id}" ${this.opened[id] ? "open" : ""}><summary><b>${title}</b> <span class="mute">${xs.length} รายการ • พร้อม ${ok} • ${sub}</span></summary>${this.catCards(xs)}</details>`;
+  },
+  opened: {},
   render() {
     const L = this.items().filter((x) => this.relevant(x));
     const pr = this.progress();
     const group = (key) => { const g = {}; L.forEach((x) => (g[key(x)] ||= []).push(x)); return g; };
     let body;
-    if (this.tab === "cat") body = Object.entries(group((x) => x.cat)).map(([c, xs]) => [c, xs.filter((x) => !x.opt)]).filter(([, xs]) => xs.length)
-      .map(([c, xs]) => `<div class="pk-cat card"><h3>${I(CAT_ICON[c] || "package")} ${esc(c)} <small>${xs.filter((x) => this.st(x).on).length} รายการ</small></h3>${xs.map((x) => this.row(x)).join("")}</div>`).join("") + this.optBox(L.filter((x) => x.opt));
+    if (this.tab === "cat") { // เปิดมาเห็นเฉพาะของขาดไม่ได้ ที่เหลือพับไว้
+      const base = L.filter((x) => !x.opt);
+      body = this.catCards(base.filter((x) => x.prio === 1 || x.custom))
+        + this.fold("pkShould", "ควรมี", "กดเพื่อดู", base.filter((x) => x.prio === 2 && !x.custom))
+        + this.fold("pkNice", "มีก็ดี / ตามกิจกรรม", "กดเพื่อดู", base.filter((x) => x.prio >= 3 && !x.custom))
+        + this.optBox(L.filter((x) => x.opt));
+    }
     else if (this.tab === "bag") body = Object.entries(group((x) => x.bag || "ไม่ระบุ")).map(([c, xs]) => { xs = xs.filter((x) => this.st(x).on); return xs.length ? `<div class="pk-cat card"><h3>${I("backpack")} ${esc(c)} <small>${xs.length} รายการ</small></h3>${xs.map((x) => this.row(x)).join("")}</div>` : ""; }).join("");
     else {
       const where = this.tab === "buyTH" ? "ซื้อที่ไทย" : "ซื้อที่ญี่ปุ่น";
@@ -105,7 +128,7 @@ const PackingView = {
     }
     $('[data-sec="packing"]').innerHTML = `
       <div class="sec-head"><h1>จัดกระเป๋า</h1>
-        <p class="lead">ติ๊กช่องซ้ายเพื่อเลือกว่าจะเอาไป จำนวนคำนวณจาก ${S.trip.adults + S.trip.kids} คน × ${tripNights() + 1} วันให้อัตโนมัติ • แสดงตามแผน (${MODE[S.trip.mode]}${S.trip.kids ? ", มีเด็ก" : ""}, ${isWinter(S.trip.start) ? "หน้าหนาว" : "นอกหน้าหนาว"}) ซ่อนของที่ไม่เกี่ยวให้แล้ว</p></div>
+        <p class="lead">ติ๊กเมื่อของพร้อมแล้ว • ของไหนไม่เอาไป กด "ตัวเลือก" ใต้ชื่อ • ด้านบนคือของขาดไม่ได้ ที่เหลือพับไว้ด้านล่าง • จำนวนคำนวณจาก ${S.trip.adults + S.trip.kids} คน × ${tripNights() + 1} วันให้อัตโนมัติ • แสดงตามแผน (${MODE[S.trip.mode]}${S.trip.kids ? ", มีเด็ก" : ""}, ${isWinter(S.trip.start) ? "หน้าหนาว" : "นอกหน้าหนาว"}) ซ่อนของที่ไม่เกี่ยวให้แล้ว</p></div>
       <div class="card"><div class="row"><b>พร้อมแล้ว ${pr.ok}/${pr.total}</b><div class="spacer"></div><span>${pr.pct}%</span></div><div class="bar" style="margin-top:6px"><i style="width:${pr.pct}%"></i></div></div>
       <div class="row no-print" style="margin-bottom:12px"><div class="seg" id="pkTabs">${[["cat", "ตามหมวด"], ["buyTH", I("shopping-cart") + " ซื้อที่ไทย"], ["buyJP", I("shopping-cart") + " ซื้อที่ญี่ปุ่น"], ["bag", I("backpack") + " แยกกระเป๋า"]].map(([k, v]) => `<button data-v="${k}" class="${this.tab === k ? "on" : ""}">${v}</button>`).join("")}</div></div>
       ${body}
@@ -125,11 +148,12 @@ const PackingView = {
     const sec = $('[data-sec="packing"]');
     sec.addEventListener("change", (e) => {
       const d = e.target.dataset;
-      if (d.on) this.set(isNaN(d.on) ? d.on : +d.on, "on", e.target.checked);
+      if (d.ready) this.set(isNaN(d.ready) ? d.ready : +d.ready, "status", e.target.checked ? "ready" : "todo");
+      else if (d.on) this.set(isNaN(d.on) ? d.on : +d.on, "on", e.target.checked);
       else if (d.src) this.set(isNaN(d.src) ? d.src : +d.src, "src", e.target.value);
       else if (d.st) this.set(isNaN(d.st) ? d.st : +d.st, "status", e.target.value);
     });
-    sec.addEventListener("toggle", (e) => { if (e.target.id === "pkOpt") this.optOpen = e.target.open; }, true);
+    sec.addEventListener("toggle", (e) => { if (e.target.id === "pkOpt") this.optOpen = e.target.open; else if (/^pk/.test(e.target.id)) this.opened[e.target.id] = e.target.open; }, true);
     sec.addEventListener("click", (e) => {
       const el = e.target;
       if (el.closest("#pkTabs") && el.dataset.v) { this.tab = el.dataset.v; this.render(); }

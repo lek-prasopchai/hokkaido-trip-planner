@@ -403,8 +403,10 @@ input[type=url], input[type=datetime-local] { border: 1px solid var(--line); bor
   .subnav a { flex: none; padding: 6px 12px; border-radius: 99px; border: 1px solid var(--line); background: var(--paper); color: var(--ink2); text-decoration: none; font-size: .85rem; }
   .subnav a.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
   .top { padding: 0 12px; gap: 8px; }
-  .top-trip, .brand small, .top-actions .lbl { display: none; }
-  .top-actions .btn { padding: 6px 9px; }
+  .top-trip, .brand small { display: none; }
+  .top-actions { gap: 2px; }
+  .top-actions .btn { flex-direction: column; gap: 1px; padding: 4px 6px; min-width: 44px; border-color: transparent; }
+  .top-actions .lbl { font-size: .62rem; line-height: 1; }
   main { padding: 14px 16px 96px; }
   .day-body { grid-template-columns: 1fr; }
   .pk { grid-template-columns: 26px 48px minmax(0, 1fr) 54px; }
@@ -585,3 +587,47 @@ b.over { background: none; }
 .lp-res .btn { display: grid; justify-items: start; text-align: left; padding: 6px 10px; }
 .lp-res small { color: var(--mute); }
 @media print { .lp-pick { display: none !important; } }
+
+/* ---- คนใหม่: กล่องเริ่มต้น + หัวข้อพับ ---- */
+.card.start { border: 2px solid var(--ice); }
+.card.start h2 { margin-top: 0; }
+details.fold-sec { margin-bottom: 14px; }
+details.fold-sec > summary { cursor: pointer; padding: 12px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; }
+details.fold-sec > summary .mute { font-size: .82rem; }
+details.fold-sec[open] > summary { margin-bottom: 10px; }
+details.adv { margin-top: 12px; }
+details.adv > summary { cursor: pointer; color: var(--ice); font-size: .88rem; margin-bottom: 10px; }
+.more-menu { position: relative; }
+.more-menu > summary { list-style: none; }
+.more-menu > summary::-webkit-details-marker { display: none; }
+.menu-pop { position: absolute; right: 0; top: calc(100% + 4px); z-index: 30; display: grid; gap: 4px; min-width: 210px; padding: 6px;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); }
+.menu-pop .btn { justify-content: flex-start; border-color: transparent; }
+.gantt-box > summary { cursor: pointer; font-size: .9rem; color: var(--ice); margin: 10px 0 6px; }
+@media print { .gantt-box > summary { display: none; } }
+.quick { display: grid; grid-template-columns: repeat(auto-fit, minmax(72px, 1fr)); gap: 8px; margin-bottom: 14px; }
+.quick .btn { flex-direction: column; gap: 4px; padding: 10px 6px; font-size: .82rem; justify-content: center; }
+.quick .btn svg { width: 22px; height: 22px; }
+
+/* ---- จัดกระเป๋าแบบสั้น ---- */
+.pk.pk2 { grid-template-columns: 26px 44px minmax(0, 1fr); grid-template-areas: none; }
+.pk.pk2 > * { grid-area: auto; }
+.pk2 .qty { font-size: .8rem; color: var(--ink2); }
+.pk-more > summary { cursor: pointer; font-size: .76rem; color: var(--ice); margin-top: 2px; }
+.pk-more .row { gap: 6px; margin-top: 6px; align-items: center; }
+.pk-more .chk { display: flex; gap: 4px; align-items: center; font-size: .82rem; }
+
+/* ---- รายการสั้น สถานที่/ร้าน ---- */
+.list-head { margin-bottom: 8px; }
+.list-head .seg button { font-size: .8rem; padding: 4px 10px; }
+.card.llist { padding: 4px 0; }
+.lrow { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--line); }
+.lrow:last-child { border-bottom: 0; }
+.lrow.in { background: var(--good-soft); }
+.lth { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 8px; overflow: hidden; background: var(--bg); color: var(--mute); cursor: pointer; }
+.lth img { width: 100%; height: 100%; object-fit: cover; }
+.lmain { cursor: pointer; min-width: 0; }
+.lmain b { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lmain small { display: block; color: var(--mute); font-size: .78rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lact .addsel { max-width: 120px; font-size: .8rem; }
+@media (max-width: 520px) { .brand-t { display: none; } .top-actions { margin-left: auto; } }
