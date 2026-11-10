@@ -92,7 +92,7 @@ const PlanView = {
         </div>
         <div style="margin-top:12px"><div class="mute small">สนใจอะไร (เลือกได้หลายข้อ)</div>
           <div class="chips">${Object.entries(INTEREST).map(([k, v]) => `<button class="chip ${t.interests.includes(k) ? "on" : ""}" data-int="${k}">${v}</button>`).join("")}</div></div>
-        <p class="mute small" style="margin:10px 0 0">ชิล: ขับ ≤2 ชม./วัน ≤3 ที่ จบวัน 18:00 • กลางๆ: ≤3.5 ชม. ≤4 ที่ จบ 19:30 • แน่น: ≤5 ชม. ≤6 ที่ จบ 21:00 • หน้าหนาวเวลาขับคูณ 1.5 เผื่อหิมะให้แล้ว • ทับค่าได้ใน ${I("settings")} ตั้งค่า</p>
+        <p class="mute small" style="margin:10px 0 0">ชิล: ขับ ≤2 ชม./วัน ≤3 ที่ จบวัน 18:00 • กลางๆ: ≤3.5 ชม. ≤4 ที่ จบ 19:30 • แน่น: ≤5 ชม. ≤6 ที่ จบ 21:00 • หน้าหนาวเวลาขับคูณ ${SNOW_F[S.set.snow]?.[0] ?? 1.5} เผื่อหิมะให้แล้ว • ทับค่าได้ใน ${I("settings")} ตั้งค่า</p>
       </div>
       ${fresh ? "</details>" : ""}<h2 class="step-h" id="routes"><b>${fresh ? 2 : 3}</b> เลือกรูท = สร้างแผนรายวัน</h2>
       <div class="card">

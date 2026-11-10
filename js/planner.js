@@ -103,6 +103,7 @@ const Planner = {
   placeMeal(i) {
     const d = S.plan.days[i], N = tripNights();
     d.mealInit = true;
+    if (S.set.autoMeal === false) return; // ปิดในตั้งค่า: ผู้ใช้ใส่เวลากินข้าวเอง
     if (i === N && this.needAirport(this.modeOf()) < 13) return; // เช้าวันกลับรีบไปสนามบิน
     if (i === 0 && this.leaveAirport(this.modeOf()) > 13.5) return;
     const meal = this.newMeal(), items = this.softPlace(i, d.items, meal);
@@ -146,7 +147,7 @@ const Planner = {
     const slack = 1 + (+S.set.slack || 0) / 100;
     const ha0 = hubOf(a), d0 = km(pa, pb);
     if (mode === "walk") return { h: (d0 * 1.3 / 4 + 0.05) * slack, km: Math.round(d0 * 10) / 10, drive: 0, walk: true };
-    if (mode === "taxi") { const d = driveLeg(a, b), f = winterF(iso || S.trip.start) * slack; return { h: d.h * f + 0.1, km: d.km, drive: 0, taxi: true }; }
+    if (mode === "taxi") { const d = driveLeg(a, b), f = winterF(iso || S.trip.start, "some") * slack; return { h: d.h * f + 0.1, km: d.km, drive: 0, taxi: true }; }
     // ในเมืองใหญ่ (ซัปโปโร ฮาโกดาเตะ ฯลฯ) จอดรถที่พักแล้วเดิน/รถไฟใต้ดิน ไม่นับเป็นเวลาขับ
     if (mode === "car" && HUB[ha0]?.city && ha0 === hubOf(b) && d0 < 8 && !AIR[a] && !AIR[b]) return { h: (d0 / 15 + 0.2) * slack, km: Math.round(d0), drive: 0, local: true, city: true };
     if (mode === "car") {
@@ -160,8 +161,9 @@ const Planner = {
       return { h: (d / 20 + 0.25) * slack, km: Math.round(d), local: true };
     }
     const t = transitPath(AIR[a] ? a : ha, AIR[b] ? b : hb);
-    if (!t) { const d = driveLeg(a, b); return { h: (d.h * winterF(iso || S.trip.start) + 0.5) * slack, km: d.km, noTransit: true }; }
-    return { h: (local(a, ha) + t.h + local(b, hb)) * slack, km: driveLeg(a, b).km, by: t.legs.map((e) => e.by), pass: t.legs.some((e) => e.pass), rural: t.legs.some((e) => !e.pass) };
+    if (!t) { const d = driveLeg(a, b); return { h: (d.h * winterF(iso || S.trip.start, "some") + 0.5) * slack, km: d.km, noTransit: true }; }
+    return { h: (local(a, ha) + t.h + local(b, hb)) * slack, km: driveLeg(a, b).km, by: t.legs.map((e) => e.by), pass: t.legs.some((e) => e.pass), rural: t.legs.some((e) => !e.pass),
+      sparse: t.legs.filter((e) => freqMin(e) >= 120).map((e) => `${e.by} ${e.freq}`) }; // เที่ยวห่าง: ต้องดูตารางจริง
   },
 
   dur(it, p) { return it.dur ?? p.hours ?? p.dur ?? 1; },
@@ -267,6 +269,24 @@ const Planner = {
         const v = tl.find((x) => x.kind === "visit" && x.id === it.id);
         if (p.tr?.last && v && v.t + v.h > parseT(p.tr.last)) add("bad", `${nm}: ออก ${fmtT(v.t + v.h)} เลยรถเที่ยวสุดท้าย ~${p.tr.last}`);
       }
+    }
+    // เวลาเปิด-ปิด (ไม่ตรวจจุดที่ล็อกเวลาเอง: ผู้ใช้รู้ดีกว่า เช่น จองรอบพิเศษ)
+    for (const v of tl) {
+      if (v.kind !== "visit" || v.it?.at || v.onWay) continue;
+      const r = openRange(point(v.id));
+      if (!r) continue;
+      const nm = pname(v.id);
+      if (v.t >= r[1] - 0.25) add("warn", `${nm}: ไปถึง ${fmtT(v.t)} ปิดแล้ว (เปิด ~${fmtT(r[0])}-${fmtT(r[1])})`);
+      else if (v.t < r[0] - 0.1) add("warn", `${nm}: ไปถึง ${fmtT(v.t)} ยังไม่เปิด (เปิด ~${fmtT(r[0])}) ล็อกเวลาหรือสลับลำดับ`);
+      else if (v.t + v.h > r[1] + 0.1) add("info", `${nm}: ปิด ~${fmtT(r[1])} อยู่ได้ ${fmtH(r[1] - v.t)} (ตั้งไว้ ${fmtH(v.h)})`);
+    }
+    [...new Set(tl.flatMap((x) => (x.kind === "move" && x.sparse) || []))].forEach((s) => add("info", `${s}: รถห่าง ตรวจตารางจริงแล้วล็อกเวลาจุดถัดไป`));
+    // วันย้ายที่พัก: ออกจากที่พักหลังเวลาเช็กเอาท์
+    const hf = i > 0 && hubOf(from) !== toHub ? hotelOf(from) : null, dayStart = tl.find((x) => x.kind === "move")?.t;
+    const co = hf?.name || hf?.checkOut ? hf.checkOut || "10:00" : null; // ช่องเช็กเอาท์แสดง 10:00 เป็นค่าเริ่มต้น
+    if (co && dayStart != null && !opts.live) {
+      if (dayStart > parseT(co) + 0.1) add("warn", `ออกจากที่พัก ${fmtT(dayStart)} หลังเช็กเอาท์ ${co}: เช็กเอาท์ก่อนแล้วฝากกระเป๋า/ใส่รถ`);
+      else if (mode === "transit" && dayI.some((it) => hubOf(it.id) === hubOf(from))) add("info", `เช็กเอาท์ ${co} แล้วเที่ยว ${short(from)} ต่อ: ฝากกระเป๋าที่ล็อกเกอร์สถานี/โรงแรม`);
     }
     if (lateRural) add("warn", "มีช่วงนั่งบัส/รถไฟท้องถิ่นหลัง 18:30 รถเที่ยวสุดท้ายต่างจังหวัดหมดเร็ว ตรวจตารางจริง");
     if (noFuel) add("info", `${noFuel} เติมน้ำมันก่อนออก`);

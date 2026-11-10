@@ -42,7 +42,7 @@ const Store = {
         firstDay: "auto", buf: { ...BUF }, carPick: true, carRet: true, // รับ/คืนรถที่สนามบินตอนถึง/ก่อนบิน (ปิด = ใส่เองในแผน)
       },
       plan: null, packing: {}, custom: [], prep: {}, budget: {}, spend: [], docs: [], rate: 0.23, rateAt: 0,
-      set: { lang: "en", langV: 2, theme: "auto", font: "m", slack: 0, maxDrive: "", dayStart: "", dayEnd: "", rateAuto: true },
+      set: { lang: "en", langV: 2, theme: "auto", font: "m", slack: 0, maxDrive: "", dayStart: "", dayEnd: "", rateAuto: true, snow: "new", maxStops: "", autoMeal: true },
     };
   },
   merge(s) {
@@ -145,8 +145,9 @@ function km(a, b) {
 }
 
 const WINTER = 1.5; // ตัวคูณเวลาขับหน้าหนาว (ธ.ค.-มี.ค.)
-// ตัวคูณตามเดือน: หนาวจัด ×1.5, ต้น/ปลายหนาว ×1.2, ฤดูอื่นขับปกติ
-const winterF = (iso) => { const m = monthOf(iso); return [12, 1, 2, 3].includes(m) ? WINTER : [11, 4].includes(m) ? 1.2 : 1; };
+// ตัวคูณตามเดือน × ประสบการณ์ขับบนหิมะ (S.set.snow): [หนาวจัด ธ.ค.-มี.ค., ต้น/ปลายหนาว พ.ย./เม.ย.] ฤดูอื่นขับปกติ
+const SNOW_F = { new: [WINTER, 1.2], some: [1.3, 1.1], dry: [1.1, 1] };
+const winterF = (iso, skill = S.set.snow) => { const m = monthOf(iso), f = SNOW_F[skill] || SNOW_F.new; return [12, 1, 2, 3].includes(m) ? f[0] : [11, 4].includes(m) ? f[1] : 1; };
 const isWinter = (iso) => [12, 1, 2, 3].includes(monthOf(iso));
 const DRIVE_KEY = Object.fromEntries(DRIVE_EDGES.flatMap((e) => [[e.a + ">" + e.b, e], [e.b + ">" + e.a, e]]));
 
@@ -169,6 +170,19 @@ for (const e of TRANSIT_EDGES) {
   (TGRAPH[e.b] ||= []).push({ to: e.a, e });
 }
 const _tCache = {};
+// ความถี่รถ (ข้อความในตาราง) → ระยะห่างระหว่างเที่ยว (นาที); null = ไม่รู้
+function freqMin(e) {
+  const f = String(e.freq || ""), n = (f.match(/\d+/g) || []).map(Number), avg = n.length ? (n[0] + (n[1] ?? n[0])) / 2 : 0;
+  if (/ตามเที่ยวบิน/.test(f)) return 0;
+  if (/ทุก/.test(f) && avg) return avg;
+  if (/ชั่วโมงละ/.test(f) && avg) return 60 / avg;
+  if (/วันละ/.test(f)) return avg ? 720 / avg : 120; // ให้บริการ ~12 ชม./วัน
+  if (/บ่อย/.test(f)) return 10;
+  if (/น้อย/.test(f)) return 180;
+  return null;
+}
+// รอรถเฉลี่ย = ครึ่งหนึ่งของระยะห่างเที่ยว (ไม่เกิน 1 ชม. ถ้ารอนานกว่านั้นคนจะดูตารางแล้วไปให้ตรงเวลา)
+const waitH = (e) => Math.min(60, (freqMin(e) ?? 20) / 2) / 60;
 function transitPath(a, b) {
   if (a === b) return { h: 0, legs: [] };
   const key = a + ">" + b;
@@ -180,7 +194,7 @@ function transitPath(a, b) {
     if (u === null || u === b) break;
     done.add(u);
     for (const { to, e } of TGRAPH[u] || []) {
-      const nd = dist[u] + e.h + 0.3;
+      const nd = dist[u] + e.h + 0.3 + waitH(e);
       if (!(to in dist) || nd < dist[to]) { dist[to] = nd; prev[to] = { from: u, e }; }
     }
   }
@@ -188,6 +202,17 @@ function transitPath(a, b) {
   const legs = [];
   for (let k = b; k !== a; k = prev[k].from) legs.unshift(prev[k].e);
   return (_tCache[key] = { h: dist[b] - 0.3, legs });
+}
+
+// เวลาเปิด-ปิดจากข้อความ "≈9:00-17:00 ..." (ชม.) • ไม่อ่านถ้าเปิดตลอด/มีหลายช่วง/ไนท์สกี/ไฟประดับ → null = ไม่ตรวจ
+function openRange(p) {
+  const o = String(p?.open || "");
+  if (/ตลอด|ไนท์สกี|ไฟ|,|\//.test(o)) return null;
+  const m = o.match(/^≈?\s*(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})/);
+  if (!m) return null;
+  const a = +m[1] + m[2] / 60; let b = +m[3] + m[4] / 60;
+  if (b <= a) b += 24; // ปิดหลังเที่ยงคืน
+  return [a, b];
 }
 
 // การเข้าถึงด้วยขนส่งสาธารณะ: ใช้ข้อมูล tr.lv ของสถานที่ถ้ามี ไม่งั้นประมาณจากระยะห่างจากใจกลางฐาน
@@ -246,6 +271,7 @@ const pace = () => {
   if (s.maxDrive !== "" && s.maxDrive != null) p.maxDrive = +s.maxDrive;
   if (s.dayStart) p.start = parseT(s.dayStart);
   if (s.dayEnd) p.end = parseT(s.dayEnd);
+  if (s.maxStops) p.maxStops = +s.maxStops;
   return p;
 };
 const MODE = { car: "ขับรถเอง", transit: "รถไฟ + บัส" };

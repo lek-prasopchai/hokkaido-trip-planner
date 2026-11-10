@@ -86,11 +86,14 @@ const App = {
       <label class="f">ชื่อสถานที่แสดงภาษา<select data-s="lang">${opt("en", "English ก่อน + ไทย", s.lang)}${opt("th", "ไทยก่อน + English", s.lang)}${opt("ja", "English + 日本語 + ไทย", s.lang)}${opt("all", "ไทย + English + 日本語", s.lang)}</select></label>
       <label class="f">ธีม<select data-s="theme">${opt("auto", "ตามเครื่อง", s.theme)}${opt("light", "สว่าง", s.theme)}${opt("dark", "มืด", s.theme)}</select></label>
       <label class="f">ขนาดตัวอักษร<select data-s="font">${opt("s", "เล็ก", s.font)}${opt("m", "กลาง", s.font)}${opt("l", "ใหญ่", s.font)}</select></label>
-    </div><details class="adv"><summary>ขั้นสูง: เวลาเดินทาง เวลาเริ่ม/จบวัน อัตราแลกเงิน</summary><div class="form set-form">
+    </div><details class="adv"><summary>ขั้นสูง: เวลาเดินทาง ขับบนหิมะ จำนวนที่ต่อวัน มื้ออัตโนมัติ อัตราแลกเงิน</summary><div class="form set-form">
       <label class="f">เผื่อเวลาเดินทางเพิ่ม (%)<input type="number" min="0" max="100" step="5" data-s="slack" value="${s.slack}"></label>
       <label class="f">ขับสูงสุดต่อวัน (ชม.) <small>ว่าง = ตามสไตล์</small><input type="number" min="1" max="10" step="0.5" data-s="maxDrive" value="${s.maxDrive}"></label>
       <label class="f">เริ่มวัน <small>ว่าง = ตามสไตล์</small><input type="time" data-s="dayStart" value="${s.dayStart}"></label>
       <label class="f">จบวัน <small>ว่าง = ตามสไตล์</small><input type="time" data-s="dayEnd" value="${s.dayEnd}"></label>
+      <label class="f">ขับบนหิมะ <small>ตัวคูณเวลาขับหน้าหนาว</small><select data-s="snow">${opt("new", "ไม่เคยขับ ×1.5 (ปลอดภัยสุด)", s.snow)}${opt("some", "เคยขับมาบ้าง ×1.3", s.snow)}${opt("dry", "ถนนส่วนใหญ่แห้ง ×1.1", s.snow)}</select></label>
+      <label class="f">ที่เที่ยวสูงสุดต่อวัน <small>ว่าง = ตามสไตล์</small><input type="number" min="1" max="12" data-s="maxStops" value="${s.maxStops}"></label>
+      <label class="f row" style="flex-direction:row;align-items:center"><input type="checkbox" data-s="autoMeal" ${s.autoMeal !== false ? "checked" : ""}> ใส่ช่วงกินข้าวกลางวันให้อัตโนมัติตอนสร้างแผน</label>
       <label class="f">อัตราแลกเงิน 1 เยน = ? บาท<input type="number" step="0.0001" data-s="rate" value="${S.rate}"></label>
       <label class="f row" style="flex-direction:row;align-items:center"><input type="checkbox" data-s="rateAuto" ${s.rateAuto ? "checked" : ""}> อัปเดตอัตราแลกเงินอัตโนมัติวันละครั้ง</label>
     </div></details>
