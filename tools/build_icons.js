@@ -2,13 +2,13 @@
 // เพิ่มไอคอน: ใส่ชื่อจาก https://lucide.dev/icons ใน NAMES แล้วรันใหม่
 const fs = require("fs"), path = require("path");
 const VER = "0.460.0";
-const NAMES = `map search backpack book-open download printer link settings undo-2 car train-front car-taxi-front footprints
-flower-2 sun leaf snowflake cloud-rain cloud-fog cloud-sun phone party-popper mountain-snow flower bath cable-car utensils
-building-2 landmark paw-print map-pin star moon hotel plane clock timer ban triangle-alert thumbs-up lock info hourglass
-navigation heart notebook-pen circle-pause arrow-left-right clipboard-list store fuel life-buoy circle-check skip-forward
-image globe play music camera banknote bus soup shopping-cart file-text shirt hand droplet pill plug smartphone luggage
-paperclip baby plane-takeoff package refresh-ccw arrow-up-down sunrise languages stamp message-circle credit-card
-cloud-snow wifi construction route circle-check-big arrow-up arrow-down pencil x train-track signpost calculator calendar-plus`.split(/\s+/);
+const NAMES = `map search backpack book-open download printer settings car train-front car-taxi-front footprints flower-2 sun leaf
+snowflake cloud-rain cloud-fog cloud-sun phone party-popper mountain-snow flower bath cable-car utensils building-2
+landmark paw-print map-pin star moon hotel plane clock timer ban triangle-alert thumbs-up lock info hourglass
+navigation heart notebook-pen circle-pause arrow-left-right clipboard-list store fuel life-buoy circle-check
+skip-forward image globe play music camera banknote bus soup file-text shirt hand droplet pill plug smartphone
+luggage paperclip baby plane-takeoff package refresh-ccw arrow-up-down stamp cloud-snow route arrow-up arrow-down
+pencil x`.split(/\s+/);
 
 (async () => {
   const out = {};

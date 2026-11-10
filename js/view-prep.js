@@ -41,18 +41,14 @@ const PrepView = {
   },
 };
 
-const SOURCES = ["มีอยู่แล้ว", "ซื้อที่ไทย", "ซื้อที่ญี่ปุ่น", "ทำออนไลน์", "เช่า", "ขอจากรถเช่า"];
 const CAT_ICON = { "เอกสาร": "file-text", "เงิน": "banknote", "เสื้อผ้า-ชั้นใน/กลาง": "shirt", "เสื้อผ้า-ชั้นนอก": "shirt", "หัว-มือ-เท้า": "hand", "ผิวและร่างกาย": "droplet",
   "ยาและสุขภาพ": "pill", "อิเล็กทรอนิกส์": "plug", "แอปและข้อมูลในมือถือ": "smartphone", "ของในรถ": "car", "กระเป๋าและจัดเก็บ": "luggage", "ของจิปาถะ": "paperclip",
   "กิจกรรม": "cable-car", "กล้องและความทรงจำ": "camera", "เด็กเล็ก": "baby", "ขากลับ": "plane-takeoff" };
-const STATUS = { todo: "ยังไม่พร้อม", ready: "พร้อมแล้ว", packed: "แพ็กแล้ว" };
-// งานที่มีหน้าในเว็บช่วยทำ: ใส่ลิงก์ไปหน้านั้นตรงงาน (คู่มือโผล่ตอนที่ต้องใช้)
-const TASK_LINK = { x2: "stays", x8: "trip", x9: "trip", x10: "packing", x11: "packing", x13: "transport", x17: "apps", x18: "stays", x21: "emergency", x24: "packing", x33: "transport" };
+
+const TASK_LINK = { x2: "stays", x8: "trip", x9: "trip", x10: "packing", x11: "packing", x13: "guide", x18: "stays", x21: "emergency", x24: "packing", x33: "guide" };
 const pageName = (id) => TAB_OF[id]?.subs.find(([k]) => k === id)?.[1] || id;
 
 const PackingView = {
-  tab: "cat",
-  items() { return [...PACKING, ...S.custom]; },
   carOnly: (x) => ["คัน", "คนขับ"].includes(x.per) || x.cat === "ของในรถ" || /IDP|ใบขับขี่|รถเช่า|ETC/.test(x.name),
   // when = เงื่อนไขแสดง { mode, kids, season: "winter"|"warm", tag } ไม่เข้าเงื่อนไขก็ซ่อน
   relevant(x) {
@@ -66,105 +62,33 @@ const PackingView = {
     if (w.tag && !t.interests.includes(w.tag)) return false;
     return true;
   },
-  st(x) {
-    const s = S.packing[x.id] || {};
-    return { on: s.on ?? (!x.opt && x.prio <= 3 || (!x.opt && x.prio === 4 && S.trip.interests.includes("snow"))), status: s.status || "todo", src: s.src || x.source || "ซื้อที่ไทย" };
-  },
+  ok: (x) => { const s = S.packing[x.id]?.status; return !!s && s !== "todo"; }, // status: ค่าจากเวอร์ชันก่อน (ready/packed) ยังนับ
   qty(x) {
     const t = S.trip, ppl = t.adults + t.kids;
     return { "คน": x.qty * ppl, "คน×วัน": x.qty * ppl * (tripNights() + 1), "คนขับ": x.qty * Math.max(1, t.drivers) }[x.per] ?? x.qty;
   },
+  list() { return PACKING.filter((x) => this.relevant(x)); },
   progress() {
-    const L = this.items().filter((x) => this.relevant(x) && this.st(x).on);
-    const ok = L.filter((x) => this.st(x).status !== "todo").length;
+    const L = this.list(), ok = L.filter((x) => this.ok(x)).length;
     return { ok, total: L.length, pct: L.length ? Math.round((ok / L.length) * 100) : 0 };
   },
-  // แถวสั้น: ติ๊ก = พร้อมแล้ว • ตัวเลือก (เอาไปไหม/หาที่ไหน/แพ็กแล้ว) พับไว้ใน "ตัวเลือก"
-  row(x) {
-    const s = this.st(x);
-    const im = (window.ITEM_IMG || {})[x.id], q = x.name.replace(/\(.*?\)/g, "").trim();
-    return `<div class="pk pk2 ${s.on ? "" : "off"} ${s.status === "packed" ? "packed" : ""}">
-      <input type="checkbox" data-ready="${x.id}" ${s.status !== "todo" ? "checked" : ""} aria-label="พร้อมแล้ว">
-      ${im ? `<span class="pk-img" role="button" tabindex="0" title="ดูรูปใหญ่" onclick='Lightbox.open([${esc(JSON.stringify(im))}], 0, ${esc(JSON.stringify(x.name))})'><img src="${im.img}" alt="" loading="lazy"></span>`
-        : `<a class="pk-img noimg" href="${gimgUrl(q)}" target="_blank" rel="noopener" title="ดูรูปใน Google">${I(CAT_ICON[x.cat] || "package")}</a>`}
-      <div class="nm"><span class="${x.prio === 1 ? "prio1" : ""}">${esc(x.name)}</span> <b class="qty">×${this.qty(x)}</b>${s.on ? "" : ' <span class="badge b-mute">ไม่เอาไป</span>'}
-        ${x.spec ? `<small>${esc(x.spec)}</small>` : ""}
-        <details class="pk-more no-print"><summary>ตัวเลือก</summary><div class="row">
-          <label class="chk"><input type="checkbox" data-on="${x.id}" ${s.on ? "checked" : ""}> เอาไป</label>
-          <select data-src="${x.id}" aria-label="หาที่ไหน">${SOURCES.map((v) => `<option ${v === s.src ? "selected" : ""}>${v}</option>`).join("")}</select>
-          <select data-st="${x.id}" aria-label="สถานะ">${Object.entries(STATUS).map(([k, v]) => `<option value="${k}" ${k === s.status ? "selected" : ""}>${v}</option>`).join("")}</select>
-          <a class="gimg" href="${gimgUrl(q)}" target="_blank" rel="noopener">${I("image")} ดูรูป</a>${x.custom ? ` <button class="btn small" data-del="${x.id}">ลบ</button>` : ""}</div>
-          ${x.shop || x.bag ? `<small>${x.shop ? `ร้าน: ${esc(x.shop)} ` : ""}${x.bag ? `• เก็บ: ${esc(x.bag)}` : ""}</small>` : ""}</details></div></div>`;
-  },
-  // รายการตามหมวด; fold = พับไว้ใน details (id จำสถานะเปิด/ปิด)
-  catCards(xs) {
-    const g = {}; xs.forEach((x) => (g[x.cat] ||= []).push(x));
-    return Object.entries(g).map(([c, ys]) => `<div class="pk-cat card"><h3>${I(CAT_ICON[c] || "package")} ${esc(c)} <small>${ys.filter((x) => this.st(x).status !== "todo").length}/${ys.length}</small></h3>${ys.map((x) => this.row(x)).join("")}</div>`).join("");
-  },
-  fold(id, title, sub, xs) {
-    if (!xs.length) return "";
-    const ok = xs.filter((x) => this.st(x).status !== "todo").length;
-    return `<details class="fold-sec" id="${id}" ${this.opened[id] ? "open" : ""}><summary><b>${title}</b> <span class="mute">${xs.length} รายการ • พร้อม ${ok} • ${sub}</span></summary>${this.catCards(xs)}</details>`;
-  },
-  opened: {},
   render() {
-    const L = this.items().filter((x) => this.relevant(x));
-    const pr = this.progress();
-    const group = (key) => { const g = {}; L.forEach((x) => (g[key(x)] ||= []).push(x)); return g; };
-    let body;
-    if (this.tab === "cat") { // เปิดมาเห็นเฉพาะของขาดไม่ได้ ที่เหลือพับไว้
-      const base = L.filter((x) => !x.opt);
-      body = this.catCards(base.filter((x) => x.prio === 1 || x.custom))
-        + this.fold("pkShould", "ควรมี", "กดเพื่อดู", base.filter((x) => x.prio === 2 && !x.custom))
-        + this.fold("pkNice", "มีก็ดี / ตามกิจกรรม", "กดเพื่อดู", base.filter((x) => x.prio >= 3 && !x.custom))
-        + this.optBox(L.filter((x) => x.opt));
-    }
-    else if (this.tab === "bag") body = Object.entries(group((x) => x.bag || "ไม่ระบุ")).map(([c, xs]) => { xs = xs.filter((x) => this.st(x).on); return xs.length ? `<div class="pk-cat card"><h3>${I("backpack")} ${esc(c)} <small>${xs.length} รายการ</small></h3>${xs.map((x) => this.row(x)).join("")}</div>` : ""; }).join("");
-    else {
-      const where = this.tab === "buyTH" ? "ซื้อที่ไทย" : "ซื้อที่ญี่ปุ่น";
-      const xs = L.filter((x) => { const s = this.st(x); return s.on && s.src === where && s.status === "todo"; });
-      body = `<div class="card"><h3>${where}: ยังต้องซื้อ ${xs.length} รายการ</h3>${xs.length ? xs.map((x) => this.row(x)).join("") : '<p class="empty">ซื้อครบแล้ว</p>'}
-        <p class="mute" style="font-size:.8rem;margin-top:8px">ซื้อแล้วเปลี่ยนสถานะเป็น "พร้อมแล้ว" รายการจะหายจากลิสต์นี้</p></div>`;
-    }
+    const L = this.list(), pr = this.progress(), g = {};
+    L.forEach((x) => (g[x.cat] ||= []).push(x));
     $('[data-sec="packing"]').innerHTML = `
-      <div class="sec-head"><h1>จัดกระเป๋า</h1>
-        <p class="lead">ติ๊กเมื่อของพร้อมแล้ว • ของไหนไม่เอาไป กด "ตัวเลือก" ใต้ชื่อ • ด้านบนคือของขาดไม่ได้ ที่เหลือพับไว้ด้านล่าง • จำนวนคำนวณจาก ${S.trip.adults + S.trip.kids} คน × ${tripNights() + 1} วันให้อัตโนมัติ • แสดงตามแผน (${MODE[S.trip.mode]}${S.trip.kids ? ", มีเด็ก" : ""}, ${isWinter(S.trip.start) ? "หน้าหนาว" : "นอกหน้าหนาว"}) ซ่อนของที่ไม่เกี่ยวให้แล้ว</p></div>
+      <div class="sec-head"><h1>ของจำเป็น</h1>
+        <p class="lead">${L.length} อย่างที่ขาดไม่ได้สำหรับทริปนี้ (${[...Planner.usedModes()].map((m) => LEG_MODE[m]?.name || m).join(", ")}${isWinter(S.trip.start) ? ", หน้าหนาว" : ""}) จำนวนคิดจาก ${S.trip.adults + S.trip.kids} คน × ${tripNights() + 1} วัน • ของทั่วไปอื่นๆ จดในแอปโน้ตของคุณ</p></div>
       <div class="card"><div class="row"><b>พร้อมแล้ว ${pr.ok}/${pr.total}</b><div class="spacer"></div><span>${pr.pct}%</span></div><div class="bar" style="margin-top:6px"><i style="width:${pr.pct}%"></i></div></div>
-      <div class="row no-print" style="margin-bottom:12px"><div class="seg" id="pkTabs">${[["cat", "ตามหมวด"], ["buyTH", I("shopping-cart") + " ซื้อที่ไทย"], ["buyJP", I("shopping-cart") + " ซื้อที่ญี่ปุ่น"], ["bag", I("backpack") + " แยกกระเป๋า"]].map(([k, v]) => `<button data-v="${k}" class="${this.tab === k ? "on" : ""}">${v}</button>`).join("")}</div></div>
-      ${body}
-      <div class="card no-print"><h3>เพิ่มของเอง</h3><div class="row"><input type="text" id="pkName" aria-label="ชื่อของที่จะเพิ่ม" placeholder="ชื่อของ" style="flex:1;min-width:160px">
-        <select id="pkCat">${[...new Set(PACKING.map((x) => x.cat))].map((c) => `<option>${esc(c)}</option>`).join("")}</select>
-        <input type="number" id="pkQty" value="1" min="1"><select id="pkPer"><option>กลุ่ม</option><option>คน</option></select><button class="btn primary" id="pkAdd">เพิ่ม</button></div></div>`;
+      ${Object.entries(g).map(([c, xs]) => `<div class="card pk-cat"><h3>${I(CAT_ICON[c] || "package")} ${esc(c)} <small>${xs.filter((x) => this.ok(x)).length}/${xs.length}</small></h3>
+        ${xs.map((x) => `<label class="pk3 ${this.ok(x) ? "done" : ""}"><input type="checkbox" data-ok="${x.id}" ${this.ok(x) ? "checked" : ""}>
+          <span><b>${esc(x.name)}</b> <span class="mute">×${this.qty(x)}</span>${x.spec ? `<small>${esc(x.spec)}</small>` : ""}</span></label>`).join("")}</div>`).join("")}`;
   },
-  optOpen: false,
-  optBox(xs) {
-    if (!xs.length) return "";
-    const g = {}; xs.forEach((x) => (g[x.cat] ||= []).push(x));
-    return `<details class="card opt" id="pkOpt" ${this.optOpen ? "open" : ""}><summary><b>ของเสริม (ไม่บังคับ)</b> <small>${xs.length} รายการ • เลือกแล้ว ${xs.filter((x) => this.st(x).on).length} • ของพื้นฐาน/ตามความชอบ ติ๊กเพื่อเอาไป</small></summary>
-      ${Object.entries(g).map(([c, ys]) => `<h3 style="margin-top:12px">${esc(c)}</h3>${ys.map((x) => this.row(x)).join("")}`).join("")}</details>`;
-  },
-  set(id, k, v) { (S.packing[id] ||= {})[k] = v; save(); this.render(); App.refreshChrome(); },
   bind() {
-    const sec = $('[data-sec="packing"]');
-    sec.addEventListener("change", (e) => {
-      const d = e.target.dataset;
-      if (d.ready) this.set(isNaN(d.ready) ? d.ready : +d.ready, "status", e.target.checked ? "ready" : "todo");
-      else if (d.on) this.set(isNaN(d.on) ? d.on : +d.on, "on", e.target.checked);
-      else if (d.src) this.set(isNaN(d.src) ? d.src : +d.src, "src", e.target.value);
-      else if (d.st) this.set(isNaN(d.st) ? d.st : +d.st, "status", e.target.value);
-    });
-    sec.addEventListener("toggle", (e) => { if (e.target.id === "pkOpt") this.optOpen = e.target.open; else if (/^pk/.test(e.target.id)) this.opened[e.target.id] = e.target.open; }, true);
-    sec.addEventListener("click", (e) => {
-      const el = e.target;
-      if (el.closest("#pkTabs") && el.dataset.v) { this.tab = el.dataset.v; this.render(); }
-      else if (el.id === "pkAdd") {
-        const name = $("#pkName").value.trim();
-        if (!name) return toast("ใส่ชื่อของก่อน");
-        S.custom.push({ id: "c" + Date.now(), custom: true, cat: $("#pkCat").value, name, prio: 2, qty: Math.max(1, +$("#pkQty").value || 1), per: $("#pkPer").value, source: "ซื้อที่ไทย", spec: "", bag: "" });
-        save(); this.render();
-      } else if (el.dataset.del) {
-        S.custom = S.custom.filter((x) => x.id !== el.dataset.del); delete S.packing[el.dataset.del]; save(); this.render();
-      }
+    $('[data-sec="packing"]').addEventListener("change", (e) => {
+      const id = e.target.dataset.ok;
+      if (!id) return;
+      (S.packing[id] ||= {}).status = e.target.checked ? "ready" : "todo";
+      save(); this.render(); App.refreshChrome();
     });
   },
 };

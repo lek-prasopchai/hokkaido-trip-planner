@@ -1,17 +1,17 @@
 // โครงแอป: แท็บหลัก 4 แท็บ + หัวข้อย่อย, ตั้งค่า, แชร์ลิงก์, ย้อนกลับ, PWA
 const TABS = [
   { id: "mytrip", ic: "map", name: "ทริปของฉัน", subs: [["trip", "แผนรายวัน"], ["today", "วันนี้"], ["setup", "ข้อมูลทริป"], ["stays", "ที่พัก+จอง"]] },
-  { id: "explore", ic: "search", name: "ค้นหา", subs: [["places", "สถานที่"], ["food", "ร้านอาหาร"], ["fest", "เทศกาล"]] },
-  { id: "ready", ic: "backpack", name: "เตรียมตัว", subs: [["prep", "สิ่งที่ต้องทำ"], ["packing", "จัดกระเป๋า"], ["budget", "งบประมาณ"]] },
-  { id: "guide", ic: "book-open", name: "คู่มือ", subs: [["know", "รู้จักฮอกไกโด"], ["transport", "การเดินทาง"], ["life", "ใช้ชีวิตที่นั่น"], ["apps", "แอป"], ["emergency", "เอกสาร + ฉุกเฉิน"]] },
+  { id: "explore", ic: "search", name: "ค้นหา", subs: [["places", "สถานที่"], ["food", "ร้านอาหาร"]] },
+  { id: "ready", ic: "backpack", name: "เตรียมตัว", subs: [["prep", "สิ่งที่ต้องทำ"], ["packing", "ของจำเป็น"], ["budget", "งบประมาณ"]] },
+  { id: "guide", ic: "book-open", name: "คู่มือ", subs: [["guide", "คู่มือฉบับย่อ"], ["emergency", "เอกสาร + ฉุกเฉิน"]] },
 ];
 const TAB_OF = Object.fromEntries(TABS.flatMap((t) => t.subs.map(([id]) => [id, t])));
 const RENDER = {
   trip: () => PlanView.render(), setup: () => PlanView.renderSetup(), stays: () => PlanView.renderStays(), today: () => PlanView.renderToday(),
-  places: () => PlacesView.render(), food: () => FoodView.render(), fest: () => PlacesView.renderFest(),
+  places: () => PlacesView.render(), food: () => FoodView.render(),
   packing: () => PackingView.render(), prep: () => PrepView.render(), budget: () => BudgetView.render(),
-  know: () => GuideView.know(), transport: () => GuideView.transport(), life: () => GuideView.life(),
-  apps: () => GuideView.apps(), emergency: () => GuideView.emergency(),
+  guide: () => GuideView.guide(),
+  emergency: () => GuideView.emergency(),
 };
 
 // ---------- กันแผนหาย: แผนอยู่ในเบราว์เซอร์เครื่องเดียว ----------
@@ -98,9 +98,9 @@ const App = {
       <label class="f row" style="flex-direction:row;align-items:center"><input type="checkbox" data-s="rateAuto" ${s.rateAuto ? "checked" : ""}> อัปเดตอัตราแลกเงินอัตโนมัติวันละครั้ง</label>
     </div></details>
     <h3 style="margin-top:16px">ข้อมูลและออฟไลน์</h3>
-    <div class="row"><button class="btn" data-a="offline">${I("download")} ดาวน์โหลดรูปทั้งหมดไว้ใช้ออฟไลน์</button><button class="btn" data-a="export">ส่งออกไฟล์ .json</button>
+    <div class="row"><button class="btn" data-a="export">ส่งออกไฟล์ .json</button>
       <label class="btn">นำเข้าไฟล์ .json<input type="file" data-a="import" accept=".json,application/json" hidden></label>
-      <button class="btn" data-a="print">${I("printer")} พิมพ์ / PDF แผนรายวัน</button><button class="btn" data-ics>${I("calendar-plus")} ส่งออกลงปฏิทิน (.ics)</button><button class="btn red" data-a="reset">ล้างข้อมูลทั้งหมด</button></div>
+      <button class="btn" data-a="print">${I("printer")} พิมพ์ / PDF แผนรายวัน</button><button class="btn red" data-a="reset">ล้างข้อมูลทั้งหมด</button></div>
     <p class="mute small" style="margin-top:12px">ข้อมูลสถานที่ ราคา เวลาเปิด ตารางรถ ตรวจล่าสุด พ.ย. 2026 เป็นค่าประมาณ ตรวจกับแหล่งทางการก่อนไป • แผนเก็บในเบราว์เซอร์เครื่องนี้เท่านั้น</p>`);
     const d = $("#modal");
     d.onchange = (e) => {
@@ -116,7 +116,6 @@ const App = {
       const a = e.target.closest("[data-a]")?.dataset.a;
       if (a === "export") Store.export();
       else if (a === "print") { Modal.close(); this.print(); }
-      else if (a === "offline") this.downloadOffline();
       else if (a === "reset" && confirm("ล้างแผน รายการจัดกระเป๋า งาน และค่าตั้งทั้งหมด? ย้อนกลับไม่ได้")) { localStorage.removeItem(STORE_KEY); S = Store.defaults(); Modal.close(); location.hash = "#setup"; this.renderAll(); }
     };
   },
@@ -125,22 +124,6 @@ const App = {
     if (!S.plan) return toast("สร้างแผนก่อน แล้วค่อยพิมพ์");
     location.hash = "#trip";
     setTimeout(() => { $$(".gantt-box").forEach((d) => (d.open = true)); window.print(); }, 300);
-  },
-
-  async downloadOffline() {
-    if (!("caches" in window)) return toast("เบราว์เซอร์นี้ไม่รองรับการเก็บออฟไลน์");
-    const imgs = new Set();
-    PLACES.forEach((p) => placeImgs(p).forEach((x) => imgs.add(x.img)));
-    (window.FOODS || []).forEach((f) => f.img && imgs.add(f.img));
-    Object.values(window.HUB_IMG || {}).forEach((x) => imgs.add(x.img));
-    Object.values(window.ITEM_IMG || {}).forEach((x) => imgs.add(x.img));
-    const list = [...imgs], c = await caches.open("hk-img-v1");
-    let n = 0;
-    for (let i = 0; i < list.length; i += 20) {
-      await Promise.all(list.slice(i, i + 20).map((u) => c.add(u).then(() => n++).catch(() => null)));
-      toast(`ดาวน์โหลดรูป ${Math.min(i + 20, list.length)}/${list.length}`);
-    }
-    toast(`เก็บรูป ${n} รูปไว้ใช้ออฟไลน์แล้ว`);
   },
 
   // ---------- แชร์ ----------
@@ -184,8 +167,6 @@ const App = {
     if (h.startsWith("share=")) this.loadShared(h.slice(6));
     else this.show(h || (during ? "today" : S.plan ? "trip" : "setup"));
     $("#btnSet").onclick = () => this.settings();
-    $("#btnCalc").innerHTML = I("calculator") + '<span class="lbl">เงินเยน</span>';
-    $("#btnCalc").onclick = () => YenCalc.open();
     $("#btnShare").onclick = () => this.share();
     $("#btnUndo").onclick = () => Hist.undo();
     document.addEventListener("keydown", (e) => { if ((e.ctrlKey || e.metaKey) && e.key === "z" && !/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) { e.preventDefault(); Hist.undo(); } });

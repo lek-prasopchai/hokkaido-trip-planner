@@ -77,7 +77,6 @@ const BudgetView = {
         <div class="k"><label class="f">อัตรา 1 เยน = ? บาท ${S.set.rateAuto ? "<small>(อัปเดตอัตโนมัติ)</small>" : ""}<input type="number" step="0.0001" id="rate" value="${S.rate}"></label></div></div>
         <div style="display:flex;height:14px;border-radius:99px;overflow:hidden;margin-top:14px">${Object.entries(cats).map(([c, v], i) => `<div title="${esc(c)} ${fmtN(v)} ฿" style="width:${(v / B.total) * 100}%;background:${colors[i % colors.length]}"></div>`).join("")}</div>
         <div class="row" style="margin-top:6px;font-size:.8rem">${Object.entries(cats).map(([c, v], i) => `<span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:${colors[i % colors.length]}"></span> ${esc(c)} ${Math.round((v / B.total) * 100)}%</span>`).join("")}</div></div>
-      ${Spend.section(B)}
       ${B.jr ? `<div class="callout info">${B.jr.text}</div>` : ""}
       <div class="card"><div class="tbl-wrap"><table class="t bt"><thead><tr><th>หมวด</th><th>รายการ</th><th class="num">จำนวนเงิน</th><th class="num">บาท</th></tr></thead><tbody>
         ${B.lines.map((l) => `<tr><td>${esc(l.cat)}</td><td><b>${esc(l.name)}</b>${l.note ? `<small class="bnote">${esc(l.note)}</small>` : ""}</td>

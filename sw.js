@@ -2,13 +2,13 @@
 // - โค้ด/ข้อมูล: ใช้ของใน cache ทันที แล้วโหลดใหม่เบื้องหลัง (stale-while-revalidate) — แก้ไฟล์แล้วเปิดครั้งที่ 2 จะเห็นของใหม่
 // - รูป: cache-first (ปุ่ม "ดาวน์โหลดรูปทั้งหมด" ในตั้งค่าเติมให้ครบ)
 // - tile แผนที่: cache-first จำกัดจำนวน / API (อากาศ อัตราแลกเงิน เส้นทาง): network-first
-const V = "hk-v2-26"; // เปลี่ยนด้วย node tools/bump.js (พร้อม ?v= ใน index.html)
+const V = "hk-v2-27"; // เปลี่ยนด้วย node tools/bump.js (พร้อม ?v= ใน index.html)
 const SHELL = [
   "./", "index.html", "css/style.css", "manifest.webmanifest", "img/icon.svg", "img/icon-192.png",
   "vendor/leaflet/leaflet.css", "vendor/leaflet/leaflet.js", "vendor/markercluster/leaflet.markercluster.js",
   "vendor/markercluster/MarkerCluster.css", "vendor/markercluster/MarkerCluster.Default.css",
   ...["icons", "core", "planner", "map", "view-plan", "view-places", "view-guide", "view-prep", "view-budget", "tools", "app"].map((f) => `js/${f}.js`),
-  ...["places", "foods", "festivals", "drive", "roads", "packing", "prep", "sheet_content", "outline", "hubs", "transit", "templates", "guide", "apps", "climate", "extra_images"].map((f) => `data/${f}.js`),
+  ...["places", "foods", "festivals", "drive", "roads", "packing", "prep", "sheet_content", "outline", "hubs", "transit", "templates", "guide", "extra_images"].map((f) => `data/${f}.js`),
 ];
 const TILE_MAX = 1500;
 

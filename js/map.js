@@ -197,61 +197,6 @@ const TripMap = {
     refitMap(M);
   },
 
-  // ภูมิภาค + ฐานที่พัก + เวลาขับจากสนามบิน CTS (หน้ารู้จักฮอกไกโด)
-  drawRegions(M) {
-    M.layer.clearLayers();
-    M.bounds = [];
-    const groups = {};
-    HUBS.forEach((h) => (groups[h.region] ||= []).push(h));
-    for (const [region, hs] of Object.entries(groups)) {
-      const c = REGION_COLORS[region];
-      const g = GUIDE.regions.find((r) => region.startsWith(r.name.split(" /")[0]));
-      const lat = hs.reduce((a, h) => a + h.lat, 0) / hs.length, lng = hs.reduce((a, h) => a + h.lng, 0) / hs.length;
-      L.circle([lat, lng], { radius: hs.length > 2 ? 45000 : 30000, color: c, weight: 1.5, fillColor: c, fillOpacity: 0.15, interactive: false }).addTo(M.layer);
-      for (const h of hs) {
-        const d = driveLeg("CTS", h.id), t = transitPath("CTS", h.id); // ป้ายเวลาขับใช้ค่าหน้าหนาว
-        L.circleMarker([h.lat, h.lng], { radius: 5, color: "#fff", weight: 1.5, fillColor: c, fillOpacity: 1 })
-          .bindTooltip(`<b>${esc(h.name)}</b><br>จาก CTS: ${I("car")} ${fmtH(d.h * WINTER)}${t ? ` • ${I("train-front")} ${fmtH(t.h)}` : " • ไม่มีรถไฟ/บัสตรง"}`)
-          .bindPopup(`<b>${esc(h.name)}</b><br>จากสนามบิน CTS: ขับ ≈${fmtH(d.h * WINTER)} (หน้าหนาว)${t ? `<br>รถไฟ/บัส ≈${fmtH(t.h)}` : "<br>ไม่มีรถไฟ/บัสตรง"}<br>${I("thumbs-up")} ${esc(h.pros)}`).addTo(M.layer);
-        M.bounds.push([h.lat, h.lng]);
-      }
-      L.marker([lat, lng], { icon: labelIcon(`${esc(region.split(" /")[0])}${g ? `<small>${g.first ? I("star") + " ทริปแรก • " : ""}${esc(g.fromCTS)}</small>` : ""}`, c), zIndexOffset: 500 }).addTo(M.layer);
-    }
-    for (const a of AIRPORTS) L.marker([a.lat, a.lng], { icon: pin(I("plane"), "#142033", "emo s1") }).bindTooltip(a.name + ": " + a.note).addTo(M.layer);
-    refitMap(M);
-  },
-
-  // เครือข่ายถนน/รถไฟ + จุดเสี่ยง (หน้าการเดินทาง)
-  drawNetwork(M, { car = true, transit = true } = {}) {
-    M.layer.clearLayers();
-    M.bounds = [];
-    if (transit) for (const e of TRANSIT_EDGES) {
-      const a = point(e.a), b = point(e.b);
-      L.polyline([[a.lat, a.lng], [b.lat, b.lng]], { color: "#2c6e9b", weight: e.pass ? 4 : 2.5, dashArray: e.pass ? null : "4 6", opacity: 0.75 })
-        .bindTooltip(`${I("train-front")} ${esc(pname(e.a))} ↔ ${esc(pname(e.b))}: ${fmtH(e.h)} • ${esc(e.by)} • ${esc(e.freq)}`, { sticky: true }).addTo(M.layer);
-    }
-    if (car) for (const e of DRIVE_EDGES) {
-      const a = point(e.a), b = point(e.b);
-      const color = e.high ? "#c8374a" : /ต่ำ/.test(e.risk) ? "#2f8a57" : "#d08c1a";
-      const line = L.polyline([[a.lat, a.lng], [b.lat, b.lng]], { color, weight: 5, opacity: 0.6 })
-        .bindTooltip(`${I("car")} ${esc(pname(e.a))} ↔ ${esc(pname(e.b))}: ${e.km} กม. • หน้าหนาว ${fmtH(e.h * WINTER)}<br>${esc(e.road)}<br>${esc(e.risk)}`, { sticky: true }).addTo(M.layer);
-      // utoro-rausu ต้องอ้อมช่องเขาที่ปิด OSRM ไม่รู้ ให้คงเป็นเส้นตรง
-      if (!(e.high && /ปิด/.test(e.risk))) { const g = Route.get([a, b], (geo) => line.setLatLngs(geo)); if (g) line.setLatLngs(g); }
-    }
-    if (car) for (const r of ROADS) {
-      const closed = !/^เปิด/.test(r.status) && /ปิด/.test(r.status);
-      L.marker([r.lat, r.lng], { icon: pin(I(closed ? "ban" : "triangle-alert"), closed ? "#c8374a" : "#d08c1a", "emo s1") })
-        .bindPopup(`<b>${esc(r.road)}</b><br>${esc(r.status)}<br>${esc(r.effect || "")}<br><b>ทางเลือก:</b> ${esc(r.alt)}`).addTo(M.layer);
-    }
-    for (const h of HUBS) {
-      L.circleMarker([h.lat, h.lng], { radius: 5, color: "#142033", weight: 2, fillColor: "#fff", fillOpacity: 1 }).bindTooltip(h.name).addTo(M.layer);
-      M.bounds.push([h.lat, h.lng]);
-    }
-    for (const a of AIRPORTS) L.marker([a.lat, a.lng], { icon: labelIcon(`${I("plane")} ${a.id}`, "#142033") }).bindTooltip(a.name).addTo(M.layer);
-    refitMap(M);
-  },
-
-  // ฐานที่พักในแผน (หน้าที่พัก)
   drawBases(M) {
     M.layer.clearLayers();
     M.bounds = [];

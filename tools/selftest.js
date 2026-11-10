@@ -98,14 +98,9 @@ assert(meals.every((x) => x.t >= 10.5 && x.t <= 15), "มื้อกลาง�
   assert.deepStrictEqual(S.plan.days[2].items.map((x) => x.id), a, "สลับวัน");
   assert.deepStrictEqual(S.plan.bases, bases, "ที่พักคงเดิม");
 }
-// ปฏิทิน .ics: เวลาญี่ปุ่น → UTC, ทุกวันมีกิจกรรม; ค่าใช้จ่ายแปลงตามอัตราตอนบันทึก
+// tools.js (เอกสาร) โหลดได้ไม่พัง
 global.document = { addEventListener() {} }; global.I = () => "";
 vm.runInThisContext(fs.readFileSync(`${root}/js/tools.js`, "utf8").replace(/^(const|let) /gm, "var "));
-assert.strictEqual(Ics.utc("2027-01-15", 8.5), "20270114T233000Z");
-assert.strictEqual(Ics.utc("2027-01-14", 23.5, 7), "20270114T163000Z");
-{ const ics = Ics.build(); assert(ics.startsWith("BEGIN:VCALENDAR") && ics.endsWith("END:VCALENDAR"), "ics frame"); assert((ics.match(/BEGIN:VEVENT/g) || []).length > S.plan.days.length, "ics events"); assert(ics.split(String.fromCharCode(13, 10)).every((l) => !l.includes(String.fromCharCode(10))), "ics CRLF"); }
-S.spend = [{ cur: "JPY", amt: 1000, rate: 0.2 }, { cur: "THB", amt: 50 }];
-assert.strictEqual(Spend.total(), 250, "spend total");
 // แชร์ลิงก์: แพ็กแล้วแกะได้เหมือนเดิม (แบบไม่บีบอัด ใน node)
 (async () => {
   const code = await Share.pack({ v: 2, trip: S.trip, plan: S.plan });

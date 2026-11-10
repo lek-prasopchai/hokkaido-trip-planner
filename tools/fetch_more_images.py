@@ -1,4 +1,4 @@
-"""รูปฐานที่พัก (เมือง) และรูปของที่ต้องเตรียม จาก Wikipedia/Wikimedia Commons -> data/extra_images.js
+"""รูปฐานที่พัก (เมือง) จาก Wikipedia/Wikimedia Commons -> data/extra_images.js
 รันซ้ำได้: ข้ามที่มีรูปแล้ว   ใช้: python tools/fetch_more_images.py
 """
 import json, time, urllib.parse
@@ -12,14 +12,6 @@ HUBS = {  # id -> ("ja", ชื่อหน้า ja.wikipedia) หรือ ("c
     "sounkyo": ("c", "Sounkyo gorge"), "obihiro": ("ja", "帯広市"), "kushiro": ("ja", "釧路市"),
     "akan": ("ja", "阿寒湖温泉"), "kawayu": ("c", "Kawayu Onsen Teshikaga"), "abashiri": ("ja", "網走市"), "utoro": ("c", "Utoro Shiretoko"),
     "rausu": ("ja", "羅臼町"), "monbetsu": ("ja", "紋別市"), "wakkanai": ("ja", "稚内市"),
-}
-ITEMS = {  # packing id -> คำค้น Commons (ตัดตัวที่ค้นแล้วได้รูปผิดออกแล้ว ใช้ปุ่มดูรูปใน Google แทน) 20: "Long underwear", 30: "Snow pants",
-    32: "Snow boots", 33: "Knit cap beanie", 34: "Ski gloves", 35: "Ice cleats shoe", 37: "Touchscreen gloves", 41: "Balaclava", 48: "Lip balm stick", 72: "Kairo hand warmer",
-    76: "Vacuum flask", 79: "USB power bank", 81: "NEMA 1-15 plug", 83: "Smartphone car mount", 90: "Electric hand warmer",
-    102: "Snow brush car", 107: "Snow shovel", 111: "ETC card Japan",
-    113: "Jumper cables", 123: "Luggage scale", 130: "Folding umbrella",
-    133: "Neck pillow travel", 138: "Snow sled plastic", 154: "Tripod camera", 157: "Action camera", 160: "Smartphone gimbal",
-    162: "Eki stamp",
 }
 OUT = ROOT / "data" / "extra_images.js"
 
@@ -47,19 +39,15 @@ def grab(kind, key, src, folder, done):
 
 
 def main():
-    old = {"hubs": {}, "items": {}}
+    old = {"hubs": {}}
     if OUT.exists():
         t = OUT.read_text(encoding="utf-8")
         old["hubs"] = json.loads(t.split("window.HUB_IMG = ")[1].split(";\n")[0])
-        old["items"] = {int(k): v for k, v in json.loads(t.split("window.ITEM_IMG = ")[1].split(";\n")[0]).items()}
     for k, v in HUBS.items():
         grab("hub", k, v, "hubs", old["hubs"])
-    for k, v in ITEMS.items():
-        grab("item", k, ("c", v), "items", old["items"])
     OUT.write_text("// สร้างด้วย tools/fetch_more_images.py — รูปจาก Wikimedia Commons (credit = หน้าไฟล์ต้นทาง)\n"
-                   f"window.HUB_IMG = {json.dumps(old['hubs'], ensure_ascii=False, indent=1)};\n"
-                   f"window.ITEM_IMG = {json.dumps(old['items'], ensure_ascii=False, indent=1)};\n", encoding="utf-8")
-    print("hubs", len(old["hubs"]), "items", len(old["items"]))
+                   f"window.HUB_IMG = {json.dumps(old['hubs'], ensure_ascii=False, indent=1)};\n", encoding="utf-8")
+    print("hubs", len(old["hubs"]))
 
 
 if __name__ == "__main__":

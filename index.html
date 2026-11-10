@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
 <link rel="stylesheet" href="vendor/markercluster/MarkerCluster.css">
 <link rel="stylesheet" href="vendor/markercluster/MarkerCluster.Default.css">
-<link rel="stylesheet" href="css/style.css?v=46">
+<link rel="stylesheet" href="css/style.css?v=47">
 </head>
 <body>
 <header class="top">
@@ -20,7 +20,6 @@
   <div class="top-trip" id="topTrip"></div>
   <div class="top-actions">
     <button class="btn ghost" id="btnUndo" title="ย้อนกลับ (undo)" aria-label="ย้อนกลับ"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5" /><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11" /></svg><span class="lbl">ย้อน</span></button>
-    <button class="btn ghost" id="btnCalc" title="แปลงเยน-บาท" aria-label="แปลงเยน-บาท"></button>
     <button class="btn ghost" id="btnShare" title="ส่งแผนให้เพื่อนดู (ลิงก์)" aria-label="ส่งแผนให้เพื่อนดู"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></svg><span class="lbl">ส่งแผน</span></button>
     <button class="btn ghost" id="btnSet" title="ตั้งค่า" aria-label="ตั้งค่า"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" /><circle cx="12" cy="12" r="3" /></svg><span class="lbl">ตั้งค่า</span></button>
   </div>
@@ -37,49 +36,43 @@
   <section data-sec="today"></section>
   <section data-sec="places"></section>
   <section data-sec="food"></section>
-  <section data-sec="fest"></section>
   <section data-sec="prep"></section>
   <section data-sec="packing"></section>
   <section data-sec="budget"></section>
-  <section data-sec="know"></section>
-  <section data-sec="transport"></section>
-  <section data-sec="life"></section>
-  <section data-sec="apps"></section>
+  <section data-sec="guide"></section>
   <section data-sec="emergency"></section>
 </main>
 
 <div id="toast" role="status" aria-live="polite"></div>
 
 <!-- ข้อมูล -->
-<script src="data/places.js?v=46"></script>
-<script src="data/foods.js?v=46"></script>
-<script src="data/festivals.js?v=46"></script>
-<script src="data/drive.js?v=46"></script>
-<script src="data/roads.js?v=46"></script>
-<script src="data/packing.js?v=46"></script>
-<script src="data/prep.js?v=46"></script>
-<script src="data/sheet_content.js?v=46"></script>
-<script src="data/outline.js?v=46"></script>
-<script src="data/hubs.js?v=46"></script>
-<script src="data/transit.js?v=46"></script>
-<script src="data/templates.js?v=46"></script>
-<script src="data/guide.js?v=46"></script>
-<script src="data/apps.js?v=46"></script>
-<script src="data/climate.js?v=46"></script>
-<script src="data/extra_images.js?v=46"></script>
+<script src="data/places.js?v=47"></script>
+<script src="data/foods.js?v=47"></script>
+<script src="data/festivals.js?v=47"></script>
+<script src="data/drive.js?v=47"></script>
+<script src="data/roads.js?v=47"></script>
+<script src="data/packing.js?v=47"></script>
+<script src="data/prep.js?v=47"></script>
+<script src="data/sheet_content.js?v=47"></script>
+<script src="data/outline.js?v=47"></script>
+<script src="data/hubs.js?v=47"></script>
+<script src="data/transit.js?v=47"></script>
+<script src="data/templates.js?v=47"></script>
+<script src="data/guide.js?v=47"></script>
+<script src="data/extra_images.js?v=47"></script>
 <!-- โค้ด -->
 <script src="vendor/leaflet/leaflet.js"></script>
 <script src="vendor/markercluster/leaflet.markercluster.js"></script>
-<script src="js/icons.js?v=46"></script>
-<script src="js/core.js?v=46"></script>
-<script src="js/planner.js?v=46"></script>
-<script src="js/map.js?v=46"></script>
-<script src="js/view-plan.js?v=46"></script>
-<script src="js/view-places.js?v=46"></script>
-<script src="js/view-guide.js?v=46"></script>
-<script src="js/view-prep.js?v=46"></script>
-<script src="js/view-budget.js?v=46"></script>
-<script src="js/tools.js?v=46"></script>
-<script src="js/app.js?v=46"></script>
+<script src="js/icons.js?v=47"></script>
+<script src="js/core.js?v=47"></script>
+<script src="js/planner.js?v=47"></script>
+<script src="js/map.js?v=47"></script>
+<script src="js/view-plan.js?v=47"></script>
+<script src="js/view-places.js?v=47"></script>
+<script src="js/view-guide.js?v=47"></script>
+<script src="js/view-prep.js?v=47"></script>
+<script src="js/view-budget.js?v=47"></script>
+<script src="js/tools.js?v=47"></script>
+<script src="js/app.js?v=47"></script>
 </body>
 </html>

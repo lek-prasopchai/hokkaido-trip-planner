@@ -33,6 +33,7 @@ const PlacesView = {
     sec.innerHTML = `
       <div class="sec-head"><h1>สถานที่เที่ยว</h1>
         <p class="lead">${PLACES.length} สถานที่ทั่วฮอกไกโด ทุกฤดู ★★★ = ห้ามพลาด • ไอคอน ${Object.values(SEASONS).map((s) => I(s.ic)).join("")} = ฤดูที่ไปได้ • เวลาเปิด/ราคาที่มี ≈ เป็นค่าประมาณ ตรวจก่อนไป</p></div>
+      ${this.festBox()}
       <div class="filters no-print"><div class="row">
         <input type="search" aria-label="ค้นหาสถานที่" placeholder="ค้นหาชื่อ ไทย/อังกฤษ/ญี่ปุ่น..." data-f="q" value="${esc(f.q)}" style="flex:1;min-width:160px">
         <select data-f="season"><option value="trip" ${f.season === "trip" ? "selected" : ""}>ช่วงทริปของฉัน (${tripMonths().map((m) => MO[m - 1]).join(", ")})</option><option value="" ${!f.season ? "selected" : ""}>ทุกฤดู</option>
@@ -126,35 +127,15 @@ const PlacesView = {
   },
 
   // ---- เทศกาล ----
-  renderFest() {
-    $('[data-sec="fest"]').innerHTML = `
-      <div class="sec-head"><h1>เทศกาลและช่วงพิเศษ</h1><p class="lead">ฤดูหนาว 2026-27 แถบสีม่วง = ช่วงจัดงาน • แถบฟ้า = ช่วงทริปของคุณ • ${I("party-popper")} = ตรงกับทริป</p></div>
-      <div class="card">${this.gantt()}</div>
-      <div class="card"><div class="tbl-wrap"><table class="t"><thead><tr><th>งาน</th><th>ที่ไหน</th><th>วันที่</th><th>สถานะข้อมูล</th><th>ตรงทริป?</th></tr></thead><tbody>
-        ${FESTIVALS.slice().sort((a, b) => a.start.localeCompare(b.start)).map((f) => {
-          const hit = f.start <= S.trip.end && f.end >= S.trip.start;
-          return `<tr><td><b>${esc(f.name)}</b><br><small>${esc(f.detail)}</small></td><td>${esc(f.area)}</td><td>${esc(f.dates)}</td>
-            <td><span class="badge ${f.status.startsWith("ยืนยัน") ? "b-good" : "b-mute"}">${esc(f.status)}</span></td>
-            <td>${hit ? '<span class="badge b-fest">' + I("party-popper") + ' ตรง</span>' : '<span class="mute">-</span>'}</td></tr>`;
-        }).join("")}</tbody></table></div></div>
-      <div class="callout info">งานตามฤดูอื่น เช่น ทุ่งลาเวนเดอร์ (ก.ค.) ชิบะซากุระ (พ.ค.) ใบไม้เปลี่ยนสี (ต.ค.) ดูได้ในหน้า <a href="#places">สถานที่</a> เลือกฤดูที่ต้องการ</div>`;
-  },
-
-  // ไทม์ไลน์เทศกาล 1 ธ.ค. - 31 มี.ค. เทียบกับช่วงทริป
-  gantt() {
+  // เทศกาล (เดิมเป็นหน้าแยก): รายการสั้นในหน้าสถานที่ งานที่ตรงช่วงทริปขึ้นก่อน • แผนรายวันบอกงานที่ตรงอยู่แล้ว
+  festBox() {
     const y = monthOf(S.trip.start) >= 6 ? +S.trip.start.slice(0, 4) : +S.trip.start.slice(0, 4) - 1;
-    const s0 = `${y}-12-01`, total = daysBetween(s0, `${y + 1}-03-31`) + 1;
-    const pos = (iso) => Math.max(0, Math.min(100, (daysBetween(s0, iso) / total) * 100));
-    // วันที่ใน data เป็นฤดู 2026-27 เลื่อนปีให้ตรงฤดูที่เลือก
-    const shift = (iso) => `${+iso.slice(0, 4) + (y - 2026)}${iso.slice(4)}`;
-    const tS = S.trip.start, tE = S.trip.end;
-    const rows = FESTIVALS.slice().sort((a, b) => a.start.localeCompare(b.start)).map((f) => {
-      const fs = shift(f.start), fe = shift(f.end), hit = fs <= tE && fe >= tS;
-      return `<div class="g-row"><div class="g-name" title="${esc(f.name)}: ${esc(f.dates)}">${hit ? I("party-popper") + " " : ""}${esc(f.name)} <small class="mute">${esc(f.area)}</small></div>
-        <div class="g-track"><div class="g-bar ${hit ? "hit" : ""}" style="left:${pos(fs)}%;width:${Math.max(1, pos(fe) - pos(fs))}%" title="${esc(f.dates)}"></div></div></div>`;
-    }).join("");
-    return `<div class="gantt"><div class="months"><span></span><span>ธันวาคม</span><span>มกราคม</span><span>กุมภาพันธ์</span><span>มีนาคม</span></div>
-      <div style="position:relative">${rows}<div class="g-overlay"><div class="g-trip" style="left:${pos(tS)}%;width:${Math.max(0.5, pos(tE) - pos(tS))}%"><span>ทริปคุณ</span></div></div></div></div>`;
+    const shift = (iso) => `${+iso.slice(0, 4) + (y - 2026)}${iso.slice(4)}`; // วันที่ใน data เป็นฤดู 2026-27
+    const L = FESTIVALS.map((f) => ({ f, hit: shift(f.start) <= S.trip.end && shift(f.end) >= S.trip.start }))
+      .sort((a, b) => b.hit - a.hit || a.f.start.localeCompare(b.f.start));
+    const n = L.filter((x) => x.hit).length;
+    return `<details class="card fest-box" ${n ? "open" : ""}><summary><b>${I("party-popper")} เทศกาลหน้าหนาว</b> <span class="mute">${n ? `${n} งานตรงช่วงทริปคุณ` : "ไม่มีงานตรงช่วงทริป"} • ทั้งหมด ${L.length} งาน</span></summary>
+      <ul class="fest-list">${L.map(({ f, hit }) => `<li class="${hit ? "hit" : ""}"><b>${esc(f.name)}</b> <span class="mute">${esc(f.area)} • ${esc(f.dates)}</span>${hit ? ' <span class="badge b-fest">ตรงทริป</span>' : ""}<small>${esc(f.detail)}</small></li>`).join("")}</ul></details>`;
   },
 
   bind() {

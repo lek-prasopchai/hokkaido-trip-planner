@@ -137,7 +137,6 @@ const PlanView = {
         <div class="spacer"></div><div class="row no-print"><a class="btn small" href="#setup">${I("pencil")} ข้อมูลทริป</a>
           <details class="more-menu"><summary class="btn small" aria-label="เมนูเพิ่มเติม">⋯ เพิ่มเติม</summary><div class="menu-pop">
             <button class="btn small" data-act="refillAll" title="ที่ใส่เองและที่ล็อกเวลาไว้จะไม่ถูกลบ">${I("refresh-ccw")} จัดสถานที่ใหม่ทั้งทริป</button>
-            <button class="btn small" data-ics title="เพิ่มทุกจุด เที่ยวบิน และเวลาออกจากที่พักลงปฏิทินมือถือ">${I("calendar-plus")} ลงปฏิทินมือถือ</button>
             <button class="btn small" data-act="print">${I("printer")} พิมพ์ / PDF</button></div></details></div></div>
         <p class="print-only">${thDate(t.start)} - ${thDate(t.end)} • ${t.adults + t.kids} คน • ${MODE[t.mode]} • สไตล์${PACE[t.pace].name}${t.outFlight.no ? ` • ขาไป ${esc(t.outFlight.no)} ลง ${t.arrive} ${t.arriveTime}` : ""}${t.inFlight.no ? ` • ขากลับ ${esc(t.inFlight.no)} ออก ${t.depart} ${t.departTime}` : ""}</p>
         <div class="summary" style="margin-top:10px">
@@ -555,10 +554,9 @@ const PlanView = {
     sec.innerHTML = `<div class="sec-head"><h1>วันนี้</h1>
       <p class="lead">${during ? `วันที่ ${real + 1} ของทริป • ตอนนี้ ${fmtT(now.h)} (เวลาญี่ปุ่น)` : real < 0 ? `ทริปเริ่มอีก ${-real} วัน: ดูตัวอย่างหน้าวันนี้ได้ด้านล่าง` : "ทริปจบแล้ว"}</p>
       <div class="row"><label class="f">ดูวัน<select id="tdDay">${S.plan.days.map((_, k) => `<option value="${k}" ${k === i ? "selected" : ""}>วันที่ ${k + 1} • ${thDate(Planner.dayIso(k), false)}</option>`).join("")}</select></label></div></div>
-      ${(() => { const spent = S.spend.filter((x) => x.d === e.iso).reduce((a, x) => a + Spend.thb(x), 0), h = hotelOf(e.to);
-        return `<div class="quick no-print"><button class="btn primary" data-spend>${I("banknote")}<span>จ่าย</span></button><button class="btn" data-calc>${I("calculator")}<span>แปลงเยน</span></button>
-          ${h?.nameJa || h?.addr ? `<button class="btn" data-showcard="${esc(e.to)}">${I("car-taxi-front")}<span>การ์ดที่พัก</span></button>` : ""}<a class="btn red" href="#emergency">${I("life-buoy")}<span>ฉุกเฉิน</span></a></div>
-          ${spent ? `<p class="mute small" style="margin:-6px 0 12px">วันนี้ใช้ไป ~${fmtN(spent)} บาท • <a href="#budget">ดูทั้งหมด</a></p>` : ""}`; })()}
+      ${(() => { const h = hotelOf(e.to);
+        return `<div class="quick no-print">${h?.nameJa || h?.addr ? `<button class="btn" data-showcard="${esc(e.to)}">${I("car-taxi-front")}<span>การ์ดที่พัก</span></button>` : ""}
+          <a class="btn" href="#emergency">${I("clipboard-list")}<span>การจอง</span></a><a class="btn red" href="#emergency">${I("life-buoy")}<span>ฉุกเฉิน</span></a></div>`; })()}
       <div class="card today-head"><div class="row"><b>${thDate(e.iso)}</b><span>${I("sun")} ${fmtT(e.sun.rise)}-${fmtT(e.sun.set)}</span><span class="wx" data-wx="${ref.lat},${ref.lng},${e.iso}"></span><span class="badge b-${e.lvl}">${LVL_TXT[e.lvl]}</span></div>
         <div class="day-meta">${esc(short(e.from))} → ${esc(short(e.to))}${e.leaveBy != null ? ` • ต้องออกจากที่พักไม่เกิน <b>${fmtT(e.leaveBy)}</b>` : ""}</div></div>
       ${np ? `<div class="card next-card"><div class="kicker">ถัดไป ${fmtT(next.t)}</div>
@@ -579,8 +577,8 @@ const PlanView = {
         <ul class="checks">${e.checks.map((c) => `<li class="${c.lvl}">${LVL_ICON[c.lvl] || ""} ${esc(c.text)}</li>`).join("")}</ul>
         ${day.note || day.planB ? `<div class="callout info">${day.note ? `${I("notebook-pen")} ${esc(day.note)}` : ""}${day.planB ? `<br>${I("route")} แผนสำรอง: ${esc(day.planB)}` : ""}</div>` : ""}</div>
       <div class="card"><h3>ลิงก์ด่วน</h3><div class="row">
-        ${Planner.modeOf(i) === "car" && isWinter(e.iso) ? `<a class="btn small" href="#transport">${I("snowflake")} ขับบนหิมะ อ่านก่อนออก</a>` : ""}
-        <a class="btn small" href="#life">${I("store")} คอนบินิ ห้องน้ำ ภาษี ทิป</a>
+        ${Planner.modeOf(i) === "car" && isWinter(e.iso) ? `<a class="btn small" href="#guide">${I("snowflake")} ขับบนหิมะ อ่านก่อนออก</a>` : ""}
+        <a class="btn small" href="#guide">${I("store")} คอนบินิ ห้องน้ำ ภาษี ทิป</a>
         <a class="btn small" href="https://www.jartic.or.jp/" target="_blank" rel="noopener">สภาพถนน (JARTIC)</a>
         <a class="btn small" href="https://tenki.jp/forecast/1/" target="_blank" rel="noopener">พยากรณ์ tenki.jp</a>
         <a class="btn small" href="https://www.jrhokkaido.co.jp/global/english/" target="_blank" rel="noopener">JR Hokkaido (รถเลื่อน/ยกเลิก)</a>
