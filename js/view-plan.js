@@ -323,7 +323,9 @@ const PlanView = {
     if (!this.M) this.M = makeMap(this.mapEl);
     this.M.sec = "trip";
     if (this.focus !== null && this.focus >= evals.length) this.focus = null;
-    setTimeout(() => TripMap.drawPlan(this.M, evals, this.focus), 30);
+    const keep = this.M.drawn && this.M.drawnFocus === this.focus; // วาดซ้ำมุมเดิม = ไม่ซูมกลับ
+    this.M.drawn = true; this.M.drawnFocus = this.focus;
+    setTimeout(() => TripMap.drawPlan(this.M, evals, this.focus, keep), 30);
     // แผนที่เล็กรายวัน: สร้างเมื่อเลื่อนมาเห็นเท่านั้น
     this.io?.disconnect();
     this.io = new IntersectionObserver((ents) => ents.forEach((en) => {
@@ -698,15 +700,15 @@ const PlanView = {
     });
 
     // ---- วันนี้ ----
-    today.addEventListener("change", (ev) => { if (ev.target.id === "tdDay") { this.todayI = +ev.target.value; this.renderToday(); } });
+    today.addEventListener("change", (ev) => { if (ev.target.id === "tdDay") { this.todayI = +ev.target.value; App.renderAll(); } });
     today.addEventListener("click", (ev) => {
       const el = ev.target.closest("button"); if (!el) return;
       if (el.dataset.st) {
         const [i, st, ...rest] = el.dataset.st.split(":"), raw = rest.join(":"), id = isNaN(raw) ? raw : +raw;
         const it = S.plan.days[+i].items.find((x) => x.id === id);
-        if (it) { it.st = st; save(); this.renderToday(); }
-      } else if (el.id === "tdLive") { this.live = !(this.live ?? true); this.renderToday(); }
-      else if (el.id === "tdReset") { S.plan.days.forEach((d) => d.items.forEach((x) => delete x.st)); save(); this.renderToday(); }
+        if (it) { it.st = st; save(); App.renderAll(); }
+      } else if (el.id === "tdLive") { this.live = !(this.live ?? true); App.renderAll(); }
+      else if (el.id === "tdReset") { S.plan.days.forEach((d) => d.items.forEach((x) => delete x.st)); save(); App.renderAll(); }
       else if (el.dataset.showcardId) { const raw = el.dataset.showcardId; showCard(point(isNaN(raw) ? raw : +raw)); }
       else if (el.dataset.showcard) { const h = hotelOf(el.dataset.showcard); showCard({ name: h.name, ja: h.nameJa || h.name, addrJa: h.addr, phone: h.phone }); }
     });

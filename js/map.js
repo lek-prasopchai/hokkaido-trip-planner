@@ -128,7 +128,8 @@ function drawDayStops(M, e, color, { faded = false } = {}) {
 
 const TripMap = {
   // แผนที่ใหญ่หน้าวางแผน: focus = เลขวัน หรือ null = ทั้งทริป
-  drawPlan(M, evals, focus = null) {
+  // keep = แก้แผนแล้ววาดใหม่: ไม่ซูม/เลื่อนแผนที่กลับ (ผู้ใช้อาจซูมดูอยู่)
+  drawPlan(M, evals, focus = null, keep = false) {
     M.layer.clearLayers();
     M.bounds = [];
     const inPlan = new Set(evals.flatMap((e) => e.stops));
@@ -163,7 +164,7 @@ const TripMap = {
       L.marker([a.lat, a.lng], { icon: labelIcon(`${I("plane")} ${id}`, "#c8374a"), zIndexOffset: 1000 }).bindTooltip(a.name).addTo(M.layer);
       if (focus === null) M.bounds.push([a.lat, a.lng]);
     });
-    refitMap(M);
+    if (!keep) refitMap(M);
   },
 
   // แผนที่เล็กในการ์ดแต่ละวัน

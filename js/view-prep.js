@@ -36,7 +36,7 @@ const PrepView = {
       const id = e.target.dataset.task;
       if (!id) return;
       if (e.target.checked) S.prep[id] = true; else delete S.prep[id];
-      save(); this.render(); App.refreshChrome();
+      save(); App.renderAll();
     });
   },
 };
@@ -88,7 +88,7 @@ const PackingView = {
       const id = e.target.dataset.ok;
       if (!id) return;
       (S.packing[id] ||= {}).status = e.target.checked ? "ready" : "todo";
-      save(); this.render(); App.refreshChrome();
+      save(); App.renderAll();
     });
   },
 };

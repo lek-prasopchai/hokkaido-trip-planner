@@ -90,9 +90,9 @@ const BudgetView = {
     const sec = $('[data-sec="budget"]');
     sec.addEventListener("change", (e) => {
       const el = e.target;
-      if (el.id === "rate") { S.rate = Math.max(0.01, +el.value || 0.23); S.set.rateAuto = false; save(); this.render(); return; }
-      if (el.dataset.bk) { if (el.value === "") delete S.budget[el.dataset.bk]; else S.budget[el.dataset.bk] = +el.value; save(); this.render(); }
+      if (el.id === "rate") { S.rate = Math.max(0.01, +el.value || 0.23); S.set.rateAuto = false; save(); App.renderAll(); return; }
+      if (el.dataset.bk) { if (el.value === "") delete S.budget[el.dataset.bk]; else S.budget[el.dataset.bk] = +el.value; save(); App.renderAll(); }
     });
-    sec.addEventListener("click", (e) => { if (e.target.id === "bReset" && confirm("ล้างค่าที่กรอกเองทั้งหมด?")) { S.budget = {}; save(); this.render(); } });
+    sec.addEventListener("click", (e) => { if (e.target.id === "bReset" && confirm("ล้างค่าที่กรอกเองทั้งหมด?")) { S.budget = {}; save(); App.renderAll(); } });
   },
 };

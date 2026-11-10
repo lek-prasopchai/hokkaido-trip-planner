@@ -56,7 +56,7 @@ const GuideView = {
           <a class="btn small" target="_blank" rel="noopener" href="${gimgUrl(HUB_EN[id] + " winter hotel")}">${I("image")} รูปที่พักใน Google</a></div>
         ${im ? `<a class="credit" href="${im.credit}" target="_blank" rel="noopener">ที่มาภาพ: Wikimedia Commons</a>` : ""}</div>`; }).join("")}</div>`;
     TripMap.drawBases(makeMap($("#hubMap")));
-    $("#lvlSeg").onclick = (e) => { const v = e.target.dataset.v; if (v != null) { S.trip.level = +v; save(); this.stay(); } };
+    $("#lvlSeg").onclick = (e) => { const v = e.target.dataset.v; if (v != null) { S.trip.level = +v; save(); App.renderAll(); } };
   },
 
   emergency() {

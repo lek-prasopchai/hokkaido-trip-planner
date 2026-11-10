@@ -52,10 +52,23 @@ const App = {
   renderAll() {
     if (this.cur) {
       // วาดใหม่ทั้งหน้าแล้วกล่องพับ (details) จะกลับเป็นค่าเริ่มต้น: จำสถานะเปิด/ปิดไว้แล้วคืนให้ (key = id หรือหัวข้อไม่รวมตัวเลข เพราะตัวเลขนับเปลี่ยนได้)
-      const sec = $(`[data-sec="${this.cur}"]`), key = (d) => d.id || d.querySelector("summary")?.textContent.replace(/[\d\s]/g, "").slice(0, 40);
+      const sec = $(`[data-sec="${this.cur}"]`);
+      // กด Tab ออกจากช่อง: change เกิดก่อนโฟกัสย้าย → รอให้ย้ายก่อนค่อยวาดใหม่ แล้วโฟกัสช่องถัดไปคืนได้
+      const act = document.activeElement;
+      if (!this._defer && (window.event?.type === "change" || (act && sec?.contains(act) && /INPUT|SELECT|TEXTAREA/.test(act.tagName)))) { this._defer = true; return setTimeout(() => this.renderAll()); }
+      this._defer = false; // รอบที่เลื่อนมาแล้ว: วาดเลย (ไม่เลื่อนซ้ำ)
+      const ctx = (d) => { const c = d.parentElement?.closest("[id],[data-hub],[data-day]"); return c ? c.id || c.dataset.hub || c.dataset.day : ""; };
+      const key = (d) => d.id || ctx(d) + "|" + d.querySelector("summary")?.textContent.replace(/[\d\s]/g, "").slice(0, 40);
       const st = new Map(sec ? $$("details", sec).map((d) => [key(d), d.open]) : []);
+      // ช่องที่กำลังพิมพ์/กด Tab ไปถึง: หาตัวเดิมหลังวาดใหม่จาก id หรือ data-* ตัวแรก แล้วโฟกัสคืน + คืนตำแหน่งเลื่อนจอ
+      const a = document.activeElement, box = a?.parentElement?.closest("[data-hub],[data-day]");
+      const fk = a && sec?.contains(a) ? (a.id ? `#${CSS.escape(a.id)}` : [...a.attributes].filter((x) => x.name.startsWith("data-")).map((x) => `[${x.name}="${CSS.escape(x.value)}"]`)[0]) : null;
+      const fsel = fk && box && !a.id ? `[${box.dataset.hub ? "data-hub" : "data-day"}="${CSS.escape(box.dataset.hub || box.dataset.day)}"] ${fk}` : fk; // ช่องชื่อซ้ำทุกการ์ด: ระบุการ์ด
+      const y = scrollY;
       RENDER[this.cur]();
       if (sec) $$("details", sec).forEach((d) => { const k = key(d); if (st.has(k)) d.open = st.get(k); });
+      if (fsel) sec.querySelector(fsel)?.focus({ preventScroll: true });
+      scrollTo(0, y);
     }
     this.refreshChrome();
   },
