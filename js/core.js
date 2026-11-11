@@ -51,7 +51,7 @@ const Store = {
         adults: 2, kids: 0, drivers: 1, pace: "balanced", interests: ["city", "food", "nature", "onsen"], mode: "car", level: 1,
         firstDay: "auto", buf: { ...BUF }, carPick: true, carRet: true, // รับ/คืนรถที่สนามบินตอนถึง/ก่อนบิน (ปิด = ใส่เองในแผน)
       },
-      plan: null, packing: {}, prep: {}, budget: {}, docs: [], rate: 0.23, rateAt: 0,
+      plan: null, budget: {}, rate: 0.23, rateAt: 0,
       set: { lang: "en", langV: 2, theme: "auto", font: "m", slack: 0, maxDrive: "", dayStart: "", dayEnd: "", rateAuto: true, snow: "new", maxStops: "", autoMeal: true },
     };
   },

@@ -1,17 +1,8 @@
-// โครงแอป: แท็บหลัก 4 แท็บ + หัวข้อย่อย, ตั้งค่า, แชร์ลิงก์, ย้อนกลับ, PWA
-const TABS = [
-  { id: "mytrip", ic: "map", name: "ทริปของฉัน", subs: [["trip", "แผนรายวัน"], ["today", "วันนี้"], ["setup", "ข้อมูลทริป"], ["stays", "ที่พัก+จอง"]] },
-  { id: "explore", ic: "search", name: "ค้นหา", subs: [["places", "สถานที่"]] },
-  { id: "ready", ic: "backpack", name: "เตรียมตัว", subs: [["prep", "สิ่งที่ต้องทำ"], ["packing", "ของจำเป็น"], ["budget", "งบประมาณ"]] },
-  { id: "guide", ic: "book-open", name: "คู่มือ", subs: [["guide", "คู่มือฉบับย่อ"], ["emergency", "เอกสาร + ฉุกเฉิน"]] },
-];
-const TAB_OF = Object.fromEntries(TABS.flatMap((t) => t.subs.map(([id]) => [id, t])));
+// โครงแอป: เมนูหลัก 5 หน้า (เรียงตามขั้นวางแผน), ตั้งค่า, แชร์ลิงก์, ย้อนกลับ, PWA
+const TABS = [["setup", "plane", "ข้อมูลทริป"], ["trip", "map", "แผนรายวัน"], ["places", "search", "สถานที่"], ["stays", "hotel", "ที่พัก"], ["budget", "banknote", "งบประมาณ"]];
 const RENDER = {
-  trip: () => PlanView.render(), setup: () => PlanView.renderSetup(), stays: () => PlanView.renderStays(), today: () => PlanView.renderToday(),
-  places: () => PlacesView.render(),
-  packing: () => PackingView.render(), prep: () => PrepView.render(), budget: () => BudgetView.render(),
-  guide: () => GuideView.guide(),
-  emergency: () => GuideView.emergency(),
+  trip: () => PlanView.render(), setup: () => PlanView.renderSetup(), stays: () => PlanView.renderStays(),
+  places: () => PlacesView.render(), budget: () => BudgetView.render(),
 };
 
 // ---------- กันแผนหาย: แผนอยู่ในเบราว์เซอร์เครื่องเดียว ----------
@@ -75,13 +66,7 @@ const App = {
 
   refreshChrome() {
     const t = S.trip, N = tripNights();
-    const prep = PrepView.progress(), pack = PackingView.progress();
-    const prog = { trip: S.plan ? "✓" : "", packing: pack.pct + "%", prep: prep.pct + "%" };
-    const tab = TAB_OF[this.cur] || TABS[0];
-    $("#tabs").innerHTML = TABS.map((x) => `<div class="tab-grp ${x === tab ? "on" : ""}">
-      <a href="#${x.subs[0][0]}" class="tab ${x === tab ? "on" : ""}"><span class="ic">${I(x.ic)}</span><span>${x.name}</span></a>
-      <div class="tab-subs">${x.subs.map(([id, nm]) => `<a href="#${id}" class="${id === this.cur ? "on" : ""}">${nm}${prog[id] ? `<span class="prog">${prog[id]}</span>` : ""}</a>`).join("")}</div></div>`).join("");
-    $("#subnav").innerHTML = tab.subs.map(([id, nm]) => `<a href="#${id}" class="${id === this.cur ? "on" : ""}">${nm}</a>`).join("");
+    $("#tabs").innerHTML = TABS.map(([id, ic, nm]) => `<a href="#${id}" class="tab ${id === this.cur ? "on" : ""}"><span class="ic">${I(ic)}</span><span>${nm}</span></a>`).join("");
     const left = daysBetween(todayIso(), t.start);
     $("#topTrip").textContent = `${thDate(t.start, false)} - ${thDate(t.end, false)} • ${N + 1} วัน ${N} คืน • ${t.adults + t.kids} คน • ${MODE[t.mode]}${left > 0 ? ` • อีก ${left} วัน` : ""}`;
     document.documentElement.dataset.font = S.set.font;
@@ -91,7 +76,7 @@ const App = {
   show(id) {
     if (id.startsWith("share=")) return;
     if (id === "stay") id = "stays"; // หน้าเลือกเมืองเดิม รวมเข้าหน้าที่พักแล้ว
-    if (!RENDER[id]) id = "trip";
+    if (!RENDER[id]) id = "trip"; // รวมลิงก์เก่าไปหน้าที่ตัดออกแล้ว (วันนี้ เตรียมตัว คู่มือ เอกสาร)
     const prev = this.cur;
     this.cur = id;
     RENDER[id]();
@@ -138,7 +123,7 @@ const App = {
       const a = e.target.closest("[data-a]")?.dataset.a;
       if (a === "export") Store.export();
       else if (a === "print") { Modal.close(); this.print(); }
-      else if (a === "reset" && confirm("ล้างแผน รายการจัดกระเป๋า งาน และค่าตั้งทั้งหมด? ย้อนกลับไม่ได้")) { localStorage.removeItem(STORE_KEY); S = Store.defaults(); Modal.close(); location.hash = "#setup"; this.renderAll(); }
+      else if (a === "reset" && confirm("ล้างแผน งบ และค่าตั้งทั้งหมด? ย้อนกลับไม่ได้")) { localStorage.removeItem(STORE_KEY); S = Store.defaults(); Modal.close(); location.hash = "#setup"; this.renderAll(); }
     };
   },
 
@@ -181,13 +166,11 @@ const App = {
   },
 
   init() {
-    Safety.bind(); PlanView.bind(); PlacesView.bind(); PrepView.bind(); PackingView.bind(); BudgetView.bind();
+    Safety.bind(); PlanView.bind(); PlacesView.bind(); BudgetView.bind();
     window.addEventListener("hashchange", () => { const h = location.hash.slice(1); if (h.startsWith("share=")) this.loadShared(h.slice(6)); else this.show(h); });
     const h = location.hash.slice(1);
-    const N = tripNights(), now = jstNow().iso;
-    const during = S.plan && now >= S.trip.start && now <= addDays(S.trip.start, N);
     if (h.startsWith("share=")) this.loadShared(h.slice(6));
-    else this.show(h || (during ? "today" : S.plan ? "trip" : "setup"));
+    else this.show(h || (S.plan ? "trip" : "setup"));
     $("#btnSet").onclick = () => this.settings();
     $("#btnShare").onclick = () => this.share();
     document.addEventListener("keydown", (e) => { if ((e.ctrlKey || e.metaKey) && e.key === "z" && !/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) { e.preventDefault(); Hist.undo(); } });

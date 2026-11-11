@@ -103,9 +103,6 @@ assert(meals.every((x) => x.t >= 10.5 && x.t <= 15), "มื้อกลาง�
   assert.deepStrictEqual(S.plan.days[2].items.map((x) => x.id), a, "สลับวัน");
   assert.deepStrictEqual(S.plan.bases, bases, "ที่พักคงเดิม");
 }
-// tools.js (เอกสาร) โหลดได้ไม่พัง
-global.document = { addEventListener() {} }; global.I = () => "";
-vm.runInThisContext(fs.readFileSync(`${root}/js/tools.js`, "utf8").replace(/^(const|let) /gm, "var "));
 // แชร์ลิงก์: แพ็กแล้วแกะได้เหมือนเดิม (แบบไม่บีบอัด ใน node)
 (async () => {
   const code = await Share.pack({ v: 2, trip: S.trip, plan: S.plan });

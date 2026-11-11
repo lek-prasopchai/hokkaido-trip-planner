@@ -11,6 +11,8 @@ const idOf = (s) => (isNaN(s) ? s : +s);
 const KIND_IC = (id) => I(isPlace(id) ? "map-pin" : S.plan.custom[id]?.meal ? "soup" : "star");
 // ตัวเลือกวิธีเดินทางรายช่วง ("" = ค่าเริ่มต้นของทริป)
 const legOpts = (cur) => `<option value="">${LEG_MODE[Planner.modeOf()].name} (ค่าเริ่มต้น)</option>${Object.entries(LEG_MODE).map(([v, m]) => `<option value="${v}" ${cur === v ? "selected" : ""}>${m.name}</option>`).join("")}`;
+const STAY_TIPS = "จองล่วงหน้า 3-4 เดือน (ช่วงเทศกาลหิมะ 6 เดือน) • ขับรถ: เลือกที่มีที่จอด ถามค่าจอดและต้องจองไหม • นั่งรถไฟ: เลือกใกล้สถานี เดินลากกระเป๋าบนหิมะลำบาก • เรียวกังออนเซ็นมักรวมอาหารเย็น-เช้า และต้องเช็กอินก่อน ~18:00 • พักฐานเดิม 2 คืนขึ้นไปช่วยให้ไม่ต้องแพ็กกระเป๋าทุกวัน";
+
 const PlanView = {
   M: null, mapEl: null, focus: null,
 
@@ -19,9 +21,9 @@ const PlanView = {
 
   // แถบลำดับการใช้งาน: บอกคนใหม่ว่าต้องทำอะไรก่อนหลัง และขั้นไหนทำแล้ว
   steps(cur) {
-    const P = S.plan, pr = PrepView.progress();
+    const P = S.plan;
     const hotelsDone = !!P && P.bases.slice(0, tripNights()).every((b) => hotelOf(b)?.name);
-    const st = [["setup", "ข้อมูลทริป + เลือกรูท", !!P], ["trip", "ปรับแผนรายวัน", false], ["stays", "ใส่ที่พักที่จองแล้ว", hotelsDone], ["prep", `เตรียมตัว ${pr.pct}%`, pr.pct === 100]];
+    const st = [["setup", "ข้อมูลทริป + เลือกรูท", !!P], ["trip", "ปรับแผนรายวัน", false], ["stays", "ใส่ที่พักที่จองแล้ว", hotelsDone], ["budget", "ดูงบประมาณ", false]];
     return `<ol class="steps no-print">${st.map(([id, t, done], k) => `<li class="${done ? "done" : ""} ${id === cur ? "cur" : ""}"><a href="#${id}"><b>${done ? I("circle-check") : k + 1}</b>${t}</a></li>`).join("")}</ol>`;
   },
 
@@ -33,6 +35,11 @@ const PlanView = {
     const t = S.trip, N = tripNights(), b = t.buf, of = t.outFlight, inf = t.inFlight;
     const fresh = !S.plan; // คนใหม่: เริ่มจากกล่องสั้นๆ เที่ยวบิน/สไตล์พับไว้ (ไม่ต้องมีตั๋วก็วางแผนได้)
     const modeSeg = `<div class="seg" data-seg="mode">${Object.entries(MODE).map(([k, v]) => `<button data-v="${k}" class="${t.mode === k ? "on" : ""}">${I(k === "car" ? "car" : "train-front")} ${v}</button>`).join("")}</div>`;
+    // ช่วยเลือกวิธีเดินทาง: แสดงครั้งเดียวต่อหน้า (คนใหม่อยู่ในกล่องเริ่ม ไม่งั้นอยู่ใต้ตัวเลือกการเดินทาง)
+    const modeHelp = (isWinter(t.start) || isWinter(t.end) ? `<details class="callout info mode-help"><summary><b>หน้าหนาว ขับรถเองหรือนั่งรถไฟ?</b></summary><ul class="small" style="margin:6px 0 0;padding-left:18px">
+        <li><b>ขับรถ</b>: ไปได้ทุกที่ แต่ถนนเป็นน้ำแข็ง มืดตั้งแต่ ~16:00 ช่องเขาบางเส้นปิดทั้งฤดู ต้องมีใบขับขี่สากล (IDP) และขอยาง studless ตอนจองรถ</li>
+        <li><b>รถไฟ/บัส</b>: ปลอดภัย พักระหว่างทางได้ แต่รอบน้อย บางที่ไม่มีรถถึง พายุหิมะทำให้รถไฟหยุดได้ เหมาะกับเมืองหลัก (ซัปโปโร โอตารุ อาซาฮิกาวะ ฮาโกดาเตะ)</li>
+        <li><b>ไม่เคยขับบนหิมะ</b>: นั่งรถไฟระหว่างเมือง แล้วเช่ารถเฉพาะช่วงชนบท เปลี่ยนรายช่วงได้ในแผนรายวัน • แผนจะเตือนเองถ้าขับตอนมืดหรือข้ามช่องเขาเสี่ยง</li></ul></details>` : "");
     const num = (k, v, min, max, lbl) => `<label class="f">${lbl}<input type="number" min="${min}" max="${max}" data-buf="${k}" value="${v}"></label>`;
     $('[data-sec="setup"]').innerHTML = `${this.steps("setup")}
       <div class="sec-head"><h1>ข้อมูลทริปและเที่ยวบิน</h1>
@@ -41,7 +48,7 @@ const PlanView = {
         <p>ใส่วันเที่ยว จำนวนคน และวิธีเดินทาง แล้วเลือกรูทด้านล่าง ระบบจะจัดแผนรายวันพร้อมเวลาขับหน้าหนาวให้ทันที <b>ยังไม่ต้องมีตั๋วเครื่องบิน</b></p>
         <div class="form"><label class="f">วันถึงฮอกไกโด<input type="date" data-k="start" value="${t.start}"></label><label class="f">วันบินกลับ<input type="date" data-k="end" value="${t.end}"></label>
           <label class="f">ผู้ใหญ่<input type="number" min="1" max="20" data-k="adults" value="${t.adults}"></label><label class="f">เด็ก (≤11 ปี)<input type="number" min="0" max="10" data-k="kids" value="${t.kids}"></label></div>
-        <div style="margin-top:12px">${modeSeg}</div>
+        <div style="margin-top:12px">${modeSeg}${modeHelp}</div>
         <p class="mute small" style="margin:10px 0">วันที่ใส่ไว้เป็นตัวอย่าง แก้ได้ • เที่ยวบิน สไตล์ และความสนใจ ปรับทีหลังได้ (ด้านล่าง)</p>
         <button class="btn primary" data-scroll="routes">ดูรูทแนะนำ ↓</button></div>
       <details class="fold-sec"><summary><b>${I("plane")} เที่ยวบิน</b> <span class="mute">กรอกหลังจองตั๋ว ไม่บังคับ</span></summary>` : `<h2 class="step-h"><b>1</b> วันและเที่ยวบิน</h2>`}
@@ -89,7 +96,7 @@ const PlanView = {
         </div>
         <div class="row" style="margin-top:14px">
           <div><div class="mute small">สไตล์</div><div class="seg" data-seg="pace">${Object.entries(PACE).map(([k, v]) => `<button data-v="${k}" class="${t.pace === k ? "on" : ""}">${v.name}</button>`).join("")}</div></div>
-          <div><div class="mute small">การเดินทาง</div>${modeSeg}<small class="mute">ค่าเริ่มต้นของทุกช่วง เปลี่ยนรายช่วงได้ในแผนรายวัน</small></div>
+          <div><div class="mute small">การเดินทาง</div>${modeSeg}<small class="mute">ค่าเริ่มต้นของทุกช่วง เปลี่ยนรายช่วงได้ในแผนรายวัน</small>${fresh ? "" : modeHelp}</div>
         </div>
         <div style="margin-top:12px"><div class="mute small">สนใจอะไร (เลือกได้หลายข้อ)</div>
           <div class="chips">${Object.entries(INTEREST).map(([k, v]) => `<button class="chip ${t.interests.includes(k) ? "on" : ""}" data-int="${k}">${v}</button>`).join("")}</div></div>
@@ -493,13 +500,12 @@ const PlanView = {
   // ================= ที่พัก =================
   renderStays() {
     const sec = $('[data-sec="stays"]');
-    if (!S.plan) return GuideView.stay();
+    if (!S.plan) return this.renderBases();
     const blocks = [];
     S.plan.bases.forEach((b, i) => { const l = blocks[blocks.length - 1]; if (l && l.b === b) l.n.push(i); else blocks.push({ b, n: [i] }); });
     const ids = [...new Set(S.plan.bases)];
     sec.innerHTML = `${this.steps("stays")}<div class="sec-head"><h1>ที่พักและการจอง</h1><p class="lead"><b>ไม่บังคับ</b> ทำหลังจองแล้ว: ไม่กรอก ระบบใช้จุดกลางเมืองเป็นจุดเริ่ม/จบของแต่ละวันแทน • เมืองที่พักแต่ละคืนเลือกในหน้า <a href="#trip">แผนรายวัน</a> (คืนนี้พักเมือง)</p>
         <ul class="small mute" style="margin:6px 0 0;padding-left:18px"><li><b>ชื่อ</b>: แสดงในแผนรายวัน "ถึงที่พัก…"</li><li><b>ตำแหน่ง</b>: ใช้เป็นจุดออกตอนเช้า/กลับตอนเย็นแทนกลางเมือง เวลาเดินทางแม่นขึ้น</li><li><b>เช็กอิน/เช็กเอาท์</b>: เตือนถ้าถึงก่อนเช็กอิน/ออกหลังเช็กเอาท์ และเวลาออกไปเที่ยวหลังเช็กอิน</li></ul></div>
-      <a class="callout info" href="#emergency" style="display:block;text-decoration:none;color:inherit">${I("clipboard-list")} <b>สรุปการจองทั้งหมด</b> (เที่ยวบิน ที่พัก รอบที่จอง เอกสาร) อยู่ที่หน้า <u>เอกสาร + ฉุกเฉิน</u> เปิดโชว์พนักงานได้ ใช้ออฟไลน์ได้ →</a>
       <details class="callout info"><summary><b>หลักเลือกที่พักหน้าหนาว</b></summary>${STAY_TIPS}</details>
       <div class="card"><div class="map" id="stayMap"></div></div>
       ${ids.map((id) => { const h = hotelOf(id) || {}, nights = blocks.filter((x) => x.b === id).flatMap((x) => x.n), hb = HUB[id]; return `<div class="card stay-card" data-hub="${id}">
@@ -518,63 +524,36 @@ const PlanView = {
     TripMap.drawBases(makeMap($("#stayMap")));
   },
 
-  // ================= โหมดวันนี้ =================
-  renderToday() {
-    const sec = $('[data-sec="today"]');
-    if (!S.plan) { sec.innerHTML = `<div class="card empty">สร้างแผนก่อน <a href="#setup">ไปหน้าข้อมูลทริป</a></div>`; return; }
-    const now = jstNow(), N = tripNights();
-    const real = daysBetween(S.trip.start, now.iso), during = real >= 0 && real <= N;
-    const i = this.todayI ?? (during ? real : 0);
-    const day = S.plan.days[i];
-    const live = (this.live ?? true) && during && i === real; // ระหว่างทริปคิดเวลาจากตอนนี้เลย (ตื่นสาย/รถช้าก็เห็นทันที)
-    let from = Planner.ends(i).from;
-    day.items.forEach((it) => { if (it.st === "done" && point(it.id)?.lat) from = it.id; });
-    const e = live ? Planner.evaluate(i, null, { live: { t: Math.max(now.h, i === 0 ? Planner.leaveAirport(Planner.modeOf(i)) : 0), from } }) : Planner.evaluate(i);
-    const nowH = during && i === real ? now.h : null;
-    const visits = e.tl.filter((x) => x.kind === "visit");
-    const next = visits.find((x) => !x.it.st && (nowH == null || x.t + x.h > nowH)) || null;
-    const np = next ? point(next.id) : null, ref = point(e.to);
-    const legM = next?.it.m || Planner.modeOf();
-    const navUrl = (p) => `https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}&travelmode=${{ transit: "transit", walk: "walking" }[legM] || "driving"}`;
-    sec.innerHTML = `<div class="sec-head"><h1>วันนี้</h1>
-      <p class="lead">${during ? `วันที่ ${real + 1} ของทริป • ตอนนี้ ${fmtT(now.h)} (เวลาญี่ปุ่น)` : real < 0 ? `ทริปเริ่มอีก ${-real} วัน: ดูตัวอย่างหน้าวันนี้ได้ด้านล่าง` : "ทริปจบแล้ว"}</p>
-      <div class="row"><label class="f">ดูวัน<select id="tdDay">${S.plan.days.map((_, k) => `<option value="${k}" ${k === i ? "selected" : ""}>วันที่ ${k + 1} • ${thDate(Planner.dayIso(k), false)}</option>`).join("")}</select></label></div></div>
-      ${(() => { const h = hotelOf(e.to);
-        return `<div class="quick no-print">${h?.nameJa || h?.addr ? `<button class="btn" data-showcard="${esc(e.to)}">${I("car-taxi-front")}<span>การ์ดที่พัก</span></button>` : ""}
-          <a class="btn" href="#emergency">${I("clipboard-list")}<span>การจอง</span></a><a class="btn red" href="#emergency">${I("life-buoy")}<span>ฉุกเฉิน</span></a></div>`; })()}
-      <div class="card today-head"><div class="row"><b>${thDate(e.iso)}</b><span>${I("sun")} ${fmtT(e.sun.rise)}-${fmtT(e.sun.set)}</span><span class="wx" data-wx="${ref.lat},${ref.lng},${e.iso}"></span><span class="badge b-${e.lvl}">${LVL_TXT[e.lvl]}</span></div>
-        <div class="day-meta">${esc(short(e.from))} → ${esc(short(e.to))}${e.leaveBy != null ? ` • ต้องออกจากที่พักไม่เกิน <b>${fmtT(e.leaveBy)}</b>` : ""}</div></div>
-      ${np ? `<div class="card next-card"><div class="kicker">ถัดไป ${fmtT(next.t)}</div>
-        ${np.img ? `<img src="${np.img}" alt="" class="next-img">` : ""}<h2>${nameHtml(np)}</h2>
-        <p class="small">${esc(np.highlight || np.signature || "")}</p>${np.caution ? `<p class="small cau">${I("triangle-alert")} ${esc(np.caution)}</p>` : ""}
-        <div class="row">${np.lat ? `<a class="btn primary" href="${navUrl(np)}" target="_blank" rel="noopener">${I(LEG_MODE[legM].ic)} นำทางจากตำแหน่งฉัน</a>` : ""}${np.ja ? `<button class="btn" data-showcard-id="${esc(next.id)}">${I("car-taxi-front")} การ์ดโชว์คนขับ</button>` : ""}
-          <button class="btn" data-st="${i}:done:${esc(next.id)}">✓ ไปแล้ว</button><button class="btn" data-st="${i}:skip:${esc(next.id)}">ข้าม</button></div></div>`
-        : `<div class="card empty">ไม่มีที่เที่ยวที่เหลือในวันนี้${e.items.length ? "" : ": เพิ่มได้ในหน้าแผนรายวัน"}</div>`}
-      <div class="card"><div class="row"><h3 style="margin:0">ทั้งวัน</h3><div class="spacer"></div>${during && i === real ? `<button class="btn small ${live ? "primary" : ""}" id="tdLive">${live ? I("circle-check") + " คำนวณจากตอนนี้" : I("refresh-ccw") + " คำนวณเวลาที่เหลือจากตอนนี้"}</button>` : ""}</div>
-        <ul class="tl today-tl">${e.tl.map((x) => {
-          const past = nowH != null && x.t + (x.h || 0) < nowH;
-          if (x.kind === "visit") { const p = point(x.id), st = x.it.st; return `<li class="${past ? "past" : ""} ${x === next ? "is-next" : ""}"><span class="tm">${fmtT(x.t)}</span><span class="ic">${st === "done" ? I("circle-check") : st === "skip" ? I("skip-forward") : KIND_IC(x.id)}</span><span><b>${nameHtml(p)}</b> <small>${fmtH(x.h)}</small>${x.it.note ? `<div class="note">📝 ${esc(x.it.note)}</div>` : ""}</span></li>`; }
-          if (x.kind === "move") return `<li class="mv ${past ? "past" : ""}"><span class="tm">${fmtT(x.t)}</span><span class="ic">${I(LEG_MODE[x.mode]?.ic || "car")}</span><span class="move">→ ${esc(short(x.to))} ${fmtH(x.h)}${x.by ? " • " + esc(x.by.join(" → ")) : ""}</span></li>`;
-          if (x.kind === "hotel" || x.kind === "airport") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I(x.kind === "hotel" ? "hotel" : "plane")}</span><span><b>${x.kind === "hotel" ? "ถึงที่พัก" : "ถึงสนามบิน"} ${esc(hotelOf(x.id)?.name || pname(x.id))}</b></span></li>`;
-          return x.text ? `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I(x.ic || "info")}</span><span class="mute">${esc(x.text)}</span></li>` : "";
-        }).join("")}</ul>
-        ${day.items.some((it) => it.st) ? `<button class="btn small" id="tdReset">ล้างสถานะไปแล้ว/ข้าม</button>` : ""}
-        <ul class="checks">${e.checks.map((c) => `<li class="${c.lvl}">${LVL_ICON[c.lvl] || ""} ${esc(c.text)}</li>`).join("")}</ul>
-        ${day.note || day.planB ? `<div class="callout info">${day.note ? `${I("notebook-pen")} ${esc(day.note)}` : ""}${day.planB ? `<br>${I("route")} แผนสำรอง: ${esc(day.planB)}` : ""}</div>` : ""}</div>
-      <div class="card"><h3>ลิงก์ด่วน</h3><div class="row">
-        ${Planner.modeOf(i) === "car" && isWinter(e.iso) ? `<a class="btn small" href="#guide">${I("snowflake")} ขับบนหิมะ อ่านก่อนออก</a>` : ""}
-        <a class="btn small" href="#guide">${I("store")} คอนบินิ ห้องน้ำ ภาษี ทิป</a>
-        <a class="btn small" href="https://www.jartic.or.jp/" target="_blank" rel="noopener">สภาพถนน (JARTIC)</a>
-        <a class="btn small" href="https://tenki.jp/forecast/1/" target="_blank" rel="noopener">พยากรณ์ tenki.jp</a>
-        <a class="btn small" href="https://www.jrhokkaido.co.jp/global/english/" target="_blank" rel="noopener">JR Hokkaido (รถเลื่อน/ยกเลิก)</a>
-        <a class="btn small" href="https://www.google.com/maps/search/コンビニ/" target="_blank" rel="noopener">${I("store")} คอนบินิใกล้ฉัน</a>
-        <a class="btn small" href="https://www.google.com/maps/search/ガソリンスタンド/" target="_blank" rel="noopener">${I("fuel")} ปั๊มใกล้ฉัน</a></div></div>`;
-    Weather.fill(sec);
+  // ยังไม่มีแผน: ฐานที่พักทั้งหมดให้เทียบเมืองและราคา
+  renderBases() {
+    const ids = S.plan ? [...new Set(S.plan.bases)] : HUBS.map((h) => h.id);
+    const nights = {};
+    if (S.plan) S.plan.bases.forEach((b, i) => (nights[b] ||= []).push(i));
+    const lv = S.trip.level, rooms = Math.ceil((S.trip.adults + S.trip.kids) / 2);
+    $('[data-sec="stays"]').innerHTML = `
+      <div class="sec-head"><h1>ที่พัก</h1>
+        <p class="lead">${S.plan ? "ฐานที่พักตามแผนของคุณ" : "ฐานที่พักทั้งหมด (สร้างแผนก่อนเพื่อดูเฉพาะที่ใช้)"} ราคาเป็นช่วงโดยประมาณต่อห้องคู่ต่อคืนในหน้าหนาว ไม่ใช่ราคาจริงของโรงแรมใด กดลิงก์เพื่อค้นราคาจริง • <a href="#setup">สร้างแผน</a>แล้วกลับมากรอกที่พักที่จองได้ที่นี่</p></div>
+      <div class="callout info"><b>หลักเลือกที่พักหน้าหนาว:</b> ${STAY_TIPS}</div>
+      <div class="card"><h2>${S.plan ? "ที่พักตามแผน" : "ฐานที่พักทั้งหมด"}</h2><div class="map" id="hubMap"></div>
+        <p class="map-note">${S.plan ? "เส้นประ = ลำดับการย้ายที่พัก • " : ""}ป้าย = ชื่อเมือง ${S.plan ? "จำนวนคืน " : ""}และราคาห้องต่อคืนตามระดับที่เลือก</p></div>
+      <div class="row no-print" style="margin-bottom:12px"><span class="mute">ระดับที่พัก/งบ:</span><div class="seg" id="lvlSeg">${["ประหยัด", "กลาง", "สบาย"].map((x, i) => `<button data-v="${i}" class="${lv === i ? "on" : ""}">${x}</button>`).join("")}</div>
+        <span class="mute">${rooms} ห้อง (ห้องละ 2 คน)</span></div>
+      <div class="grid g2">${ids.map((id) => { const h = HUB[id], im = (window.HUB_IMG || {})[id]; return `<div class="card pcard">
+        <div class="ph">${im ? `<img src="${im.img}" alt="${esc(h.name)}" loading="lazy">` : I("hotel")}</div>
+        <div class="row"><h3 style="margin:0">${esc(h.name)}</h3>${nights[id] ? `<span class="badge b-info">${nights[id].length} คืน: คืนที่ ${nights[id].map((i) => i + 1).join(", ")}</span>` : ""}${h.rail ? '<span class="badge b-mute">' + I("train-front") + ' มีรถไฟ</span>' : ""}</div>
+        <dl class="kv" style="margin-top:8px"><dt>พักย่านไหน</dt><dd>${esc(h.stay)}</dd><dt>ข้อดี</dt><dd>${esc(h.pros)}</dd><dt>ข้อควรรู้</dt><dd>${esc(h.cons)}</dd>
+          <dt>ราคา/ห้อง/คืน</dt><dd>${h.price.map((p, i) => `<span style="${i === lv ? "font-weight:700" : "color:var(--mute)"}">¥${fmtN(p)}</span>`).join(" / ")} <small>(≈${fmtN(h.price[lv] * S.rate)} บาท)</small></dd>
+          <dt>ช่วงพีค</dt><dd>${esc(h.peak)}</dd></dl>
+        <div class="row" style="margin-top:8px">${BOOKING_SITES.map((b) => `<a class="btn small" target="_blank" rel="noopener" href="${b.url(HUB_EN[id])}">${b.name}</a>`).join("")}
+          <a class="btn small" target="_blank" rel="noopener" href="${gimgUrl(HUB_EN[id] + " winter hotel")}">${I("image")} รูปที่พักใน Google</a></div>
+        ${im ? `<a class="credit" href="${im.credit}" target="_blank" rel="noopener">ที่มาภาพ: Wikimedia Commons</a>` : ""}</div>`; }).join("")}</div>`;
+    TripMap.drawBases(makeMap($("#hubMap")));
+    $("#lvlSeg").onclick = (e) => { const v = e.target.dataset.v; if (v != null) { S.trip.level = +v; save(); App.renderAll(); } };
   },
 
   // ================= event =================
   bind() {
-    const trip = $('[data-sec="trip"]'), setup = $('[data-sec="setup"]'), stays = $('[data-sec="stays"]'), today = $('[data-sec="today"]');
+    const trip = $('[data-sec="trip"]'), setup = $('[data-sec="setup"]'), stays = $('[data-sec="stays"]');
     // ---- ข้อมูลทริป ----
     setup.addEventListener("change", (ev) => {
       const el = ev.target, t = S.trip;
@@ -676,20 +655,6 @@ const PlanView = {
     stays.addEventListener("click", (ev) => {
       const id = ev.target.closest("[data-showcard]")?.dataset.showcard;
       if (id) { const h = hotelOf(id); showCard({ name: h.name, ja: h.nameJa || h.name, addrJa: h.addr, phone: h.phone }); }
-    });
-
-    // ---- วันนี้ ----
-    today.addEventListener("change", (ev) => { if (ev.target.id === "tdDay") { this.todayI = +ev.target.value; App.renderAll(); } });
-    today.addEventListener("click", (ev) => {
-      const el = ev.target.closest("button"); if (!el) return;
-      if (el.dataset.st) {
-        const [i, st, ...rest] = el.dataset.st.split(":"), raw = rest.join(":"), id = isNaN(raw) ? raw : +raw;
-        const it = S.plan.days[+i].items.find((x) => x.id === id);
-        if (it) { it.st = st; save(); App.renderAll(); }
-      } else if (el.id === "tdLive") { this.live = !(this.live ?? true); App.renderAll(); }
-      else if (el.id === "tdReset") { S.plan.days.forEach((d) => d.items.forEach((x) => delete x.st)); save(); App.renderAll(); }
-      else if (el.dataset.showcardId) { const raw = el.dataset.showcardId; showCard(point(isNaN(raw) ? raw : +raw)); }
-      else if (el.dataset.showcard) { const h = hotelOf(el.dataset.showcard); showCard({ name: h.name, ja: h.nameJa || h.name, addrJa: h.addr, phone: h.phone }); }
     });
   },
 };
