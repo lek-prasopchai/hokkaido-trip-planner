@@ -707,3 +707,12 @@ h2 { font-size: 1.25rem; } h3 { font-size: 1.125rem; }
 .map-days { gap: 4px; }
 .split-side .map-days button { padding: 2px 8px; }
 .top-actions .lbl { line-height: 1.25; }
+
+/* กล่องพับได้ (แผนที่ / อยากไป): หัวกล่องแตะได้ทั้งแถว มีลูกศรบอก */
+details.fold-card > summary { list-style: none; cursor: pointer; display: flex; align-items: baseline; flex-wrap: wrap; gap: 2px 10px; padding-right: 28px; position: relative; }
+details.fold-card > summary::-webkit-details-marker { display: none; }
+details.fold-card > summary h2 { margin: 0; display: inline-flex; align-items: center; gap: 8px; }
+details.fold-card > summary::after { content: ""; position: absolute; right: 4px; top: 50%; width: 9px; height: 9px; border: solid var(--mute); border-width: 0 2px 2px 0; transform: translateY(-70%) rotate(45deg); transition: transform .15s; }
+details.fold-card[open] > summary::after { transform: translateY(-30%) rotate(-135deg); }
+details.fold-card[open] > summary { margin-bottom: 12px; }
+details.adv > summary .mute { font-size: .875rem; }

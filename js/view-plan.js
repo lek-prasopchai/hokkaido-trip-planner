@@ -8,6 +8,10 @@ const hubOptions = (sel) => {
 };
 const airOptions = (sel) => AIRPORTS.map((a) => `<option value="${a.id}" ${a.id === sel ? "selected" : ""}>${esc(a.id)}: ${esc(a.name)}</option>`).join("");
 const idOf = (s) => (isNaN(s) ? s : +s);
+// กล่องพับที่จำสถานะเปิด/ปิดไว้ แม้หน้าวาดใหม่ทุกครั้งที่แก้แผน (ค่าเริ่มต้น: จอ >= 900px เปิด)
+const FOLD = {};
+const foldAttr = (k) => `data-keep="${k}" ${(FOLD[k] ?? matchMedia("(min-width: 900px)").matches) ? "open" : ""}`;
+document.addEventListener("toggle", (e) => { const k = e.target.dataset?.keep; if (k) FOLD[k] = e.target.open; }, true);
 const KIND_IC = (id) => I(isPlace(id) ? "map-pin" : S.plan.custom[id]?.meal ? "soup" : "star");
 // ตัวเลือกวิธีเดินทางรายช่วง ("" = ค่าเริ่มต้นของทริป)
 const legOpts = (cur) => `<option value="">${LEG_MODE[Planner.modeOf()].name} (ค่าเริ่มต้น)</option>${Object.entries(LEG_MODE).map(([v, m]) => `<option value="${v}" ${cur === v ? "selected" : ""}>${m.name}</option>`).join("")}`;
@@ -90,9 +94,10 @@ const PlanView = {
           <div><div class="mute small">สไตล์</div><div class="seg" data-seg="pace">${Object.entries(PACE).map(([k, v]) => `<button data-v="${k}" class="${t.pace === k ? "on" : ""}">${v.name}</button>`).join("")}</div></div>
           <div><div class="mute small">การเดินทาง</div>${modeSeg}<small class="mute">ค่าเริ่มต้นของทุกช่วง เปลี่ยนรายช่วงได้ในแผนรายวัน</small>${fresh ? "" : modeHelp}</div>
         </div>
-        <div style="margin-top:12px"><div class="mute small">สนใจอะไร (เลือกได้หลายข้อ)</div>
+        <details class="adv" data-keep="interests" ${FOLD.interests ? "open" : ""}><summary>สนใจอะไร <span class="mute">(${t.interests.length} ข้อ) และรายละเอียดแต่ละสไตล์</span></summary>
+        <div><div class="mute small">เลือกได้หลายข้อ ระบบจะเลือกที่เที่ยวตามนี้</div>
           <div class="chips">${Object.entries(INTEREST).map(([k, v]) => `<button class="chip ${t.interests.includes(k) ? "on" : ""}" data-int="${k}">${v}</button>`).join("")}</div></div>
-        <p class="mute small" style="margin:10px 0 0">ชิล: ขับ ≤2 ชม./วัน ≤3 ที่ จบวัน 18:00 • กลางๆ: ≤3.5 ชม. ≤4 ที่ จบ 19:30 • แน่น: ≤5 ชม. ≤6 ที่ จบ 21:00 • ทับค่าได้ใน ${I("settings")} ตั้งค่า</p>
+        <p class="mute small" style="margin:10px 0 0">ชิล: ขับ ≤2 ชม./วัน ≤3 ที่ จบวัน 18:00 • กลางๆ: ≤3.5 ชม. ≤4 ที่ จบ 19:30 • แน่น: ≤5 ชม. ≤6 ที่ จบ 21:00 • ทับค่าได้ใน ${I("settings")} ตั้งค่า</p></details>
       </div>
       ${fresh ? "</details>" : ""}<h2 class="step-h" id="routes"><b>${fresh ? 2 : 3}</b> เลือกรูท = สร้างแผนรายวัน</h2>
       <details class="card routes-box" ${S.plan ? "" : "open"}><summary>${S.plan ? `<b>รูทตอนนี้: ${esc(TEMPLATES.find((x) => x.id === S.plan.tpl)?.name || "แผนที่จัดเอง")}</b> <span class="mute">กดเพื่อดู/เปลี่ยนรูท (สร้างแผนใหม่)</span>` : "<b>รูทแนะนำ</b> <span class=\"mute\">แผนที่เล็ก = เมืองที่พักและลำดับการเดินทาง</span>"}</summary>
@@ -147,16 +152,18 @@ const PlanView = {
         <details class="gantt-box" ${matchMedia("(min-width: 900px)").matches ? "open" : ""}><summary>${I("clock")} แถบเวลาทั้งทริป <small class="mute">ดูว่าวันไหนแน่น</small></summary>${this.gantt(evals)}</details>
         <ul class="checks">${sum.map((c) => `<li class="${c.lvl}">${esc(c.text)}</li>`).join("")}</ul>
       </div></div>
-      <aside class="split-side no-print"><div class="card"><div class="row"><h2 style="margin:0">แผนที่</h2><div class="spacer"></div><span class="mute small">กด D1-D8 ดูลำดับรายวัน • จุดสีเทา = กดเพิ่มเข้าแผน</span></div>
+      <aside class="split-side no-print"><details class="card fold-card" ${foldAttr("map")} id="mapCard"><summary><h2>${I("map")} แผนที่</h2><span class="mute small">กด D1-D8 ดูลำดับรายวัน • จุดสีเทา = กดเพิ่มเข้าแผน</span></summary>
         <div class="map-days"><button data-mapday="all" class="${this.focus === null ? "on" : ""}">ทั้งทริป</button>${evals.map((e) => `<button data-mapday="${e.i}" style="--c:${DAY_COLORS[e.i % DAY_COLORS.length]}" class="${this.focus === e.i ? "on" : ""}">D${e.i + 1}</button>`).join("")}</div>
         <div id="planMapHost"></div>
         <div class="map-legend"><span><span class="pin num" style="--c:#2c6e9b;display:inline-grid;margin:0;width:18px;height:18px;font-size:10px">1</span> ลำดับในวันนั้น</span>
           <span><i style="background:#2c6e9b"></i>ขับรถ</span><span><i style="background:repeating-linear-gradient(90deg,#2c6e9b 0 3px,transparent 3px 8px)"></i>รถไฟ/บัส</span>
-          <span>${I("moon")} หลังเช็กอิน</span><span>${I("hotel")} ที่พัก</span></div></div></aside>
+          <span>${I("moon")} หลังเช็กอิน</span><span>${I("hotel")} ที่พัก</span></div></details></aside>
       <div class="split-main">${this.wishCard()}
       ${evals.map((e) => this.dayCard(e)).join("")}</div></div>
       ${this.undoBtn()}`;
     this.mountMap(evals);
+    // แผนที่ที่สร้างตอนกล่องพับอยู่มีขนาด 0: เปิดแล้วต้องวัดขนาดใหม่
+    $("#mapCard").addEventListener("toggle", (e) => { if (e.target.open) setTimeout(() => { this.M.map.invalidateSize(); TripMap.drawPlan(this.M, this.evals, this.focus); }, 0); });
     Weather.fill(sec);
     this.bindDrag(sec);
   },
@@ -164,12 +171,12 @@ const PlanView = {
   // ---- รายการอยากไป: เก็บไว้ก่อน ค่อยลากลงวันหรือให้ระบบจัด ----
   wishCard() {
     const W = S.plan.wish, days = S.plan.days.map((_, k) => `<option value="${k}">วันที่ ${k + 1} (${esc(short(Planner.ends(k).to))})</option>`).join("");
-    return `<div class="card no-print wish"><div class="row"><h2 style="margin:0">${I("heart")} อยากไป <small class="mute">${W.length} ที่ ยังไม่ลงวัน</small></h2><div class="spacer"></div>
-        ${W.length ? '<button class="btn small primary" data-act="placeWish">จัดลงวันที่เหมาะให้ทั้งหมด</button>' : ""}</div>
+    return `<details class="card no-print wish fold-card" ${foldAttr("wish")}><summary><h2>${I("heart")} อยากไป</h2><span class="mute small">${W.length} ที่ ยังไม่ลงวัน</span></summary>
+      ${W.length ? '<button class="btn small primary" data-act="placeWish">จัดลงวันที่เหมาะให้ทั้งหมด</button>' : ""}
       <p class="mute small">ลากลงวัน หรือเลือกวันจากช่องข้างชื่อ • "วันที่เหมาะสุด" = ให้ระบบเลือกวันที่ไปได้ดีที่สุด</p>
       ${W.length ? `<div class="wish-list">${W.map((id) => `<div class="wchip" draggable="true" data-wish="${esc(id)}"><span>${KIND_IC(id)}</span><b class="nm" data-detail="${esc(id)}">${esc(pname(id))}</b>
         <select data-wishday="${esc(id)}" aria-label="ใส่วัน"><option value="">ใส่วัน…</option><option value="auto">วันที่เหมาะสุด</option>${days}</select><button class="x" data-wishrm="${esc(id)}" aria-label="ลบ">✕</button></div>`).join("")}</div>` : ""}
-      <button class="btn small" data-wishpick>${I("search")} เพิ่มที่อยากไป</button></div>`;
+      <button class="btn small" data-wishpick>${I("search")} เพิ่มที่อยากไป</button></details>`;
   },
 
   // ---- เลือกสถานที่จากฐานข้อมูล: ขึ้นรายการให้เลือกทันที พิมพ์กรองได้ทั้งไทย/อังกฤษ/ญี่ปุ่น ----
@@ -276,13 +283,8 @@ const PlanView = {
         </div>
       </div>
       <div class="day-tools no-print">
-        ${i < N ? `<label class="f">คืนนี้พักเมือง <small>${hotelOf(S.plan.bases[i])?.name ? esc(hotelOf(S.plan.bases[i]).name) : "ใส่โรงแรมจริงในหน้าที่พัก"}</small><select data-base="${i}">${hubOptions(S.plan.bases[i])}</select></label>` : ""}
-        ${i > 0 ? `<label class="f">เริ่มวัน<input type="time" data-dstart="${i}" value="${esc(day.start || "")}"></label>` : ""}
-        <div class="row" style="align-self:end">
-          <button class="btn small primary" data-addmenu="${i}">+ เพิ่มสถานที่/มื้อ</button>
-          <button class="btn small" data-act="opt" data-i="${i}" title="เรียงจุดใหม่ให้ระยะทางสั้นสุด: เริ่มจากที่พักเมื่อคืน ไปจุดที่ใกล้สุดก่อนทีละจุด จุดที่ล็อกเวลาแทรกตามเวลา">${I("arrow-up-down")} เรียงเส้นทาง</button>
-          <a class="btn small" target="_blank" rel="noopener" href="${dirUrl(pts, e.mode)}">${I("navigation")} Google Maps</a>
-          <button class="btn small" data-daymenu="${i}" aria-label="เพิ่มเติม" title="สลับวัน / จัดวันนี้ใหม่">⋯</button></div>
+        <button class="btn small primary" data-addmenu="${i}">+ เพิ่มสถานที่/มื้อ</button>
+        <button class="btn small" data-daymenu="${i}" title="ที่พักคืนนี้ เวลาเริ่ม เรียงเส้นทาง Google Maps สลับวัน">⋯ จัดการวัน</button>
       </div></div>`;
   },
 
@@ -432,8 +434,16 @@ const PlanView = {
   },
   // ---- เมนู ⋯ ของวัน: สลับวัน (เช่น พายุเข้า) / จัดวันนี้ใหม่ ----
   dayMenu(i) {
+    const N = tripNights(), day = S.plan.days[i], e = this.evals[i];
+    const pts = [point(e.from), ...e.items.map((it) => point(it.id)).filter((p) => p.lat), point(e.to)];
     Modal.open(`<h2>วันที่ ${i + 1}</h2>
-      <h3>${I("arrow-left-right")} สลับแผนกับวันอื่น</h3><p class="mute small">สลับที่เที่ยว โน้ต และแผนสำรองทั้งวัน ที่พักแต่ละคืนคงเดิม ระบบจะเตือนถ้าไกลจากที่พักเกินไป</p>
+      <div class="form">
+        ${i < N ? `<label class="f">คืนนี้พักเมือง <small>${hotelOf(S.plan.bases[i])?.name ? esc(hotelOf(S.plan.bases[i]).name) : "ใส่โรงแรมจริงในหน้าข้อมูลทริป"}</small><select data-mbase>${hubOptions(S.plan.bases[i])}</select></label>` : ""}
+        ${i > 0 ? `<label class="f">เริ่มวัน <small>ว่าง = เวลาปกติ</small><input type="time" data-mstart value="${esc(day.start || "")}"></label>` : ""}</div>
+      <div class="row" style="margin-top:12px">
+        <button class="btn" data-mopt title="เรียงจุดใหม่ให้ระยะทางสั้นสุด: เริ่มจากที่พักเมื่อคืน ไปจุดที่ใกล้สุดก่อนทีละจุด จุดที่ล็อกเวลาแทรกตามเวลา">${I("arrow-up-down")} เรียงเส้นทางให้สั้นสุด</button>
+        <a class="btn" target="_blank" rel="noopener" href="${dirUrl(pts, e.mode)}">${I("navigation")} เปิดเส้นทางใน Google Maps</a></div>
+      <h3 style="margin-top:18px">${I("arrow-left-right")} สลับแผนกับวันอื่น</h3><p class="mute small">สลับที่เที่ยว โน้ต และแผนสำรองทั้งวัน ที่พักแต่ละคืนคงเดิม ระบบจะเตือนถ้าไกลจากที่พักเกินไป</p>
       <div class="move-days">${S.plan.days.map((_, k) => k === i ? "" : `<button class="btn" data-swap="${k}">วันที่ ${k + 1}<small>${esc(short(Planner.ends(k).to))}</small></button>`).join("")}</div>
       <h3 style="margin-top:14px">${I("refresh-ccw")} จัดวันนี้ใหม่</h3><p class="mute small">เปลี่ยนจุดที่ระบบเลือกให้ ที่ใส่เองและที่ล็อกเวลาไว้ยังอยู่</p>
       <button class="btn" data-refill>${I("refresh-ccw")} จัดวันนี้ใหม่</button>`);
@@ -442,6 +452,12 @@ const PlanView = {
       const sw = ev.target.closest("[data-swap]")?.dataset.swap;
       if (sw !== undefined) { this.mut(() => Planner.swapDays(i, +sw)); Modal.close(); return toast(`สลับวันที่ ${i + 1} กับ ${+sw + 1} แล้ว (กด ↶ ย้อนได้)`); }
       if (ev.target.closest("[data-refill]")) { this.mut(() => Planner.autofillDay(i, Planner.usedSet(i))); Modal.close(); }
+      if (ev.target.closest("[data-mopt]")) { this.mut(() => Planner.optimize(i)); Modal.close(); toast("เรียงเส้นทางแล้ว"); }
+    };
+    $("#modal").onchange = (ev) => {
+      const el = ev.target;
+      if (el.matches("[data-mbase]")) { this.mut(() => { S.plan.bases[i] = el.value; }); Modal.close(); toast(`คืนที่ ${i + 1} พัก ${short(el.value)} (กด ↶ ย้อนได้)`); }
+      else if (el.matches("[data-mstart]")) this.mut(() => { day.start = el.value || undefined; });
     };
   },
 
