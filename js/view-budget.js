@@ -86,12 +86,13 @@ const BudgetView = {
     const hint = (l) => l.own || l.mine || !l.note ? (l.key === "reserve" ? `<small class="bnote">${esc(l.note)}</small>` : "")
       : `<div class="bhint">${l.auto > 0 ? `ประมาณ ${l.cur === "JPY" ? `¥${fmtN(l.auto)}` : `${fmtN(l.auto)} ฿`} • ` : ""}${esc(l.note)}${l.auto > 0 ? ` <button class="linkbtn" data-useauto="${l.key}">ใช้ค่านี้</button>` : ""}</div>`;
     const keys = B.lines.filter((l) => l.key !== "reserve").map((l) => l.key);
-    const tools = (l, x) => { const i = keys.indexOf(l.key); return `<span class="it-tools"><button data-bmv="${l.key}:-1" ${i === 0 ? "disabled" : ""} aria-label="เลื่อนขึ้น" title="เลื่อนขึ้น">${I("arrow-up")}</button><button data-bmv="${l.key}:1" ${i === keys.length - 1 ? "disabled" : ""} aria-label="เลื่อนลง" title="เลื่อนลง">${I("arrow-down")}</button>${x}</span>`; };
+    const tools = (l, x) => `<span class="it-tools">${x}</span>`;
+    const grip = (l) => `<button class="bgrip" data-bgrip="${l.key}" aria-label="ย้ายลำดับ ${esc(l.name)} (ลาก หรือกดลูกศรขึ้น/ลง)" title="ลากเพื่อเปลี่ยนลำดับ">${I("grip-vertical")}</button>`;
     const name = (l) => l.key === "reserve"
       ? `<label class="row bx"><input type="checkbox" id="bRes" ${S.budgetReserve ? "checked" : ""}> <b>${esc(l.name)}</b></label>`
       : l.mine
-      ? `<div class="row bx"><input type="text" data-bxname="${l.key}" value="${esc(l.name)}" placeholder="ชื่อรายการ เช่น ทัวร์ Drift Ice" aria-label="ชื่อรายการ">${tools(l, `<button data-bxdel="${l.key}" title="ลบรายการ" aria-label="ลบรายการ ${esc(l.name)}">${I("x")}</button>`)}</div>`
-      : `<div class="row bx"><b>${esc(l.name)}</b><span class="spacer"></span>${tools(l, `<button data-bhide="${l.key}" title="ไม่ใช้รายการนี้" aria-label="ซ่อน ${esc(l.name)}">${I("x")}</button>`)}</div>`;
+      ? `<div class="row bx">${grip(l)}<input type="text" data-bxname="${l.key}" value="${esc(l.name)}" placeholder="ชื่อรายการ เช่น ทัวร์ Drift Ice" aria-label="ชื่อรายการ">${tools(l, `<button data-bxdel="${l.key}" title="ลบรายการ" aria-label="ลบรายการ ${esc(l.name)}">${I("x")}</button>`)}</div>`
+      : `<div class="row bx">${grip(l)}<b>${esc(l.name)}</b><span class="spacer"></span>${tools(l, `<button data-bhide="${l.key}" title="ไม่ใช้รายการนี้" aria-label="ซ่อน ${esc(l.name)}">${I("x")}</button>`)}</div>`;
     const colors = ["#2c6e9b", "#c8374a", "#2f8a57", "#b7791f", "#7b4fb5", "#0f8b8d", "#6a994e", "#3d5a80", "#8a817c"];
     $('[data-sec="budget"]').innerHTML = `
       <div class="sec-head"><h1>งบประมาณ</h1>
@@ -106,7 +107,7 @@ const BudgetView = {
         <div class="row" style="margin-top:6px;font-size:.8rem">${Object.entries(cats).map(([c, v], i) => `<span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:${colors[i % colors.length]}"></span> ${esc(c)} ${Math.round((v / B.total) * 100)}%</span>`).join("")}</div>` : ""}</div></aside>
       <div class="split-main">${B.jr ? `<div class="callout info">${B.jr.text}</div>` : ""}
       <div class="card"><p class="mute small" style="margin:0 0 8px">แต่ละรายการกรอกได้ทั้ง ฿ และ ¥ (เช่น จองที่พักเป็นบาท แต่จ่ายภาษีที่พักเป็นเยน) • ขวาสุด = รวมเป็นบาท • ✕ = ไม่ใช้รายการนี้</p>
-        <ul class="blist">${B.lines.map((l) => `${l.key === "reserve" ? `<li class="badd"><button class="btn small" id="bAdd">+ เพิ่มรายการเอง</button>${B.hiddenN ? ` <button class="linkbtn" id="bUnhide">แสดงรายการที่ซ่อน (${B.hiddenN})</button>` : ""}</li>` : ""}<li class="${l.own && !l.mine && l.key !== "reserve" ? "own" : ""}">
+        <ul class="blist">${B.lines.map((l) => `${l.key === "reserve" ? `<li class="badd"><button class="btn small" id="bAdd">+ เพิ่มรายการเอง</button>${B.hiddenN ? ` <button class="linkbtn" id="bUnhide">แสดงรายการที่ซ่อน (${B.hiddenN})</button>` : ""}</li>` : ""}<li class="${l.own && !l.mine && l.key !== "reserve" ? "own" : ""}" ${l.key === "reserve" ? "" : `data-key="${l.key}"`}>
           <div>${name(l)}${hint(l)}</div>
           <div class="bamt">${l.key === "reserve" ? "" : inp(l, "b") + inp(l, "y")}<b class="bthb">${l.own && (l.key !== "reserve" || S.budgetReserve) ? `${fmtN(l.thb)} ฿` : '<span class="mute">-</span>'}</b></div></li>`).join("")}
           <li class="btot"><b>รวมที่กรอกแล้ว${S.budgetReserve ? " + สำรอง" : ""}</b><div class="bamt"><span class="mute small">¥${fmtN(B.yen)} + ${fmtN(B.baht)} ฿</span><b class="bthb">${fmtN(B.total)} ฿</b></div></li></ul>
@@ -128,19 +129,45 @@ const BudgetView = {
         save(); App.renderAll();
       }
     });
+    // เปลี่ยนลำดับ: ลากที่จับ (เมาส์/นิ้ว) หรือกดลูกศรขึ้น/ลงบนที่จับ
+    const keysNow = () => this.calc().lines.filter((l) => l.key !== "reserve").map((l) => l.key);
+    const moveTo = (k, j) => {
+      const keys = keysNow(), i = keys.indexOf(k);
+      if (j < 0 || j >= keys.length || j === i) return false;
+      keys.splice(j, 0, keys.splice(i, 1)[0]);
+      S.budgetOrder = [...keys, ...S.budgetOrder.filter((x) => !keys.includes(x))]; // เก็บลำดับของรายการที่ซ่อนอยู่ไว้ด้วย
+      save(); App.renderAll(); return true;
+    };
+    sec.addEventListener("keydown", (e) => {
+      const k = e.target.dataset?.bgrip; if (!k || !["ArrowUp", "ArrowDown"].includes(e.key)) return;
+      e.preventDefault();
+      if (moveTo(k, keysNow().indexOf(k) + (e.key === "ArrowUp" ? -1 : 1))) sec.querySelector(`[data-bgrip="${k}"]`)?.focus();
+    });
+    sec.addEventListener("pointerdown", (e) => {
+      const g = e.target.closest("[data-bgrip]"); if (!g || e.button > 0) return;
+      e.preventDefault();
+      const k = g.dataset.bgrip, li = g.closest("li"), rows = [...sec.querySelectorAll(".blist li[data-key]")];
+      let to = rows.indexOf(li);
+      li.classList.add("dragging"); g.setPointerCapture(e.pointerId);
+      const mark = (y) => {
+        if (y < 70) scrollBy(0, -12); else if (y > innerHeight - 110) scrollBy(0, 12); // เลื่อนจอตามเมื่อลากถึงขอบ
+        to = rows.filter((r) => r.getBoundingClientRect().top + r.offsetHeight / 2 < y).length; // ตำแหน่งแทรก 0..n
+        rows.forEach((r, n) => { r.classList.toggle("drop-before", n === to && r !== li); r.classList.toggle("drop-after", n === rows.length - 1 && to === rows.length && r !== li); });
+      };
+      const up = () => {
+        g.removeEventListener("pointermove", mv); g.removeEventListener("pointerup", up); g.removeEventListener("pointercancel", up);
+        rows.forEach((r) => r.classList.remove("dragging", "drop-before", "drop-after"));
+        const from = rows.indexOf(li);
+        moveTo(k, to > from ? to - 1 : to);
+      };
+      const mv = (ev) => mark(ev.clientY);
+      g.addEventListener("pointermove", mv); g.addEventListener("pointerup", up); g.addEventListener("pointercancel", up);
+    });
     sec.addEventListener("input", (e) => { const id = e.target.dataset.bxname, x = id && S.budgetX.find((y) => y.id === id); if (x) { x.name = e.target.value; save(false); } });
     sec.addEventListener("click", (e) => {
       const el = e.target.closest("button"); if (!el) return;
       if (el.id === "bReset" && confirm("ล้างจำนวนเงินที่กรอกทั้งหมด? (รายการที่เพิ่มเองยังอยู่)")) { S.budget = {}; save(); App.renderAll(); }
       else if (el.dataset.useauto) { const l = this.calc().lines.find((x) => x.key === el.dataset.useauto); S.budget[l.key] = { [l.cur === "THB" ? "b" : "y"]: l.auto }; save(); App.renderAll(); }
-      else if (el.dataset.bmv) {
-        const [k, d] = el.dataset.bmv.split(":"), keys = this.calc().lines.filter((l) => l.key !== "reserve").map((l) => l.key), i = keys.indexOf(k), j = i + +d;
-        if (j < 0 || j >= keys.length) return;
-        [keys[i], keys[j]] = [keys[j], keys[i]];
-        S.budgetOrder = [...keys, ...S.budgetOrder.filter((x) => !keys.includes(x))]; // เก็บลำดับของรายการที่ซ่อนอยู่ไว้ด้วย
-        save(); App.renderAll();
-        sec.querySelector(`[data-bmv="${k}:${d}"]:not(:disabled)`)?.focus();
-      }
       else if (el.dataset.bhide) { S.budgetHide.push(el.dataset.bhide); delete S.budget[el.dataset.bhide]; save(); App.renderAll(); }
       else if (el.id === "bUnhide") { S.budgetHide = []; save(); App.renderAll(); }
       else if (el.id === "bAdd") {

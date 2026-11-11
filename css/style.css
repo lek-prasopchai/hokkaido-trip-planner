@@ -670,3 +670,12 @@ input[type=text], input[type=number], input[type=date], input[type=time], input[
 @media (min-width: 1200px) { .split-top.filters { position: static; } }
 @media (max-width: 520px) { .lact .addsel { max-width: 104px; } }
 .maplbl small { opacity: 1; }
+
+/* งบประมาณ: ที่จับลากเปลี่ยนลำดับ */
+.bgrip { flex: none; display: inline-grid; place-items: center; width: 28px; height: 32px; margin-left: -6px; border: 0; border-radius: 6px; background: none; color: var(--mute); cursor: grab; touch-action: none; }
+.bgrip:hover { background: var(--bg); color: var(--ink); }
+.bgrip:active { cursor: grabbing; }
+.blist li.dragging { opacity: .45; background: var(--ice-soft); }
+.blist li.drop-before { box-shadow: inset 0 3px 0 var(--ice); }
+.blist li.drop-after { box-shadow: inset 0 -3px 0 var(--ice); }
+@media (max-width: 899px) { .bgrip { width: 36px; height: 40px; } }
