@@ -648,3 +648,25 @@ main { max-width: 1440px; }
   .split-side .summary .k:nth-child(n+3) { border-top: 1px solid var(--line); }
   .split-side .summary .k b { font-size: 1.1rem; }
 }
+
+/* ---------- ตรวจละเอียด: สี/ไอคอนที่จางหรือมองไม่เห็น ---------- */
+/* ขอบช่องกรอกต้องต่างจากพื้น >= 3:1 จึงเห็นว่าเป็นช่อง */
+:root { --fline: #848f9d; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --fline: #66778f; } }
+:root[data-theme="dark"] { --fline: #66778f; }
+input[type=text], input[type=number], input[type=date], input[type=time], input[type=search], input[type=url], input[type=datetime-local], select, textarea { border-color: var(--fline); }
+/* small ทั่วไปเป็นสีเทา: บนแถบมืด/ป้ายสีต้องใช้สีของพื้นนั้น */
+.brand small, .maplbl small { color: inherit; }
+.move-days small { opacity: 1; color: var(--ink2); }
+/* หมุด/ปุ่มบนแผนที่และป้ายฤดูเป็นพื้นขาวเสมอ: ไอคอนต้องเข้มทั้งสองธีม */
+.pin, .ph .sea { color: #142033; }
+.map-me { color: #142033 !important; }
+/* ป๊อปอัปบนแผนที่ตามธีม */
+.leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--paper); color: var(--ink); }
+.leaflet-container a.leaflet-popup-close-button { color: var(--mute); }
+/* ปุ่มจัดการรายการในวัน: แสดงตลอด ไม่ต้องชี้เมาส์ก่อน */
+@media (hover: hover) and (pointer: fine) and (min-width: 900px) { .tl li.it .it-tools { opacity: 1; } }
+/* จอกว้าง: ตัวกรองไม่ลอยตาม จะได้ไม่บังแผนที่ด้านขวา */
+@media (min-width: 1200px) { .split-top.filters { position: static; } }
+@media (max-width: 520px) { .lact .addsel { max-width: 104px; } }
+.maplbl small { opacity: 1; }
