@@ -624,3 +624,27 @@ input[type=checkbox], input[type=radio] { width: 16px; height: 16px; cursor: poi
 }
 .summary .k span { display: block; line-height: 1.45; }
 @media (max-width: 899px) { .summary .k:last-child:nth-child(odd) { grid-column: 1 / -1; border-left: 0; padding-left: 0; } }
+
+/* ---------- จอกว้าง: 2 คอลัมน์ (เนื้อหาซ้าย / แผนที่-สรุปติดขวา) ---------- */
+main { max-width: 1440px; }
+.map-focus { display: none; }
+.undo-fab:disabled { display: none; }
+@media (min-width: 1200px) {
+  .split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, 42%); grid-template-areas: "top top" "main side"; column-gap: 18px; align-items: start; }
+  .split-r { grid-template-columns: minmax(0, 1fr) minmax(320px, 34%); }
+  .split-top { grid-area: top; }
+  .split-main { grid-area: main; min-width: 0; }
+  .split-side { grid-area: side; position: sticky; top: calc(var(--toph) + 16px); min-width: 0; }
+  .split-side #map, .split-side #placesMap { height: calc(100vh - var(--toph) - 230px); min-height: 340px; }
+  .split-side .card { margin-bottom: 0; }
+  .split-side .map-legend { font-size: .76rem; }
+  .split-main .day-body { grid-template-columns: 1fr; gap: 8px; }
+  .map-focus { display: inline-flex; margin-left: auto; }
+  .map-focus + .day-tog { margin-left: 0; }
+  /* สรุปงบในคอลัมน์ขวา: 2x2 */
+  .split-side .summary { grid-template-columns: 1fr 1fr; }
+  .split-side .summary .k + .k { border-left: 0; padding-left: 0; }
+  .split-side .summary .k:nth-child(even) { border-left: 1px solid var(--line); padding-left: 14px; }
+  .split-side .summary .k:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .split-side .summary .k b { font-size: 1.1rem; }
+}

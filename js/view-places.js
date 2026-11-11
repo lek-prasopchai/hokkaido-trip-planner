@@ -33,7 +33,7 @@ const PlacesView = {
     sec.innerHTML = `
       <div class="sec-head"><h1>สถานที่เที่ยว</h1>
         <p class="lead">${PLACES.length} สถานที่ทั่วฮอกไกโด ทุกฤดู ★★★ = ห้ามพลาด • ไอคอน ${Object.values(SEASONS).map((s) => I(s.ic)).join("")} = ฤดูที่ไปได้ • เวลาเปิด/ราคาที่มี ≈ เป็นค่าประมาณ ตรวจก่อนไป</p></div>
-      <div class="filters no-print"><div class="row">
+      <div class="split"><div class="split-top filters no-print"><div class="row">
         <input type="search" aria-label="ค้นหาสถานที่" placeholder="ค้นหาชื่อ ไทย/อังกฤษ/ญี่ปุ่น..." data-f="q" value="${esc(f.q)}" style="flex:1;min-width:160px">
         <select data-f="season"><option value="trip" ${f.season === "trip" ? "selected" : ""}>ช่วงทริปของฉัน (${tripMonths().map((m) => MO[m - 1]).join(", ")})</option><option value="" ${!f.season ? "selected" : ""}>ทุกฤดู</option>
           ${Object.entries(SEASONS).map(([k, s]) => `<option value="${k}" ${f.season === k ? "selected" : ""}>${s.name}</option>`).join("")}</select>
@@ -45,10 +45,10 @@ const PlacesView = {
         <label class="chk"><input type="checkbox" data-f="transit" ${f.transit ? "checked" : ""}> ไปด้วยรถไฟ/บัสได้</label>
         <label class="chk"><input type="checkbox" data-f="free" ${f.free ? "checked" : ""}> ฟรี</label>
         ${S.plan ? `<label class="chk"><input type="checkbox" data-f="inplan" ${f.inplan ? "checked" : ""}> เฉพาะที่อยู่ในแผน</label>` : ""}</div></div>
-      <details class="card mapbox" open><summary><b>แผนที่</b></summary><div class="map" id="placesMap"></div>
+      <aside class="split-side"><details class="card mapbox" open><summary><b>แผนที่</b></summary><div class="map" id="placesMap"></div>
       <div class="map-legend">${Object.entries(TAG_ICON).map(([k, v]) => `<span>${I(v)} ${INTEREST[k]}</span>`).join("")}
-        <span><i class="ring" style="border-color:#c8374a"></i>ขอบแดง = ★★★</span><span><i class="ring" style="border-color:#2c6e9b"></i>ขอบน้ำเงิน = ★★</span><span><i class="ring" style="border-color:#2f8a57"></i>ขอบเขียว = อยู่ในแผนแล้ว</span></div></details>
-      <div id="placeList"></div>`;
+        <span><i class="ring" style="border-color:#c8374a"></i>ขอบแดง = ★★★</span><span><i class="ring" style="border-color:#2c6e9b"></i>ขอบน้ำเงิน = ★★</span><span><i class="ring" style="border-color:#2f8a57"></i>ขอบเขียว = อยู่ในแผนแล้ว</span></div></details></aside>
+      <div class="split-main" id="placeList"></div></div>`;
     this.M = makeMap($("#placesMap"));
     this.list();
   },

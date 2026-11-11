@@ -131,7 +131,7 @@ const PlanView = {
     const overall = sum.some((x) => x.lvl === "bad") ? "bad" : sum.some((x) => x.lvl === "warn") ? "warn" : "good";
     const nightsBy = [];
     S.plan.bases.forEach((b) => { const l = nightsBy[nightsBy.length - 1]; if (l && l.b === b) l.n++; else nightsBy.push({ b, n: 1 }); });
-    sec.innerHTML = `${Safety.banner()}
+    sec.innerHTML = `${Safety.banner()}<div class="split"><div class="split-top">
       <div class="card overview"><div class="row"><h1 style="margin:0">แผนทริป</h1><span class="badge b-${overall}">${LVL_ICON[overall]} ${LVL_TXT[overall]}</span>
         <div class="spacer"></div><div class="row no-print"><a class="btn small" href="#setup">${I("pencil")} ข้อมูลทริป</a>
           <details class="more-menu"><summary class="btn small" aria-label="เมนูเพิ่มเติม">⋯ เพิ่มเติม</summary><div class="menu-pop">
@@ -146,15 +146,15 @@ const PlanView = {
         </div>
         <details class="gantt-box" ${matchMedia("(min-width: 900px)").matches ? "open" : ""}><summary>${I("clock")} แถบเวลาทั้งทริป <small class="mute">ดูว่าวันไหนแน่น</small></summary>${this.gantt(evals)}</details>
         <ul class="checks">${sum.map((c) => `<li class="${c.lvl}">${esc(c.text)}</li>`).join("")}</ul>
-      </div>
-      <div class="card no-print"><div class="row"><h2 style="margin:0">แผนที่</h2><div class="spacer"></div><span class="mute small">กด D1-D8 ดูลำดับรายวัน • จุดสีเทา = กดเพิ่มเข้าแผน</span></div>
+      </div></div>
+      <aside class="split-side no-print"><div class="card"><div class="row"><h2 style="margin:0">แผนที่</h2><div class="spacer"></div><span class="mute small">กด D1-D8 ดูลำดับรายวัน • จุดสีเทา = กดเพิ่มเข้าแผน</span></div>
         <div class="map-days"><button data-mapday="all" class="${this.focus === null ? "on" : ""}">ทั้งทริป</button>${evals.map((e) => `<button data-mapday="${e.i}" style="--c:${DAY_COLORS[e.i % DAY_COLORS.length]}" class="${this.focus === e.i ? "on" : ""}">D${e.i + 1}</button>`).join("")}</div>
         <div id="planMapHost"></div>
         <div class="map-legend"><span><span class="pin num" style="--c:#2c6e9b;display:inline-grid;margin:0;width:18px;height:18px;font-size:10px">1</span> ลำดับในวันนั้น</span>
           <span><i style="background:#2c6e9b"></i>ขับรถ</span><span><i style="background:repeating-linear-gradient(90deg,#2c6e9b 0 3px,transparent 3px 8px)"></i>รถไฟ/บัส</span>
-          <span>${I("moon")} หลังเช็กอิน</span><span>${I("hotel")} ที่พัก</span></div></div>
-      ${this.wishCard()}
-      ${evals.map((e) => this.dayCard(e)).join("")}
+          <span>${I("moon")} หลังเช็กอิน</span><span>${I("hotel")} ที่พัก</span></div></div></aside>
+      <div class="split-main">${this.wishCard()}
+      ${evals.map((e) => this.dayCard(e)).join("")}</div></div>
       ${this.undoBtn()}`;
     this.mountMap(evals);
     Weather.fill(sec);
@@ -263,11 +263,12 @@ const PlanView = {
       <div class="day-head"><h3>วันที่ ${i + 1}</h3><span class="day-meta">${thDate(e.iso)} • ${I("sun")} ${fmtT(e.sun.rise)}-${fmtT(e.sun.set)}</span>
         <span class="wx" data-wx="${ref.lat},${ref.lng},${e.iso}"></span>
         <span class="badge b-${e.lvl}">${LVL_ICON[e.lvl]} ${LVL_TXT[e.lvl]}</span>
+        <button class="btn small map-focus no-print" data-mapday="${i}" title="แสดงวันนี้บนแผนที่ด้านขวา">${I("map")} ดูบนแผนที่</button>
         <button class="btn small day-tog no-print" data-tog="${i}" aria-expanded="${open}">${open ? "ย่อ" : "ดูทั้งวัน"}</button></div>
       <div class="day-meta" style="margin-top:2px"><b>${esc(short(e.from))}</b> → <b>${esc(short(e.to))}</b>${e.driveH ? ` • ขับรวม ${fmtH(e.driveH)}` : ""} • จบวัน ~${fmtT(e.end)}${e.leaveBy != null ? ` • <b>ออกจากที่พักไม่เกิน ${fmtT(e.leaveBy)}</b>` : ""}</div>
       <div class="day-body">
         <div><ul class="tl" data-day="${i}">${rows}</ul>${this.maybeBox(i)}</div>
-        <div><details class="no-print daymap-box" ${matchMedia("(min-width: 900px)").matches ? "open" : ""}><summary>${I("map")} แผนที่วันนี้</summary><div class="daymap" data-daymap="${i}"></div></details>
+        <div><details class="no-print daymap-box" ${matchMedia("(min-width: 900px) and (max-width: 1199px)").matches ? "open" : ""}><summary>${I("map")} แผนที่วันนี้</summary><div class="daymap" data-daymap="${i}"></div></details>
           <ul class="checks">${e.checks.length ? e.checks.map((c) => `<li class="${c.lvl}">${LVL_ICON[c.lvl] || ""} ${esc(c.text)}</li>`).join("") : `<li class="good">${I("circle-check")} เวลาพอ${e.mode === "car" ? " ไม่ขับตอนมืด" : ""}</li>`}</ul>
           <details class="no-print daynote" ${day.note || day.planB ? "open" : ""}><summary>${I("notebook-pen")} โน้ต / แผนสำรอง</summary>
             <textarea data-dnote="${i}" rows="2" placeholder="โน้ตวันนี้ เช่น เลขจองทัวร์">${esc(day.note || "")}</textarea>
@@ -571,7 +572,7 @@ const PlanView = {
       else if (d.detail) PlacesView.detail(isNaN(d.detail) ? d.detail : +d.detail);
       else if (d.mapday) {
         this.focus = d.mapday === "all" ? null : +d.mapday;
-        $$("[data-mapday]").forEach((b) => b.classList.toggle("on", b === el));
+        $$(".map-days [data-mapday]").forEach((b) => b.classList.toggle("on", b.dataset.mapday === d.mapday));
         TripMap.drawPlan(this.M, this.evals, this.focus);
       } else if (d.goto) { this.openDay(+d.goto); $(`#day-${d.goto}`).scrollIntoView({ behavior: "smooth", block: "start" }); }
       else if (d.tog) this.openDay(+d.tog, !this.opened.has(+d.tog));
