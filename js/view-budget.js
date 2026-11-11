@@ -66,9 +66,11 @@ const BudgetView = {
     };
     const fill = (l) => { Object.assign(l, split(l)); l.thb = l.b + l.y * S.rate; };
     const hidden = new Set(S.budgetHide);
-    const shown = L.filter((l) => !hidden.has(l.key)).map((l) => (fill(l), l));
-    const sub = shown.reduce((a, l) => a + l.thb, 0), r = (sub * D.reservePct) / 100;
-    add("reserve", "สำรอง", `เงินสำรอง ${D.reservePct}%`, "THB", 0, "คิดจากยอดที่กรอกแล้ว เผื่อพายุ เลื่อนไฟลต์ ค่ารักษา");
+    // ลำดับที่ผู้ใช้จัดเอง (S.budgetOrder) ก่อน รายการที่ยังไม่เคยจัด (เช่น ค่ารถเพิ่งมีเพราะเปลี่ยนแผน) ต่อท้ายตามลำดับเดิม
+    const pos = (k) => { const i = S.budgetOrder.indexOf(k); return i < 0 ? 1e3 + L.findIndex((l) => l.key === k) : i; };
+    const shown = L.filter((l) => !hidden.has(l.key)).sort((a, b) => pos(a.key) - pos(b.key)).map((l) => (fill(l), l));
+    const sub = shown.reduce((a, l) => a + l.thb, 0), r = S.budgetReserve ? (sub * D.reservePct) / 100 : 0;
+    add("reserve", "สำรอง", `เงินสำรอง ${D.reservePct}%`, "THB", 0, S.budgetReserve ? "คิดจากยอดที่กรอกแล้ว เผื่อพายุ เลื่อนไฟลต์ ค่ารักษา" : "ไม่นับรวม (ติ๊กเพื่อนับ)");
     const res = Object.assign(L[L.length - 1], { b: r, y: 0, thb: r, own: true });
     shown.push(res);
     return { lines: shown, hiddenN: hidden.size, total: sub + r, todoN: shown.filter((l) => !l.own).length,
@@ -83,15 +85,19 @@ const BudgetView = {
       return `<label class="bin"><span>${c === "b" ? "฿" : "¥"}</span><input type="number" min="0" data-bk="${l.key}" data-c="${c}" value="${v}" placeholder="0" aria-label="${esc(l.name)} ${c === "b" ? "บาท" : "เยน"}"></label>`; };
     const hint = (l) => l.own || l.mine || !l.note ? (l.key === "reserve" ? `<small class="bnote">${esc(l.note)}</small>` : "")
       : `<div class="bhint">${l.auto > 0 ? `ประมาณ ${l.cur === "JPY" ? `¥${fmtN(l.auto)}` : `${fmtN(l.auto)} ฿`} • ` : ""}${esc(l.note)}${l.auto > 0 ? ` <button class="linkbtn" data-useauto="${l.key}">ใช้ค่านี้</button>` : ""}</div>`;
-    const name = (l) => l.mine
-      ? `<div class="row bx"><input type="text" data-bxname="${l.key}" value="${esc(l.name)}" placeholder="ชื่อรายการ เช่น ทัวร์ Drift Ice" aria-label="ชื่อรายการ"><button class="btn small ghost" data-bxdel="${l.key}" title="ลบรายการ" aria-label="ลบรายการ ${esc(l.name)}">${I("x")}</button></div>`
-      : `<div class="row bx"><b>${esc(l.name)}</b>${l.key === "reserve" ? "" : `<span class="spacer"></span><button class="btn small ghost" data-bhide="${l.key}" title="ไม่ใช้รายการนี้" aria-label="ซ่อน ${esc(l.name)}">${I("x")}</button>`}</div>`;
+    const keys = B.lines.filter((l) => l.key !== "reserve").map((l) => l.key);
+    const tools = (l, x) => { const i = keys.indexOf(l.key); return `<span class="it-tools"><button data-bmv="${l.key}:-1" ${i === 0 ? "disabled" : ""} aria-label="เลื่อนขึ้น" title="เลื่อนขึ้น">${I("arrow-up")}</button><button data-bmv="${l.key}:1" ${i === keys.length - 1 ? "disabled" : ""} aria-label="เลื่อนลง" title="เลื่อนลง">${I("arrow-down")}</button>${x}</span>`; };
+    const name = (l) => l.key === "reserve"
+      ? `<label class="row bx"><input type="checkbox" id="bRes" ${S.budgetReserve ? "checked" : ""}> <b>${esc(l.name)}</b></label>`
+      : l.mine
+      ? `<div class="row bx"><input type="text" data-bxname="${l.key}" value="${esc(l.name)}" placeholder="ชื่อรายการ เช่น ทัวร์ Drift Ice" aria-label="ชื่อรายการ">${tools(l, `<button data-bxdel="${l.key}" title="ลบรายการ" aria-label="ลบรายการ ${esc(l.name)}">${I("x")}</button>`)}</div>`
+      : `<div class="row bx"><b>${esc(l.name)}</b><span class="spacer"></span>${tools(l, `<button data-bhide="${l.key}" title="ไม่ใช้รายการนี้" aria-label="ซ่อน ${esc(l.name)}">${I("x")}</button>`)}</div>`;
     const colors = ["#2c6e9b", "#c8374a", "#2f8a57", "#b7791f", "#7b4fb5", "#0f8b8d", "#6a994e", "#3d5a80", "#8a817c"];
     $('[data-sec="budget"]').innerHTML = `
       <div class="sec-head"><h1>งบประมาณ</h1>
         <p class="lead">กรอกราคาจริงที่จองหรือคาดว่าจะจ่าย ยอดรวมนับเฉพาะที่กรอก • ตัวเทาใต้รายการคือราคาประมาณ (ต่อคน/ต่อห้อง หรือคิดจากแผนสำหรับค่ารถ กด "ใช้ค่านี้" ได้)</p></div>
       <div class="card"><div class="summary">
-        <div class="k"><b>${fmtN(B.total)} ฿</b><span>กรอกแล้ว (รวมสำรอง)</span></div>
+        <div class="k"><b>${fmtN(B.total)} ฿</b><span>กรอกแล้ว${S.budgetReserve ? " (รวมสำรอง)" : ""}</span></div>
         <div class="k"><b>${B.todoN ? `${B.todoN} รายการ` : "ครบแล้ว"}</b><span>${B.todoN ? "ยังไม่ได้กรอก" : "ทุกรายการกรอกแล้ว"}</span></div>
         <div class="k"><b>¥${fmtN(B.yen)} + ${fmtN(B.baht)} ฿</b><span>จ่ายเป็นเยน + จ่ายเป็นบาท</span></div>
         <div class="k"><label class="f">1 เยน = ? บาท<input type="number" step="0.0001" id="rate" value="${S.rate}"></label>
@@ -102,8 +108,8 @@ const BudgetView = {
       <div class="card"><p class="mute small" style="margin:0 0 8px">แต่ละรายการกรอกได้ทั้ง ฿ และ ¥ (เช่น จองที่พักเป็นบาท แต่จ่ายภาษีที่พักเป็นเยน) • ขวาสุด = รวมเป็นบาท • ✕ = ไม่ใช้รายการนี้</p>
         <ul class="blist">${B.lines.map((l) => `${l.key === "reserve" ? `<li class="badd"><button class="btn small" id="bAdd">+ เพิ่มรายการเอง</button>${B.hiddenN ? ` <button class="linkbtn" id="bUnhide">แสดงรายการที่ซ่อน (${B.hiddenN})</button>` : ""}</li>` : ""}<li class="${l.own && !l.mine && l.key !== "reserve" ? "own" : ""}">
           <div>${name(l)}${hint(l)}</div>
-          <div class="bamt">${l.key === "reserve" ? "" : inp(l, "b") + inp(l, "y")}<b class="bthb">${l.own ? `${fmtN(l.thb)} ฿` : '<span class="mute">-</span>'}</b></div></li>`).join("")}
-          <li class="btot"><b>รวมที่กรอกแล้ว</b><div class="bamt"><span class="mute small">¥${fmtN(B.yen)} + ${fmtN(B.baht)} ฿</span><b class="bthb">${fmtN(B.total)} ฿</b></div></li></ul>
+          <div class="bamt">${l.key === "reserve" ? "" : inp(l, "b") + inp(l, "y")}<b class="bthb">${l.own && (l.key !== "reserve" || S.budgetReserve) ? `${fmtN(l.thb)} ฿` : '<span class="mute">-</span>'}</b></div></li>`).join("")}
+          <li class="btot"><b>รวมที่กรอกแล้ว${S.budgetReserve ? " + สำรอง" : ""}</b><div class="bamt"><span class="mute small">¥${fmtN(B.yen)} + ${fmtN(B.baht)} ฿</span><b class="bthb">${fmtN(B.total)} ฿</b></div></li></ul>
         <div class="row" style="margin-top:8px"><button class="btn small" id="bReset">ล้างจำนวนเงินที่กรอก</button><span class="mute" style="font-size:.8rem">ค่าประมาณอิงราคา พ.ย. 2026 ไว้ดูภาพรวม ไม่ใช่ใบเสนอราคา</span></div></div>`;
   },
 
@@ -112,6 +118,7 @@ const BudgetView = {
     sec.addEventListener("change", (e) => {
       const el = e.target;
       if (el.id === "rate") { S.rate = Math.max(0.01, +el.value || 0.23); S.set.rateAuto = false; save(); App.renderAll(); return; }
+      if (el.id === "bRes") { S.budgetReserve = el.checked; save(); App.renderAll(); return; }
       if (el.id === "rateAuto") { S.set.rateAuto = el.checked; if (el.checked) { S.rateAt = 0; refreshRate(); } save(); App.renderAll(); return; }
       if (el.dataset.bk) {
         const k = el.dataset.bk, l = this.calc().lines.find((x) => x.key === k), old = S.budget[k];
@@ -126,6 +133,14 @@ const BudgetView = {
       const el = e.target.closest("button"); if (!el) return;
       if (el.id === "bReset" && confirm("ล้างจำนวนเงินที่กรอกทั้งหมด? (รายการที่เพิ่มเองยังอยู่)")) { S.budget = {}; save(); App.renderAll(); }
       else if (el.dataset.useauto) { const l = this.calc().lines.find((x) => x.key === el.dataset.useauto); S.budget[l.key] = { [l.cur === "THB" ? "b" : "y"]: l.auto }; save(); App.renderAll(); }
+      else if (el.dataset.bmv) {
+        const [k, d] = el.dataset.bmv.split(":"), keys = this.calc().lines.filter((l) => l.key !== "reserve").map((l) => l.key), i = keys.indexOf(k), j = i + +d;
+        if (j < 0 || j >= keys.length) return;
+        [keys[i], keys[j]] = [keys[j], keys[i]];
+        S.budgetOrder = [...keys, ...S.budgetOrder.filter((x) => !keys.includes(x))]; // เก็บลำดับของรายการที่ซ่อนอยู่ไว้ด้วย
+        save(); App.renderAll();
+        sec.querySelector(`[data-bmv="${k}:${d}"]:not(:disabled)`)?.focus();
+      }
       else if (el.dataset.bhide) { S.budgetHide.push(el.dataset.bhide); delete S.budget[el.dataset.bhide]; save(); App.renderAll(); }
       else if (el.id === "bUnhide") { S.budgetHide = []; save(); App.renderAll(); }
       else if (el.id === "bAdd") {

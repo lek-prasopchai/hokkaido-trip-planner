@@ -544,7 +544,7 @@ details.adv > summary { cursor: pointer; color: var(--ice); font-size: .88rem; m
 .btot { border-top: 2px solid var(--ink) !important; }
 @media (max-width: 640px) { .blist li { grid-template-columns: 1fr; } .bin input { width: 86px; } }
 .blist .bx { flex-wrap: nowrap; gap: 4px; }
-.blist .bx input { flex: 1; min-width: 0; font-weight: 600; }
+.blist .bx input[type=text] { flex: 1; min-width: 0; font-weight: 600; }
 .blist li.badd { display: block; }
 
 /* แผนที่เล็กในการ์ดรูท */
@@ -555,3 +555,5 @@ details.adv > summary { cursor: pointer; color: var(--ice); font-size: .88rem; m
 .tpl-map circle.air { fill: var(--paper); stroke: var(--ice); }
 .routes-box > summary { cursor: pointer; }
 .routes-box[open] > summary { margin-bottom: 10px; }
+.blist .it-tools { display: inline-flex; gap: 2px; flex: none; }
+.blist label.bx { cursor: pointer; gap: 6px; }
