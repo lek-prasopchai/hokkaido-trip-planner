@@ -17,6 +17,7 @@ const MAPS = []; // แผนที่ทุกอันในหน้า ใ�
 function makeMap(el, { small = false } = {}) {
   const map = L.map(el, { zoomSnap: 0.25, zoomControl: !small, attributionControl: !small, scrollWheelZoom: !small })
     .setView([43.4, 142.8], 6.25);
+  twoFinger(map);
   const OFFLINE = { color: "#8aa4bb", weight: 1, fillColor: "#ffffff", fillOpacity: 1 };
   const outline = L.geoJSON({ type: "MultiPolygon", coordinates: HOKKAIDO_OUTLINE.map((r) => [r]) },
     { style: { weight: 0, fillOpacity: 0 }, interactive: false }).addTo(map);
@@ -33,8 +34,34 @@ function makeMap(el, { small = false } = {}) {
     if (!small) L.control.layers(bases, null, { position: "topright" }).addTo(map);
   }
   const M = { map, layer: L.layerGroup().addTo(map), bounds: null, sec: el.closest("section")?.dataset.sec };
+  if (!small) { // ปุ่มตำแหน่งฉัน (จุดฟ้า) ใช้ระหว่างทริป
+    const me = L.control({ position: "topleft" });
+    me.onAdd = () => {
+      const d = L.DomUtil.create("div", "leaflet-bar");
+      d.innerHTML = `<a href="#" role="button" class="map-me" title="ตำแหน่งฉัน" aria-label="ตำแหน่งฉัน">${I("navigation")}</a>`;
+      L.DomEvent.disableClickPropagation(d);
+      d.firstChild.onclick = (e) => { e.preventDefault(); toast("กำลังหาตำแหน่ง…"); map.locate({ setView: true, maxZoom: 14, enableHighAccuracy: true }); };
+      return d;
+    };
+    me.addTo(map);
+    map.on("locationfound", (e) => { M.me ? M.me.setLatLng(e.latlng) : (M.me = L.circleMarker(e.latlng, { radius: 8, color: "#fff", weight: 3, fillColor: "#1a73e8", fillOpacity: 1 }).bindTooltip("ตำแหน่งฉัน").addTo(map)); });
+    map.on("locationerror", () => toast("หาตำแหน่งไม่ได้ ต้องอนุญาตตำแหน่งในเบราว์เซอร์ก่อน"));
+  }
   MAPS.push(M);
   return M;
+}
+
+// จอสัมผัส: นิ้วเดียว = เลื่อนหน้าเว็บ, สองนิ้ว = เลื่อน/ซูมแผนที่ (กันเลื่อนหน้ายาวๆ แล้วไปติดแผนที่)
+const COARSE = matchMedia("(pointer: coarse)").matches;
+function twoFinger(map) {
+  if (!COARSE) return;
+  map.dragging.disable(); // Leaflet ยังซูม+เลื่อนด้วยสองนิ้วได้ (touchZoom)
+  const el = map.getContainer(), hint = L.DomUtil.create("div", "map-hint", el);
+  hint.textContent = "ใช้ 2 นิ้วเลื่อนแผนที่";
+  el.addEventListener("touchmove", (e) => {
+    if (e.touches.length !== 1) return;
+    hint.classList.add("show"); clearTimeout(hint._t); hint._t = setTimeout(() => hint.classList.remove("show"), 1200);
+  }, { passive: true });
 }
 
 function refitMap(M) {
@@ -114,13 +141,14 @@ function drawDayRoute(M, e, color, { faded = false, weight = 4 } = {}) {
   }
 }
 
-function drawDayStops(M, e, color, { faded = false } = {}) {
+function drawDayStops(M, e, color, { faded = false, dot = false } = {}) {
   let n = 0;
   e.tl.filter((x) => x.kind === "visit").forEach((x) => {
     const p = point(x.id);
     n++;
     if (!p.lat) return;
-    L.marker([p.lat, p.lng], { icon: pin(x.night ? I("moon") : n, color, "num" + (faded ? " faded" : "")), zIndexOffset: faded ? 0 : 500 })
+    (dot ? L.circleMarker([p.lat, p.lng], { radius: 6, color: "#fff", weight: 2, fillColor: color, fillOpacity: 1 })
+      : L.marker([p.lat, p.lng], { icon: pin(x.night ? I("moon") : n, color, "num" + (faded ? " faded" : "")), zIndexOffset: faded ? 0 : 500 }))
       .bindPopup(placePopup(p, `<div class="mute">วันที่ ${e.i + 1} • จุดที่ ${n} • ${fmtT(x.t)}</div>`), { maxWidth: 260 }).addTo(M.layer);
     M.bounds.push([p.lat, p.lng]);
   });
@@ -147,7 +175,7 @@ const TripMap = {
       const color = DAY_COLORS[e.i % DAY_COLORS.length];
       if (!on && focus !== null) { drawDayRoute(M, e, color, { faded: true, weight: 3 }); return; }
       drawDayRoute(M, e, color);
-      drawDayStops(M, e, color);
+      drawDayStops(M, e, color, { dot: focus === null }); // ทั้งทริป: จุดเล็กไม่มีเลข (เลขซ้ำทุกวันแล้วซ้อนกัน)
       dayPoints(e).forEach((p) => M.bounds.push([p.lat, p.lng]));
     });
     // ที่พัก + จำนวนคืน
@@ -277,6 +305,7 @@ document.addEventListener("click", (ev) => {
   if (!el._m) {
     const ll = parseLatLng(inp.value), [cLat, cLng] = (box.dataset.c || "43.0618,141.3545").split(",").map(Number);
     const m = L.map(el, { zoomSnap: 0.25 }).setView(ll ? [ll.lat, ll.lng] : [cLat, cLng], ll ? 15 : 12);
+    twoFinger(m);
     const [url, attribution] = Object.values(TILE_SOURCES)[0];
     L.tileLayer(url, { maxZoom: 18, attribution }).addTo(m);
     el._m = m;

@@ -150,7 +150,7 @@ const PlanView = {
         <details class="gantt-box" ${matchMedia("(min-width: 900px)").matches ? "open" : ""}><summary>${I("clock")} แถบเวลาทั้งทริป <small class="mute">ดูว่าวันไหนแน่น</small></summary>${this.gantt(evals)}</details>
         <ul class="checks">${sum.map((c) => `<li class="${c.lvl}">${esc(c.text)}</li>`).join("")}</ul>
       </div>
-      <div class="card no-print"><div class="row"><h2 style="margin:0">แผนที่</h2><div class="spacer"></div><span class="mute small">กดจุดสีเทาเพื่อเพิ่มเข้าแผน</span></div>
+      <div class="card no-print"><div class="row"><h2 style="margin:0">แผนที่</h2><div class="spacer"></div><span class="mute small">กด D1-D8 ดูลำดับรายวัน • จุดสีเทา = กดเพิ่มเข้าแผน</span></div>
         <div class="map-days"><button data-mapday="all" class="${this.focus === null ? "on" : ""}">ทั้งทริป</button>${evals.map((e) => `<button data-mapday="${e.i}" style="--c:${DAY_COLORS[e.i % DAY_COLORS.length]}" class="${this.focus === e.i ? "on" : ""}">D${e.i + 1}</button>`).join("")}</div>
         <div id="planMapHost"></div>
         <div class="map-legend"><span><span class="pin num" style="--c:#2c6e9b;display:inline-grid;margin:0;width:18px;height:18px;font-size:10px">1</span> ลำดับในวันนั้น</span>
