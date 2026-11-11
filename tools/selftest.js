@@ -4,7 +4,7 @@ global.window = global;
 global.localStorage = { getItem: () => null, setItem() {} };
 global.App = { viewOnly: false };
 const root = path.join(__dirname, "..");
-for (const f of ["places", "festivals", "drive", "hubs", "transit", "templates", "guide"]) vm.runInThisContext(fs.readFileSync(`${root}/data/${f}.js`, "utf8"));
+for (const f of ["places", "drive", "hubs", "transit", "templates", "guide"]) vm.runInThisContext(fs.readFileSync(`${root}/data/${f}.js`, "utf8"));
 for (const f of ["core", "planner"]) vm.runInThisContext(fs.readFileSync(`${root}/js/${f}.js`, "utf8").replace(/^(const|let) /gm, "var "));
 const trip = (o) => { S = Store.defaults(); Object.assign(S.trip, o); S.trip.nights = tripNights(); };
 

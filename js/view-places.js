@@ -33,7 +33,6 @@ const PlacesView = {
     sec.innerHTML = `
       <div class="sec-head"><h1>สถานที่เที่ยว</h1>
         <p class="lead">${PLACES.length} สถานที่ทั่วฮอกไกโด ทุกฤดู ★★★ = ห้ามพลาด • ไอคอน ${Object.values(SEASONS).map((s) => I(s.ic)).join("")} = ฤดูที่ไปได้ • เวลาเปิด/ราคาที่มี ≈ เป็นค่าประมาณ ตรวจก่อนไป</p></div>
-      ${this.festBox()}
       <div class="filters no-print"><div class="row">
         <input type="search" aria-label="ค้นหาสถานที่" placeholder="ค้นหาชื่อ ไทย/อังกฤษ/ญี่ปุ่น..." data-f="q" value="${esc(f.q)}" style="flex:1;min-width:160px">
         <select data-f="season"><option value="trip" ${f.season === "trip" ? "selected" : ""}>ช่วงทริปของฉัน (${tripMonths().map((m) => MO[m - 1]).join(", ")})</option><option value="" ${!f.season ? "selected" : ""}>ทุกฤดู</option>
@@ -123,18 +122,6 @@ const PlacesView = {
       if (e.target.dataset.show) showCard(p);
     };
     d.onchange = (e) => { const v = e.target.value; if (e.target.dataset.addto && v !== "") { PlanView.addTo(id, /^(auto|wish)$/.test(v) ? v : +v); d.close(); } };
-  },
-
-  // ---- เทศกาล ----
-  // เทศกาล (เดิมเป็นหน้าแยก): รายการสั้นในหน้าสถานที่ งานที่ตรงช่วงทริปขึ้นก่อน • แผนรายวันบอกงานที่ตรงอยู่แล้ว
-  festBox() {
-    const y = monthOf(S.trip.start) >= 6 ? +S.trip.start.slice(0, 4) : +S.trip.start.slice(0, 4) - 1;
-    const shift = (iso) => `${+iso.slice(0, 4) + (y - 2026)}${iso.slice(4)}`; // วันที่ใน data เป็นฤดู 2026-27
-    const L = FESTIVALS.map((f) => ({ f, hit: shift(f.start) <= S.trip.end && shift(f.end) >= S.trip.start }))
-      .sort((a, b) => b.hit - a.hit || a.f.start.localeCompare(b.f.start));
-    const n = L.filter((x) => x.hit).length;
-    return `<details class="card fest-box" ${n ? "open" : ""}><summary><b>${I("party-popper")} เทศกาลหน้าหนาว</b> <span class="mute">${n ? `${n} งานตรงช่วงทริปคุณ` : "ไม่มีงานตรงช่วงทริป"} • ทั้งหมด ${L.length} งาน</span></summary>
-      <ul class="fest-list">${L.map(({ f, hit }) => `<li class="${hit ? "hit" : ""}"><b>${esc(f.name)}</b> <span class="mute">${esc(f.area)} • ${esc(f.dates)}</span>${hit ? ' <span class="badge b-fest">ตรงทริป</span>' : ""}<small>${esc(f.detail)}</small></li>`).join("")}</ul></details>`;
   },
 
   bind() {

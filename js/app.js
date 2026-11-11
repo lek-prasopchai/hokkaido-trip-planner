@@ -67,7 +67,7 @@ const App = {
       const y = scrollY;
       RENDER[this.cur]();
       if (sec) $$("details", sec).forEach((d) => { const k = key(d); if (st.has(k)) d.open = st.get(k); });
-      if (fsel) sec.querySelector(fsel)?.focus({ preventScroll: true });
+      if (fsel && a.tagName !== "SELECT") sec.querySelector(fsel)?.focus({ preventScroll: true }); // ไม่โฟกัส select คืน: มือถือจะเด้งตัวเลือกขึ้นมาอีก
       scrollTo(0, y);
     }
     this.refreshChrome();
@@ -84,6 +84,7 @@ const App = {
     $("#subnav").innerHTML = tab.subs.map(([id, nm]) => `<a href="#${id}" class="${id === this.cur ? "on" : ""}">${nm}</a>`).join("");
     const left = daysBetween(todayIso(), t.start);
     $("#topTrip").textContent = `${thDate(t.start, false)} - ${thDate(t.end, false)} • ${N + 1} วัน ${N} คืน • ${t.adults + t.kids} คน • ${MODE[t.mode]}${left > 0 ? ` • อีก ${left} วัน` : ""}`;
+    $("#btnUndo").hidden = !Hist.stack.length || !["trip", "setup", "stays", "places"].includes(this.cur); // ย้อนได้เฉพาะการแก้แผน
     document.documentElement.dataset.font = S.set.font;
     if (S.set.theme === "auto") delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = S.set.theme;
   },

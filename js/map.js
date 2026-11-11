@@ -3,9 +3,9 @@
 // - ไม่มีเน็ต: วาดโครงร่างเกาะจาก data/outline.js แทน
 // - เส้นทางขับรถตามถนนจริงจาก OSRM (มีเน็ตเท่านั้น เก็บไว้ในเบราว์เซอร์) ไม่งั้นลากเส้นตรง
 const DAY_COLORS = ["#c8374a", "#2c6e9b", "#2f8a57", "#b7791f", "#7b4fb5", "#0f8b8d", "#d1495b", "#3d5a80", "#6a994e", "#bc6c25", "#8338ec", "#1d3557", "#e76f51", "#457b9d", "#588157"];
-const TILE_SOURCES = {
-  ...(location.protocol.startsWith("http") ? { "OpenStreetMap": ["https://tile.openstreetmap.org/{z}/{x}/{y}.png", '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'] } : {}),
+const TILE_SOURCES = { // ตัวแรก = ค่าเริ่มต้น: Esri มีป้ายอังกฤษคู่ญี่ปุ่น (OSM เป็นญี่ปุ่นล้วน)
   "แผนที่ (อังกฤษ)": ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", "Tiles &copy; Esri"],
+  ...(location.protocol.startsWith("http") ? { "OpenStreetMap": ["https://tile.openstreetmap.org/{z}/{x}/{y}.png", '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'] } : {}),
   "ภาพถ่ายดาวเทียม": ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", "Imagery &copy; Esri"],
   "แผนที่ญี่ปุ่น (ป้ายญี่ปุ่น)": ["https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png", '<a href="https://maps.gsi.go.jp/development/ichiran.html">地理院タイル</a>'],
 };
@@ -229,27 +229,28 @@ const LocPick = {
     el._mk ? el._mk.setLatLng([lat, lng]) : (el._mk = L.marker([lat, lng], { icon: pin(I("map-pin"), "#c8374a") }).addTo(m));
     if (zoom) m.setView([lat, lng], zoom);
   },
-  // ค้นชื่อสถานที่ด้วย Photon (OpenStreetMap, ฟรี ไม่ต้องใช้คีย์) จำกัดในฮอกไกโด เรียงใกล้จุดกลางแผนที่ก่อน
+  // ค้นชื่อ: สถานที่ในเว็บก่อน (ได้ทั้งชื่อไทย) แล้วต่อด้วย Photon (OpenStreetMap, ฟรี ไม่ต้องใช้คีย์ รับแค่อังกฤษ/ญี่ปุ่น) จำกัดในฮอกไกโด เรียงใกล้จุดกลางแผนที่ก่อน
   async find(box) {
     const q = box.querySelector(".lp-find input").value.trim(), res = box.querySelector(".lp-res");
     if (!q) return;
-    if (navigator.onLine === false) return toast("ค้นหาต้องใช้เน็ต ใช้แตะบนแผนที่แทน");
-    res.innerHTML = `<p class="mute small">กำลังค้นหา…</p>`;
+    const btn = (lat, lng, name, sub) => `<button type="button" class="btn" data-lp="res" data-ll="${lat},${lng}" data-name="${esc(name)}"><b>${esc(name)}</b><small>${esc(sub)}</small></button>`;
+    const t = q.toLowerCase(), own = PLACES.filter((p) => p.lat && [p.name, p.en, p.ja].some((n) => n?.toLowerCase().includes(t))).slice(0, 4).map((p) => btn(p.lat, p.lng, names(p)[0], p.area || "")).join("");
+    if (navigator.onLine === false) { res.innerHTML = own; return own || toast("ค้นหาต้องใช้เน็ต ใช้แตะบนแผนที่แทน"); }
+    res.innerHTML = `${own}<p class="mute small">กำลังค้นหา…</p>`;
     const c = box.querySelector(".lp-map")._m.getCenter();
     try {
       const r = await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=6&lat=${c.lat}&lon=${c.lng}&bbox=139,41,146,46`);
       const F = (await r.json()).features || [];
-      res.innerHTML = F.length ? F.map((f) => { const p = f.properties, [lng, lat] = f.geometry.coordinates, name = p.name || p.street || q;
-        const sub = [p.street && p.name ? p.street : "", p.district, p.city || p.county].filter(Boolean).join(", ");
-        return `<button type="button" class="btn" data-lp="res" data-ll="${lat},${lng}" data-name="${esc(name)}"><b>${esc(name)}</b><small>${esc(sub)}</small></button>`; }).join("")
-        : `<p class="mute small">ไม่เจอ ลองพิมพ์ชื่ออังกฤษ/ญี่ปุ่น หรือชื่อเมืองต่อท้าย หรือแตะบนแผนที่แทน</p>`;
-    } catch { res.innerHTML = `<p class="mute small">ค้นหาไม่ได้ตอนนี้ ใช้แตะบนแผนที่แทน</p>`; }
+      res.innerHTML = own + F.map((f) => { const p = f.properties, [lng, lat] = f.geometry.coordinates;
+        return btn(lat, lng, p.name || p.street || q, [p.street && p.name ? p.street : "", p.district, p.city || p.county].filter(Boolean).join(", ")); }).join("")
+        || `<p class="mute small">ไม่เจอ ชื่อไทยค้นได้เฉพาะสถานที่ที่มีในเว็บ: ลองพิมพ์ชื่ออังกฤษ/ญี่ปุ่น หรือแตะบนแผนที่แทน</p>`;
+    } catch { res.innerHTML = own || `<p class="mute small">ค้นหาไม่ได้ตอนนี้ ใช้แตะบนแผนที่แทน</p>`; }
   },
   // attrs = แอตทริบิวต์ของ input (id/data-*), c = จุดกลางแผนที่ถ้ายังไม่มีพิกัด
   html(label, attrs, value = "", c = null) {
     return `<div class="lp"${c ? ` data-c="${c.lat},${c.lng}"` : ""}><label class="f">${label}<input type="text" ${attrs} value="${esc(value)}" placeholder="ลิงก์ Google Maps หรือ 43.06, 141.35"></label>
       <div class="row lp-btns"><button type="button" class="btn small" data-lp="map">${I("map-pin")} แตะบนแผนที่</button><button type="button" class="btn small" data-lp="gps">${I("navigation")} ตำแหน่งตอนนี้</button></div>
-      <div class="lp-pick" hidden><div class="lp-find"><input type="search" placeholder="ค้นหาชื่อร้าน สถานที่ ที่อยู่ (ญี่ปุ่น/อังกฤษ)" enterkeyhint="search"><button type="button" class="btn small" data-lp="find">${I("search")}</button></div>
+      <div class="lp-pick" hidden><div class="lp-find"><input type="search" placeholder="ชื่อร้าน/สถานที่/ที่อยู่ (อังกฤษ/ญี่ปุ่น)" enterkeyhint="search"><button type="button" class="btn small" data-lp="find">${I("search")}</button></div>
         <div class="lp-res"></div><div class="lp-map"></div></div></div>`;
   },
 };

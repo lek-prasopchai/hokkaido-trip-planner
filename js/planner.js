@@ -229,6 +229,11 @@ const Planner = {
     move(to, hm, null, true);
     const arrive = time;
     tl.push({ t: time, kind: i === N ? "airport" : "hotel", id: to });
+    if (nightI.length) { // เช็กอิน วางกระเป๋า ~30 นาที (ไม่ก่อนเวลาเช็กอิน) แล้วค่อยออกไปต่อ
+      const ci = parseT(hotelOf(toHub)?.checkIn || "15:00"), go = Math.max(time + 0.5, ci);
+      tl.push({ t: time, kind: "info", ic: "hotel", text: go - time > 0.6 ? `รอเช็กอิน ${fmtT(ci)} (ฝากกระเป๋า/พักผ่อน) แล้วออกไปต่อ` : "เช็กอิน วางกระเป๋า ~30 นาที แล้วออกไปต่อ" });
+      time = go;
+    }
     if (nightI.length && !nightI.some((it) => it.at) && sun.set - 0.25 > time && nightI.some((it) => point(it.id).evening)) { // รอให้มืด ไฟประดับ/วิวกลางคืนถึงสวย
       if (sun.set - 0.25 - time >= 1.5) tl.push({ t: time, kind: "info", text: `เวลาว่าง ~${fmtH(sun.set - 0.25 - time)} พักผ่อน/ออนเซ็น/ช้อปปิ้ง` });
       time = sun.set - 0.25;
@@ -297,12 +302,9 @@ const Planner = {
     const md = iso.slice(5);
     if (md >= "12-30" || md <= "01-03") add("info", "ช่วงปีใหม่ ร้าน/สถานที่หลายแห่งปิด ตรวจก่อนไป");
     tl.filter((x) => x.kind === "move" && x.noTransit).forEach((x) => add("warn", `${short(x.from)} → ${short(x.to)} ไม่มีรถไฟ/บัสตรง ใช้รถ/แท็กซี่`));
-    const hubs = new Set([hubOf(from), toHub, ...items.map((it) => hubOf(it.id))]);
-    const fests = FESTIVALS.filter((f) => hubs.has(f.hub) && iso >= f.start && iso <= f.end);
-    fests.forEach((f) => add("fest", `${f.name} (${f.dates})`));
     if (!items.length && i > 0 && i < N && hubOf(from) === toHub) add("info", "วันนี้ยังว่าง เพิ่มสถานที่ หรือพักผ่อน/เผื่อพายุ");
     const lvl = checks.some((c) => c.lvl === "bad") ? "bad" : checks.some((c) => c.lvl === "warn") ? "warn" : "good";
-    return { i, iso, from, to, mode, sun, tl, checks, lvl, driveH, km: kmSum, arrive, end, leaveBy, stops: items.filter((it) => isPlace(it.id)).map((it) => it.id), items, fests };
+    return { i, iso, from, to, mode, sun, tl, checks, lvl, driveH, km: kmSum, arrive, end, leaveBy, stops: items.filter((it) => isPlace(it.id)).map((it) => it.id), items };
   },
 
   evaluateAll() { return S.plan ? S.plan.days.map((_, i) => this.evaluate(i)) : []; },
