@@ -502,7 +502,7 @@ const PlanView = {
           <label class="f">เช็กเอาท์<input type="time" data-h="checkOut" value="${esc(h.checkOut || "10:00")}"></label>
         </div>
         <div class="row" style="margin-top:8px">${h.lat ? `<span class="badge b-good">${I("map-pin")} ใช้พิกัดจริง</span>` : '<span class="mute small">ยังไม่มีพิกัด ใช้จุดกลางเมือง</span>'}          <span class="spacer"></span><span class="mute small">ค้นที่พัก:</span>${BOOKING_SITES.map((b) => `<a class="btn small" target="_blank" rel="noopener" href="${b.url(HUB_EN[id] || hb.name)}">${b.name}</a>`).join("")}</div>
-        <details class="hubinfo"><summary>ย่านที่ควรพัก ข้อดี ข้อควรรู้ • ¥${fmtN(hb.price[S.trip.level])}/ห้อง/คืน (ประมาณ ระดับ${["ประหยัด", "กลาง", "สบาย"][S.trip.level]})</summary>
+        <details class="hubinfo"><summary>ย่านที่ควรพัก ข้อดี ข้อควรรู้ • ¥${fmtN(hb.price[0])}–${fmtN(hb.price[2])}/ห้อง/คืน (ประมาณ)</summary>
           <dl class="kv"><dt>พักย่านไหน</dt><dd>${esc(hb.stay)}</dd><dt>ข้อดี</dt><dd>${esc(hb.pros)}</dd><dt>ข้อควรรู้</dt><dd>${esc(hb.cons)}</dd><dt>ช่วงพีค</dt><dd>${esc(hb.peak)}</dd></dl></details></div>`; }).join("")}`;
   },
 

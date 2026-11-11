@@ -238,8 +238,8 @@ const TripMap = {
       L.polyline(seq.map((p) => [p.lat, p.lng]), { color: "#142033", weight: 2, dashArray: "6 6", opacity: 0.6 }).addTo(M.layer);
     }
     Object.entries(nights).forEach(([id, ns]) => {
-      const h = point(id), lv = S.trip.level;
-      L.marker([h.lat, h.lng], { icon: labelIcon(`${I("hotel")} ${esc(hotelOf(id)?.name || short(id))}<small>${S.plan ? ns.length + " คืน • " : ""}¥${fmtN(h.price[lv])}/คืน</small>`, REGION_COLORS[h.region]) })
+      const h = point(id);
+      L.marker([h.lat, h.lng], { icon: labelIcon(`${I("hotel")} ${esc(hotelOf(id)?.name || short(id))}<small>${S.plan ? ns.length + " คืน • " : ""}¥${fmtN(h.price[0])}–${fmtN(h.price[2])}</small>`, REGION_COLORS[h.region]) })
         .bindPopup(`<b>${esc(h.name)}</b><br>${esc(h.stay)}<br>${I("thumbs-up")} ${esc(h.pros)}<br>${I("triangle-alert")} ${esc(h.cons)}`).addTo(M.layer);
       M.bounds.push([h.lat, h.lng]);
     });
