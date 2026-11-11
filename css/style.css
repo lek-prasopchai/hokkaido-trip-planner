@@ -557,3 +557,70 @@ details.adv > summary { cursor: pointer; color: var(--ice); font-size: .88rem; m
 .routes-box[open] > summary { margin-bottom: 10px; }
 .blist .it-tools { display: inline-flex; gap: 2px; flex: none; }
 .blist label.bx { cursor: pointer; gap: 6px; }
+
+/* ================= ปรับดีไซน์: ฟอนต์เดียวกันทุกเครื่อง, ช่องกรอกเห็นชัด, ขนาดปุ่ม/ช่องเท่ากัน ================= */
+:root { --font: "IBM Plex Sans Thai", "Noto Sans Thai", "Leelawadee UI", Tahoma, sans-serif; --r: 14px; --ctl: 38px;
+  --field: #ffffff; --line2: #c9d2dc; --ring: rgba(44,110,155,.22); --star: #85590a;
+  --shadow: 0 1px 2px rgba(15,27,45,.05), 0 2px 10px rgba(15,27,45,.04); accent-color: var(--ice); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --field: #101924; --line2: #3a4a5e; --ring: rgba(111,177,224,.28); --star: #d9a62a; --shadow: none; } }
+:root[data-theme="dark"] { --field: #101924; --line2: #3a4a5e; --ring: rgba(111,177,224,.28); --star: #d9a62a; --shadow: none; }
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+h1 { font-size: 1.65rem; font-weight: 700; letter-spacing: -.005em; }
+h2, h3 { font-weight: 600; }
+.lead { color: var(--ink2); line-height: 1.65; }
+
+/* ช่องกรอก */
+input[type=text], input[type=number], input[type=date], input[type=time], input[type=search], input[type=url], input[type=datetime-local], select, textarea {
+  border-color: var(--line2); background-color: var(--field); border-radius: 9px; transition: border-color .15s, box-shadow .15s; }
+input[type=text], input[type=number], input[type=date], input[type=time], input[type=search], input[type=url], input[type=datetime-local], select { min-height: var(--ctl); }
+input:hover:not(:focus):not(:disabled), select:hover:not(:focus), textarea:hover:not(:focus) { border-color: var(--mute); }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--ice); box-shadow: 0 0 0 3px var(--ring); }
+input[type=checkbox], input[type=radio] { width: 16px; height: 16px; cursor: pointer; }
+
+/* ปุ่ม */
+.btn { min-height: var(--ctl); border-radius: 9px; font-weight: 500; border-color: var(--line2); }
+.btn.small { min-height: 30px; border-radius: 8px; }
+.btn.primary, .btn.red { font-weight: 600; }
+.seg { border-color: var(--line2); }
+.seg button { min-height: calc(var(--ctl) - 2px); font-weight: 500; }
+.seg button + button { border-left-color: var(--line2); }
+.list-head .seg button { min-height: 30px; }
+.chip { min-height: 32px; border-color: var(--line2); }
+
+/* หัวเว็บ */
+.top { border-bottom: 1px solid rgba(255,255,255,.07); }
+.brand small { opacity: .78; }
+.stamp { background: linear-gradient(160deg, #d6475a, #b02a3e); box-shadow: 0 2px 6px rgba(0,0,0,.25); }
+
+/* เมนู: มีขีดบอกหน้าปัจจุบัน */
+.tabs { padding: 14px 12px; }
+.tab { position: relative; padding: 10px 12px; color: var(--ink2); transition: background-color .15s, color .15s; }
+.tab + .tab { margin-top: 2px; }
+.tab:hover { color: var(--ink); }
+.tab.on { color: var(--ice); }
+.tab.on::before { content: ""; position: absolute; left: -12px; top: 9px; bottom: 9px; width: 3px; border-radius: 0 3px 3px 0; background: var(--ice); }
+
+/* การ์ด */
+.card { border-radius: var(--r); }
+.sec-head { margin-bottom: 20px; }
+
+/* ตัวกรองสถานที่: จอกว้างให้ช่องเท่ากัน */
+@media (min-width: 900px) {
+  .filters .row > select { flex: 1 1 150px; min-width: 0; }
+  .filters .row > input[type=search] { flex: 2 1 240px !important; }
+}
+
+/* มือถือ */
+@media (max-width: 900px) {
+  :root { --ctl: 44px; }
+  .btn.small { min-height: 36px; }
+  .top .top-actions .btn.ghost { border-color: transparent; min-height: 44px; }
+  .tabs { padding: 4px 6px calc(4px + env(safe-area-inset-bottom)); box-shadow: 0 -2px 12px rgba(15,27,45,.06); }
+  .tab { min-height: 52px; justify-content: center; padding: 4px 2px; color: var(--ink2); }
+  .tab + .tab { margin-top: 0; }
+  .tab.on::before { left: 30%; right: 30%; top: -4px; bottom: auto; width: auto; height: 3px; border-radius: 0 0 3px 3px; }
+  h1 { font-size: 1.4rem; }
+  .sec-head { margin-bottom: 14px; }
+}
+.summary .k span { display: block; line-height: 1.45; }
+@media (max-width: 899px) { .summary .k:last-child:nth-child(odd) { grid-column: 1 / -1; border-left: 0; padding-left: 0; } }
