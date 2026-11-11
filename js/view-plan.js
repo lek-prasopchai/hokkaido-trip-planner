@@ -155,7 +155,7 @@ const PlanView = {
         <div id="planMapHost"></div>
         <div class="map-legend"><span><span class="pin num" style="--c:#2c6e9b;display:inline-grid;margin:0;width:18px;height:18px;font-size:10px">1</span> ลำดับในวันนั้น</span>
           <span><i style="background:#2c6e9b"></i>ขับรถ</span><span><i style="background:repeating-linear-gradient(90deg,#2c6e9b 0 3px,transparent 3px 8px)"></i>รถไฟ/บัส</span>
-          <span>${I("moon")} หลังเช็กอิน</span><span>${I("hotel")} ที่พัก</span><span>${I("utensils")} ร้านอาหาร</span></div></div>
+          <span>${I("moon")} หลังเช็กอิน</span><span>${I("hotel")} ที่พัก</span></div></div>
       ${this.wishCard()}
       ${evals.map((e) => this.dayCard(e)).join("")}
       ${this.undoBtn()}`;
