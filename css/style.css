@@ -433,7 +433,7 @@ button:focus-visible, summary:focus-visible, .legmode:focus-within { outline: 2p
 .summary .k { background: none; border-radius: 0; padding: 12px 16px 12px 0; }
 .summary .k + .k { border-left: 1px solid var(--line); padding-left: 16px; }
 div.more { text-align: center; margin: 18px 0 6px; }
-.bt .bnote { display: block; color: var(--mute); font-size: .8rem; font-weight: 400; }
+.bt .bnote, .blist .bnote { display: block; color: var(--mute); font-size: .8rem; font-weight: 400; }
 details.callout > summary, details.hubinfo > summary { cursor: pointer; }
 details.callout[open] > summary { margin-bottom: 6px; }
 details.hubinfo { margin-top: 10px; font-size: .85rem; }
@@ -532,3 +532,14 @@ details.adv > summary { cursor: pointer; color: var(--ice); font-size: .88rem; m
 .pk3 input { margin-top: 3px; width: 18px; height: 18px; }
 .pk3 small { display: block; color: var(--mute); font-size: .78rem; }
 .pk3.done b { text-decoration: line-through; color: var(--mute); }
+
+/* งบประมาณ: แต่ละรายการกรอกได้ทั้งบาทและเยน */
+.blist { list-style: none; margin: 0; padding: 0; }
+.blist li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 14px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+.blist li.own > div:first-child b::after { content: " • กรอกเอง"; color: var(--ice); font-size: .75rem; font-weight: 600; }
+.bamt { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.bin { display: inline-flex; align-items: center; gap: 3px; color: var(--mute); font-size: .85rem; }
+.bin input { width: 92px; text-align: right; }
+.bthb { min-width: 84px; text-align: right; font-variant-numeric: tabular-nums; }
+.btot { border-top: 2px solid var(--ink) !important; }
+@media (max-width: 640px) { .blist li { grid-template-columns: 1fr; } .bin input { width: 86px; } }

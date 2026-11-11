@@ -54,23 +54,28 @@ const BudgetView = {
     add("food", "อาหาร", "อาหาร", "JPY", D.foodYen[lv] * ppl * days, `¥${fmtN(D.foodYen[lv])} × ${ppl} คน × ${days} วัน`);
     add("souv", "ช้อปปิ้ง", "ของฝาก / ช้อปปิ้ง", "JPY", D.souvenirYen * t.adults, `¥${fmtN(D.souvenirYen)} × ${t.adults} ผู้ใหญ่`);
     add("gear", "ของ", "ของที่ต้องซื้อเตรียมตัว", "THB", 0, "กรอกเอง (เสื้อกันหนาว บูท ฯลฯ)");
-    const val = (l) => (S.budget[l.key] ?? l.auto);
-    const thb = (l) => (l.cur === "THB" ? val(l) : val(l) * S.rate);
-    const sub = L.reduce((a, l) => a + thb(l), 0);
+    // แต่ละรายการจ่ายเป็นบาท เยน หรือทั้งสองได้: S.budget[key] = { b, y } (ค่าเก่าเป็นตัวเลขเดียว = สกุลเงินตั้งต้นของรายการ)
+    const split = (l) => {
+      const o = S.budget[l.key];
+      if (typeof o === "number") return l.cur === "THB" ? { b: o, y: 0, own: true } : { b: 0, y: o, own: true };
+      if (o && (o.b != null || o.y != null)) return { b: o.b || 0, y: o.y || 0, own: true };
+      return l.cur === "THB" ? { b: l.auto, y: 0 } : { b: 0, y: l.auto };
+    };
+    const fill = (l) => { Object.assign(l, split(l)); l.thb = l.b + l.y * S.rate; };
+    L.forEach(fill);
+    const sub = L.reduce((a, l) => a + l.thb, 0);
     add("reserve", "สำรอง", `เงินสำรอง ${D.reservePct}%`, "THB", (sub * D.reservePct) / 100, "เผื่อพายุ เลื่อนไฟลต์ ค่ารักษา");
-    L.forEach((l) => (l.thb = thb(l)));
-    return { lines: L, total: L.reduce((a, l) => a + l.thb, 0), ppl, jr };
+    fill(L[L.length - 1]);
+    const yen = L.reduce((a, l) => a + l.y, 0), baht = L.reduce((a, l) => a + l.b, 0);
+    return { lines: L, total: L.reduce((a, l) => a + l.thb, 0), yen, baht, ppl, jr };
   },
 
   render() {
     const B = this.calc();
     const cats = {};
     B.lines.forEach((l) => (cats[l.cat] = (cats[l.cat] || 0) + l.thb));
-    const yen = B.lines.filter((l) => l.cur === "JPY"), thbL = B.lines.filter((l) => l.cur === "THB" && l.key !== "reserve"), res = B.lines.find((l) => l.key === "reserve");
-    const yenSum = yen.reduce((a, l) => a + (S.budget[l.key] ?? l.auto), 0), thbSum = thbL.reduce((a, l) => a + l.thb, 0);
-    const row = (l) => `<tr><td><b>${esc(l.name)}</b>${l.note ? `<small class="bnote">${esc(l.note)}</small>` : ""}</td>
-      <td class="num" style="white-space:nowrap"><input type="number" data-bk="${l.key}" placeholder="${l.auto}" value="${S.budget[l.key] ?? ""}" style="width:100px;text-align:right" aria-label="${esc(l.name)} (${l.cur === "JPY" ? "เยน" : "บาท"})"></td>
-      ${l.cur === "JPY" ? `<td class="num mute">${fmtN(l.thb)}</td>` : ""}</tr>`;
+    const inp = (l, c) => { const o = S.budget[l.key], v = typeof o === "number" ? ((l.cur === "THB") === (c === "b") ? o : "") : o?.[c] ?? "";
+      return `<label class="bin"><span>${c === "b" ? "฿" : "¥"}</span><input type="number" min="0" data-bk="${l.key}" data-c="${c}" value="${v}" placeholder="${(l.cur === "THB") === (c === "b") && !l.own ? l.auto : 0}" aria-label="${esc(l.name)} ${c === "b" ? "บาท" : "เยน"}"></label>`; };
     const colors = ["#2c6e9b", "#c8374a", "#2f8a57", "#b7791f", "#7b4fb5", "#0f8b8d", "#6a994e", "#3d5a80", "#8a817c"];
     $('[data-sec="budget"]').innerHTML = `
       <div class="sec-head"><h1>งบประมาณ</h1>
@@ -78,21 +83,16 @@ const BudgetView = {
       <div class="card"><div class="summary">
         <div class="k"><b>${fmtN(B.total)} ฿</b><span>รวมทั้งทริป</span></div>
         <div class="k"><b>${fmtN(B.total / B.ppl)} ฿</b><span>เฉลี่ยต่อคน</span></div>
-        <div class="k"><b>¥${fmtN(yenSum)}</b><span>ใช้จ่ายที่ญี่ปุ่น (เยน)</span></div>
+        <div class="k"><b>¥${fmtN(B.yen)} + ${fmtN(B.baht)} ฿</b><span>จ่ายเป็นเยน (เตรียมแลก/บัตร) + จ่ายเป็นบาท</span></div>
         <div class="k"><label class="f">1 เยน = ? บาท<input type="number" step="0.0001" id="rate" value="${S.rate}"></label>
           <label class="small"><input type="checkbox" id="rateAuto" ${S.set.rateAuto ? "checked" : ""}> อัปเดตอัตโนมัติวันละครั้ง</label></div></div>
         <div style="display:flex;height:14px;border-radius:99px;overflow:hidden;margin-top:14px">${Object.entries(cats).map(([c, v], i) => `<div title="${esc(c)} ${fmtN(v)} ฿" style="width:${(v / B.total) * 100}%;background:${colors[i % colors.length]}"></div>`).join("")}</div>
         <div class="row" style="margin-top:6px;font-size:.8rem">${Object.entries(cats).map(([c, v], i) => `<span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:${colors[i % colors.length]}"></span> ${esc(c)} ${Math.round((v / B.total) * 100)}%</span>`).join("")}</div></div>
       ${B.jr ? `<div class="callout info">${B.jr.text}</div>` : ""}
-      <div class="card"><h2>จ่ายเป็นบาท <span class="mute small">ส่วนใหญ่จ่ายก่อนไป</span></h2><div class="tbl-wrap"><table class="t bt"><thead><tr><th>รายการ</th><th class="num">บาท (฿)</th></tr></thead><tbody>
-        ${thbL.map(row).join("")}
-        <tr><td><b>รวม</b></td><td class="num"><b>฿${fmtN(thbSum)}</b></td></tr></tbody></table></div></div>
-      <div class="card"><h2>จ่ายเป็นเยน <span class="mute small">ที่ญี่ปุ่น ใช้ดูว่าต้องแลกเงิน/เตรียมบัตรเท่าไร</span></h2><div class="tbl-wrap"><table class="t bt"><thead><tr><th>รายการ</th><th class="num">เยน (¥)</th><th class="num">≈ บาท</th></tr></thead><tbody>
-        ${yen.map(row).join("")}
-        <tr><td><b>รวม</b></td><td class="num"><b>¥${fmtN(yenSum)}</b></td><td class="num"><b>฿${fmtN(yenSum * S.rate)}</b></td></tr></tbody></table></div></div>
-      <div class="card"><div class="tbl-wrap"><table class="t bt"><tbody>
-        <tr><td><b>${esc(res.name)}</b><small class="bnote">${esc(res.note)}</small></td><td class="num">฿${fmtN(res.thb)}</td></tr>
-        <tr><td><b>รวมทั้งทริป</b> (บาท + เยนแปลงเป็นบาท + สำรอง)</td><td class="num"><b>฿${fmtN(B.total)}</b></td></tr></tbody></table></div>
+      <div class="card"><p class="mute small" style="margin:0 0 8px">แต่ละรายการกรอกได้ทั้ง ฿ และ ¥ (เช่น จองที่พักเป็นบาท แต่จ่ายภาษีที่พักเป็นเยน) ช่องว่าง = ใช้ค่าประมาณที่เป็นตัวเทา • ขวาสุด = รวมเป็นบาท</p>
+        <ul class="blist">${B.lines.map((l) => `<li class="${l.own ? "own" : ""}"><div><b>${esc(l.name)}</b>${l.note ? `<small class="bnote">${esc(l.note)}</small>` : ""}</div>
+          <div class="bamt">${l.key === "reserve" ? "" : inp(l, "b") + inp(l, "y")}<b class="bthb">${fmtN(l.thb)} ฿</b></div></li>`).join("")}
+          <li class="btot"><b>รวมทั้งทริป</b><div class="bamt"><span class="mute small">¥${fmtN(B.yen)} + ${fmtN(B.baht)} ฿</span><b class="bthb">${fmtN(B.total)} ฿</b></div></li></ul>
         <div class="row" style="margin-top:8px"><button class="btn small" id="bReset">ล้างค่าที่กรอกเอง</button><span class="mute" style="font-size:.8rem">ราคาเป็นค่าประมาณ (พ.ย. 2026) ใช้เพื่อดูภาพรวม ไม่ใช่ใบเสนอราคา</span></div></div>`;
   },
 
@@ -102,7 +102,13 @@ const BudgetView = {
       const el = e.target;
       if (el.id === "rate") { S.rate = Math.max(0.01, +el.value || 0.23); S.set.rateAuto = false; save(); App.renderAll(); return; }
       if (el.id === "rateAuto") { S.set.rateAuto = el.checked; if (el.checked) { S.rateAt = 0; refreshRate(); } save(); App.renderAll(); return; }
-      if (el.dataset.bk) { if (el.value === "") delete S.budget[el.dataset.bk]; else S.budget[el.dataset.bk] = +el.value; save(); App.renderAll(); }
+      if (el.dataset.bk) {
+        const k = el.dataset.bk, l = this.calc().lines.find((x) => x.key === k), old = S.budget[k];
+        const o = typeof old === "number" ? { [l.cur === "THB" ? "b" : "y"]: old } : { ...old };
+        if (el.value === "") delete o[el.dataset.c]; else o[el.dataset.c] = Math.max(0, +el.value);
+        if (o.b == null && o.y == null) delete S.budget[k]; else S.budget[k] = o;
+        save(); App.renderAll();
+      }
     });
     sec.addEventListener("click", (e) => { if (e.target.id === "bReset" && confirm("ล้างค่าที่กรอกเองทั้งหมด?")) { S.budget = {}; save(); App.renderAll(); } });
   },
