@@ -84,7 +84,6 @@ const App = {
     $("#subnav").innerHTML = tab.subs.map(([id, nm]) => `<a href="#${id}" class="${id === this.cur ? "on" : ""}">${nm}</a>`).join("");
     const left = daysBetween(todayIso(), t.start);
     $("#topTrip").textContent = `${thDate(t.start, false)} - ${thDate(t.end, false)} • ${N + 1} วัน ${N} คืน • ${t.adults + t.kids} คน • ${MODE[t.mode]}${left > 0 ? ` • อีก ${left} วัน` : ""}`;
-    $("#btnUndo").hidden = !Hist.stack.length || !["trip", "setup", "stays", "places"].includes(this.cur); // ย้อนได้เฉพาะการแก้แผน
     document.documentElement.dataset.font = S.set.font;
     if (S.set.theme === "auto") delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = S.set.theme;
   },
@@ -191,7 +190,6 @@ const App = {
     else this.show(h || (during ? "today" : S.plan ? "trip" : "setup"));
     $("#btnSet").onclick = () => this.settings();
     $("#btnShare").onclick = () => this.share();
-    $("#btnUndo").onclick = () => Hist.undo();
     document.addEventListener("keydown", (e) => { if ((e.ctrlKey || e.metaKey) && e.key === "z" && !/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) { e.preventDefault(); Hist.undo(); } });
     refreshRate();
     // ไม่ลง service worker ตอนพัฒนาบน localhost (ไฟล์เก่าค้าง cache): ใส่ ?sw=1 เพื่อทดสอบออฟไลน์

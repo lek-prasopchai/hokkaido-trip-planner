@@ -154,7 +154,8 @@ const PlanView = {
           <span><i style="background:#2c6e9b"></i>ขับรถ</span><span><i style="background:repeating-linear-gradient(90deg,#2c6e9b 0 3px,transparent 3px 8px)"></i>รถไฟ/บัส</span>
           <span>${I("moon")} หลังเช็กอิน</span><span>${I("hotel")} ที่พัก</span><span>${I("utensils")} ร้านอาหาร</span></div></div>
       ${this.wishCard()}
-      ${evals.map((e) => this.dayCard(e)).join("")}`;
+      ${evals.map((e) => this.dayCard(e)).join("")}
+      ${Hist.stack.length ? `<button class="btn undo-fab no-print" data-act="undo" title="ย้อนการแก้แผนครั้งล่าสุด (Ctrl+Z)">${I("undo-2")} ย้อน</button>` : ""}`;
     this.mountMap(evals);
     Weather.fill(sec);
     this.bindDrag(sec);
@@ -462,8 +463,7 @@ const PlanView = {
       const id = "c" + Date.now().toString(36);
       this.mut(() => {
         S.plan.custom[id] = { name, hours: Math.max(0.25, +$("#cDur").value || 1), url: /^https?:/.test(raw) ? raw : "", ...(ll || {}) };
-        const it = { id, u: true, at: $("#cAt").value || undefined };
-        Planner.insertBest(i, it);
+        S.plan.days[i].items.push({ id, u: true, at: $("#cAt").value || undefined });
       });
       Modal.close();
     };
@@ -483,8 +483,8 @@ const PlanView = {
       this.mut(() => { if (!S.plan.wish.includes(id)) S.plan.wish.push(id); });
       return toast(`เก็บ ${pname(id)} ไว้ในรายการอยากไปแล้ว`);
     }
-    this.mut(() => Planner.insertBest(+i, Planner.mkItem(+i, id, true)));
-    toast(`ใส่ในวันที่ ${+i + 1} แล้ว`);
+    this.mut(() => S.plan.days[+i].items.push(Planner.mkItem(+i, id, true))); // ต่อท้าย: อยากได้ลำดับสั้นสุดกด เรียงเส้นทาง
+    toast(`ใส่ท้ายวันที่ ${+i + 1} แล้ว`);
   },
 
   // ================= ที่พัก =================
@@ -495,7 +495,7 @@ const PlanView = {
     S.plan.bases.forEach((b, i) => { const l = blocks[blocks.length - 1]; if (l && l.b === b) l.n.push(i); else blocks.push({ b, n: [i] }); });
     const ids = [...new Set(S.plan.bases)];
     sec.innerHTML = `${this.steps("stays")}<div class="sec-head"><h1>ที่พักและการจอง</h1><p class="lead"><b>ไม่บังคับ</b> ทำหลังจองแล้ว: ไม่กรอก ระบบใช้จุดกลางเมืองเป็นจุดเริ่ม/จบของแต่ละวันแทน • เมืองที่พักแต่ละคืนเลือกในหน้า <a href="#trip">แผนรายวัน</a> (คืนนี้พักเมือง)</p>
-        <ul class="small mute" style="margin:6px 0 0;padding-left:18px"><li><b>ชื่อ</b>: แสดงในแผนรายวัน "ถึงที่พัก…"</li><li><b>ตำแหน่ง</b>: ใช้เป็นจุดออกตอนเช้า/กลับตอนเย็นแทนกลางเมือง เวลาเดินทางแม่นขึ้น</li><li><b>เช็กอิน/เช็กเอาท์</b>: เตือนถ้าถึงก่อนเช็กอิน/ออกหลังเช็กเอาท์ และเวลาออกไปเที่ยวหลังเช็กอิน</li><li>ที่เหลือ (ชื่อญี่ปุ่น ที่อยู่ เลขจอง ฯลฯ): ใช้ทำการ์ดโชว์แท็กซี่ และสรุปการจองตอนเช็กอิน</li></ul></div>
+        <ul class="small mute" style="margin:6px 0 0;padding-left:18px"><li><b>ชื่อ</b>: แสดงในแผนรายวัน "ถึงที่พัก…"</li><li><b>ตำแหน่ง</b>: ใช้เป็นจุดออกตอนเช้า/กลับตอนเย็นแทนกลางเมือง เวลาเดินทางแม่นขึ้น</li><li><b>เช็กอิน/เช็กเอาท์</b>: เตือนถ้าถึงก่อนเช็กอิน/ออกหลังเช็กเอาท์ และเวลาออกไปเที่ยวหลังเช็กอิน</li></ul></div>
       <a class="callout info" href="#emergency" style="display:block;text-decoration:none;color:inherit">${I("clipboard-list")} <b>สรุปการจองทั้งหมด</b> (เที่ยวบิน ที่พัก รอบที่จอง เอกสาร) อยู่ที่หน้า <u>เอกสาร + ฉุกเฉิน</u> เปิดโชว์พนักงานได้ ใช้ออฟไลน์ได้ →</a>
       <details class="callout info"><summary><b>หลักเลือกที่พักหน้าหนาว</b></summary>${STAY_TIPS}</details>
       <div class="card"><div class="map" id="stayMap"></div></div>
@@ -507,14 +507,6 @@ const PlanView = {
           <label class="f">เช็กอิน<input type="time" data-h="checkIn" value="${esc(h.checkIn || "15:00")}"></label>
           <label class="f">เช็กเอาท์<input type="time" data-h="checkOut" value="${esc(h.checkOut || "10:00")}"></label>
         </div>
-        <details style="margin-top:8px" ${h.nameJa || h.addr || h.ref || h.phone || h.url || h.note ? "open" : ""}><summary>ข้อมูลการจอง <span class="mute small">ไม่บังคับ: การ์ดโชว์แท็กซี่ + สรุปการจอง</span></summary><div class="form" style="margin-top:8px">
-          <label class="f">ชื่อญี่ปุ่น (โชว์แท็กซี่)<input type="text" data-h="nameJa" value="${esc(h.nameJa || "")}"></label>
-          <label class="f">ที่อยู่<input type="text" data-h="addr" value="${esc(h.addr || "")}"></label>
-          <label class="f">เลขที่จอง<input type="text" data-h="ref" value="${esc(h.ref || "")}"></label>
-          <label class="f">เบอร์โทร<input type="text" data-h="phone" value="${esc(h.phone || "")}"></label>
-          <label class="f">ลิงก์การจอง<input type="url" data-h="url" value="${esc(h.url || "")}"></label>
-          <label class="f">โน้ต (ที่จอดรถ อาหารเย็น ฯลฯ)<input type="text" data-h="note" value="${esc(h.note || "")}"></label>
-        </div></details>
         <div class="row" style="margin-top:8px">${h.lat ? `<span class="badge b-good">${I("map-pin")} ใช้พิกัดจริง</span>` : '<span class="mute small">ยังไม่มีพิกัด ใช้จุดกลางเมือง</span>'}
           ${h.nameJa || h.addr ? `<button class="btn small" data-showcard="${id}">${I("car-taxi-front")} การ์ดโชว์คนขับ</button>` : ""}${h.url ? `<a class="btn small" href="${esc(h.url)}" target="_blank" rel="noopener">เปิดการจอง</a>` : ""}
           <span class="spacer"></span><span class="mute small">ค้นที่พัก:</span>${BOOKING_SITES.map((b) => `<a class="btn small" target="_blank" rel="noopener" href="${b.url(HUB_EN[id] || hb.name)}">${b.name}</a>`).join("")}</div>
@@ -663,6 +655,7 @@ const PlanView = {
       else if (d.act === "refill") { const i = +d.i; this.mut(() => Planner.autofillDay(i, Planner.usedSet(i))); }
       else if (d.act === "refillAll") { if (!confirm("จัดสถานที่ใหม่ทั้งทริป? จุดที่ระบบเลือกให้จะถูกแทนที่ (ที่ใส่เอง/ล็อกเวลาไว้ยังอยู่ กด ↶ ย้อนได้)")) return; this.mut(() => Planner.autofillAll()); toast("จัดสถานที่ใหม่แล้ว"); }
       else if (d.act === "print") App.print();
+      else if (d.act === "undo") Hist.undo();
     });
     trip.addEventListener("keydown", (ev) => { if (ev.key === "Enter" && ev.target.dataset.goto) ev.target.click(); });
 

@@ -386,6 +386,8 @@ input[type=url], input[type=datetime-local] { border: 1px solid var(--line); bor
 @media (max-width: 420px) { .brand > span:last-child { font-size: .92rem; } }
 #toast { opacity: 0; pointer-events: none; transition: transform .25s, opacity .25s; }
 #toast.show { opacity: 1; }
+.undo-fab { position: fixed; right: 16px; bottom: 20px; z-index: 900; box-shadow: var(--shadow); background: var(--paper); }
+@media (max-width: 900px) { .undo-fab { bottom: calc(76px + env(safe-area-inset-bottom)); } }
 /* เหลือแค่ไอคอน: ข้อความยาวถูกตัด รายการตอนกดยังเห็นชื่อเต็ม */
 .legmode { position: relative; display: inline-grid; place-items: center; width: 1.9em; height: 1.6em; margin-left: 6px; vertical-align: middle; font-size: .85rem; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); }
 .legmode.set { border-color: var(--ice); }

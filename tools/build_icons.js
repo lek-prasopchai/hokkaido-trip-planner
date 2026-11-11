@@ -2,7 +2,7 @@
 // เพิ่มไอคอน: ใส่ชื่อจาก https://lucide.dev/icons ใน NAMES แล้วรันใหม่
 const fs = require("fs"), path = require("path");
 const VER = "0.460.0";
-const NAMES = `map search backpack book-open download printer settings car train-front car-taxi-front footprints flower-2 sun leaf
+const NAMES = `undo-2 map search backpack book-open download printer settings car train-front car-taxi-front footprints flower-2 sun leaf
 snowflake cloud-rain cloud-fog cloud-sun phone party-popper mountain-snow flower bath cable-car utensils building-2
 landmark paw-print map-pin star moon hotel plane clock timer ban triangle-alert thumbs-up lock info hourglass
 navigation heart notebook-pen circle-pause arrow-left-right clipboard-list store fuel life-buoy circle-check
