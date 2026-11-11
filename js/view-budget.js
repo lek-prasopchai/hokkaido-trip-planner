@@ -96,7 +96,7 @@ const BudgetView = {
     const colors = ["#2c6e9b", "#c8374a", "#2f8a57", "#b7791f", "#7b4fb5", "#0f8b8d", "#6a994e", "#3d5a80", "#8a817c"];
     $('[data-sec="budget"]').innerHTML = `
       <div class="sec-head"><h1>งบประมาณ</h1>
-        <p class="lead">กรอกราคาจริงที่จองหรือคาดว่าจะจ่าย ยอดรวมนับเฉพาะที่กรอก • ตัวเทาใต้รายการคือราคาประมาณ (ต่อคน/ต่อห้อง หรือคิดจากแผนสำหรับค่ารถ กด "ใช้ค่านี้" ได้)</p></div>
+        <p class="lead">กรอกราคาที่จองแล้วหรือคาดว่าจะจ่าย ยอดรวมนับเฉพาะช่องที่กรอก • ตัวสีเทาใต้รายการคือราคาประมาณ</p></div>
       <div class="split split-r"><aside class="split-side"><div class="card"><div class="summary">
         <div class="k"><b>${fmtN(B.total)} ฿</b><span>กรอกแล้ว${S.budgetReserve ? " (รวมสำรอง)" : ""}</span></div>
         <div class="k"><b>${B.todoN ? `${B.todoN} รายการ` : "ครบแล้ว"}</b><span>${B.todoN ? "ยังไม่ได้กรอก" : "ทุกรายการกรอกแล้ว"}</span></div>
@@ -106,7 +106,7 @@ const BudgetView = {
         ${B.total ? `<div style="display:flex;height:14px;border-radius:99px;overflow:hidden;margin-top:14px">${Object.entries(cats).map(([c, v], i) => `<div title="${esc(c)} ${fmtN(v)} ฿" style="width:${(v / B.total) * 100}%;background:${colors[i % colors.length]}"></div>`).join("")}</div>
         <div class="row" style="margin-top:6px;font-size:.8rem">${Object.entries(cats).map(([c, v], i) => `<span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:${colors[i % colors.length]}"></span> ${esc(c)} ${Math.round((v / B.total) * 100)}%</span>`).join("")}</div>` : ""}</div></aside>
       <div class="split-main">${B.jr ? `<div class="callout info">${B.jr.text}</div>` : ""}
-      <div class="card"><p class="mute small" style="margin:0 0 8px">แต่ละรายการกรอกได้ทั้ง ฿ และ ¥ (เช่น จองที่พักเป็นบาท แต่จ่ายภาษีที่พักเป็นเยน) • ขวาสุด = รวมเป็นบาท • ✕ = ไม่ใช้รายการนี้</p>
+      <div class="card"><p class="mute small" style="margin:0 0 8px">กรอกได้ทั้ง ฿ และ ¥ ในรายการเดียว • ขวาสุด = รวมเป็นบาท • ลาก ⋮⋮ เพื่อเรียงลำดับ • ✕ = ไม่ใช้รายการนี้</p>
         <ul class="blist">${B.lines.map((l) => `${l.key === "reserve" ? `<li class="badd"><button class="btn small" id="bAdd">+ เพิ่มรายการเอง</button>${B.hiddenN ? ` <button class="linkbtn" id="bUnhide">แสดงรายการที่ซ่อน (${B.hiddenN})</button>` : ""}</li>` : ""}<li class="${l.own && !l.mine && l.key !== "reserve" ? "own" : ""}" ${l.key === "reserve" ? "" : `data-key="${l.key}"`}>
           <div>${name(l)}${hint(l)}</div>
           <div class="bamt">${l.key === "reserve" ? "" : inp(l, "b") + inp(l, "y")}<b class="bthb">${l.own && (l.key !== "reserve" || S.budgetReserve) ? `${fmtN(l.thb)} ฿` : '<span class="mute">-</span>'}</b></div></li>`).join("")}

@@ -47,7 +47,7 @@ const PlanView = {
     const num = (k, v, min, max, lbl) => `<label class="f">${lbl}<input type="number" min="${min}" max="${max}" data-buf="${k}" value="${v}"></label>`;
     $('[data-sec="setup"]').innerHTML = `
       <div class="sec-head"><h1>ข้อมูลทริปและเที่ยวบิน</h1>
-        <p class="lead">กรอกเที่ยวบินขาไป-ขากลับ แล้วเลือกรูท ระบบจะจัดที่พักรายคืนและที่เที่ยวรายวันให้ คำนวณเวลาเผื่อตรวจคนเข้าเมือง รับรถ และเวลาที่ต้องถึงสนามบินให้เอง</p></div>
+        <p class="lead">กรอกเที่ยวบินแล้วเลือกรูท ระบบจะจัดที่พักและที่เที่ยวรายวัน พร้อมคิดเวลาเผื่อที่สนามบินให้</p></div>
       ${fresh ? `<div class="card start"><h2>เริ่มวางแผนใน 1 นาที</h2>
         <p>ใส่วันเที่ยวและวิธีเดินทาง แล้วเลือกรูทด้านล่าง ระบบจะจัดแผนรายวันพร้อมเวลาขับหน้าหนาวให้ทันที <b>ยังไม่ต้องมีตั๋วเครื่องบิน</b></p>
         <div class="form"><label class="f">วันถึงฮอกไกโด<input type="date" data-k="start" value="${t.start}"></label><label class="f">วันบินกลับ<input type="date" data-k="end" value="${t.end}"></label></div>
@@ -86,7 +86,7 @@ const PlanView = {
       ${fresh ? `</details><details class="fold-sec"><summary><b>${I("settings")} สไตล์และความสนใจ</b> <span class="mute">ไม่บังคับ: กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง</span></summary>` : `<h2 class="step-h"><b>2</b> สไตล์และการเดินทาง <small class="mute">กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง</small></h2>`}
       <div class="card">
         ${t.mode === "car" ? `<div class="form"><label class="f">เคยขับบนหิมะไหม<select data-snow>${[["new", "ไม่เคย (เวลาขับ ×1.5)"], ["some", "เคยมาบ้าง (×1.3)"], ["dry", "ถนนส่วนใหญ่แห้ง (×1.1)"]].map(([v, l]) => `<option value="${v}" ${S.set.snow === v ? "selected" : ""}>${l}</option>`).join("")}</select></label></div>` : ""}
-        <div class="row" style="margin-top:14px">
+        <div class="row" style="margin-top:14px;align-items:flex-start;gap:12px 24px">
           <div><div class="mute small">สไตล์</div><div class="seg" data-seg="pace">${Object.entries(PACE).map(([k, v]) => `<button data-v="${k}" class="${t.pace === k ? "on" : ""}">${v.name}</button>`).join("")}</div></div>
           <div><div class="mute small">การเดินทาง</div>${modeSeg}<small class="mute">ค่าเริ่มต้นของทุกช่วง เปลี่ยนรายช่วงได้ในแผนรายวัน</small>${fresh ? "" : modeHelp}</div>
         </div>
@@ -166,7 +166,7 @@ const PlanView = {
     const W = S.plan.wish, days = S.plan.days.map((_, k) => `<option value="${k}">วันที่ ${k + 1} (${esc(short(Planner.ends(k).to))})</option>`).join("");
     return `<div class="card no-print wish"><div class="row"><h2 style="margin:0">${I("heart")} อยากไป <small class="mute">${W.length} ที่ ยังไม่ลงวัน</small></h2><div class="spacer"></div>
         ${W.length ? '<button class="btn small primary" data-act="placeWish">จัดลงวันที่เหมาะให้ทั้งหมด</button>' : ""}</div>
-      <p class="mute small">ลากลงวันที่ต้องการ หรือเลือกวันจากช่องข้างชื่อ • "วันที่เหมาะสุด" = ลองใส่ทุกวันแล้วเลือกวันที่ปัญหาน้อยสุดและขับเพิ่มน้อยสุด (ตรงฤดูด้วย) • เพิ่มได้จากหน้าสถานที่ (♡ อยากไป) หรือปุ่มด้านล่าง</p>
+      <p class="mute small">ลากลงวัน หรือเลือกวันจากช่องข้างชื่อ • "วันที่เหมาะสุด" = ให้ระบบเลือกวันที่ไปได้ดีที่สุด</p>
       ${W.length ? `<div class="wish-list">${W.map((id) => `<div class="wchip" draggable="true" data-wish="${esc(id)}"><span>${KIND_IC(id)}</span><b class="nm" data-detail="${esc(id)}">${esc(pname(id))}</b>
         <select data-wishday="${esc(id)}" aria-label="ใส่วัน"><option value="">ใส่วัน…</option><option value="auto">วันที่เหมาะสุด</option>${days}</select><button class="x" data-wishrm="${esc(id)}" aria-label="ลบ">✕</button></div>`).join("")}</div>` : ""}
       <button class="btn small" data-wishpick>${I("search")} เพิ่มที่อยากไป</button></div>`;
