@@ -217,17 +217,16 @@ const PlanView = {
       <div class="map-legend"><span><i style="background:var(--ice)"></i>ขับรถ</span><span><i style="background:repeating-linear-gradient(90deg,var(--ice) 0 3px,transparent 3px 6px)"></i>รถไฟ/บัส</span><span><i style="background:var(--good)"></i>เที่ยว</span><span><i style="background:var(--warn)"></i>กิน</span><span><i style="background:var(--fest)"></i>กลางคืน</span><span><i style="background:var(--dark-band)"></i>ฟ้ามืด</span></div></div>`;
   },
 
-  itemRow(e, x, n) {
-    const i = e.i, it = x.it, p = point(x.id), last = e.items.filter((y) => !y.night).length;
+  itemRow(e, x) {
+    const i = e.i, it = x.it, p = point(x.id);
     const idx = S.plan.days[i].items.indexOf(it);
-    const meta = [fmtH(x.h), p.fee, e.mode === "transit" && isPlace(x.id) ? ACCESS_TXT[access(p)] : ""].filter(Boolean).map(esc).join(" • ");
+    const meta = [p.stars ? `<span class="stars">${"★".repeat(p.stars)}</span>` : "", ...[fmtH(x.h), p.fee, e.mode === "transit" && isPlace(x.id) ? ACCESS_TXT[access(p)] : ""].filter(Boolean).map(esc)].filter(Boolean).join(" · ");
+    // แตะทั้งแถว = เปิดกล่องแก้ไข (ย้ายวัน ล็อกเวลา จุดสำรอง โน้ต) • ⋮⋮ ลากเรียง • ✕ เอาออก
     return `<li class="it" draggable="true" data-i="${i}" data-idx="${idx}"><span class="tm">${fmtT(x.t)}</span><span class="ic">${x.night ? I("moon") : KIND_IC(x.id)}</span>
-      <span class="visit ${x.night ? "night" : ""}">${p.img ? `<img class="thumb" src="${p.img}" alt="" loading="lazy" data-lb="${x.id}">` : ""}
-        <b class="nm" data-detail="${x.id}">${nameHtml(p)}</b>${p.stars ? ` <span class="stars">${"★".repeat(p.stars)}</span>` : ""}
-        ${it.at ? ` <span class="badge b-info">${I("lock")} ${esc(it.at)}</span>` : ""}
-        <br><small>${x.onWay ? `กินระหว่างทาง: ${x.onWay === "car" ? "แวะจุดพักรถ/มิจิโนะเอกิ ~30 นาที" : "ซื้อข้าวกล่อง (เอกิเบ็น)/คอนบินีกินบนรถ"}` : meta}</small>${it.note ? `<div class="note">📝 ${esc(it.note)}</div>` : ""}</span>
-      <span class="it-tools no-print"><button data-up="${i}:${idx}" ${n === 0 || x.night ? "disabled" : ""} aria-label="เลื่อนขึ้น">${I("arrow-up")}</button><button data-down="${i}:${idx}" ${n >= last - 1 || x.night ? "disabled" : ""} aria-label="เลื่อนลง">${I("arrow-down")}</button>
-        <button data-move="${i}:${idx}" aria-label="ย้าย" title="ย้ายวัน / เป็นจุดสำรอง / เก็บไว้ในอยากไป">${I("arrow-left-right")}</button><button data-edit="${i}:${idx}" aria-label="แก้ไข" title="ล็อกเวลา/เวลาที่ใช้/โน้ต/ย้ายวัน">${I("pencil")}</button><button data-rm="${i}:${idx}" aria-label="เอาออก" title="เอาออก">${I("x")}</button></span></li>`;
+      <span class="visit ${x.night ? "night" : ""}" data-edit="${i}:${idx}" role="button" tabindex="0" title="แตะเพื่อแก้ไข / ย้ายวัน / ล็อกเวลา">${p.img ? `<img class="thumb" src="${p.img}" alt="" loading="lazy" data-lb="${x.id}">` : ""}
+        <b class="nm">${esc(pname(x.id))}</b>${it.at ? ` <span class="badge b-info">${I("lock")} ${esc(it.at)}</span>` : ""}
+        <small>${x.onWay ? `กินระหว่างทาง: ${x.onWay === "car" ? "แวะจุดพักรถ/มิจิโนะเอกิ ~30 นาที" : "ซื้อข้าวกล่อง (เอกิเบ็น)/คอนบินีกินบนรถ"}` : meta}</small>${it.note ? `<div class="note">📝 ${esc(it.note)}</div>` : ""}</span>
+      <span class="it-tools no-print"><button class="igrip" data-igrip="${i}:${idx}" ${x.night ? "disabled" : ""} aria-label="ย้ายลำดับ ${esc(pname(x.id))} (ลาก หรือกดลูกศรขึ้น/ลง)" title="ลากเพื่อเรียงลำดับ">${I("grip-vertical")}</button><button data-rm="${i}:${idx}" aria-label="เอาออก ${esc(pname(x.id))}" title="เอาออก">${I("x")}</button></span></li>`;
   },
 
   // วันที่เปิดค้างไว้ (มีผลเฉพาะจอเล็ก): เริ่มที่วันนี้ระหว่างทริป ไม่งั้นวันแรก
@@ -247,20 +246,24 @@ const PlanView = {
   dayCard(e) {
     const N = tripNights(), i = e.i, day = S.plan.days[i];
     const mvIcon = (x) => I(x.city || x.walk ? "footprints" : LEG_MODE[x.mode]?.ic || "car");
-    let n = 0;
-    const rows = e.tl.map((x) => {
+    const rows = e.tl.map((x, k0) => {
       if (x.kind === "move") {
-        const what = x.walk ? `เดิน ≈${fmtH(x.h)} • ${x.km} กม.` : x.taxi ? `แท็กซี่ ≈${fmtH(x.h)} • ${x.km} กม. (≈¥${Math.round(500 + x.km * 400).toLocaleString()})` : x.city ? `เดิน/รถไฟใต้ดิน/แท็กซี่ ≈${fmtH(x.h)} (จอดรถไว้ที่พัก)` : x.mode === "car" ? `ขับ ${fmtH(x.h)} • ${x.km} กม.${x.est ? " (≈)" : ""}` : x.noTransit ? `ไม่มีรถไฟ/บัสตรง ≈${fmtH(x.h)} (แท็กซี่/รถ)` : x.local ? `เดิน/บัส/แท็กซี่ ≈${fmtH(x.h)}` : `รถไฟ/บัส ≈${fmtH(x.h)}${x.by ? " • " + esc(x.by.join(" → ")) : ""}`;
+        const what = x.walk ? `เดิน ${fmtH(x.h)} · ${x.km} กม.` : x.taxi ? `แท็กซี่ ${fmtH(x.h)} · ${x.km} กม. (≈¥${Math.round(500 + x.km * 400).toLocaleString()})` : x.city ? `เดิน/รถไฟใต้ดิน/แท็กซี่ ${fmtH(x.h)} (จอดรถไว้ที่พัก)` : x.mode === "car" ? `ขับ ${fmtH(x.h)} · ${x.km} กม.${x.est ? " (≈)" : ""}` : x.noTransit ? `ไม่มีรถไฟ/บัสตรง ${fmtH(x.h)} (แท็กซี่/รถ)` : x.local ? `เดิน/บัส/แท็กซี่ ${fmtH(x.h)}` : `รถไฟ/บัส ${fmtH(x.h)}${x.by ? " · " + esc(x.by.join(" → ")) : ""}`;
         const k = x.it ? S.plan.days[i].items.indexOf(x.it) : -1, cur = k >= 0 ? x.it.m : x.home ? day.hm : null;
         const lm = LEG_MODE[cur || Planner.modeOf()];
         // แสดงแค่ไอคอน มี select โปร่งใสทับไว้ให้กดเปลี่ยน
-        const pick = k >= 0 || x.home ? `<span class="legmode no-print ${cur ? "set" : ""}" title="วิธีเดินทางช่วงนี้: ${esc(lm.name)}${cur ? "" : " (ค่าเริ่มต้น)"}: กดเพื่อเปลี่ยน">${mvIcon(x)}<select ${k >= 0 ? `data-legmode="${i}:${k}"` : `data-hm="${i}"`} aria-label="วิธีเดินทางช่วงนี้">${legOpts(cur)}</select></span>` : "";
-        return `<li class="mv"><span class="tm">${fmtT(x.t)}</span><span class="ic">${pick || mvIcon(x)}</span><span class="move">→ ${esc(short(x.to))}: ${what}${x.high ? `<br><span class="risk">${I("triangle-alert")} ${esc(x.risk)}</span>` : ""}</span></li>`;
+        const pick = k >= 0 || x.home ? `<span class="legmode no-print ${cur ? "set" : ""}" title="วิธีเดินทางช่วงนี้: ${esc(lm.name)}${cur ? "" : " (ค่าเริ่มต้น)"}: กดเพื่อเปลี่ยน">${mvIcon(x)}<select ${k >= 0 ? `data-legmode="${i}:${k}"` : `data-hm="${i}"`} aria-label="วิธีเดินทางช่วงนี้ ไป ${esc(short(x.to))}">${legOpts(cur)}</select></span>` : "";
+        // ปลายทางคือแถวถัดไปอยู่แล้ว: แถวเดินทางเหลือแค่วิธีไปและเวลา
+        return `<li class="mv"><span class="tm"></span><span class="ic">${pick || mvIcon(x)}</span><span class="move">${what}${x.high ? `<br><span class="risk">${I("triangle-alert")} ${esc(x.risk)}</span>` : ""}</span></li>`;
       }
-      if (x.kind === "visit") return this.itemRow(e, x, n++);
+      if (x.kind === "visit") return this.itemRow(e, x);
       if (x.kind === "wait") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hourglass")}</span><span class="mute">ว่าง ${fmtH(x.h)} ก่อนเวลาที่ล็อก</span></li>`;
-      if (x.kind === "hotel") { const h = hotelOf(x.id); return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span><b>ถึงที่พัก ${esc(h?.name || pname(x.id))}</b>${h?.checkIn ? ` <small>(เช็กอิน ${esc(h.checkIn)})</small>` : ""}</span></li>`; }
-      if (x.kind === "airport") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("plane")}</span><span><b>ถึงสนามบิน ${esc(pname(x.id))}</b> (เครื่องออก ${S.trip.departTime})</span></li>`;
+      if (x.kind === "hotel") {
+        const h = hotelOf(x.id), nx = e.tl[k0 + 1], rest = nx?.kind === "info" && nx.ic === "hotel" ? nx.text.split(" • ")[0] : "";
+        return `<li class="stay"><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span><b>ถึงที่พัก ${esc(h?.name || pname(x.id))}</b>${h?.checkIn ? ` <small>เช็กอิน ${esc(h.checkIn)}</small>` : ""}${rest ? `<small class="rest">${esc(rest)}</small>` : ""}</span></li>`;
+      }
+      if (x.kind === "info" && x.ic === "hotel" && e.tl[k0 - 1]?.kind === "hotel") return ""; // รวมไว้ในแถวที่พักแล้ว
+      if (x.kind === "airport") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("plane")}</span><span><b>ถึงสนามบิน ${esc(pname(x.id))}</b> <small>เครื่องออก ${S.trip.departTime}</small></span></li>`;
       return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I(x.ic || "info")}</span><span class="mute">${esc(x.text)}</span></li>`;
     }).join("");
     const pts = [point(e.from), ...e.items.map((it) => point(it.id)).filter((p) => p.lat), point(e.to)];
@@ -270,17 +273,16 @@ const PlanView = {
       <div class="day-head"><h3>วันที่ ${i + 1}</h3><span class="day-meta">${thDate(e.iso)} • ${I("sun")} ${fmtT(e.sun.rise)}-${fmtT(e.sun.set)}</span>
         <span class="wx" data-wx="${ref.lat},${ref.lng},${e.iso}"></span>
         <span class="badge b-${e.lvl}">${LVL_ICON[e.lvl]} ${LVL_TXT[e.lvl]}</span>
-        <button class="btn small map-focus no-print" data-mapday="${i}" title="แสดงวันนี้บนแผนที่ด้านขวา">${I("map")} ดูบนแผนที่</button>
+        <button class="btn small map-focus no-print" data-dmap="${i}" title="ดูเส้นทางวันนี้บนแผนที่">${I("map")} แผนที่</button>
         <button class="btn small day-tog no-print" data-tog="${i}" aria-expanded="${open}">${open ? "ย่อ" : "ดูทั้งวัน"}</button></div>
       <div class="day-meta" style="margin-top:2px"><b>${esc(short(e.from))}</b> → <b>${esc(short(e.to))}</b>${e.driveH ? ` • ขับรวม ${fmtH(e.driveH)}` : ""} • จบวัน ~${fmtT(e.end)}${e.leaveBy != null ? ` • <b>ออกจากที่พักไม่เกิน ${fmtT(e.leaveBy)}</b>` : ""}</div>
+      ${e.checks.length ? `<ul class="checks">${e.checks.map((c) => `<li class="${c.lvl}">${LVL_ICON[c.lvl] || ""} ${esc(c.text)}</li>`).join("")}</ul>` : ""}
       <div class="day-body">
-        <div><ul class="tl" data-day="${i}">${rows}</ul>${this.maybeBox(i)}</div>
-        <div><details class="no-print daymap-box" ${matchMedia("(min-width: 900px) and (max-width: 1199px)").matches ? "open" : ""}><summary>${I("map")} แผนที่วันนี้</summary><div class="daymap" data-daymap="${i}"></div></details>
-          <ul class="checks">${e.checks.length ? e.checks.map((c) => `<li class="${c.lvl}">${LVL_ICON[c.lvl] || ""} ${esc(c.text)}</li>`).join("") : `<li class="good">${I("circle-check")} เวลาพอ${e.mode === "car" ? " ไม่ขับตอนมืด" : ""}</li>`}</ul>
-          <details class="no-print daynote" ${day.note || day.planB ? "open" : ""}><summary>${I("notebook-pen")} โน้ต / แผนสำรอง</summary>
-            <textarea data-dnote="${i}" rows="2" placeholder="โน้ตวันนี้ เช่น เลขจองทัวร์">${esc(day.note || "")}</textarea>
-            <textarea data-dplanb="${i}" rows="2" placeholder="แผนสำรองถ้าถนนปิด/พายุหิมะ">${esc(day.planB || "")}</textarea></details>
-        </div>
+        <details class="no-print daymap-box" data-keep="dmap${i}" ${FOLD["dmap" + i] ? "open" : ""}><summary>${I("map")} แผนที่วันนี้</summary><div class="daymap" data-daymap="${i}"></div></details>
+        <ul class="tl" data-day="${i}">${rows}</ul>${this.maybeBox(i)}
+        <details class="no-print daynote" ${day.note || day.planB ? "open" : ""}><summary>${day.note || day.planB ? `${I("notebook-pen")} โน้ต / แผนสำรอง` : "+ โน้ต / แผนสำรอง"}</summary>
+          <textarea data-dnote="${i}" rows="2" placeholder="โน้ตวันนี้ เช่น เลขจองทัวร์">${esc(day.note || "")}</textarea>
+          <textarea data-dplanb="${i}" rows="2" placeholder="แผนสำรองถ้าถนนปิด/พายุหิมะ">${esc(day.planB || "")}</textarea></details>
       </div>
       <div class="day-tools no-print">
         <button class="btn small primary" data-addmenu="${i}">+ เพิ่มสถานที่/มื้อ</button>
@@ -381,7 +383,7 @@ const PlanView = {
       <label class="f chk"><input type="checkbox" id="eMaybe" ${it.maybe ? "checked" : ""}> ถ้ามีเวลา (จุดสำรอง ไม่นับเวลา)</label>
       ${i < N ? `<label class="f chk"><input type="checkbox" id="eNight" ${it.night ? "checked" : ""}> ไปหลังเช็กอินที่พัก (ตอนค่ำ)</label>` : ""}
     </div><label class="f" style="margin-top:10px">โน้ต<textarea id="eNote" rows="2">${esc(it.note || "")}</textarea></label>
-    <div class="row" style="margin-top:12px"><button class="btn primary" id="eSave">บันทึก</button><button class="btn" data-detail="${esc(it.id)}">ดูรายละเอียดสถานที่</button><div class="spacer"></div><button class="btn red" id="eDel">เอาออกจากแผน</button></div>`);
+    <div class="row" style="margin-top:12px"><button class="btn primary" id="eSave">บันทึก</button><button class="btn" data-detail="${esc(it.id)}">ดูรายละเอียดสถานที่</button><button class="btn" id="eWish">${I("heart")} เก็บไว้ในอยากไป</button><div class="spacer"></div><button class="btn red" id="eDel">เอาออกจากแผน</button></div>`);
     $("#eSave").onclick = () => {
       const at = $("#eAt").value, dur = $("#eDur").value, to = +$("#eDay").value;
       let ll;
@@ -402,6 +404,7 @@ const PlanView = {
       });
       Modal.close();
     };
+    $("#eWish").onclick = () => { this.mut(() => { Planner.toWish(i, it); Planner.resoft(i); }); Modal.close(); toast("ย้ายไปกล่อง อยากไป แล้ว"); };
     $("#eDel").onclick = () => { this.mut(() => S.plan.days[i].items.splice(S.plan.days[i].items.indexOf(it), 1)); Modal.close(); };
   },
 
@@ -580,8 +583,58 @@ const PlanView = {
       else if (d.dnote) { S.plan.days[+d.dnote].note = el.value; save(); }
       else if (d.dplanb) { S.plan.days[+d.dplanb].planB = el.value; save(); }
     });
+    // เลื่อนจุดในวันเดียวกัน: ขึ้น/ลงทีละช่อง (คีย์บอร์ด) หรือแทรกก่อนจุด tgt (ลาก; null = ท้ายวัน)
+    const stepItem = (i, idx, dir) => {
+      const items = S.plan.days[i].items, day = items.filter((x) => !x.night && !x.maybe), a = items[idx], b = day[day.indexOf(a) + dir];
+      if (!b) return false;
+      this.mut(() => { const ia = items.indexOf(a), ib = items.indexOf(b); [items[ia], items[ib]] = [items[ib], items[ia]]; a.u = true; });
+      return true;
+    };
+    const placeBefore = (i, idx, tgt) => {
+      const items = S.plan.days[i].items, a = items[idx];
+      if (a === tgt) return;
+      this.mut(() => {
+        items.splice(items.indexOf(a), 1);
+        let k = tgt ? items.indexOf(tgt) : items.filter((x) => !x.night).length;
+        if (k < 0) k = items.length;
+        a.u = true; items.splice(k, 0, a);
+      });
+    };
+    trip.addEventListener("keydown", (ev) => {
+      const t = ev.target;
+      if (t.dataset?.edit && (ev.key === "Enter" || ev.key === " ")) { ev.preventDefault(); const [i, idx] = t.dataset.edit.split(":").map(Number); this.editItem(i, idx); }
+      else if (t.dataset?.igrip && (ev.key === "ArrowUp" || ev.key === "ArrowDown")) {
+        ev.preventDefault();
+        const [i, idx] = t.dataset.igrip.split(":").map(Number), id = S.plan.days[i].items[idx];
+        if (stepItem(i, idx, ev.key === "ArrowUp" ? -1 : 1)) $(`[data-igrip="${i}:${S.plan.days[i].items.indexOf(id)}"]`)?.focus();
+      }
+    });
+    // ลาก ⋮⋮ ด้วยเมาส์หรือนิ้ว (การลากแบบเดิมของเบราว์เซอร์ใช้กับนิ้วไม่ได้)
+    trip.addEventListener("pointerdown", (ev) => {
+      const g = ev.target.closest("[data-igrip]"); if (!g || g.disabled || ev.button > 0) return;
+      ev.preventDefault();
+      const [i, idx] = g.dataset.igrip.split(":").map(Number), li = g.closest("li"), ul = li.closest("ul");
+      const rows = [...ul.querySelectorAll("li.it")].filter((r) => !r.querySelector(".igrip:disabled"));
+      let to = rows.indexOf(li);
+      li.classList.add("dragging"); g.setPointerCapture(ev.pointerId);
+      const mv = (e) => {
+        const y = e.clientY;
+        if (y < 70) scrollBy(0, -12); else if (y > innerHeight - 110) scrollBy(0, 12);
+        to = rows.filter((r) => r.getBoundingClientRect().top + r.offsetHeight / 2 < y).length;
+        rows.forEach((r, n) => { r.classList.toggle("drop-before", n === to && r !== li); r.classList.toggle("drop-after", n === rows.length - 1 && to === rows.length && r !== li); });
+      };
+      const up = () => {
+        g.removeEventListener("pointermove", mv); g.removeEventListener("pointerup", up); g.removeEventListener("pointercancel", up);
+        rows.forEach((r) => r.classList.remove("dragging", "drop-before", "drop-after"));
+        const from = rows.indexOf(li);
+        if (to === from || to === from + 1) return;
+        const items = S.plan.days[i].items, tgt = rows[to] ? items[+rows[to].dataset.idx] : null;
+        placeBefore(i, idx, tgt);
+      };
+      g.addEventListener("pointermove", mv); g.addEventListener("pointerup", up); g.addEventListener("pointercancel", up);
+    });
     trip.addEventListener("click", (ev) => {
-      const el = ev.target.closest("button, [data-goto], [data-detail], [data-lb]");
+      const el = ev.target.closest("button, [data-goto], [data-detail], [data-lb], [data-edit]");
       if (!el) return;
       const d = el.dataset, pair = (s) => s.split(":").map(Number);
       if (d.lb) Lightbox.place(isNaN(d.lb) ? d.lb : +d.lb);
@@ -592,11 +645,11 @@ const PlanView = {
         TripMap.drawPlan(this.M, this.evals, this.focus);
       } else if (d.goto) { this.openDay(+d.goto); $(`#day-${d.goto}`).scrollIntoView({ behavior: "smooth", block: "start" }); }
       else if (d.tog) this.openDay(+d.tog, !this.opened.has(+d.tog));
-      else if (d.up || d.down) {
-        const [i, idx] = pair(d.up || d.down), items = S.plan.days[i].items;
-        const day = items.filter((x) => !x.night && !x.maybe), a = items[idx], b = day[day.indexOf(a) + (d.up ? -1 : 1)];
-        if (!b) return;
-        this.mut(() => { const ia = items.indexOf(a), ib = items.indexOf(b); [items[ia], items[ib]] = [items[ib], items[ia]]; a.u = true; });
+      else if (d.dmap) {
+        if (matchMedia("(min-width: 1200px)").matches) { // จอกว้าง: ใช้แผนที่ใหญ่ด้านขวา
+          this.focus = +d.dmap; $$(".map-days [data-mapday]").forEach((b) => b.classList.toggle("on", b.dataset.mapday === d.dmap));
+          const mc = $("#mapCard"); if (!mc.open) mc.open = true; else TripMap.drawPlan(this.M, this.evals, this.focus);
+        } else { const b = $(`#day-${d.dmap} .daymap-box`); this.openDay(+d.dmap); b.open = !b.open; if (b.open) b.scrollIntoView({ behavior: "smooth", block: "nearest" }); }
       } else if (d.rm) { const [i, idx] = pair(d.rm); this.mut(() => { S.plan.days[i].items.splice(idx, 1); Planner.resoft(i); }); }
       else if (d.edit) { const [i, idx] = pair(d.edit); this.editItem(i, idx); }
       else if (d.move) { const [i, idx] = pair(d.move); this.moveItem(i, idx); }

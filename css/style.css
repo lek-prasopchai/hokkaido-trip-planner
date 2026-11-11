@@ -716,3 +716,36 @@ details.fold-card > summary::after { content: ""; position: absolute; right: 4px
 details.fold-card[open] > summary::after { transform: translateY(-30%) rotate(-135deg); }
 details.fold-card[open] > summary { margin-bottom: 12px; }
 details.adv > summary .mute { font-size: .875rem; }
+
+/* ---------- แผนรายวันแบบโปร่ง: แถวแสดงข้อมูล แตะเพื่อแก้ ---------- */
+.day-body { display: block; margin-top: 8px; }
+.day > .checks { margin-top: 10px; }
+.tl li.it, .tl li { grid-template-columns: 52px 22px minmax(0, 1fr) auto; }
+.tl .visit { display: block; margin: -4px 0; padding: 4px 8px; border-radius: 8px; cursor: pointer; transition: background-color .15s; }
+.tl .visit:hover { background: var(--bg); }
+.tl .visit:focus-visible { outline: 2px solid var(--ice); outline-offset: 1px; }
+.tl .visit small { display: block; color: var(--ink2); }
+.tl .visit .nm { cursor: inherit; }
+.tl li.it:hover { background: none; }
+.tl li.mv { padding: 0; }
+.tl li.mv .move { font-size: .8rem; color: var(--mute); padding-left: 8px; }
+.tl li.mv .ic { opacity: .85; }
+.tl li.stay .rest { display: block; color: var(--mute); }
+.igrip { display: inline-grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: 6px; background: none; color: var(--mute); cursor: grab; touch-action: none; }
+.igrip:hover:not(:disabled) { background: var(--bg); color: var(--ink); }
+.igrip:disabled { opacity: .3; cursor: default; }
+.igrip .i { width: 16px; height: 16px; }
+.tl li.dragging { opacity: .45; }
+.tl li.drop-after { box-shadow: inset 0 -3px 0 var(--ice); }
+.map-focus { display: inline-flex; margin-left: auto; }
+.map-focus + .day-tog { margin-left: 0; }
+.daymap-box > summary { display: none; }
+.daymap-box[open] { margin: 4px 0 10px; }
+.daynote > summary { color: var(--ice); }
+@media (min-width: 1200px) { .split-main .daymap-box { display: none; } }
+@media (max-width: 899px) {
+  .tl li.it, .tl li { grid-template-columns: 42px 20px minmax(0, 1fr) auto; }
+  .tl .it-tools { grid-column: auto; }
+  .igrip, .tl .it-tools button { width: 36px; height: 40px; }
+  .tl .visit { padding: 4px 4px; }
+}
