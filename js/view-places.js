@@ -112,14 +112,13 @@ const PlacesView = {
         ${String(p.acc || "").startsWith("ประมาณ") ? row("ตำแหน่งบนแผนที่", "ประมาณ: ใช้ปุ่มรีวิว Google Maps เพื่อดูตำแหน่งจริง") : ""}${row("ชื่อญี่ปุ่น", esc(p.ja))}${row("ที่อยู่", esc(p.addrJa))}${row("โทร", esc(p.phone))}${row("MAPCODE", esc(p.mapcode))}
         ${row("ตรวจข้อมูล", esc(p.checked || "พ.ย. 2026 (ประมาณ)"))}</dl>
       ${(p.videos || []).length ? `<div class="vids">${p.videos.map((v) => `<iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/${esc(v)}" title="YouTube" allowfullscreen></iframe>`).join("")}</div>` : ""}
-      <div class="row" style="margin-top:10px">${reviewLinks(p)}<button class="btn small" data-show="1">${I("car-taxi-front")} การ์ดโชว์คนขับ</button></div>
+      <div class="row" style="margin-top:10px">${reviewLinks(p)}</div>
       ${S.plan && !plan[id] ? `<div class="row" style="margin-top:10px">${addSelect(id)}</div>` : ""}
       ${imgs[0]?.credit ? `<p class="credit">รูป: Wikimedia Commons / Flickr สัญญาอนุญาต CC (กดรูปเพื่อดูที่มาและผู้ถ่าย)</p>` : ""}`, "wide");
     const d = $("#modal");
     d.onclick = (e) => {
       if (e.target === d || e.target.closest("[data-close]")) return d.close();
       if (e.target.dataset.gi) Lightbox.open(imgs, +e.target.dataset.gi, p.name);
-      if (e.target.dataset.show) showCard(p);
     };
     d.onchange = (e) => { const v = e.target.value; if (e.target.dataset.addto && v !== "") { PlanView.addTo(id, /^(auto|wish)$/.test(v) ? v : +v); d.close(); } };
   },

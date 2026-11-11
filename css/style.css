@@ -128,7 +128,6 @@ table.t { width: 100%; border-collapse: collapse; font-size: .9rem; }
 .hero h1 { font-size: 1.9rem; }
 .hero .stat b { display: block; font-size: 1.7rem; }
 .hero .stat span { font-size: .82rem; opacity: .75; }
-.steps { counter-reset: s; display: grid; gap: 8px; }
 .step { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); cursor: pointer; }
 .step:hover { border-color: var(--ice); }
 .step::before { counter-increment: s; content: counter(s); flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--ice-soft); color: var(--ice); font-weight: 700; }
@@ -304,8 +303,7 @@ textarea { width: 100%; resize: vertical; border: 1px solid var(--line); border-
 .wx { font-size: .82rem; color: var(--ink2); }
 .wx.on { background: var(--ice-soft); padding: 1px 8px; border-radius: 99px; }
 .daynote textarea { margin-top: 6px; font-size: .88rem; }
-.daynote summary, .lastday summary { cursor: pointer; font-size: .86rem; color: var(--ice); margin-top: 8px; }
-.lastday { margin-top: 8px; }
+.daynote summary { cursor: pointer; font-size: .86rem; color: var(--ice); margin-top: 8px; }
 .day-tools label.f { min-width: 0; }
 .day-tools input[type=time] { width: 110px; }
 
@@ -322,9 +320,6 @@ dialog#modal::backdrop { background: rgba(10,15,25,.6); }
 .sea-inline { font-size: .82rem; color: var(--ink2); }
 .vids { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 8px; margin-top: 10px; }
 .vids iframe { width: 100%; aspect-ratio: 16/9; border: 0; border-radius: 10px; }
-.showcard { text-align: center; padding: 10px 0; }
-.big-ja { font-size: clamp(2rem, 7vw, 3.6rem); font-weight: 700; line-height: 1.25; margin: 10px 0; word-break: break-all; }
-.addr-ja { font-size: 1.3rem; margin-bottom: 6px; }
 
 /* การ์ดสถานที่/ร้าน */
 .pcard h4 { cursor: pointer; }
@@ -480,14 +475,6 @@ b.over { background: none; }
 .stars { color: var(--star); }
 
 /* ---- แถบลำดับการใช้งาน ---- */
-.steps { display: flex; gap: 6px; list-style: none; margin: 0 0 14px; padding: 0; overflow-x: auto; scrollbar-width: none; }
-.steps li { flex: 1 0 auto; }
-.steps a { display: flex; align-items: center; gap: 6px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 99px; background: var(--paper);
-  color: var(--ink2); text-decoration: none; font-size: .82rem; white-space: nowrap; }
-.steps b { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--line); color: var(--ink); font-size: .75rem; }
-.steps b svg { width: 14px; height: 14px; }
-.steps .done b { background: var(--good-soft); color: var(--good); }
-.steps .cur a { border-color: var(--ice); color: var(--ink); font-weight: 600; box-shadow: inset 0 0 0 1px var(--ice); }
 .step-h { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; font-size: 1.05rem; margin: 18px 0 8px; }
 .step-h > b { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--ice); color: var(--on); font-size: .85rem; }
 .step-h small { font-weight: 400; font-size: .8rem; }

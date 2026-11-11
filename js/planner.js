@@ -203,7 +203,7 @@ const Planner = {
     };
     if (i === 0 && !opts.live) {
       const b = t.buf;
-      tl.push({ t: parseT(t.arriveTime), kind: "info", ic: "plane", text: `เครื่องลง ${t.arriveTime}${t.outFlight?.no ? ` (${t.outFlight.no})` : ""} • ${t.domIn ? "เที่ยวบินในประเทศ" : "ตรวจคนเข้าเมือง + รับกระเป๋า"} ~${t.domIn ? b.dom : b.imm} นาที • ${mode === "car" ? (t.carPick ? `รับรถเช่า ~${b.car} นาที` : "ไม่รวมเวลารับรถ (ใส่เองในแผน)") : `ซื้อพาส/IC/ซิม ~${b.pass} นาที`}` });
+      tl.push({ t: parseT(t.arriveTime), kind: "info", ic: "plane", text: `เครื่องลง ${t.arriveTime} • ${t.domIn ? "เที่ยวบินในประเทศ" : "ตรวจคนเข้าเมือง + รับกระเป๋า"} ~${t.domIn ? b.dom : b.imm} นาที • ${mode === "car" ? (t.carPick ? `รับรถเช่า ~${b.car} นาที` : "ไม่รวมเวลารับรถ (ใส่เองในแผน)") : `ซื้อพาส/IC/ซิม ~${b.pass} นาที`}` });
     }
     const visit = (it, night) => {
       const p = point(it.id);

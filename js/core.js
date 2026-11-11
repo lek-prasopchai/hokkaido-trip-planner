@@ -47,7 +47,7 @@ const Store = {
       v: 2,
       trip: {
         start: "2027-01-15", end: "2027-01-22", nights: 7, arrive: "CTS", depart: "CTS", arriveTime: "08:30", departTime: "16:00",
-        outFlight: { no: "", from: "BKK", dep: "", via: "" }, inFlight: { no: "", to: "BKK", via: "" }, domIn: false, domOut: false,
+        outFlight: { dep: "" }, inFlight: {}, domIn: false, domOut: false,
         adults: 2, kids: 0, drivers: 1, pace: "balanced", interests: ["city", "food", "nature", "onsen"], mode: "car", level: 1,
         firstDay: "auto", buf: { ...BUF }, carPick: true, carRet: true, // รับ/คืนรถที่สนามบินตอนถึง/ก่อนบิน (ปิด = ใส่เองในแผน)
       },
@@ -350,13 +350,6 @@ const Modal = {
   },
   close() { $("#modal")?.close(); },
 };
-// การ์ดโชว์คนขับแท็กซี่/คนท้องถิ่น: ชื่อญี่ปุ่นตัวใหญ่
-function showCard(p) {
-  Modal.open(`<div class="showcard"><p class="mute">ขอไปที่นี่ครับ/ค่ะ: ここへ行きたいです</p><div class="big-ja">${esc(p.ja || p.name)}</div>
-    ${p.addrJa ? `<div class="addr-ja">${esc(p.addrJa)}</div>` : ""}${p.phone ? `<div class="addr-ja">${I("phone")} ${esc(p.phone)}</div>` : ""}
-    <p>${esc(p.name)}${p.en ? ` • ${esc(p.en)}` : ""}</p></div>`, "wide");
-}
-
 // ---------- แชร์แผนเป็นลิงก์ (บีบอัดใส่ใน #share=) ----------
 const b64u = { enc: (u8) => btoa(String.fromCharCode(...u8)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, ""),
   dec: (s) => Uint8Array.from(atob(s.replace(/-/g, "+").replace(/_/g, "/")), (c) => c.charCodeAt(0)) };
