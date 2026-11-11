@@ -315,7 +315,6 @@ const Planner = {
     if (N < 1) out.push({ lvl: "bad", text: "วันกลับต้องหลังวันไปอย่างน้อย 1 คืน" });
     if (!isWinter(t.start) || !isWinter(t.end)) out.push({ lvl: "info", text: "ทริปอยู่นอกหน้าหนาว เวลาขับใช้ค่าปกติ และระบบจะเตือนสถานที่ที่ปิดตามฤดู (คู่มือในเว็บเน้นหน้าหนาว)" });
     if (N + 1 > 15) out.push({ lvl: "bad", text: `${N + 1} วัน เกินสิทธิ์ยกเว้นวีซ่า 15 วันของพาสปอร์ตไทย` });
-    if (t.mode !== "transit" && t.drivers < 1) out.push({ lvl: "bad", text: "ขับรถเองต้องมีคนขับอย่างน้อย 1 คน (มี IDP)" });
     if (t.kids > 0 && t.mode !== "transit") out.push({ lvl: "info", text: "เด็กต่ำกว่า 6 ปีต้องใช้คาร์ซีท จองพร้อมรถเช่า" });
     if (S.plan) {
       const moves = S.plan.bases.filter((b, i) => i > 0 && b !== S.plan.bases[i - 1]).length;
@@ -328,7 +327,7 @@ const Planner = {
       const last = evals[evals.length - 1];
       if (last && last.mode === "car" && last.driveH > 2.5 && isWinter(last.iso)) out.push({ lvl: "warn", text: "วันบินกลับขับไกล ถ้าพายุหิมะอาจตกเครื่อง ลองพักคืนสุดท้ายใกล้สนามบิน" });
       const missing = Object.keys(Object.fromEntries(S.plan.bases.map((b) => [b, 1]))).filter((b) => !hotelOf(b)?.name);
-      if (missing.length) out.push({ lvl: "info", text: `ยังไม่ได้กรอกที่พัก: ${missing.map(short).join(", ")} (หน้าที่พัก)` });
+      if (missing.length) out.push({ lvl: "info", text: `ยังไม่ได้กรอกที่พัก: ${missing.map(short).join(", ")} (ข้อมูลทริป › ที่พัก)` });
     }
     return out;
   },

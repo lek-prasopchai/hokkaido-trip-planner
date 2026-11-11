@@ -13,6 +13,18 @@ const KIND_IC = (id) => I(isPlace(id) ? "map-pin" : S.plan.custom[id]?.meal ? "s
 const legOpts = (cur) => `<option value="">${LEG_MODE[Planner.modeOf()].name} (ค่าเริ่มต้น)</option>${Object.entries(LEG_MODE).map(([v, m]) => `<option value="${v}" ${cur === v ? "selected" : ""}>${m.name}</option>`).join("")}`;
 const STAY_TIPS = "จองล่วงหน้า 3-4 เดือน (ช่วงเทศกาลหิมะ 6 เดือน) • ขับรถ: เลือกที่มีที่จอด ถามค่าจอดและต้องจองไหม • นั่งรถไฟ: เลือกใกล้สถานี เดินลากกระเป๋าบนหิมะลำบาก • เรียวกังออนเซ็นมักรวมอาหารเย็น-เช้า และต้องเช็กอินก่อน ~18:00 • พักฐานเดิม 2 คืนขึ้นไปช่วยให้ไม่ต้องแพ็กกระเป๋าทุกวัน";
 
+// แผนที่เล็กของรูท: เกาะฮอกไกโด (SVG จาก outline) + เมืองที่พักเรียงตามลำดับ ไม่โหลด Leaflet ต่อการ์ด
+const MINI = { x0: 139.3, y0: 45.65, k: 72, cos: 0.725 };
+const miniXY = (lng, lat) => [((lng - MINI.x0) * MINI.cos * MINI.k).toFixed(1), ((MINI.y0 - lat) * MINI.k).toFixed(1)];
+let MINI_LAND = null;
+function routeSvg(ids) {
+  MINI_LAND ||= HOKKAIDO_OUTLINE.map((r) => "M" + r.filter((_, i) => r.length < 150 || i % 3 === 0).map(([x, y]) => miniXY(x, y).join(" ")).join("L") + "Z").join("");
+  const pts = ids.filter((id, i) => id !== ids[i - 1]).map(point).filter((p) => p?.lat);
+  const xy = pts.map((p) => miniXY(p.lng, p.lat));
+  return `<svg class="tpl-map" viewBox="0 0 ${Math.ceil(9.7 * MINI.cos * MINI.k)} ${Math.ceil(4.35 * MINI.k)}" aria-hidden="true"><path class="land" d="${MINI_LAND}"/>
+    <polyline class="rt" points="${xy.map((p) => p.join(",")).join(" ")}"/>${xy.map(([x, y], i) => `<circle cx="${x}" cy="${y}" r="${i === 0 || i === xy.length - 1 ? 5 : 7}" class="${i === 0 || i === xy.length - 1 ? "air" : ""}"/>`).join("")}</svg>`;
+}
+
 const PlanView = {
   M: null, mapEl: null, focus: null,
 
@@ -72,14 +84,12 @@ const PlanView = {
         <p class="mute small" style="grid-column:1/-1;margin:0">รับ/คืนรถที่อื่นหรือวันอื่น: เอาติ๊กออก แล้วเพิ่ม <b>จุดของฉัน</b> ชื่อ "รับรถ" / "คืนรถ" ในวันนั้น ปักหมุดสาขา ล็อกเวลา และใส่เวลาที่ใช้เอง • ช่วงก่อนมีรถ เปลี่ยนวิธีเดินทางรายช่วงเป็นรถไฟ/บัสได้ในแผนรายวัน</p>
         <label class="f">วันแรก<select data-k="firstDay"><option value="auto" ${t.firstDay === "auto" ? "selected" : ""}>อัตโนมัติ (บินกลางคืน = เบาๆ)</option><option value="light" ${t.firstDay === "light" ? "selected" : ""}>เบาๆ 1 ที่</option><option value="full" ${t.firstDay === "full" ? "selected" : ""}>เที่ยวเต็มที่</option></select></label>
       </div></details>
-      ${fresh ? `</details><details class="fold-sec"><summary><b>${I("settings")} สไตล์และความสนใจ</b> <span class="mute">ไม่บังคับ: กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง</span></summary>` : `<h2 class="step-h"><b>2</b> คนและสไตล์ <small class="mute">ใช้กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง และคิดงบ</small></h2>`}
+      ${fresh ? `</details><details class="fold-sec"><summary><b>${I("settings")} สไตล์และความสนใจ</b> <span class="mute">ไม่บังคับ: กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง</span></summary>` : `<h2 class="step-h"><b>2</b> คนและสไตล์ <small class="mute">สไตล์กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง</small></h2>`}
       <div class="card">
         <div class="form">
-          <label class="f">ผู้ใหญ่<input type="number" min="1" max="20" data-k="adults" value="${t.adults}"></label>
+          <label class="f">ผู้ใหญ่ <small>ใช้คิดค่าประมาณในหน้างบ</small><input type="number" min="1" max="20" data-k="adults" value="${t.adults}"></label>
           <label class="f">เด็ก (≤11 ปี)<input type="number" min="0" max="10" data-k="kids" value="${t.kids}"></label>
-          <label class="f">คนขับ (มี IDP)<input type="number" min="0" max="6" data-k="drivers" value="${t.drivers}"></label>
           ${t.mode === "car" ? `<label class="f">เคยขับบนหิมะไหม<select data-snow>${[["new", "ไม่เคย (เวลาขับ ×1.5)"], ["some", "เคยมาบ้าง (×1.3)"], ["dry", "ถนนส่วนใหญ่แห้ง (×1.1)"]].map(([v, l]) => `<option value="${v}" ${S.set.snow === v ? "selected" : ""}>${l}</option>`).join("")}</select></label>` : ""}
-          <label class="f">ระดับที่พัก/งบ<select data-k="level">${["ประหยัด", "กลาง", "สบาย"].map((x, i) => `<option value="${i}" ${t.level === i ? "selected" : ""}>${x}</option>`).join("")}</select></label>
         </div>
         <div class="row" style="margin-top:14px">
           <div><div class="mute small">สไตล์</div><div class="seg" data-seg="pace">${Object.entries(PACE).map(([k, v]) => `<button data-v="${k}" class="${t.pace === k ? "on" : ""}">${v.name}</button>`).join("")}</div></div>
@@ -90,18 +100,19 @@ const PlanView = {
         <p class="mute small" style="margin:10px 0 0">ชิล: ขับ ≤2 ชม./วัน ≤3 ที่ จบวัน 18:00 • กลางๆ: ≤3.5 ชม. ≤4 ที่ จบ 19:30 • แน่น: ≤5 ชม. ≤6 ที่ จบ 21:00 • ทับค่าได้ใน ${I("settings")} ตั้งค่า</p>
       </div>
       ${fresh ? "</details>" : ""}<h2 class="step-h" id="routes"><b>${fresh ? 2 : 3}</b> เลือกรูท = สร้างแผนรายวัน</h2>
-      <div class="card">
+      <details class="card routes-box" ${S.plan ? "" : "open"}><summary>${S.plan ? `<b>รูทตอนนี้: ${esc(TEMPLATES.find((x) => x.id === S.plan.tpl)?.name || "แผนที่จัดเอง")}</b> <span class="mute">กดเพื่อดู/เปลี่ยนรูท (สร้างแผนใหม่)</span>` : "<b>รูทแนะนำ</b> <span class=\"mute\">แผนที่เล็ก = เมืองที่พักและลำดับการเดินทาง</span>"}</summary>
         <p class="mute">รูทคือลำดับเมืองที่จะพักแต่ละคืน เรียงตามความเหมาะกับข้อ 1-2 กดการ์ดแล้วระบบจะจัดที่พักรายคืนและที่เที่ยวรายวันให้ทันที แล้วพาไปหน้าแผนรายวัน${S.plan ? ` <b>มีแผนอยู่แล้ว: กดรูทใหม่ = แผนเดิมถูกแทนที่</b> (ที่พักที่กรอกไว้ยังอยู่ กด ↶ ย้อนได้) ถ้าแค่แก้วันหรือเที่ยวบิน ไม่ต้องกดรูทใหม่` : ""}</p>
         <div class="grid g3">${Planner.rankTemplates().map((r) => this.tplCard(r)).join("")}
           <div class="card tpl blank" data-blank tabindex="0" role="button"><h3>เริ่มแผนเปล่า</h3><p class="small">เลือกเมืองที่พักแต่ละคืนและที่เที่ยวเองทั้งหมด</p></div></div>
-      </div>${this.undoBtn()}`;
+      </details>${S.plan ? this.staysHtml() : ""}${this.undoBtn()}`;
+    if (S.plan) TripMap.drawBases(makeMap($("#stayMap")));
   },
 
   tplCard({ tp, score, min, ideal, why }) {
     const route = [tp.in, ...tp.stops.map((s) => s[0]), tp.out].map(short).join(" → ");
     return `<div class="card tpl ${S.plan?.tpl === tp.id ? "on" : ""}" data-tpl="${tp.id}" tabindex="0" role="button">
       <div class="score">${score}%</div><h3 style="padding-right:46px">${esc(tp.name)}</h3>
-      <div class="route">${esc(route)}</div><p class="small" style="margin:6px 0 0">${esc(tp.desc)}</p>
+      ${routeSvg([tp.in, ...tp.stops.map((s) => s[0]), tp.out])}<div class="route">${esc(route)}</div><p class="small" style="margin:6px 0 0">${esc(tp.desc)}</p>
       <div class="row" style="margin-top:6px"><span class="badge b-mute">${min}-${ideal} คืน</span><span class="badge b-mute">ขับ: ${tp.level}</span>
       <span class="badge ${tp.transit === 2 ? "b-good" : tp.transit === 1 ? "b-warn" : "b-bad"}">รถไฟ: ${["ยาก", "พอได้", "สะดวก"][tp.transit]}</span></div>
       ${why.length ? `<div class="why">${why.map(esc).join(" • ")}</div>` : ""}</div>`;
@@ -139,7 +150,7 @@ const PlanView = {
           ${dT ? `<div class="k"><b>${fmtH(dT)}</b><span>ขับรวม ${fmtN(kmT)} กม.</span></div>` : ""}
           ${trT ? `<div class="k"><b>${fmtH(trT)}</b><span>นั่งรถไฟ/บัสรวม</span></div>` : ""}
           <div class="k"><b>${nPlaces} ที่</b><span>${nightsBy.map((x) => `${esc(short(x.b))} ${x.n}`).join(" • ")}</span></div>
-          <div class="k"><b>${fmtN(B.total / B.ppl)} ฿</b><span><a href="#budget">งบต่อคนโดยประมาณ</a></span></div>
+          ${B.total ? `<div class="k"><b>${fmtN(B.total / B.ppl)} ฿</b><span><a href="#budget">งบต่อคน (ที่กรอกแล้ว)</a></span></div>` : `<div class="k"><b><a href="#budget">กรอกงบ</a></b><span>ยังไม่ได้กรอกราคา</span></div>`}
         </div>
         <details class="gantt-box" ${matchMedia("(min-width: 900px)").matches ? "open" : ""}><summary>${I("clock")} แถบเวลาทั้งทริป <small class="mute">ดูว่าวันไหนแน่น</small></summary>${this.gantt(evals)}</details>
         <ul class="checks">${sum.map((c) => `<li class="${c.lvl}">${esc(c.text)}</li>`).join("")}</ul>
@@ -481,17 +492,15 @@ const PlanView = {
     toast(`ใส่ท้ายวันที่ ${+i + 1} แล้ว`);
   },
 
-  // ================= ที่พัก =================
-  renderStays() {
-    const sec = $('[data-sec="stays"]');
-    if (!S.plan) return this.renderBases();
+  // ================= ที่พัก (ส่วนท้ายของหน้าข้อมูลทริป) =================
+  staysHtml() {
     const blocks = [];
     S.plan.bases.forEach((b, i) => { const l = blocks[blocks.length - 1]; if (l && l.b === b) l.n.push(i); else blocks.push({ b, n: [i] }); });
     const ids = [...new Set(S.plan.bases)];
-    sec.innerHTML = `<div class="sec-head"><h1>ที่พักและการจอง</h1><p class="lead"><b>ไม่บังคับ</b> ทำหลังจองแล้ว: ไม่กรอก ระบบใช้จุดกลางเมืองเป็นจุดเริ่ม/จบของแต่ละวันแทน • เมืองที่พักแต่ละคืนเลือกในหน้า <a href="#trip">แผนรายวัน</a> (คืนนี้พักเมือง)</p>
-        <ul class="small mute" style="margin:6px 0 0;padding-left:18px"><li><b>ชื่อ</b>: แสดงในแผนรายวัน "ถึงที่พัก…"</li><li><b>ตำแหน่ง</b>: ใช้เป็นจุดออกตอนเช้า/กลับตอนเย็นแทนกลางเมือง เวลาเดินทางแม่นขึ้น</li><li><b>เช็กอิน/เช็กเอาท์</b>: เตือนถ้าถึงก่อนเช็กอิน/ออกหลังเช็กเอาท์ และเวลาออกไปเที่ยวหลังเช็กอิน</li></ul></div>
+    return `<h2 class="step-h" id="stays"><b>4</b> ที่พักที่จองแล้ว <small class="mute">ไม่บังคับ</small></h2><p class="mute small" style="margin:0 0 8px"> ทำหลังจองแล้ว: ไม่กรอก ระบบใช้จุดกลางเมืองเป็นจุดเริ่ม/จบของแต่ละวันแทน • เมืองที่พักแต่ละคืนเลือกในหน้า <a href="#trip">แผนรายวัน</a> (คืนนี้พักเมือง)</p>
+        <ul class="small mute" style="margin:0 0 10px;padding-left:18px"><li><b>ชื่อ</b>: แสดงในแผนรายวัน "ถึงที่พัก…"</li><li><b>ตำแหน่ง</b>: ใช้เป็นจุดออกตอนเช้า/กลับตอนเย็นแทนกลางเมือง เวลาเดินทางแม่นขึ้น</li><li><b>เช็กอิน/เช็กเอาท์</b>: เตือนถ้าถึงก่อนเช็กอิน/ออกหลังเช็กเอาท์ และเวลาออกไปเที่ยวหลังเช็กอิน</li></ul>
       <details class="callout info"><summary><b>หลักเลือกที่พักหน้าหนาว</b></summary>${STAY_TIPS}</details>
-      <div class="card"><div class="map" id="stayMap"></div></div>
+      <div class="card"><h3 style="margin:0 0 6px">ภาพรวมรูทนี้</h3><div class="map" id="stayMap"></div><p class="map-note">เส้นประ = ลำดับการย้ายที่พัก • ป้าย = เมือง จำนวนคืน และราคาห้องโดยประมาณ</p></div>
       ${ids.map((id) => { const h = hotelOf(id) || {}, nights = blocks.filter((x) => x.b === id).flatMap((x) => x.n), hb = HUB[id]; return `<div class="card stay-card" data-hub="${id}">
         <div class="row"><h2 style="margin:0">${I("hotel")} ${esc(hb.name)}</h2><span class="badge b-info">${nights.length} คืน: ${nights.map((k) => thDate(Planner.dayIso(k), false).replace(/ \d+$/, "")).join(", ")}</span>${h.name ? '<span class="badge b-good">กรอกแล้ว</span>' : '<span class="badge b-warn">ยังไม่ได้กรอก</span>'}</div>
         <div class="form" style="margin-top:10px">
@@ -503,42 +512,15 @@ const PlanView = {
         <div class="row" style="margin-top:8px">${h.lat ? `<span class="badge b-good">${I("map-pin")} ใช้พิกัดจริง</span>` : '<span class="mute small">ยังไม่มีพิกัด ใช้จุดกลางเมือง</span>'}          <span class="spacer"></span><span class="mute small">ค้นที่พัก:</span>${BOOKING_SITES.map((b) => `<a class="btn small" target="_blank" rel="noopener" href="${b.url(HUB_EN[id] || hb.name)}">${b.name}</a>`).join("")}</div>
         <details class="hubinfo"><summary>ย่านที่ควรพัก ข้อดี ข้อควรรู้ • ¥${fmtN(hb.price[S.trip.level])}/ห้อง/คืน (ประมาณ ระดับ${["ประหยัด", "กลาง", "สบาย"][S.trip.level]})</summary>
           <dl class="kv"><dt>พักย่านไหน</dt><dd>${esc(hb.stay)}</dd><dt>ข้อดี</dt><dd>${esc(hb.pros)}</dd><dt>ข้อควรรู้</dt><dd>${esc(hb.cons)}</dd><dt>ช่วงพีค</dt><dd>${esc(hb.peak)}</dd></dl></details></div>`; }).join("")}`;
-    TripMap.drawBases(makeMap($("#stayMap")));
-  },
-
-  // ยังไม่มีแผน: ฐานที่พักทั้งหมดให้เทียบเมืองและราคา
-  renderBases() {
-    const ids = S.plan ? [...new Set(S.plan.bases)] : HUBS.map((h) => h.id);
-    const nights = {};
-    if (S.plan) S.plan.bases.forEach((b, i) => (nights[b] ||= []).push(i));
-    const lv = S.trip.level, rooms = Math.ceil((S.trip.adults + S.trip.kids) / 2);
-    $('[data-sec="stays"]').innerHTML = `
-      <div class="sec-head"><h1>ที่พัก</h1>
-        <p class="lead">${S.plan ? "ฐานที่พักตามแผนของคุณ" : "ฐานที่พักทั้งหมด (สร้างแผนก่อนเพื่อดูเฉพาะที่ใช้)"} ราคาเป็นช่วงโดยประมาณต่อห้องคู่ต่อคืนในหน้าหนาว ไม่ใช่ราคาจริงของโรงแรมใด กดลิงก์เพื่อค้นราคาจริง • <a href="#setup">สร้างแผน</a>แล้วกลับมากรอกที่พักที่จองได้ที่นี่</p></div>
-      <div class="callout info"><b>หลักเลือกที่พักหน้าหนาว:</b> ${STAY_TIPS}</div>
-      <div class="card"><h2>${S.plan ? "ที่พักตามแผน" : "ฐานที่พักทั้งหมด"}</h2><div class="map" id="hubMap"></div>
-        <p class="map-note">${S.plan ? "เส้นประ = ลำดับการย้ายที่พัก • " : ""}ป้าย = ชื่อเมือง ${S.plan ? "จำนวนคืน " : ""}และราคาห้องต่อคืนตามระดับที่เลือก</p></div>
-      <div class="row no-print" style="margin-bottom:12px"><span class="mute">ระดับที่พัก/งบ:</span><div class="seg" id="lvlSeg">${["ประหยัด", "กลาง", "สบาย"].map((x, i) => `<button data-v="${i}" class="${lv === i ? "on" : ""}">${x}</button>`).join("")}</div>
-        <span class="mute">${rooms} ห้อง (ห้องละ 2 คน)</span></div>
-      <div class="grid g2">${ids.map((id) => { const h = HUB[id], im = (window.HUB_IMG || {})[id]; return `<div class="card pcard">
-        <div class="ph">${im ? `<img src="${im.img}" alt="${esc(h.name)}" loading="lazy">` : I("hotel")}</div>
-        <div class="row"><h3 style="margin:0">${esc(h.name)}</h3>${nights[id] ? `<span class="badge b-info">${nights[id].length} คืน: คืนที่ ${nights[id].map((i) => i + 1).join(", ")}</span>` : ""}${h.rail ? '<span class="badge b-mute">' + I("train-front") + ' มีรถไฟ</span>' : ""}</div>
-        <dl class="kv" style="margin-top:8px"><dt>พักย่านไหน</dt><dd>${esc(h.stay)}</dd><dt>ข้อดี</dt><dd>${esc(h.pros)}</dd><dt>ข้อควรรู้</dt><dd>${esc(h.cons)}</dd>
-          <dt>ราคา/ห้อง/คืน</dt><dd>${h.price.map((p, i) => `<span style="${i === lv ? "font-weight:700" : "color:var(--mute)"}">¥${fmtN(p)}</span>`).join(" / ")} <small>(≈${fmtN(h.price[lv] * S.rate)} บาท)</small></dd>
-          <dt>ช่วงพีค</dt><dd>${esc(h.peak)}</dd></dl>
-        <div class="row" style="margin-top:8px">${BOOKING_SITES.map((b) => `<a class="btn small" target="_blank" rel="noopener" href="${b.url(HUB_EN[id])}">${b.name}</a>`).join("")}
-          <a class="btn small" target="_blank" rel="noopener" href="${gimgUrl(HUB_EN[id] + " winter hotel")}">${I("image")} รูปที่พักใน Google</a></div>
-        ${im ? `<a class="credit" href="${im.credit}" target="_blank" rel="noopener">ที่มาภาพ: Wikimedia Commons</a>` : ""}</div>`; }).join("")}</div>`;
-    TripMap.drawBases(makeMap($("#hubMap")));
-    $("#lvlSeg").onclick = (e) => { const v = e.target.dataset.v; if (v != null) { S.trip.level = +v; save(); App.renderAll(); } };
   },
 
   // ================= event =================
   bind() {
-    const trip = $('[data-sec="trip"]'), setup = $('[data-sec="setup"]'), stays = $('[data-sec="stays"]');
+    const trip = $('[data-sec="trip"]'), setup = $('[data-sec="setup"]');
     // ---- ข้อมูลทริป ----
     setup.addEventListener("change", (ev) => {
       const el = ev.target, t = S.trip;
+      if (el.dataset.h) return this.setHotel(el);
       this.mut(() => {
         if (el.dataset.k) {
           const k = el.dataset.k;
@@ -623,16 +605,16 @@ const PlanView = {
       else if (d.act === "undo") Hist.undo();
     });
     trip.addEventListener("keydown", (ev) => { if (ev.key === "Enter" && ev.target.dataset.goto) ev.target.click(); });
+  },
 
-    // ---- ที่พัก ----
-    stays.addEventListener("change", (ev) => {
-      const el = ev.target, k = el.dataset.h, hub = el.closest("[data-hub]")?.dataset.hub;
-      if (!k || !hub) return;
-      this.mut(() => {
-        const h = (S.plan.hotels[hub] ||= {});
-        h[k] = el.value.trim();
-        if (k === "loc") { const ll = parseLatLng(h.loc); if (ll) Object.assign(h, ll); else { delete h.lat; delete h.lng; if (h.loc) toast("ลิงก์นี้ไม่มีพิกัด (ลิงก์แชร์แบบสั้น) ใช้ปุ่ม แตะบนแผนที่ แทน"); } }
-      });
+  // ---- ที่พัก (ในหน้าข้อมูลทริป): ชื่อ ตำแหน่ง เช็กอิน/เอาท์ ----
+  setHotel(el) {
+    const k = el.dataset.h, hub = el.closest("[data-hub]")?.dataset.hub;
+    if (!hub) return;
+    this.mut(() => {
+      const h = (S.plan.hotels[hub] ||= {});
+      h[k] = el.value.trim();
+      if (k === "loc") { const ll = parseLatLng(h.loc); if (ll) Object.assign(h, ll); else { delete h.lat; delete h.lng; if (h.loc) toast("ลิงก์นี้ไม่มีพิกัด (ลิงก์แชร์แบบสั้น) ใช้ปุ่ม แตะบนแผนที่ แทน"); } }
     });
   },
 };

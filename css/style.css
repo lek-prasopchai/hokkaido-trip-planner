@@ -546,3 +546,12 @@ details.adv > summary { cursor: pointer; color: var(--ice); font-size: .88rem; m
 .blist .bx { flex-wrap: nowrap; gap: 4px; }
 .blist .bx input { flex: 1; min-width: 0; font-weight: 600; }
 .blist li.badd { display: block; }
+
+/* แผนที่เล็กในการ์ดรูท */
+.tpl-map { display: block; width: 100%; height: auto; margin: 6px 0 4px; }
+.tpl-map .land { fill: var(--bg); stroke: var(--line); stroke-width: 1.5; }
+.tpl-map .rt { fill: none; stroke: var(--ice); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+.tpl-map circle { fill: var(--ice); stroke: var(--paper); stroke-width: 2; }
+.tpl-map circle.air { fill: var(--paper); stroke: var(--ice); }
+.routes-box > summary { cursor: pointer; }
+.routes-box[open] > summary { margin-bottom: 10px; }

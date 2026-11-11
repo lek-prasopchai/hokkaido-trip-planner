@@ -1,7 +1,7 @@
-// โครงแอป: เมนูหลัก 5 หน้า (เรียงตามขั้นวางแผน), ตั้งค่า, แชร์ลิงก์, ย้อนกลับ, PWA
-const TABS = [["setup", "plane", "ข้อมูลทริป"], ["trip", "map", "แผนรายวัน"], ["places", "search", "สถานที่"], ["stays", "hotel", "ที่พัก"], ["budget", "banknote", "งบประมาณ"]];
+// โครงแอป: เมนูหลัก 4 หน้า (เรียงตามขั้นวางแผน), ตั้งค่า, แชร์ลิงก์, ย้อนกลับ, PWA
+const TABS = [["setup", "plane", "ข้อมูลทริป"], ["trip", "map", "แผนรายวัน"], ["places", "search", "สถานที่"], ["budget", "banknote", "งบประมาณ"]];
 const RENDER = {
-  trip: () => PlanView.render(), setup: () => PlanView.renderSetup(), stays: () => PlanView.renderStays(),
+  trip: () => PlanView.render(), setup: () => PlanView.renderSetup(),
   places: () => PlacesView.render(), budget: () => BudgetView.render(),
 };
 
@@ -75,7 +75,8 @@ const App = {
 
   show(id) {
     if (id.startsWith("share=")) return;
-    if (id === "stay") id = "stays"; // หน้าเลือกเมืองเดิม รวมเข้าหน้าที่พักแล้ว
+    const toStays = id === "stay" || id === "stays"; // หน้าที่พักรวมเข้าหน้าข้อมูลทริปแล้ว: ไปที่ส่วนที่พัก
+    if (toStays) id = "setup";
     if (!RENDER[id]) id = "trip"; // รวมลิงก์เก่าไปหน้าที่ตัดออกแล้ว (วันนี้ เตรียมตัว คู่มือ เอกสาร)
     const prev = this.cur;
     this.cur = id;
@@ -83,7 +84,8 @@ const App = {
     setTimeout(() => refitSection(id), 50);
     $$("section[data-sec]").forEach((s) => s.classList.toggle("on", s.dataset.sec === id));
     this.refreshChrome();
-    if (prev !== id) window.scrollTo(0, 0);
+    if (toStays) setTimeout(() => $("#stays")?.scrollIntoView({ block: "start" }), 80);
+    else if (prev !== id) window.scrollTo(0, 0);
   },
 
   // ---------- ตั้งค่า ----------
