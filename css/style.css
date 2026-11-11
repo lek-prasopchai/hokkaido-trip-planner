@@ -333,7 +333,7 @@ input[type=url], input[type=datetime-local] { border: 1px solid var(--line); bor
 /* ---------- มือถือ ---------- */
 @media (max-width: 900px) {
   body { grid-template: "top" auto "ban" auto "main" 1fr / minmax(0, 1fr); }
-  .tabs { position: fixed; top: auto; bottom: 0; left: 0; right: 0; height: auto; z-index: 1001; display: grid; grid-template-columns: repeat(5, 1fr);
+  .tabs { position: fixed; top: auto; bottom: 0; left: 0; right: 0; height: auto; z-index: 1001; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr;
     padding: 4px 4px calc(4px + env(safe-area-inset-bottom)); border-right: 0; border-top: 1px solid var(--line); }
   .tab { flex-direction: column; gap: 0; padding: 4px 2px; font-size: .72rem; font-weight: 600; text-align: center; }
   .tab .ic { font-size: 1.25rem; }
@@ -400,7 +400,7 @@ input.find { width: 100%; min-width: 200px; }
 .it-tools button:hover:not(:disabled) { background: var(--ice-soft); border-color: transparent; }
 .it-tools button[data-rm]:hover { background: var(--red-soft); border-color: transparent; }
 @media (hover: hover) and (pointer: fine) and (min-width: 900px) {
-  .it-tools { opacity: 0; transition: opacity .15s; }
+  .tl .it-tools { opacity: 0; transition: opacity .15s; }
   .tl li.it:hover .it-tools, .tl li.it:focus-within .it-tools { opacity: 1; }
 }
 @media (max-width: 899px) { .it-tools button { width: 36px; height: 36px; } }
