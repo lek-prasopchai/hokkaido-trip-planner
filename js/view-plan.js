@@ -25,6 +25,9 @@ const PlanView = {
     return `<ol class="steps no-print">${st.map(([id, t, done], k) => `<li class="${done ? "done" : ""} ${id === cur ? "cur" : ""}"><a href="#${id}"><b>${done ? I("circle-check") : k + 1}</b>${t}</a></li>`).join("")}</ol>`;
   },
 
+  // ปุ่มย้อนลอย: เฉพาะหน้าที่แก้แผน (แผนรายวัน + ข้อมูลทริป) และมีอะไรให้ย้อน
+  undoBtn() { return Hist.stack.length ? `<button class="btn undo-fab no-print" data-act="undo" title="ย้อนการแก้แผนครั้งล่าสุด (Ctrl+Z)">${I("undo-2")} ย้อน</button>` : ""; },
+
   // ================= ข้อมูลทริป / เที่ยวบิน / เลือกรูท =================
   renderSetup() {
     const t = S.trip, N = tripNights(), b = t.buf, of = t.outFlight, inf = t.inFlight;
@@ -97,7 +100,7 @@ const PlanView = {
         <p class="mute">รูทคือลำดับเมืองที่จะพักแต่ละคืน เรียงตามความเหมาะกับข้อ 1-2 กดการ์ดแล้วระบบจะจัดที่พักรายคืนและที่เที่ยวรายวันให้ทันที แล้วพาไปหน้าแผนรายวัน${S.plan ? ` <b>มีแผนอยู่แล้ว: กดรูทใหม่ = แผนเดิมถูกแทนที่</b> (ที่พักที่กรอกไว้ยังอยู่ กด ↶ ย้อนได้) ถ้าแค่แก้วันหรือเที่ยวบิน ไม่ต้องกดรูทใหม่` : ""}</p>
         <div class="grid g3">${Planner.rankTemplates().map((r) => this.tplCard(r)).join("")}
           <div class="card tpl blank" data-blank tabindex="0" role="button"><h3>เริ่มแผนเปล่า</h3><p class="small">เลือกเมืองที่พักแต่ละคืนและที่เที่ยวเองทั้งหมด</p></div></div>
-      </div>`;
+      </div>${this.undoBtn()}`;
   },
 
   tplCard({ tp, score, min, ideal, why }) {
@@ -155,7 +158,7 @@ const PlanView = {
           <span>${I("moon")} หลังเช็กอิน</span><span>${I("hotel")} ที่พัก</span><span>${I("utensils")} ร้านอาหาร</span></div></div>
       ${this.wishCard()}
       ${evals.map((e) => this.dayCard(e)).join("")}
-      ${Hist.stack.length ? `<button class="btn undo-fab no-print" data-act="undo" title="ย้อนการแก้แผนครั้งล่าสุด (Ctrl+Z)">${I("undo-2")} ย้อน</button>` : ""}`;
+      ${this.undoBtn()}`;
     this.mountMap(evals);
     Weather.fill(sec);
     this.bindDrag(sec);
@@ -591,6 +594,7 @@ const PlanView = {
     setup.addEventListener("click", (ev) => {
       const el = ev.target.closest("button, [data-tpl], [data-blank]");
       if (!el) return;
+      if (el.dataset.act === "undo") return Hist.undo();
       if (el.dataset.scroll) return $("#" + el.dataset.scroll).scrollIntoView({ behavior: "smooth" });
       const t = S.trip;
       if (el.dataset.tpl) {
