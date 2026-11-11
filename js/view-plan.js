@@ -25,8 +25,8 @@ const PlanView = {
     return `<ol class="steps no-print">${st.map(([id, t, done], k) => `<li class="${done ? "done" : ""} ${id === cur ? "cur" : ""}"><a href="#${id}"><b>${done ? I("circle-check") : k + 1}</b>${t}</a></li>`).join("")}</ol>`;
   },
 
-  // ปุ่มย้อนลอย: เฉพาะหน้าที่แก้แผน (แผนรายวัน + ข้อมูลทริป) และมีอะไรให้ย้อน
-  undoBtn() { return Hist.stack.length ? `<button class="btn undo-fab no-print" data-act="undo" title="ย้อนการแก้แผนครั้งล่าสุด (Ctrl+Z)">${I("undo-2")} ย้อน</button>` : ""; },
+  // ปุ่มย้อนลอย: เฉพาะหน้าที่แก้แผน (แผนรายวัน + ข้อมูลทริป) แสดงตลอดให้รู้ว่ามี กดได้เมื่อมีอะไรให้ย้อน (ประวัติหายเมื่อรีเฟรช)
+  undoBtn() { return `<button class="btn undo-fab no-print" data-act="undo" ${Hist.stack.length ? "" : "disabled"} title="ย้อนการแก้แผนครั้งล่าสุด (Ctrl+Z)">${I("undo-2")} ย้อน</button>`; },
 
   // ================= ข้อมูลทริป / เที่ยวบิน / เลือกรูท =================
   renderSetup() {
