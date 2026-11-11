@@ -49,9 +49,8 @@ const PlanView = {
       <div class="sec-head"><h1>ข้อมูลทริปและเที่ยวบิน</h1>
         <p class="lead">กรอกเที่ยวบินขาไป-ขากลับ แล้วเลือกรูท ระบบจะจัดที่พักรายคืนและที่เที่ยวรายวันให้ คำนวณเวลาเผื่อตรวจคนเข้าเมือง รับรถ และเวลาที่ต้องถึงสนามบินให้เอง</p></div>
       ${fresh ? `<div class="card start"><h2>เริ่มวางแผนใน 1 นาที</h2>
-        <p>ใส่วันเที่ยว จำนวนคน และวิธีเดินทาง แล้วเลือกรูทด้านล่าง ระบบจะจัดแผนรายวันพร้อมเวลาขับหน้าหนาวให้ทันที <b>ยังไม่ต้องมีตั๋วเครื่องบิน</b></p>
-        <div class="form"><label class="f">วันถึงฮอกไกโด<input type="date" data-k="start" value="${t.start}"></label><label class="f">วันบินกลับ<input type="date" data-k="end" value="${t.end}"></label>
-          <label class="f">ผู้ใหญ่<input type="number" min="1" max="20" data-k="adults" value="${t.adults}"></label><label class="f">เด็ก (≤11 ปี)<input type="number" min="0" max="10" data-k="kids" value="${t.kids}"></label></div>
+        <p>ใส่วันเที่ยวและวิธีเดินทาง แล้วเลือกรูทด้านล่าง ระบบจะจัดแผนรายวันพร้อมเวลาขับหน้าหนาวให้ทันที <b>ยังไม่ต้องมีตั๋วเครื่องบิน</b></p>
+        <div class="form"><label class="f">วันถึงฮอกไกโด<input type="date" data-k="start" value="${t.start}"></label><label class="f">วันบินกลับ<input type="date" data-k="end" value="${t.end}"></label></div>
         <div style="margin-top:12px">${modeSeg}${modeHelp}</div>
         <p class="mute small" style="margin:10px 0">วันที่ใส่ไว้เป็นตัวอย่าง แก้ได้ • เที่ยวบิน สไตล์ และความสนใจ ปรับทีหลังได้ (ด้านล่าง)</p>
         <button class="btn primary" data-scroll="routes">ดูรูทแนะนำ ↓</button></div>
@@ -84,13 +83,9 @@ const PlanView = {
         <p class="mute small" style="grid-column:1/-1;margin:0">รับ/คืนรถที่อื่นหรือวันอื่น: เอาติ๊กออก แล้วเพิ่ม <b>จุดของฉัน</b> ชื่อ "รับรถ" / "คืนรถ" ในวันนั้น ปักหมุดสาขา ล็อกเวลา และใส่เวลาที่ใช้เอง • ช่วงก่อนมีรถ เปลี่ยนวิธีเดินทางรายช่วงเป็นรถไฟ/บัสได้ในแผนรายวัน</p>
         <label class="f">วันแรก<select data-k="firstDay"><option value="auto" ${t.firstDay === "auto" ? "selected" : ""}>อัตโนมัติ (บินกลางคืน = เบาๆ)</option><option value="light" ${t.firstDay === "light" ? "selected" : ""}>เบาๆ 1 ที่</option><option value="full" ${t.firstDay === "full" ? "selected" : ""}>เที่ยวเต็มที่</option></select></label>
       </div></details>
-      ${fresh ? `</details><details class="fold-sec"><summary><b>${I("settings")} สไตล์และความสนใจ</b> <span class="mute">ไม่บังคับ: กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง</span></summary>` : `<h2 class="step-h"><b>2</b> คนและสไตล์ <small class="mute">สไตล์กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง</small></h2>`}
+      ${fresh ? `</details><details class="fold-sec"><summary><b>${I("settings")} สไตล์และความสนใจ</b> <span class="mute">ไม่บังคับ: กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง</span></summary>` : `<h2 class="step-h"><b>2</b> สไตล์และการเดินทาง <small class="mute">กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง</small></h2>`}
       <div class="card">
-        <div class="form">
-          <label class="f">ผู้ใหญ่ <small>ใช้คิดค่าประมาณในหน้างบ</small><input type="number" min="1" max="20" data-k="adults" value="${t.adults}"></label>
-          <label class="f">เด็ก (≤11 ปี)<input type="number" min="0" max="10" data-k="kids" value="${t.kids}"></label>
-          ${t.mode === "car" ? `<label class="f">เคยขับบนหิมะไหม<select data-snow>${[["new", "ไม่เคย (เวลาขับ ×1.5)"], ["some", "เคยมาบ้าง (×1.3)"], ["dry", "ถนนส่วนใหญ่แห้ง (×1.1)"]].map(([v, l]) => `<option value="${v}" ${S.set.snow === v ? "selected" : ""}>${l}</option>`).join("")}</select></label>` : ""}
-        </div>
+        ${t.mode === "car" ? `<div class="form"><label class="f">เคยขับบนหิมะไหม<select data-snow>${[["new", "ไม่เคย (เวลาขับ ×1.5)"], ["some", "เคยมาบ้าง (×1.3)"], ["dry", "ถนนส่วนใหญ่แห้ง (×1.1)"]].map(([v, l]) => `<option value="${v}" ${S.set.snow === v ? "selected" : ""}>${l}</option>`).join("")}</select></label></div>` : ""}
         <div class="row" style="margin-top:14px">
           <div><div class="mute small">สไตล์</div><div class="seg" data-seg="pace">${Object.entries(PACE).map(([k, v]) => `<button data-v="${k}" class="${t.pace === k ? "on" : ""}">${v.name}</button>`).join("")}</div></div>
           <div><div class="mute small">การเดินทาง</div>${modeSeg}<small class="mute">ค่าเริ่มต้นของทุกช่วง เปลี่ยนรายช่วงได้ในแผนรายวัน</small>${fresh ? "" : modeHelp}</div>
@@ -136,21 +131,18 @@ const PlanView = {
     const overall = sum.some((x) => x.lvl === "bad") ? "bad" : sum.some((x) => x.lvl === "warn") ? "warn" : "good";
     const nightsBy = [];
     S.plan.bases.forEach((b) => { const l = nightsBy[nightsBy.length - 1]; if (l && l.b === b) l.n++; else nightsBy.push({ b, n: 1 }); });
-    const left = daysBetween(todayIso(), t.start), B = BudgetView.calc();
     sec.innerHTML = `${Safety.banner()}
       <div class="card overview"><div class="row"><h1 style="margin:0">แผนทริป</h1><span class="badge b-${overall}">${LVL_ICON[overall]} ${LVL_TXT[overall]}</span>
         <div class="spacer"></div><div class="row no-print"><a class="btn small" href="#setup">${I("pencil")} ข้อมูลทริป</a>
           <details class="more-menu"><summary class="btn small" aria-label="เมนูเพิ่มเติม">⋯ เพิ่มเติม</summary><div class="menu-pop">
             <button class="btn small" data-act="refillAll" title="ที่ใส่เองและที่ล็อกเวลาไว้จะไม่ถูกลบ">${I("refresh-ccw")} จัดสถานที่ใหม่ทั้งทริป</button>
             <button class="btn small" data-act="print">${I("printer")} พิมพ์ / PDF</button></div></details></div></div>
-        <p class="print-only">${thDate(t.start)} - ${thDate(t.end)} • ${t.adults + t.kids} คน • ${MODE[t.mode]} • สไตล์${PACE[t.pace].name} • ลง ${t.arrive} ${t.arriveTime} • ออก ${t.depart} ${t.departTime}</p>
+        <p class="print-only">${thDate(t.start)} - ${thDate(t.end)} • ${MODE[t.mode]} • สไตล์${PACE[t.pace].name} • ลง ${t.arrive} ${t.arriveTime} • ออก ${t.depart} ${t.departTime}</p>
         <div class="summary" style="margin-top:10px">
-          <div class="k"><b>${left > 0 ? `อีก ${fmtN(left)} วัน` : left === 0 ? "วันนี้!" : "กำลังเที่ยว/จบแล้ว"}</b><span>${thDate(t.start, false)} - ${thDate(t.end, false)}</span></div>
-          <div class="k"><b>${N + 1} วัน ${N} คืน</b><span>${I("plane")} ${t.arrive} ${t.arriveTime} → ${t.depart} ${t.departTime}</span></div>
+          <div class="k"><b>${N + 1} วัน ${N} คืน</b><span>${thDate(t.start, false)} - ${thDate(t.end, false)} • ${I("plane")} ${t.arrive} ${t.arriveTime} → ${t.depart} ${t.departTime}</span></div>
           ${dT ? `<div class="k"><b>${fmtH(dT)}</b><span>ขับรวม ${fmtN(kmT)} กม.</span></div>` : ""}
           ${trT ? `<div class="k"><b>${fmtH(trT)}</b><span>นั่งรถไฟ/บัสรวม</span></div>` : ""}
           <div class="k"><b>${nPlaces} ที่</b><span>${nightsBy.map((x) => `${esc(short(x.b))} ${x.n}`).join(" • ")}</span></div>
-          ${B.total ? `<div class="k"><b>${fmtN(B.total / B.ppl)} ฿</b><span><a href="#budget">งบต่อคน (ที่กรอกแล้ว)</a></span></div>` : `<div class="k"><b><a href="#budget">กรอกงบ</a></b><span>ยังไม่ได้กรอกราคา</span></div>`}
         </div>
         <details class="gantt-box" ${matchMedia("(min-width: 900px)").matches ? "open" : ""}><summary>${I("clock")} แถบเวลาทั้งทริป <small class="mute">ดูว่าวันไหนแน่น</small></summary>${this.gantt(evals)}</details>
         <ul class="checks">${sum.map((c) => `<li class="${c.lvl}">${esc(c.text)}</li>`).join("")}</ul>
@@ -272,7 +264,7 @@ const PlanView = {
         <span class="wx" data-wx="${ref.lat},${ref.lng},${e.iso}"></span>
         <span class="badge b-${e.lvl}">${LVL_ICON[e.lvl]} ${LVL_TXT[e.lvl]}</span>
         <button class="btn small day-tog no-print" data-tog="${i}" aria-expanded="${open}">${open ? "ย่อ" : "ดูทั้งวัน"}</button></div>
-      <div class="day-meta" style="margin-top:2px"><b>${esc(short(e.from))}</b> → <b>${esc(short(e.to))}</b>${i < N && !hotelOf(e.to)?.name ? ` <a class="badge b-warn no-print" href="#stays">${I("hotel")} ยังไม่ใส่ที่พัก</a>` : ""}${e.driveH ? ` • ขับรวม ${fmtH(e.driveH)}` : ""} • จบวัน ~${fmtT(e.end)}${e.leaveBy != null ? ` • <b>ออกจากที่พักไม่เกิน ${fmtT(e.leaveBy)}</b>` : ""}</div>
+      <div class="day-meta" style="margin-top:2px"><b>${esc(short(e.from))}</b> → <b>${esc(short(e.to))}</b>${e.driveH ? ` • ขับรวม ${fmtH(e.driveH)}` : ""} • จบวัน ~${fmtT(e.end)}${e.leaveBy != null ? ` • <b>ออกจากที่พักไม่เกิน ${fmtT(e.leaveBy)}</b>` : ""}</div>
       <div class="day-body">
         <div><ul class="tl" data-day="${i}">${rows}</ul>${this.maybeBox(i)}</div>
         <div><details class="no-print daymap-box" ${matchMedia("(min-width: 900px)").matches ? "open" : ""}><summary>${I("map")} แผนที่วันนี้</summary><div class="daymap" data-daymap="${i}"></div></details>

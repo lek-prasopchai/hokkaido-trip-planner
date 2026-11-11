@@ -99,7 +99,10 @@ const BudgetView = {
           <label class="small"><input type="checkbox" id="rateAuto" ${S.set.rateAuto ? "checked" : ""}> อัปเดตอัตโนมัติวันละครั้ง</label></div></div>
         ${B.total ? `<div style="display:flex;height:14px;border-radius:99px;overflow:hidden;margin-top:14px">${Object.entries(cats).map(([c, v], i) => `<div title="${esc(c)} ${fmtN(v)} ฿" style="width:${(v / B.total) * 100}%;background:${colors[i % colors.length]}"></div>`).join("")}</div>
         <div class="row" style="margin-top:6px;font-size:.8rem">${Object.entries(cats).map(([c, v], i) => `<span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:${colors[i % colors.length]}"></span> ${esc(c)} ${Math.round((v / B.total) * 100)}%</span>`).join("")}</div>` : ""}
-        <div class="row" style="margin-top:12px"><span class="mute small">ระดับที่พัก (ใช้คิดค่าประมาณที่พักและอาหาร):</span><div class="seg" id="lvlSeg">${["ประหยัด", "กลาง", "สบาย"].map((x, i) => `<button data-v="${i}" class="${lv === i ? "on" : ""}">${x}</button>`).join("")}</div></div></div>
+        <div class="row bpeople" style="margin-top:12px"><span class="mute small">ใช้คิดค่าประมาณ:</span>
+          <label class="bin">ผู้ใหญ่<input type="number" min="1" max="20" data-ppl="adults" value="${S.trip.adults}"></label>
+          <label class="bin">เด็ก ≤11 ปี<input type="number" min="0" max="10" data-ppl="kids" value="${S.trip.kids}"></label>
+          <span class="mute small">ระดับที่พัก</span><div class="seg" id="lvlSeg">${["ประหยัด", "กลาง", "สบาย"].map((x, i) => `<button data-v="${i}" class="${lv === i ? "on" : ""}">${x}</button>`).join("")}</div></div></div>
       ${B.jr ? `<div class="callout info">${B.jr.text}</div>` : ""}
       <div class="card"><p class="mute small" style="margin:0 0 8px">แต่ละรายการกรอกได้ทั้ง ฿ และ ¥ (เช่น จองที่พักเป็นบาท แต่จ่ายภาษีที่พักเป็นเยน) • ขวาสุด = รวมเป็นบาท • ✕ = ไม่ใช้รายการนี้</p>
         <ul class="blist">${B.lines.map((l) => `${l.key === "reserve" ? `<li class="badd"><button class="btn small" id="bAdd">+ เพิ่มรายการเอง</button>${B.hiddenN ? ` <button class="linkbtn" id="bUnhide">แสดงรายการที่ซ่อน (${B.hiddenN})</button>` : ""}</li>` : ""}<li class="${l.own && !l.mine && l.key !== "reserve" ? "own" : ""}">
@@ -114,6 +117,7 @@ const BudgetView = {
     sec.addEventListener("change", (e) => {
       const el = e.target;
       if (el.id === "rate") { S.rate = Math.max(0.01, +el.value || 0.23); S.set.rateAuto = false; save(); App.renderAll(); return; }
+      if (el.dataset.ppl) { const k = el.dataset.ppl; S.trip[k] = Math.max(+el.min, Math.min(+el.max, Math.round(+el.value) || 0)); save(); App.renderAll(); return; }
       if (el.id === "rateAuto") { S.set.rateAuto = el.checked; if (el.checked) { S.rateAt = 0; refreshRate(); } save(); App.renderAll(); return; }
       if (el.dataset.bk) {
         const k = el.dataset.bk, l = this.calc().lines.find((x) => x.key === k), old = S.budget[k];

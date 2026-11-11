@@ -555,3 +555,4 @@ details.adv > summary { cursor: pointer; color: var(--ice); font-size: .88rem; m
 .tpl-map circle.air { fill: var(--paper); stroke: var(--ice); }
 .routes-box > summary { cursor: pointer; }
 .routes-box[open] > summary { margin-bottom: 10px; }
+.bpeople .bin input { width: 64px; }

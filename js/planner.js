@@ -6,7 +6,6 @@ const SEV = { bad: 10, warn: 1 };
 const sevOf = (ev) => ev.checks.reduce((a, c) => a + (SEV[c.lvl] || 0), 0);
 
 const Planner = {
-  people: () => S.trip.adults + S.trip.kids,
   days: () => tripNights() + 1,
   dayIso: (i) => addDays(S.trip.start, i),
 
@@ -315,7 +314,6 @@ const Planner = {
     if (N < 1) out.push({ lvl: "bad", text: "วันกลับต้องหลังวันไปอย่างน้อย 1 คืน" });
     if (!isWinter(t.start) || !isWinter(t.end)) out.push({ lvl: "info", text: "ทริปอยู่นอกหน้าหนาว เวลาขับใช้ค่าปกติ และระบบจะเตือนสถานที่ที่ปิดตามฤดู (คู่มือในเว็บเน้นหน้าหนาว)" });
     if (N + 1 > 15) out.push({ lvl: "bad", text: `${N + 1} วัน เกินสิทธิ์ยกเว้นวีซ่า 15 วันของพาสปอร์ตไทย` });
-    if (t.kids > 0 && t.mode !== "transit") out.push({ lvl: "info", text: "เด็กต่ำกว่า 6 ปีต้องใช้คาร์ซีท จองพร้อมรถเช่า" });
     if (S.plan) {
       const moves = S.plan.bases.filter((b, i) => i > 0 && b !== S.plan.bases[i - 1]).length;
       if (t.pace === "chill" && moves >= Math.max(3, N * 0.6)) out.push({ lvl: "warn", text: `ย้ายที่พัก ${moves} ครั้งใน ${N} คืน เหนื่อยสำหรับสไตล์ชิล ลองพักฐานละ 2 คืน` });
