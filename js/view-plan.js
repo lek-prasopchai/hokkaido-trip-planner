@@ -78,6 +78,7 @@ const PlanView = {
           <label class="f">ผู้ใหญ่<input type="number" min="1" max="20" data-k="adults" value="${t.adults}"></label>
           <label class="f">เด็ก (≤11 ปี)<input type="number" min="0" max="10" data-k="kids" value="${t.kids}"></label>
           <label class="f">คนขับ (มี IDP)<input type="number" min="0" max="6" data-k="drivers" value="${t.drivers}"></label>
+          ${t.mode === "car" ? `<label class="f">เคยขับบนหิมะไหม<select data-snow>${[["new", "ไม่เคย (เวลาขับ ×1.5)"], ["some", "เคยมาบ้าง (×1.3)"], ["dry", "ถนนส่วนใหญ่แห้ง (×1.1)"]].map(([v, l]) => `<option value="${v}" ${S.set.snow === v ? "selected" : ""}>${l}</option>`).join("")}</select></label>` : ""}
           <label class="f">ระดับที่พัก/งบ<select data-k="level">${["ประหยัด", "กลาง", "สบาย"].map((x, i) => `<option value="${i}" ${t.level === i ? "selected" : ""}>${x}</option>`).join("")}</select></label>
         </div>
         <div class="row" style="margin-top:14px">
@@ -86,7 +87,7 @@ const PlanView = {
         </div>
         <div style="margin-top:12px"><div class="mute small">สนใจอะไร (เลือกได้หลายข้อ)</div>
           <div class="chips">${Object.entries(INTEREST).map(([k, v]) => `<button class="chip ${t.interests.includes(k) ? "on" : ""}" data-int="${k}">${v}</button>`).join("")}</div></div>
-        <p class="mute small" style="margin:10px 0 0">ชิล: ขับ ≤2 ชม./วัน ≤3 ที่ จบวัน 18:00 • กลางๆ: ≤3.5 ชม. ≤4 ที่ จบ 19:30 • แน่น: ≤5 ชม. ≤6 ที่ จบ 21:00 • หน้าหนาวเวลาขับคูณ ${SNOW_F[S.set.snow]?.[0] ?? 1.5} เผื่อหิมะให้แล้ว • ทับค่าได้ใน ${I("settings")} ตั้งค่า</p>
+        <p class="mute small" style="margin:10px 0 0">ชิล: ขับ ≤2 ชม./วัน ≤3 ที่ จบวัน 18:00 • กลางๆ: ≤3.5 ชม. ≤4 ที่ จบ 19:30 • แน่น: ≤5 ชม. ≤6 ที่ จบ 21:00 • ทับค่าได้ใน ${I("settings")} ตั้งค่า</p>
       </div>
       ${fresh ? "</details>" : ""}<h2 class="step-h" id="routes"><b>${fresh ? 2 : 3}</b> เลือกรูท = สร้างแผนรายวัน</h2>
       <div class="card">
@@ -546,6 +547,7 @@ const PlanView = {
           if (k === "start" || k === "end") Planner.syncDays();
         } else if (el.dataset.of) t.outFlight[el.dataset.of] = el.value;
         else if (el.dataset.buf) t.buf[el.dataset.buf] = Math.max(0, +el.value || 0);
+        else if (el.dataset.snow !== undefined) S.set.snow = el.value;
         // ขาไปถึงอีกวัน: เดาวันลงจากเวลาออก (ไทย +2 ชม. + ~7 ชม.บิน) ถ้าวันลงยังไม่ได้แก้
         if (el.dataset.of === "dep" && el.value) { const d = new Date(el.value); d.setHours(d.getHours() + 2 + 7); const iso = isoOf(d); if (iso !== t.start) { const n = tripNights(); t.start = iso; t.end = addDays(iso, Math.max(1, n)); Planner.syncDays(); toast(`ตั้งวันลงเป็น ${thDate(iso)} ตามเวลาออก (ตรวจเวลาเครื่องลงอีกครั้ง)`); } }
       });

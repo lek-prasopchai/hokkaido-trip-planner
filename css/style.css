@@ -450,7 +450,6 @@ details.hubinfo[open] > summary { margin-bottom: 8px; }
   .filters .row { gap: 6px; }
   .filters select { flex: 1 1 calc(50% - 6px); min-width: 0; }
   .filters input[type="search"] { flex: 1 1 100% !important; }
-  .bt th:first-child, .bt td:first-child { display: none; }
   .bt input { width: 84px !important; }
 }
 
