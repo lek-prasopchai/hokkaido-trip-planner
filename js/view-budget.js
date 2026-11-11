@@ -54,6 +54,8 @@ const BudgetView = {
     add("food", "อาหาร", "อาหาร", "JPY", D.foodYen[lv] * ppl * days, `¥${fmtN(D.foodYen[lv])} × ${ppl} คน × ${days} วัน`);
     add("souv", "ช้อปปิ้ง", "ของฝาก / ช้อปปิ้ง", "JPY", D.souvenirYen * t.adults, `¥${fmtN(D.souvenirYen)} × ${t.adults} ผู้ใหญ่`);
     add("gear", "ของ", "ของที่ต้องซื้อเตรียมตัว", "THB", 0, "กรอกเอง (เสื้อกันหนาว บูท ฯลฯ)");
+    // รายการที่เพิ่มเอง (ทัวร์ ค่าสกี ฯลฯ): ไม่มีค่าประมาณ จำนวนเงินเก็บใน S.budget[id] เหมือนรายการอื่น
+    S.budgetX.forEach((x) => { add(x.id, "อื่นๆ", x.name, "THB", 0, ""); L[L.length - 1].mine = true; });
     // แต่ละรายการจ่ายเป็นบาท เยน หรือทั้งสองได้: S.budget[key] = { b, y } (ค่าเก่าเป็นตัวเลขเดียว = สกุลเงินตั้งต้นของรายการ)
     const split = (l) => {
       const o = S.budget[l.key];
@@ -90,7 +92,9 @@ const BudgetView = {
         <div class="row" style="margin-top:6px;font-size:.8rem">${Object.entries(cats).map(([c, v], i) => `<span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:${colors[i % colors.length]}"></span> ${esc(c)} ${Math.round((v / B.total) * 100)}%</span>`).join("")}</div></div>
       ${B.jr ? `<div class="callout info">${B.jr.text}</div>` : ""}
       <div class="card"><p class="mute small" style="margin:0 0 8px">แต่ละรายการกรอกได้ทั้ง ฿ และ ¥ (เช่น จองที่พักเป็นบาท แต่จ่ายภาษีที่พักเป็นเยน) ช่องว่าง = ใช้ค่าประมาณที่เป็นตัวเทา • ขวาสุด = รวมเป็นบาท</p>
-        <ul class="blist">${B.lines.map((l) => `<li class="${l.own ? "own" : ""}"><div><b>${esc(l.name)}</b>${l.note ? `<small class="bnote">${esc(l.note)}</small>` : ""}</div>
+        <ul class="blist">${B.lines.map((l) => `${l.key === "reserve" ? `<li class="badd"><button class="btn small" id="bAdd">+ เพิ่มรายการเอง</button></li>` : ""}<li class="${l.own && !l.mine ? "own" : ""}">${l.mine
+            ? `<div class="row bx"><input type="text" data-bxname="${l.key}" value="${esc(l.name)}" placeholder="ชื่อรายการ เช่น ทัวร์ Drift Ice" aria-label="ชื่อรายการ"><button class="btn small ghost" data-bxdel="${l.key}" title="ลบรายการ" aria-label="ลบรายการ ${esc(l.name)}">${I("x")}</button></div>`
+            : `<div><b>${esc(l.name)}</b>${l.note ? `<small class="bnote">${esc(l.note)}</small>` : ""}</div>`}
           <div class="bamt">${l.key === "reserve" ? "" : inp(l, "b") + inp(l, "y")}<b class="bthb">${fmtN(l.thb)} ฿</b></div></li>`).join("")}
           <li class="btot"><b>รวมทั้งทริป</b><div class="bamt"><span class="mute small">¥${fmtN(B.yen)} + ${fmtN(B.baht)} ฿</span><b class="bthb">${fmtN(B.total)} ฿</b></div></li></ul>
         <div class="row" style="margin-top:8px"><button class="btn small" id="bReset">ล้างค่าที่กรอกเอง</button><span class="mute" style="font-size:.8rem">ราคาเป็นค่าประมาณ (พ.ย. 2026) ใช้เพื่อดูภาพรวม ไม่ใช่ใบเสนอราคา</span></div></div>`;
@@ -110,6 +114,19 @@ const BudgetView = {
         save(); App.renderAll();
       }
     });
-    sec.addEventListener("click", (e) => { if (e.target.id === "bReset" && confirm("ล้างค่าที่กรอกเองทั้งหมด?")) { S.budget = {}; save(); App.renderAll(); } });
+    sec.addEventListener("input", (e) => { const id = e.target.dataset.bxname, x = id && S.budgetX.find((y) => y.id === id); if (x) { x.name = e.target.value; save(false); } });
+    sec.addEventListener("click", (e) => {
+      const el = e.target.closest("button"); if (!el) return;
+      if (el.id === "bReset" && confirm("ล้างจำนวนเงินที่กรอกเองทั้งหมด? (รายการที่เพิ่มเองยังอยู่)")) { S.budget = {}; save(); App.renderAll(); }
+      else if (el.id === "bAdd") {
+        const id = "x" + Date.now().toString(36);
+        S.budgetX.push({ id, name: "" }); save(); App.renderAll();
+        sec.querySelector(`[data-bxname="${id}"]`)?.focus();
+      } else if (el.dataset.bxdel) {
+        const id = el.dataset.bxdel;
+        if (S.budget[id] && !confirm("ลบรายการนี้และจำนวนเงิน?")) return;
+        S.budgetX = S.budgetX.filter((x) => x.id !== id); delete S.budget[id]; save(); App.renderAll();
+      }
+    });
   },
 };

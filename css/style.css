@@ -543,3 +543,6 @@ details.adv > summary { cursor: pointer; color: var(--ice); font-size: .88rem; m
 .bthb { min-width: 84px; text-align: right; font-variant-numeric: tabular-nums; }
 .btot { border-top: 2px solid var(--ink) !important; }
 @media (max-width: 640px) { .blist li { grid-template-columns: 1fr; } .bin input { width: 86px; } }
+.blist .bx { flex-wrap: nowrap; gap: 4px; }
+.blist .bx input { flex: 1; min-width: 0; font-weight: 600; }
+.blist li.badd { display: block; }
