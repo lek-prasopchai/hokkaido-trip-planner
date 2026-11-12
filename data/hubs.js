@@ -83,19 +83,3 @@ window.HUBS = [
     price: [8000, 13000, 22000], peak: "-" },
 ];
 
-// ลิงก์จองที่พัก (ค้นด้วยชื่อเมือง)
-window.BOOKING_SITES = [
-  { name: "Agoda", url: (q) => `https://www.agoda.com/search?textToSearch=${encodeURIComponent(q)}` },
-  { name: "Booking.com", url: (q) => `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(q)}` },
-  { name: "Jalan (ญี่ปุ่น)", url: (q) => `https://www.jalan.net/en/japan_hotels_ryokan/?keyword=${encodeURIComponent(q)}` },
-  { name: "Rakuten Travel", url: (q) => `https://travel.rakuten.com/search/?query=${encodeURIComponent(q)}` },
-];
-
-// ชื่ออังกฤษสำหรับค้นในเว็บจอง
-window.HUB_EN = {
-  sapporo: "Sapporo", otaru: "Otaru", jozankei: "Jozankei Onsen", chitose: "Chitose", shikotsu: "Lake Shikotsu",
-  niseko: "Niseko Hirafu", noboribetsu: "Noboribetsu Onsen", toya: "Lake Toya Onsen", hakodate: "Hakodate",
-  asahikawa: "Asahikawa", biei: "Biei", furano: "Furano", sounkyo: "Sounkyo Onsen", tomamu: "Tomamu",
-  obihiro: "Obihiro", kushiro: "Kushiro", akan: "Lake Akan Onsen", kawayu: "Kawayu Onsen",
-  abashiri: "Abashiri", utoro: "Utoro Shiretoko", rausu: "Rausu", monbetsu: "Monbetsu", wakkanai: "Wakkanai",
-};

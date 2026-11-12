@@ -883,3 +883,7 @@ html.has-map-full .split-side { z-index: 2500; }
 /* iOS Safari: ช่องวันที่/เวลามีความกว้างขั้นต่ำของตัวเอง ไม่หดตามกรอบ ยาวเกินช่องอื่น */
 input[type="time"], input[type="date"], input[type="datetime-local"] { -webkit-appearance: none; appearance: none; min-width: 0; max-width: 100%; box-sizing: border-box; display: block; }
 input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-date-and-time-value, input[type="datetime-local"]::-webkit-date-and-time-value { text-align: left; }
+/* ที่พักที่จองแล้ว: ชื่อ ตำแหน่ง เต็มแถว • เช็กอิน/เช็กเอาท์ คู่กันเสมอ */
+.form.stay-form { grid-template-columns: 1fr 1fr; margin-top: 12px; }
+.stay-form .lp-state { margin-top: -8px; }
+.stay-form .lp-state .i { width: 14px; height: 14px; color: var(--good); vertical-align: -2px; }
