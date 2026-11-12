@@ -38,7 +38,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .brand small { display: block; font-weight: 400; font-size: .8rem; opacity: .7; }
 .stamp { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 8px; background: #c8374a; font-size: 1.05rem; transform: rotate(-4deg); }
 .top-trip { flex: 1; font-size: .875rem; opacity: .85; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.top-actions { display: flex; gap: 6px; }
+.top-actions { display: flex; gap: 6px; margin-left: auto; }
 .top .btn.ghost { color: #fff; border-color: rgba(255,255,255,.3); background: transparent; }
 .top .btn.ghost:hover { background: rgba(255,255,255,.12); }
 .view-banner { grid-area: ban; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; padding: 8px 16px; background: var(--fest); color: #fff; font-size: .875rem; }
@@ -100,7 +100,7 @@ input[type=number] { width: 80px; }
 .b-bad { background: var(--bad-soft); color: var(--bad); }
 .b-info { background: var(--ice-soft); color: var(--ice); }
 .b-fest { background: var(--fest-soft); color: var(--fest); }
-.b-mute { background: var(--bg); color: var(--ink2); }
+.b-mute { background: none; color: var(--mute); font-weight: 500; padding: 0; } /* ข้อมูลธรรมดา ไม่ใช่สถานะ: ไม่ต้องเป็นป้าย */
 .stars { color: #d29b14; letter-spacing: 1px; }
 
 .checks { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 4px; }
@@ -147,8 +147,7 @@ table.t { width: 100%; border-collapse: collapse; font-size: .875rem; }
 .summary .k span { font-size: .8rem; color: var(--mute); }
 #map, .map { height: 440px; border-radius: var(--r); border: 1px solid var(--line); background: var(--map-bg); z-index: 0; }
 .map-note { font-size: .8rem; color: var(--mute); margin-top: 4px; }
-.day { border-left: 5px solid var(--line); }
-.day.good { border-left-color: var(--good); } .day.warn { border-left-color: var(--warn); } .day.bad { border-left-color: var(--bad); }
+.day-route .lvl-warn { color: var(--warn); } .day-route .lvl-bad { color: var(--bad); }
 .day-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
 .day-head h3 { margin: 0; }
 .day-meta { font-size: .875rem; color: var(--mute); }
@@ -760,9 +759,10 @@ html.has-map-full, html.has-map-full body { overflow: hidden; }
 .d-hl { margin: 10px 0 12px; font-size: 1.05rem; line-height: 1.6; }
 .d-act { margin-bottom: 12px; }
 .d-act .addsel { font-size: .875rem; padding: 6px 10px; min-width: 200px; }
-.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; margin-bottom: 12px; }
-.fact { background: var(--bg); border-radius: 10px; padding: 10px 12px; }
-.fact > span { display: flex; align-items: center; gap: 6px; font-size: .8rem; color: var(--mute); margin-bottom: 2px; }
+/* ข้อมูลหลัก: แถว "หัวข้อ | ค่า" อ่านลงมา ข้อความยาวไม่ต้องอัดในกล่องแคบ */
+.facts { margin-bottom: 12px; border-top: 1px solid var(--line); }
+.fact { display: grid; grid-template-columns: 9.5em 1fr; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.fact > span { display: flex; align-items: flex-start; gap: 6px; font-size: .875rem; color: var(--mute); }
 .fact > b { font-weight: 600; font-size: .9375rem; line-height: 1.45; }
 .d-more { margin: 4px 0 10px; }
 .d-links { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
@@ -779,7 +779,7 @@ html.has-map-full, html.has-map-full body { overflow: hidden; }
   .filters .f-more .row:first-child { margin-top: 0; }
 }
 [hidden] { display: none !important; }
-@media (max-width: 899px) { .facts { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 380px) { .fact { grid-template-columns: 7.5em 1fr; } }
 
 /* ---------- รอบแก้: หัววันแตะพับ, รูปการ์ดเต็มช่อง, ตัวกรองแนวเดียว, คำอธิบายงบเล็กกว่าหัวข้อ ---------- */
 .pcard .ph { margin: -18px -20px 8px; }

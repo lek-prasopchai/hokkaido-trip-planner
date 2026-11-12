@@ -68,14 +68,14 @@ const PlanView = {
       <details class="fold-sec"><summary><b>${I("plane")} เที่ยวบิน</b> <span class="mute">กรอกหลังจองตั๋ว ไม่บังคับ</span></summary>` : `<h2 class="step-h"><b>1</b> วันและเที่ยวบิน</h2>`}
       <div class="grid g2">
         <div class="card"><h2>${I("plane")} ขาไป</h2><div class="form">
-          <label class="f">ออกจากไทย (ถ้ามี เวลาไทย)<input type="datetime-local" data-of="dep" value="${esc(of.dep)}"></label>
-          <label class="f">ลงที่สนามบิน<select data-k="arrive">${airOptions(t.arrive)}</select></label>
+          <label class="f" style="grid-column:1/-1">ลงที่สนามบิน<select data-k="arrive">${airOptions(t.arrive)}</select></label>
+          <label class="f">ออกจากไทย (เวลาไทย)<input type="datetime-local" data-of="dep" value="${esc(of.dep)}"></label>
           <label class="f">วันที่ลง (เวลาญี่ปุ่น)<input type="date" data-k="start" value="${t.start}"></label>
           <label class="f">เวลาเครื่องลง<input type="time" data-k="arriveTime" value="${t.arriveTime}"></label>
           <label class="f chk"><input type="checkbox" data-k="domIn" ${t.domIn ? "checked" : ""}> เที่ยวบินในประเทศ (ผ่าน ตม. ที่โตเกียว/โอซาก้าแล้ว)</label>
         </div></div>
         <div class="card"><h2>${I("plane")} ขากลับ</h2><div class="form">
-          <label class="f">ออกจากสนามบิน<select data-k="depart">${airOptions(t.depart)}</select></label>
+          <label class="f" style="grid-column:1/-1">ออกจากสนามบิน<select data-k="depart">${airOptions(t.depart)}</select></label>
           <label class="f">วันที่บินกลับ<input type="date" data-k="end" value="${t.end}"></label>
           <label class="f">เวลาเครื่องออก<input type="time" data-k="departTime" value="${t.departTime}"></label>
           <label class="f chk"><input type="checkbox" data-k="domOut" ${t.domOut ? "checked" : ""}> ขาออกจากฮอกไกโดเป็นเที่ยวบินในประเทศ</label>
@@ -98,13 +98,12 @@ const PlanView = {
       <div class="card">
         ${t.mode === "car" ? `<div class="form"><label class="f">เคยขับบนหิมะไหม<select data-snow>${[["new", "ไม่เคย (เวลาขับ ×1.5)"], ["some", "เคยมาบ้าง (×1.3)"], ["dry", "ถนนส่วนใหญ่แห้ง (×1.1)"]].map(([v, l]) => `<option value="${v}" ${S.set.snow === v ? "selected" : ""}>${l}</option>`).join("")}</select></label></div>` : ""}
         <div class="row" style="margin-top:14px;align-items:flex-start;gap:12px 24px">
-          <div><div class="mute small">สไตล์</div><div class="seg" data-seg="pace">${Object.entries(PACE).map(([k, v]) => `<button data-v="${k}" class="${t.pace === k ? "on" : ""}">${v.name}</button>`).join("")}</div></div>
-          <div><div class="mute small">การเดินทาง</div>${modeSeg}<small class="mute">ค่าเริ่มต้นของทุกช่วง เปลี่ยนรายช่วงได้ในแผนรายวัน</small>${fresh ? "" : modeHelp}</div>
+          <div><div class="mute small">สไตล์</div><div class="seg" data-seg="pace">${Object.entries(PACE).map(([k, v]) => `<button data-v="${k}" class="${t.pace === k ? "on" : ""}">${v.name}</button>`).join("")}</div>
+            <small class="mute" style="display:block;margin-top:4px">ขับไม่เกิน ${fmtH(pace().maxDrive)}/วัน · ${pace().maxStops} ที่ · จบวัน ${fmtT(pace().end)}</small></div>
+          <div><div class="mute small">การเดินทาง</div>${modeSeg}<small class="mute" style="display:block;margin-top:4px">ค่าเริ่มต้นของทุกช่วง เปลี่ยนรายช่วงได้ในแผนรายวัน</small>${fresh ? "" : modeHelp}</div>
         </div>
-        <details class="adv" data-keep="interests" ${FOLD.interests ? "open" : ""}><summary>สนใจอะไร <span class="mute">(${t.interests.length} ข้อ) และรายละเอียดแต่ละสไตล์</span></summary>
-        <div><div class="mute small">เลือกได้หลายข้อ ระบบจะเลือกที่เที่ยวตามนี้</div>
+        <div style="margin-top:14px"><div class="mute small">สนใจอะไร (เลือกได้หลายข้อ)</div>
           <div class="chips">${Object.entries(INTEREST).map(([k, v]) => `<button class="chip ${t.interests.includes(k) ? "on" : ""}" data-int="${k}">${v}</button>`).join("")}</div></div>
-        <p class="mute small" style="margin:10px 0 0">ชิล: ขับ ≤2 ชม./วัน ≤3 ที่ จบวัน 18:00 • กลางๆ: ≤3.5 ชม. ≤4 ที่ จบ 19:30 • แน่น: ≤5 ชม. ≤6 ที่ จบ 21:00 • ทับค่าได้ใน ${I("settings")} ตั้งค่า</p></details>
       </div>
       ${fresh ? "</details>" : ""}<h2 class="step-h" id="routes"><b>${fresh ? 2 : 3}</b> เลือกรูท</h2>
       <details class="card routes-box" ${S.plan ? "" : "open"}><summary>${S.plan ? `<b>รูทตอนนี้: ${esc(TEMPLATES.find((x) => x.id === S.plan.tpl)?.name || "แผนที่จัดเอง")}</b> <span class="mute">กดเพื่อดู/เปลี่ยนรูท (สร้างแผนใหม่)</span>` : "<b>รูทแนะนำ</b> <span class=\"mute\">แผนที่เล็ก = เมืองที่พักและลำดับการเดินทาง</span>"}</summary>
@@ -302,7 +301,7 @@ const PlanView = {
         <span class="wx" data-wx="${ref.lat},${ref.lng},${e.iso}"></span>
         <button class="btn small map-focus no-print" data-dmap="${i}" title="ดูเส้นทางวันนี้บนแผนที่" aria-label="ดูเส้นทางวันที่ ${i + 1} บนแผนที่">${I("map")}</button>
 </div>
-      <div class="day-meta day-route"><b>${esc(short(e.from))}</b> → <b>${esc(short(e.to))}</b>${e.driveH ? `<span class="xtra"> · ขับรวม ${fmtH(e.driveH)}</span>` : ""} · จบ ~${fmtT(e.end)}${e.leaveBy != null ? ` · <b>ออกจากที่พักไม่เกิน ${fmtT(e.leaveBy)}</b>` : ""}</div>
+      <div class="day-meta day-route"><b>${esc(short(e.from))}</b> → <b>${esc(short(e.to))}</b> · จบ ~${fmtT(e.end)}${e.leaveBy != null ? ` · <b>ออกจากที่พักไม่เกิน ${fmtT(e.leaveBy)}</b>` : ""}${e.lvl !== "good" ? ` · <b class="lvl-${e.lvl}">${LVL_TXT[e.lvl]}</b>` : ""}</div>
       ${checks}
       <div class="day-body">
         <ul class="tl" data-day="${i}">${rows}</ul>${this.maybeBox(i)}
@@ -621,7 +620,7 @@ const PlanView = {
       <details class="adv" data-keep="staytips" ${FOLD.staytips ? "open" : ""}><summary>วิธีกรอก และหลักเลือกที่พักหน้าหนาว</summary>
         <ul class="small mute" style="margin:0 0 10px;padding-left:18px"><li><b>ชื่อ</b>: แสดงในแผนรายวัน "ถึงที่พัก…"</li><li><b>ตำแหน่ง</b>: ใช้เป็นจุดออกตอนเช้า/กลับตอนเย็นแทนกลางเมือง เวลาเดินทางแม่นขึ้น</li><li><b>เช็กอิน/เช็กเอาท์</b>: เตือนถ้าถึงก่อนเช็กอิน/ออกหลังเช็กเอาท์ และเวลาออกไปเที่ยวหลังเช็กอิน</li></ul><div class="callout info">${STAY_TIPS}</div></details>
       <div class="stay-grid">${ids.map((id) => { const h = hotelOf(id) || {}, nights = blocks.filter((x) => x.b === id).flatMap((x) => x.n), hb = HUB[id]; return `<div class="card stay-card" data-hub="${id}">
-        <div class="row"><h2 style="margin:0">${I("hotel")} ${esc(hb.name)}</h2><span class="badge b-info">${nights.length} คืน: ${nights.map((k) => thDate(Planner.dayIso(k), false).replace(/ \d+$/, "")).join(", ")}</span>${h.name ? '<span class="badge b-good">กรอกแล้ว</span>' : '<span class="badge b-warn">ยังไม่ได้กรอก</span>'}</div>
+        <div class="row"><h2 style="margin:0">${I("hotel")} ${esc(hb.name)}</h2><span class="badge b-mute">${nights.length} คืน: ${nights.map((k) => thDate(Planner.dayIso(k), false).replace(/ \d+$/, "")).join(", ")}</span>${h.name ? '<span class="badge b-good">กรอกแล้ว</span>' : '<span class="badge b-warn">ยังไม่ได้กรอก</span>'}</div>
         <div class="form ed-form stay-form">
           <label class="f full">ชื่อที่พัก<input type="text" data-h="name" value="${esc(h.name || "")}" placeholder="ชื่อโรงแรม/เรียวกังที่จองไว้"></label>
           ${LocPick.html("ตำแหน่งที่พัก", 'data-h="loc"', h.loc || "", hb)}

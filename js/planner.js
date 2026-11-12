@@ -328,8 +328,9 @@ const Planner = {
       if (t.pace === "chill" && moves >= Math.max(3, N * 0.6)) out.push({ lvl: "warn", text: `ย้ายที่พัก ${moves} ครั้งใน ${N} คืน เหนื่อยสำหรับสไตล์ชิล ลองพักฐานละ 2 คืน` });
       if (hubOf(t.arrive) !== hubOf(t.depart) && t.mode !== "transit") out.push({ lvl: "info", text: "รับ-คืนรถคนละเมือง มีค่าคืนรถต่างสาขา (one-way fee)" });
       const bad = evals.filter((e) => e.lvl === "bad").length, warn = evals.filter((e) => e.lvl === "warn").length;
-      if (bad) out.push({ lvl: "bad", text: `${bad} วันแน่น/เสี่ยงเกินไป ดูวันที่เป็นสีแดง` });
-      else if (warn) out.push({ lvl: "warn", text: `${warn} วันค่อนข้างแน่น ดูวันที่เป็นสีเหลือง` });
+      const days = (l) => "วันที่ " + evals.filter((e) => e.lvl === l).map((e) => e.i + 1).join(", ");
+      if (bad) out.push({ lvl: "bad", text: `${days("bad")} แน่น/เสี่ยงเกินไป` });
+      else if (warn) out.push({ lvl: "warn", text: `${days("warn")} ค่อนข้างแน่น` });
       else out.push({ lvl: "good", text: "ทุกวันเวลาพอ ไม่ขับตอนมืด ไม่เกินขีดที่ตั้งไว้" });
       const last = evals[evals.length - 1];
       if (last && last.mode === "car" && last.driveH > 2.5 && isWinter(last.iso)) out.push({ lvl: "warn", text: "วันบินกลับขับไกล ถ้าพายุหิมะอาจตกเครื่อง ลองพักคืนสุดท้ายใกล้สนามบิน" });
