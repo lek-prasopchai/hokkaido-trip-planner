@@ -34,7 +34,7 @@ const PlacesView = {
     const nOn = Object.keys(this.F0).filter((k) => f[k] !== this.F0[k]).length;
     sec.innerHTML = `
       <div class="sec-head"><h1>สถานที่เที่ยว</h1>
-        <p class="lead">${PLACES.length} สถานที่ทั่วฮอกไกโด • ★★★ = ห้ามพลาด • ${Object.values(SEASONS).map((s) => I(s.ic)).join("")} = ฤดูที่ไปได้ • เวลา/ราคาเป็นค่าประมาณ</p></div>
+        <p class="lead">${PLACES.length} สถานที่ทั่วฮอกไกโด · เวลาและราคาเป็นค่าประมาณ</p></div>
       <div class="split"><div class="split-top filters no-print">
         <input type="search" class="f-q" aria-label="ค้นหาสถานที่" placeholder="ค้นหาชื่อ ไทย/อังกฤษ/ญี่ปุ่น..." data-f="q" value="${esc(f.q)}">
         <details class="f-more" ${foldAttr("pfilter")}><summary>${I("sliders-horizontal")} ตัวกรอง <span class="badge b-info f-n" ${nOn ? "" : "hidden"}>${nOn}</span></summary><div class="row">
@@ -50,9 +50,9 @@ const PlacesView = {
         <label class="chk"><input type="checkbox" data-f="evening" ${f.evening ? "checked" : ""}> เที่ยวตอนค่ำได้</label>
         ${S.plan ? `<label class="chk"><input type="checkbox" data-f="inplan" ${f.inplan ? "checked" : ""}> เฉพาะที่อยู่ในแผน</label>` : ""}
         <button class="linkbtn" data-freset ${nOn ? "" : "hidden"}>ล้างตัวกรอง</button></div></details></div>
-      <aside class="split-side"><details class="card mapbox fold-card" ${foldAttr("pmap")} id="pMapCard"><summary><h2>${I("map")} แผนที่</h2><span class="mute small">กดหมุดเพื่อดูข้อมูล • ตัวเลข = จำนวนที่ในบริเวณนั้น</span></summary><div class="map" id="placesMap"></div>
+      <aside class="split-side"><details class="card mapbox fold-card" ${foldAttr("pmap")} id="pMapCard"><summary><h2>${I("map")} แผนที่</h2></summary><div class="map" id="placesMap"></div>
       <div class="map-legend">${Object.entries(TAG_ICON).map(([k, v]) => `<span>${I(v)} ${INTEREST[k]}</span>`).join("")}
-        <span><i class="ring" style="border-color:#c8374a"></i>ขอบแดง = ★★★</span><span><i class="ring" style="border-color:#2c6e9b"></i>ขอบน้ำเงิน = ★★</span><span><i class="ring" style="border-color:#2f8a57"></i>ขอบเขียว = อยู่ในแผนแล้ว</span></div></details></aside>
+        <span><i class="ring" style="border-color:#c8374a"></i>★★★</span><span><i class="ring" style="border-color:#2c6e9b"></i>★★</span><span><i class="ring" style="border-color:#2f8a57"></i>อยู่ในแผนแล้ว</span></div></details></aside>
       <div class="split-main" id="placeList"></div></div>`;
     this.M = makeMap($("#placesMap"));
     $("#pMapCard").addEventListener("toggle", (e) => { if (e.target.open) setTimeout(() => TripMap.drawPlaces(this.M, this.filtered()), 0); }); // สร้างตอนพับอยู่ ขนาด 0

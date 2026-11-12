@@ -104,7 +104,8 @@ input[type=number] { width: 80px; }
 .stars { color: #d29b14; letter-spacing: 1px; }
 
 .checks { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 4px; }
-.checks li { padding: 5px 10px; border-radius: 8px; font-size: .875rem; border-left: 3px solid; }
+.checks li { padding: 5px 10px; border-radius: 8px; font-size: .875rem; }
+.checks .good .i { color: var(--good); } .checks .warn .i { color: var(--warn); } .checks .bad .i { color: var(--bad); } .checks .info .i { color: var(--ice); } .checks .fest .i { color: var(--fest); }
 .checks .good { background: var(--good-soft); border-color: var(--good); }
 .checks .warn { background: var(--warn-soft); border-color: var(--warn); }
 .checks .bad { background: var(--bad-soft); border-color: var(--bad); }
@@ -188,7 +189,7 @@ details.card.opt[open] > summary { margin-bottom: 10px; }
 .kv dd { margin: 0; }
 .tip-list { margin: 0; padding-left: 18px; }
 .tip-list li { margin-bottom: 4px; }
-.callout { padding: 12px 14px; border-radius: 10px; background: var(--warn-soft); border-left: 4px solid var(--warn); font-size: .875rem; margin-bottom: 14px; }
+.callout { padding: 12px 14px; border-radius: 10px; background: var(--warn-soft); font-size: .875rem; margin-bottom: 14px; }
 .callout.info { background: var(--ice-soft); border-color: var(--ice); }
 .empty { text-align: center; padding: 30px; color: var(--mute); }
 #toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--ink); color: var(--on);
@@ -539,6 +540,7 @@ details.adv > summary { cursor: pointer; color: var(--ice); font-size: .875rem; 
 .bamt { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
 .bin { display: inline-flex; align-items: center; gap: 3px; color: var(--mute); font-size: .875rem; }
 .bin input { width: 92px; text-align: right; }
+#rate { min-width: 110px; }
 .bthb { min-width: 84px; text-align: right; font-variant-numeric: tabular-nums; }
 .btot { border-top: 2px solid var(--ink) !important; }
 @media (max-width: 640px) { .blist li { grid-template-columns: 1fr; } .bin input { width: 86px; } }
@@ -816,7 +818,7 @@ html.has-map-full .split-side { z-index: 2500; }
 .day-route { margin-top: 2px; }
 /* คำเตือนหลายข้อ: บรรทัดเดียว แตะดูทั้งหมด */
 .checks-box { margin-top: 10px; }
-.checks-box > summary { list-style: none; display: flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 8px; border-left: 3px solid; font-size: .875rem; cursor: pointer; }
+.checks-box > summary { list-style: none; display: flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 8px; font-size: .875rem; cursor: pointer; }
 .checks-box > summary::-webkit-details-marker { display: none; }
 .checks-box.bad > summary { background: var(--bad-soft); border-color: var(--bad); }
 .checks-box.warn > summary { background: var(--warn-soft); border-color: var(--warn); }
@@ -828,6 +830,11 @@ html.has-map-full .split-side { z-index: 2500; }
 .checks-box[open] .c1, .checks-box[open] .cn { display: none; }
 .checks-box[open] .call { display: block; }
 .checks-box > .checks { margin-top: 6px; }
+/* เปิดดูทั้งหมด: รวมเป็นกล่องเดียว สีบอกด้วยไอคอน คงพื้นแดงไว้เฉพาะข้อร้ายแรง */
+.checks-box[open] { background: var(--bg); border-radius: 8px; }
+.checks-box[open] > summary { background: none; font-weight: 600; }
+.checks-box[open] > .checks { margin-top: 0; padding: 0 4px 6px; gap: 2px; }
+.checks-box[open] > .checks li:not(.bad) { background: none; }
 @media screen and (max-width: 899px) {
 
   .day.fold .checks, .day.fold .checks-box { display: none; }

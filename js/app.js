@@ -96,10 +96,10 @@ const App = {
       <label class="f">ขนาดตัวอักษร<select data-s="font">${opt("s", "เล็ก", s.font)}${opt("m", "กลาง", s.font)}${opt("l", "ใหญ่", s.font)}</select></label>
     </div><details class="adv"><summary>ขั้นสูง: ทับค่าสไตล์ (เวลาเดินทาง ขับ/วัน ที่/วัน เวลาเริ่ม-จบวัน) มื้ออัตโนมัติ</summary><div class="form set-form">
       <label class="f">เผื่อเวลาเดินทางเพิ่ม (%)<input type="number" min="0" max="100" step="5" data-s="slack" value="${s.slack}"></label>
-      <label class="f">ขับสูงสุดต่อวัน (ชม.) <small>ว่าง = ตามสไตล์</small><input type="number" min="1" max="10" step="0.5" data-s="maxDrive" value="${s.maxDrive}"></label>
-      <label class="f">เริ่มวัน <small>ว่าง = ตามสไตล์</small><input type="time" data-s="dayStart" value="${s.dayStart}"></label>
-      <label class="f">จบวัน <small>ว่าง = ตามสไตล์</small><input type="time" data-s="dayEnd" value="${s.dayEnd}"></label>
-      <label class="f">ที่เที่ยวสูงสุดต่อวัน <small>ว่าง = ตามสไตล์</small><input type="number" min="1" max="12" data-s="maxStops" value="${s.maxStops}"></label>
+      <label class="f">ขับสูงสุดต่อวัน (ชม.) <small>ไม่ใส่ใช้ตามสไตล์</small><input type="number" min="1" max="10" step="0.5" data-s="maxDrive" value="${s.maxDrive}"></label>
+      <label class="f">เริ่มวัน <small>ไม่ใส่ใช้ตามสไตล์</small><input type="time" data-s="dayStart" value="${s.dayStart}"></label>
+      <label class="f">จบวัน <small>ไม่ใส่ใช้ตามสไตล์</small><input type="time" data-s="dayEnd" value="${s.dayEnd}"></label>
+      <label class="f">ที่เที่ยวสูงสุดต่อวัน <small>ไม่ใส่ใช้ตามสไตล์</small><input type="number" min="1" max="12" data-s="maxStops" value="${s.maxStops}"></label>
       <label class="f row" style="flex-direction:row;align-items:center"><input type="checkbox" data-s="autoMeal" ${s.autoMeal !== false ? "checked" : ""}> ใส่ช่วงกินข้าวกลางวันให้อัตโนมัติตอนสร้างแผน</label>
     </div></details>
     <h3 style="margin-top:16px">ข้อมูลและออฟไลน์</h3>

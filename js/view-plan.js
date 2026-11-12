@@ -106,7 +106,7 @@ const PlanView = {
           <div class="chips">${Object.entries(INTEREST).map(([k, v]) => `<button class="chip ${t.interests.includes(k) ? "on" : ""}" data-int="${k}">${v}</button>`).join("")}</div></div>
         <p class="mute small" style="margin:10px 0 0">ชิล: ขับ ≤2 ชม./วัน ≤3 ที่ จบวัน 18:00 • กลางๆ: ≤3.5 ชม. ≤4 ที่ จบ 19:30 • แน่น: ≤5 ชม. ≤6 ที่ จบ 21:00 • ทับค่าได้ใน ${I("settings")} ตั้งค่า</p></details>
       </div>
-      ${fresh ? "</details>" : ""}<h2 class="step-h" id="routes"><b>${fresh ? 2 : 3}</b> เลือกรูท = สร้างแผนรายวัน</h2>
+      ${fresh ? "</details>" : ""}<h2 class="step-h" id="routes"><b>${fresh ? 2 : 3}</b> เลือกรูท</h2>
       <details class="card routes-box" ${S.plan ? "" : "open"}><summary>${S.plan ? `<b>รูทตอนนี้: ${esc(TEMPLATES.find((x) => x.id === S.plan.tpl)?.name || "แผนที่จัดเอง")}</b> <span class="mute">กดเพื่อดู/เปลี่ยนรูท (สร้างแผนใหม่)</span>` : "<b>รูทแนะนำ</b> <span class=\"mute\">แผนที่เล็ก = เมืองที่พักและลำดับการเดินทาง</span>"}</summary>
         <p class="mute">รูทคือลำดับเมืองที่จะพักแต่ละคืน เรียงตามความเหมาะกับข้อ 1-2 กดการ์ดแล้วระบบจะจัดที่พักรายคืนและที่เที่ยวรายวันให้ทันที แล้วพาไปหน้าแผนรายวัน${S.plan ? ` <b>มีแผนอยู่แล้ว: กดรูทใหม่ = แผนเดิมถูกแทนที่</b> (ที่พักที่กรอกไว้ยังอยู่ กด ↶ ย้อนได้) ถ้าแค่แก้วันหรือเที่ยวบิน ไม่ต้องกดรูทใหม่` : ""}</p>
         <div class="grid g3">${Planner.rankTemplates().map((r) => this.tplCard(r)).join("")}
@@ -158,7 +158,7 @@ const PlanView = {
         <details class="gantt-box" ${matchMedia("(min-width: 900px)").matches ? "open" : ""}><summary>${I("clock")} แถบเวลาทั้งทริป <small class="mute">ดูว่าวันไหนแน่น</small></summary>${this.gantt(evals)}</details>
         <ul class="checks">${sum.map((c) => `<li class="${c.lvl}">${esc(c.text)}</li>`).join("")}</ul>
       </div></div>
-      <aside class="split-side no-print"><details class="card fold-card" ${foldAttr("map")} id="mapCard"><summary><h2>${I("map")} แผนที่</h2><span class="mute small">กด D1-D8 ดูลำดับรายวัน • จุดสีเทา = กดเพิ่มเข้าแผน</span></summary>
+      <aside class="split-side no-print"><details class="card fold-card" ${foldAttr("map")} id="mapCard"><summary><h2>${I("map")} แผนที่</h2></summary>
         <div class="map-days"><button data-mapday="all" class="${this.focus === null ? "on" : ""}">ทั้งทริป</button>${evals.map((e) => `<button data-mapday="${e.i}" style="--c:${DAY_COLORS[e.i % DAY_COLORS.length]}" class="${this.focus === e.i ? "on" : ""}">D${e.i + 1}</button>`).join("")}</div>
         <div id="planMapHost"></div>
         <div class="map-legend"><span><span class="pin num" style="--c:#2c6e9b;display:inline-grid;margin:0;width:18px;height:18px;font-size:10px">1</span> ลำดับในวันนั้น</span>
@@ -184,7 +184,7 @@ const PlanView = {
     const W = S.plan.wish, days = S.plan.days.map((_, k) => `<option value="${k}">วันที่ ${k + 1} (${esc(short(Planner.ends(k).to))})</option>`).join("");
     return `<details class="card no-print wish fold-card" ${foldAttr("wish")}><summary><h2>${I("heart")} อยากไป</h2><span class="mute small">${W.length} ที่ ยังไม่ลงวัน</span></summary>
       ${W.length ? '<button class="btn small primary" data-act="placeWish">จัดลงวันที่เหมาะให้ทั้งหมด</button>' : ""}
-      <p class="mute small">ลากลงวัน หรือเลือกวันจากช่องข้างชื่อ • "วันที่เหมาะสุด" = ให้ระบบเลือกวันที่ไปได้ดีที่สุด</p>
+      <p class="mute small">ลากลงวัน หรือเลือกวันจากช่องข้างชื่อ</p>
       ${W.length ? `<div class="wish-list">${W.map((id) => `<div class="wchip" draggable="true" data-wish="${esc(id)}"><span>${KIND_IC(id)}</span><b class="nm" data-detail="${esc(id)}">${esc(pname(id))}</b>
         <select data-wishday="${esc(id)}" aria-label="ใส่วัน"><option value="">ใส่วัน…</option><option value="auto">วันที่เหมาะสุด</option>${days}</select><button class="x" data-wishrm="${esc(id)}" aria-label="ลบ">✕</button></div>`).join("")}</div>` : ""}
       <button class="btn small" data-wishpick>${I("search")} เพิ่มที่อยากไป</button></details>`;
@@ -484,8 +484,8 @@ const PlanView = {
       <div class="full">${LocPick.html("ตำแหน่ง", 'id="eLoc"', cu.lat ? `${cu.lat}, ${cu.lng}` : cu.url || "", point(Planner.ends(i).to))}</div>` : ""}
       <label class="f">วิธีไปที่นี่<select id="eMode">${legOpts(it.m)}</select></label>
       <label class="f">ย้ายไปวัน<select id="eDay">${S.plan.days.map((_, k) => `<option value="${k}" ${k === i ? "selected" : ""}>วันที่ ${k + 1} (${esc(short(Planner.ends(k).to))})</option>`).join("")}</select></label>
-      <label class="f">ล็อกเวลาเริ่ม<input type="time" id="eAt" value="${esc(it.at || "")}"><small class="hint">จองรอบ/จองร้าน • ว่าง = ระบบคำนวณ</small></label>
-      <div class="f">เวลาที่ใช้${durField("eDur", it.dur, p.hours ?? p.dur ?? 1)}<small class="hint">ว่าง = ปกติ ${fmtH(p.hours ?? p.dur ?? 1)}</small></div>
+      <label class="f">ล็อกเวลาเริ่ม<input type="time" id="eAt" value="${esc(it.at || "")}"><small class="hint">ใช้เมื่อจองรอบหรือจองร้านไว้</small></label>
+      <div class="f">เวลาที่ใช้${durField("eDur", it.dur, p.hours ?? p.dur ?? 1)}<small class="hint">ปกติ ${fmtH(p.hours ?? p.dur ?? 1)}</small></div>
       <div class="full chks"><label class="chk"><input type="checkbox" id="eMaybe" ${it.maybe ? "checked" : ""}> ถ้ามีเวลา (จุดสำรอง ไม่นับเวลา)</label>
       ${i < N ? `<label class="chk"><input type="checkbox" id="eNight" ${it.night ? "checked" : ""}> ไปหลังเช็กอินที่พัก (ตอนค่ำ)</label>` : ""}</div>
       <label class="f full">โน้ต<textarea id="eNote" rows="2">${esc(it.note || "")}</textarea></label>
@@ -550,7 +550,7 @@ const PlanView = {
       <p class="mute small" style="margin:-4px 0 12px">${thDate(e.iso)} • ${I("sun")} ขึ้น ${fmtT(e.sun.rise)} ตก ${fmtT(e.sun.set)}${e.driveH ? ` • ${I("car")} ขับรวม ${fmtH(e.driveH)} · ${fmtN(Math.round(e.km))} กม.` : ""}</p>
       <div class="form">
         ${i < N ? `<label class="f">คืนนี้พักเมือง <small>${hotelOf(S.plan.bases[i])?.name ? esc(hotelOf(S.plan.bases[i]).name) : "ใส่โรงแรมจริงในหน้าข้อมูลทริป"}</small><select data-mbase>${hubOptions(S.plan.bases[i])}</select></label>` : ""}
-        ${i > 0 ? `<label class="f">เริ่มวัน <small>ว่าง = เวลาปกติ</small><input type="time" data-mstart value="${esc(day.start || "")}"></label>` : ""}</div>
+        ${i > 0 ? `<label class="f">เริ่มวัน <small>ไม่ใส่ก็ได้</small><input type="time" data-mstart value="${esc(day.start || "")}"></label>` : ""}</div>
       <div class="row" style="margin-top:12px">
         <button class="btn" data-mopt title="เรียงจุดใหม่ให้ระยะทางสั้นสุด: เริ่มจากที่พักเมื่อคืน ไปจุดที่ใกล้สุดก่อนทีละจุด จุดที่ล็อกเวลาแทรกตามเวลา">${I("arrow-up-down")} เรียงเส้นทางให้สั้นสุด</button>
         <a class="btn" target="_blank" rel="noopener" href="${dirUrl(pts, e.mode)}">${I("navigation")} เปิดเส้นทางใน Google Maps</a></div>
@@ -578,7 +578,7 @@ const PlanView = {
       <div class="form ed-form"><label class="f full">ชื่อ<input type="text" id="cName" placeholder="เช่น ร้านราเมนที่เพื่อนแนะนำ"></label>
         <div class="full">${LocPick.html("ตำแหน่ง", 'id="cLoc"', "", point(Planner.ends(i).to))}</div>
         <div class="f">เวลาที่ใช้${durField("cDur", 1)}</div>
-        <label class="f">ล็อกเวลา<input type="time" id="cAt"><small class="hint">ว่าง = ระบบคำนวณ</small></label></div>
+        <label class="f">ล็อกเวลา<input type="time" id="cAt"><small class="hint">ไม่ใส่ก็ได้</small></label></div>
       <div class="row" style="margin-top:12px"><button class="btn primary" id="cSave">เพิ่มในวันที่ ${i + 1}</button></div>`);
     $("#cSave").onclick = () => {
       const name = $("#cName").value.trim(), raw = $("#cLoc").value.trim(), ll = parseLatLng(raw);
