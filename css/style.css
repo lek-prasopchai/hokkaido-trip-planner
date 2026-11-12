@@ -160,7 +160,6 @@ table.t { width: 100%; border-collapse: collapse; font-size: .875rem; }
 .tl .visit b { font-weight: 600; }
 .tl .x { margin-left: 6px; border: 0; background: none; color: var(--mute); cursor: pointer; font-size: .875rem; }
 .tl .x:hover { color: var(--red); }
-.tl .night { color: var(--fest); }
 .day-tools { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
 .day-tools select { max-width: 260px; font-size: .875rem; }
 .risk { color: var(--bad); font-size: .8rem; }
@@ -730,7 +729,6 @@ details.adv > summary .mute { font-size: .875rem; }
 .tl li.mv { padding: 0; }
 .tl li.mv .move { font-size: .8rem; color: var(--mute); padding-left: 8px; }
 .tl li.mv .ic { opacity: .85; }
-.tl li.stay .rest { display: block; color: var(--mute); }
 .igrip { display: inline-grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: 6px; background: none; color: var(--mute); cursor: grab; touch-action: none; }
 .igrip:hover:not(:disabled) { background: var(--bg); color: var(--ink); }
 .igrip:disabled { opacity: .3; cursor: default; }
@@ -816,7 +814,6 @@ html.has-map-full .split-side { z-index: 2500; }
 /* หัวการ์ด: 2 บรรทัด ปุ่มแผนที่เหลือไอคอน */
 .day-head .map-focus { width: 36px; height: 36px; padding: 0; justify-content: center; }
 .day-route { margin-top: 2px; }
-.day-peek { display: none; }
 /* คำเตือนหลายข้อ: บรรทัดเดียว แตะดูทั้งหมด */
 .checks-box { margin-top: 10px; }
 .checks-box > summary { list-style: none; display: flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 8px; border-left: 3px solid; font-size: .875rem; cursor: pointer; }
@@ -832,8 +829,7 @@ html.has-map-full .split-side { z-index: 2500; }
 .checks-box[open] .call { display: block; }
 .checks-box > .checks { margin-top: 6px; }
 @media screen and (max-width: 899px) {
-  /* พับอยู่: เห็นรายชื่อที่เที่ยวบรรทัดเดียว ไม่ต้องกาง */
-  .day.fold .day-peek { display: block; margin-top: 4px; font-size: .875rem; color: var(--ink2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
   .day.fold .checks, .day.fold .checks-box { display: none; }
 }
 /* นิ้ว: ซ่อน ✏️ ✕ ไว้ขวา ปัดซ้ายถึงโผล่ • กดค้างแล้วลาก */
@@ -855,8 +851,11 @@ html.has-map-full .split-side { z-index: 2500; }
   .day-head h3, .day-head > .day-meta { white-space: nowrap; }
   .day-head > .day-meta { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
   .day-head .wx { white-space: nowrap; flex: none; }
-  .day-head .badge { padding: 4px 6px; }
-  .day-head .btxt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .day-head .map-focus { margin-left: auto; flex: none; }
   .day-head::after { top: 50%; margin-top: -7px; }
 }
+/* ทุกแถวที่ไม่ใช่การเดินทาง: หัวข้อตัวหนาสีเดียวกัน รายละเอียดบรรทัดล่าง */
+.tl .row-b b { font-weight: 600; color: var(--ink); }
+.tl .row-b small { display: block; color: var(--ink2); }
+.tl .row-b { display: block; padding-left: 8px; }
+@media (max-width: 899px) { .tl .row-b { padding-left: 4px; } }

@@ -224,13 +224,11 @@ const PlanView = {
   itemRow(e, x) {
     const i = e.i, it = x.it, p = point(x.id);
     const idx = S.plan.days[i].items.indexOf(it);
-    // มือถือเหลือแค่เวลาที่ใช้ (.xtra ซ่อน) จอใหญ่มีดาว ค่าเข้า การเดินทางสาธารณะด้วย
-    const xtra = [p.stars ? `<span class="stars">${"★".repeat(p.stars)}</span>` : "", ...[p.fee, e.mode === "transit" && isPlace(x.id) ? ACCESS_TXT[access(p)] : ""].filter(Boolean).map(esc)].filter(Boolean);
-    const meta = esc(fmtH(x.h)) + xtra.map((s) => `<span class="xtra"> · ${s}</span>`).join("");
+    const meta = esc(fmtH(x.h)); // ดาว ค่าเข้า อยู่ในหน้ารายละเอียด (แตะแถว)
     const nm = esc(pname(x.id)), open = p.stars ? `data-detail="${esc(x.id)}"` : `data-edit="${i}:${idx}"`;
     // แตะแถว = รายละเอียดสถานที่ (มื้อ/จุดของฉัน = กล่องแก้ไข) • ✏️ แก้ไข • ✕ เอาออก • ลากแถวเรียงลำดับ (มือถือ: ปัดซ้ายโชว์ปุ่ม กดค้างแล้วลาก)
-    return `<li class="it ${x.night ? "fixed" : ""}" ${COARSE ? "" : 'draggable="true"'} data-i="${i}" data-idx="${idx}"><span class="tm">${fmtT(x.t)}</span><span class="ic">${x.night ? I("moon") : KIND_IC(x.id)}</span>
-      <span class="visit ${x.night ? "night" : ""}" ${open} data-row="${i}:${idx}" role="button" tabindex="0" title="${p.stars ? "ดูรายละเอียด" : "แก้ไข"} (Alt+↑/↓ = เลื่อนลำดับ)">
+    return `<li class="it" ${COARSE ? "" : 'draggable="true"'} data-i="${i}" data-idx="${idx}"><span class="tm">${fmtT(x.t)}</span><span class="ic">${x.night ? I("moon") : KIND_IC(x.id)}</span>
+      <span class="visit" ${open} data-row="${i}:${idx}" role="button" tabindex="0" title="${p.stars ? "ดูรายละเอียด" : "แก้ไข"} (Alt+↑/↓ = เลื่อนลำดับ)">
         <b class="nm">${nm}</b>${it.at ? ` <span class="badge b-info">${I("lock")} ${esc(it.at)}</span>` : ""}
         <small>${x.onWay ? `กินระหว่างทาง: ${x.onWay === "car" ? "แวะจุดพักรถ/มิจิโนะเอกิ ~30 นาที" : "ซื้อข้าวกล่อง (เอกิเบ็น)/คอนบินีกินบนรถ"}` : meta}</small>${it.note ? `<div class="note">📝 ${esc(it.note)}</div>` : ""}</span>
       <span class="it-tools no-print"><button class="ied" data-edit="${i}:${idx}" aria-label="แก้ไข ${nm}" title="แก้ไข: ย้ายวัน ล็อกเวลา โน้ต">${I("pencil")}</button><button class="irm" data-rm="${i}:${idx}" aria-label="เอาออก ${nm}" title="เอาออก">${I("x")}</button></span></li>`;
@@ -267,18 +265,19 @@ const PlanView = {
         return `<li class="mv"><span class="tm"></span><span class="ic">${pick || mvIcon(x)}</span><span class="move">${what}${x.high ? `<br><span class="risk">${I("triangle-alert")} ${esc(x.risk)}</span>` : ""}</span></li>`;
       }
       if (x.kind === "visit") return this.itemRow(e, x);
-      if (x.kind === "wait") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hourglass")}</span><span class="mute">ว่าง ${fmtH(x.h)} ก่อนเวลาที่ล็อก</span></li>`;
+      if (x.kind === "wait") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hourglass")}</span><span class="row-b"><b>ว่าง ${fmtH(x.h)}</b><small>ก่อนเวลาที่ล็อก</small></span></li>`;
       if (x.kind === "hotel") {
         const h = hotelOf(x.id), nx = e.tl[k0 + 1], rest = nx?.kind === "info" && nx.ic === "hotel" ? nx.text.split(" • ")[0] : "";
-        return `<li class="stay"><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span><b>ถึงที่พัก ${esc(h?.name || pname(x.id))}</b>${h?.checkIn ? ` <small>เช็กอิน ${esc(h.checkIn)}</small>` : ""}${rest ? `<small class="rest">${esc(rest)}</small>` : ""}</span></li>`;
+        return `<li class="stay"><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span class="row-b"><b>ถึงที่พัก ${esc(h?.name || pname(x.id))}</b>${h?.checkIn || rest ? `<small>${[h?.checkIn ? `เช็กอิน ${esc(h.checkIn)}` : "", esc(rest)].filter(Boolean).join(" · ")}</small>` : ""}</span></li>`;
       }
       if (x.kind === "info" && x.ic === "hotel" && e.tl[k0 - 1]?.kind === "hotel") return ""; // รวมไว้ในแถวที่พักแล้ว
-      if (x.kind === "airport") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("plane")}</span><span><b>ถึงสนามบิน ${esc(pname(x.id))}</b> <small>เครื่องออก ${S.trip.departTime}</small></span></li>`;
-      return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I(x.ic || "info")}</span><span class="mute">${esc(x.text)}</span></li>`;
+      if (x.kind === "airport") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("plane")}</span><span class="row-b"><b>ถึงสนามบิน ${esc(pname(x.id))}</b><small>เครื่องออก ${S.trip.departTime}</small></span></li>`;
+      // ข้อความแจ้ง: ท่อนแรกเป็นหัวข้อ ที่เหลือเป็นรายละเอียด
+      const [h0, ...more] = String(x.text).split(" • ");
+      return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I(x.ic || "info")}</span><span class="row-b"><b>${esc(h0)}</b>${more.length ? `<small>${esc(more.join(" · "))}</small>` : ""}</span></li>`;
     }).join("");
     const ref = point(e.to);
     const open = this.isOpen(i);
-    const names = e.tl.filter((x) => x.kind === "visit").map((x) => esc(pname(x.id)));
     // คำเตือน: แสดงข้อหนักสุดบรรทัดเดียว แตะเพื่อดูทั้งหมด
     const RANK = { bad: 0, warn: 1, fest: 2, info: 3, good: 4 };
     const ck = [...e.checks].sort((a, b) => (RANK[a.lvl] ?? 5) - (RANK[b.lvl] ?? 5));
@@ -288,11 +287,9 @@ const PlanView = {
     return `<div class="card day ${e.lvl} ${open ? "" : "fold"}" id="day-${i}">
       <div class="day-head" data-tog="${i}" aria-expanded="${open}"><h3>วันที่ ${i + 1}</h3><span class="day-meta">${thDate(e.iso)}</span>
         <span class="wx" data-wx="${ref.lat},${ref.lng},${e.iso}"></span>
-        <span class="badge b-${e.lvl}" title="${LVL_TXT[e.lvl]}">${LVL_ICON[e.lvl]}<span class="btxt"> ${LVL_TXT[e.lvl]}</span></span>
         <button class="btn small map-focus no-print" data-dmap="${i}" title="ดูเส้นทางวันนี้บนแผนที่" aria-label="ดูเส้นทางวันที่ ${i + 1} บนแผนที่">${I("map")}</button>
 </div>
       <div class="day-meta day-route"><b>${esc(short(e.from))}</b> → <b>${esc(short(e.to))}</b>${e.driveH ? `<span class="xtra"> · ขับรวม ${fmtH(e.driveH)}</span>` : ""} · จบ ~${fmtT(e.end)}${e.leaveBy != null ? ` · <b>ออกจากที่พักไม่เกิน ${fmtT(e.leaveBy)}</b>` : ""}</div>
-      ${names.length ? `<div class="day-peek">${names.length} ที่ · ${names.join(" · ")}</div>` : ""}
       ${checks}
       <div class="day-body">
         <ul class="tl" data-day="${i}">${rows}</ul>${this.maybeBox(i)}
@@ -362,16 +359,17 @@ const PlanView = {
     const done = () => { this.noClick = Date.now(); };
     const drag = () => {
       const ul = g.li.closest("ul");
-      g.mode = "drag"; g.rows = [...ul.querySelectorAll("li.it:not(.fixed)")]; g.to = g.rows.indexOf(g.li);
+      g.mode = "drag"; g.rows = [...ul.querySelectorAll("li.it, li.stay")]; g.to = g.rows.indexOf(g.li);
       this.unswipe(); g.li.classList.add("dragging"); navigator.vibrate?.(12);
     };
     trip.addEventListener("touchstart", (ev) => {
       const li = ev.target.closest("li.it");
+      this.noClick = 0;
       if (this.swiped && this.swiped !== li) this.unswipe();
       if (!li || ev.touches.length > 1 || ev.target.closest(".it-tools")) return (g = null);
       const t = ev.touches[0];
       g = { li, x0: t.clientX, y0: t.clientY, mode: null, base: li.classList.contains("swiped") ? -W : 0, sx: 0 };
-      if (!li.classList.contains("fixed")) g.timer = setTimeout(drag, 400);
+      g.timer = setTimeout(drag, 400);
     }, { passive: true });
     trip.addEventListener("touchmove", (ev) => {
       if (!g) return;
@@ -407,10 +405,10 @@ const PlanView = {
       } else if (mode === "drag") {
         g.rows.forEach((r) => r.classList.remove("dragging", "drop-before", "drop-after"));
         done();
-        const from = g.rows.indexOf(li), i = +li.dataset.i;
+        const from = g.rows.indexOf(li), i = +li.dataset.i, st = g.rows.findIndex((r) => r.classList.contains("stay"));
         if (g.to !== from && g.to !== from + 1) {
-          const items = S.plan.days[i].items;
-          placeBefore(i, +li.dataset.idx, g.rows[g.to] ? items[+g.rows[g.to].dataset.idx] : null);
+          const items = S.plan.days[i].items, t = g.rows[g.to];
+          placeBefore(i, +li.dataset.idx, t?.dataset.idx ? items[+t.dataset.idx] : null, st >= 0 && g.to > st);
         }
       }
       g = null;
@@ -425,21 +423,34 @@ const PlanView = {
   bindDrag(sec) {
     let src = null;
     sec.ondragstart = (e) => { const li = e.target.closest?.("li.it, .wchip"); if (!li) return; src = li; li.classList.add("dragging"); e.dataTransfer.effectAllowed = "move"; };
-    sec.ondragend = () => { src?.classList.remove("dragging"); $$(".drop-before", sec).forEach((x) => x.classList.remove("drop-before")); src = null; };
-    sec.ondragover = (e) => { if (!src) return; const li = e.target.closest?.("li.it"), ul = e.target.closest?.("ul.tl"); if (!ul) return; e.preventDefault(); $$(".drop-before", sec).forEach((x) => x.classList.remove("drop-before")); li?.classList.add("drop-before"); };
+    sec.ondragend = () => { src?.classList.remove("dragging"); $$(".drop-before, .drop-after", sec).forEach((x) => x.classList.remove("drop-before", "drop-after")); src = null; };
+    // แถวที่พัก: ครึ่งบน = ก่อนเช็กอิน ครึ่งล่าง = หลังเช็กอิน (ตอนค่ำ)
+    const lower = (li, e) => { const r = li.getBoundingClientRect(); return e.clientY > r.top + r.height / 2; };
+    sec.ondragover = (e) => {
+      if (!src) return;
+      const li = e.target.closest?.("li.it, li.stay"), ul = e.target.closest?.("ul.tl"); if (!ul) return;
+      e.preventDefault();
+      $$(".drop-before, .drop-after", sec).forEach((x) => x.classList.remove("drop-before", "drop-after"));
+      li?.classList.add(li.classList.contains("stay") && lower(li, e) ? "drop-after" : "drop-before");
+    };
     sec.ondrop = (e) => {
       if (!src) return;
       const ul = e.target.closest("ul.tl"); if (!ul) return;
       e.preventDefault();
-      const li = e.target.closest("li.it");
+      const li = e.target.closest("li.it, li.stay"), stay = li?.classList.contains("stay");
       const fi = +src.dataset.i, fidx = +src.dataset.idx, ti = +ul.dataset.day, wid = src.dataset.wish;
+      // หาจุดเป้าก่อนดึงตัวที่ลากออก (ดึงออกแล้วเลขลำดับเลื่อน)
+      const night = stay ? lower(li, e) : li ? !!S.plan.days[+li.dataset.i].items[+li.dataset.idx].night : null;
+      const tgt = stay ? (night ? S.plan.days[ti].items.find((x) => x.night) : null) : li ? S.plan.days[+li.dataset.i].items[+li.dataset.idx] : null;
       this.mut(() => {
         const it = wid != null ? Planner.mkItem(ti, idOf(wid), true) : S.plan.days[fi].items.splice(fidx, 1)[0];
         if (wid != null) S.plan.wish = S.plan.wish.filter((x) => String(x) !== wid);
         const dst = S.plan.days[ti].items;
-        let k = li ? dst.indexOf(S.plan.days[+li.dataset.i].items[+li.dataset.idx]) : dst.filter((x) => !x.night).length;
+        if (tgt === it) return dst.splice(fidx, 0, it); // วางที่เดิม
+        let k = tgt ? dst.indexOf(tgt) : night ? dst.length : dst.filter((x) => !x.night).length;
         if (k < 0) k = dst.length;
         if (wid == null && fi !== ti) { delete it.st; it.night = it.night && ti < tripNights() && point(it.id).hub === hubOf(Planner.ends(ti).to); }
+        if (night !== null) it.night = night || undefined;
         it.u = true;
         dst.splice(k, 0, it);
       });
@@ -459,7 +470,7 @@ const PlanView = {
       <label class="f chk"><input type="checkbox" id="eMaybe" ${it.maybe ? "checked" : ""}> ถ้ามีเวลา (จุดสำรอง ไม่นับเวลา)</label>
       ${i < N ? `<label class="f chk"><input type="checkbox" id="eNight" ${it.night ? "checked" : ""}> ไปหลังเช็กอินที่พัก (ตอนค่ำ)</label>` : ""}
     </div><label class="f" style="margin-top:10px">โน้ต<textarea id="eNote" rows="2">${esc(it.note || "")}</textarea></label>
-    <div class="row" style="margin-top:12px"><button class="btn primary" id="eSave">บันทึก</button><button class="btn" data-detail="${esc(it.id)}">ดูรายละเอียดสถานที่</button><button class="btn" id="eWish">${I("heart")} เก็บไว้ในอยากไป</button><div class="spacer"></div><button class="btn red" id="eDel">เอาออกจากแผน</button></div>`);
+    <div class="row" style="margin-top:12px"><button class="btn primary" id="eSave">บันทึก</button><button class="btn" id="eWish">${I("heart")} เก็บไว้ในอยากไป</button><div class="spacer"></div><button class="btn red" id="eDel">เอาออกจากแผน</button></div>`);
     $("#eSave").onclick = () => {
       const at = $("#eAt").value, dur = $("#eDur").value, to = +$("#eDay").value;
       let ll;
@@ -480,7 +491,6 @@ const PlanView = {
       });
       Modal.close();
     };
-    $("#modal [data-detail]").onclick = () => PlacesView.detail(it.id); // กล่องนี้อยู่นอกหน้า จึงไม่โดนตัวจับคลิกของหน้า
     $("#eWish").onclick = () => { this.mut(() => { Planner.toWish(i, it); Planner.resoft(i); }); Modal.close(); toast("ย้ายไปกล่อง อยากไป แล้ว"); };
     $("#eDel").onclick = () => { this.mut(() => S.plan.days[i].items.splice(S.plan.days[i].items.indexOf(it), 1)); Modal.close(); };
   },
@@ -673,12 +683,13 @@ const PlanView = {
       this.mut(() => { const ia = items.indexOf(a), ib = items.indexOf(b); [items[ia], items[ib]] = [items[ib], items[ia]]; a.u = true; });
       return true;
     };
-    const placeBefore = (i, idx, tgt) => {
+    const placeBefore = (i, idx, tgt, night = false) => {
       const items = S.plan.days[i].items, a = items[idx];
-      if (a === tgt) return;
+      if (a === tgt && !!a.night === night) return;
       this.mut(() => {
         items.splice(items.indexOf(a), 1);
-        let k = tgt ? items.indexOf(tgt) : items.filter((x) => !x.night).length;
+        a.night = night || undefined;
+        let k = tgt ? items.indexOf(tgt) : night ? items.length : items.filter((x) => !x.night).length;
         if (k < 0) k = items.length;
         a.u = true; items.splice(k, 0, a);
       });
@@ -694,9 +705,10 @@ const PlanView = {
     });
     if (COARSE) this.bindTouch(trip, placeBefore);
     trip.addEventListener("click", (ev) => {
-      if (Date.now() - (this.noClick || 0) < 450) return ev.preventDefault(); // นิ้วเพิ่งปัด/ลากเสร็จ ไม่ใช่การแตะ
+      if (this.noClick && Date.now() - this.noClick < 800) { this.noClick = 0; return ev.preventDefault(); } // คลิกที่ตามมาจากการปัด/ลาก ไม่ใช่การแตะ
       const sw = ev.target.closest("li.swiped");
       if (sw && !ev.target.closest(".it-tools")) return this.unswipe(); // แตะแถวที่เปิดปุ่มอยู่ = ปิดกลับ
+      if (sw) this.unswipe(); // กด ✏️/✕ แล้ว แถวกลับที่เดิม (ปิดกล่องโดยไม่แก้ก็ไม่ค้าง)
       const el = ev.target.closest("button, a, select, [data-goto], [data-detail], [data-lb], [data-edit], [data-tog]");
       if (!el) return;
       const d = el.dataset, pair = (s) => s.split(":").map(Number);
