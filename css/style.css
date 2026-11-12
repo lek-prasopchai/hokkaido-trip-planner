@@ -880,3 +880,6 @@ html.has-map-full .split-side { z-index: 2500; }
   .ed-actions .btn { flex: 1 1 auto; justify-content: center; }
   .ed-actions #eDel { flex-basis: 100%; margin-left: 0; }
 }
+/* iOS Safari: ช่องวันที่/เวลามีความกว้างขั้นต่ำของตัวเอง ไม่หดตามกรอบ ยาวเกินช่องอื่น */
+input[type="time"], input[type="date"], input[type="datetime-local"] { -webkit-appearance: none; appearance: none; min-width: 0; max-width: 100%; box-sizing: border-box; display: block; }
+input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-date-and-time-value, input[type="datetime-local"]::-webkit-date-and-time-value { text-align: left; }
