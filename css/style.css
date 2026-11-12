@@ -859,3 +859,6 @@ html.has-map-full .split-side { z-index: 2500; }
 .tl .row-b small { display: block; color: var(--ink2); }
 .tl .row-b { display: block; padding-left: 8px; }
 @media (max-width: 899px) { .tl .row-b { padding-left: 4px; } }
+/* เวลาที่ใช้: ชม. + นาที */
+.dur-in { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+.dur-in input { width: 5.5em !important; flex: none; }

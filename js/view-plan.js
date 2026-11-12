@@ -14,6 +14,13 @@ const foldAttr = (k) => `data-keep="${k}" ${(FOLD[k] ?? matchMedia("(min-width: 
 document.addEventListener("toggle", (e) => { const k = e.target.dataset?.keep; if (k) FOLD[k] = e.target.open; }, true);
 const KIND_IC = (id) => I(isPlace(id) ? "map-pin" : S.plan.custom[id]?.meal ? "soup" : "star");
 // ตัวเลือกวิธีเดินทางรายช่วง ("" = ค่าเริ่มต้นของทริป)
+// เวลาที่ใช้: กรอก ชม. + นาที เก็บเป็นชั่วโมง • ว่างทั้งคู่ = null (ใช้ค่าปกติ)
+const durField = (id, h, def) => {
+  const v = h == null || h === "" ? null : Math.round(+h * 60), d = def == null ? null : Math.round(def * 60);
+  const box = (k, max, step, val, ph, unit) => `<input type="number" id="${id}${k}" min="0" max="${max}" step="${step}" inputmode="numeric" value="${val ?? ""}" placeholder="${ph ?? ""}" aria-label="${unit}"> ${unit}`;
+  return `<span class="dur-in">${box("H", 12, 1, v == null ? null : Math.floor(v / 60), d == null ? null : Math.floor(d / 60), "ชม.")} ${box("M", 55, 5, v == null ? null : v % 60, d == null ? null : d % 60, "นาที")}</span>`;
+};
+const durVal = (id) => { const h = $(`#${id}H`).value, m = $(`#${id}M`).value; return h === "" && m === "" ? null : Math.max(0.25, (+h || 0) + (+m || 0) / 60); };
 const legOpts = (cur) => `<option value="">${LEG_MODE[Planner.modeOf()].name} (ค่าเริ่มต้น)</option>${Object.entries(LEG_MODE).map(([v, m]) => `<option value="${v}" ${cur === v ? "selected" : ""}>${m.name}</option>`).join("")}`;
 const STAY_TIPS = "จองล่วงหน้า 3-4 เดือน (ช่วงเทศกาลหิมะ 6 เดือน) • ขับรถ: เลือกที่มีที่จอด ถามค่าจอดและต้องจองไหม • นั่งรถไฟ: เลือกใกล้สถานี เดินลากกระเป๋าบนหิมะลำบาก • เรียวกังออนเซ็นมักรวมอาหารเย็น-เช้า และต้องเช็กอินก่อน ~18:00 • พักฐานเดิม 2 คืนขึ้นไปช่วยให้ไม่ต้องแพ็กกระเป๋าทุกวัน";
 
@@ -256,7 +263,7 @@ const PlanView = {
         if (x.est) RoadTime.ask(point(x.from), point(x.to)); // เส้นตรง × 1.3: ขอเวลาถนนจริงมาแทน
         // ค่าแท็กซี่ฮอกไกโด: เริ่ม ~¥600-700 แล้ว ~¥300-400/กม. (ยังไม่รวมรอ/ติดหิมะ) ปัดหลักร้อย
         const fare = (b, k) => (Math.round((b + x.km * k) / 100) * 100).toLocaleString();
-        const what = x.walk ? `เดิน ${fmtH(x.h)} · ${x.km} กม.` : x.taxi ? `แท็กซี่ ${fmtH(x.h)} · ${x.km} กม. · ≈¥${fare(600, 300)}-${fare(700, 400)}` : x.city ? `เดิน/รถไฟใต้ดิน/แท็กซี่ ${fmtH(x.h)} (จอดรถไว้ที่พัก)` : x.mode === "car" ? `ขับ ${fmtH(x.h)} · ${x.km} กม.${x.est ? " (≈)" : ""}` : x.noTransit ? `ไม่มีรถไฟ/บัสตรง ${fmtH(x.h)} (แท็กซี่/รถ)` : x.local ? `เดิน/บัส/แท็กซี่ ${fmtH(x.h)}` : `รถไฟ/บัส ${fmtH(x.h)}${x.by ? " · " + esc(x.by.join(" → ")) : ""}`;
+        const what = x.walk ? `เดิน ${fmtH(x.h)} · ${x.km} กม.` : x.taxi ? `แท็กซี่ ${fmtH(x.h)} · ${x.km} กม. · ≈¥${fare(600, 300)}-${fare(700, 400)}` : x.city ? `เดิน/รถไฟใต้ดิน/แท็กซี่ ${fmtH(x.h)} (จอดรถไว้ที่พัก)` : x.mode === "car" ? `ขับ ${fmtH(x.h)} · ${x.km} กม.${x.est ? " (≈)" : ""}` : x.noTransit ? `ไม่มีรถไฟ/บัสตรง ${fmtH(x.h)} (แท็กซี่/รถ)` : x.local ? `รถไฟ/บัสในเมือง ${fmtH(x.h)} (≈)` : `รถไฟ/บัส ${fmtH(x.h)}${x.by ? " · " + esc(x.by.join(" → ")) : ""}`;
         const k = x.it ? S.plan.days[i].items.indexOf(x.it) : -1, cur = k >= 0 ? x.it.m : x.home ? day.hm : null;
         const lm = LEG_MODE[cur || Planner.modeOf()];
         // แสดงแค่ไอคอน มี select โปร่งใสทับไว้ให้กดเปลี่ยน
@@ -265,7 +272,13 @@ const PlanView = {
         return `<li class="mv"><span class="tm"></span><span class="ic">${pick || mvIcon(x)}</span><span class="move">${what}${x.high ? `<br><span class="risk">${I("triangle-alert")} ${esc(x.risk)}</span>` : ""}</span></li>`;
       }
       if (x.kind === "visit") return this.itemRow(e, x);
-      if (x.kind === "wait") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hourglass")}</span><span class="row-b"><b>ว่าง ${fmtH(x.h)}</b><small>ก่อนเวลาที่ล็อก</small></span></li>`;
+      if (x.kind === "wait") { // รอที่จุดก่อนหน้าแล้วค่อยออก
+        const home = x.at && (x.at === e.to || x.at === e.from) && !AIR[x.at];
+        const head = home ? `ว่างที่ที่พัก ${fmtH(x.h)}` : x.at && !AIR[x.at] ? `อยู่ต่อได้อีก ${fmtH(x.h)}` : `ว่าง ${fmtH(x.h)}`;
+        const sub = x.at ? [x.why, `ออก${home ? "จากที่พัก" : ""} ${fmtT(x.t + x.h)}`].filter(Boolean).join(" · ") : "ก่อนเวลาที่ล็อก";
+        return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hourglass")}</span><span class="row-b"><b>${head}</b><small>${esc(sub)}</small></span></li>`;
+      }
+      if (x.kind === "back") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span class="row-b"><b>กลับถึงที่พัก ${esc(hotelOf(x.id)?.name || short(pname(x.id)))}</b></span></li>`;
       if (x.kind === "hotel") {
         const h = hotelOf(x.id), nx = e.tl[k0 + 1], rest = nx?.kind === "info" && nx.ic === "hotel" ? nx.text.split(" • ")[0] : "";
         return `<li class="stay"><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span class="row-b"><b>ถึงที่พัก ${esc(h?.name || pname(x.id))}</b>${h?.checkIn || rest ? `<small>${[h?.checkIn ? `เช็กอิน ${esc(h.checkIn)}` : "", esc(rest)].filter(Boolean).join(" · ")}</small>` : ""}</span></li>`;
@@ -424,24 +437,29 @@ const PlanView = {
     let src = null;
     sec.ondragstart = (e) => { const li = e.target.closest?.("li.it, .wchip"); if (!li) return; src = li; li.classList.add("dragging"); e.dataTransfer.effectAllowed = "move"; };
     sec.ondragend = () => { src?.classList.remove("dragging"); $$(".drop-before, .drop-after", sec).forEach((x) => x.classList.remove("drop-before", "drop-after")); src = null; };
-    // แถวที่พัก: ครึ่งบน = ก่อนเช็กอิน ครึ่งล่าง = หลังเช็กอิน (ตอนค่ำ)
-    const lower = (li, e) => { const r = li.getBoundingClientRect(); return e.clientY > r.top + r.height / 2; };
+    // จุดวาง = นับแถวที่กึ่งกลางอยู่เหนือเมาส์ (เหมือนลากด้วยนิ้ว) • ใต้แถวที่พัก = หลังเช็กอิน (ตอนค่ำ) • ใต้แถวสุดท้าย = ท้ายสุด
+    const slot = (ul, e) => {
+      const rows = [...ul.querySelectorAll("li.it, li.stay")].filter((r) => r !== src);
+      const k = rows.filter((r) => { const b = r.getBoundingClientRect(); return b.top + b.height / 2 < e.clientY; }).length;
+      const st = rows.findIndex((r) => r.classList.contains("stay"));
+      return { rows, k, night: st >= 0 && k > st };
+    };
     sec.ondragover = (e) => {
       if (!src) return;
-      const li = e.target.closest?.("li.it, li.stay"), ul = e.target.closest?.("ul.tl"); if (!ul) return;
+      const ul = e.target.closest?.("ul.tl"); if (!ul) return;
       e.preventDefault();
       $$(".drop-before, .drop-after", sec).forEach((x) => x.classList.remove("drop-before", "drop-after"));
-      li?.classList.add(li.classList.contains("stay") && lower(li, e) ? "drop-after" : "drop-before");
+      const { rows, k } = slot(ul, e);
+      if (rows[k]) rows[k].classList.add("drop-before"); else rows[rows.length - 1]?.classList.add("drop-after");
     };
     sec.ondrop = (e) => {
       if (!src) return;
       const ul = e.target.closest("ul.tl"); if (!ul) return;
       e.preventDefault();
-      const li = e.target.closest("li.it, li.stay"), stay = li?.classList.contains("stay");
       const fi = +src.dataset.i, fidx = +src.dataset.idx, ti = +ul.dataset.day, wid = src.dataset.wish;
       // หาจุดเป้าก่อนดึงตัวที่ลากออก (ดึงออกแล้วเลขลำดับเลื่อน)
-      const night = stay ? lower(li, e) : li ? !!S.plan.days[+li.dataset.i].items[+li.dataset.idx].night : null;
-      const tgt = stay ? (night ? S.plan.days[ti].items.find((x) => x.night) : null) : li ? S.plan.days[+li.dataset.i].items[+li.dataset.idx] : null;
+      const { rows, k, night } = slot(ul, e), t = rows[k];
+      const tgt = t?.dataset.idx ? S.plan.days[ti].items[+t.dataset.idx] : null;
       this.mut(() => {
         const it = wid != null ? Planner.mkItem(ti, idOf(wid), true) : S.plan.days[fi].items.splice(fidx, 1)[0];
         if (wid != null) S.plan.wish = S.plan.wish.filter((x) => String(x) !== wid);
@@ -449,8 +467,8 @@ const PlanView = {
         if (tgt === it) return dst.splice(fidx, 0, it); // วางที่เดิม
         let k = tgt ? dst.indexOf(tgt) : night ? dst.length : dst.filter((x) => !x.night).length;
         if (k < 0) k = dst.length;
-        if (wid == null && fi !== ti) { delete it.st; it.night = it.night && ti < tripNights() && point(it.id).hub === hubOf(Planner.ends(ti).to); }
-        if (night !== null) it.night = night || undefined;
+        if (wid == null && fi !== ti) delete it.st;
+        it.night = (night && ti < tripNights()) || undefined;
         it.u = true;
         dst.splice(k, 0, it);
       });
@@ -465,14 +483,14 @@ const PlanView = {
       ${LocPick.html("ตำแหน่ง", 'id="eLoc"', cu.lat ? `${cu.lat}, ${cu.lng}` : cu.url || "", point(Planner.ends(i).to))}` : ""}
       <label class="f">วิธีไปที่นี่<select id="eMode">${legOpts(it.m)}</select></label>
       <label class="f">ล็อกเวลาเริ่ม (จองรอบ/จองร้าน) <small>ว่าง = ให้ระบบคำนวณ</small><input type="time" id="eAt" value="${esc(it.at || "")}"></label>
-      <label class="f">เวลาที่ใช้ (ชม.) <small>ปกติ ${fmtH(p.hours ?? p.dur ?? 1)}</small><input type="number" step="0.25" min="0.25" max="12" id="eDur" value="${it.dur ?? ""}"></label>
+      <div class="f">เวลาที่ใช้ <small>ว่าง = ปกติ ${fmtH(p.hours ?? p.dur ?? 1)}</small>${durField("eDur", it.dur, p.hours ?? p.dur ?? 1)}</div>
       <label class="f">ย้ายไปวัน<select id="eDay">${S.plan.days.map((_, k) => `<option value="${k}" ${k === i ? "selected" : ""}>วันที่ ${k + 1} (${esc(short(Planner.ends(k).to))})</option>`).join("")}</select></label>
       <label class="f chk"><input type="checkbox" id="eMaybe" ${it.maybe ? "checked" : ""}> ถ้ามีเวลา (จุดสำรอง ไม่นับเวลา)</label>
       ${i < N ? `<label class="f chk"><input type="checkbox" id="eNight" ${it.night ? "checked" : ""}> ไปหลังเช็กอินที่พัก (ตอนค่ำ)</label>` : ""}
     </div><label class="f" style="margin-top:10px">โน้ต<textarea id="eNote" rows="2">${esc(it.note || "")}</textarea></label>
     <div class="row" style="margin-top:12px"><button class="btn primary" id="eSave">บันทึก</button><button class="btn" id="eWish">${I("heart")} เก็บไว้ในอยากไป</button><div class="spacer"></div><button class="btn red" id="eDel">เอาออกจากแผน</button></div>`);
     $("#eSave").onclick = () => {
-      const at = $("#eAt").value, dur = $("#eDur").value, to = +$("#eDay").value;
+      const at = $("#eAt").value, dur = durVal("eDur"), to = +$("#eDay").value;
       let ll;
       if (cu) {
         const name = $("#eName").value.trim(), raw = $("#eLoc").value.trim();
@@ -486,7 +504,7 @@ const PlanView = {
       }
       this.mut(() => {
         const d = S.plan.days[i].items;
-        Object.assign(it, { m: $("#eMode").value || undefined, at: at || undefined, dur: dur ? +dur : undefined, note: $("#eNote").value.trim() || undefined, night: $("#eNight")?.checked || undefined, maybe: $("#eMaybe").checked || undefined, u: true });
+        Object.assign(it, { m: $("#eMode").value || undefined, at: at || undefined, dur: dur ?? undefined, note: $("#eNote").value.trim() || undefined, night: $("#eNight")?.checked || undefined, maybe: $("#eMaybe").checked || undefined, u: true });
         if (to !== i) { d.splice(d.indexOf(it), 1); it.night = undefined; Planner.insertBest(to, it); }
       });
       Modal.close();
@@ -557,7 +575,7 @@ const PlanView = {
     Modal.open(`<h2>${I("star")} เพิ่มจุดของฉัน</h2><p class="mute small">บนมือถือ: กด <b>แตะบนแผนที่</b> แล้วจิ้มจุดที่จะไป หรือ <b>ตำแหน่งตอนนี้</b> ถ้ายืนอยู่ตรงนั้น • วางลิงก์ Google Maps ได้ด้วย (ลิงก์แชร์แบบสั้นไม่มีพิกัด ระบบจะเก็บไว้เป็นลิงก์ แต่ไม่คิดเวลาเดินทาง)</p>
       <div class="form"><label class="f">ชื่อ<input type="text" id="cName" placeholder="เช่น ร้านราเมนที่เพื่อนแนะนำ"></label>
         ${LocPick.html("ตำแหน่ง", 'id="cLoc"', "", point(Planner.ends(i).to))}
-        <label class="f">เวลาที่ใช้ (ชม.)<input type="number" id="cDur" step="0.25" min="0.25" value="1"></label>
+        <div class="f">เวลาที่ใช้${durField("cDur", 1)}</div>
         <label class="f">ล็อกเวลา (ถ้ามี)<input type="time" id="cAt"></label></div>
       <div class="row" style="margin-top:12px"><button class="btn primary" id="cSave">เพิ่มในวันที่ ${i + 1}</button></div>`);
     $("#cSave").onclick = () => {
@@ -567,7 +585,7 @@ const PlanView = {
       if (raw && !ll) toast("เก็บลิงก์ไว้แล้ว แต่ลิงก์นี้ไม่มีพิกัด จึงไม่คิดเวลาเดินทาง");
       const id = "c" + Date.now().toString(36);
       this.mut(() => {
-        S.plan.custom[id] = { name, hours: Math.max(0.25, +$("#cDur").value || 1), url: /^https?:/.test(raw) ? raw : "", ...(ll || {}) };
+        S.plan.custom[id] = { name, hours: durVal("cDur") ?? 1, url: /^https?:/.test(raw) ? raw : "", ...(ll || {}) };
         S.plan.days[i].items.push({ id, u: true, at: $("#cAt").value || undefined });
       });
       Modal.close();

@@ -158,6 +158,7 @@ const Planner = {
     const local = (id, hub) => (!HUB[id] && !AIR[id] ? km(point(id), HUB[hub]) / 20 + 0.2 : 0);
     if (ha === hb) {
       const d = km(pa, pb);
+      if (d * 1.3 <= 1.2) return { h: (d * 1.3 / 4 + 0.05) * slack, km: Math.round(d * 13) / 10, drive: 0, walk: true }; // ใกล้: เดินเร็วกว่ารอรถ
       return { h: (d / 20 + 0.25) * slack, km: Math.round(d), local: true };
     }
     const t = transitPath(AIR[a] ? a : ha, AIR[b] ? b : hb);
@@ -204,11 +205,18 @@ const Planner = {
       const b = t.buf;
       tl.push({ t: parseT(t.arriveTime), kind: "info", ic: "plane", text: `เครื่องลง ${t.arriveTime} • ${t.domIn ? "เที่ยวบินในประเทศ" : "ตรวจคนเข้าเมือง + รับกระเป๋า"} ~${t.domIn ? b.dom : b.imm} นาที • ${mode === "car" ? (t.carPick ? `รับรถเช่า ~${b.car} นาที` : "ไม่รวมเวลารับรถ (ใส่เองในแผน)") : `ซื้อพาส/IC/ซิม ~${b.pass} นาที`}` });
     }
+    const atOf = (it, night) => parseT(it.at) + (night && parseT(it.at) < 6 ? 24 : 0); // ตอนค่ำล็อก 00:30 = หลังเที่ยงคืนคืนนั้น (เช่น เคาท์ดาวน์)
+    // ล็อกเวลา: รอที่จุดก่อนหน้า (ที่พัก/ที่เที่ยว) แล้วค่อยออก ให้ไปถึงก่อนเวลา ~10 นาที แทนไปยืนรอที่ปลายทาง
+    const lead = (it, m, night) => {
+      if (!it.at) return;
+      const gap = atOf(it, night) - 1 / 6 - this.leg(prev, it.id, m, iso).h - time;
+      if (gap >= 0.08) { tl.push({ t: time, kind: "wait", h: gap, at: prev }); time += gap; }
+    };
     const visit = (it, night) => {
       const p = point(it.id);
       if (it.at) {
-        const at = parseT(it.at) + (night && parseT(it.at) < 6 ? 24 : 0); // ตอนค่ำล็อก 00:30 = หลังเที่ยงคืนคืนนั้น (เช่น เคาท์ดาวน์)
-        if (time < at - 0.08) { if (at - time >= 0.33) tl.push({ t: time, kind: "wait", h: at - time }); time = at; }
+        const at = atOf(it, night);
+        if (time < at - 0.08) { if (at - time > 0.25) tl.push({ t: time, kind: "wait", h: at - time }); time = at; }
         else if (time > at + 0.1) add("bad", `ไปถึง ${pname(it.id)} ${fmtT(time)} ไม่ทันเวลาที่ล็อกไว้ ${it.at}`);
       }
       const h = this.dur(it, p);
@@ -222,7 +230,7 @@ const Planner = {
         const nx = dayI[k + 1], L = this.leg(prev, nx ? nx.id : to, nx ? nx.m || mode : day.hm || mode, iso);
         if (L.h >= 1.5 && time + L.h > 12.5) { wayMeal = it; return; }
       }
-      move(it.id, it.m || mode, it); visit(it, false);
+      lead(it, it.m || mode, false); move(it.id, it.m || mode, it); visit(it, false);
     });
     const hm = day.hm || mode; // วิธีไปที่พัก/สนามบินช่วงสุดท้าย
     move(to, hm, null, true);
@@ -234,11 +242,11 @@ const Planner = {
       time = go;
     }
     if (nightI.length && !nightI.some((it) => it.at) && sun.set - 0.25 > time && nightI.some((it) => point(it.id).evening)) { // รอให้มืด ไฟประดับ/วิวกลางคืนถึงสวย
-      if (sun.set - 0.25 - time >= 1.5) tl.push({ t: time, kind: "info", text: `เวลาว่าง ~${fmtH(sun.set - 0.25 - time)} พักผ่อน/ออนเซ็น/ช้อปปิ้ง` });
+      if (sun.set - 0.25 - time >= 0.08) tl.push({ t: time, kind: "wait", h: sun.set - 0.25 - time, at: to, why: "รอให้มืด ไฟ/วิวกลางคืนสวยกว่า" });
       time = sun.set - 0.25;
     }
-    for (const it of nightI) { move(it.id, it.m || mode, it); visit(it, true); }
-    if (nightI.length) move(to, nightI[nightI.length - 1].m || hm);
+    for (const it of nightI) { lead(it, it.m || mode, true); move(it.id, it.m || mode, it); visit(it, true); }
+    if (nightI.length) { move(to, nightI[nightI.length - 1].m || hm); tl.push({ t: time, kind: "back", id: to }); }
     const end = time;
 
     // ---- ตรวจ ----
