@@ -64,6 +64,7 @@ const MapFull = {
     a.innerHTML = I(on ? "minimize-2" : "maximize-2");
     a.title = on ? "ย่อแผนที่" : "ขยายเต็มจอ"; a.setAttribute("aria-label", a.title);
     this.cur = on ? { map, a } : null;
+    map._fsAt = Date.now(); // การแตะที่เพิ่งสลับเต็มจอ ไม่นับเป็นการแตะแผนที่
     if (on) map.dragging.enable();
     setTimeout(() => map.invalidateSize(), 0);
   },
@@ -322,7 +323,7 @@ document.addEventListener("click", (ev) => {
     box.querySelector(".lp-res").innerHTML = ""; return; }
   const pick = box.querySelector(".lp-pick"), el = box.querySelector(".lp-map");
   pick.hidden = !pick.hidden;
-  if (pick.hidden) return;
+  if (pick.hidden) return box.dispatchEvent(new Event("lp-done", { bubbles: true })); // ปิดแผนที่แล้ว ให้หน้าวาดค่าใหม่
   if (!el._m) {
     const ll = parseLatLng(inp.value), [cLat, cLng] = (box.dataset.c || "43.0618,141.3545").split(",").map(Number);
     const M = makeMap(el), m = M.map;
@@ -335,6 +336,7 @@ document.addEventListener("click", (ev) => {
     el._m = m;
     if (ll) LocPick.drop(box, ll.lat, ll.lng);
     m.on("click", (e) => {
+      if (Date.now() - (m._fsAt || 0) < 600 || e.originalEvent?.target?.closest?.(".leaflet-control")) return; // แตะปุ่มบนแผนที่ ไม่ใช่ปักหมุด
       if (!parseLatLng(`${e.latlng.lat}, ${e.latlng.lng}`)) return toast("จุดนี้อยู่นอกฮอกไกโด");
       LocPick.drop(box, e.latlng.lat, e.latlng.lng, 0);
       set(e.latlng.lat, e.latlng.lng);

@@ -796,3 +796,7 @@ html.has-map-full, html.has-map-full body { overflow: hidden; }
 }
 .sec-head .lead { font-size: .9375rem; color: var(--mute); line-height: 1.6; }
 @media (min-width: 900px) { .filters .f-q, .filters select { height: 44px; } }
+/* เต็มจอ: แผงขวาที่ติดจอ (sticky) แยกชั้นของตัวเอง ต้องยกทั้งแผงขึ้นด้วย */
+html.has-map-full .split-side { z-index: 2500; }
+/* รูปการ์ด: วางทับเต็มกรอบ ไม่พึ่งความสูงของกริด (Safari คิดเปอร์เซ็นต์ความสูงในกริดผิด รูปเหลือครึ่งเดียว) */
+.pcard .ph > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }

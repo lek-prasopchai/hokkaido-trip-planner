@@ -541,6 +541,7 @@ const PlanView = {
         if (el.dataset.of === "dep" && el.value) { const d = new Date(el.value); d.setHours(d.getHours() + 2 + 7); const iso = isoOf(d); if (iso !== t.start) { const n = tripNights(); t.start = iso; t.end = addDays(iso, Math.max(1, n)); Planner.syncDays(); toast(`ตั้งวันลงเป็น ${thDate(iso)} ตามเวลาออก (ตรวจเวลาเครื่องลงอีกครั้ง)`); } }
       });
     });
+    setup.addEventListener("lp-done", () => App.renderAll());
     setup.addEventListener("click", (ev) => {
       const el = ev.target.closest("button, [data-tpl], [data-blank]");
       if (!el) return;
@@ -668,7 +669,9 @@ const PlanView = {
   setHotel(el) {
     const k = el.dataset.h, hub = el.closest("[data-hub]")?.dataset.hub;
     if (!hub) return;
-    this.mut(() => {
+    // ระหว่างปักหมุดบนแผนที่: บันทึกอย่างเดียว ไม่วาดหน้าใหม่ (ไม่งั้นแผนที่ถูกสร้างใหม่ ปิดไป หมุดหาย) วาดใหม่ตอนปิดแผนที่
+    const picking = el.closest(".lp")?.querySelector(".lp-pick:not([hidden])");
+    (picking ? (fn) => { Hist.push(); fn(); save(); } : (fn) => this.mut(fn))(() => {
       const h = (S.plan.hotels[hub] ||= {});
       h[k] = el.value.trim();
       if (k === "loc") { const ll = parseLatLng(h.loc); if (ll) Object.assign(h, ll); else { delete h.lat; delete h.lng; if (h.loc) toast("ลิงก์นี้ไม่มีพิกัด (ลิงก์แชร์แบบสั้น) ใช้ปุ่ม แตะบนแผนที่ แทน"); } }
