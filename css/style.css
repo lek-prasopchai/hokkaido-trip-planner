@@ -751,7 +751,7 @@ details.adv > summary .mute { font-size: .875rem; }
 }
 
 /* ---------- แผนที่: ปุ่มเต็มจอ ---------- */
-.leaflet-container.map-full { position: fixed !important; inset: 0; z-index: 2500; width: 100vw !important; height: 100vh !important; height: 100dvh !important; margin: 0 !important; border: 0 !important; border-radius: 0 !important; }
+.leaflet-container.map-full { position: fixed !important; inset: 0; z-index: 2500 !important; width: 100vw !important; height: 100vh !important; height: 100dvh !important; margin: 0 !important; border: 0 !important; border-radius: 0 !important; }
 html.has-map-full, html.has-map-full body { overflow: hidden; }
 #toast { z-index: 2600; }
 .map-btn .i { width: 18px; height: 18px; }
@@ -780,3 +780,19 @@ html.has-map-full, html.has-map-full body { overflow: hidden; }
 }
 [hidden] { display: none !important; }
 @media (max-width: 899px) { .facts { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- รอบแก้: หัววันแตะพับ, รูปการ์ดเต็มช่อง, ตัวกรองแนวเดียว, คำอธิบายงบเล็กกว่าหัวข้อ ---------- */
+.pcard .ph { margin: -18px -20px 8px; }
+@media (max-width: 900px) { .pcard .ph { margin: -14px -16px 8px; } }
+.filters .f-q { min-height: var(--ctl); }
+.f-more > .row:first-of-type { margin-top: 0; }
+@media (min-width: 900px) { .filters { align-items: start; } .f-more > .row:first-of-type { margin-top: 0; } }
+.blist .bhint { font-size: .875rem; color: var(--mute); margin-top: 2px; line-height: 1.5; }
+.blist .bx b { font-size: 1rem; }
+@media screen and (max-width: 899px) {
+  .day-head { cursor: pointer; position: relative; padding-right: 30px; }
+  .day-head::after { content: ""; position: absolute; right: 6px; top: 12px; width: 9px; height: 9px; border: solid var(--mute); border-width: 0 2px 2px 0; transform: rotate(-135deg); transition: transform .15s; }
+  .day.fold .day-head::after { transform: rotate(45deg); }
+}
+.sec-head .lead { font-size: .9375rem; color: var(--mute); line-height: 1.6; }
+@media (min-width: 900px) { .filters .f-q, .filters select { height: 44px; } }

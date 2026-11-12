@@ -105,11 +105,6 @@ const PlanView = {
         <div class="grid g3">${Planner.rankTemplates().map((r) => this.tplCard(r)).join("")}
           <div class="card tpl blank" data-blank tabindex="0" role="button"><h3>เริ่มแผนเปล่า</h3><p class="small">เลือกเมืองที่พักแต่ละคืนและที่เที่ยวเองทั้งหมด</p></div></div>
       </details>${S.plan ? this.staysHtml() : ""}${this.undoBtn()}`;
-    if (S.plan) {
-      const M = makeMap($("#stayMap"));
-      TripMap.drawBases(M);
-      $("#stayMapCard").addEventListener("toggle", (e) => { if (e.target.open) setTimeout(() => TripMap.drawBases(M), 0); }); // สร้างตอนพับอยู่ ขนาด 0
-    }
   },
 
   tplCard({ tp, score, min, ideal, why }) {
@@ -241,10 +236,10 @@ const PlanView = {
   openDay(i, on = true) {
     this.isOpen(i);
     on ? this.opened.add(i) : this.opened.delete(i);
-    const c = $(`#day-${i}`), b = c?.querySelector(".day-tog");
+    const c = $(`#day-${i}`);
     if (!c) return;
     c.classList.toggle("fold", !on);
-    b.setAttribute("aria-expanded", on); b.textContent = on ? "ย่อ" : "ดูทั้งวัน";
+    c.querySelector(".day-head").setAttribute("aria-expanded", on);
   },
 
   dayCard(e) {
@@ -274,15 +269,14 @@ const PlanView = {
     const ref = point(e.to);
     const open = this.isOpen(i);
     return `<div class="card day ${e.lvl} ${open ? "" : "fold"}" id="day-${i}">
-      <div class="day-head"><h3>วันที่ ${i + 1}</h3><span class="day-meta">${thDate(e.iso)} • ${I("sun")} ${fmtT(e.sun.rise)}-${fmtT(e.sun.set)}</span>
+      <div class="day-head" data-tog="${i}" aria-expanded="${open}"><h3>วันที่ ${i + 1}</h3><span class="day-meta">${thDate(e.iso)} • ${I("sun")} ${fmtT(e.sun.rise)}-${fmtT(e.sun.set)}</span>
         <span class="wx" data-wx="${ref.lat},${ref.lng},${e.iso}"></span>
         <span class="badge b-${e.lvl}">${LVL_ICON[e.lvl]} ${LVL_TXT[e.lvl]}</span>
         <button class="btn small map-focus no-print" data-dmap="${i}" title="ดูเส้นทางวันนี้บนแผนที่">${I("map")} แผนที่</button>
-        <button class="btn small day-tog no-print" data-tog="${i}" aria-expanded="${open}">${open ? "ย่อ" : "ดูทั้งวัน"}</button></div>
+</div>
       <div class="day-meta" style="margin-top:2px"><b>${esc(short(e.from))}</b> → <b>${esc(short(e.to))}</b>${e.driveH ? ` • ขับรวม ${fmtH(e.driveH)}` : ""} • จบวัน ~${fmtT(e.end)}${e.leaveBy != null ? ` • <b>ออกจากที่พักไม่เกิน ${fmtT(e.leaveBy)}</b>` : ""}</div>
       ${e.checks.length ? `<ul class="checks">${e.checks.map((c) => `<li class="${c.lvl}">${LVL_ICON[c.lvl] || ""} ${esc(c.text)}</li>`).join("")}</ul>` : ""}
       <div class="day-body">
-        <details class="no-print daymap-box" data-keep="dmap${i}" ${FOLD["dmap" + i] ? "open" : ""}><summary>${I("map")} แผนที่วันนี้</summary><div class="daymap" data-daymap="${i}"></div></details>
         <ul class="tl" data-day="${i}">${rows}</ul>${this.maybeBox(i)}
         <details class="no-print daynote" ${day.note || day.planB ? "open" : ""}><summary>${day.note || day.planB ? `${I("notebook-pen")} โน้ต / แผนสำรอง` : "+ โน้ต / แผนสำรอง"}</summary>
           <textarea data-dnote="${i}" rows="2" placeholder="โน้ตวันนี้ เช่น เลขจองทัวร์">${esc(day.note || "")}</textarea>
@@ -339,14 +333,6 @@ const PlanView = {
     const keep = this.M.drawn && this.M.drawnFocus === this.focus; // วาดซ้ำมุมเดิม = ไม่ซูมกลับ
     this.M.drawn = true; this.M.drawnFocus = this.focus;
     setTimeout(() => TripMap.drawPlan(this.M, evals, this.focus, keep), 30);
-    // แผนที่เล็กรายวัน: สร้างเมื่อเลื่อนมาเห็นเท่านั้น
-    this.io?.disconnect();
-    this.io = new IntersectionObserver((ents) => ents.forEach((en) => {
-      if (!en.isIntersecting) return;
-      this.io.unobserve(en.target);
-      TripMap.drawDay(makeMap(en.target, { small: true }), evals[+en.target.dataset.daymap]);
-    }), { rootMargin: "200px" });
-    $$("[data-daymap]").forEach((el) => this.io.observe(el));
   },
 
   // ลากเรียงลำดับในวันเดียวกัน / ข้ามวัน
@@ -517,7 +503,6 @@ const PlanView = {
     return `<h2 class="step-h" id="stays"><b>4</b> ที่พักที่จองแล้ว <small class="mute">ไม่บังคับ</small></h2><p class="mute small" style="margin:0 0 10px">ทำหลังจองแล้ว: ไม่กรอก ระบบใช้จุดกลางเมืองเป็นจุดเริ่ม/จบของแต่ละวันแทน • เมืองที่พักแต่ละคืนเลือกในหน้า <a href="#trip">แผนรายวัน</a> (คืนนี้พักเมือง)</p>
       <details class="adv" data-keep="staytips" ${FOLD.staytips ? "open" : ""}><summary>วิธีกรอก และหลักเลือกที่พักหน้าหนาว</summary>
         <ul class="small mute" style="margin:0 0 10px;padding-left:18px"><li><b>ชื่อ</b>: แสดงในแผนรายวัน "ถึงที่พัก…"</li><li><b>ตำแหน่ง</b>: ใช้เป็นจุดออกตอนเช้า/กลับตอนเย็นแทนกลางเมือง เวลาเดินทางแม่นขึ้น</li><li><b>เช็กอิน/เช็กเอาท์</b>: เตือนถ้าถึงก่อนเช็กอิน/ออกหลังเช็กเอาท์ และเวลาออกไปเที่ยวหลังเช็กอิน</li></ul><div class="callout info">${STAY_TIPS}</div></details>
-      <details class="card fold-card" data-keep="staymap" ${FOLD.staymap ? "open" : ""} id="stayMapCard"><summary><h2>${I("map")} ภาพรวมที่พักบนแผนที่</h2><span class="mute small">ลำดับการย้ายที่พัก จำนวนคืน ราคาห้องโดยประมาณ</span></summary><div class="map" id="stayMap"></div></details>
       ${ids.map((id) => { const h = hotelOf(id) || {}, nights = blocks.filter((x) => x.b === id).flatMap((x) => x.n), hb = HUB[id]; return `<div class="card stay-card" data-hub="${id}">
         <div class="row"><h2 style="margin:0">${I("hotel")} ${esc(hb.name)}</h2><span class="badge b-info">${nights.length} คืน: ${nights.map((k) => thDate(Planner.dayIso(k), false).replace(/ \d+$/, "")).join(", ")}</span>${h.name ? '<span class="badge b-good">กรอกแล้ว</span>' : '<span class="badge b-warn">ยังไม่ได้กรอก</span>'}</div>
         <div class="form" style="margin-top:10px">
@@ -644,7 +629,7 @@ const PlanView = {
       g.addEventListener("pointermove", mv); g.addEventListener("pointerup", up); g.addEventListener("pointercancel", up);
     });
     trip.addEventListener("click", (ev) => {
-      const el = ev.target.closest("button, [data-goto], [data-detail], [data-lb], [data-edit]");
+      const el = ev.target.closest("button, a, select, [data-goto], [data-detail], [data-lb], [data-edit], [data-tog]");
       if (!el) return;
       const d = el.dataset, pair = (s) => s.split(":").map(Number);
       if (d.lb) Lightbox.place(isNaN(d.lb) ? d.lb : +d.lb);
@@ -654,12 +639,12 @@ const PlanView = {
         $$(".map-days [data-mapday]").forEach((b) => b.classList.toggle("on", b.dataset.mapday === d.mapday));
         TripMap.drawPlan(this.M, this.evals, this.focus);
       } else if (d.goto) { this.openDay(+d.goto); $(`#day-${d.goto}`).scrollIntoView({ behavior: "smooth", block: "start" }); }
-      else if (d.tog) this.openDay(+d.tog, !this.opened.has(+d.tog));
+      else if (d.tog) { if (matchMedia("(max-width: 899px)").matches) this.openDay(+d.tog, !this.opened.has(+d.tog)); }
       else if (d.dmap) {
-        if (matchMedia("(min-width: 1200px)").matches) { // จอกว้าง: ใช้แผนที่ใหญ่ด้านขวา
-          this.focus = +d.dmap; $$(".map-days [data-mapday]").forEach((b) => b.classList.toggle("on", b.dataset.mapday === d.dmap));
-          const mc = $("#mapCard"); if (!mc.open) mc.open = true; else TripMap.drawPlan(this.M, this.evals, this.focus);
-        } else { const b = $(`#day-${d.dmap} .daymap-box`); this.openDay(+d.dmap); b.open = !b.open; if (b.open) b.scrollIntoView({ behavior: "smooth", block: "nearest" }); }
+        // แผนที่ใหญ่แสดงวันนี้ จอแคบเลื่อนขึ้นไปที่แผนที่ด้วย
+        this.focus = +d.dmap; $$(".map-days [data-mapday]").forEach((b) => b.classList.toggle("on", b.dataset.mapday === d.dmap));
+        const mc = $("#mapCard"); if (!mc.open) mc.open = true; else TripMap.drawPlan(this.M, this.evals, this.focus);
+        if (!matchMedia("(min-width: 1200px)").matches) mc.scrollIntoView({ behavior: "smooth", block: "start" });
       } else if (d.rm) { const [i, idx] = pair(d.rm); this.mut(() => { S.plan.days[i].items.splice(idx, 1); Planner.resoft(i); }); }
       else if (d.edit) { const [i, idx] = pair(d.edit); this.editItem(i, idx); }
       else if (d.move) { const [i, idx] = pair(d.move); this.moveItem(i, idx); }

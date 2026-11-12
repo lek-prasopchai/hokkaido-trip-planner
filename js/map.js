@@ -10,8 +10,6 @@ const TILE_SOURCES = { // ตัวแรก = ค่าเริ่มต้น
   "แผนที่ญี่ปุ่น (ป้ายญี่ปุ่น)": ["https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png", '<a href="https://maps.gsi.go.jp/development/ichiran.html">地理院タイル</a>'],
 };
 const TAG_ICON = { festival: "party-popper", nature: "mountain-snow", flower: "flower", onsen: "bath", snow: "cable-car", food: "soup", city: "building-2", culture: "landmark", animals: "paw-print" };
-const REGION_COLORS = {};
-[...new Set(HUBS.map((h) => h.region))].forEach((r, i) => (REGION_COLORS[r] = ["#c8374a", "#2c6e9b", "#2f8a57", "#b7791f", "#7b4fb5", "#0f8b8d", "#bc6c25", "#3d5a80", "#8338ec", "#6a994e"][i % 10]));
 const MAPS = []; // แผนที่ทุกอันในหน้า ใช้ปรับขนาดใหม่เมื่อเปิดหน้านั้น
 
 function makeMap(el, { small = false } = {}) {
@@ -27,7 +25,7 @@ function makeMap(el, { small = false } = {}) {
     const bases = {};
     let errors = 0;
     for (const [name, [url, attribution]] of Object.entries(TILE_SOURCES)) {
-      bases[name] = L.tileLayer(url, { maxZoom: 18, attribution })
+      bases[name] = L.tileLayer(url, { maxZoom: 18, attribution, updateWhenZooming: false }) // ระหว่างซูม ขยายภาพเดิม ปล่อยนิ้วแล้วค่อยโหลดภาพใหม่ครั้งเดียว
         .on("tileerror", () => { if (++errors === 6) { Object.values(bases).forEach((b) => map.removeLayer(b)); offline(); if (!small) toast("ไม่มีเน็ต ใช้แผนที่โครงร่างแทน"); } });
     }
     Object.values(bases)[0].addTo(map);
@@ -93,21 +91,31 @@ function touchGestures(map) {
     const now = Date.now();
     if (tap && now - tap.t < 320 && Math.hypot(e.clientX - tap.x, e.clientY - tap.y) < 35) {
       const r = el.getBoundingClientRect();
-      z = { id: e.pointerId, y0: e.clientY, z0: map.getZoom(), at: map.containerPointToLatLng([e.clientX - r.left, e.clientY - r.top]), moved: false };
-      map.dragging.disable(); stop(e);
+      const pt = L.point(e.clientX - r.left, e.clientY - r.top);
+      z = { id: e.pointerId, y0: e.clientY, z0: map.getZoom(), p: pt, at: map.containerPointToLatLng(pt), moved: false };
+      map._stop(); map.dragging.disable(); stop(e);
     } else z = null;
     tap = { t: now, x: e.clientX, y: e.clientY, down: now };
   }, true);
   el.addEventListener("pointermove", (e) => {
     if (!z || e.pointerId !== z.id) return;
     const dy = e.clientY - z.y0;
-    if (Math.abs(dy) > 8) z.moved = true;
-    if (z.moved) map.setZoomAround(z.at, Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), z.z0 + dy / 90)), { animate: false });
+    if (!z.moved && Math.abs(dy) > 8) { z.moved = true; map._moveStart(true, false); }
+    if (z.moved) {
+      // ขยายภาพเดิมระหว่างลาก (แบบซูมสองนิ้วของ Leaflet) ไม่โหลดภาพใหม่ทุกขั้น ปล่อยนิ้วแล้วค่อยโหลดภาพชัด
+      z.zoom = Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), z.z0 + dy / 90));
+      z.center = map.unproject(map.project(z.at, z.zoom).subtract(z.p.subtract(map.getSize().divideBy(2))), z.zoom);
+      if (!z.raf) z.raf = L.Util.requestAnimFrame(() => { if (!z) return; z.raf = null; map._move(z.center, z.zoom, { pinch: true, round: false }); });
+    }
     stop(e);
   }, true);
   const end = (e) => {
     if (!z || e.pointerId !== z.id) { if (tap && Date.now() - tap.down > 250) tap = null; return; } // กดค้างนาน ไม่นับเป็นแตะ
-    if (!z.moved && e.type === "pointerup") map.setZoomAround(z.at, Math.min(map.getMaxZoom(), z.z0 + 1));
+    if (z.moved) {
+      L.Util.cancelAnimFrame(z.raf);
+      if (map.options.zoomAnimation) map._animateZoom(z.center, map._limitZoom(z.zoom), true, map.options.zoomSnap);
+      else map._resetView(z.center, map._limitZoom(z.zoom));
+    } else if (e.type === "pointerup") map.setZoomAround(z.at, Math.min(map.getMaxZoom(), z.z0 + 1));
     z = null; tap = null; swallowClick = true; setTimeout(() => (swallowClick = false), 400);
     if (!scrollIdle) map.dragging.enable();
     stop(e);
@@ -249,19 +257,6 @@ const TripMap = {
     if (!keep) refitMap(M);
   },
 
-  // แผนที่เล็กในการ์ดแต่ละวัน
-  drawDay(M, e) {
-    M.layer.clearLayers();
-    M.bounds = [];
-    const color = DAY_COLORS[e.i % DAY_COLORS.length];
-    drawDayRoute(M, e, color);
-    drawDayStops(M, e, color);
-    const from = point(e.from), to = point(e.to);
-    L.marker([from.lat, from.lng], { icon: labelIcon(I(AIR[e.from] ? "plane" : "hotel"), "#142033") }).bindTooltip("เริ่ม: " + from.name).addTo(M.layer);
-    L.marker([to.lat, to.lng], { icon: labelIcon(I(AIR[e.to] ? "plane" : "hotel"), "#c8374a") }).bindTooltip("ปลายทาง: " + to.name).addTo(M.layer);
-    M.bounds.push([from.lat, from.lng], [to.lat, to.lng]);
-    refitMap(M);
-  },
 
   drawPlaces(M, list) {
     M.layer.clearLayers();
@@ -280,26 +275,6 @@ const TripMap = {
     refitMap(M);
   },
 
-  drawBases(M) {
-    M.layer.clearLayers();
-    M.bounds = [];
-    const ids = S.plan ? S.plan.bases : HUBS.map((h) => h.id);
-    const nights = {};
-    ids.forEach((b, i) => (nights[b] ||= []).push(i + 1));
-    let prev = S.plan ? point(S.trip.arrive) : null;
-    if (S.plan) {
-      const seq = [point(S.trip.arrive), ...S.plan.bases.map((b) => point(b)), point(S.trip.depart)];
-      L.polyline(seq.map((p) => [p.lat, p.lng]), { color: "#142033", weight: 2, dashArray: "6 6", opacity: 0.6 }).addTo(M.layer);
-    }
-    Object.entries(nights).forEach(([id, ns]) => {
-      const h = point(id);
-      L.marker([h.lat, h.lng], { icon: labelIcon(`${I("hotel")} ${esc(hotelOf(id)?.name || short(id))}<small>${S.plan ? ns.length + " คืน • " : ""}¥${fmtN(h.price[0])}–${fmtN(h.price[2])}</small>`, REGION_COLORS[h.region]) })
-        .bindPopup(`<b>${esc(h.name)}</b><br>${esc(h.stay)}<br>${I("thumbs-up")} ${esc(h.pros)}<br>${I("triangle-alert")} ${esc(h.cons)}`).addTo(M.layer);
-      M.bounds.push([h.lat, h.lng]);
-    });
-    if (prev) M.bounds.push([prev.lat, prev.lng]);
-    refitMap(M);
-  },
 };
 
 // ---------- ช่องตำแหน่ง: วางลิงก์/พิกัด ค้นชื่อ แตะบนแผนที่ หรือปุ่มตำแหน่งฉันในแผนที่ ----------
