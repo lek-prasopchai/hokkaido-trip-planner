@@ -620,17 +620,17 @@ const PlanView = {
     return `<h2 class="step-h" id="stays"><b>4</b> ที่พักที่จองแล้ว <small class="mute">ไม่บังคับ</small></h2><p class="mute small" style="margin:0 0 10px">ทำหลังจองแล้ว: ไม่กรอก ระบบใช้จุดกลางเมืองเป็นจุดเริ่ม/จบของแต่ละวันแทน • เมืองที่พักแต่ละคืนเลือกในหน้า <a href="#trip">แผนรายวัน</a> (คืนนี้พักเมือง)</p>
       <details class="adv" data-keep="staytips" ${FOLD.staytips ? "open" : ""}><summary>วิธีกรอก และหลักเลือกที่พักหน้าหนาว</summary>
         <ul class="small mute" style="margin:0 0 10px;padding-left:18px"><li><b>ชื่อ</b>: แสดงในแผนรายวัน "ถึงที่พัก…"</li><li><b>ตำแหน่ง</b>: ใช้เป็นจุดออกตอนเช้า/กลับตอนเย็นแทนกลางเมือง เวลาเดินทางแม่นขึ้น</li><li><b>เช็กอิน/เช็กเอาท์</b>: เตือนถ้าถึงก่อนเช็กอิน/ออกหลังเช็กเอาท์ และเวลาออกไปเที่ยวหลังเช็กอิน</li></ul><div class="callout info">${STAY_TIPS}</div></details>
-      ${ids.map((id) => { const h = hotelOf(id) || {}, nights = blocks.filter((x) => x.b === id).flatMap((x) => x.n), hb = HUB[id]; return `<div class="card stay-card" data-hub="${id}">
+      <div class="stay-grid">${ids.map((id) => { const h = hotelOf(id) || {}, nights = blocks.filter((x) => x.b === id).flatMap((x) => x.n), hb = HUB[id]; return `<div class="card stay-card" data-hub="${id}">
         <div class="row"><h2 style="margin:0">${I("hotel")} ${esc(hb.name)}</h2><span class="badge b-info">${nights.length} คืน: ${nights.map((k) => thDate(Planner.dayIso(k), false).replace(/ \d+$/, "")).join(", ")}</span>${h.name ? '<span class="badge b-good">กรอกแล้ว</span>' : '<span class="badge b-warn">ยังไม่ได้กรอก</span>'}</div>
         <div class="form ed-form stay-form">
-          <label class="f full">ชื่อที่พัก<input type="text" data-h="name" value="${esc(h.name || "")}" placeholder="เช่น JR Inn Sapporo"></label>
+          <label class="f full">ชื่อที่พัก<input type="text" data-h="name" value="${esc(h.name || "")}" placeholder="ชื่อโรงแรม/เรียวกังที่จองไว้"></label>
           ${LocPick.html("ตำแหน่งที่พัก", 'data-h="loc"', h.loc || "", hb)}
           <small class="hint full lp-state">${h.lat ? `${I("map-pin")} ใช้พิกัดจริงคำนวณเวลาเดินทาง` : "ยังไม่มีพิกัด: ระบบใช้จุดกลางเมืองแทน"}</small>
           <label class="f">เช็กอิน<input type="time" data-h="checkIn" value="${esc(h.checkIn || "15:00")}"></label>
           <label class="f">เช็กเอาท์<input type="time" data-h="checkOut" value="${esc(h.checkOut || "10:00")}"></label>
         </div>
         <details class="hubinfo"><summary>ย่านที่ควรพัก ข้อดี ข้อควรรู้ • ¥${fmtN(hb.price[0])}–${fmtN(hb.price[2])}/ห้อง/คืน (ประมาณ)</summary>
-          <dl class="kv"><dt>พักย่านไหน</dt><dd>${esc(hb.stay)}</dd><dt>ข้อดี</dt><dd>${esc(hb.pros)}</dd><dt>ข้อควรรู้</dt><dd>${esc(hb.cons)}</dd><dt>ช่วงพีค</dt><dd>${esc(hb.peak)}</dd></dl></details></div>`; }).join("")}`;
+          <dl class="kv"><dt>พักย่านไหน</dt><dd>${esc(hb.stay)}</dd><dt>ข้อดี</dt><dd>${esc(hb.pros)}</dd><dt>ข้อควรรู้</dt><dd>${esc(hb.cons)}</dd><dt>ช่วงพีค</dt><dd>${esc(hb.peak)}</dd></dl></details></div>`; }).join("")}</div>`;
   },
 
   // ================= event =================

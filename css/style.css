@@ -887,3 +887,7 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
 .form.stay-form { grid-template-columns: 1fr 1fr; margin-top: 12px; }
 .stay-form .lp-state { margin-top: -8px; }
 .stay-form .lp-state .i { width: 14px; height: 14px; color: var(--good); vertical-align: -2px; }
+/* ที่พักหลายเมือง: จอกว้าง 2 คอลัมน์ จอแคบคอลัมน์เดียว */
+.stay-grid { display: grid; gap: 16px; align-items: start; }
+.stay-grid > .stay-card { margin: 0; min-width: 0; }
+@media (min-width: 1000px) { .stay-grid { grid-template-columns: 1fr 1fr; } }
