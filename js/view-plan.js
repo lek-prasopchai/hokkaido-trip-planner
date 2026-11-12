@@ -105,7 +105,11 @@ const PlanView = {
         <div class="grid g3">${Planner.rankTemplates().map((r) => this.tplCard(r)).join("")}
           <div class="card tpl blank" data-blank tabindex="0" role="button"><h3>เริ่มแผนเปล่า</h3><p class="small">เลือกเมืองที่พักแต่ละคืนและที่เที่ยวเองทั้งหมด</p></div></div>
       </details>${S.plan ? this.staysHtml() : ""}${this.undoBtn()}`;
-    if (S.plan) TripMap.drawBases(makeMap($("#stayMap")));
+    if (S.plan) {
+      const M = makeMap($("#stayMap"));
+      TripMap.drawBases(M);
+      $("#stayMapCard").addEventListener("toggle", (e) => { if (e.target.open) setTimeout(() => TripMap.drawBases(M), 0); }); // สร้างตอนพับอยู่ ขนาด 0
+    }
   },
 
   tplCard({ tp, score, min, ideal, why }) {
@@ -404,6 +408,7 @@ const PlanView = {
       });
       Modal.close();
     };
+    $("#modal [data-detail]").onclick = () => PlacesView.detail(it.id); // กล่องนี้อยู่นอกหน้า จึงไม่โดนตัวจับคลิกของหน้า
     $("#eWish").onclick = () => { this.mut(() => { Planner.toWish(i, it); Planner.resoft(i); }); Modal.close(); toast("ย้ายไปกล่อง อยากไป แล้ว"); };
     $("#eDel").onclick = () => { this.mut(() => S.plan.days[i].items.splice(S.plan.days[i].items.indexOf(it), 1)); Modal.close(); };
   },
@@ -509,10 +514,10 @@ const PlanView = {
     const blocks = [];
     S.plan.bases.forEach((b, i) => { const l = blocks[blocks.length - 1]; if (l && l.b === b) l.n.push(i); else blocks.push({ b, n: [i] }); });
     const ids = [...new Set(S.plan.bases)];
-    return `<h2 class="step-h" id="stays"><b>4</b> ที่พักที่จองแล้ว <small class="mute">ไม่บังคับ</small></h2><p class="mute small" style="margin:0 0 8px"> ทำหลังจองแล้ว: ไม่กรอก ระบบใช้จุดกลางเมืองเป็นจุดเริ่ม/จบของแต่ละวันแทน • เมืองที่พักแต่ละคืนเลือกในหน้า <a href="#trip">แผนรายวัน</a> (คืนนี้พักเมือง)</p>
-        <ul class="small mute" style="margin:0 0 10px;padding-left:18px"><li><b>ชื่อ</b>: แสดงในแผนรายวัน "ถึงที่พัก…"</li><li><b>ตำแหน่ง</b>: ใช้เป็นจุดออกตอนเช้า/กลับตอนเย็นแทนกลางเมือง เวลาเดินทางแม่นขึ้น</li><li><b>เช็กอิน/เช็กเอาท์</b>: เตือนถ้าถึงก่อนเช็กอิน/ออกหลังเช็กเอาท์ และเวลาออกไปเที่ยวหลังเช็กอิน</li></ul>
-      <details class="callout info"><summary><b>หลักเลือกที่พักหน้าหนาว</b></summary>${STAY_TIPS}</details>
-      <div class="card"><h3 style="margin:0 0 6px">ภาพรวมรูทนี้</h3><div class="map" id="stayMap"></div><p class="map-note">เส้นประ = ลำดับการย้ายที่พัก • ป้าย = เมือง จำนวนคืน และราคาห้องโดยประมาณ</p></div>
+    return `<h2 class="step-h" id="stays"><b>4</b> ที่พักที่จองแล้ว <small class="mute">ไม่บังคับ</small></h2><p class="mute small" style="margin:0 0 10px">ทำหลังจองแล้ว: ไม่กรอก ระบบใช้จุดกลางเมืองเป็นจุดเริ่ม/จบของแต่ละวันแทน • เมืองที่พักแต่ละคืนเลือกในหน้า <a href="#trip">แผนรายวัน</a> (คืนนี้พักเมือง)</p>
+      <details class="adv" data-keep="staytips" ${FOLD.staytips ? "open" : ""}><summary>วิธีกรอก และหลักเลือกที่พักหน้าหนาว</summary>
+        <ul class="small mute" style="margin:0 0 10px;padding-left:18px"><li><b>ชื่อ</b>: แสดงในแผนรายวัน "ถึงที่พัก…"</li><li><b>ตำแหน่ง</b>: ใช้เป็นจุดออกตอนเช้า/กลับตอนเย็นแทนกลางเมือง เวลาเดินทางแม่นขึ้น</li><li><b>เช็กอิน/เช็กเอาท์</b>: เตือนถ้าถึงก่อนเช็กอิน/ออกหลังเช็กเอาท์ และเวลาออกไปเที่ยวหลังเช็กอิน</li></ul><div class="callout info">${STAY_TIPS}</div></details>
+      <details class="card fold-card" data-keep="staymap" ${FOLD.staymap ? "open" : ""} id="stayMapCard"><summary><h2>${I("map")} ภาพรวมที่พักบนแผนที่</h2><span class="mute small">ลำดับการย้ายที่พัก จำนวนคืน ราคาห้องโดยประมาณ</span></summary><div class="map" id="stayMap"></div></details>
       ${ids.map((id) => { const h = hotelOf(id) || {}, nights = blocks.filter((x) => x.b === id).flatMap((x) => x.n), hb = HUB[id]; return `<div class="card stay-card" data-hub="${id}">
         <div class="row"><h2 style="margin:0">${I("hotel")} ${esc(hb.name)}</h2><span class="badge b-info">${nights.length} คืน: ${nights.map((k) => thDate(Planner.dayIso(k), false).replace(/ \d+$/, "")).join(", ")}</span>${h.name ? '<span class="badge b-good">กรอกแล้ว</span>' : '<span class="badge b-warn">ยังไม่ได้กรอก</span>'}</div>
         <div class="form" style="margin-top:10px">
@@ -532,6 +537,11 @@ const PlanView = {
     // ---- ข้อมูลทริป ----
     setup.addEventListener("change", (ev) => {
       const el = ev.target, t = S.trip;
+      // มือถือส่ง change ทุกครั้งที่หมุนวงล้อวัน/เวลา: วาดหน้าใหม่ตอนนั้นจะปิดตัวเลือกทิ้ง จึงรอให้ออกจากช่องก่อน
+      if (/^(date|time|datetime-local)$/.test(el.type) && document.activeElement === el) {
+        if (!el._wait) { el._wait = true; el.addEventListener("blur", () => { el._wait = false; el.dispatchEvent(new Event("change", { bubbles: true })); }, { once: true }); }
+        return;
+      }
       if (el.dataset.h) return this.setHotel(el);
       this.mut(() => {
         if (el.dataset.k) {

@@ -360,7 +360,7 @@ input[type=url], input[type=datetime-local] { border: 1px solid var(--line); bor
 #toast { opacity: 0; pointer-events: none; transition: transform .25s, opacity .25s; }
 #toast.show { opacity: 1; }
 .undo-fab { position: fixed; right: 16px; bottom: 20px; z-index: 900; box-shadow: var(--shadow); background: var(--paper); }
-.map-me { display: grid !important; place-items: center; font-size: 1.05rem; color: var(--ink) !important; }
+.map-btn { display: grid !important; place-items: center; font-size: 1.05rem; color: var(--ink) !important; }
 .map-hint { position: absolute; inset: 0; z-index: 1000; display: grid; place-items: center; background: rgba(20,32,51,.45); color: #fff; font-weight: 600; pointer-events: none; opacity: 0; transition: opacity .2s; }
 .map-hint.show { opacity: 1; }
 .undo-fab:disabled { opacity: .45; cursor: default; }
@@ -660,7 +660,7 @@ input[type=text], input[type=number], input[type=date], input[type=time], input[
 .move-days small { opacity: 1; color: var(--ink2); }
 /* หมุด/ปุ่มบนแผนที่และป้ายฤดูเป็นพื้นขาวเสมอ: ไอคอนต้องเข้มทั้งสองธีม */
 .pin, .ph .sea { color: #142033; }
-.map-me { color: #142033 !important; }
+.map-btn { color: #142033 !important; }
 /* ป๊อปอัปบนแผนที่ตามธีม */
 .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--paper); color: var(--ink); }
 .leaflet-container a.leaflet-popup-close-button { color: var(--mute); }
@@ -749,3 +749,34 @@ details.adv > summary .mute { font-size: .875rem; }
   .igrip, .tl .it-tools button { width: 36px; height: 40px; }
   .tl .visit { padding: 4px 4px; }
 }
+
+/* ---------- แผนที่: ปุ่มเต็มจอ ---------- */
+.leaflet-container.map-full { position: fixed !important; inset: 0; z-index: 2500; width: 100vw !important; height: 100vh !important; height: 100dvh !important; margin: 0 !important; border: 0 !important; border-radius: 0 !important; }
+html.has-map-full, html.has-map-full body { overflow: hidden; }
+#toast { z-index: 2600; }
+.map-btn .i { width: 18px; height: 18px; }
+
+/* ---------- สถานที่: รายละเอียด + ตัวกรอง ---------- */
+.d-hl { margin: 10px 0 12px; font-size: 1.05rem; line-height: 1.6; }
+.d-act { margin-bottom: 12px; }
+.d-act .addsel { font-size: .875rem; padding: 6px 10px; min-width: 200px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; margin-bottom: 12px; }
+.fact { background: var(--bg); border-radius: 10px; padding: 10px 12px; }
+.fact > span { display: flex; align-items: center; gap: 6px; font-size: .8rem; color: var(--mute); margin-bottom: 2px; }
+.fact > b { font-weight: 600; font-size: .9375rem; line-height: 1.45; }
+.d-more { margin: 4px 0 10px; }
+.d-links { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+.filters .f-q { width: 100%; }
+.f-more { margin-top: 8px; }
+.f-more > summary { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; color: var(--ice); font-weight: 600; min-height: 36px; list-style: none; }
+.f-more > summary::-webkit-details-marker { display: none; }
+.f-more .row { margin-top: 6px; gap: 8px; }
+.f-more .row + .row { margin-top: 8px; }
+@media (min-width: 900px) {
+  .f-more > summary { display: none; }
+  .filters { display: grid; grid-template-columns: minmax(200px, 1.4fr) 5fr; gap: 0 8px; align-items: start; }
+  .filters .f-more { margin-top: 0; }
+  .filters .f-more .row:first-child { margin-top: 0; }
+}
+[hidden] { display: none !important; }
+@media (max-width: 899px) { .facts { grid-template-columns: 1fr 1fr; } }

@@ -25,16 +25,19 @@ const reviewLinks = (p) => {
 };
 
 const PlacesView = {
-  M: null, lim: 30, f: { region: "", tag: "", stars: 0, q: "", season: "trip", transit: false, free: false, inplan: false, sort: "stars" },
+  M: null, lim: 30, f: { region: "", tag: "", stars: 0, q: "", season: "trip", transit: false, free: false, inplan: false, evening: false, sort: "stars" },
+  F0: { region: "", tag: "", stars: 0, season: "trip", transit: false, free: false, inplan: false, evening: false, sort: "stars" },
 
   render() {
     const sec = $('[data-sec="places"]');
     const regions = [...new Set(PLACES.map((p) => p.region))], f = this.f;
+    const nOn = Object.keys(this.F0).filter((k) => f[k] !== this.F0[k]).length;
     sec.innerHTML = `
       <div class="sec-head"><h1>สถานที่เที่ยว</h1>
-        <p class="lead">${PLACES.length} สถานที่ทั่วฮอกไกโด ทุกฤดู ★★★ = ห้ามพลาด • ไอคอน ${Object.values(SEASONS).map((s) => I(s.ic)).join("")} = ฤดูที่ไปได้ • เวลาเปิด/ราคาที่มี ≈ เป็นค่าประมาณ ตรวจก่อนไป</p></div>
-      <div class="split"><div class="split-top filters no-print"><div class="row">
-        <input type="search" aria-label="ค้นหาสถานที่" placeholder="ค้นหาชื่อ ไทย/อังกฤษ/ญี่ปุ่น..." data-f="q" value="${esc(f.q)}" style="flex:1;min-width:160px">
+        <p class="lead">${PLACES.length} สถานที่ทั่วฮอกไกโด • ★★★ = ห้ามพลาด • ${Object.values(SEASONS).map((s) => I(s.ic)).join("")} = ฤดูที่ไปได้ • เวลา/ราคาเป็นค่าประมาณ</p></div>
+      <div class="split"><div class="split-top filters no-print">
+        <input type="search" class="f-q" aria-label="ค้นหาสถานที่" placeholder="ค้นหาชื่อ ไทย/อังกฤษ/ญี่ปุ่น..." data-f="q" value="${esc(f.q)}">
+        <details class="f-more" ${foldAttr("pfilter")}><summary>${I("sliders-horizontal")} ตัวกรอง <span class="badge b-info f-n" ${nOn ? "" : "hidden"}>${nOn}</span></summary><div class="row">
         <select data-f="season"><option value="trip" ${f.season === "trip" ? "selected" : ""}>ช่วงทริปของฉัน (${tripMonths().map((m) => MO[m - 1]).join(", ")})</option><option value="" ${!f.season ? "selected" : ""}>ทุกฤดู</option>
           ${Object.entries(SEASONS).map(([k, s]) => `<option value="${k}" ${f.season === k ? "selected" : ""}>${s.name}</option>`).join("")}</select>
         <select data-f="region"><option value="">ทุกภูมิภาค</option>${regions.map((r) => `<option ${r === f.region ? "selected" : ""}>${esc(r)}</option>`).join("")}</select>
@@ -44,12 +47,15 @@ const PlacesView = {
       </div><div class="row" style="margin-top:6px">
         <label class="chk"><input type="checkbox" data-f="transit" ${f.transit ? "checked" : ""}> ไปด้วยรถไฟ/บัสได้</label>
         <label class="chk"><input type="checkbox" data-f="free" ${f.free ? "checked" : ""}> ฟรี</label>
-        ${S.plan ? `<label class="chk"><input type="checkbox" data-f="inplan" ${f.inplan ? "checked" : ""}> เฉพาะที่อยู่ในแผน</label>` : ""}</div></div>
-      <aside class="split-side"><details class="card mapbox" open><summary><b>แผนที่</b></summary><div class="map" id="placesMap"></div>
+        <label class="chk"><input type="checkbox" data-f="evening" ${f.evening ? "checked" : ""}> เที่ยวตอนค่ำได้</label>
+        ${S.plan ? `<label class="chk"><input type="checkbox" data-f="inplan" ${f.inplan ? "checked" : ""}> เฉพาะที่อยู่ในแผน</label>` : ""}
+        <button class="linkbtn" data-freset ${nOn ? "" : "hidden"}>ล้างตัวกรอง</button></div></details></div>
+      <aside class="split-side"><details class="card mapbox fold-card" ${foldAttr("pmap")} id="pMapCard"><summary><h2>${I("map")} แผนที่</h2><span class="mute small">กดหมุดเพื่อดูข้อมูล • ตัวเลข = จำนวนที่ในบริเวณนั้น</span></summary><div class="map" id="placesMap"></div>
       <div class="map-legend">${Object.entries(TAG_ICON).map(([k, v]) => `<span>${I(v)} ${INTEREST[k]}</span>`).join("")}
         <span><i class="ring" style="border-color:#c8374a"></i>ขอบแดง = ★★★</span><span><i class="ring" style="border-color:#2c6e9b"></i>ขอบน้ำเงิน = ★★</span><span><i class="ring" style="border-color:#2f8a57"></i>ขอบเขียว = อยู่ในแผนแล้ว</span></div></details></aside>
       <div class="split-main" id="placeList"></div></div>`;
     this.M = makeMap($("#placesMap"));
+    $("#pMapCard").addEventListener("toggle", (e) => { if (e.target.open) setTimeout(() => TripMap.drawPlaces(this.M, this.filtered()), 0); }); // สร้างตอนพับอยู่ ขนาด 0
     this.list();
   },
 
@@ -61,7 +67,7 @@ const PlacesView = {
     return PLACES.filter((p) => (!f.region || p.region === f.region) && (!f.tag || p.tags.includes(f.tag)) && p.stars >= f.stars
       && (!q || [p.name, p.area, p.ja, p.en, p.type, p.highlight, p.kw].join(" ").toLowerCase().includes(q))
       && (!ms || ms.some((m) => monthsOf(p).includes(m)))
-      && (!f.transit || ["ok", "limited", "tour"].includes(access(p))) && (!f.free || !p.feeYen) && (!f.inplan || plan[p.id]))
+      && (!f.transit || ["ok", "limited", "tour"].includes(access(p))) && (!f.free || !p.feeYen) && (!f.inplan || plan[p.id]) && (!f.evening || p.evening))
       .sort((a, b) => f.sort === "near" ? near(a) - near(b) : b.stars - a.stars || ({ "ดังมาก": 0, "ดัง": 1 }[a.pop] ?? 2) - ({ "ดังมาก": 0, "ดัง": 1 }[b.pop] ?? 2) || a.id - b.id);
   },
 
@@ -96,24 +102,27 @@ const PlacesView = {
     const imgs = placeImgs(p), plan = inPlanMap();
     const sn = p.sn || {};
     const row = (k, v) => v ? `<dt>${k}</dt><dd>${v}</dd>` : "";
+    const fact = (ic, k, v) => v ? `<div class="fact"><span>${I(ic)} ${k}</span><b>${v}</b></div>` : "";
+    const transit = Planner.usedModes().has("transit");
+    const trTxt = `${ACCESS_TXT[access(p)]}${p.tr?.t ? `: ${esc(p.tr.t)}` : " (ประมาณจากระยะทาง ตรวจตารางจริง)"}${p.tr?.last ? `<br><b>รถเที่ยวสุดท้ายกลับ ~${esc(p.tr.last)}</b>` : ""}`;
+    const more = [row("วันหยุด", esc(p.closed === "-" ? "" : p.closed || p.closedDays)),
+      Planner.usedModes().has("car") ? row("ที่จอดรถ", esc(p.parking === "-" ? "" : p.parking)) : "", transit ? "" : row("รถไฟ/บัส", trTxt),
+      String(p.acc || "").startsWith("ประมาณ") ? row("ตำแหน่งบนแผนที่", "ประมาณ: ใช้ปุ่มรีวิว Google Maps เพื่อดูตำแหน่งจริง") : "",
+      row("ชื่อญี่ปุ่น", esc(p.ja)), row("ที่อยู่", esc(p.addrJa)), row("โทร", esc(p.phone)), row("MAPCODE", esc(p.mapcode)),
+      row("ตรวจข้อมูล", esc(p.checked || "พ.ย. 2026 (ประมาณ)"))].join("");
     Modal.open(`
       ${imgs.length ? `<div class="gal">${imgs.map((x, i) => `<img src="${x.img}" alt="" loading="lazy" data-gi="${i}">`).join("")}</div>` : ""}
-      <h2 style="margin-top:10px">${nameHtml(p)}</h2>
+      <h2 style="margin-top:12px">${nameHtml(p)}</h2>
       <div class="row" style="gap:6px">${p.stars ? `<span class="stars">${"★".repeat(p.stars)}</span>` : ""}<span class="badge b-mute">${esc(p.type)}</span><span class="badge b-mute">${I("map-pin")} ${esc(p.area || HUB[p.hub]?.name || "")}</span>
         <span class="sea-inline">${seasonBadges(p)} ${monthRange(monthsOf(p))}</span>${plan[id] ? `<span class="badge b-good">อยู่ในวันที่ ${plan[id]}</span>` : ""}</div>
-      <p style="margin-top:8px">${esc(p.highlight || "")}</p>
-      ${Object.keys(sn).length ? `<div class="sn">${Object.entries(SEASONS).filter(([k]) => sn[k]).map(([k, s]) => `<div><b>${I(s.ic)} ${s.name}</b> ${esc(sn[k])}</div>`).join("")}</div>` : ""}
+      <p class="d-hl">${esc(p.highlight || "")}</p>
+      ${S.plan && !plan[id] ? `<div class="row d-act">${addSelect(id)}</div>` : ""}
+      <div class="facts">${fact("clock", "เวลาเปิด", esc(p.open))}${fact("banknote", "ค่าเข้า", esc(p.fee))}${fact("timer", "ใช้เวลา", esc(p.dur ? p.dur : fmtH(p.hours || 1)))}${fact("sun", "ช่วงที่ดีที่สุด", esc(p.best))}${transit ? fact("train-front", "รถไฟ/บัส", trTxt) : ""}</div>
       ${p.caution ? `<div class="callout">${I("triangle-alert")} ${esc(p.caution)}</div>` : ""}
-      <dl class="kv">
-        ${row("เวลาเปิด", esc(p.open))}${row("วันหยุด", esc(p.closed === "-" ? "" : p.closed || p.closedDays))}${row("ค่าเข้า", esc(p.fee))}
-        ${row("ใช้เวลา", esc(p.dur ? p.dur : fmtH(p.hours || 1)))}${row("ช่วงที่ดีที่สุด", esc(p.best))}
-        ${Planner.usedModes().has("car") ? row("ที่จอดรถ", esc(p.parking === "-" ? "" : p.parking)) : ""}
-        ${row("รถไฟ/บัส", `${ACCESS_TXT[access(p)]}${p.tr?.t ? `: ${esc(p.tr.t)}` : " (ประมาณจากระยะทาง ตรวจตารางจริง)"}${p.tr?.last ? `<br><b>รถเที่ยวสุดท้ายกลับ ~${esc(p.tr.last)}</b>` : ""}`)}
-        ${String(p.acc || "").startsWith("ประมาณ") ? row("ตำแหน่งบนแผนที่", "ประมาณ: ใช้ปุ่มรีวิว Google Maps เพื่อดูตำแหน่งจริง") : ""}${row("ชื่อญี่ปุ่น", esc(p.ja))}${row("ที่อยู่", esc(p.addrJa))}${row("โทร", esc(p.phone))}${row("MAPCODE", esc(p.mapcode))}
-        ${row("ตรวจข้อมูล", esc(p.checked || "พ.ย. 2026 (ประมาณ)"))}</dl>
+      ${Object.keys(sn).length ? `<div class="sn">${Object.entries(SEASONS).filter(([k]) => sn[k]).map(([k, s]) => `<div><b>${I(s.ic)} ${s.name}</b> ${esc(sn[k])}</div>`).join("")}</div>` : ""}
+      ${more ? `<details class="adv d-more"><summary>ข้อมูลเพิ่มเติม <span class="mute">วันหยุด ที่จอดรถ ที่อยู่ โทร</span></summary><dl class="kv">${more}</dl></details>` : ""}
       ${(p.videos || []).length ? `<div class="vids">${p.videos.map((v) => `<iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/${esc(v)}" title="YouTube" allowfullscreen></iframe>`).join("")}</div>` : ""}
-      <div class="row" style="margin-top:10px">${reviewLinks(p)}</div>
-      ${S.plan && !plan[id] ? `<div class="row" style="margin-top:10px">${addSelect(id)}</div>` : ""}
+      <div class="row d-links">${reviewLinks(p)}</div>
       ${imgs[0]?.credit ? `<p class="credit">รูป: Wikimedia Commons / Flickr สัญญาอนุญาต CC (กดรูปเพื่อดูที่มาและผู้ถ่าย)</p>` : ""}`, "wide");
     const d = $("#modal");
     d.onclick = (e) => {
@@ -124,9 +133,12 @@ const PlacesView = {
   },
 
   bind() {
-    $('[data-sec="places"]').addEventListener("click", (e) => { if (e.target.closest("[data-more]")) { this.lim += 60; this.list(); } });
+    $('[data-sec="places"]').addEventListener("click", (e) => {
+      if (e.target.closest("[data-more]")) { this.lim += 60; this.list(); }
+      if (e.target.closest("[data-freset]")) { Object.assign(this.f, this.F0); this.lim = 30; this.render(); } });
+    this.syncF = () => { const n = Object.keys(this.F0).filter((k) => this.f[k] !== this.F0[k]).length, b = sec.querySelector(".f-n"); b.hidden = !n; b.textContent = n; sec.querySelector("[data-freset]").hidden = !n; };
     const sec = $('[data-sec="places"]');
-    const upd = (el) => { this.f[el.dataset.f] = el.type === "checkbox" ? el.checked : el.dataset.f === "stars" ? +el.value : el.value; this.lim = 30; this.list(); };
+    const upd = (el) => { this.f[el.dataset.f] = el.type === "checkbox" ? el.checked : el.dataset.f === "stars" ? +el.value : el.value; this.lim = 30; this.list(); this.syncF(); };
     sec.addEventListener("input", (ev) => { if (ev.target.dataset.f === "q") upd(ev.target); });
     sec.addEventListener("change", (ev) => {
       const el = ev.target;

@@ -15,9 +15,9 @@ const REGION_COLORS = {};
 const MAPS = []; // แผนที่ทุกอันในหน้า ใช้ปรับขนาดใหม่เมื่อเปิดหน้านั้น
 
 function makeMap(el, { small = false } = {}) {
-  const map = L.map(el, { zoomSnap: 0.25, zoomControl: !small, attributionControl: !small, scrollWheelZoom: !small })
+  const map = L.map(el, { zoomSnap: 0.25, zoomControl: !small, attributionControl: !small, scrollWheelZoom: !small, doubleClickZoom: !COARSE })
     .setView([43.4, 142.8], 6.25);
-  twoFinger(map);
+  touchGestures(map);
   const OFFLINE = { color: "#8aa4bb", weight: 1, fillColor: "#ffffff", fillOpacity: 1 };
   const outline = L.geoJSON({ type: "MultiPolygon", coordinates: HOKKAIDO_OUTLINE.map((r) => [r]) },
     { style: { weight: 0, fillOpacity: 0 }, interactive: false }).addTo(map);
@@ -27,41 +27,95 @@ function makeMap(el, { small = false } = {}) {
     const bases = {};
     let errors = 0;
     for (const [name, [url, attribution]] of Object.entries(TILE_SOURCES)) {
-      bases[name] = L.tileLayer(url, { maxZoom: 17, attribution })
+      bases[name] = L.tileLayer(url, { maxZoom: 18, attribution })
         .on("tileerror", () => { if (++errors === 6) { Object.values(bases).forEach((b) => map.removeLayer(b)); offline(); if (!small) toast("ไม่มีเน็ต ใช้แผนที่โครงร่างแทน"); } });
     }
     Object.values(bases)[0].addTo(map);
     if (!small) L.control.layers(bases, null, { position: "topright" }).addTo(map);
   }
   const M = { map, layer: L.layerGroup().addTo(map), bounds: null, sec: el.closest("section")?.dataset.sec };
-  if (!small) { // ปุ่มตำแหน่งฉัน (จุดฟ้า) ใช้ระหว่างทริป
-    const me = L.control({ position: "topleft" });
-    me.onAdd = () => {
+  const btn = (pos, html, title, fn) => {
+    const c = L.control({ position: pos });
+    c.onAdd = () => {
       const d = L.DomUtil.create("div", "leaflet-bar");
-      d.innerHTML = `<a href="#" role="button" class="map-me" title="ตำแหน่งฉัน" aria-label="ตำแหน่งฉัน">${I("navigation")}</a>`;
+      d.innerHTML = `<a href="#" role="button" class="map-btn" title="${title}" aria-label="${title}">${html}</a>`;
       L.DomEvent.disableClickPropagation(d);
-      d.firstChild.onclick = (e) => { e.preventDefault(); toast("กำลังหาตำแหน่ง…"); map.locate({ setView: true, maxZoom: 14, enableHighAccuracy: true }); };
+      d.firstChild.onclick = (e) => { e.preventDefault(); fn(d.firstChild); };
       return d;
     };
-    me.addTo(map);
+    return c.addTo(map);
+  };
+  if (!small) { // ปุ่มตำแหน่งฉัน (จุดฟ้า)
+    btn("topleft", I("navigation"), "ตำแหน่งฉัน", () => { toast("กำลังหาตำแหน่ง…"); map.locate({ setView: true, maxZoom: 15, enableHighAccuracy: true }); });
     map.on("locationfound", (e) => { M.me ? M.me.setLatLng(e.latlng) : (M.me = L.circleMarker(e.latlng, { radius: 8, color: "#fff", weight: 3, fillColor: "#1a73e8", fillOpacity: 1 }).bindTooltip("ตำแหน่งฉัน").addTo(map)); });
     map.on("locationerror", () => toast("หาตำแหน่งไม่ได้ ต้องอนุญาตตำแหน่งในเบราว์เซอร์ก่อน"));
   }
+  // ขยายเต็มจอ: ใช้ CSS ทับทั้งหน้าจอ (iPhone ไม่รองรับ Fullscreen API กับแผนที่)
+  btn(small ? "topright" : "bottomright", I("maximize-2"), "ขยายเต็มจอ", (a) => MapFull.toggle(map, a));
   MAPS.push(M);
   return M;
 }
 
-// จอสัมผัส: นิ้วเดียว = เลื่อนหน้าเว็บ, สองนิ้ว = เลื่อน/ซูมแผนที่ (กันเลื่อนหน้ายาวๆ แล้วไปติดแผนที่)
+const MapFull = {
+  cur: null,
+  toggle(map, a) {
+    const el = map.getContainer(), on = !el.classList.contains("map-full");
+    if (on && this.cur) this.toggle(this.cur.map, this.cur.a);
+    el.classList.toggle("map-full", on);
+    document.documentElement.classList.toggle("has-map-full", on);
+    a.innerHTML = I(on ? "minimize-2" : "maximize-2");
+    a.title = on ? "ย่อแผนที่" : "ขยายเต็มจอ"; a.setAttribute("aria-label", a.title);
+    this.cur = on ? { map, a } : null;
+    if (on) map.dragging.enable();
+    setTimeout(() => map.invalidateSize(), 0);
+  },
+};
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && MapFull.cur) MapFull.toggle(MapFull.cur.map, MapFull.cur.a); });
+
+// จอสัมผัส:
+// - นิ้วเดียวเลื่อนแผนที่ได้ แต่ระหว่างที่หน้าเว็บกำลังเลื่อนอยู่ (รวมช่วงไหลต่อหลังปัดนิ้ว) ปิดการลากแผนที่ชั่วคราว
+//   นิ้วที่แตะลงบนแผนที่ตอนนั้นจึงเลื่อนหน้าเว็บต่อ ไม่ไปติดแผนที่
+// - แตะสองครั้ง = ซูมเข้า • แตะสองครั้งแล้วค้างนิ้วลากลง/ขึ้น = ซูมเข้า/ออก (แบบ Google Maps) • สองนิ้ว = ซูม (ของ Leaflet)
 const COARSE = matchMedia("(pointer: coarse)").matches;
-function twoFinger(map) {
+let scrollIdle = null;
+if (COARSE) addEventListener("scroll", () => {
+  if (!scrollIdle) MAPS.forEach((M) => M.map.getContainer().classList.contains("map-full") || M.map.dragging.disable());
+  clearTimeout(scrollIdle);
+  scrollIdle = setTimeout(() => { scrollIdle = null; MAPS.forEach((M) => M.map.dragging.enable()); }, 350);
+}, { passive: true });
+function touchGestures(map) {
   if (!COARSE) return;
-  map.dragging.disable(); // Leaflet ยังซูม+เลื่อนด้วยสองนิ้วได้ (touchZoom)
-  const el = map.getContainer(), hint = L.DomUtil.create("div", "map-hint", el);
-  hint.textContent = "ใช้ 2 นิ้วเลื่อนแผนที่";
-  el.addEventListener("touchmove", (e) => {
-    if (e.touches.length !== 1) return;
-    hint.classList.add("show"); clearTimeout(hint._t); hint._t = setTimeout(() => hint.classList.remove("show"), 1200);
-  }, { passive: true });
+  const el = map.getContainer();
+  let tap = null, z = null, swallowClick = false;
+  const stop = (e) => { e.stopPropagation(); if (e.cancelable) e.preventDefault(); };
+  el.addEventListener("pointerdown", (e) => {
+    if (e.pointerType !== "touch" || e.target.closest(".leaflet-control")) return;
+    const now = Date.now();
+    if (tap && now - tap.t < 320 && Math.hypot(e.clientX - tap.x, e.clientY - tap.y) < 35) {
+      const r = el.getBoundingClientRect();
+      z = { id: e.pointerId, y0: e.clientY, z0: map.getZoom(), at: map.containerPointToLatLng([e.clientX - r.left, e.clientY - r.top]), moved: false };
+      map.dragging.disable(); stop(e);
+    } else z = null;
+    tap = { t: now, x: e.clientX, y: e.clientY, down: now };
+  }, true);
+  el.addEventListener("pointermove", (e) => {
+    if (!z || e.pointerId !== z.id) return;
+    const dy = e.clientY - z.y0;
+    if (Math.abs(dy) > 8) z.moved = true;
+    if (z.moved) map.setZoomAround(z.at, Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), z.z0 + dy / 90)), { animate: false });
+    stop(e);
+  }, true);
+  const end = (e) => {
+    if (!z || e.pointerId !== z.id) { if (tap && Date.now() - tap.down > 250) tap = null; return; } // กดค้างนาน ไม่นับเป็นแตะ
+    if (!z.moved && e.type === "pointerup") map.setZoomAround(z.at, Math.min(map.getMaxZoom(), z.z0 + 1));
+    z = null; tap = null; swallowClick = true; setTimeout(() => (swallowClick = false), 400);
+    if (!scrollIdle) map.dragging.enable();
+    stop(e);
+  };
+  el.addEventListener("pointerup", end, true);
+  el.addEventListener("pointercancel", end, true);
+  el.addEventListener("touchmove", (e) => { if (z) stop(e); }, { capture: true, passive: false });
+  el.addEventListener("click", (e) => { if (swallowClick) stop(e); }, true); // แตะครั้งที่สองไม่ปักหมุด/ไม่เปิดป๊อปอัป
 }
 
 function refitMap(M) {
@@ -248,7 +302,7 @@ const TripMap = {
   },
 };
 
-// ---------- ช่องตำแหน่ง: วางลิงก์/พิกัด แตะบนแผนที่ หรือใช้ตำแหน่งตอนนี้ ----------
+// ---------- ช่องตำแหน่ง: วางลิงก์/พิกัด ค้นชื่อ แตะบนแผนที่ หรือปุ่มตำแหน่งฉันในแผนที่ ----------
 // มือถือ: ลิงก์แชร์ของ Google Maps เป็นลิงก์สั้นไม่มีพิกัด จึงต้องมีทางปักหมุดในเว็บเอง
 const LocPick = {
   // ปักหมุดบนแผนที่ของช่องนี้ (zoom 0 = ไม่เลื่อนแผนที่)
@@ -277,7 +331,7 @@ const LocPick = {
   // attrs = แอตทริบิวต์ของ input (id/data-*), c = จุดกลางแผนที่ถ้ายังไม่มีพิกัด
   html(label, attrs, value = "", c = null) {
     return `<div class="lp"${c ? ` data-c="${c.lat},${c.lng}"` : ""}><label class="f">${label}<input type="text" ${attrs} value="${esc(value)}" placeholder="ลิงก์ Google Maps หรือ 43.06, 141.35"></label>
-      <div class="row lp-btns"><button type="button" class="btn small" data-lp="map">${I("map-pin")} แตะบนแผนที่</button><button type="button" class="btn small" data-lp="gps">${I("navigation")} ตำแหน่งตอนนี้</button></div>
+      <div class="row lp-btns"><button type="button" class="btn small" data-lp="map">${I("map-pin")} เลือกบนแผนที่</button></div>
       <div class="lp-pick" hidden><div class="lp-find"><input type="search" placeholder="ชื่อร้าน/สถานที่/ที่อยู่ (อังกฤษ/ญี่ปุ่น)" enterkeyhint="search"><button type="button" class="btn small" data-lp="find">${I("search")}</button></div>
         <div class="lp-res"></div><div class="lp-map"></div></div></div>`;
   },
@@ -287,14 +341,6 @@ document.addEventListener("click", (ev) => {
   if (!b) return;
   const box = b.closest(".lp"), inp = box.querySelector("input");
   const set = (lat, lng) => { inp.value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`; inp.dispatchEvent(new Event("change", { bubbles: true })); };
-  if (b.dataset.lp === "gps") {
-    if (!navigator.geolocation) return toast("เครื่องนี้หาตำแหน่งไม่ได้");
-    toast("กำลังหาตำแหน่ง…");
-    return navigator.geolocation.getCurrentPosition((p) => {
-      if (!parseLatLng(`${p.coords.latitude}, ${p.coords.longitude}`)) return toast("ตำแหน่งตอนนี้อยู่นอกฮอกไกโด ใช้แตะบนแผนที่แทน");
-      set(p.coords.latitude, p.coords.longitude); toast("ใส่ตำแหน่งตอนนี้แล้ว");
-    }, () => toast("หาตำแหน่งไม่ได้ ต้องอนุญาตตำแหน่งในเบราว์เซอร์ก่อน"), { enableHighAccuracy: true, timeout: 15000 });
-  }
   if (b.dataset.lp === "find") return LocPick.find(box);
   if (b.dataset.lp === "res") { const [lat, lng] = b.dataset.ll.split(",").map(Number); LocPick.drop(box, lat, lng, 16); set(lat, lng);
     const nm = box.closest(".modal-body")?.querySelector("#cName"); if (nm && !nm.value) nm.value = b.dataset.name;
@@ -304,10 +350,13 @@ document.addEventListener("click", (ev) => {
   if (pick.hidden) return;
   if (!el._m) {
     const ll = parseLatLng(inp.value), [cLat, cLng] = (box.dataset.c || "43.0618,141.3545").split(",").map(Number);
-    const m = L.map(el, { zoomSnap: 0.25 }).setView(ll ? [ll.lat, ll.lng] : [cLat, cLng], ll ? 15 : 12);
-    twoFinger(m);
-    const [url, attribution] = Object.values(TILE_SOURCES)[0];
-    L.tileLayer(url, { maxZoom: 18, attribution }).addTo(m);
+    const M = makeMap(el), m = M.map;
+    m.setView(ll ? [ll.lat, ll.lng] : [cLat, cLng], ll ? 15 : 12);
+    // ปุ่มตำแหน่งฉันในแผนที่: เจอแล้วปักหมุดตรงนั้นเลย
+    m.on("locationfound", (e) => {
+      if (!parseLatLng(`${e.latlng.lat}, ${e.latlng.lng}`)) return toast("ตำแหน่งตอนนี้อยู่นอกฮอกไกโด แตะบนแผนที่แทน");
+      LocPick.drop(box, e.latlng.lat, e.latlng.lng, 0); set(e.latlng.lat, e.latlng.lng); toast("ปักหมุดที่ตำแหน่งตอนนี้แล้ว");
+    });
     el._m = m;
     if (ll) LocPick.drop(box, ll.lat, ll.lng);
     m.on("click", (e) => {
