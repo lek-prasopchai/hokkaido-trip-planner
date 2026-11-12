@@ -161,13 +161,42 @@ const winterF = (iso, skill = S.set.snow) => { const m = monthOf(iso), f = SNOW_
 const isWinter = (iso) => [12, 1, 2, 3].includes(monthOf(iso));
 const DRIVE_KEY = Object.fromEntries(DRIVE_EDGES.flatMap((e) => [[e.a + ">" + e.b, e], [e.b + ">" + e.a, e]]));
 
-// เวลาขับปกติ (ชม.): ใช้ตารางถ้ามี ไม่งั้นประมาณจากเส้นตรง × 1.3
+// ระยะ/เวลาขับตามถนนจริงจาก OSRM (ไม่ติดหิมะ): โหลดเฉพาะช่วงที่อยู่ในแผน เก็บในเบราว์เซอร์ ได้ครบแล้ววาดใหม่ครั้งเดียว
+const RoadTime = {
+  KEY: "hokkaido-roadtime-v1",
+  cache: (() => { try { return JSON.parse(localStorage.getItem("hokkaido-roadtime-v1")) || {}; } catch { return {}; } })(),
+  want: new Set(), busy: false,
+  key: (a, b) => `${a.lng.toFixed(4)},${a.lat.toFixed(4)};${b.lng.toFixed(4)},${b.lat.toFixed(4)}`,
+  get(a, b) { return this.cache[this.key(a, b)]; },
+  ask(a, b) { if (a?.lat && b?.lat && !this.get(a, b)) this.want.add(this.key(a, b)); },
+  // ส่งทีละคำขอ (เซิร์ฟเวอร์สาธารณะตัดถ้าถี่) ได้ค่าใหม่อย่างน้อย 1 ค่า → onDone()
+  async flush(onDone) {
+    if (this.busy || !this.want.size || navigator.onLine === false) return;
+    this.busy = true;
+    let got = 0;
+    for (const k of [...this.want]) {
+      this.want.delete(k);
+      try {
+        const j = await (await fetch(`https://router.project-osrm.org/route/v1/driving/${k}?overview=false`)).json();
+        if (j.code === "Ok") { this.cache[k] = { km: j.routes[0].distance / 1000, h: j.routes[0].duration / 3600 }; got++; }
+      } catch { /* ออฟไลน์/เซิร์ฟเวอร์ล่ม: ใช้ค่าประมาณต่อ */ }
+    }
+    this.busy = false;
+    if (!got) return;
+    try { localStorage.setItem(this.KEY, JSON.stringify(this.cache)); } catch { /* เต็มก็ไม่เป็นไร */ }
+    onDone();
+  },
+};
+
+// เวลาขับปกติ (ชม.): ใช้ตารางถ้ามี → ถนนจริงจาก OSRM → ประมาณจากเส้นตรง × 1.3
 function driveLeg(aId, bId) {
   if (aId === bId) return { km: 0, h: 0 };
   const e = DRIVE_KEY[aId + ">" + bId];
   if (e) return { km: e.km, h: e.h, high: e.high, risk: e.risk, road: e.road, noFuel: e.noFuel, closed: e.closed };
   const a = point(aId), b = point(bId);
   if (!a?.lat || !b?.lat) return { km: 0, h: 0, none: true };
+  const r = RoadTime.get(a, b);
+  if (r) return { km: Math.round(r.km), h: r.h + 0.05 };
   const d = km(a, b) * 1.3;
   const speed = d > 80 ? 70 : d > 30 ? 50 : 35;
   return { km: Math.round(d), h: d / speed + (d > 3 ? 0.1 : 0.05), est: true };

@@ -147,7 +147,7 @@ const Planner = {
     const slack = 1 + (+S.set.slack || 0) / 100;
     const ha0 = hubOf(a), d0 = km(pa, pb);
     if (mode === "walk") return { h: (d0 * 1.3 / 4 + 0.05) * slack, km: Math.round(d0 * 10) / 10, drive: 0, walk: true };
-    if (mode === "taxi") { const d = driveLeg(a, b), f = winterF(iso || S.trip.start, "some") * slack; return { h: d.h * f + 0.1, km: d.km, drive: 0, taxi: true }; }
+    if (mode === "taxi") { const d = driveLeg(a, b), f = winterF(iso || S.trip.start, "some") * slack; return { h: d.h * f + 0.1, km: d.km, drive: 0, taxi: true, est: d.est }; }
     // ในเมืองใหญ่ (ซัปโปโร ฮาโกดาเตะ ฯลฯ) จอดรถที่พักแล้วเดิน/รถไฟใต้ดิน ไม่นับเป็นเวลาขับ
     if (mode === "car" && HUB[ha0]?.city && ha0 === hubOf(b) && d0 < 8 && !AIR[a] && !AIR[b]) return { h: (d0 / 15 + 0.2) * slack, km: Math.round(d0), drive: 0, local: true, city: true };
     if (mode === "car") {

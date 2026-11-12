@@ -165,6 +165,11 @@ const PlanView = {
     $("#mapCard").addEventListener("toggle", (e) => { if (e.target.open) setTimeout(() => { this.M.map.invalidateSize(); TripMap.drawPlan(this.M, this.evals, this.focus); }, 0); });
     Weather.fill(sec);
     this.bindDrag(sec);
+    RoadTime.flush(() => App.renderAll());
+    // มือถือ: ท่าปัด/กดค้างมองไม่เห็น บอกครั้งเดียว
+    if (COARSE && $(".tl li.it", sec)) try {
+      if (!localStorage.getItem("hk-swipe-hint")) { localStorage.setItem("hk-swipe-hint", "1"); setTimeout(() => toast("ปัดแถวไปทางซ้าย = แก้ไข/เอาออก • กดค้างแล้วลาก = เรียงลำดับ"), 600); }
+    } catch { /* เก็บไม่ได้ก็ไม่ต้องบอก */ }
   },
 
   // ---- รายการอยากไป: เก็บไว้ก่อน ค่อยลากลงวันหรือให้ระบบจัด ----
@@ -219,13 +224,16 @@ const PlanView = {
   itemRow(e, x) {
     const i = e.i, it = x.it, p = point(x.id);
     const idx = S.plan.days[i].items.indexOf(it);
-    const meta = [p.stars ? `<span class="stars">${"★".repeat(p.stars)}</span>` : "", ...[fmtH(x.h), p.fee, e.mode === "transit" && isPlace(x.id) ? ACCESS_TXT[access(p)] : ""].filter(Boolean).map(esc)].filter(Boolean).join(" · ");
-    // แตะทั้งแถว = เปิดกล่องแก้ไข (ย้ายวัน ล็อกเวลา จุดสำรอง โน้ต) • ⋮⋮ ลากเรียง • ✕ เอาออก
-    return `<li class="it" draggable="true" data-i="${i}" data-idx="${idx}"><span class="tm">${fmtT(x.t)}</span><span class="ic">${x.night ? I("moon") : KIND_IC(x.id)}</span>
-      <span class="visit ${x.night ? "night" : ""}" data-edit="${i}:${idx}" role="button" tabindex="0" title="แตะเพื่อแก้ไข / ย้ายวัน / ล็อกเวลา">${p.img ? `<img class="thumb" src="${p.img}" alt="" loading="lazy" data-lb="${x.id}">` : ""}
-        <b class="nm">${esc(pname(x.id))}</b>${it.at ? ` <span class="badge b-info">${I("lock")} ${esc(it.at)}</span>` : ""}
+    // มือถือเหลือแค่เวลาที่ใช้ (.xtra ซ่อน) จอใหญ่มีดาว ค่าเข้า การเดินทางสาธารณะด้วย
+    const xtra = [p.stars ? `<span class="stars">${"★".repeat(p.stars)}</span>` : "", ...[p.fee, e.mode === "transit" && isPlace(x.id) ? ACCESS_TXT[access(p)] : ""].filter(Boolean).map(esc)].filter(Boolean);
+    const meta = esc(fmtH(x.h)) + xtra.map((s) => `<span class="xtra"> · ${s}</span>`).join("");
+    const nm = esc(pname(x.id)), open = p.stars ? `data-detail="${esc(x.id)}"` : `data-edit="${i}:${idx}"`;
+    // แตะแถว = รายละเอียดสถานที่ (มื้อ/จุดของฉัน = กล่องแก้ไข) • ✏️ แก้ไข • ✕ เอาออก • ลากแถวเรียงลำดับ (มือถือ: ปัดซ้ายโชว์ปุ่ม กดค้างแล้วลาก)
+    return `<li class="it ${x.night ? "fixed" : ""}" ${COARSE ? "" : 'draggable="true"'} data-i="${i}" data-idx="${idx}"><span class="tm">${fmtT(x.t)}</span><span class="ic">${x.night ? I("moon") : KIND_IC(x.id)}</span>
+      <span class="visit ${x.night ? "night" : ""}" ${open} data-row="${i}:${idx}" role="button" tabindex="0" title="${p.stars ? "ดูรายละเอียด" : "แก้ไข"} (Alt+↑/↓ = เลื่อนลำดับ)">
+        <b class="nm">${nm}</b>${it.at ? ` <span class="badge b-info">${I("lock")} ${esc(it.at)}</span>` : ""}
         <small>${x.onWay ? `กินระหว่างทาง: ${x.onWay === "car" ? "แวะจุดพักรถ/มิจิโนะเอกิ ~30 นาที" : "ซื้อข้าวกล่อง (เอกิเบ็น)/คอนบินีกินบนรถ"}` : meta}</small>${it.note ? `<div class="note">📝 ${esc(it.note)}</div>` : ""}</span>
-      <span class="it-tools no-print"><button class="igrip" data-igrip="${i}:${idx}" ${x.night ? "disabled" : ""} aria-label="ย้ายลำดับ ${esc(pname(x.id))} (ลาก หรือกดลูกศรขึ้น/ลง)" title="ลากเพื่อเรียงลำดับ">${I("grip-vertical")}</button><button data-rm="${i}:${idx}" aria-label="เอาออก ${esc(pname(x.id))}" title="เอาออก">${I("x")}</button></span></li>`;
+      <span class="it-tools no-print"><button class="ied" data-edit="${i}:${idx}" aria-label="แก้ไข ${nm}" title="แก้ไข: ย้ายวัน ล็อกเวลา โน้ต">${I("pencil")}</button><button class="irm" data-rm="${i}:${idx}" aria-label="เอาออก ${nm}" title="เอาออก">${I("x")}</button></span></li>`;
   },
 
   // วันที่เปิดค้างไว้ (มีผลเฉพาะจอเล็ก): เริ่มที่วันนี้ระหว่างทริป ไม่งั้นวันแรก
@@ -247,7 +255,10 @@ const PlanView = {
     const mvIcon = (x) => I(x.city || x.walk ? "footprints" : LEG_MODE[x.mode]?.ic || "car");
     const rows = e.tl.map((x, k0) => {
       if (x.kind === "move") {
-        const what = x.walk ? `เดิน ${fmtH(x.h)} · ${x.km} กม.` : x.taxi ? `แท็กซี่ ${fmtH(x.h)} · ${x.km} กม. (≈¥${Math.round(500 + x.km * 400).toLocaleString()})` : x.city ? `เดิน/รถไฟใต้ดิน/แท็กซี่ ${fmtH(x.h)} (จอดรถไว้ที่พัก)` : x.mode === "car" ? `ขับ ${fmtH(x.h)} · ${x.km} กม.${x.est ? " (≈)" : ""}` : x.noTransit ? `ไม่มีรถไฟ/บัสตรง ${fmtH(x.h)} (แท็กซี่/รถ)` : x.local ? `เดิน/บัส/แท็กซี่ ${fmtH(x.h)}` : `รถไฟ/บัส ${fmtH(x.h)}${x.by ? " · " + esc(x.by.join(" → ")) : ""}`;
+        if (x.est) RoadTime.ask(point(x.from), point(x.to)); // เส้นตรง × 1.3: ขอเวลาถนนจริงมาแทน
+        // ค่าแท็กซี่ฮอกไกโด: เริ่ม ~¥600-700 แล้ว ~¥300-400/กม. (ยังไม่รวมรอ/ติดหิมะ) ปัดหลักร้อย
+        const fare = (b, k) => (Math.round((b + x.km * k) / 100) * 100).toLocaleString();
+        const what = x.walk ? `เดิน ${fmtH(x.h)} · ${x.km} กม.` : x.taxi ? `แท็กซี่ ${fmtH(x.h)} · ${x.km} กม. · ≈¥${fare(600, 300)}-${fare(700, 400)}` : x.city ? `เดิน/รถไฟใต้ดิน/แท็กซี่ ${fmtH(x.h)} (จอดรถไว้ที่พัก)` : x.mode === "car" ? `ขับ ${fmtH(x.h)} · ${x.km} กม.${x.est ? " (≈)" : ""}` : x.noTransit ? `ไม่มีรถไฟ/บัสตรง ${fmtH(x.h)} (แท็กซี่/รถ)` : x.local ? `เดิน/บัส/แท็กซี่ ${fmtH(x.h)}` : `รถไฟ/บัส ${fmtH(x.h)}${x.by ? " · " + esc(x.by.join(" → ")) : ""}`;
         const k = x.it ? S.plan.days[i].items.indexOf(x.it) : -1, cur = k >= 0 ? x.it.m : x.home ? day.hm : null;
         const lm = LEG_MODE[cur || Planner.modeOf()];
         // แสดงแค่ไอคอน มี select โปร่งใสทับไว้ให้กดเปลี่ยน
@@ -265,17 +276,24 @@ const PlanView = {
       if (x.kind === "airport") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("plane")}</span><span><b>ถึงสนามบิน ${esc(pname(x.id))}</b> <small>เครื่องออก ${S.trip.departTime}</small></span></li>`;
       return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I(x.ic || "info")}</span><span class="mute">${esc(x.text)}</span></li>`;
     }).join("");
-    const pts = [point(e.from), ...e.items.map((it) => point(it.id)).filter((p) => p.lat), point(e.to)];
     const ref = point(e.to);
     const open = this.isOpen(i);
+    const names = e.tl.filter((x) => x.kind === "visit").map((x) => esc(pname(x.id)));
+    // คำเตือน: แสดงข้อหนักสุดบรรทัดเดียว แตะเพื่อดูทั้งหมด
+    const RANK = { bad: 0, warn: 1, fest: 2, info: 3, good: 4 };
+    const ck = [...e.checks].sort((a, b) => (RANK[a.lvl] ?? 5) - (RANK[b.lvl] ?? 5));
+    const ckLi = (c) => `<li class="${c.lvl}">${LVL_ICON[c.lvl] || ""} ${esc(c.text)}</li>`;
+    const checks = ck.length === 1 ? `<ul class="checks">${ckLi(ck[0])}</ul>`
+      : ck.length ? `<details class="checks-box ${ck[0].lvl}" ${foldAttr("chk" + i)}><summary>${LVL_ICON[ck[0].lvl] || ""} <span class="c1">${esc(ck[0].text)}</span><span class="call">ข้อควรรู้ ${ck.length} ข้อ</span> <b class="cn">+${ck.length - 1}</b></summary><ul class="checks">${ck.map(ckLi).join("")}</ul></details>` : "";
     return `<div class="card day ${e.lvl} ${open ? "" : "fold"}" id="day-${i}">
-      <div class="day-head" data-tog="${i}" aria-expanded="${open}"><h3>วันที่ ${i + 1}</h3><span class="day-meta">${thDate(e.iso)} • ${I("sun")} ${fmtT(e.sun.rise)}-${fmtT(e.sun.set)}</span>
+      <div class="day-head" data-tog="${i}" aria-expanded="${open}"><h3>วันที่ ${i + 1}</h3><span class="day-meta">${thDate(e.iso)}</span>
         <span class="wx" data-wx="${ref.lat},${ref.lng},${e.iso}"></span>
-        <span class="badge b-${e.lvl}">${LVL_ICON[e.lvl]} ${LVL_TXT[e.lvl]}</span>
-        <button class="btn small map-focus no-print" data-dmap="${i}" title="ดูเส้นทางวันนี้บนแผนที่">${I("map")} แผนที่</button>
+        <span class="badge b-${e.lvl}" title="${LVL_TXT[e.lvl]}">${LVL_ICON[e.lvl]}<span class="btxt"> ${LVL_TXT[e.lvl]}</span></span>
+        <button class="btn small map-focus no-print" data-dmap="${i}" title="ดูเส้นทางวันนี้บนแผนที่" aria-label="ดูเส้นทางวันที่ ${i + 1} บนแผนที่">${I("map")}</button>
 </div>
-      <div class="day-meta" style="margin-top:2px"><b>${esc(short(e.from))}</b> → <b>${esc(short(e.to))}</b>${e.driveH ? ` • ขับรวม ${fmtH(e.driveH)}` : ""} • จบวัน ~${fmtT(e.end)}${e.leaveBy != null ? ` • <b>ออกจากที่พักไม่เกิน ${fmtT(e.leaveBy)}</b>` : ""}</div>
-      ${e.checks.length ? `<ul class="checks">${e.checks.map((c) => `<li class="${c.lvl}">${LVL_ICON[c.lvl] || ""} ${esc(c.text)}</li>`).join("")}</ul>` : ""}
+      <div class="day-meta day-route"><b>${esc(short(e.from))}</b> → <b>${esc(short(e.to))}</b>${e.driveH ? `<span class="xtra"> · ขับรวม ${fmtH(e.driveH)}</span>` : ""} · จบ ~${fmtT(e.end)}${e.leaveBy != null ? ` · <b>ออกจากที่พักไม่เกิน ${fmtT(e.leaveBy)}</b>` : ""}</div>
+      ${names.length ? `<div class="day-peek">${names.length} ที่ · ${names.join(" · ")}</div>` : ""}
+      ${checks}
       <div class="day-body">
         <ul class="tl" data-day="${i}">${rows}</ul>${this.maybeBox(i)}
         <details class="no-print daynote" ${day.note || day.planB ? "open" : ""}><summary>${day.note || day.planB ? `${I("notebook-pen")} โน้ต / แผนสำรอง` : "+ โน้ต / แผนสำรอง"}</summary>
@@ -333,6 +351,74 @@ const PlanView = {
     const keep = this.M.drawn && this.M.drawnFocus === this.focus; // วาดซ้ำมุมเดิม = ไม่ซูมกลับ
     this.M.drawn = true; this.M.drawnFocus = this.focus;
     setTimeout(() => TripMap.drawPlan(this.M, evals, this.focus, keep), 30);
+  },
+
+  unswipe() { this.swiped?.classList.remove("swiped"); this.swiped = null; },
+  // มือถือ: ปัดแถวไปซ้าย = โชว์ปุ่ม ✏️ ✕ • กดค้าง ~0.4 วิ แล้วลาก = เรียงลำดับในวัน • ขยับนิ้วก่อนครบเวลา = เลื่อนหน้าปกติ
+  // ใช้ touch event (ไม่ใช่ pointer) เพราะต้อง preventDefault กันหน้าเลื่อนตอนลาก/ปัด
+  bindTouch(trip, placeBefore) {
+    const W = 96;
+    let g = null;
+    const done = () => { this.noClick = Date.now(); };
+    const drag = () => {
+      const ul = g.li.closest("ul");
+      g.mode = "drag"; g.rows = [...ul.querySelectorAll("li.it:not(.fixed)")]; g.to = g.rows.indexOf(g.li);
+      this.unswipe(); g.li.classList.add("dragging"); navigator.vibrate?.(12);
+    };
+    trip.addEventListener("touchstart", (ev) => {
+      const li = ev.target.closest("li.it");
+      if (this.swiped && this.swiped !== li) this.unswipe();
+      if (!li || ev.touches.length > 1 || ev.target.closest(".it-tools")) return (g = null);
+      const t = ev.touches[0];
+      g = { li, x0: t.clientX, y0: t.clientY, mode: null, base: li.classList.contains("swiped") ? -W : 0, sx: 0 };
+      if (!li.classList.contains("fixed")) g.timer = setTimeout(drag, 400);
+    }, { passive: true });
+    trip.addEventListener("touchmove", (ev) => {
+      if (!g) return;
+      const t = ev.touches[0], dx = t.clientX - g.x0, dy = t.clientY - g.y0;
+      if (g.mode === "drag") {
+        ev.preventDefault();
+        const y = t.clientY;
+        if (y < 70) scrollBy(0, -12); else if (y > innerHeight - 110) scrollBy(0, 12);
+        g.to = g.rows.filter((r) => r.getBoundingClientRect().top + r.offsetHeight / 2 < y).length;
+        g.rows.forEach((r, n) => { r.classList.toggle("drop-before", n === g.to && r !== g.li); r.classList.toggle("drop-after", n === g.rows.length - 1 && g.to === g.rows.length && r !== g.li); });
+        return;
+      }
+      if (!g.mode) {
+        if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+        clearTimeout(g.timer);
+        g.mode = Math.abs(dx) > Math.abs(dy) ? "swipe" : "scroll";
+        if (g.mode === "swipe") g.li.classList.add("swiping");
+      }
+      if (g.mode !== "swipe") return;
+      ev.preventDefault();
+      g.sx = Math.max(-W, Math.min(0, g.base + dx));
+      g.li.style.setProperty("--sx", g.sx + "px");
+    }, { passive: false });
+    const end = () => {
+      if (!g) return;
+      clearTimeout(g.timer);
+      const { li, mode } = g;
+      if (mode === "swipe") {
+        li.classList.remove("swiping"); li.style.removeProperty("--sx");
+        this.unswipe();
+        if (g.sx < -W / 2) { li.classList.add("swiped"); this.swiped = li; }
+        done();
+      } else if (mode === "drag") {
+        g.rows.forEach((r) => r.classList.remove("dragging", "drop-before", "drop-after"));
+        done();
+        const from = g.rows.indexOf(li), i = +li.dataset.i;
+        if (g.to !== from && g.to !== from + 1) {
+          const items = S.plan.days[i].items;
+          placeBefore(i, +li.dataset.idx, g.rows[g.to] ? items[+g.rows[g.to].dataset.idx] : null);
+        }
+      }
+      g = null;
+    };
+    trip.addEventListener("touchend", end);
+    trip.addEventListener("touchcancel", end);
+    // กดค้างบนมือถือ: ไม่ให้เมนูของเบราว์เซอร์เด้ง
+    trip.addEventListener("contextmenu", (ev) => { if (ev.target.closest("li.it")) ev.preventDefault(); });
   },
 
   // ลากเรียงลำดับในวันเดียวกัน / ข้ามวัน
@@ -431,6 +517,7 @@ const PlanView = {
     const N = tripNights(), day = S.plan.days[i], e = this.evals[i];
     const pts = [point(e.from), ...e.items.map((it) => point(it.id)).filter((p) => p.lat), point(e.to)];
     Modal.open(`<h2>วันที่ ${i + 1}</h2>
+      <p class="mute small" style="margin:-4px 0 12px">${thDate(e.iso)} • ${I("sun")} ขึ้น ${fmtT(e.sun.rise)} ตก ${fmtT(e.sun.set)}${e.driveH ? ` • ${I("car")} ขับรวม ${fmtH(e.driveH)} · ${fmtN(Math.round(e.km))} กม.` : ""}</p>
       <div class="form">
         ${i < N ? `<label class="f">คืนนี้พักเมือง <small>${hotelOf(S.plan.bases[i])?.name ? esc(hotelOf(S.plan.bases[i]).name) : "ใส่โรงแรมจริงในหน้าข้อมูลทริป"}</small><select data-mbase>${hubOptions(S.plan.bases[i])}</select></label>` : ""}
         ${i > 0 ? `<label class="f">เริ่มวัน <small>ว่าง = เวลาปกติ</small><input type="time" data-mstart value="${esc(day.start || "")}"></label>` : ""}</div>
@@ -598,38 +685,18 @@ const PlanView = {
     };
     trip.addEventListener("keydown", (ev) => {
       const t = ev.target;
-      if (t.dataset?.edit && (ev.key === "Enter" || ev.key === " ")) { ev.preventDefault(); const [i, idx] = t.dataset.edit.split(":").map(Number); this.editItem(i, idx); }
-      else if (t.dataset?.igrip && (ev.key === "ArrowUp" || ev.key === "ArrowDown")) {
+      if (t.dataset?.row && (ev.key === "Enter" || ev.key === " ")) { ev.preventDefault(); t.click(); }
+      else if (t.dataset?.row && ev.altKey && (ev.key === "ArrowUp" || ev.key === "ArrowDown")) {
         ev.preventDefault();
-        const [i, idx] = t.dataset.igrip.split(":").map(Number), id = S.plan.days[i].items[idx];
-        if (stepItem(i, idx, ev.key === "ArrowUp" ? -1 : 1)) $(`[data-igrip="${i}:${S.plan.days[i].items.indexOf(id)}"]`)?.focus();
+        const [i, idx] = t.dataset.row.split(":").map(Number), id = S.plan.days[i].items[idx];
+        if (stepItem(i, idx, ev.key === "ArrowUp" ? -1 : 1)) $(`[data-row="${i}:${S.plan.days[i].items.indexOf(id)}"]`)?.focus();
       }
     });
-    // ลาก ⋮⋮ ด้วยเมาส์หรือนิ้ว (การลากแบบเดิมของเบราว์เซอร์ใช้กับนิ้วไม่ได้)
-    trip.addEventListener("pointerdown", (ev) => {
-      const g = ev.target.closest("[data-igrip]"); if (!g || g.disabled || ev.button > 0) return;
-      ev.preventDefault();
-      const [i, idx] = g.dataset.igrip.split(":").map(Number), li = g.closest("li"), ul = li.closest("ul");
-      const rows = [...ul.querySelectorAll("li.it")].filter((r) => !r.querySelector(".igrip:disabled"));
-      let to = rows.indexOf(li);
-      li.classList.add("dragging"); g.setPointerCapture(ev.pointerId);
-      const mv = (e) => {
-        const y = e.clientY;
-        if (y < 70) scrollBy(0, -12); else if (y > innerHeight - 110) scrollBy(0, 12);
-        to = rows.filter((r) => r.getBoundingClientRect().top + r.offsetHeight / 2 < y).length;
-        rows.forEach((r, n) => { r.classList.toggle("drop-before", n === to && r !== li); r.classList.toggle("drop-after", n === rows.length - 1 && to === rows.length && r !== li); });
-      };
-      const up = () => {
-        g.removeEventListener("pointermove", mv); g.removeEventListener("pointerup", up); g.removeEventListener("pointercancel", up);
-        rows.forEach((r) => r.classList.remove("dragging", "drop-before", "drop-after"));
-        const from = rows.indexOf(li);
-        if (to === from || to === from + 1) return;
-        const items = S.plan.days[i].items, tgt = rows[to] ? items[+rows[to].dataset.idx] : null;
-        placeBefore(i, idx, tgt);
-      };
-      g.addEventListener("pointermove", mv); g.addEventListener("pointerup", up); g.addEventListener("pointercancel", up);
-    });
+    if (COARSE) this.bindTouch(trip, placeBefore);
     trip.addEventListener("click", (ev) => {
+      if (Date.now() - (this.noClick || 0) < 450) return ev.preventDefault(); // นิ้วเพิ่งปัด/ลากเสร็จ ไม่ใช่การแตะ
+      const sw = ev.target.closest("li.swiped");
+      if (sw && !ev.target.closest(".it-tools")) return this.unswipe(); // แตะแถวที่เปิดปุ่มอยู่ = ปิดกลับ
       const el = ev.target.closest("button, a, select, [data-goto], [data-detail], [data-lb], [data-edit], [data-tog]");
       if (!el) return;
       const d = el.dataset, pair = (s) => s.split(":").map(Number);
