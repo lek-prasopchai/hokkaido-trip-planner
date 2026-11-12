@@ -66,7 +66,9 @@ const MapFull = {
     this.cur = on ? { map, a } : null;
     map._fsAt = Date.now(); // การแตะที่เพิ่งสลับเต็มจอ ไม่นับเป็นการแตะแผนที่
     if (on) map.dragging.enable();
-    setTimeout(() => map.invalidateSize(), 0);
+    // วัดขนาดใหม่สองรอบ (บางเบราว์เซอร์จัดหน้าเสร็จช้า เช่นตอนแถบเลื่อนหาย) แล้วเอาหมุดที่ปักไว้มาไว้กลางจอ
+    const fit = () => { map.invalidateSize(); if (map._pin) map.setView(map._pin.getLatLng(), map.getZoom(), { animate: false }); };
+    setTimeout(fit, 0); setTimeout(fit, 350);
   },
 };
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && MapFull.cur) MapFull.toggle(MapFull.cur.map, MapFull.cur.a); });
@@ -284,7 +286,7 @@ const LocPick = {
   // ปักหมุดบนแผนที่ของช่องนี้ (zoom 0 = ไม่เลื่อนแผนที่)
   drop(box, lat, lng, zoom = 15) {
     const el = box.querySelector(".lp-map"), m = el._m;
-    el._mk ? el._mk.setLatLng([lat, lng]) : (el._mk = L.marker([lat, lng], { icon: pin(I("map-pin"), "#c8374a") }).addTo(m));
+    el._mk ? el._mk.setLatLng([lat, lng]) : (el._mk = m._pin = L.marker([lat, lng], { icon: pin(I("map-pin"), "#c8374a") }).addTo(m));
     if (zoom) m.setView([lat, lng], zoom);
   },
   // ค้นชื่อ: สถานที่ในเว็บก่อน (ได้ทั้งชื่อไทย) แล้วต่อด้วย Photon (OpenStreetMap, ฟรี ไม่ต้องใช้คีย์ รับแค่อังกฤษ/ญี่ปุ่น) จำกัดในฮอกไกโด เรียงใกล้จุดกลางแผนที่ก่อน
