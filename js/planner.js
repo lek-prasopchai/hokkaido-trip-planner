@@ -246,7 +246,8 @@ const Planner = {
       time = sun.set - 0.25;
     }
     for (const it of nightI) { lead(it, it.m || mode, true); move(it.id, it.m || mode, it); visit(it, true); }
-    if (nightI.length) { move(to, nightI[nightI.length - 1].m || hm); tl.push({ t: time, kind: "back", id: to }); }
+    // bm = วิธีกลับที่พักหลังเที่ยวค่ำ (ว่าง = แบบเดียวกับขาไปที่สุดท้าย)
+    if (nightI.length) { move(to, day.bm || nightI[nightI.length - 1].m || hm, null, "back"); tl.push({ t: time, kind: "back", id: to }); }
     const end = time;
 
     // ---- ตรวจ ----

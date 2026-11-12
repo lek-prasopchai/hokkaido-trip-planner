@@ -862,3 +862,21 @@ html.has-map-full .split-side { z-index: 2500; }
 /* เวลาที่ใช้: ชม. + นาที */
 .dur-in { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
 .dur-in input { width: 5.5em !important; flex: none; }
+/* กล่องแก้รายการ / เพิ่มจุดของฉัน: ช่องคู่ตรงแนว คำอธิบายใต้ช่อง จอแคบคอลัมน์เดียว */
+.form.ed-form { grid-template-columns: 1fr; gap: 14px; align-items: start; }
+@media (min-width: 560px) { .form.ed-form { grid-template-columns: 1fr 1fr; gap: 14px 16px; } }
+.ed-form > .f { display: flex; flex-direction: column; justify-content: flex-start; gap: 4px; min-width: 0; font-size: .875rem; color: var(--ink2); }
+.ed-form > .f > input, .ed-form > .f > select, .ed-form > .f > textarea { width: 100%; }
+.ed-form .hint { color: var(--mute); font-size: .8rem; line-height: 1.4; }
+.ed-form > .full { grid-column: 1 / -1; min-width: 0; }
+.ed-form .chks { display: grid; gap: 8px; }
+.ed-form .chk { display: flex; align-items: center; gap: 8px; font-size: .9375rem; color: var(--ink); cursor: pointer; }
+.ed-form .chk input { width: 18px; height: 18px; margin: 0; flex: none; }
+.dur-in { margin-top: 0; gap: 6px; }
+.dur-in input { flex: 1 1 0; min-width: 0; width: auto !important; }
+.ed-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.ed-actions #eDel { margin-left: auto; }
+@media (max-width: 559px) {
+  .ed-actions .btn { flex: 1 1 auto; justify-content: center; }
+  .ed-actions #eDel { flex-basis: 100%; margin-left: 0; }
+}
