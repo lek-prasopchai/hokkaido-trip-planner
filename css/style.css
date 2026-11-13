@@ -903,6 +903,7 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
 .rent-side { min-width: 0; }
 .rent-box { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
 .rent-box > h3 { margin: 0 0 4px; }
+.rent-box > h3 small { display: block; font-weight: 400; font-size: .85rem; }
 .rent-side h4 { margin: 0 0 6px; }
 .rent-side .form { grid-template-columns: 1fr 1fr; }
 .rent-side .hint { margin: 0; align-self: end; }
@@ -916,3 +917,7 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
 .start-pick .tpl h3 { display: flex; align-items: center; gap: 8px; margin: 0; }
 .start-pick .tpl p { margin: 0; flex: 1; }
 .start-pick .tpl .btn { align-self: flex-start; }
+/* จอแคบ: เมนู ⋯ เต็มความกว้างใต้ปุ่ม (ยึดขวาแล้วล้นซ้ายจอ) • วันที่หัวการ์ดวันเล็กลงให้พอบรรทัดเดียว */
+@media (max-width: 520px) { .menu-pop { position: fixed; left: 16px; right: 16px; top: auto; min-width: 0; } }
+@media (max-width: 359px) { .day-head > .day-meta { font-size: .78rem; } }
+@media (max-width: 400px) { .rent-side .form { grid-template-columns: 1fr; } }

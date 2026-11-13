@@ -136,7 +136,7 @@ const PlanView = {
   // รถเช่า: วัน/เวลา/สาขาที่รับ-คืน (ไม่ปักหมุด = สนามบิน)
   rentHtml() {
     const t = S.trip, N = tripNights(), R = Planner.rent(), b = t.buf;
-    const dayOpts = (v, min) => Array.from({ length: N + 1 }, (_, i) => i < min ? "" : `<option value="${i}" ${v === i ? "selected" : ""}>วันที่ ${i + 1} · ${thDate(Planner.dayIso(i), false)}</option>`).join("");
+    const dayOpts = (v, min) => Array.from({ length: N + 1 }, (_, i) => i < min ? "" : `<option value="${i}" ${v === i ? "selected" : ""}>วันที่ ${i + 1} · ${thDate(Planner.dayIso(i), false).replace(/ \d+$/, "")}</option>`).join("");
     const side = (k, x, d, air, airNow, min) => `<div class="rent-side" data-rentk="${k}"><h4>${k === "p" ? "รับรถ" : "คืนรถ"}</h4><div class="form ed-form">
         <label class="f">วัน<select data-rent="day">${dayOpts(d, min)}</select></label>
         ${airNow ? `<p class="hint">${k === "p" ? "รับทันทีที่เครื่องลง" : "คืนก่อนเช็กอินเที่ยวบิน"}</p>` : `<label class="f">${k === "p" ? "เวลานัดรับ" : "ต้องคืนก่อน"}<input type="time" data-rent="time" value="${esc(x.time || "")}"></label>`}
