@@ -287,9 +287,9 @@ const Planner = {
     move(to, hm, null, true);
     const arrive = time;
     tl.push({ t: time, kind: i === N ? "airport" : "hotel", id: to });
-    if (nightI.length) { // เช็กอิน วางกระเป๋า ~30 นาที (ไม่ก่อนเวลาเช็กอิน) แล้วค่อยออกไปต่อ
-      const ci = parseT(stayOf(to)?.checkIn || "15:00"), go = Math.max(time + 0.5, ci);
-      tl.push({ t: time, kind: "info", ic: "hotel", text: `${go - time > 0.6 ? `รอเช็กอิน ${fmtT(ci)} (ฝากกระเป๋า/พักผ่อน)` : "เช็กอิน วางกระเป๋า อย่างน้อย ~30 นาที"} • อยากพักนานกว่านี้: ล็อกเวลาเริ่มของที่ถัดไป` });
+    if (nightI.length) { // เช็กอิน วางกระเป๋า ~30 นาที (ไม่ก่อนเวลาเช็กอิน) แล้วค่อยออกไปต่อ • ที่พักเดิมจากเมื่อคืน: แค่พักผ่อน
+      const ci = from !== to ? parseT(stayOf(to)?.checkIn || "15:00") : 0, go = Math.max(time + 0.5, ci);
+      tl.push({ t: time, kind: "info", ic: "hotel", text: `${go - time > 0.6 ? `รอเช็กอิน ${fmtT(ci)} (ฝากกระเป๋า/พักผ่อน)` : from !== to ? "เช็กอิน วางกระเป๋า อย่างน้อย ~30 นาที" : "พักผ่อน ~30 นาที"} • อยากพักนานกว่านี้: ล็อกเวลาเริ่มของที่ถัดไป` });
       time = go;
     }
     if (nightI.length && !nightI.some((it) => it.at) && sun.set - 0.25 > time && nightI.some((it) => point(it.id).evening)) { // รอให้มืด ไฟประดับ/วิวกลางคืนถึงสวย

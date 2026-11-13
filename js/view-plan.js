@@ -318,8 +318,9 @@ const PlanView = {
       if (x.kind === "checkout") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span class="row-b"><b>เช็กเอาท์ ${esc(stayOf(x.id)?.name || short(pname(x.id)))}</b><small>${x.go > parseT(x.co) + 0.1 ? `ฝากกระเป๋า/ใส่รถ ออกเดินทาง ${fmtT(x.go)}` : `เช็กเอาท์ภายใน ${esc(x.co)}`}</small></span></li>`;
       if (x.kind === "back") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span class="row-b"><b>กลับถึงที่พัก ${esc(stayOf(x.id)?.name || short(pname(x.id)))}</b></span></li>`;
       if (x.kind === "hotel") {
-        const h = stayOf(x.id), nx = e.tl[k0 + 1], rest = nx?.kind === "info" && nx.ic === "hotel" ? nx.text.split(" • ")[0] : "";
-        return `<li class="stay"><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span class="row-b"><b>ถึงที่พัก ${esc(h?.name || pname(x.id))}</b>${h?.checkIn || rest ? `<small>${[h?.checkIn ? `เช็กอิน ${esc(h.checkIn)}` : "", esc(h?.checkIn ? rest.replace(/^เช็กอิน /, "") : rest)].filter(Boolean).join(" · ")}</small>` : ""}</span></li>`;
+        // เวลาเช็กอินแสดงเฉพาะวันที่ย้ายเข้า (พักต่อจากเมื่อคืน = กลับที่พัก)
+        const fresh = e.from !== x.id, h = stayOf(x.id), ci = fresh && h?.checkIn, nx = e.tl[k0 + 1], rest = nx?.kind === "info" && nx.ic === "hotel" ? nx.text.split(" • ")[0] : "";
+        return `<li class="stay"><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span class="row-b"><b>${fresh ? "ถึงที่พัก" : "กลับที่พัก"} ${esc(h?.name || pname(x.id))}</b>${ci || rest ? `<small>${[ci ? `เช็กอิน ${esc(ci)}` : "", esc(ci ? rest.replace(/^เช็กอิน /, "") : rest)].filter(Boolean).join(" · ")}</small>` : ""}</span></li>`;
       }
       if (x.kind === "info" && x.ic === "hotel" && e.tl[k0 - 1]?.kind === "hotel") return ""; // รวมไว้ในแถวที่พักแล้ว
       if (x.kind === "airport") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("plane")}</span><span class="row-b"><b>ถึงสนามบิน ${esc(pname(x.id))}</b><small>เครื่องออก ${S.trip.departTime}</small></span></li>`;
