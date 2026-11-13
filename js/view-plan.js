@@ -643,7 +643,8 @@ const PlanView = {
     if (i === "wish") {
       if (!S.plan) return toast("สร้างแผนก่อน");
       if (S.plan.days.some((d) => d.items.some((it) => it.id === id))) return toast(`${pname(id)} อยู่ในแผนแล้ว`);
-      this.mut(() => { if (!S.plan.wish.includes(id)) S.plan.wish.push(id); });
+      if (S.plan.wish.includes(id)) return toast(`${pname(id)} อยู่ในรายการอยากไปแล้ว`);
+      this.mut(() => S.plan.wish.push(id));
       return toast(`เก็บ ${pname(id)} ไว้ในรายการอยากไปแล้ว`);
     }
     this.mut(() => S.plan.days[+i].items.push(Planner.mkItem(+i, id, true))); // ต่อท้าย: อยากได้ลำดับสั้นสุดกด เรียงเส้นทาง

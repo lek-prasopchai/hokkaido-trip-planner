@@ -947,3 +947,7 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
 /* จอแคบมาก: ป๊อปอัปตัดคำโปรยออก (อ่านได้ในรายละเอียด) ให้พอดีกรอบแผนที่ */
 @media (max-width: 400px) { .pop .hl { display: none; } }
 @media (max-width: 359px) { .pop img { display: none; } }
+/* ตัวเลือกใส่แผนของที่อยู่ในอยากไปแล้ว: ขอบสีส้มเดียวกับหมุดอยากไป */
+.addsel.wished { border-color: #d9822b; color: #b8641a; }
+:root[data-theme="dark"] .addsel.wished { color: #f0a560; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .addsel.wished { color: #f0a560; } }
