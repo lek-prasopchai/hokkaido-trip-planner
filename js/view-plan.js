@@ -21,7 +21,8 @@ const durField = (id, h, def) => {
   const box = (k, max, step, val, ph, unit) => `<input type="number" id="${id}${k}" min="0" max="${max}" step="${step}" inputmode="numeric" value="${val ?? ""}" placeholder="${ph ?? ""}" aria-label="${unit}"> ${unit}`;
   return `<span class="dur-in">${box("H", 12, 1, v == null ? null : Math.floor(v / 60), d == null ? null : Math.floor(d / 60), "ชม.")} ${box("M", 55, 5, v == null ? null : v % 60, d == null ? null : d % 60, "นาที")}</span>`;
 };
-const durVal = (id) => { const h = $(`#${id}H`).value, m = $(`#${id}M`).value; return h === "" && m === "" ? null : Math.max(5 / 60, (+h || 0) + (+m || 0) / 60); }; // ต่ำสุด 5 นาที
+// ว่าง/0 ทั้งคู่ = ใช้ค่าที่ระบบคำนวณ (ช่อง ชม. มักค้าง 0 ตอนลบแค่นาที) • ต่ำสุด 5 นาที
+const durVal = (id) => { const v = (+$(`#${id}H`).value || 0) + (+$(`#${id}M`).value || 0) / 60; return v ? Math.max(5 / 60, v) : null; };
 const legOpts = (cur, def) => `<option value="">${LEG_MODE[def].name} (ค่าเริ่มต้น)</option>${Object.entries(LEG_MODE).map(([v, m]) => `<option value="${v}" ${cur === v ? "selected" : ""}>${m.name}</option>`).join("")}`;
 const STAY_TIPS = "จองล่วงหน้า 3-4 เดือน (ช่วงเทศกาลหิมะ 6 เดือน) • ขับรถ: เลือกที่มีที่จอด ถามค่าจอดและต้องจองไหม • นั่งรถไฟ: เลือกใกล้สถานี เดินลากกระเป๋าบนหิมะลำบาก • เรียวกังออนเซ็นมักรวมอาหารเย็น-เช้า และต้องเช็กอินก่อน ~18:00 • พักฐานเดิม 2 คืนขึ้นไปช่วยให้ไม่ต้องแพ็กกระเป๋าทุกวัน";
 
