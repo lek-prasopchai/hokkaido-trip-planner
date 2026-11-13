@@ -311,7 +311,12 @@ const PlanView = {
         // ปลายทางคือแถวถัดไปอยู่แล้ว: แถวเดินทางเหลือแค่วิธีไปและเวลา
         return `<li class="mv"><span class="tm"></span><span class="ic">${pick || mvIcon(x)}</span><span class="move">${x.fixed ? what.replace(" (≈)", "") + " (กำหนดเอง)" : what}${x.high ? `<br><span class="risk">${I("triangle-alert")} ${esc(x.risk)}</span>` : ""}</span></li>`;
       }
-      if (x.kind === "visit" && x.it.rent) return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("car")}</span><span class="row-b"><b>${esc(pname(x.id))}</b><small>${fmtH(x.h)}${x.it.at ? ` · นัด ${esc(x.it.at)}` : ""} · แก้ใน <a href="#setup">ข้อมูลทริป</a></small></span></li>`;
+      if (x.kind === "visit" && x.it.rent) {
+        // คืนรถ: ผู้ใช้เลือกเองว่าไปคืนหลังที่ไหน (ระบบไม่ย้ายให้ ไม่ทันเวลา = เตือน)
+        const dI = day.items.filter((it) => point(it.id) && !it.maybe && !(it.night && i < N)), rr = Math.min(day.rr ?? dI.length, dI.length);
+        const pickR = x.it.rent === "r" && dI.length ? `<label class="rr-pick no-print">ไปคืนหลัง <select data-rr="${i}" aria-label="ไปคืนรถหลังที่ไหน">${["ออกจากที่พัก", ...dI.map((it) => pname(it.id))].map((n, k) => `<option value="${k}" ${k === rr ? "selected" : ""}>${esc(n)}</option>`).join("")}</select></label>` : "";
+        return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("car")}</span><span class="row-b"><b>${esc(pname(x.id))}</b><small>${fmtH(x.h)}${x.it.at ? ` · นัด ${esc(x.it.at)}` : ""} · แก้ใน <a href="#setup">ข้อมูลทริป</a></small>${pickR}</span></li>`;
+      }
       if (x.kind === "visit") return this.itemRow(e, x);
       if (x.kind === "wait") { // รอที่จุดก่อนหน้าแล้วค่อยออก
         const home = x.at && (x.at === e.to || x.at === e.from) && !AIR[x.at];
@@ -780,6 +785,7 @@ const PlanView = {
       else if (d.dstart) this.mut(() => { S.plan.days[+d.dstart].start = el.value || undefined; });
       else if (d.hm) this.mut(() => { S.plan.days[+d.hm].hm = el.value || undefined; });
       else if (d.bm) this.mut(() => { S.plan.days[+d.bm].bm = el.value || undefined; });
+      else if (d.rr) { const v = +el.value, last = v === el.options.length - 1; this.mut(() => { S.plan.days[+d.rr].rr = last ? undefined : v; }); } // หลังสุด = ไม่ล็อกตำแหน่ง (เพิ่มที่ใหม่ก็ยังคืนท้ายวัน)
       else if (d.rentm) { const [i, k] = d.rentm.split(":"); this.mut(() => { S.plan.days[+i][`r${k}m`] = el.value || undefined; }); }
       else if (d.legmode) { const [i, k] = d.legmode.split(":").map(Number); this.mut(() => { const it = S.plan.days[i].items[k]; it.m = el.value || undefined; it.lh = undefined; it.u = true; }); } // เปลี่ยนวิธี = เวลาที่กำหนดเองไม่ตรงแล้ว
       else if (d.dnote) { S.plan.days[+d.dnote].note = el.value; save(); }

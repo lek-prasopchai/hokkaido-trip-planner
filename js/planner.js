@@ -229,7 +229,9 @@ const Planner = {
     const rentR = R && R.rd === i && !R.rAir ? { id: "rent:r", dur: b0.ret / 60, rent: "r", m: day.rrm } : null;
     const toHub = hubOf(to), ref = point(to);
     const sun = sunTimes(iso, ref.lat, ref.lng);
-    const dayI = [rentP, ...items.filter((it) => !(it.night && i < N)), rentR].filter(Boolean), nightI = items.filter((it) => it.night && i < N);
+    // คืนรถหลังที่เที่ยวกลางวันที่ day.rr (ผู้ใช้เลือกในแถวคืนรถ ไม่ใส่ = หลังสุด)
+    const dItems = items.filter((it) => !(it.night && i < N)), rr = Math.min(day.rr ?? dItems.length, dItems.length);
+    const dayI = [rentP, ...dItems.slice(0, rr), rentR, ...dItems.slice(rr)].filter(Boolean), nightI = items.filter((it) => it.night && i < N);
     let time = opts.live ? opts.live.t : i === 0 ? this.leaveAirport(mode) : day.start ? parseT(day.start) : pc.start;
     const tl = [], checks = [];
     const add = (lvl, text, tight) => checks.push({ lvl, text, tight }); // tight = เรื่องเวลาไม่พอ/ยาวเกิน (ป้าย "แน่น")
@@ -282,18 +284,14 @@ const Planner = {
       time += h;
       return p;
     };
-    let wayMeal = null, retDone = false;
-    // คืนรถ: ต้องถึงร้านก่อนเวลาที่ต้องคืน • ถ้าไปที่ถัดไปก่อนแล้วจะไม่ทัน ไปคืนรถก่อน ที่เหลือใช้รถไฟ/บัส
-    const returnCar = () => {
-      move("rent:r", rentR.m || dm, rentR);
-      const a = time;
-      visit(rentR, false); dm = "transit"; retDone = true;
-      if (R.r.time && a > parseT(R.r.time) + 0.05) add("warn", `ถึงร้านคืนรถ ${fmtT(a)} เลยเวลาคืน ${R.r.time}`, true);
-    };
+    let wayMeal = null;
     dayI.forEach((it, k) => {
-      if (it === rentR) { if (!retDone) returnCar(); return; }
-      if (rentR && !retDone && R.r.time && it !== rentP
-        && time + legTo(it.id, it.m || dm, it).h + this.dur(it, point(it.id)) + this.leg(it.id, "rent:r", rentR.m || "car", iso).h > parseT(R.r.time)) returnCar();
+      if (it === rentR) { // ต้องถึงร้านก่อนเวลาที่ต้องคืน (ไม่นับเวลาทำเรื่องคืน)
+        move("rent:r", rentR.m || dm, rentR);
+        if (R.r.time && time > parseT(R.r.time) + 0.05) add("warn", `ถึงร้านคืนรถ ${fmtT(time)} เลยเวลาคืน ${R.r.time}`, true);
+        visit(rentR, false); dm = "transit";
+        return;
+      }
       if (P.custom[it.id]?.meal && !it.at && time < 11.25) { // ช่วงถัดไปยาวคร่อมเที่ยง → กินระหว่างทาง
         const nx = dayI[k + 1], L = legTo(nx ? nx.id : to, nx ? nx.m || dm : day.hm || dm, nx, !nx);
         if (L.h >= 1.5 && time + L.h > 12.5) { wayMeal = it; return; }
