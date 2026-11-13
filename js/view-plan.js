@@ -340,7 +340,7 @@ const PlanView = {
         <span class="wx" data-wx="${ref.lat},${ref.lng},${e.iso}"></span>
         <button class="btn small map-focus no-print" data-dmap="${i}" title="ดูเส้นทางวันนี้บนแผนที่" aria-label="ดูเส้นทางวันที่ ${i + 1} บนแผนที่">${I("map")}</button>
 </div>
-      <div class="day-meta day-route"><b>${esc(short(e.from))}</b> → <b>${esc(short(e.to))}</b> · จบ ~${fmtT(e.end)}${e.leaveBy != null ? ` · <b>ออกจากที่พักไม่เกิน ${fmtT(e.leaveBy)}</b>` : ""}${e.lvl !== "good" ? ` · <b class="lvl-${e.lvl}">${LVL_TXT[e.lvl]}</b>` : ""}</div>
+      <div class="day-meta day-route">${short(e.from) === short(e.to) ? `เที่ยวรอบ <b>${esc(short(e.to))}</b>` : `<b>${esc(short(e.from))}</b> → <b>${esc(short(e.to))}</b>`} · จบ ~${fmtT(e.end)}${e.leaveBy != null ? ` · <b>ออกจากที่พักไม่เกิน ${fmtT(e.leaveBy)}</b>` : ""}${e.lvl !== "good" ? ` · <b class="lvl-${e.lvl}">${LVL_TXT[e.lvl]}</b>` : ""}</div>
       ${checks}
       <div class="day-body">
         <ul class="tl" data-day="${i}">${rows}</ul>${this.maybeBox(i)}

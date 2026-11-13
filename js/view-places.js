@@ -38,7 +38,7 @@ const PlacesView = {
       <div class="split"><div class="split-top filters no-print">
         <input type="search" class="f-q" aria-label="ค้นหาสถานที่" placeholder="ค้นหาชื่อ ไทย/อังกฤษ/ญี่ปุ่น..." data-f="q" value="${esc(f.q)}">
         <details class="f-more" ${foldAttr("pfilter")}><summary>${I("sliders-horizontal")} ตัวกรอง <span class="badge b-info f-n" ${nOn ? "" : "hidden"}>${nOn}</span></summary><div class="row">
-        <select data-f="season"><option value="trip" ${f.season === "trip" ? "selected" : ""}>ช่วงทริปของฉัน (${tripMonths().map((m) => MO[m - 1]).join(", ")})</option><option value="" ${!f.season ? "selected" : ""}>ทุกฤดู</option>
+        <select data-f="season"><option value="trip" ${f.season === "trip" ? "selected" : ""}>ช่วงทริป (${tripMonths().map((m) => MO[m - 1]).join(", ")})</option><option value="" ${!f.season ? "selected" : ""}>ทุกฤดู</option>
           ${Object.entries(SEASONS).map(([k, s]) => `<option value="${k}" ${f.season === k ? "selected" : ""}>${s.name}</option>`).join("")}</select>
         <select data-f="region"><option value="">ทุกภูมิภาค</option>${regions.map((r) => `<option ${r === f.region ? "selected" : ""}>${esc(r)}</option>`).join("")}</select>
         <select data-f="tag"><option value="">ทุกความสนใจ</option>${Object.entries(INTEREST).map(([k, v]) => `<option value="${k}" ${k === f.tag ? "selected" : ""}>${v}</option>`).join("")}</select>

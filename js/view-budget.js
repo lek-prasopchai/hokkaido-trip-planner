@@ -30,8 +30,8 @@ const BudgetView = {
       add("fuel", "รถ", "น้ำมัน", "JPY", (carKm / D.kmPerL) * D.fuelYenL, `${fmtN(carKm)} กม. ÷ ${D.kmPerL} กม./ลิตร × ¥${D.fuelYenL}`);
       const cityNights = nightsList.filter((b, i) => HUB[b].city && carIdx.includes(i) && carIdx.includes(i + 1)).length;
       if (cityNights) add("park", "รถ", "ที่จอดรถในเมือง", "JPY", cityNights * D.parkingCityYen, `${cityNights} คืน × ¥${fmtN(D.parkingCityYen)}`);
-      const pick = carIdx[0] === 0 ? t.arrive : nightsList[carIdx[0] - 1], drop = carIdx[carIdx.length - 1] === days - 1 ? t.depart : nightsList[carIdx[carIdx.length - 1]];
-      if (hubOf(pick) !== hubOf(drop) && !(AIR[pick] && AIR[drop] && pick === drop)) add("oneway", "รถ", "ค่าคืนรถต่างสาขา", "JPY", D.oneWayDropYen, `รับ ${pname(pick).split(" ")[0]} คืน ${pname(drop).split(" ")[0]} (ประมาณ)`);
+      // รับ-คืนตามการ์ดรถเช่า (ไม่ปักหมุด = สนามบิน)
+      if (Planner.rent() && hubOf("rent:p") !== hubOf("rent:r")) add("oneway", "รถ", "ค่าคืนรถต่างสาขา", "JPY", D.oneWayDropYen, `รับ ${short(hubOf("rent:p"))} คืน ${short(hubOf("rent:r"))} (ประมาณ)`);
     }
     // รถไฟ/บัส: ค่าตั๋วรายเที่ยว (ประมาณ ¥28/กม. รวมค่าด่วนพิเศษ) เทียบ JR Pass ต่อผู้ใหญ่ 1 คน (เด็กครึ่งราคา)
     let jr = null;
