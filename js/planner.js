@@ -53,7 +53,17 @@ const Planner = {
     const tp = TEMPLATES.find((x) => x.id === tpId);
     const old = S.plan;
     S.trip.arrive = tp.in; S.trip.depart = tp.out;
-    S.plan = { tpl: tpId, bases: this.allocate(tp, tripNights()), days: [], hotels: old?.hotels || {}, custom: old?.custom || {}, wish: old?.wish || [] };
+    S.plan = { tpl: tpId, bases: this.allocate(tp, tripNights()), days: [], custom: old?.custom || {}, wish: old?.wish || [] };
+    this.fillPlan();
+  },
+  // แผนจากที่พักที่จองไว้: คืนที่ยังไม่จองใช้เมืองของคืนก่อนหน้า (ไม่มีก็คืนถัดไป)
+  createFromStays() {
+    const old = S.plan, N = tripNights(), hubs = Array.from({ length: N }, (_, k) => this.stayAt(k)?.hub);
+    hubs.forEach((h, k) => { if (!h) hubs[k] = hubs[k - 1] || hubs.slice(k).find(Boolean) || AIR[S.trip.arrive].hub; });
+    S.plan = { tpl: null, bases: hubs, days: [], custom: old?.custom || {}, wish: old?.wish || [] };
+    this.fillPlan();
+  },
+  fillPlan() {
     this.syncDays();
     this.autofillAll();
     S.plan.days.forEach((d, i) => { if (!d.items.some((it) => S.plan.custom[it.id]?.meal)) this.placeMeal(i); }); // หลังเติมที่เที่ยว ถึงรู้ว่าเที่ยงอยู่ตรงไหน
@@ -65,11 +75,13 @@ const Planner = {
     const P = S.plan, N = tripNights();
     S.trip.nights = N;
     if (!P) return;
-    P.hotels ||= {}; P.custom ||= {};
+    P.custom ||= {};
     const inPlan = new Set(P.days.flatMap((d) => (d.items || []).map((it) => it.id)));
     P.wish = (P.wish || []).filter((id) => point(id) && !inPlan.has(id)); // ที่ลงวันไปแล้วไม่ต้องค้างในรายการอยากไป
     while (P.bases.length < N) P.bases.push(P.bases[P.bases.length - 1] || "sapporo");
     P.bases.length = N;
+    if (P.hotels) { this.migrateHotels(P); delete P.hotels; }
+    P.bases.forEach((_, k) => { const s = this.stayAt(k); if (s) P.bases[k] = s.hub; }); // คืนที่จองแล้ว: เมืองตามที่พัก
     while (P.days.length < N + 1) P.days.push({ items: [] });
     P.days.length = N + 1;
     P.days.forEach((d) => { d.items ||= []; });
@@ -81,8 +93,22 @@ const Planner = {
   },
 
   ends(i) {
-    const P = S.plan, N = tripNights();
-    return { from: i === 0 ? S.trip.arrive : P.bases[i - 1], to: i === N ? S.trip.depart : P.bases[i] };
+    const N = tripNights();
+    return { from: i === 0 ? S.trip.arrive : this.nightId(i - 1), to: i === N ? S.trip.depart : this.nightId(i) };
+  },
+  // ที่พักคืนที่ k (คืนของวันที่ start+k): ที่จองไว้ ไม่งั้นเมืองจากรูท
+  stayAt(k) { const iso = this.dayIso(k); return (S.trip.stays || []).find((s) => s.from <= iso && iso < s.to); },
+  nightId(k) { return this.stayAt(k)?.id || S.plan.bases[k]; },
+  newStay(o) { const s = { id: "stay:" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), name: "", ...o }; (S.trip.stays ||= []).push(s); return s; },
+  // แผนเก่า: ที่พักผูกกับเมือง (plan.hotels) → ที่พักตามช่วงคืนที่พักเมืองนั้นติดกัน
+  migrateHotels(P) {
+    let cur = null;
+    P.bases.forEach((b, k) => {
+      const h = P.hotels[b], iso = this.dayIso(k);
+      if (!h || !(h.name || h.lat)) return void (cur = null);
+      if (cur?.hub === b) cur.to = addDays(iso, 1);
+      else cur = this.newStay({ hub: b, name: h.name || "", loc: h.loc || "", ...(h.lat ? { lat: h.lat, lng: h.lng } : {}), checkIn: h.checkIn, checkOut: h.checkOut, from: iso, to: addDays(iso, 1) });
+    });
   },
 
   // ค่าเริ่มต้นของทุกช่วง (เลือกแยกรายช่วงได้: it.m / day.hm) • วันนอกช่วงเช่ารถ = รถไฟ/บัส
@@ -168,7 +194,7 @@ const Planner = {
       return { h: d.h * f, km: d.km, drive: d.h * f, high: d.high && isWinter(iso || S.trip.start), risk: d.risk, est: d.est, noFuel: d.noFuel };
     }
     const ha = hubOf(a), hb = hubOf(b);
-    const local = (id, hub) => (!HUB[id] && !AIR[id] ? km(point(id), HUB[hub]) / 20 + 0.2 : 0);
+    const local = (id, hub) => (!HUB[id] && !AIR[id] && !stayOf(id) ? km(point(id), HUB[hub]) / 20 + 0.2 : 0);
     if (ha === hb) {
       const d = km(pa, pb);
       if (d * 1.3 <= 1.2) return { h: (d * 1.3 / 4 + 0.05) * slack, km: Math.round(d * 13) / 10, drive: 0, walk: true }; // ใกล้: เดินเร็วกว่ารอรถ
@@ -257,7 +283,7 @@ const Planner = {
     const arrive = time;
     tl.push({ t: time, kind: i === N ? "airport" : "hotel", id: to });
     if (nightI.length) { // เช็กอิน วางกระเป๋า ~30 นาที (ไม่ก่อนเวลาเช็กอิน) แล้วค่อยออกไปต่อ
-      const ci = parseT(hotelOf(toHub)?.checkIn || "15:00"), go = Math.max(time + 0.5, ci);
+      const ci = parseT(stayOf(to)?.checkIn || "15:00"), go = Math.max(time + 0.5, ci);
       tl.push({ t: time, kind: "info", ic: "hotel", text: `${go - time > 0.6 ? `รอเช็กอิน ${fmtT(ci)} (ฝากกระเป๋า/พักผ่อน)` : "เช็กอิน วางกระเป๋า อย่างน้อย ~30 นาที"} • อยากพักนานกว่านี้: ล็อกเวลาเริ่มของที่ถัดไป` });
       time = go;
     }
@@ -316,8 +342,8 @@ const Planner = {
     }
     [...new Set(tl.flatMap((x) => (x.kind === "move" && x.sparse) || []))].forEach((s) => add("info", `${s}: รถห่าง ตรวจตารางจริงแล้วล็อกเวลาจุดถัดไป`));
     // วันย้ายที่พัก: ออกจากที่พักหลังเวลาเช็กเอาท์
-    const hf = i > 0 && hubOf(from) !== toHub ? hotelOf(from) : null, dayStart = tl.find((x) => x.kind === "move")?.t;
-    const co = hf?.name || hf?.checkOut ? hf.checkOut || "10:00" : null; // ช่องเช็กเอาท์แสดง 10:00 เป็นค่าเริ่มต้น
+    const hf = i > 0 && from !== to ? stayOf(from) : null, dayStart = tl.find((x) => x.kind === "move")?.t;
+    const co = hf ? hf.checkOut || "10:00" : null; // ช่องเช็กเอาท์แสดง 10:00 เป็นค่าเริ่มต้น
     if (co && dayStart != null && !opts.live) {
       tl.unshift({ t: Math.min(dayStart, parseT(co)), kind: "checkout", id: from, co, go: dayStart });
       if (dayStart > parseT(co) + 0.1) add("warn", `ออกจากที่พัก ${fmtT(dayStart)} หลังเช็กเอาท์ ${co}: เช็กเอาท์ก่อนแล้วฝากกระเป๋า/ใส่รถ`);
@@ -326,8 +352,8 @@ const Planner = {
     if (lateRural) add("warn", "มีช่วงนั่งบัส/รถไฟท้องถิ่นหลัง 18:30 รถเที่ยวสุดท้ายต่างจังหวัดหมดเร็ว ตรวจตารางจริง");
     if (noFuel) add("info", `${noFuel} เติมน้ำมันก่อนออก`);
     else if (driveH > 2.5) add("info", "เติมน้ำมันให้เกินครึ่งถังก่อนออก ปั๊มต่างจังหวัดปิด ~19:00");
-    const ht = hotelOf(toHub);
-    if (i < N && ht?.checkIn && hubOf(from) !== toHub && arrive < parseT(ht.checkIn) - 0.25) add("info", `ถึงที่พัก ${fmtT(arrive)} ก่อนเวลาเช็กอิน ${ht.checkIn} ฝากกระเป๋าได้`);
+    const ht = stayOf(to);
+    if (i < N && ht?.checkIn && from !== to && arrive < parseT(ht.checkIn) - 0.25) add("info", `ถึงที่พัก ${fmtT(arrive)} ก่อนเวลาเช็กอิน ${ht.checkIn} ฝากกระเป๋าได้`);
     const md = iso.slice(5);
     if (md >= "12-30" || md <= "01-03") add("info", "ช่วงปีใหม่ ร้าน/สถานที่หลายแห่งปิด ตรวจก่อนไป");
     tl.filter((x) => x.kind === "move" && x.noTransit).forEach((x) => add("warn", `${short(x.from)} → ${short(x.to)} ไม่มีรถไฟ/บัสตรง ใช้รถ/แท็กซี่`));
@@ -355,8 +381,10 @@ const Planner = {
       else out.push({ lvl: "good", text: "ทุกวันเวลาพอ ไม่ขับตอนมืด ไม่เกินขีดที่ตั้งไว้" });
       const last = evals[evals.length - 1];
       if (last && last.mode === "car" && last.driveH > 2.5 && isWinter(last.iso)) out.push({ lvl: "warn", text: "วันบินกลับขับไกล ถ้าพายุหิมะอาจตกเครื่อง ลองพักคืนสุดท้ายใกล้สนามบิน" });
-      const missing = Object.keys(Object.fromEntries(S.plan.bases.map((b) => [b, 1]))).filter((b) => !hotelOf(b)?.name);
-      if (missing.length) out.push({ lvl: "info", text: `ยังไม่ได้กรอกที่พัก: ${missing.map(short).join(", ")} (ข้อมูลทริป › ที่พัก)` });
+      const open = S.plan.bases.map((b, k) => !this.stayAt(k) && `${k + 1}`).filter(Boolean);
+      if (open.length) out.push({ lvl: "info", text: `ยังไม่ได้กรอกที่พักคืนที่ ${open.join(", ")} (ข้อมูลทริป › ที่พัก)` });
+      const dup = S.plan.bases.map((b, k) => S.trip.stays.filter((s) => s.from <= this.dayIso(k) && this.dayIso(k) < s.to).length > 1 && `${k + 1}`).filter(Boolean);
+      if (dup.length) out.push({ lvl: "warn", text: `คืนที่ ${dup.join(", ")} มีที่พักซ้อนกัน 2 ที่ ตรวจวันเช็กอิน/เช็กเอาท์` });
     }
     return out;
   },

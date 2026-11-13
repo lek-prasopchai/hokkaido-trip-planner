@@ -87,33 +87,43 @@ const PlanView = {
         ${num("imm", b.imm, 15, 240, "ตม. + รับกระเป๋า (นาที)")}${num("dom", b.dom, 0, 120, "ลงจากเที่ยวบินในประเทศ (นาที)")}
         ${num("pass", b.pass, 0, 120, "ซื้อพาส/IC/ซิม (นาที)")}
         ${num("before", b.before, 60, 300, "ถึงสนามบินก่อนเครื่องออก ระหว่างประเทศ (นาที)")}${num("beforeDom", b.beforeDom, 30, 180, "…ในประเทศ (นาที)")}
-        <label class="f">วันแรก<select data-k="firstDay"><option value="auto" ${t.firstDay === "auto" ? "selected" : ""}>อัตโนมัติ (บินกลางคืน = เบาๆ)</option><option value="light" ${t.firstDay === "light" ? "selected" : ""}>เบาๆ 1 ที่</option><option value="full" ${t.firstDay === "full" ? "selected" : ""}>เที่ยวเต็มที่</option></select></label>
       </div></details>
-      ${fresh ? `</details><details class="fold-sec"><summary><b>${I("settings")} สไตล์และความสนใจ</b> <span class="mute">ไม่บังคับ: กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง</span></summary>` : `<h2 class="step-h"><b>2</b> สไตล์และการเดินทาง <small class="mute">กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง</small></h2>`}
+      ${fresh ? `</details><details class="fold-sec"><summary><b>${I("car")} การเดินทางและสไตล์</b> <span class="mute">ไม่บังคับ: รถเช่า วันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง</span></summary>` : `<h2 class="step-h"><b>2</b> การเดินทาง</h2>`}
       <div class="card">
-        ${t.mode === "car" ? `<div class="form"><label class="f">เคยขับบนหิมะไหม<select data-snow>${[["new", "ไม่เคย (เวลาขับ ×1.5)"], ["some", "เคยมาบ้าง (×1.3)"], ["dry", "ถนนส่วนใหญ่แห้ง (×1.1)"]].map(([v, l]) => `<option value="${v}" ${S.set.snow === v ? "selected" : ""}>${l}</option>`).join("")}</select></label></div>` : ""}
-        <div class="row" style="margin-top:14px;align-items:flex-start;gap:12px 24px">
+        ${fresh ? "" : `<div class="row" style="gap:6px 14px">${modeSeg}<small class="mute">ค่าเริ่มต้นของทุกช่วง เปลี่ยนรายช่วงได้ในแผนรายวัน</small></div>${modeHelp}`}
+        ${t.mode === "car" ? this.rentHtml() : `<p class="mute small" style="margin:${fresh ? 0 : "10px 0 0"}">นั่งรถไฟ/บัสทั้งทริป อยากเช่ารถบางช่วง: เลือก "ขับรถ" แล้วตั้งวันรับ-คืนรถ</p>`}
+      </div>
+      ${fresh ? "" : `<h2 class="step-h"><b>3</b> สไตล์และความสนใจ <small class="mute">กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง</small></h2>`}
+      <div class="card">
+        <div class="row" style="align-items:flex-end;gap:12px 24px">
           <div><div class="mute small">สไตล์</div><div class="seg" data-seg="pace">${Object.entries(PACE).map(([k, v]) => `<button data-v="${k}" class="${t.pace === k ? "on" : ""}">${v.name}</button>`).join("")}</div>
             <small class="mute" style="display:block;margin-top:4px">ขับไม่เกิน ${fmtH(pace().maxDrive)}/วัน · ${pace().maxStops} ที่ · จบวัน ${fmtT(pace().end)}</small></div>
-          <div><div class="mute small">การเดินทาง</div>${modeSeg}<small class="mute" style="display:block;margin-top:4px">ค่าเริ่มต้นของทุกช่วง เปลี่ยนรายช่วงได้ในแผนรายวัน</small>${fresh ? "" : modeHelp}</div>
+          <label class="f">วันแรก<select data-k="firstDay"><option value="auto" ${t.firstDay === "auto" ? "selected" : ""}>อัตโนมัติ (บินกลางคืน = เบาๆ)</option><option value="light" ${t.firstDay === "light" ? "selected" : ""}>เบาๆ 1 ที่</option><option value="full" ${t.firstDay === "full" ? "selected" : ""}>เที่ยวเต็มที่</option></select></label>
         </div>
         <div style="margin-top:14px"><div class="mute small">สนใจอะไร (เลือกได้หลายข้อ)</div>
           <div class="chips">${Object.entries(INTEREST).map(([k, v]) => `<button class="chip ${t.interests.includes(k) ? "on" : ""}" data-int="${k}">${v}</button>`).join("")}</div></div>
       </div>
-      ${t.mode === "car" ? this.rentHtml() : ""}
-      ${fresh ? "</details>" : ""}<h2 class="step-h" id="routes"><b>${fresh ? 2 : 3}</b> เลือกรูท</h2>
-      <details class="card routes-box" ${S.plan ? "" : "open"}><summary>${S.plan ? `<b>รูทตอนนี้: ${esc(TEMPLATES.find((x) => x.id === S.plan.tpl)?.name || "แผนที่จัดเอง")}</b> <span class="mute">กดเพื่อดู/เปลี่ยนรูท (สร้างแผนใหม่)</span>` : "<b>รูทแนะนำ</b> <span class=\"mute\">แผนที่เล็ก = เมืองที่พักและลำดับการเดินทาง</span>"}</summary>
-        <p class="mute">รูทคือลำดับเมืองที่จะพักแต่ละคืน เรียงตามความเหมาะกับข้อ 1-2 กดการ์ดแล้วระบบจะจัดที่พักรายคืนและที่เที่ยวรายวันให้ทันที แล้วพาไปหน้าแผนรายวัน${S.plan ? ` <b>มีแผนอยู่แล้ว: กดรูทใหม่ = แผนเดิมถูกแทนที่</b> (ที่พักที่กรอกไว้ยังอยู่ กด ↶ ย้อนได้) ถ้าแค่แก้วันหรือเที่ยวบิน ไม่ต้องกดรูทใหม่` : ""}</p>
-        <div class="grid g3">${Planner.rankTemplates().map((r) => this.tplCard(r)).join("")}
+      ${fresh ? "</details>" : ""}
+      <h2 class="step-h" id="stays"><b>${fresh ? 2 : 4}</b> ที่พักและรูท</h2>
+      ${S.plan ? this.staysHtml() + this.routesHtml() : this.routesHtml() + this.staysHtml()}${this.undoBtn()}`;
+  },
+
+  // รูทแนะนำ = ลำดับเมืองที่พัก (คืนที่จองที่พักแล้วใช้เมืองตามที่พัก)
+  routesHtml() {
+    const has = S.trip.stays?.length;
+    return `<details class="card routes-box" ${S.plan ? "" : "open"}><summary>${S.plan ? `<b>รูทตอนนี้: ${esc(TEMPLATES.find((x) => x.id === S.plan.tpl)?.name || "แผนที่จัดเอง")}</b> <span class="mute">กดเพื่อดู/เปลี่ยนรูท (สร้างแผนใหม่)</span>` : "<b>รูทแนะนำ</b> <span class=\"mute\">ยังไม่ได้จองที่พัก? ให้ระบบเลือกเมืองที่พักให้</span>"}</summary>
+        <p class="mute">รูทคือลำดับเมืองที่จะพักแต่ละคืน เรียงตามความเหมาะกับข้อด้านบน กดการ์ดแล้วระบบจะจัดเมืองที่พักและที่เที่ยวรายวันให้ทันที${has ? " • คืนที่จองที่พักแล้ว ใช้เมืองตามที่พักที่จอง" : ""}${S.plan ? ` <b>มีแผนอยู่แล้ว: กดรูทใหม่ = แผนเดิมถูกแทนที่</b> (ที่พักที่กรอกไว้ยังอยู่ กด ↶ ย้อนได้) ถ้าแค่แก้วันหรือเที่ยวบิน ไม่ต้องกดรูทใหม่` : ""}</p>
+        <div class="grid g3">${has ? `<div class="card tpl blank" data-fromstays tabindex="0" role="button"><h3>${I("hotel")} จัดแผนจากที่พักที่จองไว้</h3><p class="small">ใช้เมืองตามที่พัก ${S.trip.stays.length} ที่ แล้วเลือกที่เที่ยวรายวันให้</p></div>` : ""}
+          ${Planner.rankTemplates().map((r) => this.tplCard(r)).join("")}
           <div class="card tpl blank" data-blank tabindex="0" role="button"><h3>เริ่มแผนเปล่า</h3><p class="small">เลือกเมืองที่พักแต่ละคืนและที่เที่ยวเองทั้งหมด</p></div></div>
-      </details>${S.plan ? this.staysHtml() : ""}${this.undoBtn()}`;
+      </details>`;
   },
 
   // รถเช่า: วัน/เวลา/สาขาที่รับ-คืน (ไม่ปักหมุด = สนามบิน)
   rentHtml() {
     const t = S.trip, N = tripNights(), R = Planner.rent(), b = t.buf;
     const dayOpts = (v, min) => Array.from({ length: N + 1 }, (_, i) => i < min ? "" : `<option value="${i}" ${v === i ? "selected" : ""}>วันที่ ${i + 1} · ${thDate(Planner.dayIso(i), false)}</option>`).join("");
-    const side = (k, x, d, air, airNow, min) => `<div class="rent-side" data-rentk="${k}"><h3>${k === "p" ? "รับรถ" : "คืนรถ"}</h3><div class="form ed-form">
+    const side = (k, x, d, air, airNow, min) => `<div class="rent-side" data-rentk="${k}"><h4>${k === "p" ? "รับรถ" : "คืนรถ"}</h4><div class="form ed-form">
         <label class="f">วัน<select data-rent="day">${dayOpts(d, min)}</select></label>
         ${airNow ? `<p class="hint">${k === "p" ? "รับทันทีที่เครื่องลง" : "คืนก่อนเช็กอินเที่ยวบิน"}</p>` : `<label class="f">${k === "p" ? "เวลานัดรับ" : "ต้องคืนก่อน"}<input type="time" data-rent="time" value="${esc(x.time || "")}"></label>`}
         ${num(k === "p" ? "car" : "ret", k === "p" ? b.car : b.ret, 0, 180, k === "p" ? "ใช้เวลารับรถ (นาที)" : "คืนรถ + เติมน้ำมัน (นาที)")}
@@ -121,9 +131,10 @@ const PlanView = {
         <small class="hint full">${x.lat ? `${I("map-pin")} ใช้สาขาที่ปักหมุด` : `ไม่ปักหมุด = ${esc(names(air)[0])}`}</small>
       </div></div>`;
     const num = (k, v, min, max, lbl) => `<label class="f">${lbl}<input type="number" min="${min}" max="${max}" data-buf="${k}" value="${v}"></label>`;
-    return `<div class="card rent-card"><h2>${I("car")} รถเช่า</h2>
+    return `<div class="rent-box"><h3>${I("car")} รถเช่า</h3>
       <p class="mute small" style="margin:0 0 10px">ระบบใส่ "รับรถ/คืนรถ" ในแผนรายวันให้ วันก่อนรับและหลังคืนรถใช้รถไฟ/บัสเป็นค่าเริ่มต้น</p>
-      <div class="rent-grid">${side("p", R.p, R.pd, AIR[t.arrive], R.pAir, 0)}${side("r", R.r, R.rd, AIR[t.depart], R.rAir, R.pd)}</div></div>`;
+      <div class="rent-grid">${side("p", R.p, R.pd, AIR[t.arrive], R.pAir, 0)}${side("r", R.r, R.rd, AIR[t.depart], R.rAir, R.pd)}</div>
+      <div class="form" style="margin-top:12px"><label class="f">เคยขับบนหิมะไหม<select data-snow>${[["new", "ไม่เคย (เวลาขับ ×1.5)"], ["some", "เคยมาบ้าง (×1.3)"], ["dry", "ถนนส่วนใหญ่แห้ง (×1.1)"]].map(([v, l]) => `<option value="${v}" ${S.set.snow === v ? "selected" : ""}>${l}</option>`).join("")}</select></label></div></div>`;
   },
 
   tplCard({ tp, score, min, ideal, why }) {
@@ -292,10 +303,10 @@ const PlanView = {
         const sub = x.at ? [x.why, `ออก${home ? "จากที่พัก" : ""} ${fmtT(x.t + x.h)}`].filter(Boolean).join(" · ") : "ก่อนเวลาที่ล็อก";
         return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hourglass")}</span><span class="row-b"><b>${head}</b><small>${esc(sub)}</small></span></li>`;
       }
-      if (x.kind === "checkout") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span class="row-b"><b>เช็กเอาท์ ${esc(hotelOf(x.id)?.name || short(pname(x.id)))}</b><small>${x.go > parseT(x.co) + 0.1 ? `ฝากกระเป๋า/ใส่รถ ออกเดินทาง ${fmtT(x.go)}` : `เช็กเอาท์ภายใน ${esc(x.co)}`}</small></span></li>`;
-      if (x.kind === "back") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span class="row-b"><b>กลับถึงที่พัก ${esc(hotelOf(x.id)?.name || short(pname(x.id)))}</b></span></li>`;
+      if (x.kind === "checkout") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span class="row-b"><b>เช็กเอาท์ ${esc(stayOf(x.id)?.name || short(pname(x.id)))}</b><small>${x.go > parseT(x.co) + 0.1 ? `ฝากกระเป๋า/ใส่รถ ออกเดินทาง ${fmtT(x.go)}` : `เช็กเอาท์ภายใน ${esc(x.co)}`}</small></span></li>`;
+      if (x.kind === "back") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span class="row-b"><b>กลับถึงที่พัก ${esc(stayOf(x.id)?.name || short(pname(x.id)))}</b></span></li>`;
       if (x.kind === "hotel") {
-        const h = hotelOf(x.id), nx = e.tl[k0 + 1], rest = nx?.kind === "info" && nx.ic === "hotel" ? nx.text.split(" • ")[0] : "";
+        const h = stayOf(x.id), nx = e.tl[k0 + 1], rest = nx?.kind === "info" && nx.ic === "hotel" ? nx.text.split(" • ")[0] : "";
         return `<li class="stay"><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span class="row-b"><b>ถึงที่พัก ${esc(h?.name || pname(x.id))}</b>${h?.checkIn || rest ? `<small>${[h?.checkIn ? `เช็กอิน ${esc(h.checkIn)}` : "", esc(rest)].filter(Boolean).join(" · ")}</small>` : ""}</span></li>`;
       }
       if (x.kind === "info" && x.ic === "hotel" && e.tl[k0 - 1]?.kind === "hotel") return ""; // รวมไว้ในแถวที่พักแล้ว
@@ -564,7 +575,7 @@ const PlanView = {
     Modal.open(`<h2>วันที่ ${i + 1}</h2>
       <p class="mute small" style="margin:-4px 0 12px">${thDate(e.iso)} • ${I("sun")} ขึ้น ${fmtT(e.sun.rise)} ตก ${fmtT(e.sun.set)}${e.driveH ? ` • ${I("car")} ขับรวม ${fmtH(e.driveH)} · ${fmtN(Math.round(e.km))} กม.` : ""}</p>
       <div class="form">
-        ${i < N ? `<label class="f">คืนนี้พักเมือง <small>${hotelOf(S.plan.bases[i])?.name ? esc(hotelOf(S.plan.bases[i]).name) : "ใส่โรงแรมจริงในหน้าข้อมูลทริป"}</small><select data-mbase>${hubOptions(S.plan.bases[i])}</select></label>` : ""}
+        ${i < N ? (Planner.stayAt(i) ? `<p class="f">คืนนี้พัก <b>${esc(Planner.stayAt(i).name || short(Planner.stayAt(i).hub))}</b> <a class="small" href="#stays" onclick="Modal.close()">แก้ที่พัก</a></p>` : `<label class="f">คืนนี้พักเมือง <small>ยังไม่ได้จอง: กรอกในข้อมูลทริป › ที่พัก</small><select data-mbase>${hubOptions(S.plan.bases[i])}</select></label>`) : ""}
         ${i > 0 ? `<label class="f">เริ่มวัน <small>ไม่ใส่ก็ได้</small><input type="time" data-mstart value="${esc(day.start || "")}"></label>` : ""}</div>
       <div class="row" style="margin-top:12px">
         <button class="btn" data-mopt title="เรียงจุดใหม่ให้ระยะทางสั้นสุด: เริ่มจากที่พักเมื่อคืน ไปจุดที่ใกล้สุดก่อนทีละจุด จุดที่ล็อกเวลาแทรกตามเวลา">${I("arrow-up-down")} เรียงเส้นทางให้สั้นสุด</button>
@@ -628,24 +639,37 @@ const PlanView = {
   },
 
   // ================= ที่พัก (ส่วนท้ายของหน้าข้อมูลทริป) =================
+  // ที่พักที่จอง = ตัวกำหนดเมืองของคืนนั้น • คืนที่ยังไม่จองแสดงเมืองจากรูท (เปลี่ยนเมือง/กรอกที่พักได้)
   staysHtml() {
-    const blocks = [];
-    S.plan.bases.forEach((b, i) => { const l = blocks[blocks.length - 1]; if (l && l.b === b) l.n.push(i); else blocks.push({ b, n: [i] }); });
-    const ids = [...new Set(S.plan.bases)];
-    return `<h2 class="step-h" id="stays"><b>4</b> ที่พักที่จองแล้ว <small class="mute">ไม่บังคับ</small></h2><p class="mute small" style="margin:0 0 10px">ทำหลังจองแล้ว: ไม่กรอก ระบบใช้จุดกลางเมืองเป็นจุดเริ่ม/จบของแต่ละวันแทน • เมืองที่พักแต่ละคืนเลือกในหน้า <a href="#trip">แผนรายวัน</a> (คืนนี้พักเมือง)</p>
-      <details class="adv" data-keep="staytips" ${FOLD.staytips ? "open" : ""}><summary>วิธีกรอก และหลักเลือกที่พักหน้าหนาว</summary>
-        <ul class="small mute" style="margin:0 0 10px;padding-left:18px"><li><b>ชื่อ</b>: แสดงในแผนรายวัน "ถึงที่พัก…"</li><li><b>ตำแหน่ง</b>: ใช้เป็นจุดออกตอนเช้า/กลับตอนเย็นแทนกลางเมือง เวลาเดินทางแม่นขึ้น</li><li><b>เช็กอิน/เช็กเอาท์</b>: เตือนถ้าถึงก่อนเช็กอิน/ออกหลังเช็กเอาท์ และเวลาออกไปเที่ยวหลังเช็กอิน</li></ul><div class="callout info">${STAY_TIPS}</div></details>
-      <div class="stay-grid">${ids.map((id) => { const h = hotelOf(id) || {}, nights = blocks.filter((x) => x.b === id).flatMap((x) => x.n), hb = HUB[id]; return `<div class="card stay-card" data-hub="${id}">
-        <div class="row"><h2 style="margin:0">${I("hotel")} ${esc(hb.name)}</h2><span class="badge b-mute">${nights.length} คืน: ${nights.map((k) => thDate(Planner.dayIso(k), false).replace(/ \d+$/, "")).join(", ")}</span>${h.name ? '<span class="badge b-good">กรอกแล้ว</span>' : '<span class="badge b-warn">ยังไม่ได้กรอก</span>'}</div>
-        <div class="form ed-form stay-form">
-          <label class="f full">ชื่อที่พัก<input type="text" data-h="name" value="${esc(h.name || "")}" placeholder="ชื่อโรงแรม/เรียวกังที่จองไว้"></label>
-          ${LocPick.html("ตำแหน่งที่พัก", 'data-h="loc"', h.loc || "", hb)}
-          <small class="hint full lp-state">${h.lat ? `${I("map-pin")} ใช้พิกัดจริงคำนวณเวลาเดินทาง` : "ยังไม่มีพิกัด: ระบบใช้จุดกลางเมืองแทน"}</small>
-          <label class="f">เช็กอิน<input type="time" data-h="checkIn" value="${esc(h.checkIn || "15:00")}"></label>
-          <label class="f">เช็กเอาท์<input type="time" data-h="checkOut" value="${esc(h.checkOut || "10:00")}"></label>
-        </div>
-        <details class="hubinfo"><summary>ย่านที่ควรพัก ข้อดี ข้อควรรู้ • ¥${fmtN(hb.price[0])}–${fmtN(hb.price[2])}/ห้อง/คืน (ประมาณ)</summary>
-          <dl class="kv"><dt>พักย่านไหน</dt><dd>${esc(hb.stay)}</dd><dt>ข้อดี</dt><dd>${esc(hb.pros)}</dd><dt>ข้อควรรู้</dt><dd>${esc(hb.cons)}</dd><dt>ช่วงพีค</dt><dd>${esc(hb.peak)}</dd></dl></details></div>`; }).join("")}</div>`;
+    const t = S.trip, N = tripNights(), st = [...(t.stays || [])].sort((a, b) => a.from.localeCompare(b.from));
+    const nightTxt = (k0, n) => `คืน ${thDate(Planner.dayIso(k0), false)}${n > 1 ? ` - ${thDate(Planner.dayIso(k0 + n - 1), false)}` : ""} · ${n} คืน`;
+    const info = (hb) => `<details class="hubinfo"><summary>ย่านที่ควรพักใน${esc(short(hb.id))} • ¥${fmtN(hb.price[0])}–${fmtN(hb.price[2])}/ห้อง/คืน (ประมาณ)</summary>
+      <dl class="kv"><dt>พักย่านไหน</dt><dd>${esc(hb.stay)}</dd><dt>ข้อดี</dt><dd>${esc(hb.pros)}</dd><dt>ข้อควรรู้</dt><dd>${esc(hb.cons)}</dd><dt>ช่วงพีค</dt><dd>${esc(hb.peak)}</dd></dl></details>`;
+    const booked = (s) => { const n = daysBetween(s.from, s.to), out = s.to <= t.start || s.from >= t.end;
+      return `<div class="card stay-card" data-stay="${s.id}">
+      <div class="row"><h2 style="margin:0">${I("hotel")} ${esc(s.name || "ที่พัก")}</h2><span class="badge ${out ? "b-warn" : "b-mute"}">${out ? "อยู่นอกวันเที่ยว" : `${esc(short(s.hub))} · ${n} คืน`}</span>
+        <span class="spacer"></span><button type="button" class="btn small ghost" data-stdel="${s.id}" aria-label="ลบที่พักนี้" title="ลบที่พักนี้">${I("x")}</button></div>
+      <div class="form ed-form stay-form">
+        <label class="f full">ชื่อที่พัก<input type="text" data-s="name" value="${esc(s.name || "")}" placeholder="ชื่อโรงแรม/เรียวกังที่จองไว้"></label>
+        <label class="f">วันเช็กอิน<input type="date" data-s="from" min="${t.start}" max="${addDays(t.end, -1)}" value="${s.from}"></label>
+        <label class="f">วันเช็กเอาท์<input type="date" data-s="to" min="${addDays(t.start, 1)}" max="${t.end}" value="${s.to}"></label>
+        <label class="f">เวลาเช็กอิน<input type="time" data-s="checkIn" value="${esc(s.checkIn || "15:00")}"></label>
+        <label class="f">เวลาเช็กเอาท์<input type="time" data-s="checkOut" value="${esc(s.checkOut || "10:00")}"></label>
+        ${LocPick.html("ตำแหน่งที่พัก", 'data-s="loc"', s.loc || "", HUB[s.hub])}
+        <small class="hint full lp-state">${s.lat ? `${I("map-pin")} ใช้พิกัดจริงคำนวณเวลาเดินทาง` : "ยังไม่มีพิกัด: ระบบใช้จุดกลางเมืองแทน"}</small>
+        <label class="f">เมือง <small>ปักหมุดแล้วเลือกให้เอง</small><select data-s="hub">${hubOptions(s.hub)}</select></label>
+      </div>${info(HUB[s.hub])}</div>`; };
+    // คืนที่ยังไม่จอง (มีแผนแล้ว): รวมคืนติดกันที่เมืองเดียวกัน
+    const open = [];
+    if (S.plan) for (let k = 0; k < N; k++) { if (Planner.stayAt(k)) continue; const l = open[open.length - 1], b = S.plan.bases[k]; if (l && l.b === b && l.k0 + l.n === k) l.n++; else open.push({ b, k0: k, n: 1 }); }
+    const todo = (o) => `<div class="card stay-card todo"><div class="row"><h2 style="margin:0">${I("hotel")} ${esc(short(o.b))}</h2><span class="badge b-warn">ยังไม่ได้จอง</span><span class="mute small">${nightTxt(o.k0, o.n)}</span></div>
+      <div class="row" style="margin-top:10px"><label class="f">เมือง<select data-blockhub="${o.k0}:${o.n}">${hubOptions(o.b)}</select></label>
+        <button type="button" class="btn small primary" data-stadd="${o.k0}:${o.n}">${I("pencil")} กรอกที่พักที่จองแล้ว</button></div>${info(HUB[o.b])}</div>`;
+    const cards = [...st.map((s) => ({ at: s.from, h: booked(s) })), ...open.map((o) => ({ at: Planner.dayIso(o.k0), h: todo(o) }))].sort((a, b) => a.at.localeCompare(b.at));
+    return `<p class="mute small" style="margin:0 0 10px">จองแล้ว: กรอกชื่อ วันเช็กอิน-เช็กเอาท์ และปักหมุด ระบบใช้เป็นเมืองที่พักคืนนั้นและจุดเริ่ม/จบของแต่ละวัน • ยังไม่จอง: เลือกรูทด้านล่างให้ระบบเลือกเมืองให้</p>
+      <details class="adv" data-keep="staytips" ${FOLD.staytips ? "open" : ""}><summary>หลักเลือกที่พักหน้าหนาว</summary><div class="callout info">${STAY_TIPS}</div></details>
+      <div class="stay-grid">${cards.map((c) => c.h).join("")}</div>
+      <button type="button" class="btn" data-stnew style="margin:4px 0 14px">${I("hotel")} + เพิ่มที่พัก</button>`;
   },
 
   // ================= event =================
@@ -659,7 +683,8 @@ const PlanView = {
         if (!el._wait) { el._wait = true; el.addEventListener("blur", () => { el._wait = false; el.dispatchEvent(new Event("change", { bubbles: true })); }, { once: true }); }
         return;
       }
-      if (el.dataset.h) return this.setHotel(el);
+      if (el.dataset.s) return this.setStay(el);
+      if (el.dataset.blockhub) { const [k0, n] = el.dataset.blockhub.split(":").map(Number); return this.mut(() => { for (let k = k0; k < k0 + n; k++) S.plan.bases[k] = el.value; }); }
       if (el.dataset.rent) return this.setRent(el);
       this.mut(() => {
         if (el.dataset.k) {
@@ -676,17 +701,33 @@ const PlanView = {
     });
     setup.addEventListener("lp-done", () => App.renderAll());
     setup.addEventListener("click", (ev) => {
-      const el = ev.target.closest("button, [data-tpl], [data-blank]");
+      const el = ev.target.closest("button, [data-tpl], [data-blank], [data-fromstays]");
       if (!el) return;
       if (el.dataset.act === "undo") return Hist.undo();
       if (el.dataset.scroll) return $("#" + el.dataset.scroll).scrollIntoView({ behavior: "smooth" });
-      const t = S.trip;
+      const t = S.trip, d = el.dataset;
+      if (d.stdel) {
+        const s = stayOf(d.stdel);
+        if (s.name && !confirm(`ลบที่พัก ${s.name}?`)) return;
+        return this.mut(() => { t.stays = t.stays.filter((x) => x !== s); Planner.syncDays(); });
+      }
+      if (d.stadd || d.stnew !== undefined) { // กรอกที่พักของคืนที่ยังไม่จอง / เพิ่มที่พักใหม่ที่คืนแรกที่ยังว่าง
+        const N = tripNights(), free = Array.from({ length: N }, (_, k) => k).find((k) => !Planner.stayAt(k)) ?? 0;
+        const [k0, n] = d.stadd ? d.stadd.split(":").map(Number) : [free, 1];
+        let s;
+        this.mut(() => { s = Planner.newStay({ hub: S.plan?.bases[k0] || AIR[t.arrive].hub, from: Planner.dayIso(k0), to: Planner.dayIso(k0 + n) }); Planner.syncDays(); });
+        return setTimeout(() => $(`[data-stay="${s.id}"] [data-s="name"]`)?.focus(), 50);
+      }
+      if (d.fromstays !== undefined) {
+        if (S.plan && !confirm("จัดแผนใหม่จากที่พักที่จองไว้? แผนรายวันเดิมจะถูกแทนที่ (กด ↶ ย้อนได้)")) return;
+        this.mut(() => Planner.createFromStays()); location.hash = "#trip"; return;
+      }
       if (el.dataset.tpl) {
         if (S.plan && !confirm("สร้างแผนใหม่จากรูทนี้? แผนรายวันเดิมจะถูกแทนที่ (กด ↶ ย้อนได้)")) return;
         this.mut(() => Planner.create(el.dataset.tpl)); location.hash = "#trip";
       } else if (el.dataset.blank !== undefined) {
         if (S.plan && !confirm("เริ่มแผนเปล่า? แผนรายวันเดิมจะถูกแทนที่")) return;
-        this.mut(() => { S.plan = { tpl: null, bases: Array(tripNights()).fill(AIR[t.arrive].hub), days: [], hotels: S.plan?.hotels || {}, custom: S.plan?.custom || {}, wish: S.plan?.wish || [] }; Planner.syncDays(); });
+        this.mut(() => { S.plan = { tpl: null, bases: Array(tripNights()).fill(AIR[t.arrive].hub), days: [], custom: S.plan?.custom || {}, wish: S.plan?.wish || [] }; Planner.syncDays(); });
         location.hash = "#trip";
       } else if (el.parentElement.dataset.seg) {
         this.mut(() => { t[el.parentElement.dataset.seg] = el.dataset.v; });
@@ -695,7 +736,7 @@ const PlanView = {
         this.mut(() => { t.interests = t.interests.includes(k) ? t.interests.filter((x) => x !== k) : [...t.interests, k]; });
       }
     });
-    setup.addEventListener("keydown", (ev) => { if (ev.key === "Enter" && (ev.target.dataset.tpl || ev.target.dataset.blank !== undefined)) ev.target.click(); });
+    setup.addEventListener("keydown", (ev) => { if (ev.key === "Enter" && (ev.target.dataset.tpl || ev.target.dataset.blank !== undefined || ev.target.dataset.fromstays !== undefined)) ev.target.click(); });
 
     // ---- แผนรายวัน ----
     trip.addEventListener("change", (ev) => {
@@ -795,15 +836,17 @@ const PlanView = {
       if (f === "loc") { const ll = parseLatLng(x.loc); if (ll) Object.assign(x, ll); else { delete x.lat; delete x.lng; if (x.loc) toast("ลิงก์นี้ไม่มีพิกัด (ลิงก์แชร์แบบสั้น) ใช้ปุ่ม แตะบนแผนที่ แทน"); } }
     });
   },
-  setHotel(el) {
-    const k = el.dataset.h, hub = el.closest("[data-hub]")?.dataset.hub;
-    if (!hub) return;
+  setStay(el) {
+    const s = stayOf(el.closest("[data-stay]")?.dataset.stay), k = el.dataset.s;
+    if (!s) return;
     // ระหว่างปักหมุดบนแผนที่: บันทึกอย่างเดียว ไม่วาดหน้าใหม่ (ไม่งั้นแผนที่ถูกสร้างใหม่ ปิดไป หมุดหาย) วาดใหม่ตอนปิดแผนที่
     const picking = el.closest(".lp")?.querySelector(".lp-pick:not([hidden])");
     (picking ? (fn) => { Hist.push(); fn(); save(); } : (fn) => this.mut(fn))(() => {
-      const h = (S.plan.hotels[hub] ||= {});
-      h[k] = el.value.trim();
-      if (k === "loc") { const ll = parseLatLng(h.loc); if (ll) Object.assign(h, ll); else { delete h.lat; delete h.lng; if (h.loc) toast("ลิงก์นี้ไม่มีพิกัด (ลิงก์แชร์แบบสั้น) ใช้ปุ่ม แตะบนแผนที่ แทน"); } }
+      s[k] = el.value.trim();
+      if (k === "from" && s.to <= s.from) s.to = addDays(s.from, 1);
+      if (k === "to" && s.to <= s.from) s.from = addDays(s.to, -1);
+      if (k === "loc") { const ll = parseLatLng(s.loc); if (ll) Object.assign(s, ll, { hub: nearestHub(ll) }); else { delete s.lat; delete s.lng; if (s.loc) toast("ลิงก์นี้ไม่มีพิกัด (ลิงก์แชร์แบบสั้น) ใช้ปุ่ม แตะบนแผนที่ แทน"); } }
+      Planner.syncDays();
     });
   },
 };

@@ -901,8 +901,13 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
 /* รถเช่า: รับ | คืน สองคอลัมน์บนจอกว้าง */
 .rent-grid { display: grid; gap: 16px; align-items: start; }
 .rent-side { min-width: 0; }
-.rent-side h3 { margin: 0 0 6px; }
+.rent-box { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+.rent-box > h3 { margin: 0 0 4px; }
+.rent-side h4 { margin: 0 0 6px; }
 .rent-side .form { grid-template-columns: 1fr 1fr; }
 .rent-side .hint { margin: 0; align-self: end; }
 .rent-side .hint .i { width: 14px; height: 14px; color: var(--good); vertical-align: -2px; }
 @media (min-width: 1000px) { .rent-grid { grid-template-columns: 1fr 1fr; } }
+/* ที่พักที่ยังไม่จอง: การ์ดเตี้ย */
+.stay-card.todo { border-style: dashed; }
+.stay-card.todo .f { min-width: 160px; }

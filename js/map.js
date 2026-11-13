@@ -245,11 +245,11 @@ const TripMap = {
     });
     // ที่พัก + จำนวนคืน
     const nights = {};
-    S.plan.bases.forEach((b, i) => (nights[b] ||= []).push(i + 1));
+    S.plan.bases.forEach((b, i) => (nights[Planner.nightId(i)] ||= []).push(i + 1));
     Object.entries(nights).forEach(([id, ns]) => {
       const h = point(id);
       L.marker([h.lat, h.lng], { icon: labelIcon(`${I("hotel")} ${esc(short(id))} <small>${ns.length} คืน</small>`), zIndexOffset: 1000 })
-        .bindTooltip(`คืนที่ ${ns.join(", ")}`).addTo(M.layer);
+        .bindTooltip(`${h.hotel ? esc(h.hotel) + " · " : ""}คืนที่ ${ns.join(", ")}`).addTo(M.layer);
       if (focus === null) M.bounds.push([h.lat, h.lng]);
     });
     [...new Set([S.trip.arrive, S.trip.depart])].forEach((id) => {

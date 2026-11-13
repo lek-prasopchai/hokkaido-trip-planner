@@ -49,7 +49,7 @@ const Store = {
         start: "2027-01-15", end: "2027-01-22", nights: 7, arrive: "CTS", depart: "CTS", arriveTime: "08:30", departTime: "16:00",
         outFlight: { dep: "" }, inFlight: {}, domIn: false, domOut: false,
         pace: "balanced", interests: ["city", "food", "nature", "onsen"], mode: "car",
-        firstDay: "auto", buf: { ...BUF }, rent: {}, // รถเช่า { p: รับ, r: คืน } = { day, time, loc, lat, lng } ว่าง = สนามบิน วันแรก/วันสุดท้าย
+        firstDay: "auto", buf: { ...BUF }, rent: {}, stays: [], // stays = ที่พักที่จอง { id: "stay:…", hub, name, from, to (วันเช็กอิน/เช็กเอาท์), checkIn, checkOut, loc, lat, lng } // รถเช่า { p: รับ, r: คืน } = { day, time, loc, lat, lng } ว่าง = สนามบิน วันแรก/วันสุดท้าย
       },
       plan: null, budget: {}, budgetX: [], budgetHide: [], budgetOrder: [], budgetReserve: true, rate: 0.23, rateAt: 0,
       set: { lang: "en", langV: 2, theme: "auto", font: "m", slack: 0, maxDrive: "", dayStart: "", dayEnd: "", rateAuto: true, snow: "new", maxStops: "", autoMeal: true },
@@ -118,10 +118,12 @@ const HUB = Object.fromEntries(HUBS.map((h) => [h.id, h]));
 const AIR = Object.fromEntries(AIRPORTS.map((a) => [a.id, a]));
 const PLACE = Object.fromEntries(PLACES.map((p) => [p.id, p]));
 const isPlace = (id) => typeof id === "number";
-// ที่พักที่ผู้ใช้กรอก (พิกัดจริง) ทับจุดกลางเมืองของฐาน
-const hotelOf = (hub) => S.plan?.hotels?.[hub];
+// ที่พักที่จอง: id "stay:…" ใช้แทนเมืองในคืนนั้น (ชื่อ = เมือง, พิกัด = โรงแรมถ้าปักหมุด)
+const stayOf = (id) => typeof id === "string" && id.startsWith("stay:") ? (S.trip.stays || []).find((s) => s.id === id) : null;
 function point(id) {
-  if (HUB[id]) { const h = hotelOf(id); return h && h.lat ? { ...HUB[id], lat: h.lat, lng: h.lng, hotel: h.name } : HUB[id]; }
+  if (HUB[id]) return HUB[id];
+  const st = stayOf(id);
+  if (st) return { ...HUB[st.hub], ...(st.lat ? { lat: st.lat, lng: st.lng } : {}), hub: st.hub, hotel: st.name };
   if (id === "rent:p" || id === "rent:r") return Planner.rentPoint(id.slice(5));
   return AIR[id] || PLACE[id] || S.plan?.custom?.[id];
 }
@@ -192,7 +194,7 @@ const RoadTime = {
 // เวลาขับปกติ (ชม.): ใช้ตารางถ้ามี → ถนนจริงจาก OSRM → ประมาณจากเส้นตรง × 1.3
 function driveLeg(aId, bId) {
   if (aId === bId) return { km: 0, h: 0 };
-  const e = DRIVE_KEY[aId + ">" + bId];
+  const e = DRIVE_KEY[(stayOf(aId)?.hub || aId) + ">" + (stayOf(bId)?.hub || bId)];
   if (e) return { km: e.km, h: e.h, high: e.high, risk: e.risk, road: e.road, noFuel: e.noFuel, closed: e.closed };
   const a = point(aId), b = point(bId);
   if (!a?.lat || !b?.lat) return { km: 0, h: 0, none: true };
