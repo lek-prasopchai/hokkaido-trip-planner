@@ -129,6 +129,7 @@ function touchGestures(map) {
   el.addEventListener("click", (e) => { if (swallowClick) stop(e); }, true); // แตะครั้งที่สองไม่ปักหมุด/ไม่เปิดป๊อปอัป
 }
 
+const WISH_C = "#d9822b"; // หมุดที่อยากไป (ยังไม่ลงวัน)
 function refitMap(M) {
   M.map.invalidateSize();
   if (M.bounds && M.bounds.length) M.map.fitBounds(M.bounds, { padding: [40, 40], maxZoom: 11 });
@@ -153,7 +154,7 @@ function placePopup(p, extra = "") {
   const meta = `<span class="stars">${"★".repeat(p.stars)}</span> ${esc(p.type)} • ${I("timer")} ${esc(p.dur)} • ${esc(p.fee)}`;
   return `<div class="pop">${p.img ? `<img src="${p.img}" alt="" loading="lazy" onclick='Lightbox.place(${id})' title="กดดูรูปใหญ่${n > 1 ? ` (${n} รูป)` : ""}">` : ""}
     <b>${nameHtml(p)}</b><div>${meta}</div>
-    <div>${esc(p.highlight || p.signature || "")}</div>${extra}
+    <div class="hl">${esc(p.highlight || p.signature || "")}</div>${extra}
     <a href="#" onclick='PlacesView.detail(${id});return false'>รายละเอียด</a> • <a href="${mapsUrl(p.ja || p.name)}" target="_blank" rel="noopener">Google Maps</a></div>`;
 }
 
@@ -261,21 +262,26 @@ const TripMap = {
   },
 
 
-  drawPlaces(M, list) {
+  // keep = { c, z }: คงมุมมองเดิม (ใส่/เอาออกจากแผนแล้วไม่ต้องซูมหาใหม่)
+  drawPlaces(M, list, keep) {
     M.layer.clearLayers();
     M.bounds = [];
-    const inPlan = new Set(S.plan ? S.plan.days.flatMap((d) => d.items.map((it) => it.id)) : []);
+    M.markers = {};
+    const inPlan = new Set(S.plan ? S.plan.days.flatMap((d) => d.items.map((it) => it.id)) : []), wish = new Set(S.plan?.wish || []);
     // หมุดใกล้กันรวมเป็นกลุ่มบอกจำนวน ซูมเข้าแล้วแยกออก
     const group = L.markerClusterGroup({ maxClusterRadius: 38, showCoverageOnHover: false, spiderfyOnMaxZoom: true }).addTo(M.layer);
+    const pw = Math.max(140, Math.min(260, M.map.getSize().x - 125)); // จอแคบ: ป๊อปอัปไม่กว้างเกินแผนที่ (หักที่ปุ่มซูม 52 + ขอบป๊อปอัป ~60 + เว้นขวา)
     for (const p of list) {
       if (!p.lat) continue;
-      const border = inPlan.has(p.id) ? "#2f8a57" : p.stars === 3 ? "#c8374a" : p.stars === 2 ? "#2c6e9b" : "#9aa5b1";
+      const border = inPlan.has(p.id) ? "#2f8a57" : wish.has(p.id) ? WISH_C : p.stars === 3 ? "#c8374a" : p.stars === 2 ? "#2c6e9b" : "#9aa5b1";
       const ic = I(TAG_ICON[p.tags[0]] || "map-pin"), st = p.stars || 1;
-      L.marker([p.lat, p.lng], { icon: pin(ic, border, "emo s" + st), zIndexOffset: st * 100 })
-        .bindPopup(placePopup(p), { maxWidth: 260 }).addTo(group);
+      M.markers[p.id] = L.marker([p.lat, p.lng], { icon: pin(ic, border, "emo s" + st), zIndexOffset: st * 100 })
+        .bindPopup(placePopup(p, S.plan && !inPlan.has(p.id) ? `<div class="pop-add">${addSelect(p.id)}</div>` : ""), { maxWidth: pw, minWidth: Math.min(200, pw), autoPanPaddingTopLeft: L.point(52, 58), autoPanPaddingBottomRight: L.point(10, 50) }).addTo(group);
       M.bounds.push([p.lat, p.lng]);
     }
-    refitMap(M);
+    M.group = group; M.drawn = true;
+    if (keep) M.map.setView(keep.c, keep.z, { animate: false });
+    else refitMap(M);
   },
 
 };

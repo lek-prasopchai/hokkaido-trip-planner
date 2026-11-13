@@ -7,8 +7,9 @@ const addSelect = (id) => S.plan ? `<select data-addto="${esc(id)}" class="addse
 const listView = () => (S.set.view || (matchMedia("(max-width: 899px)").matches ? "list" : "card")) === "list";
 const viewToggle = (n) => `<div class="row list-head"><span class="mute">${n}</span><span class="spacer"></span><div class="seg no-print">${[["list", "รายการ"], ["card", "การ์ดมีรูป"]].map(([k, v]) => `<button data-view="${k}" class="${listView() === (k === "list") ? "on" : ""}">${v}</button>`).join("")}</div></div>`;
 // แถวสั้น: รูปเล็ก ชื่อ ข้อมูลบรรทัดเดียว ปุ่มใส่แผน • กดชื่อ/รูป = เปิดรายละเอียด
+const locBtn = (id) => `<button class="btn small loc" data-locate="${id}" title="ดูบนแผนที่" aria-label="ดูบนแผนที่">${I("map-pin")}</button>`;
 const lrow = (x, attr, sub, inPlan) => `<div class="lrow ${inPlan ? "in" : ""}"><span class="lth" ${attr}>${x.img ? `<img src="${x.img}" alt="" loading="lazy">` : I("map-pin")}</span>
-  <div class="lmain" ${attr}><b>${esc(names(x)[0])}</b><small>${sub}</small></div><div class="lact">${inPlan ? `<span class="badge b-good">วันที่ ${inPlan}</span>` : addSelect(x.id)}</div></div>`;
+  <div class="lmain" ${attr}><b>${esc(names(x)[0])}</b><small>${sub}</small></div><div class="lact">${x.lat ? locBtn(x.id) : ""}${inPlan ? `<span class="badge b-good">วันที่ ${inPlan}</span>` : addSelect(x.id)}</div></div>`;
 document.addEventListener("click", (e) => {
   const v = e.target.closest("[data-view]")?.dataset.view;
   if (!v) return;
@@ -28,9 +29,14 @@ const PlacesView = {
   M: null, lim: 30, f: { region: "", tag: "", stars: 0, q: "", season: "trip", transit: false, free: false, inplan: false, evening: false, sort: "stars" },
   F0: { region: "", tag: "", stars: 0, season: "trip", transit: false, free: false, inplan: false, evening: false, sort: "stars" },
 
-  render() {
+  // มุมมองแผนที่ตอนนี้ (ยังไม่วาดหมุด/พับอยู่ = null → ซูมให้เห็นผลทั้งหมด)
+  view() { const m = this.M?.map; return this.M?.drawn && m.getContainer().isConnected && m.getSize().x ? { c: m.getCenter(), z: m.getZoom() } : null; },
+
+  // refit: เปลี่ยนตัวกรอง/ล้างตัวกรอง = ชุดผลใหม่ ซูมให้เห็นทั้งหมด • นอกนั้น (ใส่/เอาออกจากแผน) คงมุมมองเดิม
+  render(refit = false) {
     const sec = $('[data-sec="places"]');
     const regions = [...new Set(PLACES.map((p) => p.region))], f = this.f;
+    this.keep = refit ? null : this.view();
     const nOn = Object.keys(this.F0).filter((k) => f[k] !== this.F0[k]).length;
     sec.innerHTML = `
       <div class="sec-head"><h1>สถานที่เที่ยว</h1>
@@ -42,7 +48,7 @@ const PlacesView = {
           ${Object.entries(SEASONS).map(([k, s]) => `<option value="${k}" ${f.season === k ? "selected" : ""}>${s.name}</option>`).join("")}</select>
         <select data-f="region"><option value="">ทุกภูมิภาค</option>${regions.map((r) => `<option ${r === f.region ? "selected" : ""}>${esc(r)}</option>`).join("")}</select>
         <select data-f="tag"><option value="">ทุกความสนใจ</option>${Object.entries(INTEREST).map(([k, v]) => `<option value="${k}" ${k === f.tag ? "selected" : ""}>${v}</option>`).join("")}</select>
-        <select data-f="stars"><option value="0">ทุกระดับ</option><option value="3" ${f.stars == 3 ? "selected" : ""}>★★★ เท่านั้น</option><option value="2" ${f.stars == 2 ? "selected" : ""}>★★ ขึ้นไป</option></select>
+        <select data-f="stars"><option value="0">ทุกระดับ</option><option value="3" ${f.stars == 3 ? "selected" : ""}>★★★ ไฮไลต์เท่านั้น</option><option value="2" ${f.stars == 2 ? "selected" : ""}>★★ ขึ้นไป</option></select>
         <select data-f="sort"><option value="stars" ${f.sort === "stars" ? "selected" : ""}>เรียง: ดังสุด</option><option value="near" ${f.sort === "near" ? "selected" : ""}>เรียง: ใกล้ที่พักในแผน</option></select>
       </div><div class="row" style="margin-top:6px">
         <label class="chk"><input type="checkbox" data-f="transit" ${f.transit ? "checked" : ""}> ไปด้วยรถไฟ/บัสได้</label>
@@ -52,10 +58,12 @@ const PlacesView = {
         <button class="linkbtn" data-freset ${nOn ? "" : "hidden"}>ล้างตัวกรอง</button></div></details></div>
       <aside class="split-side"><details class="card mapbox fold-card" ${foldAttr("pmap")} id="pMapCard"><summary><h2>${I("map")} แผนที่</h2></summary><div class="map" id="placesMap"></div>
       <div class="map-legend">${Object.entries(TAG_ICON).map(([k, v]) => `<span>${I(v)} ${INTEREST[k]}</span>`).join("")}
-        <span><i class="ring" style="border-color:#c8374a"></i>★★★</span><span><i class="ring" style="border-color:#2c6e9b"></i>★★</span><span><i class="ring" style="border-color:#2f8a57"></i>อยู่ในแผนแล้ว</span></div></details></aside>
+        <span><i class="ring" style="border-color:#c8374a"></i>★★★ ไฮไลต์</span><span><i class="ring" style="border-color:#2c6e9b"></i>★★ ดีถ้าผ่าน</span><span><i class="ring" style="border-color:#9aa5b1"></i>★ ถ้ามีเวลา</span>
+        <span><i class="ring" style="border-color:${WISH_C}"></i>อยากไป</span><span><i class="ring" style="border-color:#2f8a57"></i>อยู่ในแผนแล้ว</span>
+        <small class="mute legend-note">ดาว = ความเห็นของเว็บว่าคุ้มแค่ไหน ไม่ใช่คะแนนรีวิว (ดูรีวิวจริงที่ปุ่ม รีวิว Google Maps)</small></div></details></aside>
       <div class="split-main" id="placeList"></div></div>`;
     this.M = makeMap($("#placesMap"));
-    $("#pMapCard").addEventListener("toggle", (e) => { if (e.target.open) setTimeout(() => TripMap.drawPlaces(this.M, this.filtered()), 0); }); // สร้างตอนพับอยู่ ขนาด 0
+    $("#pMapCard").addEventListener("toggle", (e) => { if (e.target.open) setTimeout(() => TripMap.drawPlaces(this.M, this.filtered(), this.view() || this.keep), 0); }); // สร้างตอนพับอยู่ ขนาด 0
     this.list();
   },
 
@@ -80,18 +88,19 @@ const PlacesView = {
       <h4 data-detail="${p.id}">${nameHtml(p)}</h4>
       <div class="meta"><span>${I("map-pin")} ${esc(p.area)}</span><span>${I("timer")} ${esc(p.dur)}</span><span>${I("banknote")} ${esc(p.fee)}</span><span>${access(p) === "ok" ? I("train-front") + " รถไฟ/บัสได้" : access(p) === "car" ? I("car") + " ต้องมีรถ/ทัวร์" : I("bus") + " " + ACCESS_TXT[access(p)]}</span></div>
       <div class="hl">${esc(p.highlight)}</div>
-      <div class="act"><button class="btn small" data-detail="${p.id}">รายละเอียด</button><a class="btn small" href="${mapsUrl(p.ja || p.name)}" target="_blank" rel="noopener">${I("star")} รีวิว</a>
+      <div class="act"><button class="btn small" data-detail="${p.id}">รายละเอียด</button>${p.lat ? locBtn(p.id) : ""}<a class="btn small" href="${mapsUrl(p.ja || p.name)}" target="_blank" rel="noopener">${I("star")} รีวิว</a>
         ${plan[p.id] ? `<span class="badge b-good">อยู่ในวันที่ ${plan[p.id]}</span>` : addSelect(p.id)}</div></div>`;
   },
 
-  list() {
+  list(refit = false) {
     const L = this.filtered(), plan = inPlanMap();
     const rows = L.slice(0, this.lim);
     $("#placeList").innerHTML = `${viewToggle(L.length + " ที่")}${listView()
       ? `<div class="card llist">${rows.map((p) => lrow(p, `data-detail="${p.id}"`, `<span class="stars">${"★".repeat(p.stars)}</span> ${esc(p.area)} • ${esc(p.dur)} • ${esc(p.fee)}`, plan[p.id])).join("")}</div>`
       : `<div class="grid g3">${rows.map((p) => this.card(p, plan)).join("")}</div>`}
       ${L.length > this.lim ? `<div class="more"><button class="btn" data-more>แสดงเพิ่ม (เหลืออีก ${L.length - this.lim} ที่)</button></div>` : ""}`;
-    setTimeout(() => TripMap.drawPlaces(this.M, L), 30);
+    if (refit) this.keep = null;
+    setTimeout(() => TripMap.drawPlaces(this.M, L, refit ? null : this.view() || this.keep), 30);
   },
 
   // ---- หน้ารายละเอียด (ใช้ได้ทั้งสถานที่และจุดของฉัน) ----
@@ -116,7 +125,7 @@ const PlacesView = {
       <div class="row" style="gap:6px">${p.stars ? `<span class="stars">${"★".repeat(p.stars)}</span>` : ""}<span class="badge b-mute">${esc(p.type)}</span><span class="badge b-mute">${I("map-pin")} ${esc(p.area || HUB[p.hub]?.name || "")}</span>
         <span class="sea-inline">${seasonBadges(p)} ${monthRange(monthsOf(p))}</span>${plan[id] ? `<span class="badge b-good">อยู่ในวันที่ ${plan[id]}</span>` : ""}</div>
       <p class="d-hl">${esc(p.highlight || "")}</p>
-      ${S.plan && !plan[id] ? `<div class="row d-act">${addSelect(id)}</div>` : ""}
+      ${(S.plan && !plan[id]) || (App.cur === "places" && p.lat) ? `<div class="row d-act">${S.plan && !plan[id] ? addSelect(id) : ""}${App.cur === "places" && p.lat ? `<button class="btn small" data-locate="${p.id}">${I("map-pin")} ดูบนแผนที่</button>` : ""}</div>` : ""}
       <div class="facts">${fact("clock", "เวลาเปิด", esc(p.open))}${fact("banknote", "ค่าเข้า", esc(p.fee))}${fact("timer", "ใช้เวลา", esc(p.dur ? p.dur : fmtH(p.hours || 1)))}${fact("sun", "ช่วงที่ดีที่สุด", esc(p.best))}${transit ? fact("train-front", "รถไฟ/บัส", trTxt) : ""}</div>
       ${p.caution ? `<div class="callout">${I("triangle-alert")} ${esc(p.caution)}</div>` : ""}
       ${Object.keys(sn).length ? `<div class="sn">${Object.entries(SEASONS).filter(([k]) => sn[k]).map(([k, s]) => `<div><b>${I(s.ic)} ${s.name}</b> ${esc(sn[k])}</div>`).join("")}</div>` : ""}
@@ -128,17 +137,42 @@ const PlacesView = {
     d.onclick = (e) => {
       if (e.target === d || e.target.closest("[data-close]")) return d.close();
       if (e.target.dataset.gi) Lightbox.open(imgs, +e.target.dataset.gi, p.name);
+      if (e.target.closest("[data-locate]")) { d.close(); this.locate(id); }
     };
     d.onchange = (e) => { const v = e.target.value; if (e.target.dataset.addto && v !== "") { PlanView.addTo(id, /^(auto|wish)$/.test(v) ? v : +v); d.close(); } };
+  },
+
+  // ซูมไปที่สถานที่บนแผนที่แล้วเปิดป๊อปอัป (แผนที่พับอยู่: เปิดก่อน รอวาดหมุด)
+  locate(id) {
+    const card = $("#pMapCard"), wasOpen = card.open;
+    card.open = true;
+    const r = card.getBoundingClientRect(), top = 64;
+    if (r.top < top || r.top > innerHeight * 0.4) scrollTo({ top: r.top + scrollY - top, behavior: "smooth" });
+    setTimeout(() => {
+      const mk = this.M.markers?.[id];
+      if (!mk) return toast("ไม่อยู่ในผลค้นหาตอนนี้ ล้างตัวกรองแล้วลองใหม่");
+      // เริ่มระดับเมือง (เห็นที่ใกล้ๆ) ยังรวมกลุ่มอยู่ก็ซูมเพิ่มทีละขั้น โดยให้สถานที่อยู่กลางจอตลอด • สุดแล้วยังทับ: กางกลุ่มออก
+      const map = this.M.map, g = this.M.group, ll = mk.getLatLng();
+      const step = (z) => {
+        map.setView(ll, z, { animate: false });
+        setTimeout(() => {
+          const vp = g.getVisibleParent(mk);
+          if (vp === mk) return mk.openPopup();
+          if (z < map.getMaxZoom()) return step(z + 1);
+          setTimeout(() => { g.getVisibleParent(mk)?.spiderfy?.(); setTimeout(() => mk.openPopup(), 300); }, 250); // รอกลุ่มถูกวาดก่อนกาง
+        }, 80);
+      };
+      step(13);
+    }, wasOpen ? 0 : 120);
   },
 
   bind() {
     $('[data-sec="places"]').addEventListener("click", (e) => {
       if (e.target.closest("[data-more]")) { this.lim += 60; this.list(); }
-      if (e.target.closest("[data-freset]")) { Object.assign(this.f, this.F0); this.lim = 30; this.render(); } });
+      if (e.target.closest("[data-freset]")) { Object.assign(this.f, this.F0); this.lim = 30; this.render(true); } });
     this.syncF = () => { const n = Object.keys(this.F0).filter((k) => this.f[k] !== this.F0[k]).length, b = sec.querySelector(".f-n"); b.hidden = !n; b.textContent = n; sec.querySelector("[data-freset]").hidden = !n; };
     const sec = $('[data-sec="places"]');
-    const upd = (el) => { this.f[el.dataset.f] = el.type === "checkbox" ? el.checked : el.dataset.f === "stars" ? +el.value : el.value; this.lim = 30; this.list(); this.syncF(); };
+    const upd = (el) => { this.f[el.dataset.f] = el.type === "checkbox" ? el.checked : el.dataset.f === "stars" ? +el.value : el.value; this.lim = 30; this.list(true); this.syncF(); };
     sec.addEventListener("input", (ev) => { if (ev.target.dataset.f === "q") upd(ev.target); });
     sec.addEventListener("change", (ev) => {
       const el = ev.target;
@@ -146,8 +180,9 @@ const PlacesView = {
       if (el.dataset.addto && el.value !== "") { PlanView.addTo(+el.dataset.addto, /^(auto|wish)$/.test(el.value) ? el.value : +el.value); }
     });
     sec.addEventListener("click", (ev) => {
-      const el = ev.target.closest("[data-detail], [data-lb]");
-      if (el?.dataset.detail) this.detail(+el.dataset.detail);
+      const el = ev.target.closest("[data-locate], [data-detail], [data-lb]");
+      if (el?.dataset.locate) this.locate(+el.dataset.locate);
+      else if (el?.dataset.detail) this.detail(+el.dataset.detail);
       else if (el?.dataset.lb) Lightbox.place(+el.dataset.lb);
     });
   },

@@ -664,6 +664,7 @@ input[type=text], input[type=number], input[type=date], input[type=time], input[
 /* ป๊อปอัปบนแผนที่ตามธีม */
 .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--paper); color: var(--ink); }
 .leaflet-container a.leaflet-popup-close-button { color: var(--mute); }
+.leaflet-popup-content a { color: var(--ice); } /* ทับสีลิงก์ของ Leaflet ที่มืดเกินในโหมดมืด */
 /* ปุ่มจัดการรายการในวัน: แสดงตลอด ไม่ต้องชี้เมาส์ก่อน */
 @media (hover: hover) and (pointer: fine) and (min-width: 900px) { .tl li.it .it-tools { opacity: 1; } }
 /* จอกว้าง: ตัวกรองไม่ลอยตาม จะได้ไม่บังแผนที่ด้านขวา */
@@ -926,3 +927,23 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
 @media (max-width: 400px) { .rent-side .form { grid-template-columns: 1fr; } }
 /* ช่องที่ไม่ต้องกรอก (เช่น รับรถทันทีที่เครื่องลง): สูงเท่าช่องกรอก ข้อความจาง */
 .ed-form .ro { min-height: var(--ctl); display: flex; align-items: center; color: var(--mute); font-size: .875rem; }
+/* หน้าสถานที่: ปุ่มดูบนแผนที่ (ไอคอนอย่างเดียว) • ใส่ในแผนในป๊อปอัป • หมายเหตุดาวขึ้นบรรทัดเอง */
+.btn.loc { padding: 0; width: 34px; min-height: 34px; justify-content: center; flex: none; }
+.lact { display: flex; align-items: center; gap: 6px; }
+.pop-add { margin: 6px 0 4px; }
+.pop-add select { width: 100%; }
+.legend-note { flex-basis: 100%; }
+/* มือถือ: ปุ่มของแถวสถานที่ลงไปอยู่ใต้ชื่อ (ไม่บีบชื่อ) • ป๊อปอัปบนแผนที่เตี้ยลงให้พอกรอบแผนที่ */
+@media (max-width: 520px) {
+  .lrow { grid-template-columns: 52px minmax(0, 1fr); align-items: start; }
+  .lrow .lact { grid-column: 2; justify-content: flex-start; }
+  .lact .addsel { max-width: none; }
+}
+/* จอเล็ก/แท็บเล็ต: แผนที่สถานที่สูงขึ้น รูปในป๊อปอัปเตี้ยลง ให้ป๊อปอัปพอดีกรอบ */
+@media (max-width: 899px) {
+  #placesMap { height: 420px; }
+  .pop img { height: 72px; }
+}
+/* จอแคบมาก: ป๊อปอัปตัดคำโปรยออก (อ่านได้ในรายละเอียด) ให้พอดีกรอบแผนที่ */
+@media (max-width: 400px) { .pop .hl { display: none; } }
+@media (max-width: 359px) { .pop img { display: none; } }
