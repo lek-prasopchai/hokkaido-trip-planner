@@ -1,5 +1,6 @@
 // แท็บ "ทริปของฉัน": ภาพรวม + แผนรายวัน, ข้อมูลทริป/เที่ยวบิน, ที่พัก, โหมดวันนี้
-const LVL_TXT = { good: "เวลาพอ", warn: "ค่อนข้างแน่น", bad: "แน่น/เสี่ยง" };
+const LVL_TXT = { good: "เวลาพอ", warn: "มีข้อควรระวัง", bad: "มีจุดเสี่ยง" };
+const TIGHT_TXT = { warn: "ค่อนข้างแน่น", bad: "แน่นเกินไป" }; // ป้ายวัน: ใช้เมื่อข้อเตือนระดับนั้นเป็นเรื่องเวลา
 const LVL_ICON = { good: I("circle-check"), warn: I("triangle-alert"), bad: I("ban"), info: I("info"), fest: I("party-popper") };
 const hubOptions = (sel) => {
   const groups = {};
@@ -345,7 +346,7 @@ const PlanView = {
         <span class="wx" data-wx="${ref.lat},${ref.lng},${e.iso}"></span>
         <button class="btn small map-focus no-print" data-dmap="${i}" title="ดูเส้นทางวันนี้บนแผนที่" aria-label="ดูเส้นทางวันที่ ${i + 1} บนแผนที่">${I("map")}</button>
 </div>
-      <div class="day-meta day-route">${short(e.from) === short(e.to) ? `เที่ยวรอบ <b>${esc(short(e.to))}</b>` : `<b>${esc(short(e.from))}</b> → <b>${esc(short(e.to))}</b>`} · จบ ~${fmtT(e.end)}${e.leaveBy != null ? ` · <b>ออกจากที่พักไม่เกิน ${fmtT(e.leaveBy)}</b>` : ""}${e.lvl !== "good" ? ` · <b class="lvl-${e.lvl}">${LVL_TXT[e.lvl]}</b>` : ""}</div>
+      <div class="day-meta day-route">${short(e.from) === short(e.to) ? `เที่ยวรอบ <b>${esc(short(e.to))}</b>` : `<b>${esc(short(e.from))}</b> → <b>${esc(short(e.to))}</b>`} · จบ ~${fmtT(e.end)}${e.leaveBy != null ? ` · <b>ออกจากที่พักไม่เกิน ${fmtT(e.leaveBy)}</b>` : ""}${e.lvl !== "good" ? ` · <b class="lvl-${e.lvl}">${(e.tight ? TIGHT_TXT : LVL_TXT)[e.lvl]}</b>` : ""}</div>
       ${checks}
       <div class="day-body">
         <ul class="tl" data-day="${i}">${rows}</ul>${this.maybeBox(i)}

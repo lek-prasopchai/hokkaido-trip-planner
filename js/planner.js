@@ -230,7 +230,7 @@ const Planner = {
     const dayI = [rentP, ...items.filter((it) => !(it.night && i < N)), rentR].filter(Boolean), nightI = items.filter((it) => it.night && i < N);
     let time = opts.live ? opts.live.t : i === 0 ? this.leaveAirport(mode) : day.start ? parseT(day.start) : pc.start;
     const tl = [], checks = [];
-    const add = (lvl, text) => checks.push({ lvl, text });
+    const add = (lvl, text, tight) => checks.push({ lvl, text, tight }); // tight = เรื่องเวลาไม่พอ/ยาวเกิน (ป้าย "แน่น")
     let driveH = 0, kmSum = 0, darkRisk = false, prev = opts.live ? opts.live.from : from, lateRural = false, noFuel = false;
     const move = (toId, m = mode, it, home) => {
       const L = this.leg(prev, toId, m, iso);
@@ -266,7 +266,7 @@ const Planner = {
       if (it.at) {
         const at = atOf(it, night);
         if (time < at - 0.08) { if (at - time > 0.25) tl.push({ t: time, kind: "wait", h: at - time }); time = at; }
-        else if (time > at + 0.1) add("bad", `ไปถึง ${pname(it.id)} ${fmtT(time)} ไม่ทันเวลาที่ล็อกไว้ ${it.at}`);
+        else if (time > at + 0.1) add("bad", `ไปถึง ${pname(it.id)} ${fmtT(time)} ไม่ทันเวลาที่ล็อกไว้ ${it.at}`, true);
       }
       const h = this.dur(it, p);
       tl.push({ t: time, kind: "visit", id: it.id, h, night, it });
@@ -302,25 +302,25 @@ const Planner = {
     const end = time;
 
     // ---- ตรวจ ----
-    if (driveH > pc.maxDrive + 1.5) add("bad", `ขับ ${fmtH(driveH)}${isWinter(iso) ? " (รวมเผื่อหิมะ)" : ""} เกินขีด ${pc.maxDrive} ชม./วัน มาก`);
-    else if (driveH > pc.maxDrive) add("warn", `ขับ ${fmtH(driveH)} เกินขีด ${pc.maxDrive} ชม./วัน`);
+    if (driveH > pc.maxDrive + 1.5) add("bad", `ขับ ${fmtH(driveH)}${isWinter(iso) ? " (รวมเผื่อหิมะ)" : ""} เกินขีด ${pc.maxDrive} ชม./วัน มาก`, true);
+    else if (driveH > pc.maxDrive) add("warn", `ขับ ${fmtH(driveH)} เกินขีด ${pc.maxDrive} ชม./วัน`, true);
     if (darkRisk) add("bad", `ข้ามช่องเขา/ถนนเสี่ยงหลังมืด: ${darkRisk}`);
     else if (hm === "car" && isWinter(iso) && arrive > sun.set + 0.25 && i < N) add("warn", `ถึงที่พัก ${fmtT(arrive)} หลังพระอาทิตย์ตก (${fmtT(sun.set)}) ขับตอนมืดถนนเป็นน้ำแข็ง`);
     let leaveBy = null;
     if (i === N) {
       const need = this.needAirport(mode);
       leaveBy = need - this.leg(from, to, mode, iso).h;
-      if (arrive > need + 0.01) add("bad", `ถึงสนามบิน ${fmtT(arrive)} ช้าไป ต้องถึงก่อน ${fmtT(need)} (${mode === "car" ? "คืนรถ + " : ""}เช็กอิน${t.domOut ? "ในประเทศ" : "ระหว่างประเทศ"})`);
+      if (arrive > need + 0.01) add("bad", `ถึงสนามบิน ${fmtT(arrive)} ช้าไป ต้องถึงก่อน ${fmtT(need)} (${mode === "car" ? "คืนรถ + " : ""}เช็กอิน${t.domOut ? "ในประเทศ" : "ระหว่างประเทศ"})`, true);
       if (parseT(t.departTime) <= 11.5 && !opts.live) add("info", `เครื่องออก ${t.departTime} วันสุดท้ายแทบไม่มีเวลาเที่ยว ต้องออกจากที่พักไม่เกิน ${fmtT(leaveBy)}`);
     } else if (nightI.some((it) => it.at) && end > pc.end) add("info", `กลับถึงที่พัก ~${fmtT(end)} (ล็อกเวลาตอนค่ำไว้เอง)${end >= 24 ? " ข้ามเที่ยงคืน ตั้ง เริ่มวัน ของพรุ่งนี้ให้สายหน่อย" : ""}`);
-    else if (end > pc.end + 1) add("bad", `จบวัน ${fmtT(end)} ดึกเกินไปสำหรับสไตล์${pc.name}`);
-    else if (end > pc.end) add("warn", `จบวัน ${fmtT(end)} ค่อนข้างดึก`);
+    else if (end > pc.end + 1) add("bad", `จบวัน ${fmtT(end)} ดึกเกินไปสำหรับสไตล์${pc.name}`, true);
+    else if (end > pc.end) add("warn", `จบวัน ${fmtT(end)} ค่อนข้างดึก`, true);
     if (i === 0 && !opts.live) {
       if (R?.pAir && parseT(t.arriveTime) >= 20) add("warn", `เครื่องลง ${t.arriveTime} ร้านรถเช่าส่วนใหญ่ปิด ~20:00-21:00 คืนแรกพักใกล้สนามบินแล้วรับรถเช้า`);
       if (this.overnight()) add("info", "บินกลางคืนมา นอนน้อย วันแรกเที่ยวเบาๆ ฝากกระเป๋าที่โรงแรมได้ก่อนเช็กอิน");
     }
     const nVisit = items.filter((it) => isPlace(it.id)).length;
-    if (nVisit > pc.maxStops) add("warn", `${nVisit} ที่ในวันเดียว เยอะสำหรับสไตล์${pc.name}`);
+    if (nVisit > pc.maxStops) add("warn", `${nVisit} ที่ในวันเดียว เยอะสำหรับสไตล์${pc.name}`, true);
     const wd = WD[toDate(iso).getDay()];
     for (const it of items) {
       const p = point(it.id), nm = pname(it.id);
@@ -365,7 +365,8 @@ const Planner = {
     tl.filter((x) => x.kind === "move" && x.noTransit).forEach((x) => add("warn", `${short(x.from)} → ${short(x.to)} ไม่มีรถไฟ/บัสตรง ใช้รถ/แท็กซี่`));
     if (!items.length && i > 0 && i < N && hubOf(from) === toHub) add("info", "วันนี้ยังว่าง เพิ่มสถานที่ หรือพักผ่อน/เผื่อพายุ");
     const lvl = checks.some((c) => c.lvl === "bad") ? "bad" : checks.some((c) => c.lvl === "warn") ? "warn" : "good";
-    return { i, iso, from, to, mode, sun, tl, checks, lvl, driveH, km: kmSum, arrive, end, leaveBy, stops: items.filter((it) => isPlace(it.id)).map((it) => it.id), items };
+    const tight = checks.some((c) => c.tight && c.lvl === lvl);
+    return { i, iso, from, to, mode, sun, tl, checks, lvl, tight, driveH, km: kmSum, arrive, end, leaveBy, stops: items.filter((it) => isPlace(it.id)).map((it) => it.id), items };
   },
 
   evaluateAll() { return S.plan ? S.plan.days.map((_, i) => this.evaluate(i)) : []; },
@@ -382,8 +383,8 @@ const Planner = {
       if (this.rent() && hubOf("rent:p") !== hubOf("rent:r")) out.push({ lvl: "info", text: "รับ-คืนรถคนละเมือง มีค่าคืนรถต่างสาขา (one-way fee)" });
       const bad = evals.filter((e) => e.lvl === "bad").length, warn = evals.filter((e) => e.lvl === "warn").length;
       const days = (l) => "วันที่ " + evals.filter((e) => e.lvl === l).map((e) => e.i + 1).join(", ");
-      if (bad) out.push({ lvl: "bad", text: `${days("bad")} แน่น/เสี่ยงเกินไป` });
-      else if (warn) out.push({ lvl: "warn", text: `${days("warn")} ค่อนข้างแน่น` });
+      if (bad) out.push({ lvl: "bad", text: `${days("bad")} มีจุดที่ควรแก้ (ดูในการ์ดวัน)` });
+      else if (warn) out.push({ lvl: "warn", text: `${days("warn")} มีข้อควรระวัง (ดูในการ์ดวัน)` });
       else out.push({ lvl: "good", text: "ทุกวันเวลาพอ ไม่ขับตอนมืด ไม่เกินขีดที่ตั้งไว้" });
       const last = evals[evals.length - 1];
       if (last && last.mode === "car" && last.driveH > 2.5 && isWinter(last.iso)) out.push({ lvl: "warn", text: "วันบินกลับขับไกล ถ้าพายุหิมะอาจตกเครื่อง ลองพักคืนสุดท้ายใกล้สนามบิน" });
