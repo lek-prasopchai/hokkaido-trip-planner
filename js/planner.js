@@ -56,12 +56,12 @@ const Planner = {
     S.plan = { tpl: tpId, bases: this.allocate(tp, tripNights()), days: [], custom: old?.custom || {}, wish: old?.wish || [] };
     this.fillPlan();
   },
-  // แผนจากที่พักที่จองไว้: คืนที่ยังไม่จองใช้เมืองของคืนก่อนหน้า (ไม่มีก็คืนถัดไป)
-  createFromStays() {
+  // แผนจากที่พักที่จองไว้: คืนที่ยังไม่จองใช้เมืองของคืนก่อนหน้า (ไม่มีก็คืนถัดไป) • fill=false = แผนเปล่า ไม่เลือกที่เที่ยวให้
+  createFromStays(fill = true) {
     const old = S.plan, N = tripNights(), hubs = Array.from({ length: N }, (_, k) => this.stayAt(k)?.hub);
     hubs.forEach((h, k) => { if (!h) hubs[k] = hubs[k - 1] || hubs.slice(k).find(Boolean) || AIR[S.trip.arrive].hub; });
     S.plan = { tpl: null, bases: hubs, days: [], custom: old?.custom || {}, wish: old?.wish || [] };
-    this.fillPlan();
+    fill ? this.fillPlan() : this.syncDays();
   },
   fillPlan() {
     this.syncDays();

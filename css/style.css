@@ -911,3 +911,8 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
 /* ที่พักที่ยังไม่จอง: การ์ดเตี้ย */
 .stay-card.todo { border-style: dashed; }
 .stay-card.todo .f { min-width: 160px; }
+/* หน้าเริ่ม: เลือกวิธีเริ่ม 2 ทาง */
+.start-pick .tpl { display: flex; flex-direction: column; gap: 6px; }
+.start-pick .tpl h3 { display: flex; align-items: center; gap: 8px; margin: 0; }
+.start-pick .tpl p { margin: 0; flex: 1; }
+.start-pick .tpl .btn { align-self: flex-start; }
