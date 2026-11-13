@@ -83,21 +83,16 @@ const PlanView = {
       <p class="mute small" style="margin:8px 0 0">${N >= 1 ? `${N + 1} วัน ${N} คืน • ` : ""}มีตั๋วแล้ว? กรอกเที่ยวบินทีหลังได้ในหน้านี้</p></div>`;
     const transport = `<div class="card"><div class="row" style="gap:6px 14px">${modeSeg}<small class="mute">${t.mode === "car" ? "เช่าทั้งทริปหรือบางช่วงก็ได้: ตั้งวันรับ-คืนรถด้านล่าง วันที่ไม่มีรถใช้รถไฟ/บัสให้เอง" : "รถไฟ/บัสทั้งทริป เปลี่ยนบางช่วงเป็นแท็กซี่/เดินได้ในแผนรายวัน"}</small></div>${modeHelp}
         ${t.mode === "car" ? this.rentHtml() : `<p class="mute small" style="margin:10px 0 0">อยากเช่ารถแค่บางวัน (เช่น ช่วงชนบท): เลือก "เช่ารถ" แล้วตั้งวันรับ-คืนรถ</p>`}</div>`;
-    const style = `<div class="card">
-        <div class="row" style="align-items:flex-end;gap:12px 24px">
-          <div><div class="mute small">สไตล์</div><div class="seg" data-seg="pace">${Object.entries(PACE).map(([k, v]) => `<button data-v="${k}" class="${t.pace === k ? "on" : ""}">${v.name}</button>`).join("")}</div>
-            <small class="mute" style="display:block;margin-top:4px">ขับไม่เกิน ${fmtH(pace().maxDrive)}/วัน · ${pace().maxStops} ที่ · จบวัน ${fmtT(pace().end)}</small></div>
-          <label class="f">วันแรก<select data-k="firstDay"><option value="auto" ${t.firstDay === "auto" ? "selected" : ""}>อัตโนมัติ (บินกลางคืน = เบาๆ)</option><option value="light" ${t.firstDay === "light" ? "selected" : ""}>เบาๆ 1 ที่</option><option value="full" ${t.firstDay === "full" ? "selected" : ""}>เที่ยวเต็มที่</option></select></label>
-        </div>
-        <div style="margin-top:14px"><div class="mute small">สนใจอะไร (เลือกได้หลายข้อ) ใช้ตอนระบบเลือกที่เที่ยวให้</div>
-          <div class="chips">${Object.entries(INTEREST).map(([k, v]) => `<button class="chip ${t.interests.includes(k) ? "on" : ""}" data-int="${k}">${v}</button>`).join("")}</div></div>
-      </div>`;
+    const paceSeg = `<div><div class="seg" data-seg="pace">${Object.entries(PACE).map(([k, v]) => `<button data-v="${k}" class="${t.pace === k ? "on" : ""}">${v.name}</button>`).join("")}</div>
+            <small class="mute" style="display:block;margin-top:4px">ขับไม่เกิน ${fmtH(pace().maxDrive)}/วัน · ${pace().maxStops} ที่ · จบวัน ${fmtT(pace().end)}</small></div>`;
+    const style = `<div class="card"><div class="row" style="align-items:flex-end;gap:12px 24px"><div><div class="mute small">สไตล์</div>${paceSeg}</div>${this.firstDayHtml()}</div>
+        <div style="margin-top:14px">${this.interestsHtml()}</div></div>`;
     const back = `<button class="btn small ghost" data-start="">← เปลี่ยนวิธีเริ่ม</button>`;
     let body;
     if (S.plan) body = `${head(0, `${I("plane")} เที่ยวบิน`)}${flights}
       ${head(0, `${I("car")} การเดินทาง`)}${transport}
       ${head(0, `${I("hotel")} ที่พัก`, "", "stays")}${this.staysHtml()}
-      ${head(0, `${I("sliders-horizontal")} สไตล์และความสนใจ`, "กำหนดคำเตือน (ขับนาน จบวันดึก แน่นเกิน) และที่เที่ยวที่ระบบเลือกให้")}${style}
+      ${head(0, `${I("sliders-horizontal")} ความแน่นต่อวัน`, "ใช้ตรวจว่าวันไหนแน่นเกิน มีผลกับคำเตือนในแผนทันที")}<div class="card">${paceSeg}</div>
       ${this.routesHtml()}`;
     else if (how === "auto") body = `${back}
       ${head(1, "วันเที่ยว")}${dates}
@@ -121,9 +116,17 @@ const PlanView = {
 
   fromStaysCard() { return `<div class="card tpl blank" data-fromstays tabindex="0" role="button"><h3>${I("hotel")} จัดแผนจากที่พักที่จองไว้</h3><p class="small">ใช้เมืองตามที่พัก ${S.trip.stays.length} ที่ แล้วเลือกที่เที่ยวรายวันให้</p></div>`; },
 
-  // มีแผนแล้ว: เปลี่ยนรูท/เริ่มใหม่ (แทนที่แผนเดิม ใช้ไม่บ่อย พับไว้)
+  firstDayHtml() { const t = S.trip; return `<label class="f">วันแรก<select data-k="firstDay"><option value="auto" ${t.firstDay === "auto" ? "selected" : ""}>อัตโนมัติ (บินกลางคืน = เบาๆ)</option><option value="light" ${t.firstDay === "light" ? "selected" : ""}>เบาๆ 1 ที่</option><option value="full" ${t.firstDay === "full" ? "selected" : ""}>เที่ยวเต็มที่</option></select></label>`; },
+  interestsHtml() { const t = S.trip; return `<div class="mute small">สนใจอะไร (เลือกได้หลายข้อ)</div>
+      <div class="chips">${Object.entries(INTEREST).map(([k, v]) => `<button class="chip ${t.interests.includes(k) ? "on" : ""}" data-int="${k}">${v}</button>`).join("")}</div>`; },
+
+  // มีแผนแล้ว: ให้ระบบจัดใหม่ (ความสนใจ/วันแรกใช้ตรงนี้เท่านั้น) • เปลี่ยนรูท = แทนที่แผนเดิม ใช้ไม่บ่อย พับไว้
   routesHtml() {
-    return `<details class="card routes-box" style="margin-top:18px"><summary><b>${I("refresh-ccw")} เปลี่ยนรูท / เริ่มแผนใหม่</b> <span class="mute">รูทตอนนี้: ${esc(TEMPLATES.find((x) => x.id === S.plan.tpl)?.name || "แผนที่จัดเอง")}</span></summary>
+    return `<details class="card routes-box" data-keep="reroute" ${FOLD.reroute ? "open" : ""} style="margin-top:18px"><summary><b>${I("refresh-ccw")} ให้ระบบจัดใหม่ / เปลี่ยนรูท</b> <span class="mute">รูทตอนนี้: ${esc(TEMPLATES.find((x) => x.id === S.plan.tpl)?.name || "แผนที่จัดเอง")}</span></summary>
+        <p class="mute small" style="margin-top:10px">ความสนใจและวันแรกใช้ตอนระบบเลือกที่เที่ยวให้เท่านั้น แก้แล้วแผนเดิมไม่เปลี่ยน จนกว่าจะกดจัดใหม่ (หรือ "จัดวันนี้ใหม่" ทีละวันในแผนรายวัน)</p>
+        ${this.interestsHtml()}<div class="row" style="margin-top:10px;align-items:flex-end;gap:10px 16px">${this.firstDayHtml()}
+          <button class="btn" data-act="refillAll" title="ที่ใส่เองและที่ล็อกเวลาไว้จะไม่ถูกลบ">${I("refresh-ccw")} จัดที่เที่ยวใหม่ทั้งทริป (รูทเดิม)</button></div>
+        <h3 style="margin-top:18px">เปลี่ยนรูท</h3>
         <p class="mute"><b>กดการ์ด = แผนรายวันเดิมถูกแทนที่</b> (ที่พักที่กรอกไว้ยังอยู่ คืนที่จองแล้วใช้เมืองตามที่พัก กด ↶ ย้อนได้) ถ้าแค่แก้วันหรือเที่ยวบิน ไม่ต้องกดอะไรที่นี่</p>
         <div class="grid g3">${S.trip.stays?.length ? this.fromStaysCard() : ""}${Planner.rankTemplates().map((r) => this.tplCard(r)).join("")}
           <div class="card tpl blank" data-blank tabindex="0" role="button"><h3>เริ่มแผนเปล่า</h3><p class="small">เลือกเมืองที่พักแต่ละคืนและที่เที่ยวเองทั้งหมด</p></div></div>
@@ -715,6 +718,7 @@ const PlanView = {
       const el = ev.target.closest("button, [data-tpl], [data-blank], [data-fromstays], [data-start]");
       if (!el) return;
       if (el.dataset.act === "undo") return Hist.undo();
+      if (el.dataset.act === "refillAll") { if (!confirm("จัดที่เที่ยวใหม่ทั้งทริป? จุดที่ระบบเลือกให้จะถูกแทนที่ (ที่ใส่เอง/ล็อกเวลาไว้ยังอยู่ กด ↶ ย้อนได้)")) return; this.mut(() => Planner.autofillAll()); return toast("จัดที่เที่ยวใหม่แล้ว"); }
       if (el.dataset.scroll) return $("#" + el.dataset.scroll).scrollIntoView({ behavior: "smooth" });
       const t = S.trip, d = el.dataset;
       if (d.start !== undefined) { this.start = d.start || null; this.renderSetup(); return window.scrollTo(0, 0); }
