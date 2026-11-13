@@ -49,7 +49,10 @@ function makeMap(el, { small = false } = {}) {
     map.on("locationerror", () => toast("หาตำแหน่งไม่ได้ ต้องอนุญาตตำแหน่งในเบราว์เซอร์ก่อน"));
   }
   // ขยายเต็มจอ: ใช้ CSS ทับทั้งหน้าจอ (iPhone ไม่รองรับ Fullscreen API กับแผนที่)
-  btn(small ? "topright" : "bottomright", I("maximize-2"), "ขยายเต็มจอ", (a) => MapFull.toggle(map, a));
+  const full = btn(small ? "topright" : "bottomright", I("maximize-2"), "ขยายเต็มจอ", (a) => MapFull.toggle(map, a));
+  // หน้าวาดใหม่ระหว่างเต็มจอ (เช่น ใส่ในแผน/อยากไปจากป๊อปอัป): แผนที่อันใหม่ที่มาแทนต้องเต็มจอต่อ
+  const old = MapFull.cur?.map.getContainer();
+  if (el.id && old && !old.isConnected && old.id === el.id) MapFull.toggle(map, full.getContainer().firstChild);
   MAPS.push(M);
   return M;
 }
