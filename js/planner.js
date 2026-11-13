@@ -184,7 +184,8 @@ const Planner = {
   needAirport(mode) { const t = S.trip, b = t.buf; return parseT(t.departTime) - ((t.domOut ? b.beforeDom : b.before) + (this.rent()?.rAir ? b.ret : 0)) / 60; },
 
   // เวลาเดินทางระหว่าง 2 จุด ตามโหมด (รวมตัวคูณหิมะตามเดือน + เวลาเผื่อจากหน้าตั้งค่า)
-  leg(a, b, mode, iso) {
+  // force = ผู้ใช้เลือกโหมดนี้เอง: ไม่สลับให้อัตโนมัติ (จอดรถที่พักในเมือง / ใกล้มากเลยเดิน)
+  leg(a, b, mode, iso, force) {
     if (a === b) return { h: 0, km: 0, drive: 0 };
     const pa = point(a), pb = point(b);
     if (!pa?.lat || !pb?.lat) return { h: 0, km: 0, drive: 0 };
@@ -193,7 +194,7 @@ const Planner = {
     if (mode === "walk") return { h: (d0 * 1.3 / 4 + 0.05) * slack, km: Math.round(d0 * 10) / 10, drive: 0, walk: true };
     if (mode === "taxi") { const d = driveLeg(a, b), f = winterF(iso || S.trip.start, "some") * slack; return { h: d.h * f + 0.1, km: d.km, drive: 0, taxi: true, est: d.est }; }
     // ในเมืองใหญ่ (ซัปโปโร ฮาโกดาเตะ ฯลฯ) จอดรถที่พักแล้วเดิน/รถไฟใต้ดิน ไม่นับเป็นเวลาขับ
-    if (mode === "car" && HUB[ha0]?.city && ha0 === hubOf(b) && d0 < 8 && !AIR[a] && !AIR[b]) return { h: (d0 / 15 + 0.2) * slack, km: Math.round(d0), drive: 0, local: true, city: true };
+    if (mode === "car" && !force && HUB[ha0]?.city && ha0 === hubOf(b) && d0 < 8 && !AIR[a] && !AIR[b]) return { h: (d0 / 15 + 0.2) * slack, km: Math.round(d0), drive: 0, local: true, city: true };
     if (mode === "car") {
       const d = driveLeg(a, b), f = winterF(iso || S.trip.start) * slack;
       return { h: d.h * f, km: d.km, drive: d.h * f, high: d.high && isWinter(iso || S.trip.start), risk: d.risk, est: d.est, noFuel: d.noFuel };
@@ -202,7 +203,7 @@ const Planner = {
     const local = (id, hub) => (!HUB[id] && !AIR[id] && !stayOf(id) ? km(point(id), HUB[hub]) / 20 + 0.2 : 0);
     if (ha === hb) {
       const d = km(pa, pb);
-      if (d * 1.3 <= 1.2) return { h: (d * 1.3 / 4 + 0.05) * slack, km: Math.round(d * 13) / 10, drive: 0, walk: true }; // ใกล้: เดินเร็วกว่ารอรถ
+      if (d * 1.3 <= 1.2 && !force) return { h: (d * 1.3 / 4 + 0.05) * slack, km: Math.round(d * 13) / 10, drive: 0, walk: true }; // ใกล้: เดินเร็วกว่ารอรถ
       return { h: (d / 20 + 0.25) * slack, km: Math.round(d), local: true };
     }
     const t = transitPath(AIR[a] ? a : ha, AIR[b] ? b : hb);
@@ -234,12 +235,12 @@ const Planner = {
     const add = (lvl, text, tight) => checks.push({ lvl, text, tight }); // tight = เรื่องเวลาไม่พอ/ยาวเกิน (ป้าย "แน่น")
     let driveH = 0, kmSum = 0, darkRisk = false, prev = opts.live ? opts.live.from : from, lateRural = false, noFuel = false;
     // it.lh = ผู้ใช้กำหนดเวลาเดินทางมาที่นี่เอง (ชม.) แทนที่ระบบคำนวณ • auto = ค่าที่ระบบคำนวณ
-    const legTo = (toId, m, it) => {
-      const L = this.leg(prev, toId, m, iso);
+    const legTo = (toId, m, it, home) => {
+      const L = this.leg(prev, toId, m, iso, !!(it ? it.m : home === "back" ? day.bm : home ? day.hm : null));
       return it?.lh ? { ...L, h: it.lh, drive: L.h ? L.drive * it.lh / L.h : 0, est: false, fixed: true, auto: L.h } : L;
     };
     const move = (toId, m = mode, it, home) => {
-      const L = legTo(toId, m, it);
+      const L = legTo(toId, m, it, home);
       if (L.h > 0) {
         tl.push({ t: time, kind: "move", from: prev, to: toId, ...L, mode: m, it, home });
         if (m === "car") driveH += L.drive;
@@ -282,7 +283,7 @@ const Planner = {
     let wayMeal = null;
     dayI.forEach((it, k) => {
       if (P.custom[it.id]?.meal && !it.at && time < 11.25) { // ช่วงถัดไปยาวคร่อมเที่ยง → กินระหว่างทาง
-        const nx = dayI[k + 1], L = legTo(nx ? nx.id : to, nx ? nx.m || dm : day.hm || dm, nx);
+        const nx = dayI[k + 1], L = legTo(nx ? nx.id : to, nx ? nx.m || dm : day.hm || dm, nx, !nx);
         if (L.h >= 1.5 && time + L.h > 12.5) { wayMeal = it; return; }
       }
       lead(it, it.m || dm, false); move(it.id, it.m || dm, it); visit(it, false);
@@ -372,7 +373,7 @@ const Planner = {
     if (!items.length && i > 0 && i < N && hubOf(from) === toHub) add("info", "วันนี้ยังว่าง เพิ่มสถานที่ หรือพักผ่อน/เผื่อพายุ");
     const lvl = checks.some((c) => c.lvl === "bad") ? "bad" : checks.some((c) => c.lvl === "warn") ? "warn" : "good";
     const tight = checks.some((c) => c.tight && c.lvl === lvl);
-    return { i, iso, from, to, mode, sun, tl, checks, lvl, tight, driveH, km: kmSum, arrive, end, leaveBy, stops: items.filter((it) => isPlace(it.id)).map((it) => it.id), items };
+    return { i, iso, from, to, mode, sun, tl, checks, lvl, tight, leave: dayStart, driveH, km: kmSum, arrive, end, leaveBy, stops: items.filter((it) => isPlace(it.id)).map((it) => it.id), items };
   },
 
   evaluateAll() { return S.plan ? S.plan.days.map((_, i) => this.evaluate(i)) : []; },
