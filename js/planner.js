@@ -223,8 +223,9 @@ const Planner = {
     // รับ/คืนรถที่สาขาหรือวันอื่น: จุดอัตโนมัติ ต้นวัน (ล็อกเวลาได้) / ท้ายช่วงกลางวัน • ก่อนรับ/หลังคืน ใช้รถไฟ/บัส
     const R = this.rent(), b0 = t.buf;
     let dm = R && R.pd === i && !R.pAir ? "transit" : mode;
-    const rentP = R && R.pd === i && !R.pAir ? { id: "rent:p", dur: b0.car / 60, at: R.p.time || undefined, rent: "p" } : null;
-    const rentR = R && R.rd === i && !R.rAir ? { id: "rent:r", dur: b0.ret / 60, rent: "r" } : null;
+    // วิธีไปสาขารับ/คืนรถเลือกเองได้: day.rpm / day.rrm
+    const rentP = R && R.pd === i && !R.pAir ? { id: "rent:p", dur: b0.car / 60, at: R.p.time || undefined, rent: "p", m: day.rpm } : null;
+    const rentR = R && R.rd === i && !R.rAir ? { id: "rent:r", dur: b0.ret / 60, rent: "r", m: day.rrm } : null;
     const toHub = hubOf(to), ref = point(to);
     const sun = sunTimes(iso, ref.lat, ref.lng);
     const dayI = [rentP, ...items.filter((it) => !(it.night && i < N)), rentR].filter(Boolean), nightI = items.filter((it) => it.night && i < N);
@@ -232,8 +233,13 @@ const Planner = {
     const tl = [], checks = [];
     const add = (lvl, text, tight) => checks.push({ lvl, text, tight }); // tight = เรื่องเวลาไม่พอ/ยาวเกิน (ป้าย "แน่น")
     let driveH = 0, kmSum = 0, darkRisk = false, prev = opts.live ? opts.live.from : from, lateRural = false, noFuel = false;
-    const move = (toId, m = mode, it, home) => {
+    // it.lh = ผู้ใช้กำหนดเวลาเดินทางมาที่นี่เอง (ชม.) แทนที่ระบบคำนวณ • auto = ค่าที่ระบบคำนวณ
+    const legTo = (toId, m, it) => {
       const L = this.leg(prev, toId, m, iso);
+      return it?.lh ? { ...L, h: it.lh, drive: L.h ? L.drive * it.lh / L.h : 0, est: false, fixed: true, auto: L.h } : L;
+    };
+    const move = (toId, m = mode, it, home) => {
+      const L = legTo(toId, m, it);
       if (L.h > 0) {
         tl.push({ t: time, kind: "move", from: prev, to: toId, ...L, mode: m, it, home });
         if (m === "car") driveH += L.drive;
@@ -258,7 +264,7 @@ const Planner = {
     // ล็อกเวลา: รอที่จุดก่อนหน้า (ที่พัก/ที่เที่ยว) แล้วค่อยออก ให้ไปถึงก่อนเวลา ~10 นาที แทนไปยืนรอที่ปลายทาง
     const lead = (it, m, night) => {
       if (!it.at) return;
-      const gap = atOf(it, night) - 1 / 6 - this.leg(prev, it.id, m, iso).h - time;
+      const gap = atOf(it, night) - 1 / 6 - legTo(it.id, m, it).h - time;
       if (gap >= 0.08) { tl.push({ t: time, kind: "wait", h: gap, at: prev }); time += gap; }
     };
     const visit = (it, night) => {
@@ -276,7 +282,7 @@ const Planner = {
     let wayMeal = null;
     dayI.forEach((it, k) => {
       if (P.custom[it.id]?.meal && !it.at && time < 11.25) { // ช่วงถัดไปยาวคร่อมเที่ยง → กินระหว่างทาง
-        const nx = dayI[k + 1], L = this.leg(prev, nx ? nx.id : to, nx ? nx.m || dm : day.hm || dm, iso);
+        const nx = dayI[k + 1], L = legTo(nx ? nx.id : to, nx ? nx.m || dm : day.hm || dm, nx);
         if (L.h >= 1.5 && time + L.h > 12.5) { wayMeal = it; return; }
       }
       lead(it, it.m || dm, false); move(it.id, it.m || dm, it); visit(it, false);

@@ -304,12 +304,12 @@ const PlanView = {
         // ค่าแท็กซี่ฮอกไกโด: เริ่ม ~¥600-700 แล้ว ~¥300-400/กม. (ยังไม่รวมรอ/ติดหิมะ) ปัดหลักร้อย
         const fare = (b, k) => (Math.round((b + x.km * k) / 100) * 100).toLocaleString();
         const what = x.walk ? `เดิน ${fmtH(x.h)} · ${x.km} กม.` : x.taxi ? `แท็กซี่ ${fmtH(x.h)} · ${x.km} กม. · ≈¥${fare(600, 300)}-${fare(700, 400)}` : x.city ? `เดิน/รถไฟใต้ดิน/แท็กซี่ ${fmtH(x.h)} (จอดรถไว้ที่พัก)` : x.mode === "car" ? `ขับ ${fmtH(x.h)} · ${x.km} กม.${x.est ? " (≈)" : ""}` : x.noTransit ? `ไม่มีรถไฟ/บัสตรง ${fmtH(x.h)} (แท็กซี่/รถ)` : x.local ? `รถไฟ/บัสในเมือง ${fmtH(x.h)} (≈)` : `รถไฟ/บัส ${fmtH(x.h)}${x.by ? " · " + esc(x.by.join(" → ")) : ""}`;
-        const k = x.it ? S.plan.days[i].items.indexOf(x.it) : -1, cur = k >= 0 ? x.it.m : x.home === "back" ? day.bm : x.home ? day.hm : null;
+        const rk = x.it?.rent, k = x.it && !rk ? S.plan.days[i].items.indexOf(x.it) : -1, cur = rk ? day[`r${rk}m`] : k >= 0 ? x.it.m : x.home === "back" ? day.bm : x.home ? day.hm : null;
         const lm = LEG_MODE[cur || x.mode];
         // แสดงแค่ไอคอน มี select โปร่งใสทับไว้ให้กดเปลี่ยน
-        const pick = k >= 0 || x.home ? `<span class="legmode no-print ${cur ? "set" : ""}" title="วิธีเดินทางช่วงนี้: ${esc(lm.name)}${cur ? "" : " (ค่าเริ่มต้น)"}: กดเพื่อเปลี่ยน">${mvIcon(x)}<select ${k >= 0 ? `data-legmode="${i}:${k}"` : x.home === "back" ? `data-bm="${i}"` : `data-hm="${i}"`} aria-label="วิธีเดินทางช่วงนี้ ไป ${esc(short(x.to))}">${legOpts(cur, cur ? Planner.modeOf(i) : x.mode)}</select></span>` : "";
+        const pick = k >= 0 || x.home || rk ? `<span class="legmode no-print ${cur ? "set" : ""}" title="วิธีเดินทางช่วงนี้: ${esc(lm.name)}${cur ? "" : " (ค่าเริ่มต้น)"}: กดเพื่อเปลี่ยน">${mvIcon(x)}<select ${rk ? `data-rentm="${i}:${rk}"` : k >= 0 ? `data-legmode="${i}:${k}"` : x.home === "back" ? `data-bm="${i}"` : `data-hm="${i}"`} aria-label="วิธีเดินทางช่วงนี้ ไป ${esc(short(x.to))}">${legOpts(cur, !cur ? x.mode : rk ? (rk === "p" ? "transit" : "car") : Planner.modeOf(i))}</select></span>` : "";
         // ปลายทางคือแถวถัดไปอยู่แล้ว: แถวเดินทางเหลือแค่วิธีไปและเวลา
-        return `<li class="mv"><span class="tm"></span><span class="ic">${pick || mvIcon(x)}</span><span class="move">${what}${x.high ? `<br><span class="risk">${I("triangle-alert")} ${esc(x.risk)}</span>` : ""}</span></li>`;
+        return `<li class="mv"><span class="tm"></span><span class="ic">${pick || mvIcon(x)}</span><span class="move">${x.fixed ? what.replace(" (≈)", "") + " (กำหนดเอง)" : what}${x.high ? `<br><span class="risk">${I("triangle-alert")} ${esc(x.risk)}</span>` : ""}</span></li>`;
       }
       if (x.kind === "visit" && x.it.rent) return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("car")}</span><span class="row-b"><b>${esc(pname(x.id))}</b><small>${fmtH(x.h)}${x.it.at ? ` · นัด ${esc(x.it.at)}` : ""} · แก้ใน <a href="#setup">ข้อมูลทริป</a></small></span></li>`;
       if (x.kind === "visit") return this.itemRow(e, x);
@@ -522,11 +522,13 @@ const PlanView = {
   // ---- กล่องแก้รายการ: ล็อกเวลา เวลาที่ใช้ หลังเช็กอิน โน้ต ย้ายวัน ----
   editItem(i, idx) {
     const it = S.plan.days[i].items[idx], p = point(it.id), N = tripNights(), cu = S.plan.custom[it.id];
+    const mv = Planner.evaluate(i).tl.find((x) => x.kind === "move" && x.it === it), auto = mv && (mv.auto ?? mv.h);
     // คำอธิบายอยู่ใต้ช่อง (ไม่อยู่ในหัวช่อง) ช่องคู่กันจะตรงแนว • จอแคบเรียงคอลัมน์เดียว
     Modal.open(`<h2>${nameHtml(p)}</h2><div class="form ed-form">
       ${cu ? `<label class="f full">ชื่อ<input type="text" id="eName" value="${esc(cu.name)}"></label>
       <div class="full">${LocPick.html("ตำแหน่ง", 'id="eLoc"', cu.lat ? `${cu.lat}, ${cu.lng}` : cu.url || "", point(Planner.ends(i).to))}</div>` : ""}
       <label class="f">วิธีไปที่นี่<select id="eMode">${legOpts(it.m, Planner.modeOf(i))}</select></label>
+      <div class="f">เวลาเดินทางมาที่นี่${durField("eLeg", it.lh, auto)}<small class="hint">${auto ? `ระบบคำนวณ ${fmtH(auto)} • ` : ""}เว้นว่าง = ให้ระบบคำนวณ</small></div>
       <label class="f">ย้ายไปวัน<select id="eDay">${S.plan.days.map((_, k) => `<option value="${k}" ${k === i ? "selected" : ""}>วันที่ ${k + 1} (${esc(short(Planner.ends(k).to))})</option>`).join("")}</select></label>
       <label class="f">ล็อกเวลาเริ่ม<input type="time" id="eAt" value="${esc(it.at || "")}"><small class="hint">ใช้เมื่อจองรอบหรือจองร้านไว้</small></label>
       <div class="f">เวลาที่ใช้${durField("eDur", it.dur, p.hours ?? p.dur ?? 1)}<small class="hint">ปกติ ${fmtH(p.hours ?? p.dur ?? 1)}</small></div>
@@ -550,7 +552,7 @@ const PlanView = {
       }
       this.mut(() => {
         const d = S.plan.days[i].items;
-        Object.assign(it, { m: $("#eMode").value || undefined, at: at || undefined, dur: dur ?? undefined, note: $("#eNote").value.trim() || undefined, night: $("#eNight")?.checked || undefined, maybe: $("#eMaybe").checked || undefined, u: true });
+        Object.assign(it, { m: $("#eMode").value || undefined, lh: durVal("eLeg") ?? undefined, at: at || undefined, dur: dur ?? undefined, note: $("#eNote").value.trim() || undefined, night: $("#eNight")?.checked || undefined, maybe: $("#eMaybe").checked || undefined, u: true });
         if (to !== i) { d.splice(d.indexOf(it), 1); it.night = undefined; Planner.insertBest(to, it); }
       });
       Modal.close();
@@ -771,7 +773,8 @@ const PlanView = {
       else if (d.dstart) this.mut(() => { S.plan.days[+d.dstart].start = el.value || undefined; });
       else if (d.hm) this.mut(() => { S.plan.days[+d.hm].hm = el.value || undefined; });
       else if (d.bm) this.mut(() => { S.plan.days[+d.bm].bm = el.value || undefined; });
-      else if (d.legmode) { const [i, k] = d.legmode.split(":").map(Number); this.mut(() => { const it = S.plan.days[i].items[k]; it.m = el.value || undefined; it.u = true; }); }
+      else if (d.rentm) { const [i, k] = d.rentm.split(":"); this.mut(() => { S.plan.days[+i][`r${k}m`] = el.value || undefined; }); }
+      else if (d.legmode) { const [i, k] = d.legmode.split(":").map(Number); this.mut(() => { const it = S.plan.days[i].items[k]; it.m = el.value || undefined; it.lh = undefined; it.u = true; }); } // เปลี่ยนวิธี = เวลาที่กำหนดเองไม่ตรงแล้ว
       else if (d.dnote) { S.plan.days[+d.dnote].note = el.value; save(); }
       else if (d.dplanb) { S.plan.days[+d.dplanb].planB = el.value; save(); }
     });
