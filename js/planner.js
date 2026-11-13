@@ -239,7 +239,9 @@ const Planner = {
       const L = this.leg(prev, toId, m, iso, !!(it ? it.m : home === "back" ? day.bm : home ? day.hm : null));
       return it?.lh ? { ...L, h: it.lh, drive: L.h ? L.drive * it.lh / L.h : 0, est: false, fixed: true, auto: L.h } : L;
     };
+    let noCar = false; // เลือกขับรถตอนที่ไม่มีรถ (นอกช่วงเช่า / ก่อนรับ / หลังคืน)
     const move = (toId, m = mode, it, home) => {
+      if (m === "car" && dm !== "car") noCar = true;
       const L = legTo(toId, m, it, home);
       if (L.h > 0) {
         tl.push({ t: time, kind: "move", from: prev, to: toId, ...L, mode: m, it, home });
@@ -361,6 +363,7 @@ const Planner = {
       if (dayStart > parseT(co) + 0.1) add("warn", `ออกจากที่พัก ${fmtT(dayStart)} หลังเช็กเอาท์ ${co}: เช็กเอาท์ก่อนแล้วฝากกระเป๋า/ใส่รถ`);
       else if (mode === "transit" && dayI.some((it) => hubOf(it.id) === hubOf(from))) add("info", `เช็กเอาท์ ${co} แล้วเที่ยว ${short(from)} ต่อ: ฝากกระเป๋าที่ล็อกเกอร์สถานี/โรงแรม`);
     }
+    if (noCar) add("warn", "เลือกขับรถในช่วงที่ไม่มีรถเช่า: เปลี่ยนเป็นแท็กซี่/รถไฟ หรือขยายช่วงเช่ารถ (ข้อมูลทริป › การเดินทาง)");
     if (lateRural) add("warn", "มีช่วงนั่งบัส/รถไฟท้องถิ่นหลัง 18:30 รถเที่ยวสุดท้ายต่างจังหวัดหมดเร็ว ตรวจตารางจริง");
     if (noFuel) add("info", `${noFuel} เติมน้ำมันก่อนออก`);
     else if (driveH > 2.5) add("info", "เติมน้ำมันให้เกินครึ่งถังก่อนออก ปั๊มต่างจังหวัดปิด ~19:00");
@@ -399,6 +402,8 @@ const Planner = {
       if (open.length) out.push({ lvl: "info", text: `ยังไม่ได้กรอกที่พักคืนที่ ${open.join(", ")} (ข้อมูลทริป › ที่พัก)` });
       const dup = S.plan.bases.map((b, k) => S.trip.stays.filter((s) => s.from <= this.dayIso(k) && this.dayIso(k) < s.to).length > 1 && `${k + 1}`).filter(Boolean);
       if (dup.length) out.push({ lvl: "warn", text: `คืนที่ ${dup.join(", ")} มีที่พักซ้อนกัน 2 ที่ ตรวจวันเช็กอิน/เช็กเอาท์` });
+      const outS = S.trip.stays.filter((s) => s.from < S.trip.start || s.to > S.trip.end); // เช็กอินก่อนวันลง / เช็กเอาท์หลังวันบินกลับ
+      if (outS.length) out.push({ lvl: "warn", text: `ที่พักมีวันอยู่นอกช่วงทริป: ${outS.map((s) => s.name || short(s.hub)).join(", ")} ตรวจวันเช็กอิน/เช็กเอาท์ (ข้อมูลทริป › ที่พัก)` });
     }
     return out;
   },

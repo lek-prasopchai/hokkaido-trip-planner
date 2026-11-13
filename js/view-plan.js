@@ -186,7 +186,6 @@ const PlanView = {
       <div class="card overview"><div class="row"><h1 style="margin:0">แผนทริป</h1><span class="badge b-${overall}">${LVL_ICON[overall]} ${LVL_TXT[overall]}</span>
         <div class="spacer"></div><div class="row no-print"><a class="btn small" href="#setup">${I("pencil")} ข้อมูลทริป</a>
           <details class="more-menu"><summary class="btn small" aria-label="เมนูเพิ่มเติม">⋯ เพิ่มเติม</summary><div class="menu-pop">
-            <button class="btn small" data-act="refillAll" title="ที่ใส่เองและที่ล็อกเวลาไว้จะไม่ถูกลบ">${I("refresh-ccw")} จัดสถานที่ใหม่ทั้งทริป</button>
             <button class="btn small" data-act="share">${I("link")} ส่งแผนให้เพื่อน (ลิงก์)</button>
             <button class="btn small" data-act="print">${I("printer")} พิมพ์ / PDF</button></div></details></div></div>
         <p class="print-only">${thDate(t.start)} - ${thDate(t.end)} • ${Planner.modeLabel()} • สไตล์${PACE[t.pace].name} • ลง ${t.arrive} ${t.arriveTime} • ออก ${t.depart} ${t.departTime}</p>
@@ -272,7 +271,7 @@ const PlanView = {
   itemRow(e, x) {
     const i = e.i, it = x.it, p = point(x.id);
     const idx = S.plan.days[i].items.indexOf(it);
-    const meta = esc(fmtH(x.h)); // ดาว ค่าเข้า อยู่ในหน้ารายละเอียด (แตะแถว)
+    const cu = S.plan.custom[x.id], meta = esc(fmtH(x.h)) + (cu && !cu.meal && !p.lat ? " · ยังไม่ปักหมุด ไม่ได้คิดเวลาเดินทาง" : ""); // ดาว ค่าเข้า อยู่ในหน้ารายละเอียด (แตะแถว)
     const nm = esc(pname(x.id)), open = p.stars ? `data-detail="${esc(x.id)}"` : `data-edit="${i}:${idx}"`;
     // แตะแถว = รายละเอียดสถานที่ (มื้อ/จุดของฉัน = กล่องแก้ไข) • ✏️ แก้ไข • ✕ เอาออก • ลากแถวเรียงลำดับ (มือถือ: ปัดซ้ายโชว์ปุ่ม กดค้างแล้วลาก)
     return `<li class="it" ${COARSE ? "" : 'draggable="true"'} data-i="${i}" data-idx="${idx}"><span class="tm">${fmtT(x.t)}</span><span class="ic">${x.night ? I("moon") : KIND_IC(x.id)}</span>
@@ -709,6 +708,7 @@ const PlanView = {
       if (el.dataset.s) return this.setStay(el);
       if (el.dataset.blockhub) { const [k0, n] = el.dataset.blockhub.split(":").map(Number); return this.mut(() => { for (let k = k0; k < k0 + n; k++) S.plan.bases[k] = el.value; }); }
       if (el.dataset.rent) return this.setRent(el);
+      const start0 = t.start;
       this.mut(() => {
         if (el.dataset.k) {
           const k = el.dataset.k;
@@ -720,6 +720,12 @@ const PlanView = {
         else if (el.dataset.snow !== undefined) S.set.snow = el.value;
         // ขาไปถึงอีกวัน: เดาวันลงจากเวลาออก (ไทย +2 ชม. + ~7 ชม.บิน) ถ้าวันลงยังไม่ได้แก้
         if (el.dataset.of === "dep" && el.value) { const d = new Date(el.value); d.setHours(d.getHours() + 2 + 7); const iso = isoOf(d); if (iso !== t.start) { const n = tripNights(); t.start = iso; t.end = addDays(iso, Math.max(1, n)); Planner.syncDays(); toast(`ตั้งวันลงเป็น ${thDate(iso)} ตามเวลาออก (ตรวจเวลาเครื่องลงอีกครั้ง)`); } }
+        // เลื่อนวันเริ่มทริป: ถามว่าจะเลื่อนที่พักที่กรอกไว้ตามไปด้วยไหม (เช่น ตั๋วเครื่องบินเปลี่ยนวัน)
+        const dd = daysBetween(start0, t.start);
+        if (dd && t.stays.length && confirm(`เลื่อนวันเช็กอิน/เช็กเอาท์ของที่พักทั้ง ${t.stays.length} ที่ ตามวันเริ่มทริปไปด้วย ${dd > 0 ? "+" : ""}${dd} วัน?`)) {
+          t.stays.forEach((s) => { s.from = addDays(s.from, dd); s.to = addDays(s.to, dd); });
+          Planner.syncDays();
+        }
       });
     });
     setup.addEventListener("lp-done", () => App.renderAll());
@@ -840,7 +846,6 @@ const PlanView = {
       else if (d.addcustom) this.addCustom(+d.addcustom);
       else if (d.act === "opt") { this.mut(() => Planner.optimize(+d.i)); toast("เรียงเส้นทางแล้ว"); }
       else if (d.act === "refill") { const i = +d.i; this.mut(() => Planner.autofillDay(i, Planner.usedSet(i))); }
-      else if (d.act === "refillAll") { if (!confirm("จัดสถานที่ใหม่ทั้งทริป? จุดที่ระบบเลือกให้จะถูกแทนที่ (ที่ใส่เอง/ล็อกเวลาไว้ยังอยู่ กด ↶ ย้อนได้)")) return; this.mut(() => Planner.autofillAll()); toast("จัดสถานที่ใหม่แล้ว"); }
       else if (d.act === "print") App.print();
       else if (d.act === "share") App.share();
     });
