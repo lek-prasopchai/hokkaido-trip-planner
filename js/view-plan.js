@@ -64,21 +64,19 @@ const PlanView = {
           <label class="f">วันที่ลง (เวลาญี่ปุ่น)<input type="date" data-k="start" value="${t.start}"></label>
           <label class="f">เวลาเครื่องลง<input type="time" data-k="arriveTime" value="${t.arriveTime}"></label>
           <label class="f chk"><input type="checkbox" data-k="domIn" ${t.domIn ? "checked" : ""}> เที่ยวบินในประเทศ (ผ่าน ตม. ที่โตเกียว/โอซาก้าแล้ว)</label>
+          ${t.domIn ? num("dom", b.dom, 0, 120, "ลงเครื่องจนออกอาคาร (นาที)") : num("imm", b.imm, 15, 240, "ผ่าน ตม. + รับกระเป๋า (นาที)")}
+          ${Planner.rent()?.pd === 0 ? "" : num("pass", b.pass, 0, 120, "ซื้อตั๋ว/IC/ซิม (นาที)")}
         </div></div>
         <div class="card"><h2>${I("plane")} ขากลับ</h2><div class="form">
           <label class="f" style="grid-column:1/-1">ออกจากสนามบิน<select data-k="depart">${airOptions(t.depart)}</select></label>
           <label class="f">วันที่บินกลับ<input type="date" data-k="end" value="${t.end}"></label>
           <label class="f">เวลาเครื่องออก<input type="time" data-k="departTime" value="${t.departTime}"></label>
           <label class="f chk"><input type="checkbox" data-k="domOut" ${t.domOut ? "checked" : ""}> ขาออกจากฮอกไกโดเป็นเที่ยวบินในประเทศ</label>
+          ${t.domOut ? num("beforeDom", b.beforeDom, 30, 180, "ถึงสนามบินก่อนเครื่องออก (นาที)") : num("before", b.before, 60, 300, "ถึงสนามบินก่อนเครื่องออก (นาที)")}
         </div></div>
       </div>
       <div class="callout ${N < 1 ? "" : "info"}">${N < 1 ? "วันกลับต้องหลังวันไปอย่างน้อย 1 วัน" : `เที่ยว <b>${N + 1} วัน ${N} คืน</b> (${thDate(t.start)} - ${thDate(t.end)})${Planner.overnight() ? " • บินกลางคืนมาถึงเช้า" : ""} •
-        ออกจากสนามบินได้ราว <b>${fmtT(Planner.leaveAirport(t.mode === "transit" ? "transit" : "car"))}</b> • วันกลับต้องถึงสนามบินก่อน <b>${fmtT(Planner.needAirport(t.mode === "transit" ? "transit" : "car"))}</b>`}</div>
-      <details class="card"><summary><b>เวลาเผื่อที่สนามบิน</b> <span class="mute">(แก้ได้)</span></summary><div class="form" style="margin-top:10px">
-        ${num("imm", b.imm, 15, 240, "ตม. + รับกระเป๋า (นาที)")}${num("dom", b.dom, 0, 120, "ลงจากเที่ยวบินในประเทศ (นาที)")}
-        ${num("pass", b.pass, 0, 120, "ซื้อพาส/IC/ซิม (นาที)")}
-        ${num("before", b.before, 60, 300, "ถึงสนามบินก่อนเครื่องออก ระหว่างประเทศ (นาที)")}${num("beforeDom", b.beforeDom, 30, 180, "…ในประเทศ (นาที)")}
-      </div></details>`;
+        ออกจากสนามบินได้ราว <b>${fmtT(Planner.leaveAirport(t.mode === "transit" ? "transit" : "car"))}</b> • วันกลับต้องถึงสนามบินก่อน <b>${fmtT(Planner.needAirport(t.mode === "transit" ? "transit" : "car"))}</b>`}</div>`;
     const dates = `<div class="card"><div class="form"><label class="f">วันถึงฮอกไกโด<input type="date" data-k="start" value="${t.start}"></label><label class="f">วันบินกลับ<input type="date" data-k="end" value="${t.end}"></label></div>
       <p class="mute small" style="margin:8px 0 0">${N >= 1 ? `${N + 1} วัน ${N} คืน • ` : ""}มีตั๋วแล้ว? กรอกเที่ยวบินทีหลังได้ในหน้านี้</p></div>`;
     const transport = `<div class="card"><div class="row" style="gap:6px 14px">${modeSeg}<small class="mute">${t.mode === "car" ? "เช่าทั้งทริปหรือบางช่วงก็ได้: ตั้งวันรับ-คืนรถด้านล่าง วันที่ไม่มีรถใช้รถไฟ/บัสให้เอง" : "รถไฟ/บัสทั้งทริป เปลี่ยนบางช่วงเป็นแท็กซี่/เดินได้ในแผนรายวัน"}</small></div>${modeHelp}
@@ -677,8 +675,8 @@ const PlanView = {
     const open = [];
     if (S.plan) for (let k = 0; k < N; k++) { if (Planner.stayAt(k)) continue; const l = open[open.length - 1], b = S.plan.bases[k]; if (l && l.b === b && l.k0 + l.n === k) l.n++; else open.push({ b, k0: k, n: 1 }); }
     const todo = (o) => `<div class="card stay-card todo"><div class="row"><h2 style="margin:0">${I("hotel")} ${esc(short(o.b))}</h2><span class="badge b-warn">ยังไม่ได้จอง</span><span class="mute small">${nightTxt(o.k0, o.n)}</span></div>
-      <div class="row" style="margin-top:10px"><label class="f">เมือง<select data-blockhub="${o.k0}:${o.n}">${hubOptions(o.b)}</select></label>
-        <button type="button" class="btn small primary" data-stadd="${o.k0}:${o.n}">${I("pencil")} กรอกที่พักที่จองแล้ว</button></div>${info(HUB[o.b])}</div>`;
+      <div class="row todo-row"><label class="f">เมือง<select data-blockhub="${o.k0}:${o.n}">${hubOptions(o.b)}</select></label>
+        <button type="button" class="btn" data-stadd="${o.k0}:${o.n}">${I("pencil")} กรอกที่พักที่จองแล้ว</button></div>${info(HUB[o.b])}</div>`;
     const cards = [...st.map((s) => ({ at: s.from, h: booked(s) })), ...open.map((o) => ({ at: Planner.dayIso(o.k0), h: todo(o) }))].sort((a, b) => a.at.localeCompare(b.at));
     return `<p class="mute small" style="margin:0 0 10px">จองแล้ว: กรอกชื่อ วันเช็กอิน-เช็กเอาท์ และปักหมุด ระบบใช้เป็นเมืองที่พักคืนนั้นและจุดเริ่ม/จบของแต่ละวัน${S.plan ? " • คืนที่ยังไม่จอง (กรอบเส้นประ) เปลี่ยนเมืองได้" : ""}</p>
       <details class="adv" data-keep="staytips" ${FOLD.staytips ? "open" : ""}><summary>หลักเลือกที่พักหน้าหนาว</summary><div class="callout info">${STAY_TIPS}</div></details>
