@@ -953,7 +953,3 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
 .addsel.wished { border-color: #d9822b; color: #b8641a; }
 :root[data-theme="dark"] .addsel.wished { color: #f0a560; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .addsel.wished { color: #f0a560; } }
-/* แถวคืนรถ: เลือกว่าไปคืนหลังที่ไหน */
-.rr-pick { display: flex; align-items: center; gap: 6px; margin-top: 4px; font-size: .8125rem; color: var(--mute); white-space: nowrap; }
-.rr-pick select { flex: 1 1 auto; }
-.rr-pick select { width: auto; max-width: 100%; min-width: 0; min-height: 0; padding: 3px 6px; font-size: .8125rem; }

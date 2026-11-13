@@ -226,12 +226,13 @@ const Planner = {
     let dm = R && R.pd === i && !R.pAir ? "transit" : mode;
     // วิธีไปสาขารับ/คืนรถเลือกเองได้: day.rpm / day.rrm
     const rentP = R && R.pd === i && !R.pAir ? { id: "rent:p", dur: b0.car / 60, at: R.p.time || undefined, rent: "p", m: day.rpm } : null;
-    const rentR = R && R.rd === i && !R.rAir ? { id: "rent:r", dur: b0.ret / 60, rent: "r", m: day.rrm } : null;
+    // เวลาคืน = เวลานัด (เหมือนล็อกเวลา): เสร็จก่อน = มีเวลาว่าง / ไม่ทัน = เตือน
+    const rentR = R && R.rd === i && !R.rAir ? { id: "rent:r", dur: b0.ret / 60, at: R.r.time || undefined, rent: "r", m: day.rrm } : null;
     const toHub = hubOf(to), ref = point(to);
     const sun = sunTimes(iso, ref.lat, ref.lng);
-    // คืนรถหลังที่เที่ยวกลางวันที่ day.rr (ผู้ใช้เลือกในแถวคืนรถ ไม่ใส่ = หลังสุด)
-    const dItems = items.filter((it) => !(it.night && i < N)), rr = Math.min(day.rr ?? dItems.length, dItems.length);
-    const dayI = [rentP, ...dItems.slice(0, rr), rentR, ...dItems.slice(rr)].filter(Boolean), nightI = items.filter((it) => it.night && i < N);
+    // นัดคืนรถหลังเวลาเช็กอินที่พักใหม่: เช็กอินวางกระเป๋าก่อน แล้วขับไปคืน กลับที่พักด้วยรถไฟ/บัส/เดิน
+    const retLate = rentR?.at && i < N && from !== to && parseT(rentR.at) >= parseT(stayOf(to)?.checkIn || "15:00");
+    const dayI = [rentP, ...items.filter((it) => !(it.night && i < N)), retLate ? null : rentR].filter(Boolean), nightI = items.filter((it) => it.night && i < N);
     let time = opts.live ? opts.live.t : i === 0 ? this.leaveAirport(mode) : day.start ? parseT(day.start) : pc.start;
     const tl = [], checks = [];
     const add = (lvl, text, tight) => checks.push({ lvl, text, tight }); // tight = เรื่องเวลาไม่พอ/ยาวเกิน (ป้าย "แน่น")
@@ -277,7 +278,7 @@ const Planner = {
       if (it.at) {
         const at = atOf(it, night);
         if (time < at - 0.08) { if (at - time > 0.25) tl.push({ t: time, kind: "wait", h: at - time }); time = at; }
-        else if (time > at + 0.1) add("bad", `ไปถึง ${pname(it.id)} ${fmtT(time)} ไม่ทันเวลาที่ล็อกไว้ ${it.at}`, true);
+        else if (time > at + 0.1) add("bad", it.rent ? `ไป${it.rent === "p" ? "รับ" : "คืน"}รถไม่ทัน: ถึงร้าน ${fmtT(time)} นัดไว้ ${it.at}` : `ไปถึง ${pname(it.id)} ${fmtT(time)} ไม่ทันเวลาที่ล็อกไว้ ${it.at}`, true);
       }
       const h = this.dur(it, p);
       tl.push({ t: time, kind: "visit", id: it.id, h, night, it });
@@ -286,35 +287,31 @@ const Planner = {
     };
     let wayMeal = null;
     dayI.forEach((it, k) => {
-      if (it === rentR) { // ต้องถึงร้านก่อนเวลาที่ต้องคืน (ไม่นับเวลาทำเรื่องคืน)
-        move("rent:r", rentR.m || dm, rentR);
-        if (R.r.time && time > parseT(R.r.time) + 0.05) add("warn", `ถึงร้านคืนรถ ${fmtT(time)} เลยเวลาคืน ${R.r.time}`, true);
-        visit(rentR, false); dm = "transit";
-        return;
-      }
       if (P.custom[it.id]?.meal && !it.at && time < 11.25) { // ช่วงถัดไปยาวคร่อมเที่ยง → กินระหว่างทาง
         const nx = dayI[k + 1], L = legTo(nx ? nx.id : to, nx ? nx.m || dm : day.hm || dm, nx, !nx);
         if (L.h >= 1.5 && time + L.h > 12.5) { wayMeal = it; return; }
       }
       lead(it, it.m || dm, false); move(it.id, it.m || dm, it); visit(it, false);
       if (it === rentP) dm = "car";
+      if (it === rentR) dm = "transit";
     });
     const hm = day.hm || dm; // วิธีไปที่พัก/สนามบินช่วงสุดท้าย
     move(to, hm, null, true);
     const arrive = time;
     tl.push({ t: time, kind: i === N ? "airport" : "hotel", id: to });
-    if (nightI.length) { // เช็กอิน วางกระเป๋า ~30 นาที (ไม่ก่อนเวลาเช็กอิน) แล้วค่อยออกไปต่อ • ที่พักเดิมจากเมื่อคืน: แค่พักผ่อน
+    if (nightI.length || retLate) { // เช็กอิน วางกระเป๋า ~30 นาที (ไม่ก่อนเวลาเช็กอิน) แล้วค่อยออกไปต่อ • ที่พักเดิมจากเมื่อคืน: แค่พักผ่อน
       const ci = from !== to ? parseT(stayOf(to)?.checkIn || "15:00") : 0, go = Math.max(time + 0.5, ci);
       tl.push({ t: time, kind: "info", ic: "hotel", text: `${go - time > 0.6 ? `รอเช็กอิน ${fmtT(ci)} (ฝากกระเป๋า/พักผ่อน)` : from !== to ? "เช็กอิน วางกระเป๋า อย่างน้อย ~30 นาที" : "พักผ่อน ~30 นาที"} • อยากพักนานกว่านี้: ล็อกเวลาเริ่มของที่ถัดไป` });
       time = go;
     }
+    if (retLate) { lead(rentR, rentR.m || "car", false); move("rent:r", rentR.m || "car", rentR); visit(rentR, false); dm = "transit"; move(to, "transit"); tl.push({ t: time, kind: "back", id: to }); }
     if (nightI.length && !nightI.some((it) => it.at) && sun.set - 0.25 > time && nightI.some((it) => point(it.id).evening)) { // รอให้มืด ไฟประดับ/วิวกลางคืนถึงสวย
       if (sun.set - 0.25 - time >= 0.08) tl.push({ t: time, kind: "wait", h: sun.set - 0.25 - time, at: to, why: "รอให้มืด ไฟ/วิวกลางคืนสวยกว่า" });
       time = sun.set - 0.25;
     }
     for (const it of nightI) { lead(it, it.m || dm, true); move(it.id, it.m || dm, it); visit(it, true); }
     // bm = วิธีกลับที่พักหลังเที่ยวค่ำ (ว่าง = แบบเดียวกับขาไปที่สุดท้าย)
-    if (nightI.length) { move(to, day.bm || nightI[nightI.length - 1].m || hm, null, "back"); tl.push({ t: time, kind: "back", id: to }); }
+    if (nightI.length) { move(to, day.bm || nightI[nightI.length - 1].m || (retLate ? dm : hm), null, "back"); tl.push({ t: time, kind: "back", id: to }); }
     const end = time;
 
     // ---- ตรวจ ----
