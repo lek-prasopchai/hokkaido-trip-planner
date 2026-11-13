@@ -337,7 +337,7 @@ const Lightbox = {
     if (!list.length) return;
     Object.assign(this, { list, i, title });
     if (!this.el) {
-      this.el = document.createElement("div");
+      this.el = document.createElement("dialog"); // dialog = ชั้นบนสุด ทับหน้ารายละเอียด (dialog) ที่เปิดอยู่ได้
       this.el.className = "lb";
       this.el.innerHTML = `<button class="lb-x" aria-label="ปิด">✕</button><button class="lb-p" aria-label="รูปก่อนหน้า">‹</button>
         <figure><img alt=""><figcaption></figcaption></figure><button class="lb-n" aria-label="รูปถัดไป">›</button>`;
@@ -347,13 +347,13 @@ const Lightbox = {
         else if (e.target.classList.contains("lb-n")) this.go(1);
       };
       document.addEventListener("keydown", (e) => {
-        if (!this.el.classList.contains("show")) return;
-        if (e.key === "Escape") this.close(); else if (e.key === "ArrowLeft") this.go(-1); else if (e.key === "ArrowRight") this.go(1);
+        if (!this.el.open) return;
+        if (e.key === "ArrowLeft") this.go(-1); else if (e.key === "ArrowRight") this.go(1);
       });
       document.body.appendChild(this.el);
     }
     this.show();
-    this.el.classList.add("show");
+    if (!this.el.open) this.el.showModal();
   },
   go(d) { this.i = (this.i + d + this.list.length) % this.list.length; this.show(); },
   show() {
@@ -362,7 +362,7 @@ const Lightbox = {
     $("figcaption", this.el).innerHTML = `${esc(this.title)} • ${this.i + 1}/${this.list.length}${it.credit ? ` • <a href="${esc(it.credit)}" target="_blank" rel="noopener">ที่มาภาพ (${esc(it.by || "Wikimedia Commons")})</a>` : ""}`;
     $$(".lb-p, .lb-n", this.el).forEach((b) => (b.style.display = this.list.length > 1 ? "" : "none"));
   },
-  close() { this.el.classList.remove("show"); },
+  close() { this.el.close(); },
   place(id) { const p = point(id); this.open(placeImgs(p), 0, p.name); },
 };
 
