@@ -319,8 +319,9 @@ const PlanView = {
       if (x.kind === "back") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span class="row-b"><b>กลับถึงที่พัก ${esc(stayOf(x.id)?.name || short(pname(x.id)))}</b></span></li>`;
       if (x.kind === "hotel") {
         // เวลาเช็กอินแสดงเฉพาะวันที่ย้ายเข้า (พักต่อจากเมื่อคืน = กลับที่พัก) • ว่าง = 15:00 ตามค่าที่ช่องกรอกแสดง
-        const fresh = e.from !== x.id, h = stayOf(x.id), ci = fresh && h && (h.checkIn || "15:00"), nx = e.tl[k0 + 1], rest = nx?.kind === "info" && nx.ic === "hotel" ? nx.text.split(" • ")[0] : "";
-        return `<li class="stay"><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span class="row-b"><b>${fresh ? "ถึงที่พัก" : "กลับที่พัก"} ${esc(h?.name || pname(x.id))}</b>${ci || rest ? `<small>${[ci ? `เช็กอิน ${esc(ci)}` : "", esc(ci ? rest.replace(/^เช็กอิน /, "") : rest)].filter(Boolean).join(" · ")}</small>` : ""}</span></li>`;
+        const fresh = e.from !== x.id, out = e.tl.slice(0, k0).some((y) => y.kind === "visit"), // ยังไม่ได้ออกไปไหน = อยู่ที่พัก ไม่ใช่กลับ
+          h = stayOf(x.id), ci = fresh && h && (h.checkIn || "15:00"), nx = e.tl[k0 + 1], rest = nx?.kind === "info" && nx.ic === "hotel" ? nx.text.split(" • ")[0] : "";
+        return `<li class="stay"><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span class="row-b"><b>${fresh ? "ถึงที่พัก" : out ? "กลับที่พัก" : "อยู่ที่พัก"} ${esc(h?.name || pname(x.id))}</b>${ci || rest ? `<small>${[ci ? `เช็กอิน ${esc(ci)}` : "", esc(ci ? rest.replace(/^เช็กอิน /, "") : rest)].filter(Boolean).join(" · ")}</small>` : ""}</span></li>`;
       }
       if (x.kind === "info" && x.ic === "hotel" && e.tl[k0 - 1]?.kind === "hotel") return ""; // รวมไว้ในแถวที่พักแล้ว
       if (x.kind === "airport") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("plane")}</span><span class="row-b"><b>ถึงสนามบิน ${esc(pname(x.id))}</b><small>เครื่องออก ${S.trip.departTime}</small></span></li>`;
