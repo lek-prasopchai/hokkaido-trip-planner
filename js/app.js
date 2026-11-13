@@ -168,7 +168,12 @@ const App = {
     if (h.startsWith("share=")) this.loadShared(h.slice(6));
     else this.show(h || (S.plan ? "trip" : "setup"));
     $("#btnSet").onclick = () => this.settings();
-    document.addEventListener("keydown", (e) => { if ((e.ctrlKey || e.metaKey) && e.key === "z" && !/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) { e.preventDefault(); Hist.undo(); } });
+    document.addEventListener("keydown", (e) => {
+      if (!(e.ctrlKey || e.metaKey) || /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
+      const k = e.key.toLowerCase(), redo = k === "y" || (k === "z" && e.shiftKey);
+      if (redo || k === "z") { e.preventDefault(); redo ? Hist.redo() : Hist.undo(); }
+    });
+    document.addEventListener("click", (e) => { const b = e.target.closest("[data-hist]"); if (b) Hist[b.dataset.hist](); });
     refreshRate();
     // ไม่ลง service worker ตอนพัฒนาบน localhost (ไฟล์เก่าค้าง cache): ใส่ ?sw=1 เพื่อทดสอบออฟไลน์
     const dev = /^(localhost|127\.)/.test(location.hostname) && !location.search.includes("sw=1");

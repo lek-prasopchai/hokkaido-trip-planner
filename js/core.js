@@ -96,15 +96,19 @@ let S = Store.load();
 const save = (count) => Store.save(count);
 const tripNights = () => Math.max(0, daysBetween(S.trip.start, S.trip.end));
 
-// ย้อนกลับ (undo) เก็บสำเนาทริป+แผนก่อนแก้แต่ละครั้ง
+// ย้อนกลับ/ทำซ้ำ (undo/redo) เก็บสำเนาทริป+แผนก่อนแก้แต่ละครั้ง • แก้ใหม่แล้วทำซ้ำของเก่าไม่ได้
 const Hist = {
-  stack: [],
-  push() { this.stack.push(JSON.stringify({ trip: S.trip, plan: S.plan })); if (this.stack.length > 30) this.stack.shift(); },
-  undo() {
-    const s = this.stack.pop();
-    if (!s) return toast("ไม่มีอะไรให้ย้อนกลับ");
-    Object.assign(S, JSON.parse(s)); save(); App.renderAll(); toast("ย้อนกลับแล้ว");
+  stack: [], fut: [],
+  snap() { return JSON.stringify({ trip: S.trip, plan: S.plan }); },
+  push() { this.stack.push(this.snap()); if (this.stack.length > 30) this.stack.shift(); this.fut = []; },
+  move(from, to, none, done) {
+    const s = from.pop();
+    if (!s) return toast(none);
+    to.push(this.snap());
+    Object.assign(S, JSON.parse(s)); save(); App.renderAll(); toast(done);
   },
+  undo() { this.move(this.stack, this.fut, "ไม่มีอะไรให้ย้อนกลับ", "ย้อนกลับแล้ว"); },
+  redo() { this.move(this.fut, this.stack, "ไม่มีอะไรให้ทำซ้ำ", "ทำซ้ำแล้ว"); },
 };
 
 function toast(msg) {

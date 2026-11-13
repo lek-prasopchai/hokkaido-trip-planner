@@ -62,7 +62,7 @@ const PlacesView = {
         <span><i class="ring" style="border-color:#c8374a"></i>★★★ ไฮไลต์</span><span><i class="ring" style="border-color:#2c6e9b"></i>★★ ดีถ้าผ่าน</span><span><i class="ring" style="border-color:#9aa5b1"></i>★ ถ้ามีเวลา</span>
         <span><i class="ring" style="border-color:${WISH_C}"></i>อยากไป</span><span><i class="ring" style="border-color:#2f8a57"></i>อยู่ในแผนแล้ว</span>
         <small class="mute legend-note">ดาว = ความเห็นของเว็บว่าคุ้มแค่ไหน ไม่ใช่คะแนนรีวิว (ดูรีวิวจริงที่ปุ่ม รีวิว Google Maps)</small></div></details></aside>
-      <div class="split-main" id="placeList"></div></div>`;
+      <div class="split-main" id="placeList"></div></div>${PlanView.undoBtn()}`;
     this.M = makeMap($("#placesMap"));
     $("#pMapCard").addEventListener("toggle", (e) => { if (e.target.open) setTimeout(() => TripMap.drawPlaces(this.M, this.filtered(), this.view() || this.keep), 0); }); // สร้างตอนพับอยู่ ขนาด 0
     this.list();

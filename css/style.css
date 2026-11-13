@@ -359,11 +359,13 @@ input[type=url], input[type=datetime-local] { border: 1px solid var(--line); bor
 @media (max-width: 420px) { .brand > span:last-child { font-size: .875rem; } }
 #toast { opacity: 0; pointer-events: none; transition: transform .25s, opacity .25s; }
 #toast.show { opacity: 1; }
-.undo-fab { position: fixed; right: 16px; bottom: 20px; z-index: 900; box-shadow: var(--shadow); background: var(--paper); }
+.undo-fab { position: fixed; left: 8px; bottom: 20px; z-index: 900; display: flex; flex-direction: column; border-radius: 12px; box-shadow: var(--shadow); background: var(--paper); overflow: hidden; }
+.undo-fab .btn { width: 44px; min-height: 44px; padding: 0; justify-content: center; border: 0; border-radius: 0; background: none; }
+.undo-fab .btn + .btn { border-top: 1px solid var(--line); }
 .map-btn { display: grid !important; place-items: center; font-size: 1.05rem; color: var(--ink) !important; }
 .map-hint { position: absolute; inset: 0; z-index: 1000; display: grid; place-items: center; background: rgba(20,32,51,.45); color: #fff; font-weight: 600; pointer-events: none; opacity: 0; transition: opacity .2s; }
 .map-hint.show { opacity: 1; }
-.undo-fab:disabled { opacity: .45; cursor: default; }
+.undo-fab .btn:disabled { opacity: .35; cursor: default; }
 @media (max-width: 900px) { .undo-fab { bottom: calc(76px + env(safe-area-inset-bottom)); } }
 /* เหลือแค่ไอคอน: ข้อความยาวถูกตัด รายการตอนกดยังเห็นชื่อเต็ม */
 .legmode { position: relative; display: inline-grid; place-items: center; width: 1.9em; height: 1.6em; margin-left: 6px; vertical-align: middle; font-size: .875rem; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); }
@@ -629,7 +631,6 @@ input[type=checkbox], input[type=radio] { width: 16px; height: 16px; cursor: poi
 /* ---------- จอกว้าง: 2 คอลัมน์ (เนื้อหาซ้าย / แผนที่-สรุปติดขวา) ---------- */
 main { max-width: 1440px; }
 .map-focus { display: none; }
-.undo-fab:disabled { display: none; }
 @media (min-width: 1200px) {
   .split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, 42%); grid-template-areas: "top top" "main side"; column-gap: 18px; align-items: start; }
   .split-r { grid-template-columns: minmax(0, 1fr) minmax(320px, 34%); }

@@ -42,8 +42,11 @@ const PlanView = {
   // แก้แผน: เก็บประวัติให้ย้อนกลับได้ → บันทึก → วาดใหม่
   mut(fn) { Hist.push(); fn(); save(); App.renderAll(); },
 
-  // ปุ่มย้อนลอย: เฉพาะหน้าที่แก้แผน (แผนรายวัน + ข้อมูลทริป) แสดงตลอดให้รู้ว่ามี กดได้เมื่อมีอะไรให้ย้อน (ประวัติหายเมื่อรีเฟรช)
-  undoBtn() { return `<button class="btn undo-fab no-print" data-act="undo" ${Hist.stack.length ? "" : "disabled"} title="ย้อนการแก้แผนครั้งล่าสุด (Ctrl+Z)">${I("undo-2")} ย้อน</button>`; },
+  // ปุ่มย้อน/ทำซ้ำลอยมุมซ้ายล่าง (ฝั่งเวลา ไม่บังปุ่มแก้/ลบของแถว): หน้าที่แก้แผนได้ • ขึ้นเมื่อมีอะไรให้ย้อน/ทำซ้ำ (ประวัติหายเมื่อรีเฟรช)
+  undoBtn() {
+    const u = Hist.stack.length, r = Hist.fut.length;
+    return u || r ? `<div class="undo-fab no-print"><button class="btn" data-hist="undo" ${u ? "" : "disabled"} title="ย้อนการแก้แผน (Ctrl+Z)" aria-label="ย้อนการแก้แผน">${I("undo-2")}</button>${r ? `<button class="btn" data-hist="redo" title="ทำซ้ำ (Ctrl+Y)" aria-label="ทำซ้ำการแก้แผน">${I("redo-2")}</button>` : ""}</div>` : "";
+  },
 
   // ================= ข้อมูลทริป =================
   // ยังไม่มีแผน: เลือกวิธีเริ่ม (ช่วยจัดให้ = รูทแนะนำ / จัดเอง = แผนเปล่า) • มีแผนแล้ว: หน้าแก้ข้อมูลธรรมดา เปลี่ยนรูทพับไว้ล่างสุด
@@ -719,7 +722,6 @@ const PlanView = {
     setup.addEventListener("click", (ev) => {
       const el = ev.target.closest("button, [data-tpl], [data-blank], [data-fromstays], [data-start]");
       if (!el) return;
-      if (el.dataset.act === "undo") return Hist.undo();
       if (el.dataset.act === "refillAll") { if (!confirm("จัดที่เที่ยวใหม่ทั้งทริป? จุดที่ระบบเลือกให้จะถูกแทนที่ (ที่ใส่เอง/ล็อกเวลาไว้ยังอยู่ กด ↶ ย้อนได้)")) return; this.mut(() => Planner.autofillAll()); return toast("จัดที่เที่ยวใหม่แล้ว"); }
       if (el.dataset.scroll) return $("#" + el.dataset.scroll).scrollIntoView({ behavior: "smooth" });
       const t = S.trip, d = el.dataset;
@@ -836,7 +838,6 @@ const PlanView = {
       else if (d.act === "refillAll") { if (!confirm("จัดสถานที่ใหม่ทั้งทริป? จุดที่ระบบเลือกให้จะถูกแทนที่ (ที่ใส่เอง/ล็อกเวลาไว้ยังอยู่ กด ↶ ย้อนได้)")) return; this.mut(() => Planner.autofillAll()); toast("จัดสถานที่ใหม่แล้ว"); }
       else if (d.act === "print") App.print();
       else if (d.act === "share") App.share();
-      else if (d.act === "undo") Hist.undo();
     });
     trip.addEventListener("keydown", (ev) => { if (ev.key === "Enter" && ev.target.dataset.goto) ev.target.click(); });
   },
