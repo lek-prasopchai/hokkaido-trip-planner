@@ -282,15 +282,24 @@ const Planner = {
       time += h;
       return p;
     };
-    let wayMeal = null;
+    let wayMeal = null, retDone = false;
+    // คืนรถ: ต้องถึงร้านก่อนเวลาที่ต้องคืน • ถ้าไปที่ถัดไปก่อนแล้วจะไม่ทัน ไปคืนรถก่อน ที่เหลือใช้รถไฟ/บัส
+    const returnCar = () => {
+      move("rent:r", rentR.m || dm, rentR);
+      const a = time;
+      visit(rentR, false); dm = "transit"; retDone = true;
+      if (R.r.time && a > parseT(R.r.time) + 0.05) add("warn", `ถึงร้านคืนรถ ${fmtT(a)} เลยเวลาคืน ${R.r.time}`, true);
+    };
     dayI.forEach((it, k) => {
+      if (it === rentR) { if (!retDone) returnCar(); return; }
+      if (rentR && !retDone && R.r.time && it !== rentP
+        && time + legTo(it.id, it.m || dm, it).h + this.dur(it, point(it.id)) + this.leg(it.id, "rent:r", rentR.m || "car", iso).h > parseT(R.r.time)) returnCar();
       if (P.custom[it.id]?.meal && !it.at && time < 11.25) { // ช่วงถัดไปยาวคร่อมเที่ยง → กินระหว่างทาง
         const nx = dayI[k + 1], L = legTo(nx ? nx.id : to, nx ? nx.m || dm : day.hm || dm, nx, !nx);
         if (L.h >= 1.5 && time + L.h > 12.5) { wayMeal = it; return; }
       }
       lead(it, it.m || dm, false); move(it.id, it.m || dm, it); visit(it, false);
       if (it === rentP) dm = "car";
-      if (it === rentR) { dm = "transit"; if (R.r.time && time > parseT(R.r.time) + 0.05) add("warn", `คืนรถ ${fmtT(time)} เลยเวลาที่ต้องคืน ${R.r.time}`); }
     });
     const hm = day.hm || dm; // วิธีไปที่พัก/สนามบินช่วงสุดท้าย
     move(to, hm, null, true);
@@ -363,7 +372,7 @@ const Planner = {
       if (dayStart > parseT(co) + 0.1) add("warn", `ออกจากที่พัก ${fmtT(dayStart)} หลังเช็กเอาท์ ${co}: เช็กเอาท์ก่อนแล้วฝากกระเป๋า/ใส่รถ`);
       else if (mode === "transit" && dayI.some((it) => hubOf(it.id) === hubOf(from))) add("info", `เช็กเอาท์ ${co} แล้วเที่ยว ${short(from)} ต่อ: ฝากกระเป๋าที่ล็อกเกอร์สถานี/โรงแรม`);
     }
-    if (noCar) add("warn", "เลือกขับรถในช่วงที่ไม่มีรถเช่า: เปลี่ยนเป็นแท็กซี่/รถไฟ หรือขยายช่วงเช่ารถ (ข้อมูลทริป › การเดินทาง)");
+    if (noCar) add("warn", "เลือกขับรถช่วงที่ไม่มีรถเช่า");
     if (lateRural) add("warn", "มีช่วงนั่งบัส/รถไฟท้องถิ่นหลัง 18:30 รถเที่ยวสุดท้ายต่างจังหวัดหมดเร็ว ตรวจตารางจริง");
     if (noFuel) add("info", `${noFuel} เติมน้ำมันก่อนออก`);
     else if (driveH > 2.5) add("info", "เติมน้ำมันให้เกินครึ่งถังก่อนออก ปั๊มต่างจังหวัดปิด ~19:00");
