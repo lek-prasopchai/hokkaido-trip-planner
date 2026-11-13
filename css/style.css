@@ -897,7 +897,8 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
 /* ที่พักหลายเมือง: จอกว้าง 2 คอลัมน์ จอแคบคอลัมน์เดียว */
 .stay-grid { display: grid; gap: 16px; align-items: start; }
 .stay-grid > .stay-card { margin: 0; min-width: 0; }
-@media (min-width: 1000px) { .stay-grid { grid-template-columns: 1fr 1fr; } }
+/* ที่พักเรียงตามวันคอลัมน์เดียว (การ์ดสูง/เตี้ยปนกัน 2 คอลัมน์แล้วเป็นช่องโหว่) • จอกว้าง: วัน/เวลาเช็กอิน-เอาท์แถวเดียว */
+@media (min-width: 1000px) { .form.stay-form { grid-template-columns: repeat(4, 1fr); } }
 /* รถเช่า: รับ | คืน สองคอลัมน์บนจอกว้าง */
 .rent-grid { display: grid; gap: 16px; align-items: start; }
 .rent-side { min-width: 0; }
@@ -923,3 +924,5 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
 @media (max-width: 520px) { .menu-pop { position: fixed; left: 16px; right: 16px; top: auto; min-width: 0; } }
 @media (max-width: 359px) { .day-head > .day-meta { font-size: .78rem; } }
 @media (max-width: 400px) { .rent-side .form { grid-template-columns: 1fr; } }
+/* ช่องที่ไม่ต้องกรอก (เช่น รับรถทันทีที่เครื่องลง): สูงเท่าช่องกรอก ข้อความจาง */
+.ed-form .ro { min-height: var(--ctl); display: flex; align-items: center; color: var(--mute); font-size: .875rem; }

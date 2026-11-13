@@ -60,11 +60,11 @@ const PlanView = {
     const flights = `<div class="grid g2">
         <div class="card"><h2>${I("plane")} ขาไป</h2><div class="form">
           <label class="f" style="grid-column:1/-1">ลงที่สนามบิน<select data-k="arrive">${airOptions(t.arrive)}</select></label>
-          <label class="f">ออกจากไทย (เวลาไทย)<input type="datetime-local" data-of="dep" value="${esc(of.dep)}"></label>
           <label class="f">วันที่ลง (เวลาญี่ปุ่น)<input type="date" data-k="start" value="${t.start}"></label>
           <label class="f">เวลาเครื่องลง<input type="time" data-k="arriveTime" value="${t.arriveTime}"></label>
+          <label class="f" style="grid-column:1/-1">ออกจากไทย (เวลาไทย)<input type="datetime-local" data-of="dep" value="${esc(of.dep)}"></label>
           <label class="f chk"><input type="checkbox" data-k="domIn" ${t.domIn ? "checked" : ""}> เที่ยวบินในประเทศ (ผ่าน ตม. ที่โตเกียว/โอซาก้าแล้ว)</label>
-          ${t.domIn ? num("dom", b.dom, 0, 120, "ลงเครื่องจนออกอาคาร (นาที)") : num("imm", b.imm, 15, 240, "ผ่าน ตม. + รับกระเป๋า (นาที)")}
+          ${t.domIn ? num("dom", b.dom, 0, 120, "ลงเครื่องถึงออกอาคาร (นาที)") : num("imm", b.imm, 15, 240, "ตม. + รับกระเป๋า (นาที)")}
           ${Planner.rent()?.pd === 0 ? "" : num("pass", b.pass, 0, 120, "ซื้อตั๋ว/IC/ซิม (นาที)")}
         </div></div>
         <div class="card"><h2>${I("plane")} ขากลับ</h2><div class="form">
@@ -72,7 +72,7 @@ const PlanView = {
           <label class="f">วันที่บินกลับ<input type="date" data-k="end" value="${t.end}"></label>
           <label class="f">เวลาเครื่องออก<input type="time" data-k="departTime" value="${t.departTime}"></label>
           <label class="f chk"><input type="checkbox" data-k="domOut" ${t.domOut ? "checked" : ""}> ขาออกจากฮอกไกโดเป็นเที่ยวบินในประเทศ</label>
-          ${t.domOut ? num("beforeDom", b.beforeDom, 30, 180, "ถึงสนามบินก่อนเครื่องออก (นาที)") : num("before", b.before, 60, 300, "ถึงสนามบินก่อนเครื่องออก (นาที)")}
+          ${t.domOut ? num("beforeDom", b.beforeDom, 30, 180, "ถึงสนามบินก่อนบิน (นาที)") : num("before", b.before, 60, 300, "ถึงสนามบินก่อนบิน (นาที)")}
         </div></div>
       </div>
       <div class="callout ${N < 1 ? "" : "info"}">${N < 1 ? "วันกลับต้องหลังวันไปอย่างน้อย 1 วัน" : `เที่ยว <b>${N + 1} วัน ${N} คืน</b> (${thDate(t.start)} - ${thDate(t.end)})${Planner.overnight() ? " • บินกลางคืนมาถึงเช้า" : ""} •
@@ -137,7 +137,7 @@ const PlanView = {
     const dayOpts = (v, min) => Array.from({ length: N + 1 }, (_, i) => i < min ? "" : `<option value="${i}" ${v === i ? "selected" : ""}>วันที่ ${i + 1} · ${thDate(Planner.dayIso(i), false).replace(/ \d+$/, "")}</option>`).join("");
     const side = (k, x, d, air, airNow, min) => `<div class="rent-side" data-rentk="${k}"><h4>${k === "p" ? "รับรถ" : "คืนรถ"}</h4><div class="form ed-form">
         <label class="f">วัน<select data-rent="day">${dayOpts(d, min)}</select></label>
-        ${airNow ? `<p class="hint">${k === "p" ? "รับทันทีที่เครื่องลง" : "คืนก่อนเช็กอินเที่ยวบิน"}</p>` : `<label class="f">${k === "p" ? "เวลานัดรับ" : "ต้องคืนก่อน"}<input type="time" data-rent="time" value="${esc(x.time || "")}"></label>`}
+        ${airNow ? `<div class="f"><span>${k === "p" ? "เวลารับ" : "เวลาคืน"}</span><div class="ro">${k === "p" ? "ทันทีที่เครื่องลง" : "ก่อนเช็กอินเที่ยวบิน"}</div></div>` : `<label class="f">${k === "p" ? "เวลานัดรับ" : "ต้องคืนก่อน"}<input type="time" data-rent="time" value="${esc(x.time || "")}"></label>`}
         ${num(k === "p" ? "car" : "ret", k === "p" ? b.car : b.ret, 0, 180, k === "p" ? "ใช้เวลารับรถ (นาที)" : "คืนรถ + เติมน้ำมัน (นาที)")}
         <div class="full">${LocPick.html("สาขา", 'data-rent="loc"', x.loc || "", air)}</div>
         <small class="hint full">${x.lat ? `${I("map-pin")} ใช้สาขาที่ปักหมุด` : `ไม่ปักหมุด = ${esc(names(air)[0])}`}</small>
@@ -146,7 +146,7 @@ const PlanView = {
     return `<div class="rent-box"><h3>${I("car")} ช่วงที่เช่ารถ <small class="mute">${R.pd === 0 && R.rd === N ? "ทั้งทริป" : `วันที่ ${R.pd + 1}-${R.rd + 1} · วันอื่นใช้รถไฟ/บัส`}</small></h3>
       <p class="mute small" style="margin:0 0 10px">รับ-คืนที่สาขาหรือวันอื่น ระบบใส่ "รับรถ/คืนรถ" ในแผนรายวันให้ ก่อนรับและหลังคืนรถใช้รถไฟ/บัส • ช่วงที่มีรถ เปลี่ยนบางช่วงเป็นรถไฟได้ในแผนรายวัน</p>
       <div class="rent-grid">${side("p", R.p, R.pd, AIR[t.arrive], R.pAir, 0)}${side("r", R.r, R.rd, AIR[t.depart], R.rAir, R.pd)}</div>
-      <div class="form" style="margin-top:12px"><label class="f">เคยขับบนหิมะไหม<select data-snow>${[["new", "ไม่เคย (เวลาขับ ×1.5)"], ["some", "เคยมาบ้าง (×1.3)"], ["dry", "ถนนส่วนใหญ่แห้ง (×1.1)"]].map(([v, l]) => `<option value="${v}" ${S.set.snow === v ? "selected" : ""}>${l}</option>`).join("")}</select></label></div></div>`;
+      <div class="form ed-form" style="margin-top:12px"><label class="f">เคยขับบนหิมะไหม<select data-snow>${[["new", "ไม่เคย (เวลาขับ ×1.5)"], ["some", "เคยมาบ้าง (×1.3)"], ["dry", "ถนนส่วนใหญ่แห้ง (×1.1)"]].map(([v, l]) => `<option value="${v}" ${S.set.snow === v ? "selected" : ""}>${l}</option>`).join("")}</select></label></div></div>`;
   },
 
   tplCard({ tp, score, min, ideal, why }) {
@@ -669,7 +669,7 @@ const PlanView = {
         <label class="f">เวลาเช็กเอาท์<input type="time" data-s="checkOut" value="${esc(s.checkOut || "10:00")}"></label>
         ${LocPick.html("ตำแหน่งที่พัก", 'data-s="loc"', s.loc || "", HUB[s.hub])}
         <small class="hint full lp-state">${s.lat ? `${I("map-pin")} ใช้พิกัดจริงคำนวณเวลาเดินทาง` : "ยังไม่มีพิกัด: ระบบใช้จุดกลางเมืองแทน"}</small>
-        <label class="f">เมือง <small>ปักหมุดแล้วเลือกให้เอง</small><select data-s="hub">${hubOptions(s.hub)}</select></label>
+        <label class="f">เมือง<select data-s="hub">${hubOptions(s.hub)}</select><small class="hint">ปักหมุดแล้วเลือกให้เอง</small></label>
       </div>${info(HUB[s.hub])}</div>`; };
     // คืนที่ยังไม่จอง (มีแผนแล้ว): รวมคืนติดกันที่เมืองเดียวกัน
     const open = [];
