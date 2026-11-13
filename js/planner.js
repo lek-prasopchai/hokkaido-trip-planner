@@ -121,6 +121,11 @@ const Planner = {
     const pd = Math.min(Math.max(p.day ?? 0, 0), N), rd = Math.min(Math.max(r.day ?? N, pd), N);
     return { pd, rd, p, r, pAir: pd === 0 && !p.lat, rAir: rd === N && !r.lat };
   },
+  // ข้อความสั้นของการเดินทางทั้งทริป (แถบบน/หน้าพิมพ์)
+  modeLabel() {
+    const r = this.rent(), N = tripNights();
+    return !r ? "รถไฟ/บัส" : r.pd === 0 && r.rd === N ? "เช่ารถขับเอง" : `รถไฟ/บัส + เช่ารถ วันที่ ${r.pd + 1}-${r.rd + 1}`;
+  },
   rentPoint(k) {
     const x = S.trip.rent?.[k] || {}, air = AIR[k === "p" ? S.trip.arrive : S.trip.depart];
     return { ...(x.lat ? { lat: x.lat, lng: x.lng } : air), name: (k === "p" ? "รับรถเช่า" : "คืนรถเช่า") + (x.lat ? "" : ` (${names(air)[0]})`) };

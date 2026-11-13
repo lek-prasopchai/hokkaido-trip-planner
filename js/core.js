@@ -316,7 +316,7 @@ const pace = () => {
   if (s.maxStops) p.maxStops = +s.maxStops;
   return p;
 };
-const MODE = { car: "ขับรถเอง", transit: "รถไฟ + บัส" };
+const MODE = { transit: "ไม่เช่ารถ", car: "เช่ารถ" }; // ตัวเลือกในข้อมูลทริป: เช่ารถ = ทั้งทริปหรือบางช่วง (วันรับ-คืนรถ)
 // วิธีเดินทางรายช่วง (เลือกแยกต่อจุดได้ ทับค่าของวัน)
 const LEG_MODE = { car: { ic: "car", name: "ขับรถ" }, transit: { ic: "train-front", name: "รถไฟ/บัส" }, taxi: { ic: "car-taxi-front", name: "แท็กซี่" }, walk: { ic: "footprints", name: "เดิน" } };
 

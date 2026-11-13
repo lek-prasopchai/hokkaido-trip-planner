@@ -67,7 +67,7 @@ const App = {
   refreshChrome() {
     const t = S.trip, N = tripNights();
     $("#tabs").innerHTML = TABS.map(([id, ic, nm]) => `<a href="#${id}" class="tab ${id === this.cur ? "on" : ""}"><span class="ic">${I(ic)}</span><span>${nm}</span></a>`).join("");
-    $("#topTrip").textContent = `${thDate(t.start, false)} - ${thDate(t.end, false)} • ${N + 1} วัน ${N} คืน • ${MODE[t.mode]}`;
+    $("#topTrip").textContent = `${thDate(t.start, false)} - ${thDate(t.end, false)} • ${N + 1} วัน ${N} คืน • ${Planner.modeLabel()}`;
     document.documentElement.dataset.font = S.set.font;
     if (S.set.theme === "auto") delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = S.set.theme;
   },

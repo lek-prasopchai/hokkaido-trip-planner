@@ -81,8 +81,8 @@ const PlanView = {
       </div></details>`;
     const dates = `<div class="card"><div class="form"><label class="f">วันถึงฮอกไกโด<input type="date" data-k="start" value="${t.start}"></label><label class="f">วันบินกลับ<input type="date" data-k="end" value="${t.end}"></label></div>
       <p class="mute small" style="margin:8px 0 0">${N >= 1 ? `${N + 1} วัน ${N} คืน • ` : ""}มีตั๋วแล้ว? กรอกเที่ยวบินทีหลังได้ในหน้านี้</p></div>`;
-    const transport = `<div class="card"><div class="row" style="gap:6px 14px">${modeSeg}<small class="mute">ค่าเริ่มต้นของทุกช่วง เปลี่ยนรายช่วงได้ในแผนรายวัน</small></div>${modeHelp}
-        ${t.mode === "car" ? this.rentHtml() : `<p class="mute small" style="margin:10px 0 0">นั่งรถไฟ/บัสทั้งทริป อยากเช่ารถบางช่วง: เลือก "ขับรถเอง" แล้วตั้งวันรับ-คืนรถ</p>`}</div>`;
+    const transport = `<div class="card"><div class="row" style="gap:6px 14px">${modeSeg}<small class="mute">${t.mode === "car" ? "เช่าทั้งทริปหรือบางช่วงก็ได้: ตั้งวันรับ-คืนรถด้านล่าง วันที่ไม่มีรถใช้รถไฟ/บัสให้เอง" : "รถไฟ/บัสทั้งทริป เปลี่ยนบางช่วงเป็นแท็กซี่/เดินได้ในแผนรายวัน"}</small></div>${modeHelp}
+        ${t.mode === "car" ? this.rentHtml() : `<p class="mute small" style="margin:10px 0 0">อยากเช่ารถแค่บางวัน (เช่น ช่วงชนบท): เลือก "เช่ารถ" แล้วตั้งวันรับ-คืนรถ</p>`}</div>`;
     const style = `<div class="card">
         <div class="row" style="align-items:flex-end;gap:12px 24px">
           <div><div class="mute small">สไตล์</div><div class="seg" data-seg="pace">${Object.entries(PACE).map(([k, v]) => `<button data-v="${k}" class="${t.pace === k ? "on" : ""}">${v.name}</button>`).join("")}</div>
@@ -142,8 +142,8 @@ const PlanView = {
         <small class="hint full">${x.lat ? `${I("map-pin")} ใช้สาขาที่ปักหมุด` : `ไม่ปักหมุด = ${esc(names(air)[0])}`}</small>
       </div></div>`;
     const num = (k, v, min, max, lbl) => `<label class="f">${lbl}<input type="number" min="${min}" max="${max}" data-buf="${k}" value="${v}"></label>`;
-    return `<div class="rent-box"><h3>${I("car")} รถเช่า</h3>
-      <p class="mute small" style="margin:0 0 10px">ระบบใส่ "รับรถ/คืนรถ" ในแผนรายวันให้ วันก่อนรับและหลังคืนรถใช้รถไฟ/บัสเป็นค่าเริ่มต้น</p>
+    return `<div class="rent-box"><h3>${I("car")} ช่วงที่เช่ารถ <small class="mute">${R.pd === 0 && R.rd === N ? "ทั้งทริป" : `วันที่ ${R.pd + 1}-${R.rd + 1} · วันอื่นใช้รถไฟ/บัส`}</small></h3>
+      <p class="mute small" style="margin:0 0 10px">รับ-คืนที่สาขาหรือวันอื่น ระบบใส่ "รับรถ/คืนรถ" ในแผนรายวันให้ ก่อนรับและหลังคืนรถใช้รถไฟ/บัส • ช่วงที่มีรถ เปลี่ยนบางช่วงเป็นรถไฟได้ในแผนรายวัน</p>
       <div class="rent-grid">${side("p", R.p, R.pd, AIR[t.arrive], R.pAir, 0)}${side("r", R.r, R.rd, AIR[t.depart], R.rAir, R.pd)}</div>
       <div class="form" style="margin-top:12px"><label class="f">เคยขับบนหิมะไหม<select data-snow>${[["new", "ไม่เคย (เวลาขับ ×1.5)"], ["some", "เคยมาบ้าง (×1.3)"], ["dry", "ถนนส่วนใหญ่แห้ง (×1.1)"]].map(([v, l]) => `<option value="${v}" ${S.set.snow === v ? "selected" : ""}>${l}</option>`).join("")}</select></label></div></div>`;
   },
@@ -183,7 +183,7 @@ const PlanView = {
             <button class="btn small" data-act="refillAll" title="ที่ใส่เองและที่ล็อกเวลาไว้จะไม่ถูกลบ">${I("refresh-ccw")} จัดสถานที่ใหม่ทั้งทริป</button>
             <button class="btn small" data-act="share">${I("link")} ส่งแผนให้เพื่อน (ลิงก์)</button>
             <button class="btn small" data-act="print">${I("printer")} พิมพ์ / PDF</button></div></details></div></div>
-        <p class="print-only">${thDate(t.start)} - ${thDate(t.end)} • ${MODE[t.mode]} • สไตล์${PACE[t.pace].name} • ลง ${t.arrive} ${t.arriveTime} • ออก ${t.depart} ${t.departTime}</p>
+        <p class="print-only">${thDate(t.start)} - ${thDate(t.end)} • ${Planner.modeLabel()} • สไตล์${PACE[t.pace].name} • ลง ${t.arrive} ${t.arriveTime} • ออก ${t.depart} ${t.departTime}</p>
         <div class="summary" style="margin-top:10px">
           <div class="k"><b>${N + 1} วัน ${N} คืน</b><span>${thDate(t.start, false)} - ${thDate(t.end, false)} • ${I("plane")} ${t.arrive} ${t.arriveTime} → ${t.depart} ${t.departTime}</span></div>
           ${dT ? `<div class="k"><b>${fmtH(dT)}</b><span>ขับรวม ${fmtN(kmT)} กม.</span></div>` : ""}
