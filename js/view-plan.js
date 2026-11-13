@@ -640,6 +640,7 @@ const PlanView = {
   },
   addTo(id, i) {
     if (i === "auto") return this.quickAdd(id);
+    if (i === "unwish") { this.mut(() => { S.plan.wish = S.plan.wish.filter((x) => x !== id); }); return toast(`เอา ${pname(id)} ออกจากรายการอยากไปแล้ว`); }
     if (i === "wish") {
       if (!S.plan) return toast("สร้างแผนก่อน");
       if (S.plan.days.some((d) => d.items.some((it) => it.id === id))) return toast(`${pname(id)} อยู่ในแผนแล้ว`);

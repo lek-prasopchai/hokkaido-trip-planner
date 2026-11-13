@@ -2,7 +2,7 @@
 const tripMonths = () => { const out = new Set(); for (let d = S.trip.start; d <= S.trip.end; d = addDays(d, 1)) out.add(monthOf(d)); return [...out]; };
 const seasonBadges = (p) => seasonsOf(p).map((k) => `<span title="${SEASONS[k].name}">${I(SEASONS[k].ic)}</span>`).join("");
 const inPlanMap = () => { const m = {}; if (S.plan) S.plan.days.forEach((d, i) => d.items.forEach((it) => (m[it.id] = i + 1))); return m; };
-const addSelect = (id) => S.plan ? `<select data-addto="${esc(id)}" class="addsel ${S.plan.wish.includes(id) ? "wished" : ""}"><option value="">${S.plan.wish.includes(id) ? "♡ อยากไปแล้ว" : "+ ใส่ในแผน"}</option><option value="auto">วันที่เหมาะที่สุด</option>${S.plan.wish.includes(id) ? "" : '<option value="wish">♡ อยากไป (เลือกวันทีหลัง)</option>'}${S.plan.days.map((_, i) => `<option value="${i}">วันที่ ${i + 1} (${esc(short(Planner.ends(i).to))})</option>`).join("")}</select>` : "";
+const addSelect = (id) => S.plan ? `<select data-addto="${esc(id)}" class="addsel ${S.plan.wish.includes(id) ? "wished" : ""}"><option value="">${S.plan.wish.includes(id) ? "♡ อยากไปแล้ว" : "+ ใส่ในแผน"}</option><option value="auto">วันที่เหมาะที่สุด</option>${S.plan.wish.includes(id) ? "" : '<option value="wish">♡ อยากไป (เลือกวันทีหลัง)</option>'}${S.plan.days.map((_, i) => `<option value="${i}">วันที่ ${i + 1} (${esc(short(Planner.ends(i).to))})</option>`).join("")}${S.plan.wish.includes(id) ? '<option value="unwish">✕ เอาออกจากอยากไป</option>' : ""}</select>` : "";
 // มุมมองรายการสั้น (ค่าเริ่มต้นบนมือถือ) / การ์ดมีรูป: จำไว้ใน S.set.view
 const listView = () => (S.set.view || (matchMedia("(max-width: 899px)").matches ? "list" : "card")) === "list";
 const viewToggle = (n) => `<div class="row list-head"><span class="mute">${n}</span><span class="spacer"></span><div class="seg no-print">${[["list", "รายการ"], ["card", "การ์ดมีรูป"]].map(([k, v]) => `<button data-view="${k}" class="${listView() === (k === "list") ? "on" : ""}">${v}</button>`).join("")}</div></div>`;
@@ -139,7 +139,7 @@ const PlacesView = {
       if (e.target.dataset.gi) Lightbox.open(imgs, +e.target.dataset.gi, p.name);
       if (e.target.closest("[data-locate]")) { d.close(); this.locate(id); }
     };
-    d.onchange = (e) => { const v = e.target.value; if (e.target.dataset.addto && v !== "") { PlanView.addTo(id, /^(auto|wish)$/.test(v) ? v : +v); d.close(); } };
+    d.onchange = (e) => { const v = e.target.value; if (e.target.dataset.addto && v !== "") { PlanView.addTo(id, /^(auto|wish|unwish)$/.test(v) ? v : +v); d.close(); } };
   },
 
   // ซูมไปที่สถานที่บนแผนที่แล้วเปิดป๊อปอัป (แผนที่พับอยู่: เปิดก่อน รอวาดหมุด)
@@ -177,7 +177,7 @@ const PlacesView = {
     sec.addEventListener("change", (ev) => {
       const el = ev.target;
       if (el.dataset.f && el.dataset.f !== "q") upd(el);
-      if (el.dataset.addto && el.value !== "") { PlanView.addTo(+el.dataset.addto, /^(auto|wish)$/.test(el.value) ? el.value : +el.value); }
+      if (el.dataset.addto && el.value !== "") { PlanView.addTo(+el.dataset.addto, /^(auto|wish|unwish)$/.test(el.value) ? el.value : +el.value); }
     });
     sec.addEventListener("click", (ev) => {
       const el = ev.target.closest("[data-locate], [data-detail], [data-lb]");
