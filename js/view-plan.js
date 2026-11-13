@@ -21,7 +21,7 @@ const durField = (id, h, def) => {
   return `<span class="dur-in">${box("H", 12, 1, v == null ? null : Math.floor(v / 60), d == null ? null : Math.floor(d / 60), "ชม.")} ${box("M", 55, 5, v == null ? null : v % 60, d == null ? null : d % 60, "นาที")}</span>`;
 };
 const durVal = (id) => { const h = $(`#${id}H`).value, m = $(`#${id}M`).value; return h === "" && m === "" ? null : Math.max(5 / 60, (+h || 0) + (+m || 0) / 60); }; // ต่ำสุด 5 นาที
-const legOpts = (cur) => `<option value="">${LEG_MODE[Planner.modeOf()].name} (ค่าเริ่มต้น)</option>${Object.entries(LEG_MODE).map(([v, m]) => `<option value="${v}" ${cur === v ? "selected" : ""}>${m.name}</option>`).join("")}`;
+const legOpts = (cur, def) => `<option value="">${LEG_MODE[def].name} (ค่าเริ่มต้น)</option>${Object.entries(LEG_MODE).map(([v, m]) => `<option value="${v}" ${cur === v ? "selected" : ""}>${m.name}</option>`).join("")}`;
 const STAY_TIPS = "จองล่วงหน้า 3-4 เดือน (ช่วงเทศกาลหิมะ 6 เดือน) • ขับรถ: เลือกที่มีที่จอด ถามค่าจอดและต้องจองไหม • นั่งรถไฟ: เลือกใกล้สถานี เดินลากกระเป๋าบนหิมะลำบาก • เรียวกังออนเซ็นมักรวมอาหารเย็น-เช้า และต้องเช็กอินก่อน ~18:00 • พักฐานเดิม 2 คืนขึ้นไปช่วยให้ไม่ต้องแพ็กกระเป๋าทุกวัน";
 
 // แผนที่เล็กของรูท: เกาะฮอกไกโด (SVG จาก outline) + เมืองที่พักเรียงตามลำดับ ไม่โหลด Leaflet ต่อการ์ด
@@ -83,15 +83,10 @@ const PlanView = {
       </div>
       <div class="callout ${N < 1 ? "" : "info"}">${N < 1 ? "วันกลับต้องหลังวันไปอย่างน้อย 1 วัน" : `เที่ยว <b>${N + 1} วัน ${N} คืน</b> (${thDate(t.start)} - ${thDate(t.end)})${Planner.overnight() ? " • บินกลางคืนมาถึงเช้า" : ""} •
         ออกจากสนามบินได้ราว <b>${fmtT(Planner.leaveAirport(t.mode === "transit" ? "transit" : "car"))}</b> • วันกลับต้องถึงสนามบินก่อน <b>${fmtT(Planner.needAirport(t.mode === "transit" ? "transit" : "car"))}</b>`}</div>
-      <details class="card"><summary><b>เวลาเผื่อที่สนามบิน + รับ/คืนรถ</b> <span class="mute">(แก้ได้)</span></summary><div class="form" style="margin-top:10px">
+      <details class="card"><summary><b>เวลาเผื่อที่สนามบิน</b> <span class="mute">(แก้ได้)</span></summary><div class="form" style="margin-top:10px">
         ${num("imm", b.imm, 15, 240, "ตม. + รับกระเป๋า (นาที)")}${num("dom", b.dom, 0, 120, "ลงจากเที่ยวบินในประเทศ (นาที)")}
         ${num("pass", b.pass, 0, 120, "ซื้อพาส/IC/ซิม (นาที)")}
         ${num("before", b.before, 60, 300, "ถึงสนามบินก่อนเครื่องออก ระหว่างประเทศ (นาที)")}${num("beforeDom", b.beforeDom, 30, 180, "…ในประเทศ (นาที)")}
-        <label class="f chk"><input type="checkbox" data-k="carPick" ${t.carPick ? "checked" : ""}> รับรถเช่าที่สนามบินทันทีที่ถึง</label>
-        ${t.carPick ? num("car", b.car, 0, 180, "…ใช้เวลารับรถ (นาที)") : ""}
-        <label class="f chk"><input type="checkbox" data-k="carRet" ${t.carRet ? "checked" : ""}> คืนรถที่สนามบินก่อนบินกลับ</label>
-        ${t.carRet ? num("ret", b.ret, 0, 120, "…คืนรถ + เติมน้ำมัน (นาที)") : ""}
-        <p class="mute small" style="grid-column:1/-1;margin:0">รับ/คืนรถที่อื่นหรือวันอื่น: เอาติ๊กออก แล้วเพิ่ม <b>จุดของฉัน</b> ชื่อ "รับรถ" / "คืนรถ" ในวันนั้น ปักหมุดสาขา ล็อกเวลา และใส่เวลาที่ใช้เอง • ช่วงก่อนมีรถ เปลี่ยนวิธีเดินทางรายช่วงเป็นรถไฟ/บัสได้ในแผนรายวัน</p>
         <label class="f">วันแรก<select data-k="firstDay"><option value="auto" ${t.firstDay === "auto" ? "selected" : ""}>อัตโนมัติ (บินกลางคืน = เบาๆ)</option><option value="light" ${t.firstDay === "light" ? "selected" : ""}>เบาๆ 1 ที่</option><option value="full" ${t.firstDay === "full" ? "selected" : ""}>เที่ยวเต็มที่</option></select></label>
       </div></details>
       ${fresh ? `</details><details class="fold-sec"><summary><b>${I("settings")} สไตล์และความสนใจ</b> <span class="mute">ไม่บังคับ: กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง</span></summary>` : `<h2 class="step-h"><b>2</b> สไตล์และการเดินทาง <small class="mute">กำหนดว่าวันหนึ่งเที่ยวกี่ที่ ขับกี่ชั่วโมง</small></h2>`}
@@ -105,12 +100,30 @@ const PlanView = {
         <div style="margin-top:14px"><div class="mute small">สนใจอะไร (เลือกได้หลายข้อ)</div>
           <div class="chips">${Object.entries(INTEREST).map(([k, v]) => `<button class="chip ${t.interests.includes(k) ? "on" : ""}" data-int="${k}">${v}</button>`).join("")}</div></div>
       </div>
+      ${t.mode === "car" ? this.rentHtml() : ""}
       ${fresh ? "</details>" : ""}<h2 class="step-h" id="routes"><b>${fresh ? 2 : 3}</b> เลือกรูท</h2>
       <details class="card routes-box" ${S.plan ? "" : "open"}><summary>${S.plan ? `<b>รูทตอนนี้: ${esc(TEMPLATES.find((x) => x.id === S.plan.tpl)?.name || "แผนที่จัดเอง")}</b> <span class="mute">กดเพื่อดู/เปลี่ยนรูท (สร้างแผนใหม่)</span>` : "<b>รูทแนะนำ</b> <span class=\"mute\">แผนที่เล็ก = เมืองที่พักและลำดับการเดินทาง</span>"}</summary>
         <p class="mute">รูทคือลำดับเมืองที่จะพักแต่ละคืน เรียงตามความเหมาะกับข้อ 1-2 กดการ์ดแล้วระบบจะจัดที่พักรายคืนและที่เที่ยวรายวันให้ทันที แล้วพาไปหน้าแผนรายวัน${S.plan ? ` <b>มีแผนอยู่แล้ว: กดรูทใหม่ = แผนเดิมถูกแทนที่</b> (ที่พักที่กรอกไว้ยังอยู่ กด ↶ ย้อนได้) ถ้าแค่แก้วันหรือเที่ยวบิน ไม่ต้องกดรูทใหม่` : ""}</p>
         <div class="grid g3">${Planner.rankTemplates().map((r) => this.tplCard(r)).join("")}
           <div class="card tpl blank" data-blank tabindex="0" role="button"><h3>เริ่มแผนเปล่า</h3><p class="small">เลือกเมืองที่พักแต่ละคืนและที่เที่ยวเองทั้งหมด</p></div></div>
       </details>${S.plan ? this.staysHtml() : ""}${this.undoBtn()}`;
+  },
+
+  // รถเช่า: วัน/เวลา/สาขาที่รับ-คืน (ไม่ปักหมุด = สนามบิน)
+  rentHtml() {
+    const t = S.trip, N = tripNights(), R = Planner.rent(), b = t.buf;
+    const dayOpts = (v, min) => Array.from({ length: N + 1 }, (_, i) => i < min ? "" : `<option value="${i}" ${v === i ? "selected" : ""}>วันที่ ${i + 1} · ${thDate(Planner.dayIso(i), false)}</option>`).join("");
+    const side = (k, x, d, air, airNow, min) => `<div class="rent-side" data-rentk="${k}"><h3>${k === "p" ? "รับรถ" : "คืนรถ"}</h3><div class="form ed-form">
+        <label class="f">วัน<select data-rent="day">${dayOpts(d, min)}</select></label>
+        ${airNow ? `<p class="hint">${k === "p" ? "รับทันทีที่เครื่องลง" : "คืนก่อนเช็กอินเที่ยวบิน"}</p>` : `<label class="f">${k === "p" ? "เวลานัดรับ" : "ต้องคืนก่อน"}<input type="time" data-rent="time" value="${esc(x.time || "")}"></label>`}
+        ${num(k === "p" ? "car" : "ret", k === "p" ? b.car : b.ret, 0, 180, k === "p" ? "ใช้เวลารับรถ (นาที)" : "คืนรถ + เติมน้ำมัน (นาที)")}
+        <div class="full">${LocPick.html("สาขา", 'data-rent="loc"', x.loc || "", air)}</div>
+        <small class="hint full">${x.lat ? `${I("map-pin")} ใช้สาขาที่ปักหมุด` : `ไม่ปักหมุด = ${esc(names(air)[0])}`}</small>
+      </div></div>`;
+    const num = (k, v, min, max, lbl) => `<label class="f">${lbl}<input type="number" min="${min}" max="${max}" data-buf="${k}" value="${v}"></label>`;
+    return `<div class="card rent-card"><h2>${I("car")} รถเช่า</h2>
+      <p class="mute small" style="margin:0 0 10px">ระบบใส่ "รับรถ/คืนรถ" ในแผนรายวันให้ วันก่อนรับและหลังคืนรถใช้รถไฟ/บัสเป็นค่าเริ่มต้น</p>
+      <div class="rent-grid">${side("p", R.p, R.pd, AIR[t.arrive], R.pAir, 0)}${side("r", R.r, R.rd, AIR[t.depart], R.rAir, R.pd)}</div></div>`;
   },
 
   tplCard({ tp, score, min, ideal, why }) {
@@ -265,12 +278,13 @@ const PlanView = {
         const fare = (b, k) => (Math.round((b + x.km * k) / 100) * 100).toLocaleString();
         const what = x.walk ? `เดิน ${fmtH(x.h)} · ${x.km} กม.` : x.taxi ? `แท็กซี่ ${fmtH(x.h)} · ${x.km} กม. · ≈¥${fare(600, 300)}-${fare(700, 400)}` : x.city ? `เดิน/รถไฟใต้ดิน/แท็กซี่ ${fmtH(x.h)} (จอดรถไว้ที่พัก)` : x.mode === "car" ? `ขับ ${fmtH(x.h)} · ${x.km} กม.${x.est ? " (≈)" : ""}` : x.noTransit ? `ไม่มีรถไฟ/บัสตรง ${fmtH(x.h)} (แท็กซี่/รถ)` : x.local ? `รถไฟ/บัสในเมือง ${fmtH(x.h)} (≈)` : `รถไฟ/บัส ${fmtH(x.h)}${x.by ? " · " + esc(x.by.join(" → ")) : ""}`;
         const k = x.it ? S.plan.days[i].items.indexOf(x.it) : -1, cur = k >= 0 ? x.it.m : x.home === "back" ? day.bm : x.home ? day.hm : null;
-        const lm = LEG_MODE[cur || Planner.modeOf()];
+        const lm = LEG_MODE[cur || x.mode];
         // แสดงแค่ไอคอน มี select โปร่งใสทับไว้ให้กดเปลี่ยน
-        const pick = k >= 0 || x.home ? `<span class="legmode no-print ${cur ? "set" : ""}" title="วิธีเดินทางช่วงนี้: ${esc(lm.name)}${cur ? "" : " (ค่าเริ่มต้น)"}: กดเพื่อเปลี่ยน">${mvIcon(x)}<select ${k >= 0 ? `data-legmode="${i}:${k}"` : x.home === "back" ? `data-bm="${i}"` : `data-hm="${i}"`} aria-label="วิธีเดินทางช่วงนี้ ไป ${esc(short(x.to))}">${legOpts(cur)}</select></span>` : "";
+        const pick = k >= 0 || x.home ? `<span class="legmode no-print ${cur ? "set" : ""}" title="วิธีเดินทางช่วงนี้: ${esc(lm.name)}${cur ? "" : " (ค่าเริ่มต้น)"}: กดเพื่อเปลี่ยน">${mvIcon(x)}<select ${k >= 0 ? `data-legmode="${i}:${k}"` : x.home === "back" ? `data-bm="${i}"` : `data-hm="${i}"`} aria-label="วิธีเดินทางช่วงนี้ ไป ${esc(short(x.to))}">${legOpts(cur, cur ? Planner.modeOf(i) : x.mode)}</select></span>` : "";
         // ปลายทางคือแถวถัดไปอยู่แล้ว: แถวเดินทางเหลือแค่วิธีไปและเวลา
         return `<li class="mv"><span class="tm"></span><span class="ic">${pick || mvIcon(x)}</span><span class="move">${what}${x.high ? `<br><span class="risk">${I("triangle-alert")} ${esc(x.risk)}</span>` : ""}</span></li>`;
       }
+      if (x.kind === "visit" && x.it.rent) return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("car")}</span><span class="row-b"><b>${esc(pname(x.id))}</b><small>${fmtH(x.h)}${x.it.at ? ` · นัด ${esc(x.it.at)}` : ""} · แก้ใน <a href="#setup">ข้อมูลทริป</a></small></span></li>`;
       if (x.kind === "visit") return this.itemRow(e, x);
       if (x.kind === "wait") { // รอที่จุดก่อนหน้าแล้วค่อยออก
         const home = x.at && (x.at === e.to || x.at === e.from) && !AIR[x.at];
@@ -483,7 +497,7 @@ const PlanView = {
     Modal.open(`<h2>${nameHtml(p)}</h2><div class="form ed-form">
       ${cu ? `<label class="f full">ชื่อ<input type="text" id="eName" value="${esc(cu.name)}"></label>
       <div class="full">${LocPick.html("ตำแหน่ง", 'id="eLoc"', cu.lat ? `${cu.lat}, ${cu.lng}` : cu.url || "", point(Planner.ends(i).to))}</div>` : ""}
-      <label class="f">วิธีไปที่นี่<select id="eMode">${legOpts(it.m)}</select></label>
+      <label class="f">วิธีไปที่นี่<select id="eMode">${legOpts(it.m, Planner.modeOf(i))}</select></label>
       <label class="f">ย้ายไปวัน<select id="eDay">${S.plan.days.map((_, k) => `<option value="${k}" ${k === i ? "selected" : ""}>วันที่ ${k + 1} (${esc(short(Planner.ends(k).to))})</option>`).join("")}</select></label>
       <label class="f">ล็อกเวลาเริ่ม<input type="time" id="eAt" value="${esc(it.at || "")}"><small class="hint">ใช้เมื่อจองรอบหรือจองร้านไว้</small></label>
       <div class="f">เวลาที่ใช้${durField("eDur", it.dur, p.hours ?? p.dur ?? 1)}<small class="hint">ปกติ ${fmtH(p.hours ?? p.dur ?? 1)}</small></div>
@@ -646,6 +660,7 @@ const PlanView = {
         return;
       }
       if (el.dataset.h) return this.setHotel(el);
+      if (el.dataset.rent) return this.setRent(el);
       this.mut(() => {
         if (el.dataset.k) {
           const k = el.dataset.k;
@@ -768,6 +783,18 @@ const PlanView = {
   },
 
   // ---- ที่พัก (ในหน้าข้อมูลทริป): ชื่อ ตำแหน่ง เช็กอิน/เอาท์ ----
+  setRent(el) {
+    const k = el.closest("[data-rentk]").dataset.rentk, f = el.dataset.rent, N = tripNights();
+    const picking = el.closest(".lp")?.querySelector(".lp-pick:not([hidden])");
+    (picking ? (fn) => { Hist.push(); fn(); save(); } : (fn) => this.mut(fn))(() => {
+      const r = (S.trip.rent ||= {}), x = (r[k] ||= {});
+      if (f === "day") {
+        x.day = k === "r" && +el.value === N ? undefined : +el.value; // คืนวันสุดท้าย: ไม่เก็บเลขวัน เลื่อนตามวันกลับ
+        if (k === "p" && r.r?.day != null && r.r.day < x.day) r.r.day = x.day;
+      } else x[f] = el.value.trim();
+      if (f === "loc") { const ll = parseLatLng(x.loc); if (ll) Object.assign(x, ll); else { delete x.lat; delete x.lng; if (x.loc) toast("ลิงก์นี้ไม่มีพิกัด (ลิงก์แชร์แบบสั้น) ใช้ปุ่ม แตะบนแผนที่ แทน"); } }
+    });
+  },
   setHotel(el) {
     const k = el.dataset.h, hub = el.closest("[data-hub]")?.dataset.hub;
     if (!hub) return;

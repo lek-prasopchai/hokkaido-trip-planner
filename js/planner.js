@@ -85,7 +85,20 @@ const Planner = {
     return { from: i === 0 ? S.trip.arrive : P.bases[i - 1], to: i === N ? S.trip.depart : P.bases[i] };
   },
 
-  modeOf() { return S.trip.mode === "transit" ? "transit" : "car"; }, // ค่าเริ่มต้นของทุกช่วง (เลือกแยกรายช่วงได้: it.m / day.hm)
+  // ค่าเริ่มต้นของทุกช่วง (เลือกแยกรายช่วงได้: it.m / day.hm) • วันนอกช่วงเช่ารถ = รถไฟ/บัส
+  modeOf(i) { const r = this.rent(); return !r ? "transit" : i == null || (i >= r.pd && i <= r.rd) ? "car" : "transit"; },
+
+  // รถเช่า: วันรับ/คืน (index วัน) • ไม่ปักหมุด = สนามบินขาไป/ขากลับ • pAir/rAir = รับตอนเครื่องลง/คืนก่อนบิน (บวกเวลาในเวลาสนามบิน ไม่เป็นจุดในแผน)
+  rent() {
+    const t = S.trip, N = tripNights(), p = t.rent?.p || {}, r = t.rent?.r || {};
+    if (t.mode === "transit") return null;
+    const pd = Math.min(Math.max(p.day ?? 0, 0), N), rd = Math.min(Math.max(r.day ?? N, pd), N);
+    return { pd, rd, p, r, pAir: pd === 0 && !p.lat, rAir: rd === N && !r.lat };
+  },
+  rentPoint(k) {
+    const x = S.trip.rent?.[k] || {}, air = AIR[k === "p" ? S.trip.arrive : S.trip.depart];
+    return { ...(x.lat ? { lat: x.lat, lng: x.lng } : air), name: (k === "p" ? "รับรถเช่า" : "คืนรถเช่า") + (x.lat ? "" : ` (${names(air)[0]})`) };
+  },
 
   // ทุกวิธีเดินทางที่แผนใช้ (ค่าเริ่มต้น + ที่เลือกรายช่วง): ใช้กรองของเตรียม/แอป
   usedModes() {
@@ -135,9 +148,9 @@ const Planner = {
   // ---- เที่ยวบิน: เวลาที่ออกจากสนามบินได้ / ต้องถึงสนามบิน ----
   overnight() { const d = S.trip.outFlight?.dep; return !!d && d.slice(0, 10) < S.trip.start; },
   firstDayLight() { const t = S.trip; return t.firstDay === "light" || (t.firstDay === "auto" && this.overnight() && parseT(t.arriveTime) < 10); },
-  // รับ/คืนรถบวกเวลาเฉพาะเมื่อรับ/คืนที่สนามบิน (carPick/carRet) ไม่งั้นผู้ใช้ใส่ "รับรถ" เป็นจุดในแผนเอง
-  leaveAirport(mode) { const t = S.trip, b = t.buf; return parseT(t.arriveTime) + ((t.domIn ? b.dom : b.imm) + (mode === "car" ? (t.carPick ? b.car : 0) : b.pass)) / 60; },
-  needAirport(mode) { const t = S.trip, b = t.buf; return parseT(t.departTime) - ((t.domOut ? b.beforeDom : b.before) + (mode === "car" && t.carRet ? b.ret : 0)) / 60; },
+  // รับ/คืนรถบวกเวลาเฉพาะเมื่อรับตอนเครื่องลง/คืนก่อนบินที่สนามบิน ที่อื่น/วันอื่นเป็นจุด "รับรถ/คืนรถ" ในแผนรายวัน
+  leaveAirport(mode) { const t = S.trip, b = t.buf, r = this.rent(); return parseT(t.arriveTime) + ((t.domIn ? b.dom : b.imm) + (r?.pAir ? b.car : r?.pd === 0 ? 0 : b.pass)) / 60; },
+  needAirport(mode) { const t = S.trip, b = t.buf; return parseT(t.departTime) - ((t.domOut ? b.beforeDom : b.before) + (this.rent()?.rAir ? b.ret : 0)) / 60; },
 
   // เวลาเดินทางระหว่าง 2 จุด ตามโหมด (รวมตัวคูณหิมะตามเดือน + เวลาเผื่อจากหน้าตั้งค่า)
   leg(a, b, mode, iso) {
@@ -176,9 +189,14 @@ const Planner = {
     const iso = this.dayIso(i), { from, to } = this.ends(i), mode = this.modeOf(i), day = P.days[i];
     let items = (itemsOverride || day.items).filter((it) => point(it.id) && !it.maybe); // maybe = จุดสำรอง ไม่นับเวลา
     if (opts.live) items = items.filter((it) => !it.st);
+    // รับ/คืนรถที่สาขาหรือวันอื่น: จุดอัตโนมัติ ต้นวัน (ล็อกเวลาได้) / ท้ายช่วงกลางวัน • ก่อนรับ/หลังคืน ใช้รถไฟ/บัส
+    const R = this.rent(), b0 = t.buf;
+    let dm = R && R.pd === i && !R.pAir ? "transit" : mode;
+    const rentP = R && R.pd === i && !R.pAir ? { id: "rent:p", dur: b0.car / 60, at: R.p.time || undefined, rent: "p" } : null;
+    const rentR = R && R.rd === i && !R.rAir ? { id: "rent:r", dur: b0.ret / 60, rent: "r" } : null;
     const toHub = hubOf(to), ref = point(to);
     const sun = sunTimes(iso, ref.lat, ref.lng);
-    const dayI = items.filter((it) => !(it.night && i < N)), nightI = items.filter((it) => it.night && i < N);
+    const dayI = [rentP, ...items.filter((it) => !(it.night && i < N)), rentR].filter(Boolean), nightI = items.filter((it) => it.night && i < N);
     let time = opts.live ? opts.live.t : i === 0 ? this.leaveAirport(mode) : day.start ? parseT(day.start) : pc.start;
     const tl = [], checks = [];
     const add = (lvl, text) => checks.push({ lvl, text });
@@ -203,7 +221,7 @@ const Planner = {
     };
     if (i === 0 && !opts.live) {
       const b = t.buf;
-      tl.push({ t: parseT(t.arriveTime), kind: "info", ic: "plane", text: `เครื่องลง ${t.arriveTime} • ${t.domIn ? "เที่ยวบินในประเทศ" : "ตรวจคนเข้าเมือง + รับกระเป๋า"} ~${t.domIn ? b.dom : b.imm} นาที • ${mode === "car" ? (t.carPick ? `รับรถเช่า ~${b.car} นาที` : "ไม่รวมเวลารับรถ (ใส่เองในแผน)") : `ซื้อพาส/IC/ซิม ~${b.pass} นาที`}` });
+      tl.push({ t: parseT(t.arriveTime), kind: "info", ic: "plane", text: `เครื่องลง ${t.arriveTime} • ${t.domIn ? "เที่ยวบินในประเทศ" : "ตรวจคนเข้าเมือง + รับกระเป๋า"} ~${t.domIn ? b.dom : b.imm} นาที • ${R?.pAir ? `รับรถเช่า ~${b.car} นาที` : R?.pd === 0 ? "ไปรับรถที่สาขา" : `ซื้อพาส/IC/ซิม ~${b.pass} นาที`}` });
     }
     const atOf = (it, night) => parseT(it.at) + (night && parseT(it.at) < 6 ? 24 : 0); // ตอนค่ำล็อก 00:30 = หลังเที่ยงคืนคืนนั้น (เช่น เคาท์ดาวน์)
     // ล็อกเวลา: รอที่จุดก่อนหน้า (ที่พัก/ที่เที่ยว) แล้วค่อยออก ให้ไปถึงก่อนเวลา ~10 นาที แทนไปยืนรอที่ปลายทาง
@@ -227,12 +245,14 @@ const Planner = {
     let wayMeal = null;
     dayI.forEach((it, k) => {
       if (P.custom[it.id]?.meal && !it.at && time < 11.25) { // ช่วงถัดไปยาวคร่อมเที่ยง → กินระหว่างทาง
-        const nx = dayI[k + 1], L = this.leg(prev, nx ? nx.id : to, nx ? nx.m || mode : day.hm || mode, iso);
+        const nx = dayI[k + 1], L = this.leg(prev, nx ? nx.id : to, nx ? nx.m || dm : day.hm || dm, iso);
         if (L.h >= 1.5 && time + L.h > 12.5) { wayMeal = it; return; }
       }
-      lead(it, it.m || mode, false); move(it.id, it.m || mode, it); visit(it, false);
+      lead(it, it.m || dm, false); move(it.id, it.m || dm, it); visit(it, false);
+      if (it === rentP) dm = "car";
+      if (it === rentR) { dm = "transit"; if (R.r.time && time > parseT(R.r.time) + 0.05) add("warn", `คืนรถ ${fmtT(time)} เลยเวลาที่ต้องคืน ${R.r.time}`); }
     });
-    const hm = day.hm || mode; // วิธีไปที่พัก/สนามบินช่วงสุดท้าย
+    const hm = day.hm || dm; // วิธีไปที่พัก/สนามบินช่วงสุดท้าย
     move(to, hm, null, true);
     const arrive = time;
     tl.push({ t: time, kind: i === N ? "airport" : "hotel", id: to });
@@ -245,7 +265,7 @@ const Planner = {
       if (sun.set - 0.25 - time >= 0.08) tl.push({ t: time, kind: "wait", h: sun.set - 0.25 - time, at: to, why: "รอให้มืด ไฟ/วิวกลางคืนสวยกว่า" });
       time = sun.set - 0.25;
     }
-    for (const it of nightI) { lead(it, it.m || mode, true); move(it.id, it.m || mode, it); visit(it, true); }
+    for (const it of nightI) { lead(it, it.m || dm, true); move(it.id, it.m || dm, it); visit(it, true); }
     // bm = วิธีกลับที่พักหลังเที่ยวค่ำ (ว่าง = แบบเดียวกับขาไปที่สุดท้าย)
     if (nightI.length) { move(to, day.bm || nightI[nightI.length - 1].m || hm, null, "back"); tl.push({ t: time, kind: "back", id: to }); }
     const end = time;
@@ -265,7 +285,7 @@ const Planner = {
     else if (end > pc.end + 1) add("bad", `จบวัน ${fmtT(end)} ดึกเกินไปสำหรับสไตล์${pc.name}`);
     else if (end > pc.end) add("warn", `จบวัน ${fmtT(end)} ค่อนข้างดึก`);
     if (i === 0 && !opts.live) {
-      if (mode === "car" && t.carPick && parseT(t.arriveTime) >= 20) add("warn", `เครื่องลง ${t.arriveTime} ร้านรถเช่าส่วนใหญ่ปิด ~20:00-21:00 คืนแรกพักใกล้สนามบินแล้วรับรถเช้า`);
+      if (R?.pAir && parseT(t.arriveTime) >= 20) add("warn", `เครื่องลง ${t.arriveTime} ร้านรถเช่าส่วนใหญ่ปิด ~20:00-21:00 คืนแรกพักใกล้สนามบินแล้วรับรถเช้า`);
       if (this.overnight()) add("info", "บินกลางคืนมา นอนน้อย วันแรกเที่ยวเบาๆ ฝากกระเป๋าที่โรงแรมได้ก่อนเช็กอิน");
     }
     const nVisit = items.filter((it) => isPlace(it.id)).length;
@@ -327,7 +347,7 @@ const Planner = {
     if (S.plan) {
       const moves = S.plan.bases.filter((b, i) => i > 0 && b !== S.plan.bases[i - 1]).length;
       if (t.pace === "chill" && moves >= Math.max(3, N * 0.6)) out.push({ lvl: "warn", text: `ย้ายที่พัก ${moves} ครั้งใน ${N} คืน เหนื่อยสำหรับสไตล์ชิล ลองพักฐานละ 2 คืน` });
-      if (hubOf(t.arrive) !== hubOf(t.depart) && t.mode !== "transit") out.push({ lvl: "info", text: "รับ-คืนรถคนละเมือง มีค่าคืนรถต่างสาขา (one-way fee)" });
+      if (this.rent() && hubOf("rent:p") !== hubOf("rent:r")) out.push({ lvl: "info", text: "รับ-คืนรถคนละเมือง มีค่าคืนรถต่างสาขา (one-way fee)" });
       const bad = evals.filter((e) => e.lvl === "bad").length, warn = evals.filter((e) => e.lvl === "warn").length;
       const days = (l) => "วันที่ " + evals.filter((e) => e.lvl === l).map((e) => e.i + 1).join(", ");
       if (bad) out.push({ lvl: "bad", text: `${days("bad")} แน่น/เสี่ยงเกินไป` });

@@ -49,7 +49,7 @@ const Store = {
         start: "2027-01-15", end: "2027-01-22", nights: 7, arrive: "CTS", depart: "CTS", arriveTime: "08:30", departTime: "16:00",
         outFlight: { dep: "" }, inFlight: {}, domIn: false, domOut: false,
         pace: "balanced", interests: ["city", "food", "nature", "onsen"], mode: "car",
-        firstDay: "auto", buf: { ...BUF }, carPick: true, carRet: true, // รับ/คืนรถที่สนามบินตอนถึง/ก่อนบิน (ปิด = ใส่เองในแผน)
+        firstDay: "auto", buf: { ...BUF }, rent: {}, // รถเช่า { p: รับ, r: คืน } = { day, time, loc, lat, lng } ว่าง = สนามบิน วันแรก/วันสุดท้าย
       },
       plan: null, budget: {}, budgetX: [], budgetHide: [], budgetOrder: [], budgetReserve: true, rate: 0.23, rateAt: 0,
       set: { lang: "en", langV: 2, theme: "auto", font: "m", slack: 0, maxDrive: "", dayStart: "", dayEnd: "", rateAuto: true, snow: "new", maxStops: "", autoMeal: true },
@@ -122,6 +122,7 @@ const isPlace = (id) => typeof id === "number";
 const hotelOf = (hub) => S.plan?.hotels?.[hub];
 function point(id) {
   if (HUB[id]) { const h = hotelOf(id); return h && h.lat ? { ...HUB[id], lat: h.lat, lng: h.lng, hotel: h.name } : HUB[id]; }
+  if (id === "rent:p" || id === "rent:r") return Planner.rentPoint(id.slice(5));
   return AIR[id] || PLACE[id] || S.plan?.custom?.[id];
 }
 function nearestHub(p) {
