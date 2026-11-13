@@ -299,6 +299,7 @@ const Planner = {
     const hf = i > 0 && hubOf(from) !== toHub ? hotelOf(from) : null, dayStart = tl.find((x) => x.kind === "move")?.t;
     const co = hf?.name || hf?.checkOut ? hf.checkOut || "10:00" : null; // ช่องเช็กเอาท์แสดง 10:00 เป็นค่าเริ่มต้น
     if (co && dayStart != null && !opts.live) {
+      tl.unshift({ t: Math.min(dayStart, parseT(co)), kind: "checkout", id: from, co, go: dayStart });
       if (dayStart > parseT(co) + 0.1) add("warn", `ออกจากที่พัก ${fmtT(dayStart)} หลังเช็กเอาท์ ${co}: เช็กเอาท์ก่อนแล้วฝากกระเป๋า/ใส่รถ`);
       else if (mode === "transit" && dayI.some((it) => hubOf(it.id) === hubOf(from))) add("info", `เช็กเอาท์ ${co} แล้วเที่ยว ${short(from)} ต่อ: ฝากกระเป๋าที่ล็อกเกอร์สถานี/โรงแรม`);
     }

@@ -146,6 +146,7 @@ const PlanView = {
         <div class="spacer"></div><div class="row no-print"><a class="btn small" href="#setup">${I("pencil")} ข้อมูลทริป</a>
           <details class="more-menu"><summary class="btn small" aria-label="เมนูเพิ่มเติม">⋯ เพิ่มเติม</summary><div class="menu-pop">
             <button class="btn small" data-act="refillAll" title="ที่ใส่เองและที่ล็อกเวลาไว้จะไม่ถูกลบ">${I("refresh-ccw")} จัดสถานที่ใหม่ทั้งทริป</button>
+            <button class="btn small" data-act="share">${I("link")} ส่งแผนให้เพื่อน (ลิงก์)</button>
             <button class="btn small" data-act="print">${I("printer")} พิมพ์ / PDF</button></div></details></div></div>
         <p class="print-only">${thDate(t.start)} - ${thDate(t.end)} • ${MODE[t.mode]} • สไตล์${PACE[t.pace].name} • ลง ${t.arrive} ${t.arriveTime} • ออก ${t.depart} ${t.departTime}</p>
         <div class="summary" style="margin-top:10px">
@@ -277,6 +278,7 @@ const PlanView = {
         const sub = x.at ? [x.why, `ออก${home ? "จากที่พัก" : ""} ${fmtT(x.t + x.h)}`].filter(Boolean).join(" · ") : "ก่อนเวลาที่ล็อก";
         return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hourglass")}</span><span class="row-b"><b>${head}</b><small>${esc(sub)}</small></span></li>`;
       }
+      if (x.kind === "checkout") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span class="row-b"><b>เช็กเอาท์ ${esc(hotelOf(x.id)?.name || short(pname(x.id)))}</b><small>${x.go > parseT(x.co) + 0.1 ? `ฝากกระเป๋า/ใส่รถ ออกเดินทาง ${fmtT(x.go)}` : `เช็กเอาท์ภายใน ${esc(x.co)}`}</small></span></li>`;
       if (x.kind === "back") return `<li><span class="tm">${fmtT(x.t)}</span><span class="ic">${I("hotel")}</span><span class="row-b"><b>กลับถึงที่พัก ${esc(hotelOf(x.id)?.name || short(pname(x.id)))}</b></span></li>`;
       if (x.kind === "hotel") {
         const h = hotelOf(x.id), nx = e.tl[k0 + 1], rest = nx?.kind === "info" && nx.ic === "hotel" ? nx.text.split(" • ")[0] : "";
@@ -759,6 +761,7 @@ const PlanView = {
       else if (d.act === "refill") { const i = +d.i; this.mut(() => Planner.autofillDay(i, Planner.usedSet(i))); }
       else if (d.act === "refillAll") { if (!confirm("จัดสถานที่ใหม่ทั้งทริป? จุดที่ระบบเลือกให้จะถูกแทนที่ (ที่ใส่เอง/ล็อกเวลาไว้ยังอยู่ กด ↶ ย้อนได้)")) return; this.mut(() => Planner.autofillAll()); toast("จัดสถานที่ใหม่แล้ว"); }
       else if (d.act === "print") App.print();
+      else if (d.act === "share") App.share();
       else if (d.act === "undo") Hist.undo();
     });
     trip.addEventListener("keydown", (ev) => { if (ev.key === "Enter" && ev.target.dataset.goto) ev.target.click(); });
