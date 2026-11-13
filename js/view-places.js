@@ -26,8 +26,8 @@ const reviewLinks = (p) => {
 };
 
 const PlacesView = {
-  M: null, lim: 30, f: { region: "", tag: "", stars: 0, q: "", season: "trip", transit: false, free: false, inplan: false, evening: false, sort: "stars" },
-  F0: { region: "", tag: "", stars: 0, season: "trip", transit: false, free: false, inplan: false, evening: false, sort: "stars" },
+  M: null, lim: 30, f: { region: "", tag: "", stars: 0, q: "", season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, sort: "stars" },
+  F0: { region: "", tag: "", stars: 0, season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, sort: "stars" },
 
   // มุมมองแผนที่ตอนนี้ (ยังไม่วาดหมุด/พับอยู่ = null → ซูมให้เห็นผลทั้งหมด)
   view() { const m = this.M?.map; return this.M?.drawn && m.getContainer().isConnected && m.getSize().x ? { c: m.getCenter(), z: m.getZoom() } : null; },
@@ -54,7 +54,8 @@ const PlacesView = {
         <label class="chk"><input type="checkbox" data-f="transit" ${f.transit ? "checked" : ""}> ไปด้วยรถไฟ/บัสได้</label>
         <label class="chk"><input type="checkbox" data-f="free" ${f.free ? "checked" : ""}> ฟรี</label>
         <label class="chk"><input type="checkbox" data-f="evening" ${f.evening ? "checked" : ""}> เที่ยวตอนค่ำได้</label>
-        ${S.plan ? `<label class="chk"><input type="checkbox" data-f="inplan" ${f.inplan ? "checked" : ""}> เฉพาะที่อยู่ในแผน</label>` : ""}
+        ${S.plan ? `<label class="chk"><input type="checkbox" data-f="inplan" ${f.inplan ? "checked" : ""}> เฉพาะที่อยู่ในแผน</label>
+        <label class="chk"><input type="checkbox" data-f="wish" ${f.wish ? "checked" : ""}> เฉพาะที่อยากไป</label>` : ""}
         <button class="linkbtn" data-freset ${nOn ? "" : "hidden"}>ล้างตัวกรอง</button></div></details></div>
       <aside class="split-side"><details class="card mapbox fold-card" ${foldAttr("pmap")} id="pMapCard"><summary><h2>${I("map")} แผนที่</h2></summary><div class="map" id="placesMap"></div>
       <div class="map-legend">${Object.entries(TAG_ICON).map(([k, v]) => `<span>${I(v)} ${INTEREST[k]}</span>`).join("")}
@@ -75,7 +76,7 @@ const PlacesView = {
     return PLACES.filter((p) => (!f.region || p.region === f.region) && (!f.tag || p.tags.includes(f.tag)) && p.stars >= f.stars
       && (!q || [p.name, p.area, p.ja, p.en, p.type, p.highlight, p.kw].join(" ").toLowerCase().includes(q))
       && (!ms || ms.some((m) => monthsOf(p).includes(m)))
-      && (!f.transit || ["ok", "limited", "tour"].includes(access(p))) && (!f.free || !p.feeYen) && (!f.inplan || plan[p.id]) && (!f.evening || p.evening))
+      && (!f.transit || ["ok", "limited", "tour"].includes(access(p))) && (!f.free || !p.feeYen) && (!f.inplan || plan[p.id]) && (!f.wish || S.plan?.wish.includes(p.id)) && (!f.evening || p.evening))
       .sort((a, b) => f.sort === "near" ? near(a) - near(b) : b.stars - a.stars || ({ "ดังมาก": 0, "ดัง": 1 }[a.pop] ?? 2) - ({ "ดังมาก": 0, "ดัง": 1 }[b.pop] ?? 2) || a.id - b.id);
   },
 
