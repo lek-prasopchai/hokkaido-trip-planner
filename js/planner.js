@@ -358,7 +358,8 @@ const Planner = {
     if (noFuel) add("info", `${noFuel} เติมน้ำมันก่อนออก`);
     else if (driveH > 2.5) add("info", "เติมน้ำมันให้เกินครึ่งถังก่อนออก ปั๊มต่างจังหวัดปิด ~19:00");
     const ht = stayOf(to);
-    if (i < N && ht?.checkIn && from !== to && arrive < parseT(ht.checkIn) - 0.25) add("info", `ถึงที่พัก ${fmtT(arrive)} ก่อนเวลาเช็กอิน ${ht.checkIn} ฝากกระเป๋าได้`);
+    const ci = ht && (ht.checkIn || "15:00");
+    if (i < N && ci && from !== to && arrive < parseT(ci) - 0.25) add("info", `ถึงที่พัก ${fmtT(arrive)} ก่อนเวลาเช็กอิน ${ci} ฝากกระเป๋าได้`);
     const md = iso.slice(5);
     if (md >= "12-30" || md <= "01-03") add("info", "ช่วงปีใหม่ ร้าน/สถานที่หลายแห่งปิด ตรวจก่อนไป");
     tl.filter((x) => x.kind === "move" && x.noTransit).forEach((x) => add("warn", `${short(x.from)} → ${short(x.to)} ไม่มีรถไฟ/บัสตรง ใช้รถ/แท็กซี่`));
