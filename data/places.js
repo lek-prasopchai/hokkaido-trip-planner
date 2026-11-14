@@ -804,7 +804,7 @@ window.PLACES = [
   "feeYen": 0,
   "dur": "1-2 ชม.",
   "hours": 1.5,
-  "highlight": "โกดังเก่าริมคลอง แสงเทียนในหิมะ 6-13 ก.พ. 2027 (ทางรถไฟเก่าเทมิยะด้วย)",
+  "highlight": "โกดังเก่าริมคลอง แสงเทียนในหิมะ ≈ต้น ก.พ. 8 วัน (ปี 2026 จัด 7–14 ก.พ. วันปี 2027 ยังไม่ประกาศ) ทางรถไฟเก่าเทมิยะด้วย",
   "caution": "ทางเดินริมคลองลื่นมาก",
   "best": "พลบค่ำ",
   "evening": true,
@@ -1410,9 +1410,9 @@ window.PLACES = [
    "festival",
    "nature"
   ],
-  "open": "≈10:00-20:00 (ไฟเปิด 16:30-)",
+  "open": "10:00–20:00 (ไฟเปิด 16:30–) งานปี 2027: 30 ม.ค.–23 ก.พ.",
   "closed": "เฉพาะช่วงงาน 30 ม.ค.-23 ก.พ. 2027",
-  "fee": "≈¥1,000-1,500",
+  "fee": "¥1,000 วันธรรมดา / ¥3,000 ส.-อา.-วันหยุด (ปี 2027)",
   "feeYen": 1000,
   "dur": "1-1.5 ชม.",
   "hours": 1.25,
@@ -2818,7 +2818,7 @@ window.PLACES = [
    "festival",
    "nature"
   ],
-  "open": "งานกลางวัน-21:00 (ไฟ ~17:00-)",
+  "open": "งานกลางวัน-21:00 (ไฟ ~17:00-) ปี 2026 จัด 24 ม.ค.–8 มี.ค. (วันปี 2027 ยังไม่ประกาศ)",
   "closed": "เฉพาะช่วงงาน 23 ม.ค.-7 มี.ค. 2027",
   "fee": "ฟรี/ค่าสนับสนุนเล็กน้อย",
   "feeYen": 0,
@@ -3076,7 +3076,7 @@ window.PLACES = [
   "ja": "十勝川温泉",
   "lat": 42.950583,
   "lng": 143.298131,
-  "acc": "ใกล้เคียง (ระดับพื้นที่)",
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/64.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:131012_Tokachigawa_Onsen_Otofuke_Hokkaido_Japan01s3.jpg",
   "imgs": [
@@ -3119,9 +3119,9 @@ window.PLACES = [
   "evening": false,
   "parking": "ลานจอดใกล้เคียง",
   "ja": "ぱんちょう",
-  "lat": 42.918102,
-  "lng": 143.202022,
-  "acc": "ใกล้เคียง (ระดับพื้นที่)",
+  "lat": 42.919212,
+  "lng": 143.203453,
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/65.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Butadon_of_Pancho.jpg",
   "imgs": [
@@ -5060,10 +5060,10 @@ window.PLACES = [
   "id": 105,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 300,
-  "lat": 42.9236,
-  "lng": 141.3538,
+  "lat": 42.920536,
+  "lng": 141.362742,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/105.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:MOAI_image.JPG"
  },
@@ -6257,10 +6257,10 @@ window.PLACES = [
   "id": 129,
   "region": "อาซาฮิคาวะ / บิเอ / ฟูราโน่ / โซอุนเคียว",
   "feeYen": 0,
-  "lat": 43.5463,
-  "lng": 142.4733,
+  "lat": 43.557776,
+  "lng": 142.459093,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/129.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%9B%9B%E5%AD%A3%E5%BD%A9%E3%81%AE%E4%B8%98-01.JPG"
  },
@@ -6307,10 +6307,10 @@ window.PLACES = [
   "id": 130,
   "region": "อาซาฮิคาวะ / บิเอ / ฟูราโน่ / โซอุนเคียว",
   "feeYen": 0,
-  "lat": 43.6005,
-  "lng": 142.4596,
+  "lat": 43.60494,
+  "lng": 142.457985,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/130.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Tsurumi-ryokuchi1-R.jpg"
  },
@@ -6350,10 +6350,10 @@ window.PLACES = [
   "id": 131,
   "region": "อาซาฮิคาวะ / บิเอ / ฟูราโน่ / โซอุนเคียว",
   "feeYen": 0,
-  "lat": 43.4685,
-  "lng": 142.4733,
+  "lat": 43.52058,
+  "lng": 142.430586,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/131.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Rollercoaster_expedition_geforce_holiday_park_germany.jpg"
  },
@@ -6396,10 +6396,10 @@ window.PLACES = [
   "id": 132,
   "region": "อาซาฮิคาวะ / บิเอ / ฟูราโน่ / โซอุนเคียว",
   "feeYen": 0,
-  "lat": 43.5277,
-  "lng": 142.4927,
+  "lat": 43.539156,
+  "lng": 142.43923,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/132.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Kanno-farm_02.jpg"
  },
@@ -6627,10 +6627,10 @@ window.PLACES = [
   "id": 137,
   "region": "อาซาฮิคาวะ / บิเอ / ฟูราโน่ / โซอุนเคียว",
   "feeYen": 1000,
-  "lat": 43.8466,
-  "lng": 142.7689,
+  "lat": 43.845858,
+  "lng": 142.7537,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/137.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Ainu-Cise.jpg"
  },
@@ -6759,10 +6759,10 @@ window.PLACES = [
   "id": 140,
   "region": "อาซาฮิคาวะ / บิเอ / ฟูราโน่ / โซอุนเคียว",
   "feeYen": 0,
-  "lat": 43.5683,
-  "lng": 142.4549,
+  "lat": 43.607187,
+  "lng": 142.469715,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/140.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%9B%9B%E5%AD%A3%E5%BD%A9%E3%81%AE%E4%B8%98-01.JPG"
  },
@@ -6848,10 +6848,10 @@ window.PLACES = [
   "id": 142,
   "region": "โทกาจิ / โอบิฮิโระ / โทมามุ",
   "feeYen": 2500,
-  "lat": 43.068,
-  "lng": 142.607,
+  "lat": 43.07712,
+  "lng": 142.598886,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/142.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%98%9F%E9%87%8E%E3%83%AA%E3%82%BE%E3%83%BC%E3%83%88_%E3%83%88%E3%83%9E%E3%83%A0_%E3%82%B6%E3%83%BB%E3%82%BF%E3%83%AF%E3%83%BC_-_flickr_14793673407_4d61722e33_o.jpg"
  },
@@ -7039,10 +7039,10 @@ window.PLACES = [
   "id": 146,
   "region": "โทกาจิ / โอบิฮิโระ / โทมามุ",
   "feeYen": 100,
-  "lat": 42.9294,
-  "lng": 143.1831,
+  "lat": 42.922634,
+  "lng": 143.181466,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/146.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Obihiro_Racecourse.jpg"
  },
@@ -7584,10 +7584,10 @@ window.PLACES = [
   "id": 158,
   "region": "อาซาฮิคาวะ / บิเอ / ฟูราโน่ / โซอุนเคียว",
   "feeYen": 0,
-  "lat": 43.5741,
-  "lng": 142.4372,
+  "lat": 43.554379,
+  "lng": 142.44425,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/158.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:The_Christmas-tree_called_in_Biei%2C_Hokkaidou_-_panoramio.jpg"
  },
@@ -7638,10 +7638,10 @@ window.PLACES = [
   "id": 159,
   "region": "อาซาฮิคาวะ / บิเอ / ฟูราโน่ / โซอุนเคียว",
   "feeYen": 0,
-  "lat": 43.6146,
-  "lng": 142.4318,
+  "lat": 43.629089,
+  "lng": 142.431177,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "imgs": [
    {
     "img": "img/places/159_1.jpg",
@@ -7767,10 +7767,10 @@ window.PLACES = [
   "id": 161,
   "region": "อาซาฮิคาวะ / บิเอ / ฟูราโน่ / โซอุนเคียว",
   "feeYen": 0,
-  "lat": 43.5838,
-  "lng": 142.4157,
+  "lat": 43.596472,
+  "lng": 142.426898,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/161.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%BB%E3%83%96%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC%E3%81%AE%E4%B8%98_1.jpg"
  },
@@ -7817,10 +7817,10 @@ window.PLACES = [
   "id": 162,
   "region": "อาซาฮิคาวะ / บิเอ / ฟูราโน่ / โซอุนเคียว",
   "feeYen": 0,
-  "lat": 43.5304,
-  "lng": 142.4972,
+  "lat": 43.530032,
+  "lng": 142.489592,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/162.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Takushin-kan_%E7%BE%8E%E7%91%9B%EF%BC%8D%E6%8B%93%E7%9C%9F%E9%A4%A8_P6300055.jpg"
  },
@@ -7863,10 +7863,10 @@ window.PLACES = [
   "id": 163,
   "region": "อาซาฮิคาวะ / บิเอ / ฟูราโน่ / โซอุนเคียว",
   "feeYen": 0,
-  "lat": 43.458,
-  "lng": 142.627,
+  "lat": 43.445949,
+  "lng": 142.650124,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/163.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Tokachidake-bogakudai_%E5%8D%81%E5%8B%9D%E5%B2%B3%E6%9C%9B%E5%B2%B3IMG_1192.jpg"
  },
@@ -7913,10 +7913,10 @@ window.PLACES = [
   "id": 164,
   "region": "อาซาฮิคาวะ / บิเอ / ฟูราโน่ / โซอุนเคียว",
   "feeYen": 0,
-  "lat": 43.3591,
-  "lng": 142.374,
+  "lat": 43.358563,
+  "lng": 142.373697,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "imgs": [
    {
     "img": "img/places/164_1.jpg",
@@ -8837,10 +8837,10 @@ window.PLACES = [
   "id": 182,
   "region": "โนโบริเบ็ตสึ / โทยะ / มุโรรัน",
   "feeYen": 1500,
-  "lat": 42.5664,
-  "lng": 140.8211,
+  "lat": 42.565701,
+  "lng": 140.817253,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/182.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:130922_Toyako_Onsen_Toyako_Hokkaido_Japan01s3.jpg"
  },
@@ -8881,10 +8881,10 @@ window.PLACES = [
   "id": 183,
   "region": "โนโบริเบ็ตสึ / โทยะ / มุโรรัน",
   "feeYen": 0,
-  "lat": 42.564,
-  "lng": 140.812,
+  "lat": 42.563307,
+  "lng": 140.813005,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "imgs": [
    {
     "img": "img/places/183_1.jpg",
@@ -9521,10 +9521,10 @@ window.PLACES = [
   "id": 196,
   "region": "คุชิโระ / อากัง / มาชู",
   "feeYen": 2400,
-  "lat": 43.4325,
-  "lng": 144.095,
+  "lat": 43.434529,
+  "lng": 144.092603,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/196.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Akanko.JPG"
  },
@@ -9718,10 +9718,10 @@ window.PLACES = [
   "id": 200,
   "region": "โอค็อตสค์ / ชิเรโตโกะ",
   "feeYen": 0,
-  "lat": 43.917,
-  "lng": 144.657,
+  "lat": 43.906401,
+  "lng": 144.785545,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/200.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:The_road_leading_to_heaven_01.jpg"
  },
@@ -9769,10 +9769,10 @@ window.PLACES = [
   "id": 201,
   "region": "โอค็อตสค์ / ชิเรโตโกะ",
   "feeYen": 0,
-  "lat": 44.005,
-  "lng": 145.177,
+  "lat": 44.032056,
+  "lng": 145.155227,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/201.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%86%8A%E3%81%AE%E6%B9%AF.JPG"
  },
@@ -9922,10 +9922,10 @@ window.PLACES = [
   "id": 204,
   "region": "โอค็อตสค์ / ชิเรโตโกะ",
   "feeYen": 0,
-  "lat": 44.17,
-  "lng": 143.96,
+  "lat": 44.137782,
+  "lng": 143.963293,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "img": "img/places/204.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Wakka_nature_center.jpg"
  },
@@ -9966,12 +9966,12 @@ window.PLACES = [
   "id": 205,
   "region": "เหนือสุด",
   "feeYen": 0,
-  "lat": 45.1036,
-  "lng": 141.7066,
+  "lat": 45.110868,
+  "lng": 141.703918,
   "checked": "2026-11",
   "img": "img/places/205.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake_Panke-numa%2C_and_Mt.Rishiri.jpg",
-  "acc": "ประมาณ"
+  "acc": "จาก OpenStreetMap"
  },
  {
   "hub": "wakkanai",
@@ -10009,10 +10009,10 @@ window.PLACES = [
   "id": 206,
   "region": "เหนือสุด",
   "feeYen": 0,
-  "lat": 45.48,
-  "lng": 141.96,
+  "lat": 45.481809,
+  "lng": 141.917829,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "imgs": [
    {
     "img": "img/places/206_1.jpg",
@@ -10534,10 +10534,10 @@ window.PLACES = [
   "id": 216,
   "region": "ฮาโกดาเตะ / ทางใต้",
   "feeYen": 0,
-  "lat": 41.764,
-  "lng": 140.71,
+  "lat": 41.763425,
+  "lng": 140.710049,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "imgs": [
    {
     "img": "img/places/216_2.jpg",
@@ -10955,10 +10955,10 @@ window.PLACES = [
   "id": 224,
   "region": "ฮาโกดาเตะ / ทางใต้",
   "feeYen": 0,
-  "lat": 41.433,
-  "lng": 140.105,
+  "lat": 41.431525,
+  "lng": 140.107216,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จาก OpenStreetMap",
   "imgs": [
    {
     "img": "img/places/224_3.jpg",
@@ -11116,10 +11116,10 @@ window.PLACES = [
   "id": 227,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 0,
-  "lat": 43.187,
-  "lng": 141.013,
+  "lat": 43.178312,
+  "lng": 141.031339,
   "checked": "2026-11",
-  "acc": "ประมาณ"
+  "acc": "จาก OpenStreetMap"
  },
  {
   "hub": "hakodate",
@@ -11754,9 +11754,9 @@ window.PLACES = [
   "id": 240,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 0,
-  "lat": 43.0683,
-  "lng": 141.3505,
-  "acc": "ประมาณ",
+  "lat": 43.068046,
+  "lng": 141.350991,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -11885,9 +11885,9 @@ window.PLACES = [
   "id": 242,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 0,
-  "lat": 43.057,
-  "lng": 141.353,
-  "acc": "ประมาณ",
+  "lat": 43.054779,
+  "lng": 141.353817,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -12003,9 +12003,9 @@ window.PLACES = [
   "id": 244,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 2400,
-  "lat": 43.056,
-  "lng": 141.3535,
-  "acc": "ประมาณ",
+  "lat": 43.057763,
+  "lng": 141.353577,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -12064,9 +12064,9 @@ window.PLACES = [
   "id": 245,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 510,
-  "lat": 43.0605,
-  "lng": 141.3305,
-  "acc": "ประมาณ",
+  "lat": 43.060069,
+  "lng": 141.330425,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -12130,9 +12130,9 @@ window.PLACES = [
   "id": 246,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 420,
-  "lat": 43.0633,
-  "lng": 141.3437,
-  "acc": "ประมาณ",
+  "lat": 43.063775,
+  "lng": 141.342335,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -12187,9 +12187,9 @@ window.PLACES = [
   "id": 247,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 300,
-  "lat": 43.009,
-  "lng": 141.461,
-  "acc": "ประมาณ",
+  "lat": 43.005831,
+  "lng": 141.468919,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -12245,9 +12245,9 @@ window.PLACES = [
   "id": 248,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 0,
-  "lat": 43.1925,
-  "lng": 141.004,
-  "acc": "ประมาณ",
+  "lat": 43.194351,
+  "lng": 141.006072,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -12305,7 +12305,16 @@ window.PLACES = [
   "lat": 43.196,
   "lng": 140.9985,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/249_1.jpg",
+    "credit": "https://www.flickr.com/photos/40058760@N00/2418771408",
+    "by": "喫遊趣 / CC BY-NC-ND 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/249_1.jpg",
+  "imgCredit": "https://www.flickr.com/photos/40058760@N00/2418771408"
  },
  {
   "hub": "otaru",
@@ -12351,9 +12360,9 @@ window.PLACES = [
   "id": 250,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 2900,
-  "lat": 43.1985,
-  "lng": 140.996,
-  "acc": "ประมาณ",
+  "lat": 43.197236,
+  "lng": 141.001864,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -12416,9 +12425,9 @@ window.PLACES = [
   "id": 251,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 0,
-  "lat": 43.195,
-  "lng": 140.989,
-  "acc": "ประมาณ",
+  "lat": 43.199241,
+  "lng": 140.993628,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -12472,9 +12481,9 @@ window.PLACES = [
   "id": 252,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 300,
-  "lat": 43.194,
-  "lng": 140.8,
-  "acc": "ประมาณ",
+  "lat": 43.192707,
+  "lng": 140.82473,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -12536,9 +12545,9 @@ window.PLACES = [
   "id": 253,
   "region": "นิเซโกะ / ภูเขาโยเทย์",
   "feeYen": 0,
-  "lat": 42.8267,
-  "lng": 140.8114,
-  "acc": "ประมาณ",
+  "lat": 42.826957,
+  "lng": 140.80674,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -12588,9 +12597,9 @@ window.PLACES = [
   "id": 254,
   "region": "จิโตเสะ / ชิโกตสึ / ชิราโออิ",
   "feeYen": 0,
-  "lat": 42.69,
-  "lng": 141.377,
-  "acc": "ประมาณ",
+  "lat": 42.690548,
+  "lng": 141.376636,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -12648,9 +12657,9 @@ window.PLACES = [
   "id": 255,
   "region": "จิโตเสะ / ชิโกตสึ / ชิราโออิ",
   "feeYen": 1500,
-  "lat": 42.632,
-  "lng": 141.629,
-  "acc": "ประมาณ",
+  "lat": 42.629376,
+  "lng": 141.616858,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -12769,9 +12778,9 @@ window.PLACES = [
   "id": 257,
   "region": "ฮาโกดาเตะ / ทางใต้",
   "feeYen": 2000,
-  "lat": 41.772,
-  "lng": 140.728,
-  "acc": "ประมาณ",
+  "lat": 41.772393,
+  "lng": 140.730001,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -12833,9 +12842,9 @@ window.PLACES = [
   "id": 258,
   "region": "ฮาโกดาเตะ / ทางใต้",
   "feeYen": 0,
-  "lat": 41.786,
-  "lng": 140.799,
-  "acc": "ประมาณ",
+  "lat": 41.793444,
+  "lng": 140.803498,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -12955,9 +12964,9 @@ window.PLACES = [
   "id": 260,
   "region": "โทกาจิ / โอบิฮิโระ / โทมามุ",
   "feeYen": 2000,
-  "lat": 42.921,
-  "lng": 143.199,
-  "acc": "ประมาณ",
+  "lat": 42.921027,
+  "lng": 143.20343,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -13080,9 +13089,9 @@ window.PLACES = [
   "id": 262,
   "region": "โอค็อตสค์ / ชิเรโตโกะ",
   "feeYen": 550,
-  "lat": 44.004,
-  "lng": 144.24,
-  "acc": "ประมาณ",
+  "lat": 43.996244,
+  "lng": 144.239691,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -13136,9 +13145,9 @@ window.PLACES = [
   "id": 263,
   "region": "โอค็อตสค์ / ชิเรโตโกะ",
   "feeYen": 2000,
-  "lat": 44.137,
-  "lng": 145.09,
-  "acc": "ประมาณ",
+  "lat": 44.153856,
+  "lng": 145.129277,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -13370,9 +13379,9 @@ window.PLACES = [
   "id": 267,
   "region": "โนโบริเบ็ตสึ / โทยะ / มุโรรัน",
   "feeYen": 500,
-  "lat": 42.565,
-  "lng": 140.819,
-  "acc": "ประมาณ",
+  "lat": 42.563588,
+  "lng": 140.817795,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -13431,9 +13440,9 @@ window.PLACES = [
   "id": 268,
   "region": "อาซาฮิคาวะ / บิเอ / ฟูราโน่ / โซอุนเคียว",
   "feeYen": 800,
-  "lat": 43.835,
-  "lng": 142.812,
-  "acc": "ประมาณ",
+  "lat": 43.798734,
+  "lng": 142.821279,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11"
  },
  {
@@ -13476,9 +13485,9 @@ window.PLACES = [
   "id": 269,
   "region": "โทกาจิ / โอบิฮิโระ / โทมามุ",
   "feeYen": 1000,
-  "lat": 42.69,
-  "lng": 143.085,
-  "acc": "ประมาณ",
+  "lat": 42.691409,
+  "lng": 143.113028,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -13532,9 +13541,9 @@ window.PLACES = [
   "id": 270,
   "region": "โอค็อตสค์ / ชิเรโตโกะ",
   "feeYen": 600,
-  "lat": 44.201,
-  "lng": 143.621,
-  "acc": "ประมาณ",
+  "lat": 44.158612,
+  "lng": 143.580544,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -13599,9 +13608,9 @@ window.PLACES = [
   "id": 271,
   "region": "โอค็อตสค์ / ชิเรโตโกะ",
   "feeYen": 200,
-  "lat": 44.358,
-  "lng": 143.369,
-  "acc": "ประมาณ",
+  "lat": 44.33393,
+  "lng": 143.373188,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -13665,9 +13674,9 @@ window.PLACES = [
   "id": 272,
   "region": "โอค็อตสค์ / ชิเรโตโกะ",
   "feeYen": 500,
-  "lat": 43.785,
-  "lng": 143.62,
-  "acc": "ประมาณ",
+  "lat": 43.755734,
+  "lng": 143.498208,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -13729,9 +13738,9 @@ window.PLACES = [
   "id": 273,
   "region": "นิเซโกะ / ภูเขาโยเทย์",
   "feeYen": 0,
-  "lat": 42.866,
-  "lng": 140.701,
-  "acc": "ประมาณ",
+  "lat": 42.79947,
+  "lng": 140.702608,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -13793,9 +13802,9 @@ window.PLACES = [
   "id": 274,
   "region": "โนโบริเบ็ตสึ / โทยะ / มุโรรัน",
   "feeYen": 0,
-  "lat": 42.624,
-  "lng": 140.77,
-  "acc": "ประมาณ",
+  "lat": 42.664489,
+  "lng": 140.821991,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -13915,9 +13924,9 @@ window.PLACES = [
   "id": 276,
   "region": "โอค็อตสค์ / ชิเรโตโกะ",
   "feeYen": 0,
-  "lat": 44.07,
-  "lng": 144.993,
-  "acc": "ประมาณ",
+  "lat": 44.069047,
+  "lng": 144.990705,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -13981,9 +13990,9 @@ window.PLACES = [
   "id": 277,
   "region": "อาซาฮิคาวะ / บิเอ / ฟูราโน่ / โซอุนเคียว",
   "feeYen": 0,
-  "lat": 43.577,
-  "lng": 143.155,
-  "acc": "ประมาณ",
+  "lat": 43.577339,
+  "lng": 143.126276,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -14047,9 +14056,9 @@ window.PLACES = [
   "id": 278,
   "region": "คุชิโระ / อากัง / มาชู",
   "feeYen": 0,
-  "lat": 43.433,
-  "lng": 144.165,
-  "acc": "ประมาณ",
+  "lat": 43.455549,
+  "lng": 144.220967,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -14148,9 +14157,9 @@ window.PLACES = [
   "best": "กลางวัน",
   "parking": "ลานจอดเสียเงินรอบ ๆ",
   "ja": "北菓楼 小樽本館",
-  "lat": 43.1975,
-  "lng": 140.9947,
-  "acc": "ประมาณ (กลางเมือง)",
+  "lat": 43.191752,
+  "lng": 141.007419,
+  "acc": "จาก OpenStreetMap",
   "en": "Kitakaro Otaru",
   "checked": "2026-11",
   "img": "img/places/281.jpg",
@@ -14210,9 +14219,9 @@ window.PLACES = [
   "best": "กลางวัน",
   "parking": "ลานจอดเสียเงินรอบ ๆ",
   "ja": "フラノデリス",
-  "lat": 43.342,
-  "lng": 142.383,
-  "acc": "ประมาณ (กลางเมือง)",
+  "lat": 43.338259,
+  "lng": 142.360794,
+  "acc": "จาก OpenStreetMap",
   "en": "Furano Delice",
   "checked": "2026-11",
   "img": "img/places/284.jpg",
@@ -14304,9 +14313,9 @@ window.PLACES = [
   "id": 286,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 800,
-  "lat": 43.0533,
-  "lng": 141.3186,
-  "acc": "ประมาณ",
+  "lat": 43.053312,
+  "lng": 141.318636,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -14442,10 +14451,29 @@ window.PLACES = [
   "id": 288,
   "region": "โนโบริเบ็ตสึ / โทยะ / มุโรรัน",
   "feeYen": 400,
-  "lat": 42.6155,
-  "lng": 140.7864,
-  "acc": "ประมาณ",
-  "checked": "2026-11"
+  "lat": 42.615492,
+  "lng": 140.78639,
+  "acc": "จาก OpenStreetMap",
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/288_1.jpg",
+    "credit": "https://www.flickr.com/photos/12452841@N00/53919937910",
+    "by": "othree / CC BY 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/288_2.jpg",
+    "credit": "https://www.flickr.com/photos/12452841@N00/53919937945",
+    "by": "othree / CC BY 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/288_3.jpg",
+    "credit": "https://www.flickr.com/photos/12452841@N00/53919936215",
+    "by": "othree / CC BY 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/288_1.jpg",
+  "imgCredit": "https://www.flickr.com/photos/12452841@N00/53919937910"
  },
  {
   "hub": "otaru",
@@ -14491,9 +14519,9 @@ window.PLACES = [
   "id": 289,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 600,
-  "lat": 43.1906,
-  "lng": 141.0072,
-  "acc": "ประมาณ",
+  "lat": 43.190582,
+  "lng": 141.007175,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -14549,9 +14577,9 @@ window.PLACES = [
   "id": 290,
   "region": "ฮาโกดาเตะ / ทางใต้",
   "feeYen": 600,
-  "lat": 41.7643,
-  "lng": 140.7109,
-  "acc": "ประมาณ",
+  "lat": 41.764269,
+  "lng": 140.710906,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -14616,9 +14644,9 @@ window.PLACES = [
   "id": 291,
   "region": "ฮาโกดาเตะ / ทางใต้",
   "feeYen": 500,
-  "lat": 41.7658,
-  "lng": 140.7149,
-  "acc": "ประมาณ",
+  "lat": 41.765794,
+  "lng": 140.714894,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -14681,9 +14709,9 @@ window.PLACES = [
   "id": 292,
   "region": "โทกาจิ / โอบิฮิโระ / โทมามุ",
   "feeYen": 0,
-  "lat": 43.0637,
-  "lng": 142.6262,
-  "acc": "ประมาณ",
+  "lat": 43.063728,
+  "lng": 142.626239,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -14750,9 +14778,9 @@ window.PLACES = [
   "id": 293,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 0,
-  "lat": 42.9638,
-  "lng": 141.1581,
-  "acc": "ประมาณ",
+  "lat": 42.963833,
+  "lng": 141.158148,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11",
   "imgs": [
    {
@@ -14814,9 +14842,9 @@ window.PLACES = [
   "id": 294,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 5000,
-  "lat": 43.2262,
-  "lng": 140.9271,
-  "acc": "ประมาณ",
+  "lat": 43.226238,
+  "lng": 140.927133,
+  "acc": "จาก OpenStreetMap",
   "checked": "2026-11"
  },
  {
@@ -14832,7 +14860,7 @@ window.PLACES = [
    "festival",
    "snow"
   ],
-  "open": "ต้น ก.พ. ≈5 วัน (ตรวจวันกับทางการ)",
+  "open": "6–11 ก.พ. 2027 (ไฟถึงค่ำ)",
   "closed": "นอกช่วงงาน",
   "fee": "ฟรี",
   "dur": "1-2 ชม.",
@@ -14875,6 +14903,10 @@ window.PLACES = [
    }
   ],
   "img": "img/places/295_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Asahikawa_Winter_Festival_Snow_Statue_1.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Asahikawa_Winter_Festival_Snow_Statue_1.jpg",
+  "season": [
+   "02-06",
+   "02-11"
+  ]
  }
 ];
