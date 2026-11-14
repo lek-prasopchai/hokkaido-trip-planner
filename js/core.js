@@ -271,7 +271,7 @@ function access(p) {
 }
 const ACCESS_TXT = { ok: "รถไฟ/บัส/เดินได้", limited: "บัสน้อยเที่ยว/แท็กซี่", car: "ต้องมีรถ/ทัวร์", tour: "ไปกับทัวร์/บัสท่องเที่ยว" };
 
-// ฤดู: season = ช่วง MM-DD ของงาน (ข้ามปีได้), months = เดือนที่เปิด/มีอะไรให้ดู
+// ฤดู: season = ช่วง MM-DD ของงาน (ข้ามปีได้), months = เดือนที่เปิด/มีอะไรให้ดู, peak = เดือนที่ดีสุด (ที่เปิดทั้งปีแต่สวยแค่บางช่วง)
 const ALL_MONTHS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 const SEASONS = { spring: { name: "ใบไม้ผลิ", ic: "flower-2", m: [4, 5] }, summer: { name: "ร้อน", ic: "sun", m: [6, 7, 8] }, autumn: { name: "ใบไม้ร่วง", ic: "leaf", m: [9, 10, 11] }, winter: { name: "หนาว", ic: "snowflake", m: [12, 1, 2, 3] } };
 const monthsOf = (p) => p.months || ALL_MONTHS;
@@ -281,7 +281,8 @@ function inSeason(p, iso) {
   const md = iso.slice(5), [s, e] = p.season;
   return s <= e ? md >= s && md <= e : md >= s || md <= e;
 }
-const seasonsOf = (p) => Object.entries(SEASONS).filter(([, s]) => s.m.some((m) => monthsOf(p).includes(m))).map(([k]) => k);
+const seasonsOf = (p) => Object.entries(SEASONS).filter(([, s]) => s.m.some((m) => (p.peak || monthsOf(p)).includes(m))).map(([k]) => k);
+const seasonOfMonth = (m) => Object.keys(SEASONS).find((k) => SEASONS[k].m.includes(m));
 const monthRange = (ms) => {
   if (ms.length === 12) return "ทั้งปี";
   const s = new Set(ms), start = ms.find((m) => !s.has(m === 1 ? 12 : m - 1)) ?? ms[0];

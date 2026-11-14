@@ -85,7 +85,7 @@ const PlacesView = {
     return `<div class="card pcard ${plan[p.id] ? "in" : ""}" id="pl-${p.id}">
       <div class="ph" data-lb="${p.id}">${p.img ? `<img src="${p.img}" alt="${esc(p.name)}" loading="lazy">${n > 1 ? `<span class="cnt">${I("camera")} ${n}</span>` : ""}` : I(TAG_ICON[p.tags[0]] || "map-pin")}<span class="sea">${seasonBadges(p)}</span></div>
       <div class="row" style="gap:6px"><span class="stars">${"★".repeat(p.stars)}</span><span class="badge b-mute">${esc(p.type)}</span>
-        ${p.pop === "คนรู้จักน้อย" ? '<span class="badge b-info">คนรู้จักน้อย</span>' : ""}${p.season ? `<span class="badge b-fest">เฉพาะ ${esc(p.season.join("-"))}</span>` : monthsOf(p).length < 12 ? `<span class="badge b-warn">${monthRange(monthsOf(p))}</span>` : ""}</div>
+        ${p.pop === "คนรู้จักน้อย" ? '<span class="badge b-info">คนรู้จักน้อย</span>' : ""}${p.season ? `<span class="badge b-fest">เฉพาะ ${esc(p.season.join("-"))}</span>` : monthsOf(p).length < 12 ? `<span class="badge b-warn">${monthRange(monthsOf(p))}</span>` : p.peak ? `<span class="badge b-mute">ดีสุด ${monthRange(p.peak)}</span>` : ""}</div>
       <h4 data-detail="${p.id}">${nameHtml(p)}</h4>
       <div class="meta"><span>${I("map-pin")} ${esc(p.area)}</span><span>${I("timer")} ${esc(p.dur)}</span><span>${I("banknote")} ${esc(p.fee)}</span><span>${access(p) === "ok" ? I("train-front") + " รถไฟ/บัสได้" : access(p) === "car" ? I("car") + " ต้องมีรถ/ทัวร์" : I("bus") + " " + ACCESS_TXT[access(p)]}</span></div>
       <div class="hl">${esc(p.highlight)}</div>
@@ -124,7 +124,7 @@ const PlacesView = {
       ${imgs.length ? `<div class="gal">${imgs.map((x, i) => `<img src="${x.img}" alt="" loading="lazy" data-gi="${i}">`).join("")}</div>` : ""}
       <h2 style="margin-top:12px">${nameHtml(p)}</h2>
       <div class="row" style="gap:6px">${p.stars ? `<span class="stars">${"★".repeat(p.stars)}</span>` : ""}<span class="badge b-mute">${esc(p.type)}</span><span class="badge b-mute">${I("map-pin")} ${esc(p.area || HUB[p.hub]?.name || "")}</span>
-        <span class="sea-inline">${seasonBadges(p)} ${monthRange(monthsOf(p))}</span>${plan[id] ? `<span class="badge b-good">อยู่ในวันที่ ${plan[id]}</span>` : ""}</div>
+        <span class="sea-inline">${seasonBadges(p)} ${p.peak ? `เปิดทั้งปี • ดีสุด ${monthRange(p.peak)}` : monthRange(monthsOf(p))}</span>${plan[id] ? `<span class="badge b-good">อยู่ในวันที่ ${plan[id]}</span>` : ""}</div>
       <p class="d-hl">${esc(p.highlight || "")}</p>
       ${(S.plan && !plan[id]) || (App.cur === "places" && p.lat) ? `<div class="row d-act">${S.plan && !plan[id] ? addSelect(id) : ""}${App.cur === "places" && p.lat ? `<button class="btn small" data-locate="${p.id}">${I("map-pin")} ดูบนแผนที่</button>` : ""}</div>` : ""}
       <div class="facts">${fact("clock", "เวลาเปิด", esc(p.open))}${fact("banknote", "ค่าเข้า", esc(p.fee))}${fact("timer", "ใช้เวลา", esc(p.dur ? p.dur : fmtH(p.hours || 1)))}${fact("sun", "ช่วงที่ดีที่สุด", esc(p.best))}${transit ? fact("train-front", "รถไฟ/บัส", trTxt) : ""}</div>

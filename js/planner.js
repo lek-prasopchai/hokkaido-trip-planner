@@ -340,6 +340,7 @@ const Planner = {
       const closed = p.closed || p.closedDays;
       if (closed && String(closed).includes(wd)) add("warn", `${nm}: อาจปิดวัน${wd} (${closed})`);
       if (isPlace(it.id) && !inSeason(p, iso)) add(p.season ? "warn" : "bad", p.season ? `${nm}: วันนี้นอกช่วงงาน (${p.season.join(" ถึง ")})` : `${nm}: ปิด/ไม่มีอะไรให้ดูช่วงนี้ (เปิด ${monthRange(monthsOf(p))})`);
+      else if (isPlace(it.id) && p.peak && !p.peak.includes(monthOf(iso))) add("info", `${nm}: ไม่ใช่ช่วงดีสุด (ดีสุด ${monthRange(p.peak)})${p.sn?.[seasonOfMonth(monthOf(iso))] ? ` ช่วงนี้: ${p.sn[seasonOfMonth(monthOf(iso))]}` : ""}`);
       if ((it.m || mode) === "transit" && isPlace(it.id)) {
         const a = access(p);
         if (a === "car") add("bad", `${nm}: รถไฟ/บัสไปไม่ถึง ต้องใช้ทัวร์/แท็กซี่ หรือเปลี่ยนวิธีไปช่วงนี้เป็นขับรถ/แท็กซี่`);

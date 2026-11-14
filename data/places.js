@@ -5191,18 +5191,9 @@ window.PLACES = [
   "caution": "สวนประติมากรรมปิดหน้าหนาว",
   "best": "กลางวัน",
   "parking": "เสียเงิน",
-  "months": [
-   4,
-   5,
-   6,
-   7,
-   8,
-   9,
-   10,
-   11
-  ],
   "sn": {
-   "autumn": "ใบไม้เปลี่ยนสีในสวน ต.ค."
+   "autumn": "ใบไม้เปลี่ยนสีในสวน ต.ค.",
+   "winter": "สวนประติมากรรมกลางแจ้งปิด เปิดแค่พิพิธภัณฑ์ในร่ม"
   },
   "tr": {
    "lv": "limited",
@@ -5217,7 +5208,17 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/108.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Artpark3_2007_0104.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Artpark3_2007_0104.JPG",
+  "peak": [
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ]
  },
  {
   "hub": "sapporo",
@@ -5544,16 +5545,9 @@ window.PLACES = [
   "caution": "ทางลงหาดชัน",
   "best": "กลางวัน แดดออก",
   "parking": "ฟรี",
-  "months": [
-   5,
-   6,
-   7,
-   8,
-   9,
-   10
-  ],
   "sn": {
-   "summer": "น้ำฟ้าใสสุด + อูนิสด"
+   "summer": "น้ำฟ้าใสสุด + อูนิสด",
+   "winter": "น้ำไม่ฟ้าเท่าหน้าร้อน ลมแรง ทางลงหาดอาจปิด"
   },
   "tr": {
    "lv": "limited",
@@ -5568,7 +5562,15 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก OpenStreetMap",
   "img": "img/places/115.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Shakotan_shimamui_coast.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Shakotan_shimamui_coast.jpg",
+  "peak": [
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ]
  },
  {
   "hub": "otaru",
@@ -6335,14 +6337,6 @@ window.PLACES = [
   "caution": "ห้ามหยุดรถกลางถนนถ่ายรูป จอดในจุดที่กำหนด",
   "best": "กลางวัน",
   "parking": "จุดจอดเล็ก",
-  "months": [
-   5,
-   6,
-   7,
-   8,
-   9,
-   10
-  ],
   "tr": {
    "lv": "car"
   },
@@ -6355,7 +6349,18 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก OpenStreetMap",
   "img": "img/places/131.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Rollercoaster_expedition_geforce_holiday_park_germany.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Rollercoaster_expedition_geforce_holiday_park_germany.jpg",
+  "peak": [
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "sn": {
+   "winter": "เนินหิมะขาวสุดตา ถนนลื่น ขับช้า"
+  }
  },
  {
   "hub": "biei",
@@ -6523,13 +6528,9 @@ window.PLACES = [
   "caution": "",
   "best": "ก.ค.",
   "parking": "ฟรี",
-  "months": [
-   6,
-   7,
-   8
-  ],
   "sn": {
-   "summer": "ลาเวนเดอร์ ต้น-กลาง ก.ค."
+   "summer": "ลาเวนเดอร์ ต้น-กลาง ก.ค.",
+   "winter": "เนินหิมะ มองทุ่งขาว (ไม่มีลาเวนเดอร์)"
   },
   "tr": {
    "lv": "ok",
@@ -6544,7 +6545,12 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "ประมาณ",
   "img": "img/places/135.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hinode-park_Kamifurano.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hinode-park_Kamifurano.jpg",
+  "peak": [
+   6,
+   7,
+   8
+  ]
  },
  {
   "hub": "furano",
@@ -6656,12 +6662,9 @@ window.PLACES = [
   "caution": "ไกลจากอาซาฮิคาวะ ~1 ชม.",
   "best": "ปลาย ก.ค.-กลาง ส.ค.",
   "parking": "ฟรี",
-  "months": [
-   7,
-   8
-  ],
   "sn": {
-   "summer": "ทานตะวันบาน ปลาย ก.ค.-ส.ค."
+   "summer": "ทานตะวันบาน ปลาย ก.ค.-ส.ค.",
+   "winter": "ทุ่งว่างใต้หิมะ ไม่มีทานตะวัน"
   },
   "tr": {
    "lv": "limited",
@@ -6676,7 +6679,11 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/138.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokuryu_town_Sunflower_field.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokuryu_town_Sunflower_field.JPG",
+  "peak": [
+   7,
+   8
+  ]
  },
  {
   "hub": "asahikawa",
@@ -7289,13 +7296,9 @@ window.PLACES = [
   "caution": "",
   "best": "กลาง-ปลาย ก.ย.",
   "parking": "ฟรี",
-  "months": [
-   8,
-   9,
-   10
-  ],
   "sn": {
-   "autumn": "สีแดงสด กลาง-ปลาย ก.ย."
+   "autumn": "สีแดงสด กลาง-ปลาย ก.ย.",
+   "winter": "ทะเลสาบแข็ง ไม่มีหญ้าแดง"
   },
   "tr": {
    "lv": "limited",
@@ -7310,7 +7313,12 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "ประมาณ",
   "img": "img/places/152.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Salicornia_europaea-hokkaido-japan.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Salicornia_europaea-hokkaido-japan.jpg",
+  "peak": [
+   8,
+   9,
+   10
+  ]
  },
  {
   "hub": "abashiri",
@@ -7417,11 +7425,6 @@ window.PLACES = [
   "caution": "",
   "best": "มิ.ย.-ก.ค.",
   "parking": "ฟรี",
-  "months": [
-   6,
-   7,
-   8
-  ],
   "tr": {
    "lv": "ok",
    "t": "สถานี JR Gensei-Kaen (เปิดเฉพาะหน้าร้อน)"
@@ -7435,7 +7438,15 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/155.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Koshimizu_genseikaen_2011.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Koshimizu_genseikaen_2011.JPG",
+  "peak": [
+   6,
+   7,
+   8
+  ],
+  "sn": {
+   "winter": "อาจเห็นน้ำแข็งทะเลลอยจากชายหาด ก.พ.–มี.ค. (ร้านปิด)"
+  }
  },
  {
   "hub": "wakkanai",
@@ -7460,15 +7471,9 @@ window.PLACES = [
   "caution": "ควรค้างบนเกาะ 1 คืน เรือหยุดเมื่อทะเลแรง",
   "best": "มิ.ย.-ส.ค.",
   "parking": "ท่าเรือวักกาไน",
-  "months": [
-   5,
-   6,
-   7,
-   8,
-   9
-  ],
   "sn": {
-   "summer": "ดอกไม้อัลไพน์ อูนิ"
+   "summer": "ดอกไม้อัลไพน์ อูนิ",
+   "winter": "เรือลดเที่ยว ร้านและทัวร์ส่วนใหญ่ปิด"
   },
   "tr": {
    "lv": "ok",
@@ -7483,7 +7488,14 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "ประมาณ",
   "img": "img/places/156.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Rishiriislandairplane.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Rishiriislandairplane.jpg",
+  "peak": [
+   5,
+   6,
+   7,
+   8,
+   9
+  ]
  },
  {
   "hub": "wakkanai",
@@ -9215,17 +9227,10 @@ window.PLACES = [
   "caution": "",
   "best": "ก.ค.-ต.ค.",
   "parking": "ฟรี",
-  "months": [
-   5,
-   6,
-   7,
-   8,
-   9,
-   10
-  ],
   "sn": {
    "summer": "คายัค เรือ",
-   "autumn": "ใบไม้เปลี่ยนสี"
+   "autumn": "ใบไม้เปลี่ยนสี",
+   "winter": "ทะเลสาบแข็ง ไปหมู่บ้านน้ำแข็ง Kotan (อีกรายการ)"
   },
   "tr": {
    "lv": "car"
@@ -9239,7 +9244,15 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/190.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%99%BD%E9%9B%B2%E5%B1%B1%E3%81%8B%E3%82%89%EF%BC%88The_view_from_the_Mt.Hakuun%EF%BC%89_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%99%BD%E9%9B%B2%E5%B1%B1%E3%81%8B%E3%82%89%EF%BC%88The_view_from_the_Mt.Hakuun%EF%BC%89_-_panoramio.jpg",
+  "peak": [
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ]
  },
  {
   "hub": "obihiro",
@@ -9951,14 +9964,6 @@ window.PLACES = [
   "caution": "",
   "best": "มิ.ย.-ก.ค.",
   "parking": "ฟรี",
-  "months": [
-   5,
-   6,
-   7,
-   8,
-   9,
-   10
-  ],
   "tr": {
    "lv": "car"
   },
@@ -9971,7 +9976,18 @@ window.PLACES = [
   "checked": "2026-11",
   "img": "img/places/205.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake_Panke-numa%2C_and_Mt.Rishiri.jpg",
-  "acc": "จาก OpenStreetMap"
+  "acc": "จาก OpenStreetMap",
+  "peak": [
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "sn": {
+   "winter": "ทุ่งหิมะ ศูนย์ข้อมูลปิด"
+  }
  },
  {
   "hub": "wakkanai",
@@ -9994,14 +10010,6 @@ window.PLACES = [
   "caution": "ถนนปิดหน้าหนาว",
   "best": "ก.ค.-ต.ค.",
   "parking": "ฟรี",
-  "months": [
-   5,
-   6,
-   7,
-   8,
-   9,
-   10
-  ],
   "tr": {
    "lv": "car"
   },
@@ -10028,7 +10036,18 @@ window.PLACES = [
    }
   ],
   "img": "img/places/206_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokkaido-wakkanai-soyakyuryo-1977.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokkaido-wakkanai-soyakyuryo-1977.jpg",
+  "peak": [
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "sn": {
+   "winter": "ทุ่งหิมะ ลมแรงมาก ถนนอาจปิดช่วงพายุ"
+  }
  },
  {
   "hub": "sapporo",
@@ -12108,19 +12127,10 @@ window.PLACES = [
   "caution": "หน้าหนาวเห็นแค่เรือนกระจก",
   "best": "กลางวัน",
   "parking": "ไม่มี",
-  "months": [
-   4,
-   5,
-   6,
-   7,
-   8,
-   9,
-   10,
-   11
-  ],
   "sn": {
    "spring": "ดอกไม้ป่า พ.ค.",
-   "autumn": "ใบไม้เปลี่ยนสี ต.ค."
+   "autumn": "ใบไม้เปลี่ยนสี ต.ค.",
+   "winter": "เปิดแค่เรือนกระจก"
   },
   "tr": {
    "lv": "ok",
@@ -12149,7 +12159,17 @@ window.PLACES = [
    }
   ],
   "img": "img/places/246_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:131103_Hokkaido_University_Botanical_Gardens_Sapporo_Hokkaido_Japan05s3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:131103_Hokkaido_University_Botanical_Gardens_Sapporo_Hokkaido_Japan05s3.jpg",
+  "peak": [
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ]
  },
  {
   "hub": "sapporo",
@@ -12173,11 +12193,9 @@ window.PLACES = [
   "caution": "บานแค่ ~2 สัปดาห์ ตรวจรายงานดอกบาน",
   "best": "กลางวัน",
   "parking": "ฟรี (เต็มเร็วช่วงดอกบาน)",
-  "months": [
-   5
-  ],
   "sn": {
-   "spring": "ดอกบ๊วยบาน ≈ กลาง–ปลาย พ.ค."
+   "spring": "ดอกบ๊วยบาน ≈ กลาง–ปลาย พ.ค.",
+   "winter": "สวนเปิดตามปกติ ไม่มีดอกไม้"
   },
   "tr": {
    "lv": "limited",
@@ -12198,7 +12216,10 @@ window.PLACES = [
    }
   ],
   "img": "img/places/247_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hiraoka_Park.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hiraoka_Park.jpg",
+  "peak": [
+   5
+  ]
  },
  {
   "hub": "otaru",
@@ -12700,11 +12721,9 @@ window.PLACES = [
   "caution": "บานแค่ ~1 สัปดาห์ เทศกาลรถติด",
   "best": "กลางวัน",
   "parking": "ฟรี (ช่วงเทศกาล)",
-  "months": [
-   5
-  ],
   "sn": {
-   "spring": "ซากุระ ≈ ต้น–กลาง พ.ค."
+   "spring": "ซากุระ ≈ ต้น–กลาง พ.ค.",
+   "winter": "ขับผ่านได้ ไม่มีดอก"
   },
   "tr": {
    "lv": "car"
@@ -12732,7 +12751,10 @@ window.PLACES = [
    }
   ],
   "img": "img/places/256_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E4%BA%8C%E5%8D%81%E9%96%93%E9%81%93%E8%B7%AF%E6%AB%BB%E4%B8%A6%E6%9C%A8.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E4%BA%8C%E5%8D%81%E9%96%93%E9%81%93%E8%B7%AF%E6%AB%BB%E4%B8%A6%E6%9C%A8.jpg",
+  "peak": [
+   5
+  ]
  },
  {
   "hub": "hakodate",
