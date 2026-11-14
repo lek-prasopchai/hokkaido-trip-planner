@@ -14307,7 +14307,21 @@ window.PLACES = [
   "lat": 43.0533,
   "lng": 141.3186,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/286_1.jpg",
+    "credit": "https://www.flickr.com/photos/72548439@N00/21411372478",
+    "by": "theCarol / CC BY-NC-ND 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/286_2.jpg",
+    "credit": "https://www.flickr.com/photos/72548439@N00/21572961716",
+    "by": "theCarol / CC BY-NC-ND 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/286_1.jpg",
+  "imgCredit": "https://www.flickr.com/photos/72548439@N00/21411372478"
  },
  {
   "hub": "furano",
@@ -14359,7 +14373,26 @@ window.PLACES = [
   "lat": 43.3236,
   "lng": 142.3545,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/287_1.jpg",
+    "credit": "https://www.flickr.com/photos/49463587@N05/19730882958",
+    "by": "snakecats / CC BY-NC-ND 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/287_2.jpg",
+    "credit": "https://www.flickr.com/photos/84056180@N00/4689196504",
+    "by": "alberth2 / CC BY-SA 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/287_3.jpg",
+    "credit": "https://www.flickr.com/photos/49463587@N05/19930464009",
+    "by": "snakecats / CC BY-NC-ND 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/287_1.jpg",
+  "imgCredit": "https://www.flickr.com/photos/49463587@N05/19730882958"
  },
  {
   "hub": "toya",
@@ -14461,7 +14494,16 @@ window.PLACES = [
   "lat": 43.1906,
   "lng": 141.0072,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/289_1.jpg",
+    "credit": "https://www.flickr.com/photos/91049143@N00/16102231743",
+    "by": "bryan... / CC BY-SA 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/289_1.jpg",
+  "imgCredit": "https://www.flickr.com/photos/91049143@N00/16102231743"
  },
  {
   "hub": "hakodate",
@@ -14510,7 +14552,26 @@ window.PLACES = [
   "lat": 41.7643,
   "lng": 140.7109,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/290_1.jpg",
+    "credit": "https://www.flickr.com/photos/87807876@N00/9039251754",
+    "by": "Richard, enjoy my life! / CC BY-SA 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/290_2.jpg",
+    "credit": "https://www.flickr.com/photos/87807876@N00/9037032365",
+    "by": "Richard, enjoy my life! / CC BY-SA 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/290_3.jpg",
+    "credit": "https://www.flickr.com/photos/87807876@N00/9039259618",
+    "by": "Richard, enjoy my life! / CC BY-SA 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/290_1.jpg",
+  "imgCredit": "https://www.flickr.com/photos/87807876@N00/9039251754"
  },
  {
   "hub": "hakodate",
@@ -14692,7 +14753,26 @@ window.PLACES = [
   "lat": 42.9638,
   "lng": 141.1581,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/293_1.jpg",
+    "credit": "https://commons.wikimedia.org/w/index.php?curid=52268973",
+    "by": "t-konno / CC BY-SA 3.0 (Wikimedia)"
+   },
+   {
+    "img": "img/places/293_2.jpg",
+    "credit": "https://www.flickr.com/photos/8327383@N02/2142503366",
+    "by": "Andurinha / CC BY-NC-SA 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/293_3.jpg",
+    "credit": "https://www.flickr.com/photos/46309370@N00/534578059",
+    "by": "Kelmon / CC BY-NC-ND 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/293_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/w/index.php?curid=52268973"
  },
  {
   "hub": "otaru",
