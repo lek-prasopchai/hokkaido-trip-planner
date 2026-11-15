@@ -15222,5 +15222,54 @@ window.PLACES = [
   "lng": 139.781,
   "acc": "จาก OpenStreetMap",
   "checked": "2026-11"
+ },
+ {
+  "hub": "biei",
+  "area": "บิเอะ (ตัวเมือง)",
+  "name": "หอคอยสี่ฤดู (Shiki-no-tou)",
+  "en": "Shiki-no-tou Tower (Four Seasons Tower)",
+  "ja": "四季の塔",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "จุดชมวิว",
+  "tags": [
+   "city"
+  ],
+  "open": "8:30-17:00 (พ.ค.-ต.ค. ถึง 19:00)",
+  "closed": "-",
+  "fee": "ฟรี",
+  "dur": "20-30 นาที",
+  "hours": 0.4,
+  "highlight": "หอสูง 32.4 ม. ข้างที่ว่าการเมือง ขึ้นลิฟต์ฟรี วิว 360° เมืองบิเอะ เนินแพตช์เวิร์ก เทือกเขาโทคาจิและไดเซ็ตสึ",
+  "caution": "",
+  "best": "กลางวัน วันฟ้าใส",
+  "parking": "ฟรี",
+  "months": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12
+  ],
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน 7-10 นาทีจากสถานี JR บิเอะ"
+  },
+  "evening": false,
+  "kw": "four seasons tower observation free",
+  "id": 301,
+  "region": "อาซาฮิคาวะ / บิเอ / ฟูราโน่ / โซอุนเคียว",
+  "feeYen": 0,
+  "lat": 43.58839,
+  "lng": 142.46669,
+  "acc": "จาก Google Maps",
+  "checked": "2026-11"
  }
 ];
