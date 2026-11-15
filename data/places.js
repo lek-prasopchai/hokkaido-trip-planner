@@ -10446,18 +10446,18 @@ window.PLACES = [
    12
   ],
   "tr": {
-   "lv": "limited",
-   "t": "เดิน/แท็กซี่ ~5 นาทีจากสถานีบิเอะ"
+   "lv": "ok",
+   "t": "เดิน ~10 นาทีจากสถานีบิเอะ"
   },
   "evening": false,
   "kw": "heart couple love",
   "id": 214,
   "region": "อาซาฮิคาวะ / บิเอ / ฟูราโน่ / โซอุนเคียว",
   "feeYen": 0,
-  "lat": 43.5883,
-  "lng": 142.4669,
+  "lat": 43.58825,
+  "lng": 142.47666,
   "checked": "2026-11",
-  "acc": "จาก Wikipedia"
+  "acc": "จาก Google Maps"
  },
  {
   "hub": "hakodate",
