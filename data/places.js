@@ -10457,7 +10457,26 @@ window.PLACES = [
   "lat": 43.58825,
   "lng": 142.47666,
   "checked": "2026-11",
-  "acc": "จาก Google Maps"
+  "acc": "จาก Google Maps",
+  "imgs": [
+   {
+    "img": "img/places/214_1.jpg",
+    "credit": "https://www.flickr.com/photos/12452841@N00/53938235409",
+    "by": "othree / CC BY 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/214_2.jpg",
+    "credit": "https://www.flickr.com/photos/12452841@N00/53938235319",
+    "by": "othree / CC BY 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/214_3.jpg",
+    "credit": "https://www.flickr.com/photos/12452841@N00/53938358300",
+    "by": "othree / CC BY 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/214_1.jpg",
+  "imgCredit": "https://www.flickr.com/photos/12452841@N00/53938235409"
  },
  {
   "hub": "hakodate",
@@ -15270,6 +15289,20 @@ window.PLACES = [
   "lat": 43.58839,
   "lng": 142.46669,
   "acc": "จาก Google Maps",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/301_1.jpg",
+    "credit": "https://www.flickr.com/photos/94693136@N05/53469000487",
+    "by": "inunami / CC BY 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/301_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Town_Hall_of_Biei,_Hokkaido,_Japan.jpg",
+    "by": "Yasu / CC BY-SA 3.0 (Wikimedia Commons)"
+   }
+  ],
+  "img": "img/places/301_1.jpg",
+  "imgCredit": "https://www.flickr.com/photos/94693136@N05/53469000487"
  }
 ];
