@@ -14173,7 +14173,26 @@ window.PLACES = [
   "acc": "จาก OpenStreetMap",
   "en": "Parfait, Coffee, Liquor Sato",
   "checked": "2026-11",
-  "evening": true
+  "evening": true,
+  "imgs": [
+   {
+    "img": "img/places/280_1.jpg",
+    "credit": "https://www.flickr.com/photos/57085156@N00/28162528846",
+    "by": "yuichi.sakuraba / CC BY-NC 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/280_2.jpg",
+    "credit": "https://www.flickr.com/photos/57085156@N00/28118362491",
+    "by": "yuichi.sakuraba / CC BY-NC 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/280_3.jpg",
+    "credit": "https://www.flickr.com/photos/60061298@N00/50032199186",
+    "by": "Irvin Chen / CC BY-NC 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/280_1.jpg",
+  "imgCredit": "https://www.flickr.com/photos/57085156@N00/28162528846"
  },
  {
   "id": 281,
@@ -15002,7 +15021,16 @@ window.PLACES = [
   "lat": 43.0505,
   "lng": 141.315,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/296_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Jizo_on_Mount_Maru_in_Sapporo_(18).jpg",
+    "by": "Savannah Rivka / CC BY-SA 4.0 (Wikimedia Commons)"
+   }
+  ],
+  "img": "img/places/296_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Jizo_on_Mount_Maru_in_Sapporo_(18).jpg"
  },
  {
   "hub": "toya",
@@ -15240,7 +15268,26 @@ window.PLACES = [
   "lat": 42.2676,
   "lng": 139.781,
   "acc": "จาก OpenStreetMap",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/300_1.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Honden_of_Otasan_shrine.JPG",
+    "by": "アラツク / CC BY-SA 4.0 (Wikimedia Commons)"
+   },
+   {
+    "img": "img/places/300_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Steep_stairs,_Otasan_Shrine,_Setana,_Hokkaido_-_Jul_4,_2022.jpg",
+    "by": "Kzaral / CC BY 2.0 (Wikimedia Commons)"
+   },
+   {
+    "img": "img/places/300_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Entrance_to_Otasan_shrine.JPG",
+    "by": "アラツク / CC BY-SA 4.0 (Wikimedia Commons)"
+   }
+  ],
+  "img": "img/places/300_1.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Honden_of_Otasan_shrine.JPG"
  },
  {
   "hub": "biei",
