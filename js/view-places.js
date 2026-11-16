@@ -18,10 +18,10 @@ document.addEventListener("click", (e) => {
 });
 const reviewLinks = (p) => {
   const q = p.ja || p.name, qe = p.en || q;
-  return `<a class="btn small" href="${mapsUrl(q)}" target="_blank" rel="noopener">${I("star")} รีวิว Google Maps</a>
-    <a class="btn small" href="${ytUrl(qe + " Hokkaido")}" target="_blank" rel="noopener">${I("play")} YouTube</a>
-    <a class="btn small" href="${ttUrl(p.name + " " + (p.en || ""))}" target="_blank" rel="noopener">${I("music")} TikTok</a>
-    <a class="btn small" href="${igUrl(q)}" target="_blank" rel="noopener">${I("camera")} Instagram</a>
+  return `<a class="btn small" href="${mapsUrl(q)}" data-app="gm" data-q="${esc(q)}" target="_blank" rel="noopener">${I("star")} รีวิว Google Maps</a>
+    <a class="btn small" href="${ytUrl(qe + " Hokkaido")}" data-app="yt" data-q="${esc(qe + " Hokkaido")}" target="_blank" rel="noopener">${I("play")} YouTube</a>
+    <a class="btn small" href="${ttUrl(p.name + " " + (p.en || ""))}" data-app="tt" data-q="${esc(p.name + " " + (p.en || ""))}" target="_blank" rel="noopener">${I("music")} TikTok</a>
+    <a class="btn small" href="${igUrl(q)}" data-app="ig" data-q="${esc(q)}" target="_blank" rel="noopener">${I("camera")} Instagram</a>
     <a class="btn small" href="${gimgUrl(q)}" target="_blank" rel="noopener">${I("image")} รูปเพิ่ม</a>
     ${p.url ? `<a class="btn small" href="${esc(p.url)}" target="_blank" rel="noopener">${I("globe")} เว็บไซต์ทางการ</a>` : `<a class="btn small" href="${gUrl(q + " 公式")}" target="_blank" rel="noopener">${I("globe")} ค้นเว็บทางการ</a>`}`;
 };

@@ -14,7 +14,35 @@ const gUrl = (q) => `https://www.google.com/search?q=${encodeURIComponent(q)}`;
 const ytUrl = (q) => `https://www.youtube.com/results?search_query=${encodeURIComponent(q)}`;
 const ttUrl = (q) => `https://www.tiktok.com/search?q=${encodeURIComponent(q)}`;
 // Instagram ค้นด้วยคำไม่ได้ ใช้แฮชแท็กชื่อญี่ปุ่น (ตัดวงเล็บ ช่องว่าง เครื่องหมาย ออก)
-const igUrl = (q) => `https://www.instagram.com/explore/tags/${encodeURIComponent(q.replace(/[（(].*?[)）]/g, "").replace(/[^\p{L}\p{N}_]/gu, ""))}/`;
+const igTag = (q) => q.replace(/[（(].*?[)）]/g, "").replace(/[^\p{L}\p{N}_]/gu, "");
+const igUrl = (q) => `https://www.instagram.com/explore/tags/${encodeURIComponent(igTag(q))}/`;
+// มือถือ: ลิงก์ค้นหา https ไม่เด้งเข้าแอปเอง จึงแปลงตอนกด (ลิงก์ <a data-app data-q href=เว็บ>)
+// Android = intent:// (ไม่มีแอป ระบบไปเว็บเอง) • iPhone = ลิงก์เฉพาะแอป ถ้า 1.5 วิ แอปไม่ขึ้นก็ไปเว็บ • คอม = เว็บตามเดิม
+const APP_LINK = {
+  gm: { pkg: "com.google.android.apps.maps", ios: (q) => `comgooglemaps://?q=${encodeURIComponent(q)}` },
+  yt: { pkg: "com.google.android.youtube", ios: (q) => `youtube://www.youtube.com/results?search_query=${encodeURIComponent(q)}` },
+  ig: { pkg: "com.instagram.android", ios: (q) => `instagram://tag?name=${encodeURIComponent(igTag(q))}` },
+  // shortcut: TikTok ไม่มีลิงก์ค้นหาในแอปที่เป็นทางการ snssdk1233://search เป็นของที่ลองดู ถ้าใช้ไม่ได้ให้เอาปุ่มออก
+  tt: { and: (q) => `snssdk1233://search?keyword=${encodeURIComponent(q)}`, ios: (q) => `snssdk1233://search?keyword=${encodeURIComponent(q)}` },
+};
+const appOS = () => /Android/i.test(navigator.userAgent) ? "and" : /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) ? "ios" : null;
+const appHref = (app, q, web, os) => {
+  const L = APP_LINK[app];
+  if (os === "ios") return L.ios(q);
+  const [scheme, rest] = L.and ? L.and(q).split("://") : ["https", web.replace(/^https:\/\//, "")];
+  return `intent://${rest}#Intent;scheme=${scheme};${L.pkg ? `package=${L.pkg};` : ""}S.browser_fallback_url=${encodeURIComponent(web)};end`;
+};
+globalThis.document?.addEventListener("click", (ev) => {
+  const a = ev.target.closest?.("a[data-app]"), os = a && appOS();
+  if (!os || !APP_LINK[a.dataset.app]) return;
+  ev.preventDefault();
+  const web = a.href, url = appHref(a.dataset.app, a.dataset.q, web, os);
+  if (os === "ios") {
+    const t = setTimeout(() => { if (!document.hidden) location.href = web; }, 1500);
+    document.addEventListener("visibilitychange", () => clearTimeout(t), { once: true });
+  }
+  location.href = url;
+}, true);
 const dirUrl = (pts, mode) => `https://www.google.com/maps/dir/?api=1&origin=${pts[0].lat},${pts[0].lng}&destination=${pts[pts.length - 1].lat},${pts[pts.length - 1].lng}${pts.length > 2 ? `&waypoints=${pts.slice(1, -1).slice(0, 9).map((p) => `${p.lat},${p.lng}`).join("|")}` : ""}&travelmode=${mode === "transit" ? "transit" : "driving"}`;
 
 // ---------- วันที่ ----------

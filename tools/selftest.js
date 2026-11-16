@@ -109,6 +109,10 @@ assert(meals.every((x) => x.t >= 10.5 && x.t <= 15), "มื้อกลาง�
   const back = await Share.unpack(code);
   assert.deepStrictEqual(back.plan, JSON.parse(JSON.stringify(S.plan)), "share round-trip");
   assert.deepStrictEqual(parseLatLng("https://www.google.com/maps/place/x/@43.0621,141.3544,17z"), { lat: 43.0621, lng: 141.3544 });
+  // ลิงก์เปิดแอป: Android ระบุแพ็กเกจ + กลับเว็บเองได้, iPhone ใช้ลิงก์เฉพาะแอป
+  { const web = ytUrl("x y");
+    assert.strictEqual(appHref("yt", "x y", web, "and"), `intent://www.youtube.com/results?search_query=x%20y#Intent;scheme=https;package=com.google.android.youtube;S.browser_fallback_url=${encodeURIComponent(web)};end`);
+    assert.strictEqual(appHref("ig", "日の出公園 (上富良野町)", "", "ios"), `instagram://tag?name=${encodeURIComponent("日の出公園")}`); }
   // งานที่มีเวลาตายตัว (p.at) ต้องล็อกเวลาให้เองตอนเพิ่ม
   { const ev = PLACES.find((p) => p.at); assert.strictEqual(Planner.mkItem(0, ev.id, true).at, ev.at, "p.at ต้องกลายเป็นเวลาล็อก"); }
   console.log("selftest ok");
