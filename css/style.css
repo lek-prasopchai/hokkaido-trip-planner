@@ -806,6 +806,7 @@ html.has-map-full .split-side { z-index: 2500; }
 /* ---- การ์ดรายวัน v2: แถวโปร่ง แตะ = รายละเอียด ✏️ ✕ ด้านขวา (มือถือ: ปัดซ้าย) ---- */
 .tl .visit small .xtra { white-space: nowrap; }
 .it-tools .ied:hover:not(:disabled) { background: var(--ice-soft); color: var(--ice); }
+.it-tools .inav:hover:not(:disabled) { background: var(--good-soft, var(--ice-soft)); color: var(--good); }
 @media (max-width: 899px) { .xtra { display: none; } }
 @media (pointer: fine), (hover: hover) { .tl .it-tools, .tl li.it .it-tools { opacity: 1; } }
 /* แถวเดินทาง = เส้นประเชื่อมระหว่างจุด ตัวหนังสือเล็ก */
@@ -852,6 +853,9 @@ html.has-map-full .split-side { z-index: 2500; }
   .tl li.it .it-tools button { flex: 1; width: auto; height: auto; border-radius: 0; color: var(--on); }
   .tl li.it .it-tools .ied { background: var(--ice); }
   .tl li.it .it-tools .irm { background: var(--red); }
+  .tl li.it .it-tools .inav { background: var(--good); }
+  .tl li.it.t3 .it-tools { width: 144px; transform: translateX(calc(144px + var(--sx, 0px))); }
+  .tl li.it.t3.swiped { --sx: -144px; }
   .tl li.it .it-tools button .i { width: 20px; height: 20px; }
   .tl li.it.dragging { opacity: 1; background: var(--paper); box-shadow: 0 6px 18px rgb(0 0 0 / .18); transform: scale(1.02); z-index: 2; }
 }

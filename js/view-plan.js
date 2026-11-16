@@ -273,12 +273,13 @@ const PlanView = {
     const idx = S.plan.days[i].items.indexOf(it);
     const cu = S.plan.custom[x.id], meta = esc(fmtH(x.h)) + (cu && !cu.meal && !p.lat ? " · ยังไม่ปักหมุด ไม่ได้คิดเวลาเดินทาง" : ""); // ดาว ค่าเข้า อยู่ในหน้ารายละเอียด (แตะแถว)
     const nm = esc(pname(x.id)), open = p.stars ? `data-detail="${esc(x.id)}"` : `data-edit="${i}:${idx}"`;
-    // แตะแถว = รายละเอียดสถานที่ (มื้อ/จุดของฉัน = กล่องแก้ไข) • ✏️ แก้ไข • ✕ เอาออก • ลากแถวเรียงลำดับ (มือถือ: ปัดซ้ายโชว์ปุ่ม กดค้างแล้วลาก)
-    return `<li class="it" ${COARSE ? "" : 'draggable="true"'} data-i="${i}" data-idx="${idx}"><span class="tm">${fmtT(x.t)}</span><span class="ic">${x.night ? I("moon") : KIND_IC(x.id)}</span>
+    const m = it.m || e.mode, nav = p.lat && !cu?.meal ? `https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}&travelmode=${{ transit: "transit", walk: "walking" }[m] || "driving"}` : "";
+    // แตะแถว = รายละเอียดสถานที่ (มื้อ/จุดของฉัน = กล่องแก้ไข) • 🧭 นำทางจากตำแหน่งฉัน • ✏️ แก้ไข • ✕ เอาออก • ลากแถวเรียงลำดับ (มือถือ: ปัดซ้ายโชว์ปุ่ม กดค้างแล้วลาก)
+    return `<li class="it ${nav ? "t3" : ""}" ${COARSE ? "" : 'draggable="true"'} data-i="${i}" data-idx="${idx}"><span class="tm">${fmtT(x.t)}</span><span class="ic">${x.night ? I("moon") : KIND_IC(x.id)}</span>
       <span class="visit" ${open} data-row="${i}:${idx}" role="button" tabindex="0" title="${p.stars ? "ดูรายละเอียด" : "แก้ไข"} (Alt+↑/↓ = เลื่อนลำดับ)">
         <b class="nm">${nm}</b>${it.at ? ` <span class="badge b-info">${I("lock")} ${esc(it.at)}</span>` : ""}
         <small>${x.onWay ? `กินระหว่างทาง: ${x.onWay === "car" ? "แวะจุดพักรถ/มิจิโนะเอกิ ~30 นาที" : "ซื้อข้าวกล่อง (เอกิเบ็น)/คอนบินีกินบนรถ"}` : meta}</small>${it.note ? `<div class="note">📝 ${esc(it.note)}</div>` : ""}</span>
-      <span class="it-tools no-print"><button class="ied" data-edit="${i}:${idx}" aria-label="แก้ไข ${nm}" title="แก้ไข: ย้ายวัน ล็อกเวลา โน้ต">${I("pencil")}</button><button class="irm" data-rm="${i}:${idx}" aria-label="เอาออก ${nm}" title="เอาออก">${I("x")}</button></span></li>`;
+      <span class="it-tools no-print">${nav ? `<button class="inav" data-nav="${esc(nav)}" aria-label="นำทางไป ${nm}" title="นำทางจากตำแหน่งฉัน (Google Maps)">${I("navigation")}</button>` : ""}<button class="ied" data-edit="${i}:${idx}" aria-label="แก้ไข ${nm}" title="แก้ไข: ย้ายวัน ล็อกเวลา โน้ต">${I("pencil")}</button><button class="irm" data-rm="${i}:${idx}" aria-label="เอาออก ${nm}" title="เอาออก">${I("x")}</button></span></li>`;
   },
 
   // วันที่เปิดค้างไว้ (มีผลเฉพาะจอเล็ก): เริ่มที่วันนี้ระหว่างทริป ไม่งั้นวันแรก
@@ -356,7 +357,7 @@ const PlanView = {
       </div>
       <div class="day-tools no-print">
         <button class="btn small primary" data-addmenu="${i}">+ เพิ่มสถานที่/มื้อ</button>
-        <button class="btn small" data-daymenu="${i}" title="ที่พักคืนนี้ เวลาเริ่ม เรียงเส้นทาง Google Maps สลับวัน">⋯ จัดการวัน</button>
+        <button class="btn small" data-daymenu="${i}" title="ที่พักคืนนี้ เวลาเริ่ม เรียงเส้นทาง Google Maps ลิงก์ด่วน (ปั๊ม คอนบินิ สภาพถนน JR) สลับวัน">⋯ จัดการวัน</button>
       </div></div>`;
   },
 
@@ -411,8 +412,8 @@ const PlanView = {
   // มือถือ: ปัดแถวไปซ้าย = โชว์ปุ่ม ✏️ ✕ • กดค้าง ~0.4 วิ แล้วลาก = เรียงลำดับในวัน • ขยับนิ้วก่อนครบเวลา = เลื่อนหน้าปกติ
   // ใช้ touch event (ไม่ใช่ pointer) เพราะต้อง preventDefault กันหน้าเลื่อนตอนลาก/ปัด
   bindTouch(trip, placeBefore) {
-    const W = 96;
-    let g = null;
+    const wOf = (li) => (li.classList.contains("t3") ? 144 : 96); // ความกว้างปุ่มที่ซ่อน: 3 ปุ่มถ้ามีนำทาง
+    let g = null, W = 96;
     const done = () => { this.noClick = Date.now(); };
     const drag = () => {
       const ul = g.li.closest("ul");
@@ -425,6 +426,7 @@ const PlanView = {
       if (this.swiped && this.swiped !== li) this.unswipe();
       if (!li || ev.touches.length > 1 || ev.target.closest(".it-tools")) return (g = null);
       const t = ev.touches[0];
+      W = wOf(li);
       g = { li, x0: t.clientX, y0: t.clientY, mode: null, base: li.classList.contains("swiped") ? -W : 0, sx: 0 };
       g.timer = setTimeout(drag, 400);
     }, { passive: true });
@@ -600,6 +602,12 @@ const PlanView = {
       <div class="row" style="margin-top:12px">
         <button class="btn" data-mopt title="เรียงจุดใหม่ให้ระยะทางสั้นสุด: เริ่มจากที่พักเมื่อคืน ไปจุดที่ใกล้สุดก่อนทีละจุด จุดที่ล็อกเวลาแทรกตามเวลา">${I("arrow-up-down")} เรียงเส้นทางให้สั้นสุด</button>
         <a class="btn" target="_blank" rel="noopener" href="${dirUrl(pts, e.mode)}">${I("navigation")} เปิดเส้นทางใน Google Maps</a></div>
+      <h3 style="margin-top:18px">ลิงก์ด่วนระหว่างเที่ยว</h3>
+      <div class="row">
+        <a class="btn small" target="_blank" rel="noopener" href="https://www.google.com/maps/search/ガソリンスタンド/">${I("fuel")} ปั๊มใกล้ฉัน</a>
+        <a class="btn small" target="_blank" rel="noopener" href="https://www.google.com/maps/search/コンビニ/">${I("store")} คอนบินิใกล้ฉัน</a>
+        <a class="btn small" target="_blank" rel="noopener" href="https://www.jartic.or.jp/">${I("car")} สภาพถนน (JARTIC)</a>
+        <a class="btn small" target="_blank" rel="noopener" href="https://www.jrhokkaido.co.jp/global/english/">${I("train-front")} JR Hokkaido (รถเลื่อน/ยกเลิก)</a></div>
       <h3 style="margin-top:18px">${I("arrow-left-right")} สลับแผนกับวันอื่น</h3><p class="mute small">สลับที่เที่ยว โน้ต และแผนสำรองทั้งวัน ที่พักแต่ละคืนคงเดิม ระบบจะเตือนถ้าไกลจากที่พักเกินไป</p>
       <div class="move-days">${S.plan.days.map((_, k) => k === i ? "" : `<button class="btn" data-swap="${k}">วันที่ ${k + 1}<small>${esc(short(Planner.ends(k).to))}</small></button>`).join("")}</div>
       <h3 style="margin-top:14px">${I("refresh-ccw")} จัดวันนี้ใหม่</h3><p class="mute small">เปลี่ยนจุดที่ระบบเลือกให้ ที่ใส่เองและที่ล็อกเวลาไว้ยังอยู่</p>
@@ -821,6 +829,7 @@ const PlanView = {
       const el = ev.target.closest("button, a, select, [data-goto], [data-detail], [data-lb], [data-edit], [data-tog]");
       if (!el) return;
       const d = el.dataset, pair = (s) => s.split(":").map(Number);
+      if (d.nav) return open(d.nav, "_blank", "noopener");
       if (d.lb) Lightbox.place(isNaN(d.lb) ? d.lb : +d.lb);
       else if (d.detail) PlacesView.detail(isNaN(d.detail) ? d.detail : +d.detail);
       else if (d.mapday) {
