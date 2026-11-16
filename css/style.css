@@ -384,6 +384,13 @@ input.find { width: 100%; min-width: 200px; }
 .move-days { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 6px; }
 .move-days .btn { flex-direction: column; display: flex; align-items: center; }
 .move-days small { font-size: .8rem; opacity: .75; }
+/* เมนู ⋯ ของวัน: ปุ่มกว้างเท่ากัน 2 คอลัมน์, ฉุกเฉิน 3 คอลัมน์สีแดง */
+.dm-h { margin-top: 18px; display: flex; align-items: center; gap: 6px; }
+.dm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.dm-grid .btn { justify-content: center; text-align: center; }
+.dm-grid.sos { grid-template-columns: repeat(3, 1fr); }
+.dm-grid.sos .btn { flex-direction: column; gap: 2px; padding: 6px 4px; color: var(--red); background: var(--red-soft); border-color: var(--red); font-weight: 700; font-size: .95rem; }
+.dm-grid.sos small { font-size: .72rem; font-weight: 500; }
 
 .menu-list { display: grid; gap: 8px; }
 .menu-list .btn { display: grid; grid-template-columns: 2em 1fr; text-align: left; justify-items: start; padding: 10px 12px; }

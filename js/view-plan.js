@@ -357,7 +357,7 @@ const PlanView = {
       </div>
       <div class="day-tools no-print">
         <button class="btn small primary" data-addmenu="${i}">+ เพิ่มสถานที่/มื้อ</button>
-        <button class="btn small" data-daymenu="${i}" title="ที่พักคืนนี้ เวลาเริ่ม เรียงเส้นทาง Google Maps ลิงก์ด่วน (ปั๊ม คอนบินิ สภาพถนน JR) สลับวัน">⋯ จัดการวัน</button>
+        <button class="btn small" data-daymenu="${i}" title="ที่พักคืนนี้ เวลาเริ่ม เรียงเส้นทาง Google Maps ลิงก์ด่วน (ปั๊ม คอนบินิ สภาพถนน JR) เบอร์ฉุกเฉิน สลับวัน">⋯ จัดการวัน</button>
       </div></div>`;
   },
 
@@ -599,24 +599,23 @@ const PlanView = {
       <div class="form">
         ${i < N ? (Planner.stayAt(i) ? `<p class="f">คืนนี้พัก <b>${esc(Planner.stayAt(i).name || short(Planner.stayAt(i).hub))}</b> <a class="small" href="#stays" onclick="Modal.close()">แก้ที่พัก</a></p>` : `<label class="f">คืนนี้พักเมือง <small>ยังไม่ได้จอง: กรอกในข้อมูลทริป › ที่พัก</small><select data-mbase>${hubOptions(S.plan.bases[i])}</select></label>`) : ""}
         ${i > 0 ? `<label class="f">เริ่มวัน <small>ไม่ใส่ก็ได้</small><input type="time" data-mstart value="${esc(day.start || "")}"></label>` : ""}</div>
-      <div class="row" style="margin-top:12px">
+      <div class="dm-grid" style="margin-top:12px">
         <button class="btn" data-mopt title="เรียงจุดใหม่ให้ระยะทางสั้นสุด: เริ่มจากที่พักเมื่อคืน ไปจุดที่ใกล้สุดก่อนทีละจุด จุดที่ล็อกเวลาแทรกตามเวลา">${I("arrow-up-down")} เรียงเส้นทางให้สั้นสุด</button>
-        <a class="btn" target="_blank" rel="noopener" href="${dirUrl(pts, e.mode)}">${I("navigation")} เปิดเส้นทางใน Google Maps</a></div>
-      <h3 style="margin-top:18px">ลิงก์ด่วนระหว่างเที่ยว</h3>
-      <div class="row">
+        <button class="btn" data-refill title="เปลี่ยนจุดที่ระบบเลือกให้ ที่ใส่เองและที่ล็อกเวลาไว้ยังอยู่">${I("refresh-ccw")} จัดวันนี้ใหม่</button></div>
+      <h3 class="dm-h">${I("arrow-left-right")} สลับแผนกับวันอื่น</h3><p class="mute small">สลับที่เที่ยว โน้ต และแผนสำรองทั้งวัน ที่พักแต่ละคืนคงเดิม</p>
+      <div class="move-days">${S.plan.days.map((_, k) => k === i ? "" : `<button class="btn" data-swap="${k}">วันที่ ${k + 1}<small>${esc(short(Planner.ends(k).to))}</small></button>`).join("")}</div>
+      <h3 class="dm-h">${I("navigation")} ระหว่างเที่ยว</h3>
+      <a class="btn" style="width:100%;justify-content:center" target="_blank" rel="noopener" href="${dirUrl(pts, e.mode)}">${I("navigation")} เปิดเส้นทางวันนี้ใน Google Maps</a>
+      <div class="dm-grid" style="margin-top:8px">
         <a class="btn small" target="_blank" rel="noopener" href="https://www.google.com/maps/search/ガソリンスタンド/">${I("fuel")} ปั๊มใกล้ฉัน</a>
         <a class="btn small" target="_blank" rel="noopener" href="https://www.google.com/maps/search/コンビニ/">${I("store")} คอนบินิใกล้ฉัน</a>
-        <a class="btn small" target="_blank" rel="noopener" href="https://www.jartic.or.jp/">${I("car")} สภาพถนน (JARTIC)</a>
-        <a class="btn small" target="_blank" rel="noopener" href="https://www.jrhokkaido.co.jp/global/english/">${I("train-front")} JR Hokkaido (รถเลื่อน/ยกเลิก)</a></div>
-      <h3 style="margin-top:18px">${I("life-buoy")} ฉุกเฉิน</h3>
-      <div class="row">
-        <a class="btn small" href="tel:110">${I("phone")} 110 ตำรวจ</a>
-        <a class="btn small" href="tel:119">${I("phone")} 119 รถพยาบาล/ดับเพลิง</a>
-        <a class="btn small" href="tel:%238139">${I("car")} #8139 JAF รถเสีย/ติดหิมะ</a></div>
-      <h3 style="margin-top:18px">${I("arrow-left-right")} สลับแผนกับวันอื่น</h3><p class="mute small">สลับที่เที่ยว โน้ต และแผนสำรองทั้งวัน ที่พักแต่ละคืนคงเดิม ระบบจะเตือนถ้าไกลจากที่พักเกินไป</p>
-      <div class="move-days">${S.plan.days.map((_, k) => k === i ? "" : `<button class="btn" data-swap="${k}">วันที่ ${k + 1}<small>${esc(short(Planner.ends(k).to))}</small></button>`).join("")}</div>
-      <h3 style="margin-top:14px">${I("refresh-ccw")} จัดวันนี้ใหม่</h3><p class="mute small">เปลี่ยนจุดที่ระบบเลือกให้ ที่ใส่เองและที่ล็อกเวลาไว้ยังอยู่</p>
-      <button class="btn" data-refill>${I("refresh-ccw")} จัดวันนี้ใหม่</button>`);
+        <a class="btn small" target="_blank" rel="noopener" href="https://www.jartic.or.jp/">${I("car")} สภาพถนน JARTIC</a>
+        <a class="btn small" target="_blank" rel="noopener" href="https://www.jrhokkaido.co.jp/global/english/">${I("train-front")} JR เลื่อน/ยกเลิก</a></div>
+      <h3 class="dm-h">${I("life-buoy")} ฉุกเฉิน</h3>
+      <div class="dm-grid sos">
+        <a class="btn small" href="tel:110">${I("phone")} 110<small>ตำรวจ</small></a>
+        <a class="btn small" href="tel:119">${I("phone")} 119<small>รถพยาบาล ดับเพลิง</small></a>
+        <a class="btn small" href="tel:%238139">${I("phone")} #8139<small>JAF รถเสีย</small></a></div>`);
     $("#modal").onclick = (ev) => {
       if (ev.target === $("#modal") || ev.target.closest("[data-close]")) return Modal.close();
       const sw = ev.target.closest("[data-swap]")?.dataset.swap;
