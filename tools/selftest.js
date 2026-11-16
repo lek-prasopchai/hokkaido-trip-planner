@@ -109,5 +109,7 @@ assert(meals.every((x) => x.t >= 10.5 && x.t <= 15), "มื้อกลาง�
   const back = await Share.unpack(code);
   assert.deepStrictEqual(back.plan, JSON.parse(JSON.stringify(S.plan)), "share round-trip");
   assert.deepStrictEqual(parseLatLng("https://www.google.com/maps/place/x/@43.0621,141.3544,17z"), { lat: 43.0621, lng: 141.3544 });
+  // งานที่มีเวลาตายตัว (p.at) ต้องล็อกเวลาให้เองตอนเพิ่ม
+  { const ev = PLACES.find((p) => p.at); assert.strictEqual(Planner.mkItem(0, ev.id, true).at, ev.at, "p.at ต้องกลายเป็นเวลาล็อก"); }
   console.log("selftest ok");
 })().catch((e) => { console.error(e); process.exit(1); });

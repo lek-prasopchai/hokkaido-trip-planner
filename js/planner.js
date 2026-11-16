@@ -447,6 +447,7 @@ const Planner = {
   mkItem(i, id, u) {
     const p = point(id), it = { id };
     if (u) it.u = true;
+    if (p.at) it.at = p.at; // งานที่มีเวลาตายตัว เช่น จุดไฟเที่ยงคืนปีใหม่
     if (p.evening && !/กลางวัน|เช้า/.test(p.best || "") && hubOf(id) === hubOf(this.ends(i).to) && i < tripNights()) it.night = true;
     return it;
   },
