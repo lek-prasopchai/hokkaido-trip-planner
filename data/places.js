@@ -15397,6 +15397,20 @@ window.PLACES = [
   "season": [
    "12-31",
    "12-31"
-  ]
+  ],
+  "imgs": [
+   {
+    "img": "img/places/302_1.jpg",
+    "credit": "https://www.flickr.com/photos/15958452@N00/83128837",
+    "by": "Masafumi Iwai / CC BY-NC 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/302_2.jpg",
+    "credit": "https://www.flickr.com/photos/15958452@N00/83126336",
+    "by": "Masafumi Iwai / CC BY-NC 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/302_1.jpg",
+  "imgCredit": "https://www.flickr.com/photos/15958452@N00/83128837"
  }
 ];
