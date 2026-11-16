@@ -213,10 +213,7 @@ const PlanView = {
     Weather.fill(sec);
     this.bindDrag(sec);
     RoadTime.flush(() => App.renderAll());
-    // มือถือ: ท่าปัด/กดค้างมองไม่เห็น บอกครั้งเดียว
-    if (COARSE && $(".tl li.it", sec)) try {
-      if (!localStorage.getItem("hk-swipe-hint")) { localStorage.setItem("hk-swipe-hint", "1"); setTimeout(() => toast("ปัดแถวไปทางซ้าย = แก้ไข/เอาออก • กดค้างแล้วลาก = เรียงลำดับ"), 600); }
-    } catch { /* เก็บไม่ได้ก็ไม่ต้องบอก */ }
+    Tour.maybe(); // ครั้งแรกที่เห็นแผน: ทัวร์สั้น ๆ (รวมท่าปัด/กดค้างที่มองไม่เห็น)
   },
 
   // ---- รายการอยากไป: เก็บไว้ก่อน ค่อยลากลงวันหรือให้ระบบจัด ----

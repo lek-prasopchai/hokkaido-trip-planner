@@ -102,6 +102,8 @@ const App = {
       <label class="f">ที่เที่ยวสูงสุดต่อวัน <small>ไม่ใส่ใช้ตามสไตล์</small><input type="number" min="1" max="12" data-s="maxStops" value="${s.maxStops}"></label>
       <label class="f row" style="flex-direction:row;align-items:center"><input type="checkbox" data-s="autoMeal" ${s.autoMeal !== false ? "checked" : ""}> ใส่ช่วงกินข้าวกลางวันให้อัตโนมัติตอนสร้างแผน</label>
     </div></details>
+    <h3 style="margin-top:16px">วิธีใช้</h3>
+    <div class="row"><button class="btn" data-a="tour">${I("info")} ทัวร์แนะนำหน้าแผนรายวัน</button></div>
     <h3 style="margin-top:16px">ข้อมูลและออฟไลน์</h3>
     <div class="row"><button class="btn" data-a="export">ส่งออกไฟล์ .json</button>
       <label class="btn">นำเข้าไฟล์ .json<input type="file" data-a="import" accept=".json,application/json" hidden></label>
@@ -119,6 +121,7 @@ const App = {
       const a = e.target.closest("[data-a]")?.dataset.a;
       if (a === "export") Store.export();
       else if (a === "print") { Modal.close(); this.print(); }
+      else if (a === "tour") { Modal.close(); if (!S.plan) return toast("สร้างแผนก่อน แล้วค่อยดูทัวร์"); location.hash = "#trip"; setTimeout(() => Tour.start(), 400); }
       else if (a === "reset" && confirm("ล้างแผน งบ และค่าตั้งทั้งหมด? ย้อนกลับไม่ได้")) { localStorage.removeItem(STORE_KEY); S = Store.defaults(); Modal.close(); location.hash = "#setup"; this.renderAll(); }
     };
   },
