@@ -964,3 +964,21 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
 .addsel.wished { border-color: #d9822b; color: #b8641a; }
 :root[data-theme="dark"] .addsel.wished { color: #f0a560; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .addsel.wished { color: #f0a560; } }
+/* จอสัมผัส (แนว Apple HIG): พื้นที่กดอย่างน้อย 44×44 โดยไม่เปลี่ยนขนาดปุ่มที่เห็น
+   ขยายด้วย ::after ใสรอบปุ่ม (ปุ่มที่ใหญ่พอแล้ว min() คืน 0 = ไม่ขยาย) • :where() = ไม่ทับกฎตำแหน่งเดิมของปุ่ม */
+@media (pointer: coarse) {
+  :where(.btn.small, .btn.loc, .chip, .seg button, .map-days button, .bgrip, .igrip, [data-bhide], .brand,
+    summary:not(.fold-card > summary)) { position: relative; }
+  :where(.btn.small, .btn.loc, .chip, .seg button, .map-days button, .bgrip, .igrip, [data-bhide], .brand,
+    summary:not(.fold-card > summary))::after {
+    content: ""; position: absolute;
+    top: min(0px, calc(50% - 22px)); bottom: min(0px, calc(50% - 22px));
+    left: min(0px, calc(50% - 22px)); right: min(0px, calc(50% - 22px)); }
+  .f-more > summary { min-height: 44px; } /* ตัวกรองเปิดแล้วช่องเลือกอยู่ชิดใต้: สูงจริง 44 แทนการขยายพื้นที่กดทับช่อง */
+  .day-tools textarea { position: relative; z-index: 1; } /* ช่องโน้ตอยู่ติดปุ่มจัดการวัน: พื้นที่กดของปุ่มต้องไม่ทับช่องพิมพ์ */
+  /* ปุ่มกลุ่ม: ไม่ตัดขอบ ให้พื้นที่กดล้นออกได้ ใช้มุมโค้งที่ปุ่มหัว/ท้ายแทน */
+  .seg { overflow: visible; }
+  .seg > button:first-child { border-radius: 8px 0 0 8px; }
+  .seg > button:last-child { border-radius: 0 8px 8px 0; }
+  .seg > button:only-child { border-radius: 8px; }
+}
