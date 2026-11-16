@@ -410,6 +410,7 @@ const Planner = {
       const outS = S.trip.stays.filter((s) => s.from < S.trip.start || s.to > S.trip.end); // เช็กอินก่อนวันลง / เช็กเอาท์หลังวันบินกลับ
       if (outS.length) out.push({ lvl: "warn", text: `ที่พักมีวันอยู่นอกช่วงทริป: ${outS.map((s) => s.name || short(s.hub)).join(", ")} ตรวจวันเช็กอิน/เช็กเอาท์ (ข้อมูลทริป › ที่พัก)` });
     }
+    if (N >= 1) out.push({ lvl: "info", text: "ก่อนบิน: ลงทะเบียน Visit Japan Web (ตม. + ศุลกากร) แล้วแคป QR โค้ดไว้ ใช้ผ่านด่านที่สนามบิน" });
     return out;
   },
 
