@@ -608,6 +608,11 @@ const PlanView = {
         <a class="btn small" target="_blank" rel="noopener" href="https://www.google.com/maps/search/コンビニ/">${I("store")} คอนบินิใกล้ฉัน</a>
         <a class="btn small" target="_blank" rel="noopener" href="https://www.jartic.or.jp/">${I("car")} สภาพถนน (JARTIC)</a>
         <a class="btn small" target="_blank" rel="noopener" href="https://www.jrhokkaido.co.jp/global/english/">${I("train-front")} JR Hokkaido (รถเลื่อน/ยกเลิก)</a></div>
+      <h3 style="margin-top:18px">${I("life-buoy")} ฉุกเฉิน</h3>
+      <div class="row">
+        <a class="btn small" href="tel:110">${I("phone")} 110 ตำรวจ</a>
+        <a class="btn small" href="tel:119">${I("phone")} 119 รถพยาบาล/ดับเพลิง</a>
+        <a class="btn small" href="tel:%238139">${I("car")} #8139 JAF รถเสีย/ติดหิมะ</a></div>
       <h3 style="margin-top:18px">${I("arrow-left-right")} สลับแผนกับวันอื่น</h3><p class="mute small">สลับที่เที่ยว โน้ต และแผนสำรองทั้งวัน ที่พักแต่ละคืนคงเดิม ระบบจะเตือนถ้าไกลจากที่พักเกินไป</p>
       <div class="move-days">${S.plan.days.map((_, k) => k === i ? "" : `<button class="btn" data-swap="${k}">วันที่ ${k + 1}<small>${esc(short(Planner.ends(k).to))}</small></button>`).join("")}</div>
       <h3 style="margin-top:14px">${I("refresh-ccw")} จัดวันนี้ใหม่</h3><p class="mute small">เปลี่ยนจุดที่ระบบเลือกให้ ที่ใส่เองและที่ล็อกเวลาไว้ยังอยู่</p>
