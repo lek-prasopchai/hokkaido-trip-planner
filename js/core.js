@@ -38,8 +38,10 @@ globalThis.document?.addEventListener("click", (ev) => {
   ev.preventDefault();
   const web = a.href, url = appHref(a.dataset.app, a.dataset.q, web, os);
   if (os === "ios") {
-    const t = setTimeout(() => { if (!document.hidden) location.href = web; }, 1500);
-    document.addEventListener("visibilitychange", () => clearTimeout(t), { once: true });
+    // iOS พักตัวจับเวลาตอนสลับไปแอป แล้วปล่อยให้ทำงานตอนกลับมา: ถ้าเวลาผ่านไปนานกว่าที่ตั้ง แปลว่าแอปเปิดแล้ว ไม่ต้องเปิดเว็บซ้ำ
+    const t0 = Date.now(), cancel = () => clearTimeout(t);
+    const t = setTimeout(() => { if (!document.hidden && Date.now() - t0 < 2500) location.href = web; }, 1500);
+    for (const e of ["visibilitychange", "pagehide", "blur"]) addEventListener(e, cancel, { once: true });
   }
   location.href = url;
 }, true);
