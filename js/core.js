@@ -13,6 +13,8 @@ const gimgUrl = (q) => `https://www.google.com/search?tbm=isch&q=${encodeURIComp
 const gUrl = (q) => `https://www.google.com/search?q=${encodeURIComponent(q)}`;
 const ytUrl = (q) => `https://www.youtube.com/results?search_query=${encodeURIComponent(q)}`;
 const ttUrl = (q) => `https://www.tiktok.com/search?q=${encodeURIComponent(q)}`;
+// Instagram ค้นด้วยคำไม่ได้ ใช้แฮชแท็กชื่อญี่ปุ่น (ตัดวงเล็บ ช่องว่าง เครื่องหมาย ออก)
+const igUrl = (q) => `https://www.instagram.com/explore/tags/${encodeURIComponent(q.replace(/[（(].*?[)）]/g, "").replace(/[^\p{L}\p{N}_]/gu, ""))}/`;
 const dirUrl = (pts, mode) => `https://www.google.com/maps/dir/?api=1&origin=${pts[0].lat},${pts[0].lng}&destination=${pts[pts.length - 1].lat},${pts[pts.length - 1].lng}${pts.length > 2 ? `&waypoints=${pts.slice(1, -1).slice(0, 9).map((p) => `${p.lat},${p.lng}`).join("|")}` : ""}&travelmode=${mode === "transit" ? "transit" : "driving"}`;
 
 // ---------- วันที่ ----------
