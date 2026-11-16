@@ -37,7 +37,9 @@ globalThis.document?.addEventListener("click", (ev) => {
   if (!os || !APP_LINK[a.dataset.app]) return;
   ev.preventDefault();
   const web = a.href, url = appHref(a.dataset.app, a.dataset.q, web, os);
-  if (os === "ios") {
+  // เปิดจากไอคอนหน้าจอโฮม: iOS แจ้งไม่ได้แน่นอนว่าแอปเปิดแล้ว (เว็บเด้งซ้อนบางครั้ง) จึงไม่มีเว็บสำรอง
+  const homeApp = navigator.standalone || matchMedia("(display-mode: standalone)").matches;
+  if (os === "ios" && !homeApp) {
     // iOS พักตัวจับเวลาตอนสลับไปแอป แล้วปล่อยให้ทำงานตอนกลับมา: ถ้าเวลาผ่านไปนานกว่าที่ตั้ง แปลว่าแอปเปิดแล้ว ไม่ต้องเปิดเว็บซ้ำ
     const t0 = Date.now(), cancel = () => clearTimeout(t);
     const t = setTimeout(() => { if (!document.hidden && Date.now() - t0 < 2500) location.href = web; }, 1500);
