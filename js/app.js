@@ -105,7 +105,7 @@ const App = {
     <h3 style="margin-top:16px">วิธีใช้</h3>
     <div class="row"><button class="btn" data-a="tour">${I("info")} ทัวร์แนะนำหน้าแผนรายวัน</button></div>
     <h3 style="margin-top:16px">ข้อมูลและออฟไลน์</h3>
-    <div class="row"><button class="btn" data-a="export">ส่งออกไฟล์ .json</button>
+    <div class="row"><button class="btn" data-a="paste">${I("link")} วางลิงก์แผน</button><button class="btn" data-a="export">ส่งออกไฟล์ .json</button>
       <label class="btn">นำเข้าไฟล์ .json<input type="file" data-a="import" accept=".json,application/json" hidden></label>
       <button class="btn" data-a="print">${I("printer")} พิมพ์ / PDF แผนรายวัน</button><button class="btn red" data-a="reset">ล้างข้อมูลทั้งหมด</button></div>
     <p class="mute small" style="margin-top:12px">ข้อมูลสถานที่ ราคา เวลาเปิด ตารางรถ ตรวจล่าสุด พ.ย. 2026 เป็นค่าประมาณ ตรวจกับแหล่งทางการก่อนไป • แผนเก็บในเบราว์เซอร์เครื่องนี้เท่านั้น</p>`);
@@ -120,6 +120,7 @@ const App = {
     d.onclick = (e) => {
       const a = e.target.closest("[data-a]")?.dataset.a;
       if (a === "export") Store.export();
+      else if (a === "paste") this.pasteLink();
       else if (a === "print") { Modal.close(); this.print(); }
       else if (a === "tour") { Modal.close(); if (!S.plan) return toast("สร้างแผนก่อน แล้วค่อยดูทัวร์"); location.hash = "#trip"; setTimeout(() => Tour.start(), 400); }
       else if (a === "reset" && confirm("ล้างแผน งบ และค่าตั้งทั้งหมด? ย้อนกลับไม่ได้")) { localStorage.removeItem(STORE_KEY); S = Store.defaults(); Modal.close(); location.hash = "#setup"; this.renderAll(); }
@@ -144,6 +145,16 @@ const App = {
     if ($("#shareNative")) $("#shareNative").onclick = () => navigator.share({ title: "แผนเที่ยวฮอกไกโด", url }).catch(() => null);
   },
 
+  // วางลิงก์แผนที่เพื่อนส่งมา: ใช้ในแอปหน้าโฮม (กดลิงก์ในแชตแล้วไปเปิด Safari ไม่เข้าแอป)
+  async pasteLink() {
+    const open = (txt) => { const m = /share=([\w-]+)/.exec(txt || ""); if (!m) return false; Modal.close(); this.loadShared(m[1]); return true; };
+    try { if (open(await navigator.clipboard.readText())) return; } catch { /* ไม่ให้อ่านคลิปบอร์ด: ให้วางเอง */ }
+    Modal.open(`<h2>วางลิงก์แผน</h2><p class="mute small">กดค้างในช่องแล้วเลือก วาง</p>
+      <textarea rows="3" style="width:100%" id="pasteUrl" placeholder="https://…#share=…"></textarea>
+      <div class="row" style="margin-top:8px"><button class="btn primary" id="pasteGo">เปิดแผน</button></div>`);
+    $("#pasteGo").onclick = () => { if (!open($("#pasteUrl").value)) toast("ไม่ใช่ลิงก์แผน"); };
+  },
+
   async loadShared(code) {
     try {
       const sh = await Share.unpack(code);
@@ -153,7 +164,11 @@ const App = {
       S = Store.merge({ ...Store.load(), trip: sh.trip, plan: sh.plan });
       const b = $("#viewBanner");
       b.hidden = false;
-      b.innerHTML = `<b>กำลังดูแผนที่แชร์มา</b> <span class="mute-inv">แก้ได้แต่ยังไม่บันทึก</span><button class="btn small primary" id="vbCopy">คัดลอกเป็นแผนของฉัน</button><button class="btn small" id="vbBack">กลับไปแผนของฉัน</button>`;
+      // iPhone: Safari กับแอปหน้าโฮมเก็บข้อมูลแยกกัน และลิงก์เปิดเข้าแอปไม่ได้ จึงบอกทางเอาลิงก์ไปวางในแอป
+      const toApp = Safety.ios() && !Safety.standalone();
+      b.innerHTML = `<b>กำลังดูแผนที่แชร์มา</b> <span class="mute-inv">แก้ได้แต่ยังไม่บันทึก</span><button class="btn small primary" id="vbCopy">คัดลอกเป็นแผนของฉัน</button><button class="btn small" id="vbBack">กลับไปแผนของฉัน</button>
+        ${toApp ? `<span class="mute-inv small" style="flex-basis:100%">ใช้แอปหน้าโฮม? <button class="linkbtn" id="vbLink" style="color:inherit;text-decoration:underline">คัดลอกลิงก์</button> แล้วกด "วางลิงก์แผน" ในแอป</span>` : ""}`;
+      if (toApp) $("#vbLink").onclick = async () => { try { await navigator.clipboard.writeText(`${location.origin}${location.pathname}#share=${code}`); toast("คัดลอกแล้ว เปิดแอปแล้วกด วางลิงก์แผน"); } catch { toast("คัดลอกไม่ได้ กดค้างที่ลิงก์ในแชตแทน"); } };
       $("#vbCopy").onclick = () => {
         if (Store.load().plan && !confirm("แทนที่แผนปัจจุบันของคุณด้วยแผนนี้?")) return;
         this.viewOnly = false; b.hidden = true; save(); toast("บันทึกเป็นแผนของคุณแล้ว"); this.renderAll();
@@ -171,6 +186,7 @@ const App = {
     if (h.startsWith("share=")) this.loadShared(h.slice(6));
     else this.show(h || (S.plan ? "trip" : "setup"));
     $("#btnSet").onclick = () => this.settings();
+    document.addEventListener("click", (e) => { if (e.target.closest("[data-paste]")) this.pasteLink(); });
     document.addEventListener("keydown", (e) => {
       if (!(e.ctrlKey || e.metaKey) || /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
       const k = e.key.toLowerCase(), redo = k === "y" || (k === "z" && e.shiftKey);

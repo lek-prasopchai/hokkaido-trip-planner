@@ -112,7 +112,8 @@ const PlanView = {
     else body = `<div class="grid g2 start-pick">
         <div class="card tpl" data-start="auto" tabindex="0" role="button"><h3>${I("route")} ช่วยจัดให้</h3><p>บอกวันเที่ยว วิธีเดินทาง สไตล์ และสิ่งที่สนใจ แล้วเลือกรูทแนะนำ ระบบจัดเมืองที่พักและที่เที่ยวรายวันให้ แก้ต่อได้ทุกจุด</p><span class="btn primary small">เริ่มแบบนี้ →</span></div>
         <div class="card tpl" data-start="manual" tabindex="0" role="button"><h3>${I("pencil")} จัดเองตั้งแต่ต้น</h3><p>มีที่พัก/แผนในใจอยู่แล้ว: กรอกวันและที่พักที่จอง แล้วได้แผนเปล่า เลือกที่เที่ยวเองทีละวัน (ให้ระบบช่วยเติมบางวันได้)</p><span class="btn small">เริ่มแบบนี้ →</span></div></div>
-      <p class="mute small">เริ่มแบบไหนก็ได้แผนรายวันแบบเดียวกัน ตรวจเวลาและเตือนความเสี่ยงเหมือนกัน</p>`;
+      <p class="mute small">เริ่มแบบไหนก็ได้แผนรายวันแบบเดียวกัน ตรวจเวลาและเตือนความเสี่ยงเหมือนกัน</p>
+      <p class="small">เพื่อนส่งแผนมา? <button class="linkbtn" data-paste>${I("link")} วางลิงก์แผน</button></p>`;
     $('[data-sec="setup"]').innerHTML = `<div class="sec-head"><h1>ข้อมูลทริป</h1>
         <p class="lead">${S.plan ? "แก้เที่ยวบิน การเดินทาง ที่พัก และสไตล์ แผนรายวันคำนวณใหม่ทันที" : "เริ่มวางแผนเที่ยวฮอกไกโด ยังไม่ต้องมีตั๋วเครื่องบิน"}</p></div>${body}${this.undoBtn()}`;
   },
