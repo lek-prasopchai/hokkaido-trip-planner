@@ -18,7 +18,7 @@ function makeMap(el, { small = false } = {}) {
   touchGestures(map);
   const OFFLINE = { color: "#8aa4bb", weight: 1, fillColor: "#ffffff", fillOpacity: 1 };
   const outline = L.geoJSON({ type: "MultiPolygon", coordinates: HOKKAIDO_OUTLINE.map((r) => [r]) },
-    { style: { weight: 0, fillOpacity: 0 }, interactive: false }).addTo(map);
+    { style: { weight: 0, fillOpacity: 0, className: "offline-land" }, interactive: false }).addTo(map);
   const offline = () => outline.setStyle(OFFLINE);
   if (navigator.onLine === false) offline();
   else {

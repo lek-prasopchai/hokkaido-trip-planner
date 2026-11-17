@@ -441,6 +441,10 @@ button:focus-visible, summary:focus-visible, .legmode:focus-within { outline: 2p
   :root:not([data-theme="light"]) .tl-map { filter: invert(1) hue-rotate(180deg) brightness(.95) contrast(.85) saturate(.6); }
   :root:not([data-theme="light"]) .tl-sat { filter: brightness(.78) contrast(1.05); }
 }
+/* ปุ่มบนแผนที่ + เกาะโครงร่าง (ไม่มีเน็ต) ใช้สีของธีม: fill จาก CSS ทับค่าที่ Leaflet ใส่ไว้ */
+.offline-land { fill: var(--paper); stroke: var(--mute); }
+:root[data-theme="dark"] :is(.leaflet-bar a, .leaflet-control-layers) { background: var(--paper); color: var(--ink) !important; border-color: var(--line); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) :is(.leaflet-bar a, .leaflet-control-layers) { background: var(--paper); color: var(--ink) !important; border-color: var(--line); } }
 
 /* ---------- รอบปรับโครง: ลดกล่องซ้อนกล่อง ให้อ่านเป็นเอกสาร ---------- */
 .summary { gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
