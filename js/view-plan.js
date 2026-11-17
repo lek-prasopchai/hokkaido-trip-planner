@@ -607,6 +607,11 @@ const PlanView = {
       <div class="dm-grid" style="margin-top:8px">
         <a class="btn small" target="_blank" rel="noopener" href="https://www.google.com/maps/search/ガソリンスタンド/">${I("fuel")} ปั๊มใกล้ฉัน</a>
         <a class="btn small" target="_blank" rel="noopener" href="https://www.google.com/maps/search/コンビニ/">${I("store")} คอนบินิใกล้ฉัน</a>
+        <a class="btn small" target="_blank" rel="noopener" href="https://www.google.com/maps/search/道の駅/">${I("signpost")} มิจิโนะเอกิใกล้ฉัน</a>
+        <a class="btn small" target="_blank" rel="noopener" href="https://www.google.com/maps/search/駐車場/">${I("square-parking")} ที่จอดรถใกล้ฉัน</a>
+        <a class="btn small" target="_blank" rel="noopener" href="https://www.google.com/maps/search/飲食店/">${I("utensils")} ร้านอาหารใกล้ฉัน</a>
+        <a class="btn small" target="_blank" rel="noopener" href="https://www.google.com/maps/search/ドラッグストア/">${I("pill")} ร้านขายยาใกล้ฉัน</a>
+        <a class="btn small" target="_blank" rel="noopener" href="https://www.google.com/maps/search/スーパー/">${I("shopping-cart")} ซูเปอร์ใกล้ฉัน</a>
         <a class="btn small" target="_blank" rel="noopener" href="https://www.jartic.or.jp/">${I("car")} สภาพถนน JARTIC</a>
         <a class="btn small" target="_blank" rel="noopener" href="https://www.jrhokkaido.co.jp/global/english/">${I("train-front")} JR เลื่อน/ยกเลิก</a></div>
       <h3 class="dm-h">${I("life-buoy")} ฉุกเฉิน</h3>
