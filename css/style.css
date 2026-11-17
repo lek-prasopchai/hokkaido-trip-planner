@@ -434,8 +434,13 @@ button:focus-visible, summary:focus-visible, .legmode:focus-within { outline: 2p
 .map-days button.on:not([style]) { color: var(--on); }
 .btn.primary small, .btn.primary .mute, .btn.red small { color: inherit; }
 /* โหมดมืด: หรี่แผนที่ลงไม่ให้แสบตา */
-:root[data-theme="dark"] .leaflet-tile-pane { filter: brightness(.78) contrast(1.05); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .leaflet-tile-pane { filter: brightness(.78) contrast(1.05); } }
+/* โหมดมืด: แผนที่ถนนกลับสีเป็นพื้นมืด (hue-rotate คืนสีน้ำ/สวนให้ใกล้เดิม) • ภาพดาวเทียมแค่หรี่ ไม่กลับสี */
+:root[data-theme="dark"] .tl-map { filter: invert(1) hue-rotate(180deg) brightness(.95) contrast(.85) saturate(.6); }
+:root[data-theme="dark"] .tl-sat { filter: brightness(.78) contrast(1.05); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .tl-map { filter: invert(1) hue-rotate(180deg) brightness(.95) contrast(.85) saturate(.6); }
+  :root:not([data-theme="light"]) .tl-sat { filter: brightness(.78) contrast(1.05); }
+}
 
 /* ---------- รอบปรับโครง: ลดกล่องซ้อนกล่อง ให้อ่านเป็นเอกสาร ---------- */
 .summary { gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }

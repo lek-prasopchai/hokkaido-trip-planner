@@ -25,7 +25,7 @@ function makeMap(el, { small = false } = {}) {
     const bases = {};
     let errors = 0;
     for (const [name, [url, attribution]] of Object.entries(TILE_SOURCES)) {
-      bases[name] = L.tileLayer(url, { maxZoom: 18, attribution, updateWhenZooming: false }) // ระหว่างซูม ขยายภาพเดิม ปล่อยนิ้วแล้วค่อยโหลดภาพใหม่ครั้งเดียว
+      bases[name] = L.tileLayer(url, { maxZoom: 18, attribution, updateWhenZooming: false, className: url.includes("Imagery") ? "tl-sat" : "tl-map" }) // ระหว่างซูม ขยายภาพเดิม ปล่อยนิ้วแล้วค่อยโหลดภาพใหม่ครั้งเดียว
         .on("tileerror", () => { if (++errors === 6) { Object.values(bases).forEach((b) => map.removeLayer(b)); offline(); if (!small) toast("ไม่มีเน็ต ใช้แผนที่โครงร่างแทน"); } });
     }
     Object.values(bases)[0].addTo(map);
