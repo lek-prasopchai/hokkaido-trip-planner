@@ -4260,7 +4260,11 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:Information_sign_of_the_Oshin-Koshin_Fall.JPG"
    }
   ],
-  "en": "Oshinkoshin Falls"
+  "en": "Oshinkoshin Falls",
+  "ref": "https://www.shiretoko.asia/detail/scenic/oshinkoshin",
+  "addrJa": "斜里郡斜里町ウトロ西",
+  "phone": "0152-22-2125",
+  "checked": "2026-11"
  },
  {
   "id": 84,
@@ -4315,7 +4319,11 @@ window.PLACES = [
   "tr": {
    "lv": "tour",
    "t": "หน้าหนาวไปกับทัวร์สโนว์ชูเท่านั้น"
-  }
+  },
+  "ref": "https://www.shiretoko.asia/detail/scenic/shiretoko_goko",
+  "addrJa": "斜里郡斜里町遠音別村 字岩宇別549番地",
+  "phone": "0152-24-3323",
+  "checked": "2026-11"
  },
  {
   "id": 85,
@@ -5249,7 +5257,11 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:%E3%83%95%E3%83%AC%E3%83%9A%E3%81%AE%E6%BB%9D_-_panoramio.jpg"
    }
   ],
-  "en": "Furepe Falls"
+  "en": "Furepe Falls",
+  "ref": "https://www.shiretoko.asia/detail/scenic/furepe",
+  "addrJa": "斜里郡斜里町遠音別村",
+  "phone": "0152-22-2125",
+  "checked": "2026-11"
  },
  {
   "hub": "monbetsu",
@@ -7622,7 +7634,10 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/150.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Rausu-dake_01.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Rausu-dake_01.JPG",
+  "ref": "https://www.shiretoko.asia/detail/scenic/shiretoko_touge",
+  "addrJa": "目梨郡羅臼町湯ノ沢町",
+  "phone": "0152-22-2125"
  },
  {
   "hub": "utoro",
@@ -7668,7 +7683,10 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "ประมาณ",
   "img": "img/places/151.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Shiretoko_Peninsula_Hokkaido_Japan_SRTM.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Shiretoko_Peninsula_Hokkaido_Japan_SRTM.jpg",
+  "ref": "https://www.shiretoko.asia/detail/aurora",
+  "addrJa": "斜里町ウトロ東107",
+  "phone": "0152-24-2146"
  },
  {
   "hub": "abashiri",
@@ -10232,7 +10250,10 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก OpenStreetMap",
   "img": "img/places/200.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:The_road_leading_to_heaven_01.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:The_road_leading_to_heaven_01.jpg",
+  "ref": "https://www.shiretoko.asia/detail/scenic/road_to_heaven",
+  "addrJa": "斜里郡斜里町峰浜",
+  "phone": "0152-22-2125"
  },
  {
   "hub": "rausu",
@@ -12081,7 +12102,10 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/235.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Oronko_Rock_Utoro01s3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Oronko_Rock_Utoro01s3.jpg",
+  "ref": "https://www.shiretoko.asia/detail/scenic/oronkoiwa",
+  "addrJa": "斜里郡斜里町ウトロ東",
+  "phone": "0152-22-2125"
  },
  {
   "hub": "utoro",
@@ -12134,7 +12158,10 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/236.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Utoro_02.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Utoro_02.JPG",
+  "ref": "https://www.shiretoko.asia/detail/scenic/yuhidai",
+  "addrJa": "斜里郡斜里町ウトロ香川",
+  "phone": "0152-22-2125"
  },
  {
   "hub": "wakkanai",
@@ -13791,7 +13818,10 @@ window.PLACES = [
    }
   ],
   "img": "img/places/263_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:140828_Kamuiwakka_Falls_and_Mount_Io_Shiretoko_Hokkaido_Japan02sbs13.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:140828_Kamuiwakka_Falls_and_Mount_Io_Shiretoko_Hokkaido_Japan02sbs13.jpg",
+  "ref": "https://www.shiretoko.asia/detail/scenic/kamuiwakka",
+  "addrJa": "斜里郡斜里町遠音別村",
+  "phone": "0152-22-2125"
  },
  {
   "hub": "sapporo",
@@ -14583,7 +14613,10 @@ window.PLACES = [
    }
   ],
   "img": "img/places/276_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki_Utoro_sir-etok03s3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki_Utoro_sir-etok03s3.jpg",
+  "ref": "https://www.shiretoko.asia/detail/tourist/utoromichi",
+  "addrJa": "ウトロ西186−8",
+  "phone": "0152-22-5000"
  },
  {
   "hub": "sounkyo",
@@ -42087,6 +42120,400 @@ window.PLACES = [
   "addrJa": "北海道網走市字藻琴225番地",
   "phone": "0152-46-2121",
   "ref": "https://visit-abashiri.jp/meal/3de282929ffbd696215c50f525bdc3a1bb33689f.html",
+  "checked": "2026-11"
+ },
+ {
+  "id": 988,
+  "region": "โอค็อตสค์ / ชิเรโตโกะ",
+  "area": "อุโตโระ (ชิเรโตโกะ)",
+  "hub": "utoro",
+  "name": "แหลมปุยูนิ (จุดชมพระอาทิตย์ตก)",
+  "en": "Cape Puyuni",
+  "ja": "プユニ岬",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "จุดชมวิว",
+  "tags": [
+   "nature"
+  ],
+  "open": "ตลอดเวลา",
+  "closed": "-",
+  "fee": "ฟรี",
+  "dur": "18 นาที",
+  "hours": 0.3,
+  "highlight": "จุดชมวิวริมถนนเหนือหมู่บ้านอูโทโระ มองทะเลโอค็อตสค์ พระอาทิตย์ตก หน้าหนาวเห็นน้ำแข็งทะเล",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "มี",
+  "evening": false,
+  "feeYen": 0,
+  "lat": 44.0816,
+  "lng": 145.0131,
+  "acc": "ประมาณ (จุดชมวิวริมถนน 334 ระหว่างอูโทโระกับศูนย์ธรรมชาติ)",
+  "addrJa": "斜里郡斜里町遠音別村",
+  "phone": "0152-22-2125",
+  "ref": "https://www.shiretoko.asia/detail/scenic/puyuni",
+  "checked": "2026-11"
+ },
+ {
+  "id": 989,
+  "region": "โอค็อตสค์ / ชิเรโตโกะ",
+  "area": "อุโตโระ (ชิเรโตโกะ)",
+  "hub": "utoro",
+  "name": "ศูนย์ธรรมชาติชิเรโตโกะ",
+  "en": "Shiretoko Nature Center",
+  "ja": "知床自然センター",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "พิพิธภัณฑ์ / ธรรมชาติ",
+  "tags": [
+   "nature"
+  ],
+  "open": "≈8:00-17:30, 9:00-16:00 (ตามฤดู/วัน)",
+  "closed": "พุธ, ช่วงปีใหม่",
+  "fee": "ตรวจ",
+  "dur": "1 ชม.",
+  "hours": 1,
+  "highlight": "ศูนย์ข้อมูลอุทยาน จอภาพยนตร์ธรรมชาติ จุดเริ่มทางเดินไปน้ำตกฟุเรเปะ เช่าสโนว์ชู",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "",
+  "evening": false,
+  "feeYen": 0,
+  "lat": 44.0915,
+  "lng": 145.02298,
+  "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
+  "addrJa": "斜里町遠音別村531",
+  "phone": "0152-24-2114",
+  "ref": "https://www.shiretoko.asia/detail/tourist/center_shiretoko",
+  "checked": "2026-11"
+ },
+ {
+  "id": 990,
+  "region": "โอค็อตสค์ / ชิเรโตโกะ",
+  "area": "อุโตโระ",
+  "hub": "utoro",
+  "name": "ศูนย์มรดกโลกชิเรโตโกะ",
+  "en": "Shiretoko World Heritage Conservation Center",
+  "ja": "知床世界遺産センター",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "พิพิธภัณฑ์ / ธรรมชาติ",
+  "tags": [
+   "nature"
+  ],
+  "open": "≈8:30-17:30, 9:00-16:30 (ตามฤดู/วัน)",
+  "closed": "อังคาร, ช่วงปีใหม่",
+  "fee": "ตรวจ",
+  "dur": "30 นาที",
+  "hours": 0.5,
+  "highlight": "นิทรรศการธรรมชาติและกฎความปลอดภัยเรื่องหมี ข้างสถานีริมทางอูโทโระ เข้าฟรี",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "",
+  "evening": false,
+  "feeYen": 0,
+  "lat": 44.06957,
+  "lng": 144.99134,
+  "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
+  "addrJa": "ウトロ西186−10",
+  "phone": "0152-24-3255",
+  "ref": "https://www.shiretoko.asia/detail/tourist/shiretoko_whcc",
+  "checked": "2026-11"
+ },
+ {
+  "id": 991,
+  "region": "โอค็อตสค์ / ชิเรโตโกะ",
+  "area": "อุโตโระ",
+  "hub": "utoro",
+  "name": "พิพิธภัณฑ์ชิเรโตโกะ (ชาริ)",
+  "en": "Shiretoko Museum",
+  "ja": "知床博物館",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "พิพิธภัณฑ์",
+  "tags": [
+   "culture",
+   "nature"
+  ],
+  "open": "≈9:00-17:00",
+  "closed": "จันทร์, อังคาร",
+  "fee": "ตรวจ",
+  "dur": "1 ชม.",
+  "hours": 1,
+  "highlight": "ธรรมชาติ สัตว์ป่า และประวัติคาบสมุทรชิเรโตโกะ ในเมืองชาริ",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "",
+  "evening": false,
+  "feeYen": 0,
+  "lat": 43.91365,
+  "lng": 144.67206,
+  "acc": "จากที่อยู่ทางการ (GSI)",
+  "addrJa": "斜里町本町49−2",
+  "phone": "0152-23-1256",
+  "ref": "https://www.shiretoko.asia/detail/tourist/shiretoko_museum",
+  "checked": "2026-11"
+ },
+ {
+  "id": 992,
+  "region": "โอค็อตสค์ / ชิเรโตโกะ",
+  "area": "อุโตโระ",
+  "hub": "utoro",
+  "name": "พิพิธภัณฑ์ศิลปะคิตะโนะอัลปุ",
+  "en": "Kita no Alp Museum",
+  "ja": "北のアルプ美術館",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "พิพิธภัณฑ์ / ศิลปะ",
+  "tags": [
+   "culture"
+  ],
+  "open": "≈10:00-17:00, 10:00-16:00 (ตามฤดู/วัน)",
+  "closed": "ตรวจ",
+  "fee": "ตรวจ",
+  "dur": "45 นาที",
+  "hours": 0.75,
+  "highlight": "พิพิธภัณฑ์นิตยสารภูเขา 'อัลปุ' และงานศิลปะธรรมชาติ ในบ้านเก่าเมืองชาริ หน้าหนาวปิด",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "",
+  "months": [
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12
+  ],
+  "evening": false,
+  "feeYen": 0,
+  "lat": 43.90987,
+  "lng": 144.67596,
+  "acc": "จากที่อยู่ทางการ (GSI)",
+  "addrJa": "斜里町朝日町11−2 アルプ通り",
+  "phone": "0152-23-4000",
+  "ref": "https://www.shiretoko.asia/detail/tourist/alp",
+  "checked": "2026-11"
+ },
+ {
+  "id": 993,
+  "region": "โอค็อตสค์ / ชิเรโตโกะ",
+  "area": "อุโตโระ",
+  "hub": "utoro",
+  "name": "ลานสกีอุนาเบ็ตสึ",
+  "en": "Unabetsu Ski Area",
+  "ja": "ウナベツスキー場",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "สกี",
+  "tags": [
+   "snow"
+  ],
+  "open": "≈9:30-16:00, 18:00-21:00 (ตามฤดู/วัน)",
+  "closed": "จันทร์",
+  "fee": "ตรวจ",
+  "dur": "3 ชม.",
+  "hours": 3,
+  "highlight": "ลานสกีเล็กเมืองชาริ มองทะเลน้ำแข็งโอค็อตสค์จากยอดลาน",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "",
+  "months": [
+   1,
+   2,
+   3
+  ],
+  "evening": false,
+  "feeYen": 0,
+  "lat": 43.92574,
+  "lng": 144.81221,
+  "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
+  "addrJa": "斜里町峰浜",
+  "phone": "0152-22-2125",
+  "ref": "https://www.shiretoko.asia/detail/tourist/unabetsu",
+  "checked": "2026-11"
+ },
+ {
+  "id": 994,
+  "region": "โอค็อตสค์ / ชิเรโตโกะ",
+  "area": "อุโตโระ",
+  "hub": "utoro",
+  "name": "ทุ่งดอกไม้ป่าอิคุชินะ",
+  "en": "Ikushina Natural Flower Garden",
+  "ja": "以久科原生花園",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "ทุ่งดอกไม้",
+  "tags": [
+   "flower",
+   "nature"
+  ],
+  "open": "ตลอดเวลา",
+  "closed": "-",
+  "fee": "ตรวจ",
+  "dur": "30 นาที",
+  "hours": 0.5,
+  "highlight": "ทุ่งดอกไม้ป่าริมทะเลเมืองชาริ ลิลลี่ไอริสบาน มิ.ย.-ก.ค.",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "",
+  "months": [
+   6,
+   7,
+   8
+  ],
+  "evening": false,
+  "feeYen": 0,
+  "lat": 43.91847,
+  "lng": 144.70911,
+  "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
+  "addrJa": "斜里郡斜里町以久科北",
+  "phone": "0152-22-2125",
+  "ref": "https://www.shiretoko.asia/detail/scenic/ikushina",
+  "checked": "2026-11"
+ },
+ {
+  "id": 995,
+  "region": "คุชิโระ / อากัง / มาชู",
+  "area": "คาวายุ / ทะเลสาบคุชชาโระ",
+  "hub": "kawayu",
+  "name": "น้ำพุไรอุน (สวนไรอุน)",
+  "en": "Raiun Spring",
+  "ja": "来運の水(来運公園)",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "ธรรมชาติ",
+  "tags": [
+   "nature"
+  ],
+  "open": "ตลอดเวลา",
+  "closed": "-",
+  "fee": "ฟรี",
+  "dur": "18 นาที",
+  "hours": 0.3,
+  "highlight": "น้ำพุใสจากเทือกเขาชิเรโตโกะ ตักน้ำได้ ชื่อเป็นมงคล 'นำโชค'",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "",
+  "evening": false,
+  "feeYen": 0,
+  "lat": 43.83426,
+  "lng": 144.64203,
+  "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
+  "addrJa": "斜里郡斜里町来運",
+  "phone": "0152-22-2125",
+  "ref": "https://www.shiretoko.asia/detail/scenic/raiun",
+  "checked": "2026-11"
+ },
+ {
+  "id": 996,
+  "region": "โอค็อตสค์ / ชิเรโตโกะ",
+  "area": "อุโตโระ",
+  "hub": "utoro",
+  "name": "ออนเซ็นยูฮิไดโนะยุ",
+  "en": "Yuhidai no Yu",
+  "ja": "夕陽台の湯",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "ออนเซ็น",
+  "tags": [
+   "onsen"
+  ],
+  "open": "≈14:00-20:00",
+  "closed": "ไม่แน่นอน",
+  "fee": "ตรวจ",
+  "dur": "1 ชม.",
+  "hours": 1,
+  "highlight": "ออนเซ็นกลางแจ้งบนเนินมองทะเลโอค็อตสค์ช่วงพระอาทิตย์ตก เปิดเฉพาะ มิ.ย.-ต.ค.",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "",
+  "months": [
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "evening": false,
+  "feeYen": 0,
+  "lat": 44.07216,
+  "lng": 144.99865,
+  "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
+  "addrJa": "斜里町ウトロ東429",
+  "phone": "0152-24-2811",
+  "ref": "https://www.shiretoko.asia/detail/tourist/yuhidainoyu",
+  "checked": "2026-11"
+ },
+ {
+  "id": 997,
+  "region": "โอค็อตสค์ / ชิเรโตโกะ",
+  "area": "อุโตโระ",
+  "hub": "utoro",
+  "name": "ชิเรโตโกะ คานิโนยะ",
+  "en": "Shiretoko Kaninoya",
+  "ja": "知床かに乃家",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "อาหาร",
+  "tags": [
+   "food"
+  ],
+  "open": "≈11:00-21:00",
+  "closed": "ไม่แน่นอน",
+  "fee": "ค่าอาหาร",
+  "dur": "1 ชม.",
+  "hours": 1,
+  "highlight": "ร้านอาหารทะเลและปูในอูโทโระ ดงบุริ ปลาแซลมอนท้องถิ่น",
+  "caution": "",
+  "best": "เที่ยง",
+  "parking": "",
+  "evening": false,
+  "feeYen": 0,
+  "lat": 44.07196,
+  "lng": 144.99351,
+  "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
+  "addrJa": "斜里町ウトロ西121",
+  "phone": "0152-24-2671",
+  "ref": "https://www.shiretoko.asia/detail/kaninoya",
+  "checked": "2026-11"
+ },
+ {
+  "id": 998,
+  "region": "โอค็อตสค์ / ชิเรโตโกะ",
+  "area": "อุโตโระ",
+  "hub": "utoro",
+  "name": "นามิชิบุกิ",
+  "en": "Namishibuki",
+  "ja": "波飛沫",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "อาหาร",
+  "tags": [
+   "food"
+  ],
+  "open": "≈11:00-14:30, 17:30-21:00",
+  "closed": "อาทิตย์",
+  "fee": "ค่าอาหาร",
+  "dur": "1 ชม.",
+  "hours": 1,
+  "highlight": "ร้านอาหารทะเลเมนูปลาท้องถิ่นอูโทโระ ข้าวหน้าหอยเม่น ปลาแซลมอนชิเรโตโกะ",
+  "caution": "",
+  "best": "เที่ยง",
+  "parking": "",
+  "evening": false,
+  "feeYen": 0,
+  "lat": 44.06698,
+  "lng": 144.98861,
+  "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
+  "addrJa": "斜里町ウトロ西176-10",
+  "phone": "0152-24-3557",
+  "ref": "https://www.shiretoko.asia/detail/namishibuki",
   "checked": "2026-11"
  }
 ];

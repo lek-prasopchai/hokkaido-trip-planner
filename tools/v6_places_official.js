@@ -20,7 +20,7 @@ const hw = (s) => String(s || "").normalize("NFKC");
 function hours(s) {
   s = hw(s).replace(/(\d{1,2})時(\d{2})分/g, "$1:$2").replace(/(\d{1,2})時/g, "$1:00").replace(/翌/g, "");
   s = s.replace(/(AM|PM)\s*(\d{1,2}):(\d{2})/gi, (_, ap, h, m) => `${(+h % 12) + (/pm/i.test(ap) ? 12 : 0)}:${m}`).replace(/(\d{1,2}):(\d{2})\s*P\.?M\.?/gi, (_, h, m) => `${(+h % 12) + 12}:${m}`).replace(/(\d{1,2}):(\d{2})\s*A\.?M\.?/gi, "$1:$2").replace(/12:00MID\.?/i, "24:00");
-  const r = [...s.matchAll(/(\d{1,2}:\d{2})\s*[~〜～\-ー－]\s*(\d{1,2}:\d{2})/g)].map((m) => `${m[1]}-${m[2]}`);
+  const r = [...s.matchAll(/(\d{1,2}:\d{2})\s*[~〜～\-ー－–—]\s*(\d{1,2}:\d{2})/g)].map((m) => `${m[1]}-${m[2]}`);
   const uniq = [...new Set(r)];
   if (!uniq.length) return /24時間|24h/i.test(s) ? "24 ชม." : /通年|年中|散策可能|自由|常時/.test(s) ? "ตลอดเวลา" : "";
   const season = /月|季|冬|夏|期間|曜|土|祝/.test(s.replace(/\d+月\d+日/g, "")) && uniq.length > 1;
@@ -56,7 +56,7 @@ function transit(s) {
 const cleanAddr = (a, city) => {
   a = hw(a).replace(/〒?\d{3}-\d{4}/, "").replace(/\(.*?\)|（.*?）/g, "").trim().split(/\s/)[0].replace(/MAP$/, "");
   if (!a) return "";
-  if (!/^北海道/.test(a)) a = (/^(札幌|小樽|旭川|富良野|美瑛|上川|空知|余市|石狩|江別|芦別|千歳|函館|北斗|亀田|茅部|帯広|河東|河西|幕別|新得|清水|中札内|上士幌|虻田|磯谷|釧路|阿寒|川上|足寄|登別|白老|有珠|網走)/.test(a) ? "北海道" : { hakodate: "北海道函館市", obihiro: "北海道", niseko: "北海道虻田郡", kushiro: "北海道", noboribetsu: "北海道", toya: "北海道", abashiri: "北海道", sapporo: "北海道札幌市", otaru: "北海道小樽市", asahikawa: "北海道旭川市", furano: "北海道", biei: "北海道上川郡美瑛町" }[city]) + a;
+  if (!/^北海道/.test(a)) a = (/^(札幌|小樽|旭川|富良野|美瑛|上川|空知|余市|石狩|江別|芦別|千歳|函館|北斗|亀田|茅部|帯広|河東|河西|幕別|新得|清水|中札内|上士幌|虻田|磯谷|釧路|阿寒|川上|足寄|登別|白老|有珠|網走|斜里|目梨)/.test(a) ? "北海道" : { hakodate: "北海道函館市", obihiro: "北海道", niseko: "北海道虻田郡", kushiro: "北海道", noboribetsu: "北海道", toya: "北海道", abashiri: "北海道", shiretoko: "北海道斜里郡斜里町", sapporo: "北海道札幌市", otaru: "北海道小樽市", asahikawa: "北海道旭川市", furano: "北海道", biei: "北海道上川郡美瑛町" }[city]) + a;
   return a;
 };
 async function gsi(a) {
@@ -71,7 +71,12 @@ async function gsi(a) {
 const precise = (g, a) => /[0-9０-９一二三四五六七八九十]+(番|号|丁目)|番地/.test(g[2]) && /\d/.test(hw(a));
 
 // ---------- แก้จุดเดิมหลังเทียบกับเว็บทางการทีละจุด (พ.ย. 2026) ----------
+const UTORO = { region: "โอค็อตสค์ / ชิเรโตโกะ", area: "อุโตโระ (ชิเรโตโกะ)", hub: "utoro" }; // FIX ย้ายพิกัดข้ามฐาน ต้องย้ายฐานด้วย
 const FIX = {
+  // ชิเรโตโกะ (shiretoko.asia) ที่อยู่ 遠音別村 กว้างมาก ใช้ OSM/ตำแหน่งริมถนนแทน
+  988: { ...UTORO, lat: 44.0816, lng: 145.0131, acc: "ประมาณ (จุดชมวิวริมถนน 334 ระหว่างอูโทโระกับศูนย์ธรรมชาติ)" },
+  989: { ...UTORO, lat: 44.0915, lng: 145.02298, acc: "จาก OpenStreetMap (ชื่อสถานที่)" },
+  996: { lat: 44.07216, lng: 144.99865, acc: "จาก OpenStreetMap (ชื่อสถานที่)" },
   // อาบาชิริ (visit-abashiri.jp)
   979: { lat: 43.95249, lng: 144.35866, acc: "จาก OpenStreetMap (ศูนย์นกน้ำ ตามที่อยู่ทางการ)", open: "ตลอดเวลา (ศูนย์นกน้ำ ≈9:00-17:00)", closed: "-" },
   984: { open: "≈10:00-21:00 (เสาร์ 9:00-21:00 • อาทิตย์/วันหยุด 9:00-17:00)", closed: "-", fee: "≈¥2,940 (บัตร 1 วัน)", feeYen: 2940, caution: "" },
