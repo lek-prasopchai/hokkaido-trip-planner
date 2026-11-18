@@ -1689,7 +1689,10 @@ window.PLACES = [
   "tr": {
    "lv": "ok",
    "t": "บัสจาก JR โนโบริเบ็ตสึ ~15 นาที แล้วเดิน"
-  }
+  },
+  "ref": "https://noboribetsu-spa.jp/spot/spot0034/",
+  "addrJa": "北海道登別市登別温泉町",
+  "checked": "2026-11"
  },
  {
   "id": 34,
@@ -1739,7 +1742,11 @@ window.PLACES = [
   "tr": {
    "lv": "ok",
    "t": "กระเช้าจากเมืองออนเซ็น"
-  }
+  },
+  "ref": "https://noboribetsu-spa.jp/spot/spot0128/",
+  "addrJa": "北海道登別市登別温泉町224番",
+  "phone": "0143-84-2225",
+  "checked": "2026-11"
  },
  {
   "id": 35,
@@ -1784,7 +1791,10 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:Oyunuma_Pond%2C_Noboribetsu_Onsen%2C_Hokkaido%2C_April_2023_04.jpg"
    }
   ],
-  "en": "Lake Oyunuma"
+  "en": "Lake Oyunuma",
+  "ref": "https://noboribetsu-spa.jp/spot/spot0055/",
+  "addrJa": "北海道登別市登別温泉町",
+  "checked": "2026-11"
  },
  {
   "id": 36,
@@ -6265,7 +6275,11 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก OpenStreetMap",
   "img": "img/places/123.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Noboribetsu_Date_Jidaimura.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Noboribetsu_Date_Jidaimura.jpg",
+  "ref": "https://noboribetsu-spa.jp/spot/spot0124/",
+  "url": "https://edo-trip.jp/",
+  "addrJa": "北海道登別市中登別町53-1",
+  "phone": "0143-83-3311"
  },
  {
   "hub": "noboribetsu",
@@ -6314,7 +6328,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/124.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Noboribetsu_hot_spring_jigokudani.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Noboribetsu_hot_spring_jigokudani.JPG",
+  "ref": "https://noboribetsu-spa.jp/spot/spot0068/",
+  "addrJa": "北海道登別市登別温泉町"
  },
  {
   "hub": "noboribetsu",
@@ -6364,7 +6380,11 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/125.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Nixe_Castle_of_Noboribetsu_Marine_Park_NIXE_20260822b.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Nixe_Castle_of_Noboribetsu_Marine_Park_NIXE_20260822b.jpg",
+  "ref": "https://noboribetsu-spa.jp/spot/spot0131/",
+  "url": "https://www.nixe.co.jp/",
+  "addrJa": "北海道登別市登別東町1丁目22番地",
+  "phone": "0143-83-3800"
  },
  {
   "hub": "toya",
@@ -9357,7 +9377,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/184.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake_Kuttara_1.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake_Kuttara_1.JPG",
+  "ref": "https://noboribetsu-spa.jp/spot/spot0087/",
+  "addrJa": "北海道白老郡白老町虎杖浜"
  },
  {
   "hub": "noboribetsu",
@@ -40887,6 +40909,293 @@ window.PLACES = [
   "phone": "0154-67-3200",
   "url": "http://ja.kushiro-lakeakan.com/area/area_akanko/",
   "ref": "https://ja.kushiro-lakeakan.com/things_to_do/3729/",
+  "checked": "2026-11"
+ },
+ {
+  "id": 957,
+  "region": "โนโบริเบ็ตสึ / โทยะ / มุโรรัน",
+  "area": "โนโบริเบ็ตสึ ออนเซ็น",
+  "hub": "noboribetsu",
+  "name": "ทางเดินคบไฟยามค่ำ 'โอนิบิโนะมิจิ' (หุบเขานรก)",
+  "en": "Onibi no Michi Night Walk",
+  "ja": "鬼火の路 幻想と神秘の谷",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "กลางคืน / ถ่ายรูป",
+  "tags": [
+   "nature",
+   "culture"
+  ],
+  "open": "ตลอดเวลา (จุดไฟตั้งแต่ค่ำถึง 21:30)",
+  "closed": "-",
+  "fee": "ฟรี",
+  "dur": "45 นาที",
+  "hours": 0.75,
+  "highlight": "ทางเดินจุดไฟนำไปจุดชมหุบเขานรกยามค่ำ ไอน้ำและปล่องภูเขาไฟในความมืด ทุกคืนทั้งปี",
+  "caution": "",
+  "best": "ค่ำ",
+  "parking": "",
+  "evening": true,
+  "feeYen": 0,
+  "lat": 42.497572,
+  "lng": 141.145335,
+  "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
+  "addrJa": "北海道登別市登別温泉町",
+  "ref": "https://noboribetsu-spa.jp/spot/spot1001/",
+  "checked": "2026-11"
+ },
+ {
+  "id": 958,
+  "region": "โนโบริเบ็ตสึ / โทยะ / มุโรรัน",
+  "area": "โนโบริเบ็ตสึ ออนเซ็น",
+  "hub": "noboribetsu",
+  "name": "ดอกไม้ไฟยักษ์แห่งหุบเขานรก",
+  "en": "Jigokudani Oni Fireworks",
+  "ja": "地獄の谷の鬼花火",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "เทศกาล",
+  "tags": [
+   "festival",
+   "culture"
+  ],
+  "open": "≈20:00-20:20",
+  "closed": "เปิดเฉพาะคืนที่มีการแสดง (ดูตารางบนเว็บ)",
+  "fee": "≈¥500",
+  "dur": "1 ชม.",
+  "hours": 1,
+  "highlight": "การแสดงยักษ์ยุคิจินจุดดอกไม้ไฟมือในหุบเขานรก บางคืน มิ.ย.-ก.ย.",
+  "caution": "งดเมื่ออากาศแย่ ตั้งแต่ 18:30 จุดชมวิวเข้าได้เฉพาะคนมีตั๋ว",
+  "best": "ค่ำ",
+  "parking": "ฟรี",
+  "months": [
+   6,
+   7,
+   8,
+   9
+  ],
+  "evening": true,
+  "feeYen": 500,
+  "lat": 42.497572,
+  "lng": 141.145335,
+  "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
+  "addrJa": "北海道登別市登別温泉町",
+  "url": "https://noboribetsu-spa.zaiko.io/e/onihanabi2026",
+  "ref": "https://noboribetsu-spa.jp/spot/spot1005/",
+  "checked": "2026-11"
+ },
+ {
+  "id": 959,
+  "region": "โนโบริเบ็ตสึ / โทยะ / มุโรรัน",
+  "area": "โนโบริเบ็ตสึ ออนเซ็น",
+  "hub": "noboribetsu",
+  "name": "ศาลเอ็นมะ (ราชายมกล)",
+  "en": "Enmado Hall",
+  "ja": "閻魔堂(えんまどう)",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "ศาลเจ้า",
+  "tags": [
+   "culture"
+  ],
+  "open": "ตลอดเวลา (รอบแสดง 10 11 13 15 17 20 21 น.)",
+  "closed": "-",
+  "fee": "ฟรี",
+  "dur": "18 นาที",
+  "hours": 0.3,
+  "highlight": "รูปปั้นยมราชกลไก เปลี่ยนสีหน้าเป็นโกรธตามรอบการแสดงหลายรอบต่อวัน กลางย่านออนเซ็น",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "มี",
+  "evening": false,
+  "feeYen": 0,
+  "lat": 42.49414,
+  "lng": 141.14389,
+  "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
+  "addrJa": "北海道登別市登別温泉町",
+  "ref": "https://noboribetsu-spa.jp/spot/spot0103/",
+  "checked": "2026-11"
+ },
+ {
+  "id": 960,
+  "region": "โนโบริเบ็ตสึ / โทยะ / มุโรรัน",
+  "area": "โนโบริเบ็ตสึ ออนเซ็น",
+  "hub": "noboribetsu",
+  "name": "น้ำพุร้อนพุ่งสวนเซ็นเก็น",
+  "en": "Sengen Park Geyser",
+  "ja": "泉源公園の間欠泉",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "ธรรมชาติ",
+  "tags": [
+   "nature"
+  ],
+  "open": "ตลอดเวลา",
+  "closed": "-",
+  "fee": "ฟรี",
+  "dur": "18 นาที",
+  "hours": 0.3,
+  "highlight": "น้ำพุร้อนพุ่งเป็นระยะราว 3 ชั่วโมงครั้ง ในสวนเล็กกลางย่านออนเซ็นโนโบริเบ็ตสึ",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "",
+  "evening": false,
+  "feeYen": 0,
+  "lat": 42.49493,
+  "lng": 141.144,
+  "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
+  "addrJa": "北海道登別市登別温泉町",
+  "ref": "https://noboribetsu-spa.jp/spot/spot0079/",
+  "checked": "2026-11"
+ },
+ {
+  "id": 961,
+  "region": "โนโบริเบ็ตสึ / โทยะ / มุโรรัน",
+  "area": "โนโบริเบ็ตสึ ออนเซ็น",
+  "hub": "noboribetsu",
+  "name": "บ่อโอคุโนะยุ",
+  "en": "Okunoyu Pond",
+  "ja": "奥の湯",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "ธรรมชาติ",
+  "tags": [
+   "nature"
+  ],
+  "open": "ตลอดเวลา",
+  "closed": "-",
+  "fee": "ฟรี",
+  "dur": "18 นาที",
+  "hours": 0.3,
+  "highlight": "บ่อกำมะถันเดือดสีเทาเข้ม 75-85°C ข้างบ่อโอยุนุมะ ถนนปิดหน้าหนาว",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "มี",
+  "months": [
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "evening": false,
+  "feeYen": 0,
+  "lat": 42.50226,
+  "lng": 141.1489,
+  "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
+  "addrJa": "北海道登別市登別温泉町",
+  "ref": "https://noboribetsu-spa.jp/spot/spot0063/",
+  "checked": "2026-11"
+ },
+ {
+  "id": 962,
+  "region": "โนโบริเบ็ตสึ / โทยะ / มุโรรัน",
+  "area": "โนโบริเบ็ตสึ ออนเซ็น",
+  "hub": "noboribetsu",
+  "name": "อุโมงค์ซากุระโนโบริเบ็ตสึ",
+  "en": "Noboribetsu Cherry Blossom Avenue",
+  "ja": "登別桜並木",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "สวน / ซากุระ",
+  "tags": [
+   "nature",
+   "flower"
+  ],
+  "open": "ตลอดเวลา",
+  "closed": "-",
+  "fee": "ฟรี",
+  "dur": "30 นาที",
+  "hours": 0.5,
+  "highlight": "ถนนซากุระป่าราว 2,000 ต้นยาว 8 กม. จากสถานีโนโบริเบ็ตสึถึงย่านออนเซ็น ต้น พ.ค.",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "มี",
+  "months": [
+   5
+  ],
+  "evening": false,
+  "feeYen": 0,
+  "lat": 42.4687,
+  "lng": 141.15906,
+  "acc": "ประมาณ (ระดับตำบลจากที่อยู่ทางการ)",
+  "addrJa": "北海道登別市中登別町",
+  "ref": "https://noboribetsu-spa.jp/spot/spot0082/",
+  "checked": "2026-11"
+ },
+ {
+  "id": 963,
+  "region": "โนโบริเบ็ตสึ / โทยะ / มุโรรัน",
+  "area": "โนโบริเบ็ตสึ ออนเซ็น",
+  "hub": "noboribetsu",
+  "name": "ลานสกีซันไลวะ (คารุรุสุ)",
+  "en": "Sanlaiva Ski Area",
+  "ja": "サンライバスキー場",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "สกี",
+  "tags": [
+   "snow"
+  ],
+  "open": "ตรวจเวลาเปิด (ดูเว็บ)",
+  "closed": "-",
+  "fee": "ตรวจ (ค่าลิฟต์/เช่าอุปกรณ์แยก)",
+  "dur": "3 ชม.",
+  "hours": 3,
+  "highlight": "ลานสกีเล็ก 7 เส้นทางที่ออนเซ็นคารุรุสุ ใกล้ย่านโนโบริเบ็ตสึ",
+  "caution": "เว็บทางการไม่ระบุเวลาเปิด ตรวจก่อนไป",
+  "best": "กลางวัน",
+  "parking": "มี",
+  "months": [
+   12,
+   1,
+   2,
+   3
+  ],
+  "evening": false,
+  "feeYen": 0,
+  "lat": 42.52489,
+  "lng": 141.10446,
+  "acc": "จากที่อยู่ทางการ (GSI)",
+  "addrJa": "北海道登別市カルルス町27",
+  "phone": "0143-84-2872",
+  "url": "https://sanlaiva.com/",
+  "ref": "https://noboribetsu-spa.jp/spot/spot0151/",
+  "checked": "2026-11"
+ },
+ {
+  "id": 964,
+  "region": "โนโบริเบ็ตสึ / โทยะ / มุโรรัน",
+  "area": "โนโบริเบ็ตสึ ออนเซ็น",
+  "hub": "noboribetsu",
+  "name": "อาจิโนะไดโอ (ราเม็งนรก)",
+  "en": "Aji no Daio Noboribetsu",
+  "ja": "味の大王 登別温泉店",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "อาหาร",
+  "tags": [
+   "food"
+  ],
+  "open": "≈11:30-15:00",
+  "closed": "อังคาร",
+  "fee": "ค่าอาหาร",
+  "dur": "30 นาที",
+  "hours": 0.5,
+  "highlight": "ร้านราเม็ง 'จิโกกุ' เผ็ดเลือกระดับนรกได้ ชื่อดังของย่านออนเซ็น",
+  "caution": "",
+  "best": "เที่ยง",
+  "parking": "",
+  "evening": false,
+  "feeYen": 0,
+  "lat": 42.49241,
+  "lng": 141.14342,
+  "acc": "จากที่อยู่ทางการ (GSI)",
+  "addrJa": "北海道登別市登別温泉町29",
+  "phone": "0143-84-2415",
+  "url": "https://ainu-upopoy.jp/gourmet/shop/noboribetu04.html",
+  "ref": "https://noboribetsu-spa.jp/spot/spot0189/",
   "checked": "2026-11"
  }
 ];

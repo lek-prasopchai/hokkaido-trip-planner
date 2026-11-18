@@ -56,7 +56,7 @@ function transit(s) {
 const cleanAddr = (a, city) => {
   a = hw(a).replace(/〒?\d{3}-\d{4}/, "").replace(/\(.*?\)|（.*?）/g, "").trim().split(/\s/)[0].replace(/MAP$/, "");
   if (!a) return "";
-  if (!/^北海道/.test(a)) a = (/^(札幌|小樽|旭川|富良野|美瑛|上川|空知|余市|石狩|江別|芦別|千歳|函館|北斗|亀田|茅部|帯広|河東|河西|幕別|新得|清水|中札内|上士幌|虻田|磯谷|釧路|阿寒|川上|足寄)/.test(a) ? "北海道" : { hakodate: "北海道函館市", obihiro: "北海道", niseko: "北海道虻田郡", kushiro: "北海道", sapporo: "北海道札幌市", otaru: "北海道小樽市", asahikawa: "北海道旭川市", furano: "北海道", biei: "北海道上川郡美瑛町" }[city]) + a;
+  if (!/^北海道/.test(a)) a = (/^(札幌|小樽|旭川|富良野|美瑛|上川|空知|余市|石狩|江別|芦別|千歳|函館|北斗|亀田|茅部|帯広|河東|河西|幕別|新得|清水|中札内|上士幌|虻田|磯谷|釧路|阿寒|川上|足寄|登別|白老)/.test(a) ? "北海道" : { hakodate: "北海道函館市", obihiro: "北海道", niseko: "北海道虻田郡", kushiro: "北海道", noboribetsu: "北海道", sapporo: "北海道札幌市", otaru: "北海道小樽市", asahikawa: "北海道旭川市", furano: "北海道", biei: "北海道上川郡美瑛町" }[city]) + a;
   return a;
 };
 async function gsi(a) {
@@ -72,6 +72,11 @@ const precise = (g, a) => /[0-9０-９一二三四五六七八九十]+(番|号|�
 
 // ---------- แก้จุดเดิมหลังเทียบกับเว็บทางการทีละจุด (พ.ย. 2026) ----------
 const FIX = {
+  // โนโบริเบ็ตสึ (noboribetsu-spa.jp)
+  957: { open: "ตลอดเวลา (จุดไฟตั้งแต่ค่ำถึง 21:30)" },
+  958: { open: "≈20:00-20:20", closed: "เปิดเฉพาะคืนที่มีการแสดง (ดูตารางบนเว็บ)", caution: "งดเมื่ออากาศแย่ ตั้งแต่ 18:30 จุดชมวิวเข้าได้เฉพาะคนมีตั๋ว" },
+  959: { open: "ตลอดเวลา (รอบแสดง 10 11 13 15 17 20 21 น.)", closed: "-", caution: "" },
+  963: { open: "ตรวจเวลาเปิด (ดูเว็บ)", closed: "-", fee: "ตรวจ (ค่าลิฟต์/เช่าอุปกรณ์แยก)" },
   // คุชิโระ/อาคัน (kushiro-lakeakan.com)
   69: { open: "≈9:00-16:30 (ต.ค.-มี.ค.)", closed: "อังคาร, พุธ, พฤหัส, ช่วงปีใหม่ (ปิด เม.ย.-ก.ย.)" },
   71: { closed: "-" },
@@ -139,12 +144,12 @@ const FIX = {
       continue;
     }
     const a = cleanAddr(s.addr, s.city), g = await gsi(a);
-    if (g && precise(g, a) && km(p.lat, p.lng, g[0], g[1]) > 0.3 && ![10, 17, 21, 46, 87, 109, 117, 171, 302].includes(+id)) {
+    if (g && precise(g, a) && km(p.lat, p.lng, g[0], g[1]) > 0.3 && ![10, 17, 21, 46, 87, 109, 117, 171, 302, 34, 123].includes(+id)) {
       p.lat = +g[0].toFixed(5); p.lng = +g[1].toFixed(5); p.acc = "จากที่อยู่ทางการ (GSI)"; nGeo++;
     }
     p.checked = SRC.checked;
   }
-  for (const [id, f] of Object.entries(FIX)) { Object.assign(byId[id], f); nFix++; }
+  for (const [id, f] of Object.entries(FIX)) if (byId[id]) { Object.assign(byId[id], f); nFix++; } // จุดใหม่ได้ FIX ตอนรันรอบถัดไป (ขั้น refresh)
   // จุดที่ไม่มีในเว็บท่องเที่ยวของเมือง: ลิงก์เว็บทางการของสถานที่/สมาคมท่องเที่ยวพื้นที่ (เปิดตรวจแล้วว่าใช้ได้)
   for (const [id, u] of Object.entries(SRC.refs || {})) if (byId[id] && !byId[id].ref) { byId[id].ref = u; byId[id].url ||= u; nRef++; }
 
