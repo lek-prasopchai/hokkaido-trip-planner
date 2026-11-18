@@ -56,7 +56,7 @@ function transit(s) {
 const cleanAddr = (a, city) => {
   a = hw(a).replace(/〒?\d{3}-\d{4}/, "").replace(/\(.*?\)|（.*?）/g, "").trim().split(/\s/)[0].replace(/MAP$/, "");
   if (!a) return "";
-  if (!/^北海道/.test(a)) a = (/^(札幌|小樽|旭川|富良野|美瑛|上川|空知|余市|石狩|江別|芦別|千歳|函館|北斗|亀田|茅部|帯広|河東|河西|幕別|新得|清水|中札内|上士幌|虻田|磯谷|釧路|阿寒|川上|足寄|登別|白老)/.test(a) ? "北海道" : { hakodate: "北海道函館市", obihiro: "北海道", niseko: "北海道虻田郡", kushiro: "北海道", noboribetsu: "北海道", sapporo: "北海道札幌市", otaru: "北海道小樽市", asahikawa: "北海道旭川市", furano: "北海道", biei: "北海道上川郡美瑛町" }[city]) + a;
+  if (!/^北海道/.test(a)) a = (/^(札幌|小樽|旭川|富良野|美瑛|上川|空知|余市|石狩|江別|芦別|千歳|函館|北斗|亀田|茅部|帯広|河東|河西|幕別|新得|清水|中札内|上士幌|虻田|磯谷|釧路|阿寒|川上|足寄|登別|白老|有珠)/.test(a) ? "北海道" : { hakodate: "北海道函館市", obihiro: "北海道", niseko: "北海道虻田郡", kushiro: "北海道", noboribetsu: "北海道", toya: "北海道", sapporo: "北海道札幌市", otaru: "北海道小樽市", asahikawa: "北海道旭川市", furano: "北海道", biei: "北海道上川郡美瑛町" }[city]) + a;
   return a;
 };
 async function gsi(a) {
@@ -165,11 +165,12 @@ const FIX = {
     const hub = HUBS.reduce((b, h) => (km(g[0], g[1], h.lat, h.lng) < km(g[0], g[1], b.lat, b.lng) ? h : b));
     // ซ้ำ = ชื่อเดียวกัน/ซ้อนกัน และอยู่ห่างไม่เกิน 30 กม. (ร้านชื่อเดียวกันคนละเมืองไม่นับ • ฐานอาจถูกคำนวณใหม่ภายหลัง จึงเทียบระยะแทนฐาน)
     const food = /อาหาร|คาเฟ่/.test(r.type) && !/พิพิธ|ฟาร์ม|ตลาด/.test(r.type);
-    const open24 = /สวน|จุดชมวิว|ธรรมชาติ|ย่าน|ถ่ายรูป/.test(r.type) && !/พิพิธ/.test(r.type); // ที่โล่งไม่มีเวลาเปิด = เข้าได้ตลอด
+    const open24 = /สวน|จุดชมวิว|ธรรมชาติ|ย่าน|ถ่ายรูป/.test(r.type) && !/พิพิธ|กิจกรรม|สวนสัตว์/.test(r.type); // ที่โล่งไม่มีเวลาเปิด = เข้าได้ตลอด
     const op = hours(s.hours) || (open24 ? "ตลอดเวลา" : "");
-    const conv = { open: op || "ตรวจเวลาเปิด (ดูเว็บ)", closed: closed(s.closed) || (op ? "-" : "ตรวจ"), fee: fee(s.fee, food) || (/ช้อปปิ้ง|สวน|ธรรมชาติ|จุดชมวิว|ประวัติ/.test(r.type) && !/กิจกรรม|สกี|ออนเซ็น|สวนสัตว์/.test(r.type) ? "ฟรี" : "ตรวจ"), caution: op ? "" : "เว็บทางการไม่ระบุเวลาเปิด ตรวจก่อนไป" };
+    const conv = { open: op || "ตรวจเวลาเปิด (ดูเว็บ)", closed: closed(s.closed) || (op ? "-" : "ตรวจ"), fee: fee(s.fee, food) || (/ช้อปปิ้ง|สวน|ธรรมชาติ|จุดชมวิว|ประวัติ/.test(r.type) && !/กิจกรรม|สกี|ออนเซ็น|สวนสัตว์|พิพิธ/.test(r.type) ? "ฟรี" : "ตรวจ"), caution: op ? "" : "เว็บทางการไม่ระบุเวลาเปิด ตรวจก่อนไป" };
     conv.feeYen = /¥([\d,]+)/.test(conv.fee) ? +conv.fee.match(/¥([\d,]+)/)[1].replace(/,/g, "") : 0;
-    const dup = have.findIndex(([h, la, ln]) => h === N(ja) || km(la, ln, g[0], g[1]) < 30 && (h.length >= 3 && (N(ja).length >= 4 && (h.includes(N(ja)) || N(ja).includes(h)))));
+    // opts "new" = ชื่อซ้อนแต่เป็นคนละที่ (เช่น 昭和新山熊牧場 กับ 昭和新山) เทียบเฉพาะชื่อตรงกัน
+    const dup = have.findIndex(([h, la, ln]) => h === N(ja) || !r.opts.split(",").includes("new") && km(la, ln, g[0], g[1]) < 30 && (h.length >= 3 && (N(ja).length >= 4 && (h.includes(N(ja)) || N(ja).includes(h)))));
     if (dup >= 0) {
       // จุดที่เคยเพิ่มจากหน้าทางการเดียวกัน: อัปเดตเวลา/วันปิด/ค่าเข้าตามตัวแปลงล่าสุด แล้วทับด้วยที่แก้มือใน FIX
       const e = places[dup];
