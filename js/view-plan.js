@@ -233,7 +233,7 @@ const PlanView = {
     const row = (p) => `<button class="btn" data-pick="${p.id}">${p.img ? `<img src="${p.img}" alt="" loading="lazy">` : `<span>${I("map-pin")}</span>`}<b>${nameHtml(p)}</b><small>${esc(p.area || "")}${p.stars ? " • " + "★".repeat(p.stars) : ""}</small></button>`;
     const list = (q) => {
       const t = q.trim().toLowerCase();
-      const L = t ? PLACES.filter((p) => !skip.has(p.id) && [p.name, p.en, p.ja, p.area].some((n) => n?.toLowerCase().includes(t))).slice(0, 40) : recs;
+      const L = t ? PLACES.filter((p) => !p.gone && !skip.has(p.id) && [p.name, p.en, p.ja, p.area].some((n) => n?.toLowerCase().includes(t))).slice(0, 40) : recs;
       return L.length ? L.map(row).join("") : `<p class="mute small">ไม่พบชื่อนี้ ลองพิมพ์ชื่ออื่น หรือเพิ่มเป็นจุดของฉัน</p>`;
     };
     const d = Modal.open(`${head}<input type="search" class="find" id="pkQ" placeholder="พิมพ์ชื่อ ไทย/อังกฤษ/ญี่ปุ่น หรือชื่อเมือง" aria-label="ค้นหาสถานที่">
@@ -248,7 +248,7 @@ const PlanView = {
   pickWish() {
     const skip = new Set([...Planner.usedSet(-1), ...S.plan.wish]);
     this.pickPlace(`<h2>${I("heart")} เพิ่มที่อยากไป</h2><div class="row" style="margin-bottom:10px"><button class="btn small" data-m="custom">${I("star")} จุดของฉัน (ร้าน/ปักหมุดเอง)</button></div>`,
-      PLACES.filter((p) => !skip.has(p.id)).sort((a, b) => b.stars - a.stars).slice(0, 30), skip, (id) => this.addTo(id, "wish"),
+      PLACES.filter((p) => !p.gone && !skip.has(p.id)).sort((a, b) => b.stars - a.stars).slice(0, 30), skip, (id) => this.addTo(id, "wish"),
       (ev) => { if (ev.target.closest("[data-m]")) { Modal.close(); this.addCustom("wish"); } });
   },
 

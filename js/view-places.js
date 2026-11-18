@@ -77,7 +77,7 @@ const PlacesView = {
     const ms = f.season === "trip" ? tripMonths() : f.season ? SEASONS[f.season].m : null;
     const bases = S.plan ? [...new Set(S.plan.bases)].map((b) => point(b)) : [HUB.sapporo];
     const near = (p) => Math.min(...bases.map((b) => km(b, p)));
-    return PLACES.filter((p) => (!f.region || p.region === f.region) && (!f.tag || p.tags.includes(f.tag)) && p.stars >= f.stars
+    return PLACES.filter((p) => !p.gone && (!f.region || p.region === f.region) && (!f.tag || p.tags.includes(f.tag)) && p.stars >= f.stars
       && (!q || [p.name, p.area, p.ja, p.en, p.type, p.highlight, p.kw].join(" ").toLowerCase().includes(q))
       && (!ms || ms.some((m) => monthsOf(p).includes(m)))
       && (!f.transit || ["ok", "limited", "tour"].includes(access(p))) && (!f.free || !p.feeYen) && (!f.inplan || plan[p.id]) && (!f.wish || S.plan?.wish.includes(p.id)) && (!f.evening || p.evening)

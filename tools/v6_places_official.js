@@ -75,7 +75,9 @@ const UTORO = { region: "โอค็อตสค์ / ชิเรโตโก�
 const FIX = {
   // คาวายุ: หน้าเว็บทางการของย่านออนเซ็น
   77: { ref: "https://www.kawayu-onsen.com/" },
-  73: { ref: "https://www.visit-hokkaido.jp/spot/detail_10484.html" }, // หน้าจุดชมวิวแรก (แทนหน้าทะเลสาบรวม)
+  73: { ref: "https://www.visit-hokkaido.jp/spot/detail_10484.html" },
+  // ปิดถาวร มิ.ย. 2020: เก็บไว้ไม่ให้แผนเก่าพัง แต่ซ่อนจากรายการ/แนะนำ (gone)
+  96: { gone: true, open: "ปิดถาวร", closed: "ปิดถาวรตั้งแต่ มิ.ย. 2020", caution: "ปิดถาวรแล้ว (มิ.ย. 2020) ไม่ต้องวางแผนไป" }, // หน้าจุดชมวิวแรก (แทนหน้าทะเลสาบรวม)
   1007: { closed: "พุธ, ช่วงปีใหม่", fee: "ฟรี" },
   // โซอุนเคียว (sounkyo.net)
   1000: { open: "≈9:00-17:00", closed: "-", caution: "" },

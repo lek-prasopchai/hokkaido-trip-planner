@@ -1252,7 +1252,8 @@ window.PLACES = [
    3,
    4
   ],
-  "url": "https://grand-hirafu.jp/"
+  "url": "https://grand-hirafu.jp/",
+  "ref": "https://www.grand-hirafu.jp/"
  },
  {
   "id": 25,
@@ -1554,7 +1555,9 @@ window.PLACES = [
   "months": [
    1,
    2
-  ]
+  ],
+  "ref": "https://hyoutou-special.asia/",
+  "url": "https://hyoutou-special.asia/"
  },
  {
   "id": 31,
@@ -4946,12 +4949,12 @@ window.PLACES = [
   "tags": [
    "city"
   ],
-  "open": "≈9:00-17:00",
-  "closed": "ตรวจ",
+  "open": "ปิดถาวร",
+  "closed": "ปิดถาวรตั้งแต่ มิ.ย. 2020",
   "fee": "≈¥700",
   "dur": "1 ชม.",
   "highlight": "ทางเดินน้ำแข็งใต้ดิน ห้องโถงสไตล์ปราสาท ผลึกหิมะขยายใหญ่",
-  "caution": "",
+  "caution": "ปิดถาวรแล้ว (มิ.ย. 2020) ไม่ต้องวางแผนไป",
   "best": "กลางวัน",
   "parking": "ฟรี",
   "ja": "雪の美術館",
@@ -4979,7 +4982,8 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:Snow_Crystals_Museum%2C_Asahikawa_-_Feb_20%2C_2016.jpg"
    }
   ],
-  "en": "Snow Crystal Museum"
+  "en": "Snow Crystal Museum",
+  "gone": true
  },
  {
   "hub": "furano",
@@ -7565,7 +7569,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "ประมาณ",
   "img": "img/places/147.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:C11-171_SL-Fuyu-no-Shitsugen-train.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:C11-171_SL-Fuyu-no-Shitsugen-train.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_11290.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_11290.html"
  },
  {
   "hub": "kawayu",
@@ -10035,7 +10041,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "ประมาณ",
   "img": "img/places/194.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Norokko-Train_DE10-1660.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Norokko-Train_DE10-1660.jpg",
+  "ref": "https://www.visit-hokkaido.jp/event/detail_10126.html",
+  "url": "https://www.visit-hokkaido.jp/event/detail_10126.html"
  },
  {
   "hub": "kushiro",
@@ -10606,7 +10614,9 @@ window.PLACES = [
   ],
   "sn": {
    "winter": "ทุ่งหิมะ ศูนย์ข้อมูลปิด"
-  }
+  },
+  "ref": "https://travel-navi.visit-hokkaido.jp/tourism/7670/",
+  "url": "https://travel-navi.visit-hokkaido.jp/tourism/7670/"
  },
  {
   "hub": "wakkanai",
@@ -10724,7 +10734,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/207.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Fushimi_Inari_jinja.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Fushimi_Inari_jinja.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_11200.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_11200.html"
  },
  {
   "hub": "sapporo",
@@ -10987,7 +10999,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/212.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:KamikawaJinja.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:KamikawaJinja.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_13186.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_13186.html"
  },
  {
   "hub": "asahikawa",
@@ -11660,7 +11674,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/224_3.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%A1%9C%E5%89%8D%E7%B7%9A%E6%9C%AC%E9%81%93%E4%B8%8A%E9%99%B8%E6%A8%99%E6%BA%96%E6%9C%A8_%E6%9D%BE%E5%89%8D%E5%9F%8E_Apr_23%2C_2008.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%A1%9C%E5%89%8D%E7%B7%9A%E6%9C%AC%E9%81%93%E4%B8%8A%E9%99%B8%E6%A8%99%E6%BA%96%E6%9C%A8_%E6%9D%BE%E5%89%8D%E5%9F%8E_Apr_23%2C_2008.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10162.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10162.html"
  },
  {
   "hub": "hakodate",
@@ -11917,7 +11933,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/229.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Mt._Sokuryozan.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Mt._Sokuryozan.jpg",
+  "ref": "https://www.visit-hokkaido.jp/hokkaidolove/spot/spot0013/",
+  "url": "https://www.visit-hokkaido.jp/hokkaidolove/spot/spot0013/"
  },
  {
   "hub": "niseko",
@@ -12321,7 +12339,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก OpenStreetMap",
   "img": "img/places/237.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Wakkanai_Noshappu_Cape_1.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Wakkanai_Noshappu_Cape_1.JPG",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10277.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10277.html"
  },
  {
   "hub": "obihiro",
@@ -15601,7 +15621,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/292_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Chapel_on_the_water_2012.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Chapel_on_the_water_2012.jpg",
+  "ref": "https://www.snowtomamu.jp/summer/",
+  "url": "https://www.snowtomamu.jp/summer/"
  },
  {
   "hub": "jozankei",
@@ -15923,7 +15945,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/297_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%96%84%E5%85%89%E5%AF%BA.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%96%84%E5%85%89%E5%AF%BA.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_11239.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_11239.html"
  },
  {
   "hub": "hakodate",

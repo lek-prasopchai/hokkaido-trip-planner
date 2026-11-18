@@ -451,7 +451,7 @@ const Planner = {
     }
     // ที่เที่ยวกลางคืนควรอยู่เมืองที่ค้างคืนนั้น ไม่งั้นต้องขับ/นั่งรถกลับตอนมืด
     const nightPenalty = (p) => (p.evening && !/กลางวัน|เช้า/.test(p.best) && p.hub !== hubOf(to) ? 12 : 0);
-    return PLACES.filter((p) => hubs.has(p.hub) && !used.has(p.id) && p.lat)
+    return PLACES.filter((p) => !p.gone && hubs.has(p.hub) && !used.has(p.id) && p.lat)
       .map((p) => ({ p, s: this.placeScore(p, i) - nightPenalty(p) - (hubOf(to) === p.hub || hubOf(from) === p.hub ? 0 : 6) }))
       .sort((a, b) => b.s - a.s);
   },

@@ -234,7 +234,7 @@ const TripMap = {
       const iso = evals[0]?.iso || S.trip.start;
       for (const p of PLACES) {
         if (!inSeason(p, iso) && !inSeason(p, addDays(iso, evals.length - 1))) continue;
-        if (!p.lat || inPlan.has(p.id)) continue;
+        if (!p.lat || p.gone || inPlan.has(p.id)) continue;
         L.circleMarker([p.lat, p.lng], { radius: 4, color: "#fff", weight: 1, fillColor: "#7d8996", fillOpacity: 0.8 })
           .bindPopup(placePopup(p, `<button class="btn small" style="margin:4px 0" onclick="PlanView.quickAdd(${p.id})">+ เพิ่มเข้าแผน</button>`), { maxWidth: 260 }).addTo(M.layer);
       }
