@@ -355,6 +355,8 @@ document.addEventListener("click", (ev) => {
   }
   setTimeout(() => el._m.invalidateSize(), 0);
 });
+// ช่องค้นหาไม่ใช่ข้อมูล: change ตอนเลิกพิมพ์ห้ามถึงตัวจัดการของหน้า (หน้าข้อมูลทริปวาดใหม่ แผนที่+ผลค้นหาหาย)
+document.addEventListener("change", (ev) => { if (ev.target.closest?.(".lp-find")) ev.stopPropagation(); }, true);
 document.addEventListener("keydown", (ev) => {
   if (ev.key === "Enter" && ev.target.closest(".lp-find")) { ev.preventDefault(); LocPick.find(ev.target.closest(".lp")); }
 });
