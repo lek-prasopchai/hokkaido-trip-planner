@@ -151,8 +151,9 @@ const Planner = {
     if (i === N && this.needAirport(this.modeOf()) < 13) return; // เช้าวันกลับรีบไปสนามบิน
     if (i === 0 && this.leaveAirport(this.modeOf()) > 13.5) return;
     const meal = this.newMeal(), items = this.softPlace(i, d.items, meal);
-    const v = this.evaluate(i, items).tl.find((x) => x.kind === "visit" && x.it === meal);
-    if (v && v.t >= 10.5 && v.t <= 15) d.items = items; // ไม่มีช่องช่วงเที่ยง (เช่น ถึงสนามบินก่อนเที่ยง) ไม่ใส่ให้ เพิ่มเองได้
+    const ev = this.evaluate(i, items), v = ev.tl.find((x) => x.kind === "visit" && x.it === meal);
+    // ไม่มีช่องช่วงเที่ยง (เช่น ถึงสนามบินก่อนเที่ยง) หรือใส่แล้ววันแย่ลง (ไปสนามบินไม่ทัน) ไม่ใส่ให้ เพิ่มเองได้
+    if (v && v.t >= 10.5 && v.t <= 15 && sevOf(ev) <= sevOf(this.evaluate(i))) d.items = items;
     else delete S.plan.custom[meal.id];
   },
   // แทรกรายการที่มี near ในช่องที่ทำให้เริ่มใกล้เวลานั้นที่สุด (ไม่เปลี่ยนลำดับที่เหลือ)
