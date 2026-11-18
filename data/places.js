@@ -1353,7 +1353,8 @@ window.PLACES = [
    }
   ],
   "en": "Rusutsu Resort",
-  "url": "https://rusutsu.com/"
+  "url": "https://rusutsu.com/",
+  "ref": "https://rusutsu.com/"
  },
  {
   "id": 27,
@@ -1447,7 +1448,9 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:Indian_water_wheel.JPG"
    }
   ],
-  "en": "Chitose Salmon Aquarium"
+  "en": "Chitose Salmon Aquarium",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10144.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10144.html"
  },
  {
   "id": 29,
@@ -1493,7 +1496,9 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:Chitose_Air_Base_Aerial_photograph.1975.jpg"
    }
   ],
-  "en": "New Chitose Airport"
+  "en": "New Chitose Airport",
+  "ref": "https://www.hokkaido-airports.com/ja/new-chitose/",
+  "url": "https://www.hokkaido-airports.com/ja/new-chitose/"
  },
  {
   "id": 30,
@@ -1584,7 +1589,9 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:Mt._Fuppusi_from_Marukoma_spa.jpg"
    }
   ],
-  "en": "Marukoma Onsen"
+  "en": "Marukoma Onsen",
+  "ref": "https://www.marukoma.co.jp/",
+  "url": "https://www.marukoma.co.jp/"
  },
  {
   "id": 32,
@@ -1635,7 +1642,8 @@ window.PLACES = [
   "tr": {
    "lv": "ok",
    "t": "JR ถึงสถานีชิราโออิ เดิน 10 นาที"
-  }
+  },
+  "ref": "https://ainu-upopoy.go.jp/"
  },
  {
   "id": 33,
@@ -1839,7 +1847,9 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:Poison_Manju.jpg"
    }
   ],
-  "en": "Cape Chikyu"
+  "en": "Cape Chikyu",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10019.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10019.html"
  },
  {
   "id": 37,
@@ -3042,7 +3052,9 @@ window.PLACES = [
    3
   ],
   "img": "img/places/59.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sounkyo_Promenade.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sounkyo_Promenade.JPG",
+  "ref": "https://sounkyo.net/",
+  "url": "https://sounkyo.net/"
  },
  {
   "id": 60,
@@ -3200,7 +3212,8 @@ window.PLACES = [
    "t": "JR ถึงสถานีโทมามุ + รถรับส่งรีสอร์ต"
   },
   "img": "img/places/62.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%98%9F%E9%87%8E%E3%83%AA%E3%82%BE%E3%83%BC%E3%83%88_%E3%83%88%E3%83%9E%E3%83%A0_%E3%82%B6%E3%83%BB%E3%82%BF%E3%83%AF%E3%83%BC_-_flickr_14793673407_4d61722e33_o.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%98%9F%E9%87%8E%E3%83%AA%E3%82%BE%E3%83%BC%E3%83%88_%E3%83%88%E3%83%9E%E3%83%A0_%E3%82%B6%E3%83%BB%E3%82%BF%E3%83%AF%E3%83%BC_-_flickr_14793673407_4d61722e33_o.jpg",
+  "ref": "https://www.snowtomamu.jp/winter/icevillage/"
  },
  {
   "id": 63,
@@ -3251,7 +3264,9 @@ window.PLACES = [
   "tr": {
    "lv": "ok",
    "t": "อยู่ในรีสอร์ตโทมามุ"
-  }
+  },
+  "ref": "https://www.snowtomamu.jp/winter/",
+  "url": "https://www.snowtomamu.jp/winter/"
  },
  {
   "id": 64,
@@ -3402,7 +3417,9 @@ window.PLACES = [
    1,
    2,
    3
-  ]
+  ],
+  "ref": "https://kotan.jp/",
+  "url": "https://kotan.jp/"
  },
  {
   "id": 67,
@@ -3505,7 +3522,9 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:Kegani_Kushiro.JPG"
    }
   ],
-  "en": "Washo Market"
+  "en": "Washo Market",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10020.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10020.html"
  },
  {
   "id": 69,
@@ -3759,7 +3778,9 @@ window.PLACES = [
   "tr": {
    "lv": "tour",
    "t": "บัสท่องเที่ยวหน้าหนาวจากคาวายุ / แท็กซี่"
-  }
+  },
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10052.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10052.html"
  },
  {
   "id": 74,
@@ -3804,7 +3825,9 @@ window.PLACES = [
   "tr": {
    "lv": "limited",
    "t": "เดิน ~40 นาทีจากสถานีคาวายุออนเซ็น / แท็กซี่"
-  }
+  },
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10481.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10481.html"
  },
  {
   "id": 75,
@@ -4164,7 +4187,9 @@ window.PLACES = [
   "tr": {
    "lv": "ok",
    "t": "บัส/แท็กซี่จากใจกลางมนเบ็ตสึ"
-  }
+  },
+  "ref": "https://o-tower.co.jp/",
+  "url": "https://o-tower.co.jp/"
  },
  {
   "id": 82,
@@ -4223,7 +4248,9 @@ window.PLACES = [
   "tr": {
    "lv": "tour",
    "t": "ทัวร์รับที่โรงแรมในอุโตโระ"
-  }
+  },
+  "ref": "https://www.shiretoko.asia/list/drift_ice_experience",
+  "url": "https://www.shiretoko.asia/list/drift_ice_experience"
  },
  {
   "id": 83,
@@ -4389,7 +4416,9 @@ window.PLACES = [
   "tr": {
    "lv": "ok",
    "t": "ท่าเรือในเมืองราอุสุ (เรือออกเช้า)"
-  }
+  },
+  "ref": "https://www.e-shiretoko.com/",
+  "url": "https://www.e-shiretoko.com/"
  },
  {
   "id": 86,
@@ -4434,7 +4463,9 @@ window.PLACES = [
   "tr": {
    "lv": "limited",
    "t": "บัส Soya จากสถานีวักกาไน ~50 นาที วันละ 4-5 เที่ยว"
-  }
+  },
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10140.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10140.html"
  },
  {
   "hub": "sapporo",
@@ -4800,7 +4831,9 @@ window.PLACES = [
   "tr": {
    "lv": "limited",
    "t": "บัสจากโทยะออนเซ็น ~15 นาที วันละไม่กี่เที่ยว"
-  }
+  },
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10049.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10049.html"
  },
  {
   "hub": "hakodate",
@@ -4845,7 +4878,9 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:Yunokawa_Onsen_Hakodate_Hokkaido_Japan08n.jpg"
    }
   ],
-  "en": "Yunokawa Onsen"
+  "en": "Yunokawa Onsen",
+  "ref": "https://hakodate-yunokawa.jp/",
+  "url": "https://hakodate-yunokawa.jp/"
  },
  {
   "hub": "hakodate",
@@ -5315,7 +5350,9 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:%E6%B0%B7%E6%B5%B7%E5%B1%95%E6%9C%9B%E5%A1%94%E3%82%AA%E3%83%9B%E3%83%BC%E3%83%84%E3%82%AF%E3%82%BF%E3%83%AF%E3%83%BC_-_panoramio.jpg"
    }
   ],
-  "en": "Okhotsk Tower"
+  "en": "Okhotsk Tower",
+  "ref": "https://o-tower.co.jp/",
+  "url": "https://o-tower.co.jp/"
  },
  {
   "hub": "sapporo",
@@ -6113,7 +6150,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/119.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Japan_Hokkaido_south_topographic_map.webp"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Japan_Hokkaido_south_topographic_map.webp",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10169.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10169.html"
  },
  {
   "hub": "niseko",
@@ -6211,7 +6250,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/121.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Chitose_outlet_mall_Rera_entrance01.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Chitose_outlet_mall_Rera_entrance01.jpg",
+  "ref": "https://www.outlet-rera.com/",
+  "url": "https://www.outlet-rera.com/"
  },
  {
   "hub": "shikotsu",
@@ -6475,7 +6516,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/126.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:130922_Toyako_Onsen_Toyako_Hokkaido_Japan01s3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:130922_Toyako_Onsen_Toyako_Hokkaido_Japan01s3.jpg",
+  "ref": "https://www.laketoya.com/event/fireworks/",
+  "url": "https://www.laketoya.com/event/fireworks/"
  },
  {
   "hub": "hakodate",
@@ -7262,7 +7305,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก OpenStreetMap",
   "img": "img/places/142.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%98%9F%E9%87%8E%E3%83%AA%E3%82%BE%E3%83%BC%E3%83%88_%E3%83%88%E3%83%9E%E3%83%A0_%E3%82%B6%E3%83%BB%E3%82%BF%E3%83%AF%E3%83%BC_-_flickr_14793673407_4d61722e33_o.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%98%9F%E9%87%8E%E3%83%AA%E3%82%BE%E3%83%BC%E3%83%88_%E3%83%88%E3%83%9E%E3%83%A0_%E3%82%B6%E3%83%BB%E3%82%BF%E3%83%AF%E3%83%BC_-_flickr_14793673407_4d61722e33_o.jpg",
+  "ref": "https://www.snowtomamu.jp/summer/unkai/",
+  "url": "https://www.snowtomamu.jp/summer/unkai/"
  },
  {
   "hub": "obihiro",
@@ -7918,7 +7963,9 @@ window.PLACES = [
    7,
    8,
    9
-  ]
+  ],
+  "ref": "https://www.rishiri-plus.jp/",
+  "url": "https://www.rishiri-plus.jp/"
  },
  {
   "hub": "wakkanai",
@@ -9239,7 +9286,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/180.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Northern_Horse_Park_20260703f.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Northern_Horse_Park_20260703f.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10047.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10047.html"
  },
  {
   "hub": "chitose",
@@ -9290,7 +9339,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/181.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Utonai_Lake_Hokkaido_Japan.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Utonai_Lake_Hokkaido_Japan.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10139.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10139.html"
  },
  {
   "hub": "toya",
@@ -9491,7 +9542,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/185.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakucho_Bridge_9076222.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakucho_Bridge_9076222.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10195.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10195.html"
  },
  {
   "hub": "hakodate",
@@ -9759,7 +9812,9 @@ window.PLACES = [
    8,
    9,
    10
-  ]
+  ],
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10451.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10451.html"
  },
  {
   "hub": "obihiro",
@@ -10165,7 +10220,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/198.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Nosappu.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Nosappu.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10142.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10142.html"
  },
  {
   "hub": "kawayu",
@@ -10315,7 +10372,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก OpenStreetMap",
   "img": "img/places/201.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%86%8A%E3%81%AE%E6%B9%AF.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%86%8A%E3%81%AE%E6%B9%AF.JPG",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10507.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10507.html"
  },
  {
   "hub": "rausu",
@@ -10370,7 +10429,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/202_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokkaido-Orca_of_rausu-xl.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokkaido-Orca_of_rausu-xl.jpg",
+  "ref": "https://www.e-shiretoko.com/",
+  "url": "https://www.e-shiretoko.com/"
  },
  {
   "hub": "rausu",
@@ -10424,7 +10485,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/203.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Notsuke_Peninsula_Hokkaido_Japan_SRTM.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Notsuke_Peninsula_Hokkaido_Japan_SRTM.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10493.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10493.html"
  },
  {
   "hub": "abashiri",
@@ -10468,7 +10531,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก OpenStreetMap",
   "img": "img/places/204.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Wakka_nature_center.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Wakka_nature_center.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10132.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10132.html"
  },
  {
   "hub": "wakkanai",
@@ -10575,7 +10640,9 @@ window.PLACES = [
   ],
   "sn": {
    "winter": "ทุ่งหิมะ ลมแรงมาก ถนนอาจปิดช่วงพายุ"
-  }
+  },
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10533.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10533.html"
  },
  {
   "hub": "sapporo",
@@ -10734,7 +10801,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/209.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Otaru_Suitengu_viee_8.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Otaru_Suitengu_viee_8.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10194.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10194.html"
  },
  {
   "hub": "otaru",
@@ -12069,7 +12138,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/234.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kaiyodai.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kaiyodai.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10497.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10497.html"
  },
  {
   "hub": "utoro",
@@ -12272,7 +12343,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/238.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Erimo_misaki_01.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Erimo_misaki_01.JPG",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10440.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10440.html"
  },
  {
   "hub": "kushiro",
@@ -12325,7 +12398,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/239.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E9%9C%A7%E5%A4%9A%E5%B8%83%E5%B2%AC%EF%BD%9E%E9%81%A0%E6%9C%9B_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E9%9C%A7%E5%A4%9A%E5%B8%83%E5%B2%AC%EF%BD%9E%E9%81%A0%E6%9C%9B_-_panoramio.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10473.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10473.html"
  },
  {
   "hub": "sapporo",
@@ -12958,7 +13033,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/249_1.jpg",
-  "imgCredit": "https://www.flickr.com/photos/40058760@N00/2418771408"
+  "imgCredit": "https://www.flickr.com/photos/40058760@N00/2418771408",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10107.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10107.html"
  },
  {
   "hub": "otaru",
@@ -13088,7 +13165,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/251_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Funamizaka_31499166415_d62859617d_o.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Funamizaka_31499166415_d62859617d_o.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10193.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10193.html"
  },
  {
   "hub": "otaru",
@@ -13260,7 +13339,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/254_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake_Shikotsu_Mt_Tarumae01n3200.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake_Shikotsu_Mt_Tarumae01n3200.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10138.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10138.html"
  },
  {
   "hub": "chitose",
@@ -13381,7 +13462,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E4%BA%8C%E5%8D%81%E9%96%93%E9%81%93%E8%B7%AF%E6%AB%BB%E4%B8%A6%E6%9C%A8.jpg",
   "peak": [
    5
-  ]
+  ],
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10051.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10051.html"
  },
  {
   "hub": "hakodate",
@@ -13999,7 +14082,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/266_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:LakeShikotsu-kayaks-GR-Aug15-2016.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:LakeShikotsu-kayaks-GR-Aug15-2016.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10145.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10145.html"
  },
  {
   "hub": "toya",
@@ -14068,7 +14153,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/267_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:130921_Toyako_Onsen_Toyako_Hokkaido_Japan00s.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:130921_Toyako_Onsen_Toyako_Hokkaido_Japan00s.jpg",
+  "ref": "https://www.laketoya.com/",
+  "url": "https://www.laketoya.com/"
  },
  {
   "hub": "sounkyo",
@@ -14304,7 +14391,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/271_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Tokkari_cemter2.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Tokkari_cemter2.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10069.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10069.html"
  },
  {
   "hub": "abashiri",
@@ -14696,7 +14785,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/277_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Mikuni_Pass_amountainpath_north.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Mikuni_Pass_amountainpath_north.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10513.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10513.html"
  },
  {
   "hub": "akan",
@@ -21889,7 +21980,9 @@ window.PLACES = [
   "lat": 43.72749,
   "lng": 142.94734,
   "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://sounkyo.net/",
+  "url": "https://sounkyo.net/"
  },
  {
   "hub": "hakodate",
