@@ -240,7 +240,8 @@ const Planner = {
     const toHub = hubOf(to), ref = point(to);
     const sun = sunTimes(iso, ref.lat, ref.lng);
     // นัดคืนรถหลังเวลาเช็กอินที่พักใหม่: เช็กอินวางกระเป๋าก่อน แล้วขับไปคืน กลับที่พักด้วยรถไฟ/บัส/เดิน
-    const retLate = rentR?.at && i < N && from !== to && parseT(rentR.at) >= parseT(stayOf(to)?.checkIn || "15:00");
+    // คืนที่สนามบิน (ไม่ปักหมุด) ไม่แวะที่พักก่อน: สนามบินไกลจากเมือง ไปคืนแล้วนั่งรถไฟเข้าที่พักพร้อมกระเป๋า
+    const retLate = rentR?.at && R.r.lat && i < N && from !== to && parseT(rentR.at) >= parseT(stayOf(to)?.checkIn || "15:00");
     const dayI = [rentP, ...items.filter((it) => !(it.night && i < N)), retLate ? null : rentR].filter(Boolean), nightI = items.filter((it) => it.night && i < N);
     let time = opts.live ? opts.live.t : i === 0 ? this.leaveAirport(mode) : day.start ? parseT(day.start) : pc.start;
     const tl = [], checks = [];
@@ -309,7 +310,8 @@ const Planner = {
     const arrive = time;
     tl.push({ t: time, kind: i === N ? "airport" : "hotel", id: to });
     if (nightI.length || retLate) { // เช็กอิน วางกระเป๋า ~30 นาที (ไม่ก่อนเวลาเช็กอิน) แล้วค่อยออกไปต่อ • ที่พักเดิมจากเมื่อคืน: แค่พักผ่อน
-      const ci = from !== to ? parseT(stayOf(to)?.checkIn || "15:00") : 0, go = Math.max(time + 0.5, ci);
+      // แวะแค่ฝากกระเป๋าก่อนไปคืนรถ ไม่ต้องรอเวลาเช็กอิน
+      const ci = from !== to && nightI.length ? parseT(stayOf(to)?.checkIn || "15:00") : 0, go = Math.max(time + 0.5, ci);
       tl.push({ t: time, kind: "info", ic: "hotel", text: `${go - time > 0.6 ? `รอเช็กอิน ${fmtT(ci)} (ฝากกระเป๋า/พักผ่อน)` : from !== to ? "เช็กอิน วางกระเป๋า อย่างน้อย ~30 นาที" : "พักผ่อน ~30 นาที"} • อยากพักนานกว่านี้: ล็อกเวลาเริ่มของที่ถัดไป` });
       time = go;
     }
