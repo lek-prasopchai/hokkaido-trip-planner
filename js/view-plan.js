@@ -146,7 +146,7 @@ const PlanView = {
         ${airNow ? `<div class="f"><span>${k === "p" ? "เวลารับ" : "เวลาคืน"}</span><div class="ro">${k === "p" ? "ทันทีที่เครื่องลง" : "ก่อนเช็กอินเที่ยวบิน"}</div></div>` : `<label class="f">${k === "p" ? "เวลานัดรับ" : "เวลานัดคืน"}<input type="time" data-rent="time" value="${esc(x.time || "")}"></label>`}
         ${num(k === "p" ? "car" : "ret", k === "p" ? b.car : b.ret, 0, 180, k === "p" ? "ใช้เวลารับรถ (นาที)" : "คืนรถ + เติมน้ำมัน (นาที)")}
         <div class="full">${LocPick.html("สาขา", 'data-rent="loc"', x.loc || "", air)}</div>
-        <small class="hint full">${x.lat ? `${I("map-pin")} ใช้สาขาที่ปักหมุด${d === (k === "p" ? 0 : N) ? ` · <button type="button" class="linkbtn" data-rentair="${k}">${k === "p" ? "รับ" : "คืน"}ที่สนามบินแทน</button>` : ""}` : `ไม่ปักหมุด = ${esc(names(air)[0])}`}</small>
+        <small class="hint full">${x.lat ? `${I("map-pin")} ใช้สาขาที่ปักหมุด · <button type="button" class="linkbtn" data-rentair="${k}">${k === "p" ? "รับ" : "คืน"}ที่สนามบินแทน</button>` : `ไม่ปักหมุด = ${esc(names(air)[0])}`}</small>
       </div></div>`;
     const num = (k, v, min, max, lbl) => `<label class="f">${lbl}<input type="number" min="${min}" max="${max}" data-buf="${k}" value="${v}"></label>`;
     return `<div class="rent-box"><h3>${I("car")} ช่วงที่เช่ารถ <small class="mute">${R.pd === 0 && R.rd === N ? "ทั้งทริป" : `วันที่ ${R.pd + 1}-${R.rd + 1} · วันอื่นใช้รถไฟ/บัส`}</small></h3>
