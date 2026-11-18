@@ -131,7 +131,7 @@ const FIX = {
   // จุดใหม่
   const N = (s) => hw(s).replace(/[\s・「」『』()（）\-〜~、。]/g, "").replace(/(本店|総本店|本館)$/, "").toLowerCase();
   const have = places.map((p) => [N(p.ja), p.lat, p.lng]);
-  let nid = Math.max(...places.map((p) => p.id)) + 1, added = 0, rough = 0;
+  let nid = Math.max(...places.map((p) => p.id)) + 1, added = 0, rough = 0, refreshed = 0;
   const skipped = [];
   for (const r of SRC.add) {
     const s = r.src, ja = hw(s.name).replace(/&#0?38;/g, "&");
@@ -139,31 +139,43 @@ const FIX = {
     if (!g) { skipped.push(ja + " (ไม่มีพิกัด)"); continue; }
     const hub = HUBS.reduce((b, h) => (km(g[0], g[1], h.lat, h.lng) < km(g[0], g[1], b.lat, b.lng) ? h : b));
     // ซ้ำ = ชื่อเดียวกัน/ซ้อนกัน และอยู่ห่างไม่เกิน 30 กม. (ร้านชื่อเดียวกันคนละเมืองไม่นับ • ฐานอาจถูกคำนวณใหม่ภายหลัง จึงเทียบระยะแทนฐาน)
-    if (have.some(([h, la, ln]) => h === N(ja) || km(la, ln, g[0], g[1]) < 30 && (h.length >= 3 && (N(ja).length >= 4 && (h.includes(N(ja)) || N(ja).includes(h)))))) { skipped.push(ja); continue; }
+    const food = /อาหาร|คาเฟ่/.test(r.type) && !/พิพิธ|ฟาร์ม|ตลาด/.test(r.type);
+    const open24 = /สวน|จุดชมวิว|ธรรมชาติ|ย่าน|ถ่ายรูป/.test(r.type) && !/พิพิธ/.test(r.type); // ที่โล่งไม่มีเวลาเปิด = เข้าได้ตลอด
+    const op = hours(s.hours) || (open24 ? "ตลอดเวลา" : "");
+    const conv = { open: op || "ตรวจเวลาเปิด (ดูเว็บ)", closed: closed(s.closed) || (op ? "-" : "ตรวจ"), fee: fee(s.fee, food) || (/ช้อปปิ้ง|สวน|ธรรมชาติ|จุดชมวิว|ประวัติ/.test(r.type) ? "ฟรี" : "ตรวจ"), caution: op ? "" : "เว็บทางการไม่ระบุเวลาเปิด ตรวจก่อนไป" };
+    conv.feeYen = /¥([\d,]+)/.test(conv.fee) ? +conv.fee.match(/¥([\d,]+)/)[1].replace(/,/g, "") : 0;
+    const dup = have.findIndex(([h, la, ln]) => h === N(ja) || km(la, ln, g[0], g[1]) < 30 && (h.length >= 3 && (N(ja).length >= 4 && (h.includes(N(ja)) || N(ja).includes(h)))));
+    if (dup >= 0) {
+      // จุดที่เคยเพิ่มจากหน้าทางการเดียวกัน: อัปเดตเวลา/วันปิด/ค่าเข้าตามตัวแปลงล่าสุด (ยกเว้นที่แก้มือใน FIX)
+      const e = places[dup];
+      if (e.ref === s.ref && !FIX[e.id] && ["open", "closed", "fee", "feeYen", "caution"].some((k) => (e[k] || "") !== (conv[k] || ""))) {
+        Object.assign(e, conv);
+        if (!e.caution) delete e.caution;
+        refreshed++;
+      }
+      skipped.push(ja); continue;
+    }
     const pin = g[2] === "pin", pre = pin || precise(g, a);
     if (!pre) rough++;
     const o = Object.fromEntries(r.opts.split(",").filter(Boolean).map((x) => [x[0], x.slice(1)]));
-    const food = /อาหาร|คาเฟ่/.test(r.type) && !/พิพิธ|ฟาร์ม|ตลาด/.test(r.type);
     const dur = +(o.d || (food ? (/คาเฟ่/.test(r.type) ? 0.75 : 1) : 1));
     const months = o.m ? (([a1, b1]) => Array.from({ length: (b1 || a1) - a1 + 1 }, (_, i) => +a1 + i))(o.m.split("-").map(Number)) : undefined;
-    const open24 = /สวน|จุดชมวิว|ธรรมชาติ|ย่าน|ถ่ายรูป/.test(r.type) && !/พิพิธ/.test(r.type); // ที่โล่งไม่มีเวลาเปิด = เข้าได้ตลอด
-    const op = hours(s.hours) || (open24 ? "ตลอดเวลา" : "");
     const p = {
       id: nid++, region: hub.region, area: hub.name.replace(/ \(.*\)$/, ""), hub: hub.id, name: r.th, en: r.en, ja,
       stars: +(o.s || 1), pop: o.p || "คนรู้จักน้อย", type: r.type, tags: r.tags,
-      open: op || "ตรวจเวลาเปิด (ดูเว็บ)", closed: closed(s.closed) || (op ? "-" : "ตรวจ"), fee: fee(s.fee, food) || (/ช้อปปิ้ง|สวน|ธรรมชาติ|จุดชมวิว|ประวัติ/.test(r.type) ? "ฟรี" : "ตรวจ"),
-      dur: dur >= 1 ? `${dur} ชม.` : `${Math.round(dur * 60)} นาที`, hours: dur, highlight: r.hl, caution: op ? "" : "เว็บทางการไม่ระบุเวลาเปิด ตรวจก่อนไป",
+      open: conv.open, closed: conv.closed, fee: conv.fee,
+      dur: dur >= 1 ? `${dur} ชม.` : `${Math.round(dur * 60)} นาที`, hours: dur, highlight: r.hl, caution: conv.caution,
       best: o.b || (r.opts.includes("ev") ? "ค่ำ" : food ? (/คาเฟ่/.test(r.type) ? "บ่าย" : "เที่ยง") : "กลางวัน"),
       parking: parking(s.park), months, tr: transit(s.access), evening: r.opts.split(",").includes("ev"),
       feeYen: 0, lat: +g[0].toFixed(5), lng: +g[1].toFixed(5), acc: pin ? "จากหมุดแผนที่บนเว็บทางการ" : pre ? "จากที่อยู่ทางการ (GSI)" : "ประมาณ (ระดับตำบลจากที่อยู่ทางการ)",
       addrJa: hw(s.addr).replace(/〒?\d{3}-\d{4}\s*/, "").slice(0, 60), phone: hw(s.phone).match(/[\d\-()]{9,}/)?.[0], url: s.site || undefined, ref: s.ref, checked: SRC.checked,
     };
-    p.feeYen = /¥([\d,]+)/.test(p.fee) ? +p.fee.match(/¥([\d,]+)/)[1].replace(/,/g, "") : 0;
+    p.feeYen = conv.feeYen;
     for (const k of Object.keys(p)) if (p[k] === undefined || p[k] === "") if (k !== "caution" && k !== "parking") delete p[k];
     places.push(p); have.push([N(ja), p.lat, p.lng]); added++;
   }
   fs.writeFileSync(CACHE, JSON.stringify(cache));
   fs.writeFileSync(DATA, head + "window.PLACES = " + JSON.stringify(places, null, 1) + ";\n");
-  console.log({ added, rough, skipped: skipped.length, refs: nRef, fixed: nFix, regeo: nGeo, total: places.length });
+  console.log({ added, refreshed, rough, skipped: skipped.length, refs: nRef, fixed: nFix, regeo: nGeo, total: places.length });
   if (skipped.length) console.log("ข้าม (ซ้ำ/ไม่มีพิกัด):", skipped.join(" / "));
 })();
