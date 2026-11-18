@@ -56,7 +56,7 @@ function transit(s) {
 const cleanAddr = (a, city) => {
   a = hw(a).replace(/〒?\d{3}-\d{4}/, "").replace(/\(.*?\)|（.*?）/g, "").trim().split(/\s/)[0].replace(/MAP$/, "");
   if (!a) return "";
-  if (!/^北海道/.test(a)) a = (/^(札幌|小樽|旭川|富良野|美瑛|上川|空知|余市|石狩|江別|芦別|千歳|函館|北斗|亀田|茅部|帯広|河東|河西|幕別|新得|清水|中札内|上士幌|虻田|磯谷|釧路|阿寒|川上|足寄|登別|白老|有珠|網走|斜里|目梨)/.test(a) ? "北海道" : { hakodate: "北海道函館市", obihiro: "北海道", niseko: "北海道虻田郡", kushiro: "北海道", noboribetsu: "北海道", toya: "北海道", abashiri: "北海道", shiretoko: "北海道斜里郡斜里町", sounkyo: "北海道上川郡", sapporo: "北海道札幌市", otaru: "北海道小樽市", asahikawa: "北海道旭川市", furano: "北海道", biei: "北海道上川郡美瑛町" }[city]) + a;
+  if (!/^北海道/.test(a)) a = (/^(札幌|小樽|旭川|富良野|美瑛|上川|空知|余市|石狩|江別|芦別|千歳|函館|北斗|亀田|茅部|帯広|河東|河西|幕別|新得|清水|中札内|上士幌|虻田|磯谷|釧路|阿寒|川上|足寄|登別|白老|有珠|網走|斜里|目梨|弟子屈)/.test(a) ? "北海道" : { hakodate: "北海道函館市", obihiro: "北海道", niseko: "北海道虻田郡", kushiro: "北海道", noboribetsu: "北海道", toya: "北海道", abashiri: "北海道", shiretoko: "北海道斜里郡斜里町", sounkyo: "北海道上川郡", kawayu: "北海道川上郡", sapporo: "北海道札幌市", otaru: "北海道小樽市", asahikawa: "北海道旭川市", furano: "北海道", biei: "北海道上川郡美瑛町" }[city]) + a;
   return a;
 };
 async function gsi(a) {
@@ -73,6 +73,9 @@ const precise = (g, a) => /[0-9０-９一二三四五六七八九十]+(番|号|�
 // ---------- แก้จุดเดิมหลังเทียบกับเว็บทางการทีละจุด (พ.ย. 2026) ----------
 const UTORO = { region: "โอค็อตสค์ / ชิเรโตโกะ", area: "อุโตโระ (ชิเรโตโกะ)", hub: "utoro" }; // FIX ย้ายพิกัดข้ามฐาน ต้องย้ายฐานด้วย
 const FIX = {
+  // คาวายุ: หน้าเว็บทางการของย่านออนเซ็น
+  77: { ref: "https://www.kawayu-onsen.com/" },
+  1007: { closed: "พุธ, ช่วงปีใหม่", fee: "ฟรี" },
   // โซอุนเคียว (sounkyo.net)
   1000: { open: "≈9:00-17:00", closed: "-", caution: "" },
   1003: { closed: "จันทร์ (เฉพาะ พ.ย.-พ.ค.), ช่วงปีใหม่" },

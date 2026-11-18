@@ -3944,7 +3944,8 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:%E5%B7%9D%E6%B9%AF%E6%B8%A9%E6%B3%89%EF%BC%88Kawayu_Onsen%EF%BC%89_-_panoramio.jpg"
    }
   ],
-  "en": "Kawayu Onsen"
+  "en": "Kawayu Onsen",
+  "ref": "https://www.kawayu-onsen.com/"
  },
  {
   "id": 78,
@@ -42827,6 +42828,73 @@ window.PLACES = [
   "addrJa": "北海道上川郡上川町旭町25-1",
   "phone": "01658-7-7380",
   "ref": "https://sounkyo.net/buy/detail.html?content=74",
+  "checked": "2026-11"
+ },
+ {
+  "id": 1007,
+  "region": "คุชิโระ / อากัง / มาชู",
+  "area": "คาวายุ / ทะเลสาบคุชชาโระ",
+  "hub": "kawayu",
+  "name": "ศูนย์ผู้เยี่ยมชมคาวายุ",
+  "en": "Kawayu Visitor Center",
+  "ja": "川湯ビジターセンター",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "พิพิธภัณฑ์ / ธรรมชาติ",
+  "tags": [
+   "nature"
+  ],
+  "open": "≈8:00-17:00, 9:00-16:00 (ตามฤดู/วัน)",
+  "closed": "พุธ, ช่วงปีใหม่",
+  "fee": "ฟรี",
+  "dur": "30 นาที",
+  "hours": 0.5,
+  "highlight": "ศูนย์ข้อมูลอุทยานอาคันมาชู ภูเขาไฟ ป่า สัตว์ จุดเริ่มทางเดินไปภูเขาอิโอ",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "",
+  "evening": false,
+  "feeYen": 0,
+  "lat": 43.63786,
+  "lng": 144.43446,
+  "acc": "จากที่อยู่ทางการ (GSI)",
+  "addrJa": "弟子屈町川湯温泉2丁目2-6",
+  "url": "https://www.kawayu-eco-museum.com/",
+  "ref": "https://www.kawayu-onsen.com/attractions/1582/",
+  "checked": "2026-11"
+ },
+ {
+  "id": 1008,
+  "region": "คุชิโระ / อากัง / มาชู",
+  "area": "คาวายุ / ทะเลสาบคุชชาโระ",
+  "hub": "kawayu",
+  "name": "พิพิธภัณฑ์ซูโม่ไทโฮ",
+  "en": "Taiho Sumo Memorial Hall",
+  "ja": "大鵬相撲記念館",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "พิพิธภัณฑ์",
+  "tags": [
+   "culture"
+  ],
+  "open": "≈9:00-17:00",
+  "closed": "-",
+  "fee": "≈¥420",
+  "dur": "45 นาที",
+  "hours": 0.75,
+  "highlight": "พิพิธภัณฑ์ซูโม่แห่งแรกของญี่ปุ่น ของโยโกซูนะไทโฮที่โตในคาวายุ ผ้าคาดเอวและถ้วยรางวัล",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "",
+  "evening": false,
+  "feeYen": 420,
+  "lat": 43.63551,
+  "lng": 144.43799,
+  "acc": "จากที่อยู่ทางการ (GSI)",
+  "addrJa": "弟子屈町川湯温泉2丁目1-20",
+  "phone": "015-483-2924",
+  "url": "https://www.masyuko.or.jp/sumo/",
+  "ref": "https://www.kawayu-onsen.com/attractions/788/",
   "checked": "2026-11"
  }
 ];
