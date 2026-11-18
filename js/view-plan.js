@@ -143,7 +143,7 @@ const PlanView = {
     const dayOpts = (v, min) => Array.from({ length: N + 1 }, (_, i) => i < min ? "" : `<option value="${i}" ${v === i ? "selected" : ""}>วันที่ ${i + 1} · ${thDate(Planner.dayIso(i), false).replace(/ \d+$/, "")}</option>`).join("");
     const side = (k, x, d, air, airNow, min) => `<div class="rent-side" data-rentk="${k}"><h4>${k === "p" ? "รับรถ" : "คืนรถ"}</h4><div class="form ed-form">
         <label class="f">วัน<select data-rent="day">${dayOpts(d, min)}</select></label>
-        ${airNow ? `<div class="f"><span>${k === "p" ? "เวลารับ" : "เวลาคืน"}</span><div class="ro">${k === "p" ? "ทันทีที่เครื่องลง" : "ก่อนเช็กอินเที่ยวบิน"}</div></div>` : `<label class="f">${k === "p" ? "เวลานัดรับ" : "เวลานัดคืน"}<input type="time" data-rent="time" value="${esc(x.time || "")}"></label>`}
+        <label class="f">${k === "p" ? "เวลานัดรับ" : "เวลานัดคืน"}${airNow ? ` <small>ว่าง = ${k === "p" ? "ทันทีที่เครื่องลง" : "ก่อนเช็กอินเที่ยวบิน"}</small>` : ""}<input type="time" data-rent="time" value="${esc(x.time || "")}"></label>
         ${num(k === "p" ? "car" : "ret", k === "p" ? b.car : b.ret, 0, 180, k === "p" ? "ใช้เวลารับรถ (นาที)" : "คืนรถ + เติมน้ำมัน (นาที)")}
         <div class="full">${LocPick.html("สาขา", 'data-rent="loc"', x.loc || "", air)}</div>
         <small class="hint full">${x.lat ? `${I("map-pin")} ใช้สาขาที่ปักหมุด · <button type="button" class="linkbtn" data-rentair="${k}">${k === "p" ? "รับ" : "คืน"}ที่สนามบินแทน</button>` : `ไม่ปักหมุด = ${esc(names(air)[0])}`}</small>

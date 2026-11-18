@@ -180,8 +180,17 @@ const Planner = {
   overnight() { const d = S.trip.outFlight?.dep; return !!d && d.slice(0, 10) < S.trip.start; },
   firstDayLight() { const t = S.trip; return t.firstDay === "light" || (t.firstDay === "auto" && this.overnight() && parseT(t.arriveTime) < 10); },
   // รับ/คืนรถบวกเวลาเฉพาะเมื่อรับตอนเครื่องลง/คืนก่อนบินที่สนามบิน ที่อื่น/วันอื่นเป็นจุด "รับรถ/คืนรถ" ในแผนรายวัน
-  leaveAirport(mode) { const t = S.trip, b = t.buf, r = this.rent(); return parseT(t.arriveTime) + ((t.domIn ? b.dom : b.imm) + (r?.pAir ? b.car : r?.pd === 0 ? 0 : b.pass)) / 60; },
-  needAirport(mode) { const t = S.trip, b = t.buf; return parseT(t.departTime) - ((t.domOut ? b.beforeDom : b.before) + (this.rent()?.rAir ? b.ret : 0)) / 60; },
+  // รับ/คืนที่สนามบินมีเวลานัด: รับไม่ก่อนเวลานัด / คืนไม่หลังเวลานัด (เหมือนจุดรับ-คืนที่สาขา: เวลานัด + เวลารับ/คืนรถ)
+  leaveAirport(mode) {
+    const t = S.trip, b = t.buf, r = this.rent(), land = parseT(t.arriveTime) + (t.domIn ? b.dom : b.imm) / 60;
+    if (r?.pAir) return Math.max(land, r.p.time ? parseT(r.p.time) : 0) + b.car / 60;
+    return land + (r?.pd === 0 ? 0 : b.pass) / 60;
+  },
+  needAirport(mode) {
+    const t = S.trip, b = t.buf, r = this.rent(), need = parseT(t.departTime) - (t.domOut ? b.beforeDom : b.before) / 60;
+    if (!r?.rAir) return need;
+    return Math.min(need - b.ret / 60, r.r.time ? parseT(r.r.time) : 99);
+  },
 
   // เวลาเดินทางระหว่าง 2 จุด ตามโหมด (รวมตัวคูณหิมะตามเดือน + เวลาเผื่อจากหน้าตั้งค่า)
   // force = ผู้ใช้เลือกโหมดนี้เอง: ไม่สลับให้อัตโนมัติ (จอดรถที่พักในเมือง / ใกล้มากเลยเดิน)
@@ -264,7 +273,7 @@ const Planner = {
     };
     if (i === 0 && !opts.live) {
       const b = t.buf;
-      tl.push({ t: parseT(t.arriveTime), kind: "info", ic: "plane", text: `เครื่องลง ${t.arriveTime} • ${t.domIn ? "เที่ยวบินในประเทศ" : "ตรวจคนเข้าเมือง + รับกระเป๋า"} ~${t.domIn ? b.dom : b.imm} นาที • ${R?.pAir ? `รับรถเช่า ~${b.car} นาที` : R?.pd === 0 ? "ไปรับรถที่สาขา" : `ซื้อพาส/IC/ซิม ~${b.pass} นาที`}` });
+      tl.push({ t: parseT(t.arriveTime), kind: "info", ic: "plane", text: `เครื่องลง ${t.arriveTime} • ${t.domIn ? "เที่ยวบินในประเทศ" : "ตรวจคนเข้าเมือง + รับกระเป๋า"} ~${t.domIn ? b.dom : b.imm} นาที • ${R?.pAir ? `รับรถเช่า${R.p.time ? ` นัด ${R.p.time}` : ""} ~${b.car} นาที` : R?.pd === 0 ? "ไปรับรถที่สาขา" : `ซื้อพาส/IC/ซิม ~${b.pass} นาที`}` });
     }
     const atOf = (it, night) => parseT(it.at) + (night && parseT(it.at) < 6 ? 24 : 0); // ตอนค่ำล็อก 00:30 = หลังเที่ยงคืนคืนนั้น (เช่น เคาท์ดาวน์)
     // ล็อกเวลา: รอที่จุดก่อนหน้า (ที่พัก/ที่เที่ยว) แล้วค่อยออก ให้ไปถึงก่อนเวลา ~10 นาที แทนไปยืนรอที่ปลายทาง

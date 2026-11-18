@@ -103,6 +103,19 @@ assert(meals.every((x) => x.t >= 10.5 && x.t <= 15), "มื้อกลาง�
   assert.deepStrictEqual(S.plan.days[2].items.map((x) => x.id), a, "สลับวัน");
   assert.deepStrictEqual(S.plan.bases, bases, "ที่พักคงเดิม");
 }
+// รับ/คืนรถที่สนามบินมีเวลานัด: ออกจากสนามบินไม่ก่อนเวลานัด + เวลารับรถ, ต้องถึงสนามบินไม่หลังเวลานัดคืน
+{
+  const t = S.trip, keep = JSON.stringify({ mode: t.mode, rent: t.rent, arriveTime: t.arriveTime, departTime: t.departTime, domIn: t.domIn, domOut: t.domOut, buf: t.buf });
+  Object.assign(t, { mode: "car", rent: {}, arriveTime: "12:30", departTime: "18:00", domIn: false, domOut: false, buf: { ...BUF } });
+  const leave0 = Planner.leaveAirport("car"), need0 = Planner.needAirport("car");
+  t.rent = { p: { time: "15:00" }, r: { time: "13:00" } };
+  assert.strictEqual(Planner.leaveAirport("car"), 15 + BUF.car / 60, "รับรถตามเวลานัด");
+  assert.strictEqual(Planner.needAirport("car"), 13, "คืนรถตามเวลานัด");
+  t.rent = { p: { time: "10:00" }, r: { time: "17:00" } }; // นัดก่อนเครื่องลง / หลังเส้นตาย: ใช้เวลาเครื่องลง/เส้นตายเดิม
+  assert.strictEqual(Planner.leaveAirport("car"), leave0, "นัดรับก่อนเครื่องลง");
+  assert.strictEqual(Planner.needAirport("car"), need0, "นัดคืนหลังเส้นตาย");
+  Object.assign(t, JSON.parse(keep));
+}
 // แชร์ลิงก์: แพ็กแล้วแกะได้เหมือนเดิม (แบบไม่บีบอัด ใน node)
 (async () => {
   const code = await Share.pack({ v: 2, trip: S.trip, plan: S.plan });
