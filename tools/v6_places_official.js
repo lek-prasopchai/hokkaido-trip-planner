@@ -118,7 +118,7 @@ const FIX = {
 
   // จุดใหม่
   const N = (s) => hw(s).replace(/[\s・「」『』()（）\-〜~、。]/g, "").replace(/(本店|総本店|本館)$/, "").toLowerCase();
-  const have = places.map((p) => [N(p.ja), p.hub]);
+  const have = places.map((p) => [N(p.ja), p.lat, p.lng]);
   let nid = Math.max(...places.map((p) => p.id)) + 1, added = 0, rough = 0;
   const skipped = [];
   for (const r of SRC.add) {
@@ -126,8 +126,8 @@ const FIX = {
     const a = cleanAddr(s.addr, s.city), g = await gsi(a);
     if (!g) { skipped.push(ja + " (ไม่มีพิกัด)"); continue; }
     const hub = HUBS.reduce((b, h) => (km(g[0], g[1], h.lat, h.lng) < km(g[0], g[1], b.lat, b.lng) ? h : b));
-    // ซ้ำ = ชื่อเดียวกัน/ซ้อนกันในฐานเดียวกัน (ร้านชื่อเดียวกันคนละเมืองไม่นับ)
-    if (have.some(([h, hb]) => hb === hub.id && (h === N(ja) || h.length >= 3 && (N(ja).length >= 4 && (h.includes(N(ja)) || N(ja).includes(h)))))) { skipped.push(ja); continue; }
+    // ซ้ำ = ชื่อเดียวกัน/ซ้อนกัน และอยู่ห่างไม่เกิน 30 กม. (ร้านชื่อเดียวกันคนละเมืองไม่นับ • ฐานอาจถูกคำนวณใหม่ภายหลัง จึงเทียบระยะแทนฐาน)
+    if (have.some(([h, la, ln]) => h === N(ja) || km(la, ln, g[0], g[1]) < 30 && (h.length >= 3 && (N(ja).length >= 4 && (h.includes(N(ja)) || N(ja).includes(h)))))) { skipped.push(ja); continue; }
     const pre = precise(g, a);
     if (!pre) rough++;
     const o = Object.fromEntries(r.opts.split(",").filter(Boolean).map((x) => [x[0], x.slice(1)]));
@@ -147,7 +147,7 @@ const FIX = {
     };
     p.feeYen = /¥([\d,]+)/.test(p.fee) ? +p.fee.match(/¥([\d,]+)/)[1].replace(/,/g, "") : 0;
     for (const k of Object.keys(p)) if (p[k] === undefined || p[k] === "") if (k !== "caution" && k !== "parking") delete p[k];
-    places.push(p); have.push([N(ja), p.hub]); added++;
+    places.push(p); have.push([N(ja), p.lat, p.lng]); added++;
   }
   fs.writeFileSync(CACHE, JSON.stringify(cache));
   fs.writeFileSync(DATA, head + "window.PLACES = " + JSON.stringify(places, null, 1) + ";\n");
