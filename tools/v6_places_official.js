@@ -31,7 +31,7 @@ function closed(s) {
   s = hw(s);
   if (!s) return "";
   const out = [];
-  const norest = /年中無休|^無休|^なし|^無し|期間中は?無休|^特になし|無休$|定休日なし|休館日なし/.test(s);
+  const norest = /年中無休|^無休|^なし|^無し|期間中は?無休|^特になし|無休$|定休日なし|休館日なし|^通年営業|まで営業/.test(s);
   const days = [...s.matchAll(/([月火水木金土日])曜/g)].map((m) => WD[m[1]]);
   if (days.length) out.push([...new Set(days)].join(", ") + (/第\d|最終/.test(s) ? " (บางสัปดาห์)" : ""));
   if (/不定休/.test(s)) out.push("ไม่แน่นอน");
@@ -56,7 +56,7 @@ function transit(s) {
 const cleanAddr = (a, city) => {
   a = hw(a).replace(/〒?\d{3}-\d{4}/, "").replace(/\(.*?\)|（.*?）/g, "").trim().split(/\s/)[0].replace(/MAP$/, "");
   if (!a) return "";
-  if (!/^北海道/.test(a)) a = (/^(札幌|小樽|旭川|富良野|美瑛|上川|空知|余市|石狩|江別|芦別|千歳|函館|北斗|亀田|茅部|帯広|河東|河西|幕別|新得|清水|中札内|上士幌)/.test(a) ? "北海道" : { hakodate: "北海道函館市", obihiro: "北海道", sapporo: "北海道札幌市", otaru: "北海道小樽市", asahikawa: "北海道旭川市", furano: "北海道", biei: "北海道上川郡美瑛町" }[city]) + a;
+  if (!/^北海道/.test(a)) a = (/^(札幌|小樽|旭川|富良野|美瑛|上川|空知|余市|石狩|江別|芦別|千歳|函館|北斗|亀田|茅部|帯広|河東|河西|幕別|新得|清水|中札内|上士幌|虻田|磯谷)/.test(a) ? "北海道" : { hakodate: "北海道函館市", obihiro: "北海道", niseko: "北海道虻田郡", sapporo: "北海道札幌市", otaru: "北海道小樽市", asahikawa: "北海道旭川市", furano: "北海道", biei: "北海道上川郡美瑛町" }[city]) + a;
   return a;
 };
 async function gsi(a) {
@@ -72,6 +72,8 @@ const precise = (g, a) => /[0-9０-９一二三四五六七八九十]+(番|号|�
 
 // ---------- แก้จุดเดิมหลังเทียบกับเว็บทางการทีละจุด (พ.ย. 2026) ----------
 const FIX = {
+  924: { closed: "อังคาร (ยกเว้นวันหยุด/ปีใหม่/GW)" },
+  917: { lat: 42.85333, lng: 140.64861, acc: "ฐานลานสกีอันนุปุริ (จุดขึ้นกระเช้า)", open: "ตรวจเวลาเปิด (ดูเว็บ)", fee: "ตรวจ", caution: "วันและเวลาเดินกระเช้าดูปฏิทินบนเว็บ งดเมื่ออากาศแย่" }, // กระเช้านิเซโกะ: เว็บไม่ระบุเวลา/ราคา
   // โอบิฮิโระ (obikan.jp): ข้อความที่ตัวแปลงอ่านไม่ได้
   875: { open: "≈18:00-21:00 (รอบ 18 19 20 น. นั่งราว 50 นาที)", closed: "พุธ, พฤหัส, อาทิตย์", fee: "≈¥3,300 (รวม 1 ดริงก์+กับแกล้ม)", feeYen: 3300, caution: "ต้องจองล่วงหน้า" },
   880: { open: "ตลอดเวลา", closed: "-", caution: "" },
@@ -149,7 +151,7 @@ const FIX = {
     const food = /อาหาร|คาเฟ่/.test(r.type) && !/พิพิธ|ฟาร์ม|ตลาด/.test(r.type);
     const open24 = /สวน|จุดชมวิว|ธรรมชาติ|ย่าน|ถ่ายรูป/.test(r.type) && !/พิพิธ/.test(r.type); // ที่โล่งไม่มีเวลาเปิด = เข้าได้ตลอด
     const op = hours(s.hours) || (open24 ? "ตลอดเวลา" : "");
-    const conv = { open: op || "ตรวจเวลาเปิด (ดูเว็บ)", closed: closed(s.closed) || (op ? "-" : "ตรวจ"), fee: fee(s.fee, food) || (/ช้อปปิ้ง|สวน|ธรรมชาติ|จุดชมวิว|ประวัติ/.test(r.type) ? "ฟรี" : "ตรวจ"), caution: op ? "" : "เว็บทางการไม่ระบุเวลาเปิด ตรวจก่อนไป" };
+    const conv = { open: op || "ตรวจเวลาเปิด (ดูเว็บ)", closed: closed(s.closed) || (op ? "-" : "ตรวจ"), fee: fee(s.fee, food) || (/ช้อปปิ้ง|สวน|ธรรมชาติ|จุดชมวิว|ประวัติ/.test(r.type) && !/กิจกรรม|สกี|ออนเซ็น|สวนสัตว์/.test(r.type) ? "ฟรี" : "ตรวจ"), caution: op ? "" : "เว็บทางการไม่ระบุเวลาเปิด ตรวจก่อนไป" };
     conv.feeYen = /¥([\d,]+)/.test(conv.fee) ? +conv.fee.match(/¥([\d,]+)/)[1].replace(/,/g, "") : 0;
     const dup = have.findIndex(([h, la, ln]) => h === N(ja) || km(la, ln, g[0], g[1]) < 30 && (h.length >= 3 && (N(ja).length >= 4 && (h.includes(N(ja)) || N(ja).includes(h)))));
     if (dup >= 0) {
@@ -167,7 +169,8 @@ const FIX = {
     if (!pre) rough++;
     const o = Object.fromEntries(r.opts.split(",").filter(Boolean).map((x) => [x[0], x.slice(1)]));
     const dur = +(o.d || (food ? (/คาเฟ่/.test(r.type) ? 0.75 : 1) : 1));
-    const months = o.m ? (([a1, b1]) => Array.from({ length: (b1 || a1) - a1 + 1 }, (_, i) => +a1 + i))(o.m.split("-").map(Number)) : undefined;
+    // m12-3 = ธ.ค.-มี.ค. (ข้ามปี)
+    const months = o.m ? (([a1, b1 = a1]) => Array.from({ length: ((b1 - a1 + 12) % 12) + 1 }, (_, i) => ((a1 - 1 + i) % 12) + 1))(o.m.split("-").map(Number)) : undefined;
     const p = {
       id: nid++, region: hub.region, area: hub.name.replace(/ \(.*\)$/, ""), hub: hub.id, name: r.th, en: r.en, ja,
       stars: +(o.s || 1), pop: o.p || "คนรู้จักน้อย", type: r.type, tags: r.tags,
