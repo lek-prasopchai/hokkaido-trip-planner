@@ -202,7 +202,11 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:Chuo_Sapporo_S4W4S4W3_01s4s3200.jpg"
    }
   ],
-  "en": "Susukino Ramen Yokocho"
+  "en": "Susukino Ramen Yokocho",
+  "ref": "https://www.sapporo.travel/gourmet/shop/ganso-ramen-yokocho/",
+  "url": "http://www.ganso-yokocho.com/",
+  "addrJa": "札幌市中央区南5条西3丁目 N・グランデビル1階",
+  "checked": "2026-11"
  },
  {
   "id": 5,
@@ -302,7 +306,11 @@ window.PLACES = [
   "tr": {
    "lv": "ok",
    "t": "รถรางถึงป้าย Ropeway-iriguchi แล้วรถรับส่งฟรี"
-  }
+  },
+  "ref": "https://www.sapporo.travel/spot/facility/mount_moiwayama/",
+  "addrJa": "札幌市中央区伏見5丁目3-7",
+  "phone": "011-561-8177",
+  "checked": "2026-11"
  },
  {
   "id": 7,
@@ -840,7 +848,9 @@ window.PLACES = [
   "tr": {
    "lv": "limited",
    "t": "บัสต่อจากโจซังเค ~15 นาที"
-  }
+  },
+  "ref": "https://www.hoheikyo.co.jp/",
+  "url": "https://www.hoheikyo.co.jp/"
  },
  {
   "id": 17,
@@ -1137,7 +1147,8 @@ window.PLACES = [
   "tr": {
    "lv": "ok",
    "t": "JR ถึงสถานียอยจิ เดิน 3 นาที"
-  }
+  },
+  "ref": "https://www.nikka.com/distilleries/yoichi/"
  },
  {
   "id": 23,
@@ -1186,7 +1197,9 @@ window.PLACES = [
   "tr": {
    "lv": "limited",
    "t": "บัส Chuo จากโอตารุ ~2 ชม. วันละไม่กี่เที่ยว"
-  }
+  },
+  "ref": "https://www.kanko-shakotan.jp/",
+  "url": "https://www.kanko-shakotan.jp/"
  },
  {
   "id": 24,
@@ -2395,7 +2408,9 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:Otokoyama%2C_Asahikawa.jpg"
    }
   ],
-  "en": "Otokoyama Sake Brewery Museum"
+  "en": "Otokoyama Sake Brewery Museum",
+  "ref": "https://www.otokoyama.com/",
+  "url": "https://www.otokoyama.com/"
  },
  {
   "id": 49,
@@ -2450,7 +2465,8 @@ window.PLACES = [
   "tr": {
    "lv": "limited",
    "t": "บัส Ideyu จากสถานีอาซาฮิคาวะ ~1.5 ชม. วันละ 3-4 เที่ยว"
-  }
+  },
+  "ref": "https://asahidake.hokkaido.jp/"
  },
  {
   "id": 50,
@@ -2711,7 +2727,11 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:Ryo_un_kaku.jpg"
    }
   ],
-  "en": "Tokachidake Onsen Ryounkaku"
+  "en": "Tokachidake Onsen Ryounkaku",
+  "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=363",
+  "addrJa": "上富良野町十勝岳温泉",
+  "phone": "0167-39-4111",
+  "checked": "2026-11"
  },
  {
   "id": 55,
@@ -4411,7 +4431,11 @@ window.PLACES = [
   "tr": {
    "lv": "ok",
    "t": "รถไฟใต้ดิน Maruyama-koen + เดิน 15 นาที"
-  }
+  },
+  "ref": "https://www.sapporo.travel/spot/facility/maruyama_zoo/",
+  "addrJa": "札幌市中央区宮ケ丘3番地1",
+  "phone": "011-621-1426",
+  "checked": "2026-11"
  },
  {
   "hub": "sapporo",
@@ -4457,7 +4481,12 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:%E7%8B%B8%E5%B0%8F%E8%B7%AF%E5%95%86%E5%BA%97%E8%A1%97%EF%BC%88Tanuki_Koji_Shopping_Arcade%EF%BC%89_-_panoramio.jpg"
    }
   ],
-  "en": "Tanukikoji Shopping Street"
+  "en": "Tanukikoji Shopping Street",
+  "ref": "https://www.sapporo.travel/spot/facility/tanukikoji_shopping_arcade/",
+  "url": "https://tanukikoji.or.jp/",
+  "addrJa": "札幌市中央区南2・3条西1丁目~7丁目",
+  "phone": "011-241-5125(",
+  "checked": "2026-11"
  },
  {
   "hub": "sapporo",
@@ -4565,7 +4594,9 @@ window.PLACES = [
   "tr": {
    "lv": "ok",
    "t": "รถไฟใต้ดิน Sakaemachi + บัสรับส่ง"
-  }
+  },
+  "ref": "https://www.snowfes.com/",
+  "url": "https://www.snowfes.com/"
  },
  {
   "hub": "otaru",
@@ -4879,7 +4910,11 @@ window.PLACES = [
   "en": "Fukiage Open-Air Onsen",
   "tr": {
    "lv": "car"
-  }
+  },
+  "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=442",
+  "addrJa": "空知郡上富良野町吹上",
+  "phone": "0167-45-6938(",
+  "checked": "2026-11"
  },
  {
   "hub": "obihiro",
@@ -5208,7 +5243,8 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก OpenStreetMap",
   "img": "img/places/105.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:MOAI_image.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:MOAI_image.JPG",
+  "ref": "https://www.takinoreien.com/"
  },
  {
   "hub": "sapporo",
@@ -5483,7 +5519,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก OpenStreetMap",
   "img": "img/places/110.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:MITSUI_OUTLET_PARK_Sapporo_Kitahiroshima.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:MITSUI_OUTLET_PARK_Sapporo_Kitahiroshima.jpg",
+  "ref": "https://mitsui-shopping-park.com/mop/sapporo/",
+  "url": "https://mitsui-shopping-park.com/mop/sapporo/"
  },
  {
   "hub": "sapporo",
@@ -5533,7 +5571,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/111.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:ES_CON_FIELD_HOKKAIDO_exterior_from_south_202607a.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:ES_CON_FIELD_HOKKAIDO_exterior_from_south_202607a.jpg",
+  "ref": "https://www.hkdballpark.com/",
+  "url": "https://www.hkdballpark.com/"
  },
  {
   "hub": "sapporo",
@@ -5583,7 +5623,11 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก OpenStreetMap",
   "img": "img/places/112.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%9C%AD%E5%B9%8C%E5%A0%B4%E5%A4%96%E5%B8%82%E5%A0%B4_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%9C%AD%E5%B9%8C%E5%A0%B4%E5%A4%96%E5%B8%82%E5%A0%B4_-_panoramio.jpg",
+  "ref": "https://www.sapporo.travel/spot/facility/sapporo_central_wholesale_market/",
+  "url": "https://www.jyogaishijyo.com/",
+  "addrJa": "札幌市中央区北11条西21丁目",
+  "phone": "011-621-7044("
  },
  {
   "hub": "jozankei",
@@ -5737,7 +5781,9 @@ window.PLACES = [
    8,
    9,
    10
-  ]
+  ],
+  "ref": "https://www.kanko-shakotan.jp/",
+  "url": "https://www.kanko-shakotan.jp/"
  },
  {
   "hub": "otaru",
@@ -5780,7 +5826,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก OpenStreetMap",
   "img": "img/places/116.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kiroro_Resort.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kiroro_Resort.JPG",
+  "ref": "https://www.kiroro.co.jp/",
+  "url": "https://www.kiroro.co.jp/"
  },
  {
   "hub": "otaru",
@@ -6540,7 +6588,9 @@ window.PLACES = [
   ],
   "sn": {
    "winter": "เนินหิมะขาวสุดตา ถนนลื่น ขับช้า"
-  }
+  },
+  "ref": "https://www.biei-hokkaido.jp/ja/hill-town-biei",
+  "url": "https://www.biei-hokkaido.jp/ja/hill-town-biei"
  },
  {
   "hub": "biei",
@@ -6640,7 +6690,10 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก OpenStreetMap",
   "img": "img/places/133.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Mori-no-ryotei-Biei_Shirogane_Onsen_Biei_Hokkaido_Japan02s3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Mori-no-ryotei-Biei_Shirogane_Onsen_Biei_Hokkaido_Japan02s3.jpg",
+  "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=410",
+  "addrJa": "上川郡美瑛町白金",
+  "phone": "0166-94-3355"
  },
  {
   "hub": "furano",
@@ -6727,17 +6780,20 @@ window.PLACES = [
   "id": 135,
   "region": "อาซาฮิคาวะ / บิเอ / ฟูราโน่ / โซอุนเคียว",
   "feeYen": 0,
-  "lat": 43.4645,
-  "lng": 142.4705,
+  "lat": 43.46506,
+  "lng": 142.48016,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จากที่อยู่ทางการ (GSI)",
   "img": "img/places/135.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Hinode-park_Kamifurano.jpg",
   "peak": [
    6,
    7,
    8
-  ]
+  ],
+  "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=441",
+  "addrJa": "空知郡上富良野町東1線北27号日の出公園",
+  "phone": "0167-39-4200"
  },
  {
   "hub": "furano",
@@ -6775,7 +6831,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "ประมาณ",
   "img": "img/places/136.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:East_Sussex_UK_locator_map_2010.svg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:East_Sussex_UK_locator_map_2010.svg",
+  "ref": "https://www.farm-tomita.co.jp/",
+  "url": "https://www.farm-tomita.co.jp/"
  },
  {
   "hub": "sounkyo",
@@ -6870,7 +6928,9 @@ window.PLACES = [
   "peak": [
    7,
    8
-  ]
+  ],
+  "ref": "https://www.town.hokuryu.hokkaido.jp/",
+  "url": "https://www.town.hokuryu.hokkaido.jp/"
  },
  {
   "hub": "asahikawa",
@@ -7934,7 +7994,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/160_1.jpg",
-  "imgCredit": "https://www.flickr.com/photos/48701008@N00/5092615205"
+  "imgCredit": "https://www.flickr.com/photos/48701008@N00/5092615205",
+  "ref": "https://www.biei-hokkaido.jp/ja/hill-town-biei",
+  "url": "https://www.biei-hokkaido.jp/ja/hill-town-biei"
  },
  {
   "hub": "biei",
@@ -7983,7 +8045,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก OpenStreetMap",
   "img": "img/places/161.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%BB%E3%83%96%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC%E3%81%AE%E4%B8%98_1.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%BB%E3%83%96%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC%E3%81%AE%E4%B8%98_1.jpg",
+  "ref": "https://www.biei-hokkaido.jp/ja/hill-town-biei",
+  "url": "https://www.biei-hokkaido.jp/ja/hill-town-biei"
  },
  {
   "hub": "biei",
@@ -8235,12 +8299,15 @@ window.PLACES = [
   "id": 166,
   "region": "อาซาฮิคาวะ / บิเอ / ฟูราโน่ / โซอุนเคียว",
   "feeYen": 0,
-  "lat": 43.414,
-  "lng": 142.423,
+  "lat": 43.41007,
+  "lng": 142.42264,
   "checked": "2026-11",
-  "acc": "ประมาณ",
+  "acc": "จากที่อยู่ทางการ (GSI)",
   "img": "img/places/166.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Farm-Tomita.Irodori-no-Hatake01.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Farm-Tomita.Irodori-no-Hatake01.JPG",
+  "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=443",
+  "addrJa": "中富良野町宮町1番41号",
+  "phone": "0167-44-2133"
  },
  {
   "hub": "sounkyo",
@@ -8345,7 +8412,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/168.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Shikishimaso_in_Tenninkyo_onsen.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Shikishimaso_in_Tenninkyo_onsen.jpg",
+  "ref": "https://higashikawa-town.jp/",
+  "url": "https://higashikawa-town.jp/"
  },
  {
   "hub": "sapporo",
@@ -8615,7 +8684,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "ประมาณ",
   "img": "img/places/173.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_television_tower_at_night_IMG_2982.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_television_tower_at_night_IMG_2982.jpg",
+  "ref": "https://www.sapporo.travel/event/event-list/munich_christmas_market/",
+  "url": "https://www.sapporo.travel/event/event-list/munich_christmas_market/"
  },
  {
   "hub": "jozankei",
@@ -10394,7 +10465,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/208.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokkaido_Jingu_Tongu.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokkaido_Jingu_Tongu.JPG",
+  "ref": "http://www.hokkaidojingu.or.jp/",
+  "url": "http://www.hokkaidojingu.or.jp/"
  },
  {
   "hub": "otaru",
@@ -10495,7 +10568,11 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/210.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sumiyoshi_Shrine_of_Otaru.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sumiyoshi_Shrine_of_Otaru.jpg",
+  "ref": "https://otaru.gr.jp/shop/sumiyoshi-shrine",
+  "url": "http://www.otarusumiyoshijinja.or.jp/",
+  "addrJa": "小樽市住ノ江2丁目5番1号",
+  "phone": "0134-23-0785"
  },
  {
   "hub": "otaru",
@@ -12424,9 +12501,9 @@ window.PLACES = [
   "id": 246,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 420,
-  "lat": 43.063775,
-  "lng": 141.342335,
-  "acc": "จาก OpenStreetMap",
+  "lat": 43.07045,
+  "lng": 141.34715,
+  "acc": "จากที่อยู่ทางการ (GSI)",
   "checked": "2026-11",
   "imgs": [
    {
@@ -12453,7 +12530,11 @@ window.PLACES = [
    9,
    10,
    11
-  ]
+  ],
+  "ref": "https://www.sapporo.travel/spot/facility/hokkaido_university/",
+  "url": "https://www.hokudai.ac.jp/",
+  "addrJa": "札幌市北区北8条西5丁目",
+  "phone": "011-716-2111("
  },
  {
   "hub": "sapporo",
@@ -12565,7 +12646,11 @@ window.PLACES = [
    }
   ],
   "img": "img/places/248_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Otaru_Sakaimachi_Dori_Shopping_Street%2C_Otaru%2C_Hokkaido%2C_Japan%2C_%E5%B0%8F%E6%A8%BD%E5%A0%BA%E7%94%BA%E9%80%9A%E5%95%86%E5%BA%97%E8%A1%97%2C_%E5%B0%8F%E6%A8%BD%2C_%E5%8C%97%E6%B5%B7%E9%81%93%2C_%E6%97%A5%E6%9C%AC%2C_%E5%B0%8F%E6%A8%BD%E5%A0%BA%E7%94%BA%E9%80%9A%E3%82%8A%E5%95%86%E5%BA%97%E8%A1%97%2C_%E3%81%8A%E3%81%9F%E3%82%8B%E3%81%97%2C_%E3%81%BB%E3%81%A3%E3%81%8B%E3%81%84%E3%81%A9%E3%81%86%2C_%E3%81%AB%E3%81%A3%E3%81%BD%E3%82%93%2C_%E3%81%AB%E3%81%BB%E3%82%93_%2816099851034%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Otaru_Sakaimachi_Dori_Shopping_Street%2C_Otaru%2C_Hokkaido%2C_Japan%2C_%E5%B0%8F%E6%A8%BD%E5%A0%BA%E7%94%BA%E9%80%9A%E5%95%86%E5%BA%97%E8%A1%97%2C_%E5%B0%8F%E6%A8%BD%2C_%E5%8C%97%E6%B5%B7%E9%81%93%2C_%E6%97%A5%E6%9C%AC%2C_%E5%B0%8F%E6%A8%BD%E5%A0%BA%E7%94%BA%E9%80%9A%E3%82%8A%E5%95%86%E5%BA%97%E8%A1%97%2C_%E3%81%8A%E3%81%9F%E3%82%8B%E3%81%97%2C_%E3%81%BB%E3%81%A3%E3%81%8B%E3%81%84%E3%81%A9%E3%81%86%2C_%E3%81%AB%E3%81%A3%E3%81%BD%E3%82%93%2C_%E3%81%AB%E3%81%BB%E3%82%93_%2816099851034%29.jpg",
+  "ref": "https://otaru.gr.jp/shop/sakaimachidori-touristinformationcenter",
+  "url": "http://otaru-sakaimachi.com/",
+  "addrJa": "小樽堺町6-11",
+  "phone": "0134-27-1133"
  },
  {
   "hub": "otaru",
@@ -13593,7 +13678,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/265_3.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E6%B5%B7%E9%81%93%E3%82%B0%E3%83%AA%E3%83%BC%E3%83%B3%E3%83%A9%E3%83%B3%E3%83%89_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E6%B5%B7%E9%81%93%E3%82%B0%E3%83%AA%E3%83%BC%E3%83%B3%E3%83%A9%E3%83%B3%E3%83%89_-_panoramio.jpg",
+  "ref": "https://www.greenland.co.jp/",
+  "url": "https://www.greenland.co.jp/"
  },
  {
   "hub": "shikotsu",
@@ -14420,7 +14507,9 @@ window.PLACES = [
   "en": "Kinotoya Odori",
   "checked": "2026-11",
   "img": "img/places/279.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:KINOTOYA%2C_Sapporo%2C_Hokkaido%2C_Japan%2C_%E6%9C%AD%E5%B9%8C%2C_%E5%8C%97%E6%B5%B7%E9%81%93%2C_%E6%97%A5%E6%9C%AC%2C_%E7%84%BC%E3%81%8D%E3%81%9F%E3%81%A6%E3%83%81%E3%83%BC%E3%82%BA%E3%82%BF%E3%83%AB%E3%83%88%2C_%E3%81%8D%E3%81%AE%E3%81%A8%E3%82%84%2C_%E6%96%B0%E5%8D%83%E6%AD%B3%E7%A9%BA%E6%B8%AF%E5%BA%97%2C_%E3%81%95%E3%81%A3%E3%81%BD%E3%82%8D%E3%81%97%2C_%E3%81%BB%E3%81%A3%E3%81%8B%E3%81%84%E3%81%A9%E3%81%86%2C_%E3%81%AB%E3%81%A3%E3%81%BD%E3%82%93%2C_%E3%81%AB%E3%81%BB%E3%82%93_%2816720983681%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:KINOTOYA%2C_Sapporo%2C_Hokkaido%2C_Japan%2C_%E6%9C%AD%E5%B9%8C%2C_%E5%8C%97%E6%B5%B7%E9%81%93%2C_%E6%97%A5%E6%9C%AC%2C_%E7%84%BC%E3%81%8D%E3%81%9F%E3%81%A6%E3%83%81%E3%83%BC%E3%82%BA%E3%82%BF%E3%83%AB%E3%83%88%2C_%E3%81%8D%E3%81%AE%E3%81%A8%E3%82%84%2C_%E6%96%B0%E5%8D%83%E6%AD%B3%E7%A9%BA%E6%B8%AF%E5%BA%97%2C_%E3%81%95%E3%81%A3%E3%81%BD%E3%82%8D%E3%81%97%2C_%E3%81%BB%E3%81%A3%E3%81%8B%E3%81%84%E3%81%A9%E3%81%86%2C_%E3%81%AB%E3%81%A3%E3%81%BD%E3%82%93%2C_%E3%81%AB%E3%81%BB%E3%82%93_%2816720983681%29.jpg",
+  "ref": "https://www.kinotoya.com/",
+  "url": "https://www.kinotoya.com/"
  },
  {
   "id": 280,
@@ -14679,7 +14768,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/286_1.jpg",
-  "imgCredit": "https://www.flickr.com/photos/72548439@N00/21411372478"
+  "imgCredit": "https://www.flickr.com/photos/72548439@N00/21411372478",
+  "ref": "https://www.morihico.com/",
+  "url": "https://www.morihico.com/"
  },
  {
   "hub": "furano",
@@ -15156,7 +15247,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/293_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/w/index.php?curid=52268973"
+  "imgCredit": "https://commons.wikimedia.org/w/index.php?curid=52268973",
+  "ref": "https://jozankei.jp/",
+  "url": "https://jozankei.jp/"
  },
  {
   "hub": "otaru",
@@ -15730,8 +15823,8 @@ window.PLACES = [
   "tags": [
    "food"
   ],
-  "open": "≈11:00-21:00 (วันธรรมดาพักบ่าย)",
-  "closed": "ตรวจ",
+  "open": "≈11:00-15:00, 16:00-21:00 (ตามฤดู/วัน)",
+  "closed": "-",
   "fee": "≈¥1,000–1,300",
   "dur": "45 นาที",
   "hours": 0.75,
@@ -15764,7 +15857,11 @@ window.PLACES = [
   "lat": 43.03287,
   "lng": 141.36067,
   "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.sapporo.travel/gourmet/shop/shop_806/",
+  "url": "http://www.sumireya.com/",
+  "addrJa": "札幌市豊平区中の島2条4丁目7-28",
+  "phone": "011-824-5655"
  },
  {
   "hub": "sapporo",
@@ -15778,8 +15875,8 @@ window.PLACES = [
   "tags": [
    "food"
   ],
-  "open": "≈11:00-15:15, 17:00-19:30",
-  "closed": "จันทร์",
+  "open": "≈11:00-15:15, 17:00-19:30 (ตามฤดู/วัน)",
+  "closed": "จันทร์, ไม่แน่นอน",
   "fee": "≈¥1,000",
   "dur": "1-1.5 ชม. (รวมคิว)",
   "hours": 1.2,
@@ -15812,7 +15909,11 @@ window.PLACES = [
   "lat": 43.03581,
   "lng": 141.38178,
   "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.sapporo.travel/gourmet/shop/shop_339-2/",
+  "url": "https://www.menya-saimi.com/",
+  "addrJa": "札幌市豊平区美園10条5丁目3番12号",
+  "phone": "011-820-6511"
  },
  {
   "hub": "sapporo",
@@ -15860,7 +15961,9 @@ window.PLACES = [
   "lat": 43.05099,
   "lng": 141.34486,
   "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.ebisoba.com/",
+  "url": "https://www.ebisoba.com/"
  },
  {
   "hub": "sapporo",
@@ -15956,7 +16059,9 @@ window.PLACES = [
   "lat": 43.05817,
   "lng": 141.35512,
   "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://s-garaku.com/",
+  "url": "https://s-garaku.com/"
  },
  {
   "hub": "sapporo",
@@ -16004,7 +16109,9 @@ window.PLACES = [
   "lat": 43.05523,
   "lng": 141.35098,
   "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://suage.info/",
+  "url": "https://suage.info/"
  },
  {
   "hub": "sapporo",
@@ -16052,7 +16159,9 @@ window.PLACES = [
   "lat": 43.05435,
   "lng": 141.35284,
   "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "http://best.miru-kuru.com/daruma/",
+  "url": "http://best.miru-kuru.com/daruma/"
  },
  {
   "hub": "sapporo",
@@ -16152,7 +16261,9 @@ window.PLACES = [
   "lat": 43.0685,
   "lng": 141.3505,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.sushi-hanamaru.com/",
+  "url": "https://www.sushi-hanamaru.com/"
  },
  {
   "hub": "sapporo",
@@ -16201,7 +16312,9 @@ window.PLACES = [
   "lat": 43.06563,
   "lng": 141.34677,
   "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.rokkatei.co.jp/",
+  "url": "https://www.rokkatei.co.jp/"
  },
  {
   "hub": "sapporo",
@@ -16303,7 +16416,9 @@ window.PLACES = [
   "lat": 43.06626,
   "lng": 141.35139,
   "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.sato-suisan.co.jp/",
+  "url": "https://www.sato-suisan.co.jp/"
  },
  {
   "hub": "sapporo",
@@ -16405,7 +16520,10 @@ window.PLACES = [
   "lat": 43.0604,
   "lng": 141.3556,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.sapporo.travel/spot/facility/hokkaido-produce-food-select-shop-kita-kitchen-3/",
+  "url": "https://www.maruiimai.mistore.jp/sapporo/kita.html",
+  "addrJa": "きたキッチンオーロラ店 札幌地下街オーロラタウン (札幌市中央区大通西2丁目) きたキッチン新さっぽろ店 新さっぽろサン"
  },
  {
   "hub": "sapporo",
@@ -16505,7 +16623,9 @@ window.PLACES = [
   "lat": 43.0678,
   "lng": 141.3489,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.pokemon.co.jp/shop/pokecen/sapporo/",
+  "url": "https://www.pokemon.co.jp/shop/pokecen/sapporo/"
  },
  {
   "hub": "sapporo",
@@ -16695,10 +16815,14 @@ window.PLACES = [
   "id": 322,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 4000,
-  "lat": 43.02266,
-  "lng": 141.26865,
-  "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "lat": 43.03133,
+  "lng": 141.27696,
+  "acc": "จากที่อยู่ทางการ (GSI)",
+  "checked": "2026-11",
+  "ref": "https://www.sapporo.travel/spot/facility/sapporo_bankei_ski_area/",
+  "url": "https://www.bankei.co.jp/",
+  "addrJa": "札幌市中央区盤渓410",
+  "phone": "011-641-0071"
  },
  {
   "hub": "sapporo",
@@ -16802,9 +16926,9 @@ window.PLACES = [
    "nature",
    "flower"
   ],
-  "open": "≈9:00-17:00",
-  "closed": "ตรวจ",
-  "fee": "ฟรี (กิจกรรมเสียเงิน)",
+  "open": "≈9:00-18:00, 9:00-17:00",
+  "closed": "จันทร์, ช่วงปีใหม่, ปิดหน้าหนาว",
+  "fee": "ฟรี",
   "dur": "2 ชม.",
   "hours": 2,
   "highlight": "สวนเกษตรกว้างใกล้สวนโมเอเรนุมะ หน้าร้อนทุ่งดอกไม้ ฟาร์ม จักรยาน หน้าหนาวมีงานเล่นหิมะ (สโนว์โมบิลลากห่วงยาง เลื่อนหิมะ) ช่วง ก.พ.",
@@ -16840,7 +16964,11 @@ window.PLACES = [
   "lat": 43.12051,
   "lng": 141.4144,
   "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.sapporo.travel/spot/facility/satoland/",
+  "url": "https://www.satoland.com/",
+  "addrJa": "札幌市東区丘珠町584-2",
+  "phone": "011-787-0223"
  },
  {
   "hub": "sapporo",
@@ -17015,9 +17143,9 @@ window.PLACES = [
   "tags": [
    "culture"
   ],
-  "open": "≈8:45-17:15",
-  "closed": "จันทร์",
-  "fee": "≈¥200",
+  "open": "≈8:45-22:00, 9:00-17:00",
+  "closed": "จันทร์, อังคาร, ช่วงปีใหม่",
+  "fee": "ฟรี",
   "dur": "1 ชม.",
   "hours": 1,
   "highlight": "ศูนย์วัฒนธรรมไอนุของเมือง เครื่องแต่งกาย เครื่องมือ บ้านไอนุจำลอง ทดลองงานฝีมือ ทางผ่านไปโจซังเค",
@@ -17049,7 +17177,11 @@ window.PLACES = [
   "lat": 42.97021,
   "lng": 141.20824,
   "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.sapporo.travel/spot/facility/sapporo-pirka-kotan/",
+  "url": "https://www.city.sapporo.jp/shimin/pirka-kotan/index.html",
+  "addrJa": "札幌市南区小金湯27",
+  "phone": "011-596-5961"
  },
  {
   "hub": "sapporo",
@@ -17150,7 +17282,11 @@ window.PLACES = [
   "lat": 42.99643,
   "lng": 141.39499,
   "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.sapporo.travel/spot/facility/sapporo_dome/",
+  "url": "https://www.sapporo-dome.co.jp/",
+  "addrJa": "札幌市豊平区羊ケ丘1番地",
+  "phone": "011-850-1000("
  },
  {
   "hub": "sapporo",
@@ -17248,7 +17384,9 @@ window.PLACES = [
   "lat": 43.0601,
   "lng": 141.3478,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.yosakoi-soran.jp/",
+  "url": "https://www.yosakoi-soran.jp/"
  },
  {
   "hub": "sapporo",
@@ -17290,7 +17428,9 @@ window.PLACES = [
   "lat": 43.0597,
   "lng": 141.344,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.sapporo.travel/event/event-list/sapporo-odori-beer-garden/",
+  "url": "https://www.sapporo.travel/event/event-list/sapporo-odori-beer-garden/"
  },
  {
   "hub": "sapporo",
@@ -17315,10 +17455,11 @@ window.PLACES = [
   "best": "เที่ยง-เย็น",
   "parking": "ใช้รถไฟใต้ดิน",
   "months": [
-   9
+   9,
+   10
   ],
   "sn": {
-   "autumn": "ปลาย ส.ค.–ปลาย ก.ย."
+   "autumn": "11 ก.ย.-3 ต.ค. 2026"
   },
   "tr": {
    "lv": "ok",
@@ -17331,7 +17472,9 @@ window.PLACES = [
   "lat": 43.0599,
   "lng": 141.346,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.sapporo.travel/event/event-list/sapporo_autumn_fest/",
+  "url": "https://www.sapporo.travel/event/event-list/sapporo_autumn_fest/"
  },
  {
   "hub": "jozankei",
@@ -17423,10 +17566,14 @@ window.PLACES = [
   "id": 337,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 0,
-  "lat": 42.969,
-  "lng": 141.162,
-  "acc": "ประมาณ",
-  "checked": "2026-11"
+  "lat": 42.96585,
+  "lng": 141.16701,
+  "acc": "จากที่อยู่ทางการ (GSI)",
+  "checked": "2026-11",
+  "ref": "https://www.sapporo.travel/event/event-list/yukitouro/",
+  "url": "https://jozankei.jp/",
+  "addrJa": "札幌市南区定山渓温泉東3丁目",
+  "phone": "011-598-2012("
  },
  {
   "hub": "otaru",
@@ -17838,7 +17985,9 @@ window.PLACES = [
   "lat": 43.19206,
   "lng": 141.00737,
   "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.rokkatei.co.jp/",
+  "url": "https://www.rokkatei.co.jp/"
  },
  {
   "hub": "otaru",
@@ -18009,8 +18158,8 @@ window.PLACES = [
   "tags": [
    "food"
   ],
-  "open": "≈10:00-18:00",
-  "closed": "-",
+  "open": "≈9:00-17:00",
+  "closed": "ช่วงปีใหม่",
   "fee": "ฟรี (ชิม)",
   "dur": "30 นาที",
   "hours": 0.5,
@@ -18040,10 +18189,14 @@ window.PLACES = [
   "id": 349,
   "region": "ซัปโปโรและรอบ ๆ",
   "feeYen": 0,
-  "lat": 43.19735,
-  "lng": 141.00079,
-  "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "lat": 43.15395,
+  "lng": 141.0242,
+  "acc": "จากที่อยู่ทางการ (GSI)",
+  "checked": "2026-11",
+  "ref": "https://otaru.gr.jp/shop/hokkaidouwine",
+  "url": "http://www.hokkaidowine.com/",
+  "addrJa": "小樽市朝里川温泉1丁目130番地",
+  "phone": "0134-34-2187"
  },
  {
   "hub": "otaru",
@@ -18318,7 +18471,7 @@ window.PLACES = [
   "tags": [
    "culture"
   ],
-  "open": "≈9:00-18:00",
+  "open": "≈9:00-21:00",
   "closed": "-",
   "fee": "ทำกล่องดนตรี ≈¥2,000+",
   "dur": "1 ชม.",
@@ -18352,7 +18505,11 @@ window.PLACES = [
   "lat": 43.19643,
   "lng": 141.0031,
   "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://otaru.gr.jp/shop/kaimeiro",
+  "url": "http://www.kaimeiro.com",
+  "addrJa": "小樽市堺町1-20",
+  "phone": "0134-23-6505"
  },
  {
   "hub": "otaru",
@@ -19095,7 +19252,9 @@ window.PLACES = [
   "lat": 43.77,
   "lng": 142.35712,
   "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.atca.jp/members/eat/",
+  "addrJa": "旭川市4条通5丁目"
  },
  {
   "hub": "asahikawa",
@@ -19193,7 +19352,10 @@ window.PLACES = [
   "lat": 43.77019,
   "lng": 142.36089,
   "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.atca.jp/kankouspoy/５．７小路ふらりーと/",
+  "url": "https://www.furari-to.net/",
+  "addrJa": "旭川市5条通7丁目"
  },
  {
   "hub": "asahikawa",
@@ -20335,8 +20497,8 @@ window.PLACES = [
    "food",
    "nature"
   ],
-  "open": "≈10:00-17:00",
-  "closed": "-",
+  "open": "≈10:30-16:00",
+  "closed": "ปิดหน้าหนาว",
   "fee": "ฟรี (ค่าขนม)",
   "dur": "45 นาที",
   "hours": 0.75,
@@ -20369,7 +20531,10 @@ window.PLACES = [
   "lat": 43.3644,
   "lng": 142.3773,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=137",
+  "addrJa": "富良野市清水山",
+  "phone": "0167-39-0006"
  },
  {
   "hub": "furano",
@@ -20920,7 +21085,7 @@ window.PLACES = [
    "onsen",
    "snow"
   ],
-  "open": "≈10:00-22:00",
+  "open": "≈10:00-21:00",
   "closed": "-",
   "fee": "≈¥700",
   "dur": "1.5 ชม.",
@@ -20954,7 +21119,10 @@ window.PLACES = [
   "lat": 43.4445,
   "lng": 142.6365,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=370",
+  "addrJa": "上富良野町十勝岳",
+  "phone": "0167-45-4126"
  },
  {
   "hub": "furano",
@@ -36225,6 +36393,38 @@ window.PLACES = [
   "lng": 142.36247,
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市5条通8丁目1253-1 旭川屋台村はれて内",
+  "ref": "https://www.atca.jp/members/eat/",
+  "checked": "2026-11"
+ },
+ {
+  "id": 838,
+  "region": "อาซาฮิคาวะ / บิเอ / ฟูราโน่ / โซอุนเคียว",
+  "area": "อาซาฮิคาวะ",
+  "hub": "asahikawa",
+  "name": "ซังโคชะ (สุกียากิ อาซาฮิคาวะ)",
+  "en": "Sukiyaki Sankosha Asahikawa",
+  "ja": "すき焼 三光舎",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "อาหาร / กลางคืน",
+  "tags": [
+   "food"
+  ],
+  "open": "ตรวจเวลาเปิด (ดูเว็บ)",
+  "closed": "ตรวจ",
+  "fee": "ค่าอาหาร",
+  "dur": "1 ชม.",
+  "hours": 1,
+  "highlight": "ร้านสุกียากิเก่าแก่ของอาซาฮิคาวะ",
+  "caution": "เว็บทางการไม่ระบุเวลาเปิด ตรวจก่อนไป",
+  "best": "ค่ำ",
+  "parking": "",
+  "evening": true,
+  "feeYen": 0,
+  "lat": 43.76934,
+  "lng": 142.36386,
+  "acc": "จากที่อยู่ทางการ (GSI)",
+  "addrJa": "旭川市5条通9丁目右1号",
   "ref": "https://www.atca.jp/members/eat/",
   "checked": "2026-11"
  }

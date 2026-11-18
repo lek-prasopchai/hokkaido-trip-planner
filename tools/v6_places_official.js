@@ -84,6 +84,7 @@ const FIX = {
   275: { open: "≈10:00-17:00 (ธ.ค.-ก.พ.) / 9:00-18:00 (มิ.ย.-ส.ค.)", closed: "31 ธ.ค.-2 ม.ค." }, 280: { open: "≈13:00-24:00 (ศ.-ส. ถึง 1:00)", closed: "ไม่แน่นอน" },
   281: { open: "≈10:00-18:00", closed: "1 ม.ค." }, 284: { open: "≈10:00-18:00", closed: "อังคาร (วันที่ 1 และวันหยุดราชการเปิด)" }, 285: { months: [6, 7, 8, 9], closed: "ปิด ต.ค.-พ.ค." },
   287: { open: "≈12:00-21:00" }, 289: { open: "≈10:00-17:30" }, 294: { months: [5, 6, 7, 8, 9], open: "≈9:00-16:00 (ออกเรือเป็นรอบ พ.ค.-ก.ย.)" },
+  335: { months: [9, 10], sn: { autumn: "11 ก.ย.-3 ต.ค. 2026" } }, 337: { ref: "https://www.sapporo.travel/event/event-list/yukitouro/" },
 };
 
 (async () => {
@@ -111,20 +112,23 @@ const FIX = {
     p.checked = SRC.checked;
   }
   for (const [id, f] of Object.entries(FIX)) { Object.assign(byId[id], f); nFix++; }
+  // จุดที่ไม่มีในเว็บท่องเที่ยวของเมือง: ลิงก์เว็บทางการของสถานที่/สมาคมท่องเที่ยวพื้นที่ (เปิดตรวจแล้วว่าใช้ได้)
+  for (const [id, u] of Object.entries(SRC.refs || {})) if (byId[id] && !byId[id].ref) { byId[id].ref = u; byId[id].url ||= u; nRef++; }
 
   // จุดใหม่
   const N = (s) => hw(s).replace(/[\s・「」『』()（）\-〜~、。]/g, "").replace(/(本店|総本店|本館)$/, "").toLowerCase();
-  const have = places.map((p) => N(p.ja));
+  const have = places.map((p) => [N(p.ja), p.hub]);
   let nid = Math.max(...places.map((p) => p.id)) + 1, added = 0, rough = 0;
   const skipped = [];
   for (const r of SRC.add) {
     const s = r.src, ja = hw(s.name).replace(/&#0?38;/g, "&");
-    if (have.some((h) => h.length >= 3 && (h === N(ja) || (N(ja).length >= 4 && (h.includes(N(ja)) || N(ja).includes(h)))))) { skipped.push(ja); continue; }
     const a = cleanAddr(s.addr, s.city), g = await gsi(a);
     if (!g) { skipped.push(ja + " (ไม่มีพิกัด)"); continue; }
+    const hub = HUBS.reduce((b, h) => (km(g[0], g[1], h.lat, h.lng) < km(g[0], g[1], b.lat, b.lng) ? h : b));
+    // ซ้ำ = ชื่อเดียวกัน/ซ้อนกันในฐานเดียวกัน (ร้านชื่อเดียวกันคนละเมืองไม่นับ)
+    if (have.some(([h, hb]) => hb === hub.id && (h === N(ja) || h.length >= 3 && (N(ja).length >= 4 && (h.includes(N(ja)) || N(ja).includes(h)))))) { skipped.push(ja); continue; }
     const pre = precise(g, a);
     if (!pre) rough++;
-    const hub = HUBS.reduce((b, h) => (km(g[0], g[1], h.lat, h.lng) < km(g[0], g[1], b.lat, b.lng) ? h : b));
     const o = Object.fromEntries(r.opts.split(",").filter(Boolean).map((x) => [x[0], x.slice(1)]));
     const food = /อาหาร|คาเฟ่/.test(r.type) && !/พิพิธ|ฟาร์ม|ตลาด/.test(r.type);
     const dur = +(o.d || (food ? (/คาเฟ่/.test(r.type) ? 0.75 : 1) : 1));
@@ -142,7 +146,7 @@ const FIX = {
     };
     p.feeYen = /¥([\d,]+)/.test(p.fee) ? +p.fee.match(/¥([\d,]+)/)[1].replace(/,/g, "") : 0;
     for (const k of Object.keys(p)) if (p[k] === undefined || p[k] === "") if (k !== "caution" && k !== "parking") delete p[k];
-    places.push(p); have.push(N(ja)); added++;
+    places.push(p); have.push([N(ja), p.hub]); added++;
   }
   fs.writeFileSync(CACHE, JSON.stringify(cache));
   fs.writeFileSync(DATA, head + "window.PLACES = " + JSON.stringify(places, null, 1) + ";\n");
