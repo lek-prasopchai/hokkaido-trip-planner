@@ -26,9 +26,11 @@ const reviewLinks = (p) => {
     ${p.url ? `<a class="btn small" href="${esc(p.url)}" target="_blank" rel="noopener">${I("globe")} เว็บไซต์ทางการ</a>` : `<a class="btn small" href="${gUrl(q + " 公式")}" target="_blank" rel="noopener">${I("globe")} ค้นเว็บทางการ</a>`}`;
 };
 
+// ร้านอาหาร/คาเฟ่รายร้าน (ไม่ใช่ตลาด/ย่าน)
+const isEatery = (p) => /^(อาหาร|คาเฟ่)/.test(p.type);
 const PlacesView = {
-  M: null, lim: 30, f: { region: "", tag: "", stars: 0, q: "", season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, sort: "stars" },
-  F0: { region: "", tag: "", stars: 0, season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, sort: "stars" },
+  M: null, lim: 30, f: { region: "", tag: "", stars: 0, q: "", season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, sort: "stars" },
+  F0: { region: "", tag: "", stars: 0, season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, sort: "stars" },
 
   // มุมมองแผนที่ตอนนี้ (ยังไม่วาดหมุด/พับอยู่ = null → ซูมให้เห็นผลทั้งหมด)
   view() { const m = this.M?.map; return this.M?.drawn && m.getContainer().isConnected && m.getSize().x ? { c: m.getCenter(), z: m.getZoom() } : null; },
@@ -44,6 +46,7 @@ const PlacesView = {
         <p class="lead">${PLACES.length} สถานที่ทั่วฮอกไกโด · เวลาและราคาเป็นค่าประมาณ</p></div>
       <div class="split"><div class="split-top filters no-print">
         <input type="search" class="f-q" aria-label="ค้นหาสถานที่" placeholder="ค้นหาชื่อ ไทย/อังกฤษ/ญี่ปุ่น..." data-f="q" value="${esc(f.q)}">
+        <label class="chk f-eat" style="margin-top:6px"><input type="checkbox" data-f="eat" ${f.eat ? "checked" : ""}> แสดงร้านอาหาร/คาเฟ่ (${PLACES.filter(isEatery).length} ร้าน)</label>
         <details class="f-more" ${foldAttr("pfilter")}><summary>${I("sliders-horizontal")} ตัวกรอง <span class="badge b-info f-n" ${nOn ? "" : "hidden"}>${nOn}</span></summary><div class="row">
         <select data-f="season"><option value="trip" ${f.season === "trip" ? "selected" : ""}>ช่วงทริป (${tripMonths().map((m) => MO[m - 1]).join(", ")})</option><option value="" ${!f.season ? "selected" : ""}>ทุกฤดู</option>
           ${Object.entries(SEASONS).map(([k, s]) => `<option value="${k}" ${f.season === k ? "selected" : ""}>${s.name}</option>`).join("")}</select>
@@ -77,7 +80,8 @@ const PlacesView = {
     return PLACES.filter((p) => (!f.region || p.region === f.region) && (!f.tag || p.tags.includes(f.tag)) && p.stars >= f.stars
       && (!q || [p.name, p.area, p.ja, p.en, p.type, p.highlight, p.kw].join(" ").toLowerCase().includes(q))
       && (!ms || ms.some((m) => monthsOf(p).includes(m)))
-      && (!f.transit || ["ok", "limited", "tour"].includes(access(p))) && (!f.free || !p.feeYen) && (!f.inplan || plan[p.id]) && (!f.wish || S.plan?.wish.includes(p.id)) && (!f.evening || p.evening))
+      && (!f.transit || ["ok", "limited", "tour"].includes(access(p))) && (!f.free || !p.feeYen) && (!f.inplan || plan[p.id]) && (!f.wish || S.plan?.wish.includes(p.id)) && (!f.evening || p.evening)
+      && (f.eat || !isEatery(p) || q || f.tag === "food" || plan[p.id] || S.plan?.wish.includes(p.id))) // ร้านอาหารซ่อนไว้ก่อน (เยอะมาก) ค้นชื่อ/เลือกความสนใจอาหาร/อยู่ในแผนแล้วยังเห็น
       .sort((a, b) => f.sort === "near" ? near(a) - near(b) : b.stars - a.stars || ({ "ดังมาก": 0, "ดัง": 1 }[a.pop] ?? 2) - ({ "ดังมาก": 0, "ดัง": 1 }[b.pop] ?? 2) || a.id - b.id);
   },
 
