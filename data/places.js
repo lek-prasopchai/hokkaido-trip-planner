@@ -1933,8 +1933,8 @@ window.PLACES = [
   "tags": [
    "nature"
   ],
-  "open": "≈10:00-21:00 (หน้าหนาว)",
-  "closed": "ปิดซ่อมบางช่วง",
+  "open": "≈10:00-21:00 (ต.ค.-เม.ย.) / 10:00-22:00 (ปลาย เม.ย.-ก.ย.)",
+  "closed": "- (งดวิ่งเมื่ออากาศแย่)",
   "fee": "≈¥1,800 ไป-กลับ",
   "feeYen": 1800,
   "dur": "1-1.5 ชม.",
@@ -1945,9 +1945,9 @@ window.PLACES = [
   "evening": true,
   "parking": "ไม่มีที่สถานี (จอดในเมือง)",
   "ja": "函館山ロープウェイ",
-  "lat": 41.760078,
-  "lng": 140.709545,
-  "acc": "ตรงจุด",
+  "lat": 41.76091,
+  "lng": 140.7143,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
   "img": "img/places/39.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Wide_view_of_Mount_Hakodate_from_Mashu-Maru.jpg",
   "imgs": [
@@ -1973,7 +1973,11 @@ window.PLACES = [
   "tr": {
    "lv": "ok",
    "t": "รถรางถึง Jujigai เดิน 10 นาที"
-  }
+  },
+  "ref": "https://www.hakobura.jp/spots/398",
+  "addrJa": "函館市元町19-7",
+  "phone": "0138-23-3105(",
+  "checked": "2026-11"
  },
  {
   "id": 40,
@@ -2019,7 +2023,11 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:Kanemori_Red_Brick_Warehouse_Hakodate_Hokkaido_pref_Japan01n.jpg"
    }
   ],
-  "en": "Kanemori Red Brick Warehouse"
+  "en": "Kanemori Red Brick Warehouse",
+  "ref": "https://www.hakobura.jp/spots/899",
+  "addrJa": "函館市末広町14-12",
+  "phone": "0138-27-5530",
+  "checked": "2026-11"
  },
  {
   "id": 41,
@@ -2033,7 +2041,7 @@ window.PLACES = [
   "tags": [
    "food"
   ],
-  "open": "≈6:00-14:00 (หน้าหนาว)",
+  "open": "≈6:00-14:00 (ม.ค.-เม.ย.) / 5:00-14:00",
   "closed": "แต่ละร้าน",
   "fee": "ฟรี",
   "feeYen": 0,
@@ -2064,7 +2072,11 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:Hakodate_Asaichi_Hokkaido_Japan05bs5.jpg"
    }
   ],
-  "en": "Hakodate Morning Market"
+  "en": "Hakodate Morning Market",
+  "ref": "https://www.hakobura.jp/spots/694",
+  "addrJa": "函館市若松町9番19号",
+  "phone": "0120-858-313",
+  "checked": "2026-11"
  },
  {
   "id": 42,
@@ -2082,7 +2094,7 @@ window.PLACES = [
   ],
   "open": "≈9:00-18:00",
   "closed": "-",
-  "fee": "≈¥1,000 (หอคอย)",
+  "fee": "≈¥1,200",
   "feeYen": 1000,
   "dur": "1-1.5 ชม.",
   "hours": 1.25,
@@ -2116,7 +2128,11 @@ window.PLACES = [
   "tr": {
    "lv": "ok",
    "t": "รถรางถึง Goryokaku-koen-mae เดิน 15 นาที"
-  }
+  },
+  "ref": "https://www.hakobura.jp/spots/470",
+  "addrJa": "函館市五稜郭町43-9",
+  "phone": "0138-51-4785",
+  "checked": "2026-11"
  },
  {
   "id": 43,
@@ -2162,7 +2178,11 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:Hakodate_Hachimanzaka_at_night_20231223b.jpg"
    }
   ],
-  "en": "Hachimanzaka Slope"
+  "en": "Hachimanzaka Slope",
+  "ref": "https://www.hakobura.jp/spots/478",
+  "addrJa": "函館市末広町",
+  "phone": "0138-23-5440",
+  "checked": "2026-11"
  },
  {
   "id": 44,
@@ -2176,8 +2196,8 @@ window.PLACES = [
   "tags": [
    "animals"
   ],
-  "open": "≈9:30-16:30",
-  "closed": "29 ธ.ค.-3 ม.ค. (ตรวจ)",
+  "open": "≈9:30-16:30 (พ.ย.-มี.ค.) / 9:30-18:00 (เม.ย.-ต.ค.)",
+  "closed": "29 ธ.ค.-1 ม.ค.",
   "fee": "≈¥300",
   "feeYen": 300,
   "dur": "45 นาที",
@@ -2211,7 +2231,11 @@ window.PLACES = [
   "tr": {
    "lv": "ok",
    "t": "รถรางถึงยุโนคาวะออนเซ็น เดิน 15 นาที"
-  }
+  },
+  "ref": "https://www.hakobura.jp/spots/362",
+  "addrJa": "函館市湯川町3-1-15",
+  "phone": "0138-57-7833",
+  "checked": "2026-11"
  },
  {
   "id": 45,
@@ -2267,7 +2291,11 @@ window.PLACES = [
   "tr": {
    "lv": "ok",
    "t": "JR ถึงสถานี Onuma-koen เดิน 3 นาที"
-  }
+  },
+  "ref": "https://www.hakobura.jp/spots/348",
+  "addrJa": "北海道亀田郡七飯町",
+  "phone": "0138-65-2517",
+  "checked": "2026-11"
  },
  {
   "id": 46,
@@ -4753,8 +4781,8 @@ window.PLACES = [
    "city",
    "culture"
   ],
-  "open": "≈8:00-16:30",
-  "closed": "ปลาย ธ.ค.-ต้น ม.ค. (ตรวจ)",
+  "open": "≈9:00-16:00 (ธ.ค.-ก.พ.) / 8:30-17:00 (พ.ค.-ก.ย.)",
+  "closed": "29 ธ.ค.-2 ม.ค.",
   "fee": "ฟรี",
   "dur": "30 นาที",
   "highlight": "อารามอิฐแดงกลางหิมะ สวนสงบ ร้านคุกกี้ของแม่ชี",
@@ -4782,7 +4810,11 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:Cathoric_holy_site_Trappistine_of_Lourdes.JPG"
    }
   ],
-  "en": "Trappistine Convent"
+  "en": "Trappistine Convent",
+  "ref": "https://www.hakobura.jp/spots/504",
+  "addrJa": "函館市上湯川町346",
+  "phone": "0138-57-3331",
+  "checked": "2026-11"
  },
  {
   "hub": "asahikawa",
@@ -6351,7 +6383,7 @@ window.PLACES = [
    "culture"
   ],
   "open": "≈9:00-17:00 (เม.ย.-ธ.ค.)",
-  "closed": "ปิด ธ.ค.-เม.ย.",
+  "closed": "ปิด 11 ธ.ค.-10 เม.ย.",
   "fee": "≈¥360",
   "dur": "1.5 ชม.",
   "hours": 1.5,
@@ -6385,7 +6417,10 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/127.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:MatsumaeCastle.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:MatsumaeCastle.jpg",
+  "ref": "https://www.hakobura.jp/spots/544",
+  "addrJa": "北海道松前郡松前町字松城",
+  "phone": "0139-42-2216"
  },
  {
   "hub": "hakodate",
@@ -6400,8 +6435,8 @@ window.PLACES = [
    "city",
    "culture"
   ],
-  "open": "≈9:00-17:00",
-  "closed": "ตรวจ",
+  "open": "≈9:00-17:00 (พ.ย.-มี.ค.) / 9:00-18:00 (เม.ย.-ต.ค.)",
+  "closed": "31 ธ.ค.-3 ม.ค.",
   "fee": "≈¥300",
   "dur": "45 นาที",
   "hours": 0.75,
@@ -6436,7 +6471,10 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/128.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Old_Public_Hall_of_Hakodate_Ward_Japan02s3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Old_Public_Hall_of_Hakodate_Ward_Japan02s3.jpg",
+  "ref": "https://www.hakobura.jp/spots/512",
+  "addrJa": "函館市元町11-13",
+  "phone": "0138-22-1001"
  },
  {
   "hub": "biei",
@@ -9323,8 +9361,8 @@ window.PLACES = [
    "culture",
    "city"
   ],
-  "open": "≈10:00-17:00 (ตรวจ)",
-  "closed": "ช่วงพิธี",
+  "open": "≈10:00-17:00 (เสาร์ถึง 16:00, อาทิตย์ 13:00-16:00)",
+  "closed": "ภายในปิด 25 ธ.ค.-24 มี.ค. (ดูภายนอกได้)",
   "fee": "≈¥200",
   "dur": "20 นาที",
   "hours": 0.35,
@@ -9359,7 +9397,10 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/186.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Orthodox_Church_in_snow_20231224a.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Orthodox_Church_in_snow_20231224a.jpg",
+  "ref": "https://www.hakobura.jp/spots/524",
+  "addrJa": "函館市元町3-13",
+  "phone": "0138-23-7387"
  },
  {
   "hub": "hakodate",
@@ -9375,7 +9416,7 @@ window.PLACES = [
    "city"
   ],
   "open": "≈10:00-16:00",
-  "closed": "ช่วงพิธี",
+  "closed": "30 ธ.ค.-5 ม.ค., ช่วงพิธี",
   "fee": "ฟรี",
   "dur": "15 นาที",
   "hours": 0.25,
@@ -9410,7 +9451,10 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/187.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Motomachi_Catholic_Church_in_Hakodate_Hokkaido_Japan01n.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Motomachi_Catholic_Church_in_Hakodate_Hokkaido_Japan01n.jpg",
+  "ref": "https://www.hakobura.jp/spots/513",
+  "addrJa": "函館市元町15-30",
+  "phone": "0138-22-6877"
  },
  {
   "hub": "hakodate",
@@ -9426,8 +9470,8 @@ window.PLACES = [
    "food",
    "culture"
   ],
-  "open": "≈9:00-17:00",
-  "closed": "ตรวจ",
+  "open": "≈9:00-17:00 (พ.ย.-มี.ค.) / 9:00-19:00 (เม.ย.-ต.ค.)",
+  "closed": "31 ธ.ค.-1 ม.ค.",
   "fee": "≈¥300",
   "dur": "40 นาที",
   "hours": 0.6,
@@ -9465,7 +9509,10 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/188.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Former_British_Consulate_in_Hakodate_Hokkaido_Japan01s3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Former_British_Consulate_in_Hakodate_Hokkaido_Japan01s3.jpg",
+  "ref": "https://www.hakobura.jp/spots/507",
+  "addrJa": "函館市元町33-14",
+  "phone": "0138-83-1800"
  },
  {
   "hub": "hakodate",
@@ -9480,8 +9527,8 @@ window.PLACES = [
    "city",
    "culture"
   ],
-  "open": "≈9:00-18:00 (หน้าหนาว ≈-17:00)",
-  "closed": "ตรวจ",
+  "open": "≈9:00-17:00 (พ.ย.-มี.ค.) / 9:00-18:00 (เม.ย.-ต.ค.)",
+  "closed": "31 ธ.ค.-1 ม.ค.",
   "fee": "≈¥500",
   "dur": "45 นาที",
   "hours": 0.75,
@@ -9516,7 +9563,10 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/189.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Goryokaku_Panorama_1.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Goryokaku_Panorama_1.JPG",
+  "ref": "https://www.hakobura.jp/spots/502",
+  "addrJa": "函館市五稜郭町44番地",
+  "phone": "0138-51-2864"
  },
  {
   "hub": "obihiro",
@@ -10848,7 +10898,10 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/215.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Hachiman_Shrine_in_Nov_2024a.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Hachiman_Shrine_in_Nov_2024a.jpg",
+  "ref": "https://www.hakobura.jp/spots/496",
+  "addrJa": "函館市谷地頭町2-5",
+  "phone": "0138-22-3636"
  },
  {
   "hub": "hakodate",
@@ -10908,7 +10961,10 @@ window.PLACES = [
    }
   ],
   "img": "img/places/216_2.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E8%88%B9%E9%AD%82%E7%A5%9E%E7%A4%BE_%E6%96%B0%E5%B1%8B%E6%95%B7%E7%94%BA.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E8%88%B9%E9%AD%82%E7%A5%9E%E7%A4%BE_%E6%96%B0%E5%B1%8B%E6%95%B7%E7%94%BA.jpg",
+  "ref": "https://www.hakobura.jp/spots/646",
+  "addrJa": "函館市元町7-2",
+  "phone": "0138-23-2306"
  },
  {
   "hub": "hakodate",
@@ -10959,7 +11015,10 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/217.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Yukura_Shrine_in_May_2024.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Yukura_Shrine_in_May_2024.jpg",
+  "ref": "https://www.hakobura.jp/spots/516",
+  "addrJa": "函館市湯川町2丁目28-1",
+  "phone": "0138-57-8282"
  },
  {
   "hub": "obihiro",
@@ -11128,7 +11187,7 @@ window.PLACES = [
   "tags": [
    "culture"
   ],
-  "open": "≈9:00-16:00 (ดูภายนอกได้ตลอด)",
+  "open": "≈7:00-17:00",
   "closed": "-",
   "fee": "ฟรี",
   "dur": "20 นาที",
@@ -11164,7 +11223,10 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก OpenStreetMap",
   "img": "img/places/221.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%9D%B1%E6%9C%AC%E9%A1%98%E5%AF%BA%E5%87%BD%E9%A4%A8%E5%88%A5%E9%99%A2_-_panoramio_%281%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%9D%B1%E6%9C%AC%E9%A1%98%E5%AF%BA%E5%87%BD%E9%A4%A8%E5%88%A5%E9%99%A2_-_panoramio_%281%29.jpg",
+  "ref": "https://www.hakobura.jp/spots/526",
+  "addrJa": "函館市元町16-15",
+  "phone": "0138-22-0134"
  },
  {
   "hub": "hakodate",
@@ -11214,7 +11276,10 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/222.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kouryuji.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kouryuji.jpg",
+  "ref": "https://www.hakobura.jp/spots/520",
+  "addrJa": "函館市船見町21-11",
+  "phone": "0138-23-0631"
  },
  {
   "hub": "hakodate",
@@ -11265,7 +11330,10 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/223.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Chinese_Memorial_Hall_Hakodate_Hokkaido_Japan03bs.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Chinese_Memorial_Hall_Hakodate_Hokkaido_Japan03bs.jpg",
+  "ref": "https://www.hakobura.jp/spots/511",
+  "addrJa": "函館市大町1-12",
+  "phone": "0138-22-1211"
  },
  {
   "hub": "hakodate",
@@ -11380,7 +11448,10 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/225.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Tobetsu_Trappist_Monastery_in_snow_202602.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Tobetsu_Trappist_Monastery_in_snow_202602.jpg",
+  "ref": "https://www.hakobura.jp/spots/528",
+  "addrJa": "北斗市三ツ石392",
+  "phone": "0138-75-2108"
  },
  {
   "hub": "sapporo",
@@ -11524,7 +11595,10 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/228.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Cape_Tachimachimisaki.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Cape_Tachimachimisaki.jpg",
+  "ref": "https://www.hakobura.jp/spots/587",
+  "addrJa": "函館市住吉町",
+  "phone": "0138-23-5440"
  },
  {
   "hub": "noboribetsu",
@@ -13192,7 +13266,10 @@ window.PLACES = [
    }
   ],
   "img": "img/places/257_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Daimon_Yokocho.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Daimon_Yokocho.jpg",
+  "ref": "https://www.hakobura.jp/spots/221",
+  "addrJa": "函館市松風町7-5",
+  "phone": "0138-24-0033("
  },
  {
   "hub": "hakodate",
@@ -13260,7 +13337,10 @@ window.PLACES = [
    }
   ],
   "img": "img/places/258_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Miharashi_Park_%28Kosetsuen%29_Entei_20181019-001.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Miharashi_Park_%28Kosetsuen%29_Entei_20181019-001.jpg",
+  "ref": "https://www.hakobura.jp/spots/354",
+  "addrJa": "函館市見晴町56",
+  "phone": "0138-57-7210"
  },
  {
   "hub": "hakodate",
@@ -13317,7 +13397,10 @@ window.PLACES = [
    }
   ],
   "img": "img/places/259_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%B1%9F%E5%B7%AE%E3%83%BB%E3%81%84%E3%81%AB%E3%81%97%E3%81%88%E3%81%AE%E8%A1%97%E9%81%93.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%B1%9F%E5%B7%AE%E3%83%BB%E3%81%84%E3%81%AB%E3%81%97%E3%81%88%E3%81%AE%E8%A1%97%E9%81%93.jpg",
+  "ref": "https://www.hakobura.jp/spots/489",
+  "addrJa": "北海道檜山郡江差町字中歌町~姥神町",
+  "phone": "0139-52-0117"
  },
  {
   "hub": "obihiro",
@@ -15046,7 +15129,10 @@ window.PLACES = [
    }
   ],
   "img": "img/places/290_1.jpg",
-  "imgCredit": "https://www.flickr.com/photos/87807876@N00/9039251754"
+  "imgCredit": "https://www.flickr.com/photos/87807876@N00/9039251754",
+  "ref": "https://www.hakobura.jp/spots/97",
+  "addrJa": "函館市元町14-5",
+  "phone": "0138-22-0306"
  },
  {
   "hub": "hakodate",
@@ -15060,8 +15146,8 @@ window.PLACES = [
   "tags": [
    "food"
   ],
-  "open": "≈10:00–24:00",
-  "closed": "-",
+  "open": "≈10:00-22:00",
+  "closed": "31 ธ.ค.",
   "fee": "≈¥500–1,200",
   "dur": "45 นาที",
   "hours": 0.75,
@@ -15106,7 +15192,10 @@ window.PLACES = [
    }
   ],
   "img": "img/places/291_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_LUCKY_PIERROT%2C_Hakodate%2C_Hokkaido%2C_Japan%2C_%E5%B9%B8%E9%81%8B%E5%B0%8F%E4%B8%91%E6%BC%A2%E5%A0%A1%2C_%E5%87%BD%E9%A4%A8%2C_%E5%8C%97%E6%B5%B7%E9%81%93%2C_%E6%97%A5%E6%9C%AC%2C_%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%83%94%E3%82%A8%E3%83%AD%2C_%E3%83%99%E3%82%A4%E3%82%A8%E3%83%AA%E3%82%A2%E6%9C%AC%E5%BA%97%2C_%E3%81%AF%E3%81%93%E3%81%A0%E3%81%A6%E3%81%97%2C_%E3%81%BB%E3%81%A3%E3%81%8B%E3%81%84%E3%81%A9%E3%81%86%2C_%E3%81%AB%E3%81%A3%E3%81%BD%E3%82%93%2C_%E3%81%AB%E3%81%BB%E3%82%93_%2816535725909%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_LUCKY_PIERROT%2C_Hakodate%2C_Hokkaido%2C_Japan%2C_%E5%B9%B8%E9%81%8B%E5%B0%8F%E4%B8%91%E6%BC%A2%E5%A0%A1%2C_%E5%87%BD%E9%A4%A8%2C_%E5%8C%97%E6%B5%B7%E9%81%93%2C_%E6%97%A5%E6%9C%AC%2C_%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%83%94%E3%82%A8%E3%83%AD%2C_%E3%83%99%E3%82%A4%E3%82%A8%E3%83%AA%E3%82%A2%E6%9C%AC%E5%BA%97%2C_%E3%81%AF%E3%81%93%E3%81%A0%E3%81%A6%E3%81%97%2C_%E3%81%BB%E3%81%A3%E3%81%8B%E3%81%84%E3%81%A9%E3%81%86%2C_%E3%81%AB%E3%81%A3%E3%81%BD%E3%82%93%2C_%E3%81%AB%E3%81%BB%E3%82%93_%2816535725909%29.jpg",
+  "ref": "https://www.hakobura.jp/spots/71",
+  "addrJa": "函館市末広町23-18",
+  "phone": "0138-26-2099"
  },
  {
   "hub": "tomamu",
@@ -15556,7 +15645,10 @@ window.PLACES = [
    }
   ],
   "img": "img/places/298_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Ubagami_Shrine_090206.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Ubagami_Shrine_090206.jpg",
+  "ref": "https://www.hakobura.jp/spots/499",
+  "addrJa": "北海道檜山郡江差町字姥神町99",
+  "phone": "0139-52-1900"
  },
  {
   "hub": "hakodate",
@@ -15605,9 +15697,9 @@ window.PLACES = [
   "id": 299,
   "region": "ฮาโกดาเตะ / ทางใต้",
   "feeYen": 0,
-  "lat": 41.8691,
-  "lng": 140.1142,
-  "acc": "จาก OpenStreetMap",
+  "lat": 41.86752,
+  "lng": 140.11528,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
   "checked": "2026-11",
   "imgs": [
    {
@@ -15616,7 +15708,10 @@ window.PLACES = [
    }
   ],
   "img": "img/places/299_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Heishiiwa_Rock_Esashi.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Heishiiwa_Rock_Esashi.jpg",
+  "ref": "https://www.hakobura.jp/spots/590",
+  "addrJa": "北海道檜山郡江差町字鴎島",
+  "phone": "0139-52-0117"
  },
  {
   "hub": "niseko",
@@ -17035,7 +17130,7 @@ window.PLACES = [
    "culture"
   ],
   "open": "≈9:00-17:00, 9:30-16:30",
-  "closed": "จันทร์, อังคาร",
+  "closed": "จันทร์, อังคาร (บางสัปดาห์)",
   "fee": "≈¥800",
   "dur": "1.5 ชม.",
   "hours": 1.5,
@@ -17144,8 +17239,8 @@ window.PLACES = [
    "culture"
   ],
   "open": "≈8:45-22:00, 9:00-17:00",
-  "closed": "จันทร์, อังคาร, ช่วงปีใหม่",
-  "fee": "ฟรี",
+  "closed": "จันทร์, อังคาร (บางสัปดาห์), ช่วงปีใหม่",
+  "fee": "≈¥350",
   "dur": "1 ชม.",
   "hours": 1,
   "highlight": "ศูนย์วัฒนธรรมไอนุของเมือง เครื่องแต่งกาย เครื่องมือ บ้านไอนุจำลอง ทดลองงานฝีมือ ทางผ่านไปโจซังเค",
@@ -21632,7 +21727,10 @@ window.PLACES = [
   "lat": 41.76559,
   "lng": 140.71484,
   "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.hakobura.jp/spots/70",
+  "addrJa": "函館市末広町23-5",
+  "phone": "0138-24-0024"
  },
  {
   "id": 418,
@@ -36426,6 +36524,1342 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市5条通9丁目右1号",
   "ref": "https://www.atca.jp/members/eat/",
+  "checked": "2026-11"
+ },
+ {
+  "id": 839,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "สวนโกเรียวคาคุ (ป้อมดาวห้าแฉก)",
+  "en": "Goryokaku Park (Special Historic Site)",
+  "ja": "特別史跡五稜郭跡(五稜郭公園)",
+  "stars": 2,
+  "pop": "ดัง",
+  "type": "ประวัติศาสตร์ / สวน",
+  "tags": [
+   "culture",
+   "nature",
+   "flower"
+  ],
+  "open": "≈5:00-19:00, 5:00-18:00 (ตามฤดู/วัน)",
+  "closed": "-",
+  "fee": "ฟรี",
+  "dur": "1 ชม.",
+  "hours": 1,
+  "highlight": "ป้อมรูปดาวห้าแฉกสไตล์ตะวันตกแห่งแรกของญี่ปุ่น คูน้ำรอบป้อม ซากุระ 1,600 ต้นปลาย เม.ย. หน้าหนาวไฟประดับ 'โกเรียวโฮชิโนะยูเมะ'",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "เสียเงิน",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~15 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.79715,
+  "lng": 140.75578,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市五稜郭町44",
+  "phone": "0138-31-5505",
+  "ref": "https://www.hakobura.jp/spots/555",
+  "checked": "2026-11"
+ },
+ {
+  "id": 840,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "สวนโมโตมาจิ (มองอ่าวฮาโกดาเตะ)",
+  "en": "Motomachi Park",
+  "ja": "元町公園",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "สวน / จุดชมวิว",
+  "tags": [
+   "culture",
+   "nature"
+  ],
+  "open": "ตลอดเวลา",
+  "closed": "-",
+  "fee": "ฟรี",
+  "dur": "18 นาที",
+  "hours": 0.3,
+  "highlight": "สวนบนเนินย่านโมโตมาจิ มองเห็นอ่าวและท่าเรือ ล้อมด้วยอาคารเก่าสไตล์ตะวันตก",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "ไม่มี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~5 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.76542,
+  "lng": 140.70979,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市元町12",
+  "phone": "0138-23-5440",
+  "ref": "https://www.hakobura.jp/spots/365",
+  "checked": "2026-11"
+ },
+ {
+  "id": 841,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "บ้านเก่าตระกูลโซมะ",
+  "en": "Former Soma Residence",
+  "ja": "旧相馬家住宅",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "ประวัติศาสตร์",
+  "tags": [
+   "culture"
+  ],
+  "open": "≈9:30-16:30",
+  "closed": "พฤหัส",
+  "fee": "≈¥1,000",
+  "dur": "45 นาที",
+  "hours": 0.75,
+  "highlight": "คฤหาสน์พ่อค้าใหญ่สมัยเมจิ (1908) ผสมญี่ปุ่น-ตะวันตก มองเห็นอ่าว ของสะสมในบ้าน",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "ฟรี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~5 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 1000,
+  "lat": 41.76534,
+  "lng": 140.71078,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市元町33-2",
+  "phone": "0138-26-1560",
+  "url": "https://www.kyusoumake.com/information/359.html",
+  "ref": "https://www.hakobura.jp/spots/491",
+  "checked": "2026-11"
+ },
+ {
+  "id": 842,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "ฮาโกดาเตะเมจิคัง (ไปรษณีย์เก่า)",
+  "en": "Hakodate Meijikan",
+  "ja": "旧函館郵便局(はこだて明治館)",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "ช้อปปิ้ง / ทำของ",
+  "tags": [
+   "culture",
+   "city"
+  ],
+  "open": "≈9:30-18:00",
+  "closed": "-",
+  "fee": "ฟรี",
+  "dur": "1 ชม.",
+  "hours": 1,
+  "highlight": "อาคารอิฐไปรษณีย์เก่า ร้านกล่องดนตรี แก้ว ทดลองทำกล่องดนตรี/พ่นทรายแก้ว ริมเบย์แอเรีย",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "ฟรี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~5 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.76666,
+  "lng": 140.71876,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市豊川町11-17",
+  "phone": "0138-27-7070",
+  "ref": "https://www.hakobura.jp/spots/508",
+  "checked": "2026-11"
+ },
+ {
+  "id": 843,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "เรือมาชูมารุ (อนุสรณ์เรือข้ามช่องแคบ)",
+  "en": "Seikan Ferry Memorial Ship Mashu Maru",
+  "ja": "函館市青函連絡船記念館摩周丸",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "พิพิธภัณฑ์",
+  "tags": [
+   "culture"
+  ],
+  "open": "≈8:30-18:00, 9:00-17:00 (ตามฤดู/วัน)",
+  "closed": "-",
+  "fee": "≈¥500",
+  "dur": "1 ชม.",
+  "hours": 1,
+  "highlight": "เรือข้ามฟากเซคังจริงจอดหน้าสถานี ห้องบังคับการ ห้องวิทยุ ประวัติเส้นทางเรือฮอนชู-ฮอกไกโด",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "ฟรี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~5 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 500,
+  "lat": 41.773,
+  "lng": 140.72189,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市若松町12番地先",
+  "phone": "0138-27-2500",
+  "ref": "https://www.hakobura.jp/spots/531",
+  "checked": "2026-11"
+ },
+ {
+  "id": 844,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "พิพิธภัณฑ์ชนพื้นเมืองทางเหนือ",
+  "en": "Hakodate City Museum of Northern Peoples",
+  "ja": "函館市北方民族資料館",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "พิพิธภัณฑ์ / วัฒนธรรม",
+  "tags": [
+   "culture"
+  ],
+  "open": "≈9:00-19:00, 9:00-17:00 (ตามฤดู/วัน)",
+  "closed": "ช่วงปีใหม่",
+  "fee": "≈¥300",
+  "dur": "45 นาที",
+  "hours": 0.75,
+  "highlight": "เครื่องแต่งกายและเครื่องใช้ไอนุ ชาวโอค็อตสค์ ในอาคารธนาคารแห่งญี่ปุ่นเก่า",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "ไม่มี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~1 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 300,
+  "lat": 41.76715,
+  "lng": 140.71198,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市末広町21-7",
+  "phone": "0138-22-4128",
+  "ref": "https://www.hakobura.jp/spots/534",
+  "checked": "2026-11"
+ },
+ {
+  "id": 845,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "พิพิธภัณฑ์เมืองฮาโกดาเตะ",
+  "en": "Hakodate City Museum",
+  "ja": "市立函館博物館",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "พิพิธภัณฑ์",
+  "tags": [
+   "culture"
+  ],
+  "open": "≈9:00-16:30, 9:00-16:00 (ตามฤดู/วัน)",
+  "closed": "จันทร์, ศุกร์ (บางสัปดาห์), ช่วงปีใหม่",
+  "fee": "≈¥100",
+  "dur": "45 นาที",
+  "hours": 0.75,
+  "highlight": "พิพิธภัณฑ์เก่าแก่ในสวนฮาโกดาเตะ ประวัติเมืองท่า โบราณวัตถุ",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "ไม่มี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~7 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 100,
+  "lat": 41.75603,
+  "lng": 140.71455,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市青柳町17-1(函館公園内)",
+  "phone": "0138-23-5480",
+  "ref": "https://www.hakobura.jp/spots/537",
+  "checked": "2026-11"
+ },
+ {
+  "id": 846,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "หอวรรณกรรมฮาโกดาเตะ (ธนาคารเก่า)",
+  "en": "Hakodate City Museum of Literature",
+  "ja": "函館市文学館",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "พิพิธภัณฑ์",
+  "tags": [
+   "culture"
+  ],
+  "open": "≈9:00-19:00, 9:00-17:00 (ตามฤดู/วัน)",
+  "closed": "ช่วงปีใหม่",
+  "fee": "≈¥300",
+  "dur": "30 นาที",
+  "hours": 0.5,
+  "highlight": "หอวรรณกรรมในอาคารธนาคารไดอิจิเก่า เรื่องกวีอิชิกาวะ ทาคุโบกุ และนักเขียนฮาโกดาเตะ",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "ไม่มี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~1 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 300,
+  "lat": 41.76634,
+  "lng": 140.71324,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市末広町22-5",
+  "phone": "0138-22-9014",
+  "ref": "https://www.hakobura.jp/spots/541",
+  "checked": "2026-11"
+ },
+ {
+  "id": 847,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "พิพิธภัณฑ์ศิลปะฮาโกดาเตะ",
+  "en": "Hokkaido Museum of Art Hakodate",
+  "ja": "北海道立函館美術館",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "พิพิธภัณฑ์ / ศิลปะ",
+  "tags": [
+   "culture"
+  ],
+  "open": "≈9:30-17:00",
+  "closed": "จันทร์, ช่วงปีใหม่",
+  "fee": "ตรวจ",
+  "dur": "45 นาที",
+  "hours": 0.75,
+  "highlight": "พิพิธภัณฑ์ศิลปะของจังหวัด ข้างสวนโกเรียวคาคุ งานศิลปินทางใต้ของฮอกไกโด อักษรวิจิตร",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "ฟรี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~10 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.79341,
+  "lng": 140.75459,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市五稜郭町37-6",
+  "phone": "0138-56-6311",
+  "ref": "https://www.hakobura.jp/spots/539",
+  "checked": "2026-11"
+ },
+ {
+  "id": 848,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "เนินไดซังซากะ (ถนนหินโมโตมาจิ)",
+  "en": "Daisanzaka Slope",
+  "ja": "大三坂",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "จุดชมวิว / ถ่ายรูป",
+  "tags": [
+   "culture",
+   "city"
+  ],
+  "open": "ตลอดเวลา",
+  "closed": "-",
+  "fee": "ฟรี",
+  "dur": "18 นาที",
+  "hours": 0.3,
+  "highlight": "เนินปูหิน 1 ใน 100 ถนนสวยของญี่ปุ่น มองลงไปเห็นท่าเรือ ต้นนานาคามาโดะสองข้างทาง",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "เสียเงิน",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~5 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.76472,
+  "lng": 140.71509,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市末広町",
+  "phone": "0138-23-5440",
+  "ref": "https://www.hakobura.jp/spots/480",
+  "checked": "2026-11"
+ },
+ {
+  "id": 849,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "เนินนิจิคเคนซากะ",
+  "en": "Nijikkenzaka Slope",
+  "ja": "二十間坂",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "จุดชมวิว / ถ่ายรูป",
+  "tags": [
+   "culture",
+   "city"
+  ],
+  "open": "ตลอดเวลา",
+  "closed": "-",
+  "fee": "ฟรี",
+  "dur": "18 นาที",
+  "hours": 0.3,
+  "highlight": "เนินกว้างย่านโมโตมาจิ มองเห็นทะเล หน้าหนาวไฟประดับ 'ฮาโกดาเตะคริสต์มาสแฟนตาซี' ใกล้ ๆ",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "เสียเงิน",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~5 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.76401,
+  "lng": 140.71584,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市末広町",
+  "phone": "0138-23-5440",
+  "ref": "https://www.hakobura.jp/spots/487",
+  "checked": "2026-11"
+ },
+ {
+  "id": 850,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "สุสานชาวต่างชาติ",
+  "en": "Foreign Cemetery",
+  "ja": "外国人墓地",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "ประวัติศาสตร์",
+  "tags": [
+   "culture"
+  ],
+  "open": "ตรวจเวลาเปิด (ดูเว็บ)",
+  "closed": "ตรวจ",
+  "fee": "ฟรี",
+  "dur": "18 นาที",
+  "hours": 0.3,
+  "highlight": "สุสานชาวต่างชาติยุคเปิดท่าเรือริมทะเล จุดชมพระอาทิตย์ตกเงียบ ๆ",
+  "caution": "เว็บทางการไม่ระบุเวลาเปิด ตรวจก่อนไป",
+  "best": "เย็น",
+  "parking": "ไม่มี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~15 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.76809,
+  "lng": 140.6971,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市船見町23",
+  "phone": "0138-23-5440",
+  "ref": "https://www.hakobura.jp/spots/596",
+  "checked": "2026-11"
+ },
+ {
+  "id": 851,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "หาดโอโมริ + สวนทาคุโบกุ",
+  "en": "Omori Beach & Takuboku Park",
+  "ja": "大森浜(啄木小公園)",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "จุดชมวิว",
+  "tags": [
+   "nature",
+   "culture"
+  ],
+  "open": "ตลอดเวลา",
+  "closed": "-",
+  "fee": "ฟรี",
+  "dur": "18 นาที",
+  "hours": 0.3,
+  "highlight": "ชายหาดยาวที่กวีทาคุโบกุรัก รูปปั้นกวี ทะเลสึการุ ทางไปยุโนะคาวะ",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "ฟรี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~1 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.77244,
+  "lng": 140.7539,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市日乃出町25",
+  "phone": "0138-23-5440",
+  "ref": "https://www.hakobura.jp/spots/607",
+  "checked": "2026-11"
+ },
+ {
+  "id": 852,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "ศูนย์วัฒนธรรมโจมง (มรดกโลก)",
+  "en": "Hakodate Jomon Culture Center",
+  "ja": "函館市縄文文化交流センター",
+  "stars": 2,
+  "pop": "คนรู้จักน้อย",
+  "type": "พิพิธภัณฑ์",
+  "tags": [
+   "culture"
+  ],
+  "open": "≈9:00-17:00, 9:00-16:30 (ตามฤดู/วัน)",
+  "closed": "จันทร์, ศุกร์ (บางสัปดาห์)",
+  "fee": "≈¥300",
+  "dur": "1 ชม.",
+  "hours": 1,
+  "highlight": "พิพิธภัณฑ์โบราณคดียุคโจมง ตุ๊กตาดินเผากลวงสมบัติชาติแห่งเดียวในฮอกไกโด กลุ่มแหล่งโบราณสถานมรดกโลก",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "ฟรี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~7 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 300,
+  "lat": 41.92792,
+  "lng": 140.94475,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市臼尻町551-1",
+  "phone": "0138-25-2030",
+  "ref": "https://www.hakobura.jp/spots/616",
+  "checked": "2026-11"
+ },
+ {
+  "id": 853,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "แหล่งโบราณสถานโอฟุเนะ (มรดกโลก)",
+  "en": "Ofune Site",
+  "ja": "史跡大船遺跡",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "ประวัติศาสตร์",
+  "tags": [
+   "culture",
+   "nature"
+  ],
+  "open": "≈9:00-17:00, 9:00-16:00 (ตามฤดู/วัน)",
+  "closed": "ตรวจ",
+  "fee": "ฟรี",
+  "dur": "45 นาที",
+  "hours": 0.75,
+  "highlight": "หมู่บ้านโจมงขนาดใหญ่ริมทะเล หลุมบ้านโบราณ ส่วนหนึ่งของมรดกโลกโจมง ใกล้ศูนย์วัฒนธรรมโจมง",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "มี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~10 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.95864,
+  "lng": 140.92483,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市大船町575-1",
+  "phone": "0138-25-2030",
+  "ref": "https://www.hakobura.jp/spots/568",
+  "checked": "2026-11"
+ },
+ {
+  "id": 854,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "ภูเขาไฟเอซัง",
+  "en": "Mt. Esan",
+  "ja": "活火山「恵山」",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "ธรรมชาติ / ภูเขาไฟ",
+  "tags": [
+   "nature"
+  ],
+  "open": "ตลอดเวลา",
+  "closed": "-",
+  "fee": "ฟรี",
+  "dur": "2 ชม.",
+  "hours": 2,
+  "highlight": "ภูเขาไฟมีพลังปลายแหลมฮาโกดาเตะ ทุ่งดอกอาซาเลีย พ.ค.-มิ.ย. เดินขึ้นไปดูปล่องควัน",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "ฟรี",
+  "months": [
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.80398,
+  "lng": 141.16537,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市柏野町",
+  "phone": "0138-85-2336",
+  "ref": "https://www.hakobura.jp/spots/477",
+  "checked": "2026-11"
+ },
+ {
+  "id": 855,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "รถรางฮาโกดาเตะ",
+  "en": "Hakodate Tram",
+  "ja": "函館市電(路面電車)",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "รถราง / ประวัติศาสตร์",
+  "tags": [
+   "city",
+   "culture"
+  ],
+  "open": "≈6:07-23:14",
+  "closed": "-",
+  "fee": "≈¥300",
+  "dur": "1 ชม.",
+  "hours": 1,
+  "highlight": "รถรางวิ่งตั้งแต่ 1913 เชื่อมยุโนะคาวะ โกเรียวคาคุ สถานี โมโตมาจิ ตั๋ววันคุ้ม",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "เสียเงิน",
+  "evening": false,
+  "feeYen": 300,
+  "lat": 41.78307,
+  "lng": 140.77904,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "phone": "0138-52-1273",
+  "ref": "https://www.hakobura.jp/spots/373",
+  "checked": "2026-11"
+ },
+ {
+  "id": 856,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "รถรางย้อนยุคไฮคาระโก",
+  "en": "Hakodate Haikara-go Retro Tram",
+  "ja": "箱館ハイカラ號",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "รถราง / ประวัติศาสตร์",
+  "tags": [
+   "culture",
+   "city"
+  ],
+  "open": "ตรวจเวลาเปิด (ดูเว็บ)",
+  "closed": "ตรวจ",
+  "fee": "ฟรี",
+  "dur": "30 นาที",
+  "hours": 0.5,
+  "highlight": "รถรางไม้รุ่นเก่า (1910) วิ่งช่วงหน้าร้อนตามตาราง",
+  "caution": "เว็บทางการไม่ระบุเวลาเปิด ตรวจก่อนไป",
+  "best": "กลางวัน",
+  "parking": "เสียเงิน",
+  "months": [
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.78307,
+  "lng": 140.77904,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "phone": "0138-52-1273",
+  "url": "https://www.city.hakodate.hokkaido.jp/docs/2026040600015/",
+  "ref": "https://www.hakobura.jp/spots/372",
+  "checked": "2026-11"
+ },
+ {
+  "id": 857,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "สวนฮาโกดาเตะ (ซากุระ)",
+  "en": "Hakodate Park",
+  "ja": "函館公園",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "สวน / ซากุระ",
+  "tags": [
+   "nature",
+   "flower"
+  ],
+  "open": "≈8:45-17:30, 8:45-17:00 (ตามฤดู/วัน)",
+  "closed": "ตรวจ",
+  "fee": "ฟรี",
+  "dur": "30 นาที",
+  "hours": 0.5,
+  "highlight": "สวนเก่าแก่เชิงเขาฮาโกดาเตะ ซากุระ เครื่องเล่นเด็กเก่าที่สุดในญี่ปุ่น",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "มี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~3 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.75614,
+  "lng": 140.71592,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市青柳町17",
+  "phone": "0138-22-6789",
+  "ref": "https://www.hakobura.jp/spots/356",
+  "checked": "2026-11"
+ },
+ {
+  "id": 858,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "ตลาดฮาโกดาเตะจิยู (ตลาดคนท้องถิ่น)",
+  "en": "Hakodate Jiyu Ichiba Market",
+  "ja": "はこだて自由市場",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "ตลาด / อาหาร",
+  "tags": [
+   "food"
+  ],
+  "open": "≈8:00-17:30",
+  "closed": "อาทิตย์",
+  "fee": "ตรวจ",
+  "dur": "45 นาที",
+  "hours": 0.75,
+  "highlight": "ตลาดสดของคนท้องถิ่น ซีฟู้ดราคาถูกกว่าตลาดเช้า ทำข้าวหน้าเองได้",
+  "caution": "",
+  "best": "เช้า",
+  "parking": "ฟรี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~1 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.77341,
+  "lng": 140.73462,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市新川町1-2",
+  "phone": "0138-27-2200",
+  "ref": "https://www.hakobura.jp/spots/692",
+  "checked": "2026-11"
+ },
+ {
+  "id": 859,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "ฮาโกดาเตะนิชิฮาโตบะ (ของฝากริมท่า)",
+  "en": "Hakodate Nishi-Hatoba",
+  "ja": "函館西波止場",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "ช้อปปิ้ง",
+  "tags": [
+   "food",
+   "city"
+  ],
+  "open": "≈9:00-18:00",
+  "closed": "-",
+  "fee": "ฟรี",
+  "dur": "30 นาที",
+  "hours": 0.5,
+  "highlight": "ร้านของฝากใหญ่ริมท่าเรือเบย์แอเรีย ซีฟู้ดแห้ง ขนม",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "ฟรี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~5 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.76644,
+  "lng": 140.71523,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市末広町24-6",
+  "phone": "0138-24-8108",
+  "ref": "https://www.hakobura.jp/spots/722",
+  "checked": "2026-11"
+ },
+ {
+  "id": 860,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "กระเช้านานาเอะ (วิวทะเลสาบโอนุมะ)",
+  "en": "Hakodate Nanae Gondola",
+  "ja": "函館七飯ゴンドラ",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "จุดชมวิว",
+  "tags": [
+   "nature",
+   "snow"
+  ],
+  "open": "≈9:00-16:00",
+  "closed": "ตรวจ",
+  "fee": "≈¥1,800",
+  "dur": "1.5 ชม.",
+  "hours": 1.5,
+  "highlight": "กระเช้าขึ้นภูเขามองทะเลสาบโอนุมะและภูเขาโคมางาตาเกะ หน้าหนาวเป็นลานสกี",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "ฟรี",
+  "evening": false,
+  "feeYen": 1800,
+  "lat": 41.98647,
+  "lng": 140.74695,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "北海道七飯町東大沼666",
+  "phone": "0138-67-3355",
+  "ref": "https://www.hakobura.jp/spots/660",
+  "checked": "2026-11"
+ },
+ {
+  "id": 861,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "ที่ราบสูงคิจิฮิกิ (จุดชมวิวพาโนรามา)",
+  "en": "Kijihiki Highland Panorama",
+  "ja": "きじひき高原(パノラマ展望台)",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "จุดชมวิว",
+  "tags": [
+   "nature"
+  ],
+  "open": "≈8:30-20:00, 10:30-14:30",
+  "closed": "ตรวจ",
+  "fee": "ฟรี",
+  "dur": "30 นาที",
+  "hours": 0.5,
+  "highlight": "จุดชมวิวบนเขา มองฮาโกดาเตะ ทะเลสาบโอนุมะ ภูเขาโคมางาตาเกะในภาพเดียว",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "ฟรี",
+  "months": [
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.92472,
+  "lng": 140.61458,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "北海道北斗市村山174",
+  "phone": "0138-84-1147",
+  "ref": "https://www.hakobura.jp/spots/641",
+  "checked": "2026-11"
+ },
+ {
+  "id": 862,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "ฮาโกดาเตะนานาเอะสโนว์พาร์ก (สกี)",
+  "en": "Hakodate Nanae Snow Park",
+  "ja": "函館七飯スノーパーク",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "สกี",
+  "tags": [
+   "snow"
+  ],
+  "open": "≈9:00-16:50, 9:00-21:50 (ตามฤดู/วัน)",
+  "closed": "-",
+  "fee": "≈¥5,500",
+  "dur": "4 ชม.",
+  "hours": 4,
+  "highlight": "ลานสกีใกล้ฮาโกดาเตะ มองเห็นทะเลสาบโอนุมะ",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "ฟรี",
+  "months": [],
+  "evening": false,
+  "feeYen": 5500,
+  "lat": 41.98736,
+  "lng": 140.74823,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "北海道亀田郡七飯町東大沼666",
+  "phone": "0138-67-3355",
+  "ref": "https://www.hakobura.jp/spots/321",
+  "checked": "2026-11"
+ },
+ {
+  "id": 863,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "ฮาโกดาเตะไวน์ บุโดคัง",
+  "en": "Hakodate Wine Budokan",
+  "ja": "はこだてわいん葡萄館本店",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "ช้อปปิ้ง",
+  "tags": [
+   "food"
+  ],
+  "open": "≈10:00-17:00, 10:00-17:30 (ตามฤดู/วัน)",
+  "closed": "พุธ, ช่วงปีใหม่",
+  "fee": "ฟรี",
+  "dur": "30 นาที",
+  "hours": 0.5,
+  "highlight": "ร้านไวน์ของโรงไวน์ฮาโกดาเตะ ชิมไวน์ ของฝาก",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "ฟรี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~1 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.91045,
+  "lng": 140.68095,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "北海道亀田郡七飯町上藤城11",
+  "phone": "0138-65-8170",
+  "ref": "https://www.hakobura.jp/spots/714",
+  "checked": "2026-11"
+ },
+ {
+  "id": 864,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "จุดพักรถโจมงโรมัน มินามิคายาเบะ",
+  "en": "Michi-no-Eki Jomon Roman Minamikayabe",
+  "ja": "道の駅 縄文ロマン 南かやべ",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "ช้อปปิ้ง / อาหาร",
+  "tags": [
+   "food",
+   "culture"
+  ],
+  "open": "≈9:00-17:00, 9:00-16:30 (ตามฤดู/วัน)",
+  "closed": "จันทร์",
+  "fee": "ค่าอาหาร",
+  "dur": "30 นาที",
+  "hours": 0.5,
+  "highlight": "จุดพักรถติดศูนย์วัฒนธรรมโจมง ของฝาก สาหร่ายคอมบุ ร้านอาหาร",
+  "caution": "",
+  "best": "เที่ยง",
+  "parking": "ฟรี",
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.92788,
+  "lng": 140.9448,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市臼尻町551-1",
+  "phone": "0138-25-2030",
+  "ref": "https://www.hakobura.jp/spots/702",
+  "checked": "2026-11"
+ },
+ {
+  "id": 865,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "บ่อแช่เท้าน้ำพุร้อนชิกาเบะ",
+  "en": "Shikabe Geyser Park",
+  "ja": "しかべ間歇泉公園足湯",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "ออนเซ็น",
+  "tags": [
+   "onsen",
+   "nature"
+  ],
+  "open": "≈9:00-17:00, 10:00-15:00 (ตามฤดู/วัน)",
+  "closed": "พุธ, ช่วงปีใหม่",
+  "fee": "≈¥300",
+  "dur": "45 นาที",
+  "hours": 0.75,
+  "highlight": "น้ำพุร้อนพุ่งสูงทุก ~10 นาที บ่อแช่เท้า ไข่ต้มออนเซ็น ที่เมืองชิกาเบะ",
+  "caution": "",
+  "best": "กลางวัน",
+  "parking": "ฟรี",
+  "evening": false,
+  "feeYen": 300,
+  "lat": 42.01115,
+  "lng": 140.81967,
+  "acc": "ประมาณ (ระดับตำบลจากที่อยู่ทางการ)",
+  "addrJa": "北海道茅部郡鹿部町字鹿部18-1",
+  "phone": "01372-7-5655",
+  "ref": "https://www.hakobura.jp/spots/452",
+  "checked": "2026-11"
+ },
+ {
+  "id": 866,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "อาจิไซ สาขาหลัก (ราเมนเกลือ)",
+  "en": "Ajisai Ramen Main",
+  "ja": "函館麺厨房あじさい 本店",
+  "stars": 2,
+  "pop": "ดัง",
+  "type": "อาหาร",
+  "tags": [
+   "food"
+  ],
+  "open": "≈11:00-20:30",
+  "closed": "พุธ (บางสัปดาห์)",
+  "fee": "ค่าอาหาร",
+  "dur": "1 ชม.",
+  "hours": 1,
+  "highlight": "ร้านราเมนเกลือฮาโกดาเตะที่ดังที่สุด (1930) น้ำซุปใส ย่านโกเรียวคาคุ",
+  "caution": "",
+  "best": "เที่ยง",
+  "parking": "ฟรี",
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.79464,
+  "lng": 140.75323,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市五稜郭町29-22",
+  "phone": "0138-51-8373",
+  "ref": "https://www.hakobura.jp/spots/164",
+  "checked": "2026-11"
+ },
+ {
+  "id": 867,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "โกโชเค็น เซกกะเต (แกงกะหรี่เก่าแก่)",
+  "en": "Gotoken Sekkatei",
+  "ja": "五島軒本店 レストラン雪河亭",
+  "stars": 1,
+  "pop": "ดัง",
+  "type": "อาหาร",
+  "tags": [
+   "food",
+   "culture"
+  ],
+  "open": "ตรวจเวลาเปิด (ดูเว็บ)",
+  "closed": "อังคาร",
+  "fee": "ค่าอาหาร",
+  "dur": "1 ชม.",
+  "hours": 1,
+  "highlight": "ร้านอาหารตะวันตกเก่าแก่ (1879) แกงกะหรี่สไตล์ฮาโกดาเตะ ห้องอาหารย้อนยุค",
+  "caution": "เว็บทางการไม่ระบุเวลาเปิด ตรวจก่อนไป",
+  "best": "เที่ยง",
+  "parking": "ฟรี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~5 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.76369,
+  "lng": 140.71579,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市末広町4-5",
+  "phone": "0138-23-1106",
+  "ref": "https://www.hakobura.jp/spots/43",
+  "checked": "2026-11"
+ },
+ {
+  "id": 868,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "คาลิฟอร์เนียเบบี้ (ข้าวซิสโก้)",
+  "en": "California Baby",
+  "ja": "カリフォルニアベイビー",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "อาหาร",
+  "tags": [
+   "food",
+   "culture"
+  ],
+  "open": "≈11:00-21:00",
+  "closed": "พฤหัส",
+  "fee": "ค่าอาหาร",
+  "dur": "1 ชม.",
+  "hours": 1,
+  "highlight": "ร้านในไปรษณีย์เก่ายุคไทโช เมนู 'ซิสโกไรซ์' ข้าวเนยราดมีทซอสกับไส้กรอก",
+  "caution": "",
+  "best": "เที่ยง",
+  "parking": "ไม่มี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~5 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.76597,
+  "lng": 140.71456,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市末広町23-15",
+  "phone": "0138-22-0643",
+  "ref": "https://www.hakobura.jp/spots/47",
+  "checked": "2026-11"
+ },
+ {
+  "id": 869,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "คิคุโยะโชคุโด สาขาหลัก (ข้าวหน้าซีฟู้ด)",
+  "en": "Kikuyo Shokudo Main",
+  "ja": "きくよ食堂 本店",
+  "stars": 1,
+  "pop": "ดัง",
+  "type": "อาหาร",
+  "tags": [
+   "food"
+  ],
+  "open": "≈5:00-14:00, 6:00-14:00 (ตามฤดู/วัน)",
+  "closed": "ช่วงปีใหม่",
+  "fee": "ค่าอาหาร",
+  "dur": "1 ชม.",
+  "hours": 1,
+  "highlight": "ร้านในตลาดเช้าตั้งแต่ 1956 ต้นตำรับ 'โทโมเอะด้ง' ข้าวหน้าไข่หอยเม่น อิคุระ หอยเชลล์",
+  "caution": "",
+  "best": "เช้า",
+  "parking": "ฟรี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~2 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.7726,
+  "lng": 140.72487,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市若松町11-15",
+  "phone": "0138-22-3732",
+  "ref": "https://www.hakobura.jp/spots/137",
+  "checked": "2026-11"
+ },
+ {
+  "id": 870,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "ฮาโกดาเตะเบียร์ฮอล",
+  "en": "Hakodate Beer Hall",
+  "ja": "函館ビヤホール",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "อาหาร / กลางคืน",
+  "tags": [
+   "food"
+  ],
+  "open": "≈11:30-21:30, 11:00-21:30 (ตามฤดู/วัน)",
+  "closed": "-",
+  "fee": "ค่าอาหาร",
+  "dur": "1 ชม.",
+  "hours": 1,
+  "highlight": "เบียร์ฮอลในโกดังอิฐเบย์แอเรีย เบียร์ท้องถิ่น ซีฟู้ด",
+  "caution": "",
+  "best": "ค่ำ",
+  "parking": "ฟรี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~6 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": true,
+  "feeYen": 0,
+  "lat": 41.76657,
+  "lng": 140.71635,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市末広町14-12",
+  "phone": "0138-27-1010",
+  "ref": "https://www.hakobura.jp/spots/119",
+  "checked": "2026-11"
+ },
+ {
+  "id": 871,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "คันทาโร่ สาขาหลัก (ซูชิสายพาน)",
+  "en": "Kantaro Ugaura",
+  "ja": "グルメ回転寿司 函太郎 宇賀浦本店",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "อาหาร",
+  "tags": [
+   "food"
+  ],
+  "open": "≈11:00-21:00",
+  "closed": "ช่วงปีใหม่",
+  "fee": "ค่าอาหาร",
+  "dur": "1 ชม.",
+  "hours": 1,
+  "highlight": "ซูชิสายพานยอดนิยมของฮาโกดาเตะ ริมทะเล",
+  "caution": "",
+  "best": "เที่ยง",
+  "parking": "ฟรี",
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.77087,
+  "lng": 140.74563,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市宇賀浦町14-4",
+  "phone": "0138-32-4455",
+  "ref": "https://www.hakobura.jp/spots/159",
+  "checked": "2026-11"
+ },
+ {
+  "id": 872,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "ซาโบ ฮิชิอิ (คาเฟ่ในโรงจำนำเก่า)",
+  "en": "Sabo Hishii",
+  "ja": "茶房 ひし伊(旧入村質店)",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "คาเฟ่ / ของหวาน",
+  "tags": [
+   "food",
+   "culture"
+  ],
+  "open": "≈11:00-17:00",
+  "closed": "พุธ",
+  "fee": "ค่าอาหาร",
+  "dur": "45 นาที",
+  "hours": 0.75,
+  "highlight": "คาเฟ่ญี่ปุ่นในโรงจำนำเก่าคลุมไม้เลื้อย ย่านโมโตมาจิ",
+  "caution": "",
+  "best": "บ่าย",
+  "parking": "ฟรี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~2 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.76086,
+  "lng": 140.71886,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市宝来町9-4",
+  "phone": "0138-27-3300",
+  "ref": "https://www.hakobura.jp/spots/88",
+  "checked": "2026-11"
+ },
+ {
+  "id": 873,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "เปอตีต์แมร์เวย์ (ชีสเค้ก)",
+  "en": "Petite Merveille",
+  "ja": "プティ・メルヴィーユ赤レンガ倉庫BAYはこだて店",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "คาเฟ่ / ของหวาน",
+  "tags": [
+   "food"
+  ],
+  "open": "≈9:30-19:00",
+  "closed": "-",
+  "fee": "ค่าอาหาร",
+  "dur": "45 นาที",
+  "hours": 0.75,
+  "highlight": "ชีสเค้ก 'เมลชีส' ขนมดังของฮาโกดาเตะ สาขาในโกดังอิฐ",
+  "caution": "",
+  "best": "บ่าย",
+  "parking": "ฟรี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~7 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.76686,
+  "lng": 140.71723,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市豊川町11-5 金森赤レンガ倉庫BAYはこだて内",
+  "phone": "0138-84-5677",
+  "ref": "https://www.hakobura.jp/spots/698",
+  "checked": "2026-11"
+ },
+ {
+  "id": 874,
+  "region": "ฮาโกดาเตะ / ทางใต้",
+  "area": "ฮาโกดาเตะ",
+  "hub": "hakodate",
+  "name": "สนัฟเฟิลส์ (ชีสเค้กแชตต์)",
+  "en": "Snaffle's",
+  "ja": "函館洋菓子スナッフルス 金森洋物館店",
+  "stars": 1,
+  "pop": "คนรู้จักน้อย",
+  "type": "คาเฟ่ / ของหวาน",
+  "tags": [
+   "food"
+  ],
+  "open": "≈10:00-19:00, 9:30-19:00",
+  "closed": "-",
+  "fee": "ค่าอาหาร",
+  "dur": "45 นาที",
+  "hours": 0.75,
+  "highlight": "ชีสเค้กนุ่มละลาย 'แชตต์' ขนมฝากดังของฮาโกดาเตะ",
+  "caution": "",
+  "best": "บ่าย",
+  "parking": "ฟรี",
+  "tr": {
+   "lv": "ok",
+   "t": "เดิน ~5 นาทีจากสถานี/ป้ายรถใกล้สุด (ตามเว็บทางการ)"
+  },
+  "evening": false,
+  "feeYen": 0,
+  "lat": 41.76646,
+  "lng": 140.71695,
+  "acc": "จากหมุดแผนที่บนเว็บทางการ",
+  "addrJa": "函館市末広町13-9 金森洋物館内",
+  "phone": "0138-27-1240",
+  "ref": "https://www.hakobura.jp/spots/695",
   "checked": "2026-11"
  }
 ];
