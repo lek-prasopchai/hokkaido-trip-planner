@@ -26,8 +26,8 @@ const reviewLinks = (p) => {
     ${p.url ? `<a class="btn small" href="${esc(p.url)}" target="_blank" rel="noopener">${I("globe")} เว็บไซต์ทางการ</a>` : `<a class="btn small" href="${gUrl(q + " 公式")}" target="_blank" rel="noopener">${I("globe")} ค้นเว็บทางการ</a>`}`;
 };
 
-// ร้านอาหาร/คาเฟ่รายร้าน (ไม่ใช่ตลาด/ย่าน)
-const isEatery = (p) => /^(อาหาร|คาเฟ่)/.test(p.type);
+// ร้านอาหาร/คาเฟ่รายร้าน 1 ดาว (ไม่ใช่ตลาด/ย่าน • ร้านดัง ★★ ขึ้นไปยังแสดง)
+const isEatery = (p) => p.stars < 2 && /^(อาหาร|คาเฟ่)/.test(p.type);
 const PlacesView = {
   M: null, lim: 30, f: { region: "", tag: "", stars: 0, q: "", season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, sort: "stars" },
   F0: { region: "", tag: "", stars: 0, season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, sort: "stars" },
