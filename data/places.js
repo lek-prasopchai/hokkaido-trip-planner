@@ -1403,7 +1403,9 @@ window.PLACES = [
   "tr": {
    "lv": "limited",
    "t": "บัสจากคุจจัง ~30 นาที"
-  }
+  },
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10333.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10333.html"
  },
  {
   "id": 28,
@@ -3312,7 +3314,9 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:131012_Tokachigawa_Onsen_Otofuke_Hokkaido_Japan09bs.jpg"
    }
   ],
-  "en": "Tokachigawa Onsen"
+  "en": "Tokachigawa Onsen",
+  "ref": "https://www.visit-hokkaido.jp/spa/spot/detail_10609.html",
+  "url": "https://www.visit-hokkaido.jp/spa/spot/detail_10609.html"
  },
  {
   "id": 65,
@@ -3779,7 +3783,7 @@ window.PLACES = [
    "lv": "tour",
    "t": "บัสท่องเที่ยวหน้าหนาวจากคาวายุ / แท็กซี่"
   },
-  "ref": "https://www.visit-hokkaido.jp/spot/detail_10052.html",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10484.html",
   "url": "https://www.visit-hokkaido.jp/spot/detail_10052.html"
  },
  {
@@ -3873,7 +3877,9 @@ window.PLACES = [
     "credit": "https://commons.wikimedia.org/wiki/File:Lake_Kussharo01.JPG"
    }
   ],
-  "en": "Sunayu (Lake Kussharo)"
+  "en": "Sunayu (Lake Kussharo)",
+  "ref": "https://www.visit-hokkaido.jp/spa/spot/detail_12084.html",
+  "url": "https://www.visit-hokkaido.jp/spa/spot/detail_12084.html"
  },
  {
   "id": 76,
@@ -3922,7 +3928,9 @@ window.PLACES = [
   "sn": {
    "autumn": "ทะเลหมอกยามเช้า",
    "winter": "วิวทะเลสาบคุชชาโระน้ำแข็ง"
-  }
+  },
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10398.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10398.html"
  },
  {
   "id": 77,
@@ -7073,7 +7081,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก OpenStreetMap",
   "img": "img/places/137.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Ainu-Cise.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Ainu-Cise.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_11445.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_11445.html"
  },
  {
   "hub": "asahikawa",
@@ -7258,7 +7268,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/141.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Gregarious_moss_phlox_in_Takinoue_Park%2C_Takinoue%2C_Hokkaido.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Gregarious_moss_phlox_in_Takinoue_Park%2C_Takinoue%2C_Hokkaido.JPG",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_11196.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_11196.html"
  },
  {
   "hub": "tomamu",
@@ -7454,7 +7466,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "ประมาณ",
   "img": "img/places/145.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokkaido-%28Japanese_National_Railway_Shihoro_line%29_Taushubetsu_River_Bridge_-m.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokkaido-%28Japanese_National_Railway_Shihoro_line%29_Taushubetsu_River_Bridge_-m.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10178.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10178.html"
  },
  {
   "hub": "obihiro",
@@ -7595,7 +7609,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/148.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kaminoko_ike.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kaminoko_ike.JPG",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10417.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10417.html"
  },
  {
   "hub": "akan",
@@ -7828,7 +7844,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/153.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Higashimokoto_Phlox_subulata02.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Higashimokoto_Phlox_subulata02.JPG",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_11171.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_11171.html"
  },
  {
   "hub": "abashiri",
@@ -7914,7 +7932,9 @@ window.PLACES = [
   ],
   "sn": {
    "winter": "อาจเห็นน้ำแข็งทะเลลอยจากชายหาด ก.พ.–มี.ค. (ร้านปิด)"
-  }
+  },
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10419.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10419.html"
  },
  {
   "hub": "wakkanai",
@@ -8016,7 +8036,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/157.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E9%98%B2%E6%B3%A2%E5%A0%A4%E3%83%89%E3%83%BC%E3%83%A0-01.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E9%98%B2%E6%B3%A2%E5%A0%A4%E3%83%89%E3%83%BC%E3%83%A0-01.JPG",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10273.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10273.html"
  },
  {
   "hub": "biei",
@@ -9232,7 +9254,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก OpenStreetMap",
   "img": "img/places/179.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Goshiki_spa_roten.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Goshiki_spa_roten.JPG",
+  "ref": "https://www.visit-hokkaido.jp/spa/spot/detail_10601.html",
+  "url": "https://www.visit-hokkaido.jp/spa/spot/detail_10601.html"
  },
  {
   "hub": "chitose",
@@ -10268,7 +10292,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/199.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Tsubetsu_pass_2011.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Tsubetsu_pass_2011.JPG",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_12242.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_12242.html"
  },
  {
   "hub": "utoro",
@@ -11412,7 +11438,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/220.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%A8%9A%E5%86%85_%E5%8C%97%E9%96%80%E7%A5%9E%E7%A4%BE_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%A8%9A%E5%86%85_%E5%8C%97%E9%96%80%E7%A5%9E%E7%A4%BE_-_panoramio.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_11343.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_11343.html"
  },
  {
   "hub": "hakodate",
@@ -13223,7 +13251,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/252_2.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Fugoppe_Cave.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Fugoppe_Cave.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10346.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10346.html"
  },
  {
   "hub": "niseko",
@@ -13283,7 +13313,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/253_3.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Mount_Yotei_from_Mount_Shiribetsu.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Mount_Yotei_from_Mount_Shiribetsu.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10334.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10334.html"
  },
  {
   "hub": "shikotsu",
@@ -14324,7 +14356,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/270_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kamiyubetsu-Tulip-Park01.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kamiyubetsu-Tulip-Park01.JPG",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_11295.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_11295.html"
  },
  {
   "hub": "monbetsu",
@@ -14459,7 +14493,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/272_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E3%81%8D%E3%81%A4%E3%81%AD%E7%89%A7%E5%A0%B41.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E3%81%8D%E3%81%A4%E3%81%AD%E7%89%A7%E5%A0%B41.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10259.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10259.html"
  },
  {
   "hub": "niseko",
@@ -19204,7 +19240,9 @@ window.PLACES = [
   "lat": 43.12431,
   "lng": 141.05576,
   "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.visit-hokkaido.jp/spa/spot/detail_10612.html",
+  "url": "https://www.visit-hokkaido.jp/spa/spot/detail_10612.html"
  },
  {
   "hub": "otaru",
@@ -20580,7 +20618,9 @@ window.PLACES = [
   "lat": 43.652,
   "lng": 142.8,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://www.visit-hokkaido.jp/spa/spot/detail_10603.html",
+  "url": "https://www.visit-hokkaido.jp/spa/spot/detail_10603.html"
  },
  {
   "hub": "asahikawa",
