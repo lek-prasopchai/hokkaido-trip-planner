@@ -247,7 +247,9 @@ const PlanView = {
   },
   pickWish() {
     const skip = new Set([...Planner.usedSet(-1), ...S.plan.wish]);
-    this.pickPlace(`<h2>${I("heart")} เพิ่มที่อยากไป</h2>`, PLACES.filter((p) => !skip.has(p.id)).sort((a, b) => b.stars - a.stars).slice(0, 30), skip, (id) => this.addTo(id, "wish"));
+    this.pickPlace(`<h2>${I("heart")} เพิ่มที่อยากไป</h2><div class="row" style="margin-bottom:10px"><button class="btn small" data-m="custom">${I("star")} จุดของฉัน (ร้าน/ปักหมุดเอง)</button></div>`,
+      PLACES.filter((p) => !skip.has(p.id)).sort((a, b) => b.stars - a.stars).slice(0, 30), skip, (id) => this.addTo(id, "wish"),
+      (ev) => { if (ev.target.closest("[data-m]")) { Modal.close(); this.addCustom("wish"); } });
   },
 
   // แถบเวลาทั้งทริป 06:00-24:00 ต่อวัน (ยืดถึงตีสองถ้ามีวันที่จบหลังเที่ยงคืน)
@@ -633,14 +635,15 @@ const PlanView = {
     };
   },
 
-  // ---- เพิ่มจุดของฉัน (ร้านที่เพื่อนแนะนำ ปักหมุดเอง) ----
+  // ---- เพิ่มจุดของฉัน (ร้านที่เพื่อนแนะนำ ปักหมุดเอง) • i = "wish" เก็บในรายการอยากไป ----
   addCustom(i) {
+    const wish = i === "wish", ref = Planner.ends(wish ? 0 : i).to;
     Modal.open(`<h2>${I("star")} เพิ่มจุดของฉัน</h2><p class="mute small">บนมือถือ: กด <b>แตะบนแผนที่</b> แล้วจิ้มจุดที่จะไป หรือ <b>ตำแหน่งตอนนี้</b> ถ้ายืนอยู่ตรงนั้น • วางลิงก์ Google Maps ได้ด้วย (ลิงก์แชร์แบบสั้นไม่มีพิกัด ระบบจะเก็บไว้เป็นลิงก์ แต่ไม่คิดเวลาเดินทาง)</p>
       <div class="form ed-form"><label class="f full">ชื่อ<input type="text" id="cName" placeholder="เช่น ร้านราเมนที่เพื่อนแนะนำ"></label>
-        <div class="full">${LocPick.html("ตำแหน่ง", 'id="cLoc"', "", point(Planner.ends(i).to))}</div>
+        <div class="full">${LocPick.html("ตำแหน่ง", 'id="cLoc"', "", point(ref))}</div>
         <div class="f">เวลาที่ใช้${durField("cDur", 1)}</div>
-        <label class="f">ล็อกเวลา<input type="time" id="cAt"><small class="hint">ไม่ใส่ก็ได้</small></label></div>
-      <div class="row" style="margin-top:12px"><button class="btn primary" id="cSave">เพิ่มในวันที่ ${i + 1}</button></div>`);
+        ${wish ? "" : `<label class="f">ล็อกเวลา<input type="time" id="cAt"><small class="hint">ไม่ใส่ก็ได้</small></label>`}</div>
+      <div class="row" style="margin-top:12px"><button class="btn primary" id="cSave">${wish ? "เก็บในอยากไป" : `เพิ่มในวันที่ ${i + 1}`}</button></div>`);
     $("#cSave").onclick = () => {
       const name = $("#cName").value.trim(), raw = $("#cLoc").value.trim(), ll = parseLatLng(raw);
       if (!name) return toast("ใส่ชื่อก่อน");
@@ -649,7 +652,8 @@ const PlanView = {
       const id = "c" + Date.now().toString(36);
       this.mut(() => {
         S.plan.custom[id] = { name, hours: durVal("cDur") ?? 1, url: /^https?:/.test(raw) ? raw : "", ...(ll || {}) };
-        S.plan.days[i].items.push({ id, u: true, at: $("#cAt").value || undefined });
+        if (wish) S.plan.wish.push(id);
+        else S.plan.days[i].items.push({ id, u: true, at: $("#cAt").value || undefined });
       });
       Modal.close();
     };
