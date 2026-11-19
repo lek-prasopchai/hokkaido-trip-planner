@@ -181,6 +181,9 @@ const FIX = {
   335: { months: [9, 10], sn: { autumn: "11 ก.ย.-3 ต.ค. 2026" } }, 337: { ref: "https://www.sapporo.travel/event/event-list/yukitouro/" },
 };
 
+// คีย์ซ้ำใน FIX: ตัวหลังทับตัวแรกเงียบ ๆ จึงให้หยุดทำงาน
+const dupFix = (fs.readFileSync(__filename, "utf8").match(/^const FIX = \{[\s\S]*?^\};/m)[0].match(/(?<=^  |\}, )\d+(?=: \{)/gm) || []).filter((k, i, a) => a.indexOf(k) !== i);
+if (dupFix.length) throw new Error("FIX มีคีย์ซ้ำ: " + dupFix.join(" "));
 (async () => {
   const byId = Object.fromEntries(places.map((p) => [p.id, p]));
   let nFix = 0, nRef = 0, nGeo = 0;
