@@ -24003,15 +24003,7 @@ window.PLACES = [
   "phone": "011-596-5778",
   "url": "https://hakkenzanwine.com/",
   "ref": "https://www.sapporo.travel/spot/facility/hakkenzan_winery/",
-  "checked": "2026-11",
-  "imgs": [
-   {
-    "img": "img/places/437.jpg",
-    "credit": "https://commons.wikimedia.org/wiki/File:SAKURAKO_-_Hakkenzan_Winery._%2813187097245%29.jpg"
-   }
-  ],
-  "img": "img/places/437.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:SAKURAKO_-_Hakkenzan_Winery._%2813187097245%29.jpg"
+  "checked": "2026-11"
  },
  {
   "id": 438,
@@ -25172,19 +25164,7 @@ window.PLACES = [
   "phone": "011-221-0462(",
   "url": "https://www.ainu-assn.or.jp/",
   "ref": "https://www.sapporo.travel/spot/facility/ainu_center/",
-  "checked": "2026-11",
-  "imgs": [
-   {
-    "img": "img/places/461.jpg",
-    "credit": "https://commons.wikimedia.org/wiki/File:Ainu_promotion_center%2C_Sapporo.JPG"
-   },
-   {
-    "img": "img/places/461_2.jpg",
-    "credit": "https://commons.wikimedia.org/wiki/File:Traditional_Ainu_wooden_boat_near_%E6%9C%AD%E5%B9%8C%E5%B8%82%E3%82%A2%E3%82%A4%E3%83%8C%E4%BA%A4%E6%B5%81%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC_in_Sapporo%2C_Hokkaido%2C_Japan_%2821%29.jpg"
-   }
-  ],
-  "img": "img/places/461.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Ainu_promotion_center%2C_Sapporo.JPG"
+  "checked": "2026-11"
  },
  {
   "id": 462,
