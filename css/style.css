@@ -552,6 +552,14 @@ details.adv > summary { cursor: pointer; color: var(--ice); font-size: .875rem; 
 .subnav a.on { background: var(--ink); color: var(--on); border-color: var(--ink); }
 
 /* ---- ของจำเป็น: ติ๊กอย่างเดียว ---- */
+.pk3 .due { font-size: .78rem; color: var(--mute); white-space: nowrap; }
+.pk3 .due.late { color: var(--bad); font-weight: 600; }
+.pk3 .due.near { color: var(--warn); font-weight: 600; }
+.pk3 small.auto { color: var(--good); display: flex; gap: 4px; align-items: center; }
+.pk3 input:disabled { cursor: default; }
+.next-up { border-color: var(--warn); }
+.next-up h2 small, .subnav a small { color: var(--mute); font-weight: 400; font-size: .78rem; }
+.subnav a.on small { color: inherit; opacity: .75; }
 .pk-sub + .pk-sub { margin-top: 14px; }
 .pk3 { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 10px; align-items: start; padding: 8px 4px; border-bottom: 1px solid var(--line); cursor: pointer; }
 .pk3:last-child { border-bottom: 0; }

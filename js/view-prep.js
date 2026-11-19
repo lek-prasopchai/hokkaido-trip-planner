@@ -7,13 +7,19 @@ const CAT_ICON = { "เอกสาร": "file-text", "เงิน": "banknote"
   "กิจกรรม": "cable-car", "กล้องและความทรงจำ": "camera", "ขากลับ": "plane-takeoff" };
 const TASK_LINK = { x2: "stays", x8: "trip", x9: "trip", x10: "packing", x11: "packing", x13: "drive", x18: "stays", x24: "packing", x33: "drive" };
 const PAGE_NAME = { stays: "ที่พัก", trip: "แผนรายวัน", packing: "จัดกระเป๋า", drive: "ขับรถหน้าหนาว" };
+// งานที่ติ๊กเองจากข้อมูลในเว็บ: [เงื่อนไข, เหตุผลที่แสดง]
+const TASK_AUTO = {
+  x2: [() => tripNights() > 0 && Array.from({ length: tripNights() }, (_, k) => Planner.stayAt(k)).every(Boolean), "กรอกที่พักครบทุกคืนแล้ว"],
+  x8: [() => !!S.plan, "มีแผนรายวันแล้ว"],
+  x24: [() => { const p = PackingView.progress(); return p.total > 0 && p.ok === p.total; }, "ติ๊กครบในหน้าจัดกระเป๋าแล้ว"],
+};
 
 const Prep = {
   all: false, // แสดงรายการที่ไม่เกี่ยวกับทริปนี้ด้วย (ไม่บันทึก)
   car: () => Planner.usedModes().has("car"),
   winter: () => isWinter(S.trip.start) || isWinter(S.trip.end),
   head(id, title, lead) {
-    return `<nav class="subnav no-print">${PREP_SUBS.map(([g, s]) => `<div><span>${g}</span>${s.map(([k, n]) => `<a href="#${k}" class="${k === id ? "on" : ""}">${n}</a>`).join("")}</div>`).join("")}</nav>
+    return `<nav class="subnav no-print">${PREP_SUBS.map(([g, s]) => `<div><span>${g}</span>${s.map(([k, n]) => `<a href="#${k}" class="${k === id ? "on" : ""}">${n}${this.count(k)}</a>`).join("")}</div>`).join("")}</nav>
       <div class="sec-head"><h1>${title}</h1><p class="lead">${lead}</p></div>`;
   },
   // แถบบอกว่าซ่อนกี่รายการ + ปุ่มสลับ
@@ -21,6 +27,7 @@ const Prep = {
     return n ? `<div class="row no-print" style="margin-bottom:12px"><span class="mute small">${this.all ? `แสดงทั้งหมด รวม ${n} รายการที่ไม่เกี่ยวกับทริปนี้` : `ซ่อน ${n} รายการที่ไม่เกี่ยวกับทริปนี้ (${why})`}</span>
       <button class="btn small" data-prep-all>${this.all ? "ซ่อนที่ไม่เกี่ยว" : "แสดงทั้งหมด"}</button></div>` : "";
   },
+  count(k) { const p = { prep: PrepView, packing: PackingView }[k]?.progress(); return p ? ` <small>${p.ok}/${p.total}</small>` : ""; },
   why() { return [this.car() ? "" : "ไม่ได้เช่ารถ", this.winter() ? "หน้าหนาว" : "ไม่ใช่หน้าหนาว"].filter(Boolean).join(", "); },
   off: '<span class="badge b-mute">ไม่เกี่ยวกับทริปนี้</span>',
   bind() {
@@ -44,24 +51,27 @@ const PrepView = {
   fits(x) { const m = Planner.usedModes(); return x.mode === "all" || m.has(x.mode); },
   allTasks: () => [...PREP_TASKS, ...GUIDE.extraPrep].sort((a, b) => b.days - a.days),
   tasks() { return this.allTasks().filter((x) => !x.opt && this.fits(x)); },
+  auto: (x) => TASK_AUTO[x.id]?.[0]() || false,
+  done(x) { return !!S.prep[x.id] || this.auto(x); },
+  progress() { const T = this.tasks(); return { ok: T.filter((x) => this.done(x)).length, total: T.length }; },
   render() {
-    const A = this.allTasks(), T = this.tasks(), today = todayIso();
+    const A = this.allTasks(), T = this.tasks(), today = todayIso(), soon = addDays(today, 14);
     const shown = A.filter((x) => !x.opt && (Prep.all || this.fits(x))), O = A.filter((x) => x.opt && (Prep.all || this.fits(x)));
-    const done = T.filter((x) => S.prep[x.id]).length, pct = T.length ? Math.round((done / T.length) * 100) : 0;
-    const overdue = T.filter((x) => !S.prep[x.id] && addDays(S.trip.start, -x.days) < today).length;
-    const row = (x) => { const due = addDays(S.trip.start, -x.days), d = !!S.prep[x.id];
-      return `<tr class="${d ? "done" : due < today && !x.opt ? "over" : ""}"><td><input type="checkbox" data-task="${x.id}" ${d ? "checked" : ""} aria-label="เสร็จแล้ว"></td>
-      <td>${thDate(due, false)}</td><td><b>${esc(x.task)}</b>${this.fits(x) ? "" : " " + Prep.off}${TASK_LINK[x.id] ? ` <a class="small no-print" href="#${TASK_LINK[x.id]}">ไปหน้า ${PAGE_NAME[TASK_LINK[x.id]]} →</a>` : ""}</td><td>${esc(x.detail)}</td><td><span class="badge b-mute">${esc(x.cat)}</span></td></tr>`; };
-    const head = '<thead><tr><th style="width:34px"></th><th style="width:110px">ครบกำหนด</th><th>งาน</th><th>ทำไม / รายละเอียด</th><th>หมวด</th></tr></thead>';
-    $('[data-sec="prep"]').innerHTML = `${Prep.head("prep", "สิ่งที่ต้องทำก่อนบิน", `วันครบกำหนดคำนวณจากวันบิน ${thDate(S.trip.start)} ถ้าเลยกำหนดแล้วยังไม่เสร็จ แถวจะเป็นสีแดง งานแสดงตามวิธีเดินทางที่เลือก (${Planner.modeLabel()})`)}
+    const due = (x) => addDays(S.trip.start, -x.days);
+    const { ok, total } = this.progress(), pct = total ? Math.round((ok / total) * 100) : 0;
+    const next = T.filter((x) => !this.done(x) && due(x) <= soon), overdue = next.filter((x) => due(x) < today).length;
+    // รายการแบบเดียวกับหน้าจัดกระเป๋า: อ่านง่ายบนมือถือ สีแดง/เหลืองเฉพาะป้ายวันที่ (เลยกำหนด/ภายใน 14 วัน)
+    const row = (x) => { const d = due(x), dn = this.done(x), au = this.auto(x), late = !dn && !x.opt && d < today, near = !dn && !x.opt && !late && d <= soon;
+      return `<label class="pk3 ${dn ? "done" : ""}"><input type="checkbox" data-task="${x.id}" ${dn ? "checked" : ""} ${au ? "disabled" : ""} aria-label="เสร็จแล้ว">
+        <span><b>${esc(x.task)}</b> <span class="due ${late ? "late" : near ? "near" : ""}">${late ? "เลยกำหนด " : "ภายใน "}${thDate(d, false)}</span>${this.fits(x) ? "" : " " + Prep.off}
+        ${au ? `<small class="auto">${I("circle-check")} ติ๊กให้แล้ว: ${TASK_AUTO[x.id][1]}</small>` : ""}<small>${esc(x.detail)} <span class="mute">• ${esc(x.cat)}</span>${TASK_LINK[x.id] ? ` <a class="no-print" href="#${TASK_LINK[x.id]}">ไปหน้า ${PAGE_NAME[TASK_LINK[x.id]]} →</a>` : ""}</small></span></label>`; };
+    $('[data-sec="prep"]').innerHTML = `${Prep.head("prep", "สิ่งที่ต้องทำก่อนบิน", `วันครบกำหนดนับจากวันบิน ${thDate(S.trip.start)} งานแสดงตามวิธีเดินทางที่เลือก (${Planner.modeLabel()}) บางงานติ๊กให้เองเมื่อทำในเว็บนี้แล้ว`)}
       ${Prep.hidden(A.filter((x) => !this.fits(x)).length, Prep.car() ? "งานของคนนั่งรถไฟ" : "งานเรื่องรถเช่า")}
-      <div class="card"><div class="row"><b>เสร็จ ${done}/${T.length}</b>${overdue ? `<span class="badge b-bad">เลยกำหนด ${overdue}</span>` : ""}<div class="spacer"></div><span>${pct}%</span></div>
+      <div class="card"><div class="row"><b>เสร็จ ${ok}/${total}</b>${overdue ? `<span class="badge b-bad">เลยกำหนด ${overdue}</span>` : ""}<div class="spacer"></div><span>${pct}%</span></div>
         <div class="bar" style="margin-top:6px"><i style="width:${pct}%"></i></div></div>
-      ${[...new Set(shown.map((x) => x.phase))].map((ph) => `<div class="card"><h2>${esc(ph)}</h2><div class="tbl-wrap"><table class="t">${head}<tbody>
-        ${shown.filter((x) => x.phase === ph).map(row).join("")}
-      </tbody></table></div></div>`).join("")}
-      ${O.length ? `<details class="card opt"><summary><b>ของเสริม (ไม่บังคับ)</b> <small>${O.length} งานพื้นฐาน ไม่นับในความคืบหน้า</small></summary>
-        <div class="tbl-wrap"><table class="t">${head}<tbody>${O.map(row).join("")}</tbody></table></div></details>` : ""}`;
+      ${next.length ? `<div class="card next-up"><h2>${I("clock")} ทำต่อเลย <small>${next.length} งานที่เลยกำหนดหรือถึงกำหนดใน 14 วัน</small></h2>${next.map(row).join("")}</div>` : ""}
+      ${[...new Set(shown.map((x) => x.phase))].map((ph) => `<div class="card"><h2>${esc(ph)}</h2>${shown.filter((x) => x.phase === ph).map(row).join("")}</div>`).join("")}
+      ${O.length ? `<details class="card opt"><summary><b>ของเสริม (ไม่บังคับ)</b> <small>${O.length} งานพื้นฐาน ไม่นับในความคืบหน้า</small></summary>${O.map(row).join("")}</details>` : ""}`;
   },
 };
 
@@ -90,6 +100,7 @@ const PackingView = {
       ${ys.map((x) => `<label class="pk3 ${this.ok(x) ? "done" : ""}"><input type="checkbox" data-ok="${x.id}" ${this.ok(x) ? "checked" : ""}>
         <span><b>${esc(x.name)}</b> <span class="mute">${this.qty(x)}</span>${this.fits(x) ? "" : " " + Prep.off}${x.spec ? `<small>${esc(x.spec)}</small>` : ""}</span></label>`).join("")}</div>`).join("");
   },
+  progress() { const L = PACKING.filter((x) => !x.opt && this.fits(x)); return { ok: L.filter((x) => this.ok(x)).length, total: L.length }; },
   render() {
     const V = PACKING.filter((x) => Prep.all || this.fits(x)), L = V.filter((x) => !x.opt && this.fits(x)), O = V.filter((x) => x.opt);
     const ok = L.filter((x) => this.ok(x)).length, pct = L.length ? Math.round((ok / L.length) * 100) : 0;
