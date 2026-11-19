@@ -39952,10 +39952,6 @@ window.PLACES = [
    {
     "img": "img/places/857_2.jpg",
     "credit": "https://commons.wikimedia.org/wiki/File:Hakodate_kouen_kanransha.jpg"
-   },
-   {
-    "img": "img/places/857_3.jpg",
-    "credit": "https://commons.wikimedia.org/wiki/File:Hakodate_Park_Guide_-_panoramio.jpg"
    }
   ],
   "img": "img/places/857.jpg",

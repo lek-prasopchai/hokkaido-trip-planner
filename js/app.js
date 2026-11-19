@@ -78,6 +78,7 @@ const App = {
     if (toStays) id = "setup";
     if (!RENDER[id]) id = "trip"; // รวมลิงก์เก่าไปหน้าที่ตัดออกแล้ว (วันนี้ เตรียมตัว คู่มือ เอกสาร)
     const prev = this.cur;
+    if (prev !== id) Modal.close(); // ปิดชีตรายละเอียดที่ค้างอยู่เมื่อเปลี่ยนแท็บ
     this.cur = id;
     RENDER[id]();
     setTimeout(() => refitSection(id), 50);

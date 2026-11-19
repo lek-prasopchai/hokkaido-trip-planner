@@ -625,7 +625,8 @@ input[type=checkbox], input[type=radio] { width: 16px; height: 16px; cursor: poi
 
 /* ตัวกรองสถานที่: จอกว้างให้ช่องเท่ากัน */
 @media (min-width: 900px) {
-  .filters .row > select { flex: 1 1 150px; min-width: 0; }
+  .filters .row > select { flex: 1 1 140px; min-width: 0; }
+  .filters .row > select[data-f="season"] { flex-basis: 190px; }
   .filters .row > input[type=search] { flex: 2 1 240px !important; }
 }
 
