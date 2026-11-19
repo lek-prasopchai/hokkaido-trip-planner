@@ -3,7 +3,8 @@
 const PREP_SUBS = [["เตรียมตัว", [["prep", "สิ่งที่ต้องทำ"], ["packing", "จัดกระเป๋า"]]], ["คู่มือ", [["drive", "ขับรถหน้าหนาว"], ["life", "ใช้ชีวิตที่นั่น"]]]];
 const PREP_IDS = PREP_SUBS.flatMap(([, s]) => s.map(([id]) => id));
 const CAT_ICON = { "เอกสาร": "file-text", "เงิน": "banknote", "เสื้อผ้า-ชั้นใน/กลาง": "shirt", "เสื้อผ้า-ชั้นนอก": "shirt", "หัว-มือ-เท้า": "hand", "ผิวและร่างกาย": "droplet",
-  "ยาและสุขภาพ": "pill", "อิเล็กทรอนิกส์": "plug", "ของในรถ": "car", "กระเป๋าและจัดเก็บ": "luggage", "ของจิปาถะ": "paperclip", "เด็กเล็ก": "baby" };
+  "ยาและสุขภาพ": "pill", "อิเล็กทรอนิกส์": "plug", "ของในรถ": "car", "กระเป๋าและจัดเก็บ": "luggage", "ของจิปาถะ": "paperclip", "เด็กเล็ก": "baby",
+  "กิจกรรม": "cable-car", "กล้องและความทรงจำ": "camera", "ขากลับ": "plane-takeoff" };
 const TASK_LINK = { x2: "stays", x8: "trip", x9: "trip", x10: "packing", x11: "packing", x13: "drive", x18: "stays", x24: "packing", x33: "drive" };
 const PAGE_NAME = { stays: "ที่พัก", trip: "แผนรายวัน", packing: "จัดกระเป๋า", drive: "ขับรถหน้าหนาว" };
 
@@ -65,7 +66,7 @@ const PrepView = {
 };
 
 const PackingView = {
-  // when = เงื่อนไขแสดง { mode, season: "winter"|"warm" } (ไม่มีจำนวนคน/เด็กในทริปแล้ว: ของเด็กแสดงเสมอ อยู่หมวดเด็กเล็ก)
+  // when = เงื่อนไขแสดง { mode, season: "winter"|"warm", tag } (ไม่มีจำนวนคน/เด็กในทริปแล้ว: ของเด็กแสดงเสมอ อยู่หมวดเด็กเล็ก)
   carOnly: (x) => ["คัน", "คนขับ"].includes(x.per) || x.cat === "ของในรถ" || /IDP|ใบขับขี่|รถเช่า|ETC/.test(x.name),
   fits(x) {
     const w = x.when || {}, winter = Prep.winter(), used = Planner.usedModes();
@@ -73,6 +74,7 @@ const PackingView = {
     if (w.mode && !used.has(w.mode)) return false;
     if (w.season === "winter" && !winter) return false;
     if (w.season === "warm" && winter) return false;
+    if (w.tag && !S.trip.interests.includes(w.tag)) return false;
     return true;
   },
   ok: (x) => { const s = S.packing[x.id]; return s === true || (!!s?.status && s.status !== "todo"); }, // {status} = ค่าจากเวอร์ชันเก่า
@@ -80,16 +82,22 @@ const PackingView = {
     const days = tripNights() + 1;
     return { "คน": `${x.qty} ต่อคน`, "คน×วัน": `${x.qty * days} ต่อคน (${x.qty}/วัน × ${days} วัน)`, "คนขับ": `${x.qty} ต่อคนขับ`, "คัน": `${x.qty} ต่อคัน`, "กลุ่ม": `${x.qty} ต่อกลุ่ม` }[x.per] ?? `×${x.qty}`;
   },
+  // รายการแยกหมวด: การ์ดละหมวด (รายการหลัก) หรือหัวข้อย่อยในกล่องของเสริม
+  cats(xs, sub) {
+    const g = {};
+    xs.forEach((x) => (g[x.cat] ||= []).push(x));
+    return Object.entries(g).map(([c, ys]) => `<div class="${sub ? "pk-sub" : "card"} pk-cat"><h3>${I(CAT_ICON[c] || "package")} ${esc(c)} <small>${ys.filter((x) => this.ok(x)).length}/${ys.length}</small></h3>
+      ${ys.map((x) => `<label class="pk3 ${this.ok(x) ? "done" : ""}"><input type="checkbox" data-ok="${x.id}" ${this.ok(x) ? "checked" : ""}>
+        <span><b>${esc(x.name)}</b> <span class="mute">${this.qty(x)}</span>${this.fits(x) ? "" : " " + Prep.off}${x.spec ? `<small>${esc(x.spec)}</small>` : ""}</span></label>`).join("")}</div>`).join("");
+  },
   render() {
-    const L = PACKING.filter((x) => this.fits(x)), V = Prep.all ? PACKING : L, g = {};
+    const V = PACKING.filter((x) => Prep.all || this.fits(x)), L = V.filter((x) => !x.opt && this.fits(x)), O = V.filter((x) => x.opt);
     const ok = L.filter((x) => this.ok(x)).length, pct = L.length ? Math.round((ok / L.length) * 100) : 0;
-    V.forEach((x) => (g[x.cat] ||= []).push(x));
-    $('[data-sec="packing"]').innerHTML = `${Prep.head("packing", "จัดกระเป๋า", `${L.length} อย่างที่ขาดไม่ได้สำหรับทริปนี้ (${Planner.modeLabel()}${Prep.winter() ? ", หน้าหนาว" : ""})`)}
-      ${Prep.hidden(PACKING.length - L.length, Prep.why())}
+    $('[data-sec="packing"]').innerHTML = `${Prep.head("packing", "จัดกระเป๋า", `${L.length} อย่างที่ควรมีสำหรับทริปนี้ (${Planner.modeLabel()}${Prep.winter() ? ", หน้าหนาว" : ""}) ของเสริมพับไว้ท้ายหน้า`)}
+      ${Prep.hidden(PACKING.filter((x) => !this.fits(x)).length, Prep.why())}
       <div class="card"><div class="row"><b>พร้อมแล้ว ${ok}/${L.length}</b><div class="spacer"></div><span>${pct}%</span></div><div class="bar" style="margin-top:6px"><i style="width:${pct}%"></i></div></div>
-      ${Object.entries(g).map(([c, xs]) => `<div class="card pk-cat"><h3>${I(CAT_ICON[c] || "package")} ${esc(c)} <small>${xs.filter((x) => this.ok(x)).length}/${xs.length}</small></h3>
-        ${xs.map((x) => `<label class="pk3 ${this.ok(x) ? "done" : ""}"><input type="checkbox" data-ok="${x.id}" ${this.ok(x) ? "checked" : ""}>
-          <span><b>${esc(x.name)}</b> <span class="mute">${this.qty(x)}</span>${this.fits(x) ? "" : " " + Prep.off}${x.spec ? `<small>${esc(x.spec)}</small>` : ""}</span></label>`).join("")}</div>`).join("")}`;
+      ${this.cats(V.filter((x) => !x.opt), false)}
+      ${O.length ? `<details class="card opt"><summary><b>ของเสริม (ไม่บังคับ)</b> <small>${O.length} อย่าง: มีก็ดี ของใช้พื้นฐาน อุปกรณ์กล้อง ไม่นับในความคืบหน้า</small></summary>${this.cats(O, true)}</details>` : ""}`;
   },
 };
 

@@ -552,6 +552,7 @@ details.adv > summary { cursor: pointer; color: var(--ice); font-size: .875rem; 
 .subnav a.on { background: var(--ink); color: var(--on); border-color: var(--ink); }
 
 /* ---- ของจำเป็น: ติ๊กอย่างเดียว ---- */
+.pk-sub + .pk-sub { margin-top: 14px; }
 .pk3 { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 10px; align-items: start; padding: 8px 4px; border-bottom: 1px solid var(--line); cursor: pointer; }
 .pk3:last-child { border-bottom: 0; }
 .pk3 input { margin-top: 3px; width: 18px; height: 18px; }
