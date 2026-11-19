@@ -1,8 +1,9 @@
-// โครงแอป: เมนูหลัก 4 หน้า (เรียงตามขั้นวางแผน), ตั้งค่า, แชร์ลิงก์, ย้อนกลับ, PWA
-const TABS = [["setup", "plane", "ข้อมูลทริป"], ["trip", "map", "แผนรายวัน"], ["places", "search", "สถานที่"], ["budget", "banknote", "งบประมาณ"]];
+// โครงแอป: เมนูหลัก 5 หน้า (เรียงตามขั้นวางแผน), ตั้งค่า, แชร์ลิงก์, ย้อนกลับ, PWA
+const TABS = [["setup", "plane", "ข้อมูลทริป"], ["trip", "map", "แผนรายวัน"], ["places", "search", "สถานที่"], ["budget", "banknote", "งบประมาณ"], ["prep", "backpack", "เตรียมตัว"]];
 const RENDER = {
   trip: () => PlanView.render(), setup: () => PlanView.renderSetup(),
   places: () => PlacesView.render(), budget: () => BudgetView.render(),
+  prep: () => PrepView.render(), packing: () => PackingView.render(), drive: () => GuideView.drive(), life: () => GuideView.life(),
 };
 
 // ---------- กันแผนหาย: แผนอยู่ในเบราว์เซอร์เครื่องเดียว ----------
@@ -39,7 +40,7 @@ const Safety = {
 };
 
 const App = {
-  cur: null, viewOnly: false,
+  cur: null, viewOnly: false, prepSub: "prep", // prepSub = หน้าย่อยล่าสุดของเมนูเตรียมตัว
   renderAll() {
     if (this.cur) {
       // วาดใหม่ทั้งหน้าแล้วกล่องพับ (details) จะกลับเป็นค่าเริ่มต้น: จำสถานะเปิด/ปิดไว้แล้วคืนให้ (key = id หรือหัวข้อไม่รวมตัวเลข เพราะตัวเลขนับเปลี่ยนได้)
@@ -66,7 +67,7 @@ const App = {
 
   refreshChrome() {
     const t = S.trip, N = tripNights();
-    $("#tabs").innerHTML = TABS.map(([id, ic, nm]) => `<a href="#${id}" class="tab ${id === this.cur ? "on" : ""}"><span class="ic">${I(ic)}</span><span>${nm}</span></a>`).join("");
+    $("#tabs").innerHTML = TABS.map(([id, ic, nm]) => `<a href="#${id === "prep" ? this.prepSub : id}" class="tab ${id === this.cur || (id === "prep" && PREP_IDS.includes(this.cur)) ? "on" : ""}"><span class="ic">${I(ic)}</span><span>${nm}</span></a>`).join("");
     $("#topTrip").textContent = `${thDate(t.start, false)} - ${thDate(t.end, false)} • ${N + 1} วัน ${N} คืน • ${Planner.modeLabel()}`;
     document.documentElement.dataset.font = S.set.font;
     if (S.set.theme === "auto") delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = S.set.theme;
@@ -76,7 +77,9 @@ const App = {
     if (id.startsWith("share=")) return;
     const toStays = id === "stay" || id === "stays"; // หน้าที่พักรวมเข้าหน้าข้อมูลทริปแล้ว: ไปที่ส่วนที่พัก
     if (toStays) id = "setup";
-    if (!RENDER[id]) id = "trip"; // รวมลิงก์เก่าไปหน้าที่ตัดออกแล้ว (วันนี้ เตรียมตัว คู่มือ เอกสาร)
+    if (id === "guide") id = "drive"; // ลิงก์หน้าคู่มือเดิม
+    if (!RENDER[id]) id = "trip"; // รวมลิงก์เก่าไปหน้าที่ตัดออกแล้ว (วันนี้ เอกสาร)
+    if (PREP_IDS.includes(id)) this.prepSub = id;
     const prev = this.cur;
     if (prev !== id) Modal.close(); // ปิดชีตรายละเอียดที่ค้างอยู่เมื่อเปลี่ยนแท็บ
     this.cur = id;
@@ -181,7 +184,7 @@ const App = {
   },
 
   init() {
-    Safety.bind(); PlanView.bind(); PlacesView.bind(); BudgetView.bind();
+    Safety.bind(); PlanView.bind(); PlacesView.bind(); BudgetView.bind(); Prep.bind();
     window.addEventListener("hashchange", () => { const h = location.hash.slice(1); if (h.startsWith("share=")) this.loadShared(h.slice(6)); else this.show(h); });
     const h = location.hash.slice(1);
     if (h.startsWith("share=")) this.loadShared(h.slice(6));

@@ -3,13 +3,13 @@
 // - โค้ด/ข้อมูล: ไฟล์มี ?v= ไม่เปลี่ยนเนื้อหา จึง cache ตรงเวอร์ชัน (ไม่ ignoreSearch ไม่งั้นได้ไฟล์เก่ามาแทนเวอร์ชันใหม่)
 // - รูป: cache-first (ปุ่ม "ดาวน์โหลดรูปทั้งหมด" ในตั้งค่าเติมให้ครบ)
 // - tile แผนที่: cache-first จำกัดจำนวน / API (อากาศ อัตราแลกเงิน เส้นทาง): network-first
-const V = "hk-v2-237"; // เปลี่ยนด้วย node tools/bump.js (พร้อม ?v= ใน index.html)
+const V = "hk-v2-239"; // เปลี่ยนด้วย node tools/bump.js (พร้อม ?v= ใน index.html)
 const SHELL = [
   "./", "index.html", "css/style.css", "manifest.webmanifest", "img/icon.svg", "img/icon-192.png", "img/icon-180.png",
   "vendor/leaflet/leaflet.css", "vendor/leaflet/leaflet.js", "vendor/markercluster/leaflet.markercluster.js",
   "vendor/markercluster/MarkerCluster.css", "vendor/markercluster/MarkerCluster.Default.css", "vendor/driver/driver.css", "vendor/driver/driver.js",
-  ...["icons", "core", "planner", "map", "view-plan", "view-places", "view-budget", "tour", "app"].map((f) => `js/${f}.js`),
-  ...["places", "drive", "outline", "hubs", "transit", "templates", "guide"].map((f) => `data/${f}.js`),
+  ...["icons", "core", "planner", "map", "view-plan", "view-places", "view-budget", "view-prep", "tour", "app"].map((f) => `js/${f}.js`),
+  ...["places", "drive", "outline", "hubs", "transit", "templates", "guide", "prep", "packing", "sheet_content"].map((f) => `data/${f}.js`),
 ];
 const TILE_MAX = 1500;
 

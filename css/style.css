@@ -544,6 +544,13 @@ details.adv > summary { cursor: pointer; color: var(--ice); font-size: .875rem; 
 .lact .addsel { max-width: 120px; font-size: .8rem; }
 @media (max-width: 520px) { .top-actions { margin-left: auto; } }
 
+/* ---- เมนูเตรียมตัว: หน้าย่อย (เตรียมตัว / คู่มือ) ---- */
+.subnav { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 0 0 14px; }
+.subnav > div { display: flex; gap: 6px; align-items: center; }
+.subnav span { color: var(--mute); font-size: .8rem; }
+.subnav a { padding: 6px 12px; border-radius: 99px; border: 1px solid var(--line); background: var(--paper); color: var(--ink2); text-decoration: none; font-size: .85rem; }
+.subnav a.on { background: var(--ink); color: var(--on); border-color: var(--ink); }
+
 /* ---- ของจำเป็น: ติ๊กอย่างเดียว ---- */
 .pk3 { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 10px; align-items: start; padding: 8px 4px; border-bottom: 1px solid var(--line); cursor: pointer; }
 .pk3:last-child { border-bottom: 0; }
