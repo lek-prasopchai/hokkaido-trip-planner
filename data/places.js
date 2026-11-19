@@ -20045,7 +20045,15 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/miyakodori_syoppingstreet",
   "url": "https://www.otaru-miyakodori.com/",
   "addrJa": "北海道小樽市稲穂2丁目",
-  "phone": "0134-32-6372"
+  "phone": "0134-32-6372",
+  "imgs": [
+   {
+    "img": "img/places/364.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E3%81%8A%E3%82%82%E3%81%97%E3%82%8D%E5%B0%8F%E6%A8%BD%E5%BC%81_%2817179448117%29.jpg"
+   }
+  ],
+  "img": "img/places/364.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%81%8A%E3%82%82%E3%81%97%E3%82%8D%E5%B0%8F%E6%A8%BD%E5%BC%81_%2817179448117%29.jpg"
  },
  {
   "hub": "otaru",
@@ -25184,7 +25192,15 @@ window.PLACES = [
   "phone": "011-221-0462(",
   "url": "https://www.ainu-assn.or.jp/",
   "ref": "https://www.sapporo.travel/spot/facility/ainu_center/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/461.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Kaederu_2._7_%28Hokkaido_Ritsumin_Activities_Center%29.JPG"
+   }
+  ],
+  "img": "img/places/461.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kaederu_2._7_%28Hokkaido_Ritsumin_Activities_Center%29.JPG"
  },
  {
   "id": 462,
@@ -30478,7 +30494,19 @@ window.PLACES = [
   "addrJa": "小樽市港町5-3",
   "phone": "0134-23-8161",
   "ref": "https://otaru.gr.jp/shop/otarusouko",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/601.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E6%97%A7%E5%B0%8F%E6%A8%BD%E5%80%89%E5%BA%AB%EF%BC%882024%E5%B9%B4%E9%81%8B%E6%B2%B3%E3%83%97%E3%83%A9%E3%82%B6%E6%99%82%E4%BB%A3%EF%BC%89.jpg"
+   },
+   {
+    "img": "img/places/601_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Former_Otaru_Warehouse06n.jpg"
+   }
+  ],
+  "img": "img/places/601.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%97%A7%E5%B0%8F%E6%A8%BD%E5%80%89%E5%BA%AB%EF%BC%882024%E5%B9%B4%E9%81%8B%E6%B2%B3%E3%83%97%E3%83%A9%E3%82%B6%E6%99%82%E4%BB%A3%EF%BC%89.jpg"
  },
  {
   "id": 602,
@@ -31089,7 +31117,15 @@ window.PLACES = [
   "addrJa": "富良野市幸町13-1 フラノマルシェ内",
   "phone": "0167-22-5443",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=110",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/617.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E3%83%95%E3%83%A9%E3%83%8E%E3%83%9E%E3%83%AB%E3%82%B7%E3%82%A7%E5%A4%96%E8%A6%B3.jpg"
+   }
+  ],
+  "img": "img/places/617.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%83%95%E3%83%A9%E3%83%8E%E3%83%9E%E3%83%AB%E3%82%B7%E3%82%A7%E5%A4%96%E8%A6%B3.jpg"
  },
  {
   "id": 618,
@@ -36316,7 +36352,19 @@ window.PLACES = [
   "phone": "0166-57-2131(",
   "url": "http://www.otokoyama.com/blog/park",
   "ref": "https://www.atca.jp/kankouspoy/男山自然公園/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/754.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Otokoyama-Park02.JPG"
+   },
+   {
+    "img": "img/places/754_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Otokoyama-Park01.JPG"
+   }
+  ],
+  "img": "img/places/754.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Otokoyama-Park02.JPG"
  },
  {
   "id": 755,
@@ -44537,7 +44585,15 @@ window.PLACES = [
   "phone": "0142-75-2555",
   "url": "http://toyako-vc.jp/volcano/",
   "ref": "https://www.laketoya.com/leisure/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/965.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Toyako_volcano_science_museum.JPG"
+   }
+  ],
+  "img": "img/places/965.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Toyako_volcano_science_museum.JPG"
  },
  {
   "id": 966,
@@ -46741,7 +46797,15 @@ window.PLACES = [
   "addrJa": "北海道稚内市大字抜海村字メメナイ",
   "phone": "0162-24-1216",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_11363.html",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/1016.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Ororon_Line_-_panoramio.jpg"
+   }
+  ],
+  "img": "img/places/1016.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Ororon_Line_-_panoramio.jpg"
  },
  {
   "id": 1017,
