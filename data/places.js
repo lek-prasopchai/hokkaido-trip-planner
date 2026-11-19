@@ -6212,7 +6212,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "ประมาณ",
   "img": "img/places/120.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Shiribetsu_River.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Shiribetsu_River.JPG",
+  "ref": "https://visit-hokkaido.jp/adventure-travel/traveltrade-press/courses/one-day/rafting-in-shiribetsu-river-niseko/",
+  "url": "https://visit-hokkaido.jp/adventure-travel/traveltrade-press/courses/one-day/rafting-in-shiribetsu-river-niseko/"
  },
  {
   "hub": "chitose",
@@ -7807,7 +7809,9 @@ window.PLACES = [
    8,
    9,
    10
-  ]
+  ],
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_10264.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10264.html"
  },
  {
   "hub": "abashiri",
@@ -9894,7 +9898,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/191.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Wine_castle_of_Ikeda-Town.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Wine_castle_of_Ikeda-Town.jpg",
+  "ref": "https://www.tokachi-wine.com/",
+  "url": "https://www.tokachi-wine.com/"
  },
  {
   "hub": "obihiro",
@@ -10612,7 +10618,9 @@ window.PLACES = [
   ],
   "sn": {
    "winter": "ทุ่งหิมะ ศูนย์ข้อมูลปิด"
-  }
+  },
+  "ref": "http://sarobetsu.or.jp/swc/",
+  "url": "http://sarobetsu.or.jp/swc/"
  },
  {
   "hub": "wakkanai",
@@ -10941,7 +10949,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/211.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Ryugu_Shrine_of_Otaru.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Ryugu_Shrine_of_Otaru.JPG",
+  "ref": "https://ryugujinja.jp/",
+  "url": "https://ryugujinja.jp/"
  },
  {
   "hub": "asahikawa",
@@ -11398,7 +11408,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/219.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Tarumaezan_Shrine_-_Gate.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Tarumaezan_Shrine_-_Gate.jpg",
+  "ref": "https://www.visit-hokkaido.jp/spot/detail_13094.html",
+  "url": "https://www.visit-hokkaido.jp/spot/detail_13094.html"
  },
  {
   "hub": "wakkanai",
@@ -12642,7 +12654,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/242_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Tanukikoji_01.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Tanukikoji_01.jpg",
+  "ref": "https://www.donki.com/store/shop_detail.php?shop_id=555",
+  "url": "https://www.donki.com/store/shop_detail.php?shop_id=555"
  },
  {
   "hub": "sapporo",
@@ -14634,7 +14648,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/274_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki_Toyako.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki_Toyako.jpg",
+  "ref": "http://www.hokkaido-michinoeki.jp/michinoeki/2974/",
+  "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2974/"
  },
  {
   "hub": "biei",
@@ -16133,7 +16149,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/300_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Honden_of_Otasan_shrine.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Honden_of_Otasan_shrine.JPG",
+  "ref": "https://www.visit-hokkaido.jp/korezo/detail/30",
+  "url": "https://www.visit-hokkaido.jp/korezo/detail/30"
  },
  {
   "hub": "biei",
@@ -21579,7 +21597,9 @@ window.PLACES = [
   "lat": 43.7628,
   "lng": 142.3582,
   "acc": "ประมาณ",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "ref": "https://machiakari.atca.jp/",
+  "url": "https://machiakari.atca.jp/"
  },
  {
   "hub": "furano",
@@ -32397,9 +32417,9 @@ window.PLACES = [
   "parking": "",
   "evening": false,
   "feeYen": 400,
-  "lat": 43.40553,
-  "lng": 142.42503,
-  "acc": "ประมาณ (ระดับตำบลจากที่อยู่ทางการ)",
+  "lat": 43.43124,
+  "lng": 142.38148,
+  "acc": "จากหมุดบนหน้า furanotourism.com",
   "addrJa": "北海道空知郡中富良野町奈江",
   "phone": "0167-44-4477",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=526",
