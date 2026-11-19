@@ -17838,7 +17838,23 @@ window.PLACES = [
   "acc": "ประมาณ",
   "checked": "2026-11",
   "ref": "https://www.yosakoi-soran.jp/",
-  "url": "https://www.yosakoi-soran.jp/"
+  "url": "https://www.yosakoi-soran.jp/",
+  "imgs": [
+   {
+    "img": "img/places/333.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Yosakoi_Soran_street_dance_festival%2C_Odori_Park%2C_Sapporo%2C_Japan%2C_June_2018_%281%29.jpg"
+   },
+   {
+    "img": "img/places/333_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:YOSAKOI_Soran_Festival.jpg"
+   },
+   {
+    "img": "img/places/333_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Yosakoi_Soran_dance_festival_performers%2C_Odori_Park%2C_Sapporo%2C_Hokkaido%2C_Japan.jpg"
+   }
+  ],
+  "img": "img/places/333.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Yosakoi_Soran_street_dance_festival%2C_Odori_Park%2C_Sapporo%2C_Japan%2C_June_2018_%281%29.jpg"
  },
  {
   "hub": "sapporo",
@@ -17882,7 +17898,25 @@ window.PLACES = [
   "acc": "ประมาณ",
   "checked": "2026-11",
   "ref": "https://www.sapporo.travel/event/event-list/sapporo-odori-beer-garden/",
-  "url": "https://www.sapporo.travel/event/event-list/sapporo-odori-beer-garden/"
+  "url": "https://www.sapporo.travel/event/event-list/sapporo-odori-beer-garden/",
+  "imgs": [
+   {
+    "img": "img/places/334.jpg",
+    "credit": "https://www.flickr.com/photos/7940758@N07/48487524357",
+    "by": "MIKI Yoshihito. (#mikiyoshihito) / CC BY 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/334_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E3%83%93%E3%82%A2%E3%82%AC%E3%83%BC%E3%83%87%E3%83%B3_%2826620537089%29.jpg"
+   },
+   {
+    "img": "img/places/334_3.jpg",
+    "credit": "https://www.flickr.com/photos/7940758@N07/14728347043",
+    "by": "MIKI Yoshihito. (#mikiyoshihito) / CC BY 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/334.jpg",
+  "imgCredit": "https://www.flickr.com/photos/7940758@N07/48487524357"
  },
  {
   "hub": "sapporo",
@@ -17926,7 +17960,23 @@ window.PLACES = [
   "acc": "ประมาณ",
   "checked": "2026-11",
   "ref": "https://www.sapporo.travel/event/event-list/sapporo_autumn_fest/",
-  "url": "https://www.sapporo.travel/event/event-list/sapporo_autumn_fest/"
+  "url": "https://www.sapporo.travel/event/event-list/sapporo_autumn_fest/",
+  "imgs": [
+   {
+    "img": "img/places/335.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E3%81%95%E3%81%A3%E3%81%BD%E3%82%8D%E3%82%AA%E3%83%BC%E3%82%BF%E3%83%A0%E3%83%95%E3%82%A7%E3%82%B9%E3%83%882009_%283952776473%29.jpg"
+   },
+   {
+    "img": "img/places/335_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:6%E4%B8%81%E7%9B%AE%E4%BC%9A%E5%A0%B4%E3%81%AF%E5%A4%A7%E8%B3%91%E3%82%8F%E3%81%84_-%E3%82%AA%E3%83%BC%E3%82%BF%E3%83%A0%E3%83%95%E3%82%A7%E3%82%B9%E3%83%88_%286151890929%29.jpg"
+   },
+   {
+    "img": "img/places/335_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E3%81%95%E3%81%A3%E3%81%BD%E3%82%8D%E3%82%AA%E3%83%BC%E3%82%BF%E3%83%A0%E3%83%95%E3%82%A7%E3%82%B9%E3%83%882009_%283950143525%29.jpg"
+   }
+  ],
+  "img": "img/places/335.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%81%95%E3%81%A3%E3%81%BD%E3%82%8D%E3%82%AA%E3%83%BC%E3%82%BF%E3%83%A0%E3%83%95%E3%82%A7%E3%82%B9%E3%83%882009_%283952776473%29.jpg"
  },
  {
   "hub": "jozankei",
@@ -21579,7 +21629,26 @@ window.PLACES = [
   "checked": "2026-11",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=370",
   "addrJa": "上富良野町十勝岳",
-  "phone": "0167-45-4126"
+  "phone": "0167-45-4126",
+  "imgs": [
+   {
+    "img": "img/places/407.jpg",
+    "credit": "https://www.flickr.com/photos/92154034@N00/38580252350",
+    "by": "Robert Thomson / CC BY-NC 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/407_2.jpg",
+    "credit": "https://www.flickr.com/photos/92154034@N00/32822381580",
+    "by": "Robert Thomson / CC BY-SA 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/407_3.jpg",
+    "credit": "https://www.flickr.com/photos/92154034@N00/32822382570",
+    "by": "Robert Thomson / CC BY-SA 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/407.jpg",
+  "imgCredit": "https://www.flickr.com/photos/92154034@N00/38580252350"
  },
  {
   "hub": "furano",
@@ -36879,7 +36948,23 @@ window.PLACES = [
   "addrJa": "函館市五稜郭町44",
   "phone": "0138-31-5505",
   "ref": "https://www.hakobura.jp/spots/555",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/839.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Hakodate_Goryokaku_Panorama_1.JPG"
+   },
+   {
+    "img": "img/places/839_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:GoryokakuSmall.jpg"
+   },
+   {
+    "img": "img/places/839_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Cherry_of_Goryokaku_%E4%BA%94%E7%A8%9C%E9%83%AD%E3%81%AE%E6%A1%9C_%282497592882%29.jpg"
+   }
+  ],
+  "img": "img/places/839.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Goryokaku_Panorama_1.JPG"
  },
  {
   "id": 840,
@@ -37366,7 +37451,23 @@ window.PLACES = [
   "addrJa": "函館市臼尻町551-1",
   "phone": "0138-25-2030",
   "ref": "https://www.hakobura.jp/spots/616",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/852.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Michinoeki_jyoumonRoman.JPG"
+   },
+   {
+    "img": "img/places/852_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Hakodate_Jomon_Culture_Center.jpg"
+   },
+   {
+    "img": "img/places/852_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E4%B8%AD%E7%A9%BA%E5%9C%9F%E5%81%B6.jpg"
+   }
+  ],
+  "img": "img/places/852.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki_jyoumonRoman.JPG"
  },
  {
   "id": 853,
@@ -37881,7 +37982,25 @@ window.PLACES = [
   "addrJa": "函館市五稜郭町29-22",
   "phone": "0138-51-8373",
   "ref": "https://www.hakobura.jp/spots/164",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/866.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:JP-01_Hakodate_Ajisai-ramen.jpg"
+   },
+   {
+    "img": "img/places/866_2.jpg",
+    "credit": "https://www.flickr.com/photos/24839523@N00/5738599616",
+    "by": "eeems / CC BY-NC-ND 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/866_3.jpg",
+    "credit": "https://www.flickr.com/photos/28685313@N00/917067661",
+    "by": "lefty1007 / CC BY-NC 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/866.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:JP-01_Hakodate_Ajisai-ramen.jpg"
  },
  {
   "id": 867,
@@ -38407,7 +38526,16 @@ window.PLACES = [
   "phone": "0155-44-2131",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/16508/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/880.jpg",
+    "credit": "https://www.flickr.com/photos/52093670@N03/6308006628",
+    "by": "huhuri / CC BY 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/880.jpg",
+  "imgCredit": "https://www.flickr.com/photos/52093670@N03/6308006628"
  },
  {
   "id": 881,
@@ -39076,7 +39204,15 @@ window.PLACES = [
   "phone": "0155-32-3366",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/2548/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/898.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Ryugetsu_Sweetpia_Garden.JPG"
+   }
+  ],
+  "img": "img/places/898.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Ryugetsu_Sweetpia_Garden.JPG"
  },
  {
   "id": 899,
@@ -39189,7 +39325,23 @@ window.PLACES = [
   "phone": "0155-60-2377",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/1469/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/901.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E8%8A%B1%E3%81%AE%E5%BE%84%E3%81%A8%E3%83%AC%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3%E3%80%8C%E3%83%95%E3%83%A9%E3%83%AF%E3%83%BC%E3%83%8F%E3%83%BC%E3%83%84%E3%80%8D.png"
+   },
+   {
+    "img": "img/places/901_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E5%A4%8F%E3%81%AE%E3%83%9B%E3%83%AF%E3%82%A4%E3%83%88%E3%82%AC%E3%83%BC%E3%83%87%E3%83%B3.jpg"
+   },
+   {
+    "img": "img/places/901_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:%E3%83%9B%E3%83%AF%E3%82%A4%E3%83%88%E3%82%AC%E3%83%BC%E3%83%87%E3%83%B3.png"
+   }
+  ],
+  "img": "img/places/901.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E8%8A%B1%E3%81%AE%E5%BE%84%E3%81%A8%E3%83%AC%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3%E3%80%8C%E3%83%95%E3%83%A9%E3%83%AF%E3%83%BC%E3%83%8F%E3%83%BC%E3%83%84%E3%80%8D.png"
  },
  {
   "id": 902,
@@ -39464,7 +39616,15 @@ window.PLACES = [
   "phone": "0155-41-1789",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/14427/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/909.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Tokachi_Butadon_Ippin_Butadon.jpg"
+   }
+  ],
+  "img": "img/places/909.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Tokachi_Butadon_Ippin_Butadon.jpg"
  },
  {
   "id": 910,
@@ -39782,7 +39942,24 @@ window.PLACES = [
   "addrJa": "北海道虻田郡ニセコ町東山温泉",
   "phone": "0136-44-2211",
   "ref": "https://www.niseko-ta.jp/resorts/article/%e3%83%8b%e3%82%bb%e3%82%b3%e3%83%93%e3%83%ac%e3%83%83%e3%82%b8%e3%82%b9%e3%82%ad%e3%83%bc%e3%83%aa%e3%82%be%e3%83%bc%e3%83%88-4/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/918.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Niseko_Gondola_and_Hilton_Niseko_Village.jpg"
+   },
+   {
+    "img": "img/places/918_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Namara_Slope.jpg"
+   },
+   {
+    "img": "img/places/918_3.jpg",
+    "credit": "https://www.flickr.com/photos/7940758@N07/16892388692",
+    "by": "MIKI Yoshihito. (#mikiyoshihito) / CC BY 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/918.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Niseko_Gondola_and_Hilton_Niseko_Village.jpg"
  },
  {
   "id": 919,
@@ -40196,7 +40373,23 @@ window.PLACES = [
   "phone": "0154-56-2219",
   "url": "http://www.kushiro-park.com/publics/index/72/",
   "ref": "https://ja.kushiro-lakeakan.com/things_to_do/3661/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/930.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Japan_Crane_Reserve_00.jpg"
+   },
+   {
+    "img": "img/places/930_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Japanese_Crane_at_Kushiro_%282753243509%29.jpg"
+   },
+   {
+    "img": "img/places/930_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Crane_at_Kushiro_%282753245583%29.jpg"
+   }
+  ],
+  "img": "img/places/930.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Japan_Crane_Reserve_00.jpg"
  },
  {
   "id": 931,
@@ -40273,7 +40466,15 @@ window.PLACES = [
   "phone": "0154-64-2050",
   "url": "http://www.kushiro-shitsugen-np.jp/kansatu/turumi/",
   "ref": "https://ja.kushiro-lakeakan.com/things_to_do/3681/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/932.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Grus_japonensis_Tsurui_Tsurumidai.jpg"
+   }
+  ],
+  "img": "img/places/932.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Grus_japonensis_Tsurui_Tsurumidai.jpg"
  },
  {
   "id": 933,
@@ -41003,7 +41204,26 @@ window.PLACES = [
   "phone": "0154-65-7121",
   "url": "http://www.kamuylumina.jp/",
   "ref": "https://ja.kushiro-lakeakan.com/things_to_do/12839/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/952.jpg",
+    "credit": "https://www.flickr.com/photos/12452841@N00/53924912262",
+    "by": "othree / CC BY 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/952_2.jpg",
+    "credit": "https://www.flickr.com/photos/12452841@N00/53924912257",
+    "by": "othree / CC BY 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/952_3.jpg",
+    "credit": "https://www.flickr.com/photos/12452841@N00/53926053943",
+    "by": "othree / CC BY 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/952.jpg",
+  "imgCredit": "https://www.flickr.com/photos/12452841@N00/53924912262"
  },
  {
   "id": 953,
@@ -41146,7 +41366,23 @@ window.PLACES = [
   "phone": "0154-67-3200",
   "url": "http://ja.kushiro-lakeakan.com/area/area_akanko/",
   "ref": "https://ja.kushiro-lakeakan.com/things_to_do/3729/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/956.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Lake-akan_and_Mt-ahoro.jpg"
+   },
+   {
+    "img": "img/places/956_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Mount_Oakan_and_Lake_Akan_%28Jan._2006%29.jpg"
+   },
+   {
+    "img": "img/places/956_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Lake_Akan_shore_in_early_winter.jpg"
+   }
+  ],
+  "img": "img/places/956.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake-akan_and_Mt-ahoro.jpg"
  },
  {
   "id": 957,
@@ -41699,7 +41935,16 @@ window.PLACES = [
   "phone": "0142-75-2311",
   "url": "http://www.boyotei.com/",
   "ref": "https://www.laketoya.com/restaurant/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/971.jpg",
+    "credit": "https://www.flickr.com/photos/66696891@N07/6072835330",
+    "by": "Takuya Yoshimura / CC BY 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/971.jpg",
+  "imgCredit": "https://www.flickr.com/photos/66696891@N07/6072835330"
  },
  {
   "id": 972,
@@ -41868,7 +42113,15 @@ window.PLACES = [
   "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
   "addrJa": "北海道網走市字北浜",
   "ref": "https://visit-abashiri.jp/scenery/dced798fc4c1ee05f673a9dcaec94c84e21f06b2.html",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/976.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Kitahama_station02.JPG"
+   }
+  ],
+  "img": "img/places/976.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kitahama_station02.JPG"
  },
  {
   "id": 977,
@@ -42789,7 +43042,21 @@ window.PLACES = [
   "addrJa": "上川町層雲峡赤岳銀泉台",
   "phone": "01658-2-4058",
   "ref": "https://sounkyo.net/view/detail.html?content=9",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/1001.jpg",
+    "credit": "https://www.flickr.com/photos/11641353@N07/2869308733",
+    "by": "yshima96 / CC BY-NC-SA 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/1001_2.jpg",
+    "credit": "https://www.flickr.com/photos/11641353@N07/2869309069",
+    "by": "yshima96 / CC BY-NC-SA 2.0 (Flickr)"
+   }
+  ],
+  "img": "img/places/1001.jpg",
+  "imgCredit": "https://www.flickr.com/photos/11641353@N07/2869308733"
  },
  {
   "id": 1002,
@@ -43549,7 +43816,24 @@ window.PLACES = [
   "addrJa": "北海道礼文郡礼文町船泊西上泊",
   "phone": "0163-86-1001",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10388.html",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "imgs": [
+   {
+    "img": "img/places/1022.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Cape_Sukai.jpg"
+   },
+   {
+    "img": "img/places/1022_2.jpg",
+    "credit": "https://www.flickr.com/photos/58424547@N03/44358521222",
+    "by": "Lakuda-san / CC BY-NC-SA 2.0 (Flickr)"
+   },
+   {
+    "img": "img/places/1022_3.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Rebun_20140725_110632.jpg"
+   }
+  ],
+  "img": "img/places/1022.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Cape_Sukai.jpg"
  },
  {
   "id": 1023,
