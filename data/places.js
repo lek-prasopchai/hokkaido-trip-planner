@@ -10041,9 +10041,7 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "ประมาณ",
   "img": "img/places/194.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Norokko-Train_DE10-1660.jpg",
-  "ref": "https://www.visit-hokkaido.jp/event/detail_10126.html",
-  "url": "https://www.visit-hokkaido.jp/event/detail_10126.html"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Norokko-Train_DE10-1660.jpg"
  },
  {
   "hub": "kushiro",
@@ -10614,9 +10612,7 @@ window.PLACES = [
   ],
   "sn": {
    "winter": "ทุ่งหิมะ ศูนย์ข้อมูลปิด"
-  },
-  "ref": "https://travel-navi.visit-hokkaido.jp/tourism/7670/",
-  "url": "https://travel-navi.visit-hokkaido.jp/tourism/7670/"
+  }
  },
  {
   "hub": "wakkanai",
@@ -24179,7 +24175,6 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "札幌市中央区南5条西3丁目 元祖さっぽろラーメン横丁内",
   "phone": "011-518-2394",
-  "url": "http://www.ganso-yokocho.com/index.html",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_25-2/",
   "checked": "2026-11"
  },
@@ -24280,7 +24275,6 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "札幌市中央区南4条西4丁目松岡ビル5階",
   "phone": "050-5462-1611",
-  "url": "https://yoyotei-jingisukan.foodre.jp/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_307-2/",
   "checked": "2026-11"
  },
@@ -24619,7 +24613,6 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "札幌市中央区南5条西3丁目 元祖さっぽろラーメン横丁内",
   "phone": "011-522-5868",
-  "url": "http://ganso-yokocho.com/index.html",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_21-2/",
   "checked": "2026-11"
  },
@@ -24653,7 +24646,6 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "札幌市中央区南4条西2丁目11",
   "phone": "011-222-1117",
-  "url": "http://www.kani-ya.co.jp/kani/sapporo/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_345-2/",
   "checked": "2026-11"
  },
@@ -25434,7 +25426,6 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "札幌市中央区南5条西3丁目 元祖さっぽろラーメン横丁内",
   "phone": "011-512-7388",
-  "url": "http://www.ganso-yokocho.com/index.html",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_27-2/",
   "checked": "2026-11"
  },
@@ -25740,7 +25731,6 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "札幌市中央区南5条西3丁目 元祖さっぽろラーメン横丁内",
   "phone": "011-513-1208",
-  "url": "http://www.ganso-yokocho.com/index.html",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_29/",
   "checked": "2026-11"
  },
@@ -25910,7 +25900,6 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "札幌市西区琴似1条1丁目7-7 カピテーヌ琴似1階",
   "phone": "011-642-6903",
-  "url": "http://www.spicegogo.com",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_167-2/",
   "checked": "2026-11"
  },
@@ -27599,7 +27588,6 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "北海道小樽市色内1-5-16 1F",
   "phone": "0134-21-7600",
-  "url": "https://www.sanuroko.com/location",
   "ref": "https://otaru.gr.jp/shop/otaru-urokobanya",
   "checked": "2026-11"
  },
@@ -27784,7 +27772,6 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "小樽市稲穂1-3-6 サンモール商店街内",
   "phone": "0134-33-3500",
-  "url": "http://www.newsanko.jp",
   "ref": "https://otaru.gr.jp/shop/newsanko",
   "checked": "2026-11"
  },
@@ -28706,7 +28693,6 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "小樽市稲穂2丁目2番7号 小町屋ビル2階",
   "phone": "080-8627-5761",
-  "url": "http://www.otarukomachi.com/",
   "ref": "https://otaru.gr.jp/shop/rent-kimono_otarukomachi",
   "checked": "2026-11"
  },
@@ -31663,7 +31649,6 @@ window.PLACES = [
   "acc": "จากหมุดแผนที่บนเว็บทางการ",
   "addrJa": "北海道上川郡美瑛町本町1丁目3-9",
   "phone": "0166-92-1463",
-  "url": "https://www.biei-o-kurae.com/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/uoten",
   "checked": "2026-11"
  },
@@ -31840,7 +31825,6 @@ window.PLACES = [
   "acc": "จากหมุดแผนที่บนเว็บทางการ",
   "addrJa": "北海道上川郡美瑛町五稜第一",
   "phone": "0166-68-7821",
-  "url": "https://www.bonzu.jp/RC-HP/index.html",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/ries-cafe",
   "checked": "2026-11"
  },
@@ -41447,7 +41431,6 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "北海道登別市登別温泉町29",
   "phone": "0143-84-2415",
-  "url": "https://ainu-upopoy.jp/gourmet/shop/noboribetu04.html",
   "ref": "https://noboribetsu-spa.jp/spot/spot0189/",
   "checked": "2026-11"
  },

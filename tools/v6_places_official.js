@@ -82,6 +82,23 @@ const FIX = {
   239: { lat: 43.07734, lng: 145.16793, acc: "จากหมุดบนหน้า visit-hokkaido.jp" },
   256: { lat: 42.38201, lng: 142.4156, acc: "จากหมุดบนหน้า visit-hokkaido.jp" },
   361: { lat: 43.14501, lng: 141.04006, acc: "จากหมุดบนหน้า visit-hokkaido.jp" },
+  // เว็บของร้านเองตาย (2026-11) แต่ยังอยู่ในเว็บท่องเที่ยวทางการ: เอาลิงก์ตายออก เหลือ ref
+  475: { url: undefined },
+  478: { url: undefined },
+  488: { url: undefined },
+  489: { url: undefined },
+  512: { url: undefined },
+  521: { url: undefined },
+  526: { url: undefined },
+  574: { url: undefined },
+  579: { url: undefined },
+  603: { url: undefined },
+  685: { url: undefined },
+  690: { url: undefined },
+  964: { url: undefined },
+  // ลิงก์ทางการหาย (404) ยังไม่มีหน้าแทน
+  194: { ref: undefined, url: undefined },
+  205: { ref: undefined, url: undefined },
   // เมืองเล็ก (visit-hokkaido.jp)
   1012: { open: "กลางวันช่วงน้ำลง (หลังน้ำลงต่ำสุด ~2 ชม.)", closed: "เปิดเฉพาะ ก.ค.-ก.ย." },
   1017: { closed: "จันทร์ (ยกเว้น มิ.ย.-ก.ย.), ปิด พ.ย.-เม.ย." },
