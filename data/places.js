@@ -20849,7 +20849,19 @@ window.PLACES = [
   "ref": "https://www.atca.jp/kankouspoy/あさひかわ北彩都ガーデン/",
   "url": "http://www.asahikawa-park.or.jp/kitasaito/",
   "addrJa": "旭川市宮前2条1丁目(ガーデンセンター)",
-  "phone": "0166-74-5966("
+  "phone": "0166-74-5966(",
+  "imgs": [
+   {
+    "img": "img/places/378.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Asahikawa_Station_more_misc_-_2022_Aug_10_various_09_06_55_169000.jpeg"
+   },
+   {
+    "img": "img/places/378_2.jpg",
+    "credit": "https://commons.wikimedia.org/wiki/File:Asahikawa_Station_south_entrance_202605.jpg"
+   }
+  ],
+  "img": "img/places/378.jpg",
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Asahikawa_Station_more_misc_-_2022_Aug_10_various_09_06_55_169000.jpeg"
  },
  {
   "hub": "asahikawa",
