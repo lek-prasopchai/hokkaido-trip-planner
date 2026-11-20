@@ -5,8 +5,8 @@ const PREP_IDS = PREP_SUBS.flatMap(([, s]) => s.map(([id]) => id));
 const CAT_ICON = { "เอกสาร": "file-text", "เงิน": "banknote", "เสื้อผ้า-ชั้นใน/กลาง": "shirt", "เสื้อผ้า-ชั้นนอก": "shirt", "หัว-มือ-เท้า": "hand", "ผิวและร่างกาย": "droplet",
   "ยาและสุขภาพ": "pill", "อิเล็กทรอนิกส์": "plug", "ของในรถ": "car", "กระเป๋าและจัดเก็บ": "luggage", "ของจิปาถะ": "paperclip", "เด็กเล็ก": "baby",
   "กิจกรรม": "cable-car", "กล้องและความทรงจำ": "camera", "ขากลับ": "plane-takeoff" };
-const TASK_LINK = { x2: "stays", x8: "trip", x9: "trip", x10: "packing", x11: "packing", x13: "drive", x18: "stays", x24: "packing", x33: "drive" };
-const PAGE_NAME = { stays: "ที่พัก", trip: "แผนรายวัน", packing: "จัดกระเป๋า", drive: "ขับรถหน้าหนาว" };
+const TASK_LINK = { x0: "setup", x3: "drive", x26: "life", x2: "stays", x8: "trip", x9: "trip", x10: "packing", x11: "packing", x13: "drive", x18: "stays", x24: "packing", x33: "drive" };
+const PAGE_NAME = { setup: "ข้อมูลทริป", life: "ใช้ชีวิตที่นั่น", stays: "ที่พัก", trip: "แผนรายวัน", packing: "จัดกระเป๋า", drive: "ขับรถหน้าหนาว" };
 // งานที่ติ๊กเองจากข้อมูลในเว็บ: [เงื่อนไข, เหตุผลที่แสดง]
 const TASK_AUTO = {
   x2: [() => tripNights() > 0 && Array.from({ length: tripNights() }, (_, k) => Planner.stayAt(k)).every(Boolean), "กรอกที่พักครบทุกคืนแล้ว"],
@@ -113,27 +113,26 @@ const PackingView = {
 };
 
 const GuideView = {
+  // เช็กลิสต์เป็นกลุ่ม: ข้อไม่บังคับพับไว้ใต้แต่ละกลุ่ม
+  checklists(L) {
+    const li = (x) => `<li>${esc(x.text)}${x.why ? ` <small>(${esc(x.why)})</small>` : ""}</li>`;
+    return `<div class="grid g2">${L.map((d) => { const opt = d.items.filter((x) => x.opt);
+      return `<div><h3>${esc(d.title)}</h3><ul class="tip-list">${d.items.filter((x) => !x.opt).map(li).join("")}</ul>${opt.length ? `<details class="more"><summary>ของเสริม (ไม่บังคับ) ${opt.length} ข้อ</summary><ul class="tip-list">${opt.map(li).join("")}</ul></details>` : ""}</div>`; }).join("")}</div>`;
+  },
   // แสดงเสมอ ไม่ว่าทริปจะเช่ารถหรือไม่
   drive() {
     $('[data-sec="drive"]').innerHTML = `${Prep.head("drive", "ขับรถหน้าหนาว", "อ่านให้จบก่อนรับรถ ตั้งแต่ตอนจองรถจนถึงรถติดหิมะกลางทาง")}
       ${Prep.car() ? "" : `<div class="callout info">ทริปนี้ไม่ได้เช่ารถ อ่านไว้เผื่อเปลี่ยนใจหรือเช่ารถบางวัน</div>`}
       <div class="card">${SHEET.driveTips.map((s, i) => `<details ${i < 3 ? "open" : ""} style="margin-bottom:8px"><summary><b>${esc(s.title)}</b></summary>
-        <div class="tbl-wrap"><table class="t">${s.items.map((r) => `<tr><td style="width:28%"><b>${esc(r[0])}</b></td><td>${esc(r[1])}</td><td class="mute">${esc(r[2])}</td></tr>`).join("")}</table></div></details>`).join("")}</div>`;
+        <div class="tbl-wrap"><table class="t">${s.items.map((r) => `<tr><td style="width:28%"><b>${esc(r[0])}</b></td><td>${esc(r[1])}</td><td class="mute">${esc(r[2])}</td></tr>`).join("")}</table></div></details>`).join("")}</div>
+      <div class="card"><h2>เช็กลิสต์คนขับ</h2>${this.checklists(SHEET.driveDaily)}</div>`;
   },
   life() {
-    const car = Prep.car() || Prep.all;
-    const carDay = /ปัดหิมะ|ท่อไอเสีย|นำทาง|น้ำมัน|ใบปัด|ไล่ฝ้า|ใบขับขี่/, carRule = /ขับรถ|ใบขับขี่/;
-    const days = SHEET.daily.filter((d) => car || !/รถ/.test(d.title)).map((d) => ({ ...d, items: d.items.filter((x) => car || !carDay.test(x.text)) }));
-    const rules = SHEET.rules.filter((r) => car || !carRule.test(r.topic));
-    const nHidden = Prep.car() ? 0 : SHEET.daily.reduce((n, d) => n + (/รถ/.test(d.title) ? d.items.length : d.items.filter((x) => carDay.test(x.text)).length), 0) + SHEET.rules.filter((r) => carRule.test(r.topic)).length;
-    const li = (x) => `<li>${esc(x.text)}${x.why ? ` <small>(${esc(x.why)})</small>` : ""}</li>`;
-    $('[data-sec="life"]').innerHTML = `${Prep.head("life", "ใช้ชีวิตที่นั่น", "เรื่องในชีวิตประจำวันที่คนไทยมักไม่รู้ก่อนไป และเช็กลิสต์ที่ควรทำทุกวัน")}
-      ${Prep.hidden(nHidden, "เรื่องขับรถ")}
+    $('[data-sec="life"]').innerHTML = `${Prep.head("life", "ใช้ชีวิตที่นั่น", "เรื่องในชีวิตประจำวันที่คนไทยมักไม่รู้ก่อนไป และเช็กลิสต์ที่ควรทำทุกวัน (เรื่องรถอยู่ในหน้าขับรถหน้าหนาว)")}
       <div class="grid g2">${GUIDE.life.map((c) => `<div class="card"><h3>${esc(c.title)}</h3><ul class="tip-list">${c.items.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>`).join("")}</div>
-      <div class="card"><h2>เช็กลิสต์ประจำวัน</h2><div class="grid g2">${days.map((d) => { const opt = d.items.filter((x) => x.opt);
-        return `<div><h3>${esc(d.title)}</h3><ul class="tip-list">${d.items.filter((x) => !x.opt).map(li).join("")}</ul>${opt.length ? `<details class="more"><summary>ของเสริม (ไม่บังคับ) ${opt.length} ข้อ</summary><ul class="tip-list">${opt.map(li).join("")}</ul></details>` : ""}</div>`; }).join("")}</div></div>
+      <div class="card"><h2>เช็กลิสต์ประจำวัน</h2>${this.checklists(SHEET.daily)}</div>
       <div class="card"><h2>กฎ ข้อห้าม และมารยาท</h2><div class="tbl-wrap"><table class="t"><thead><tr><th>เรื่อง</th><th>กฎ</th><th>รายละเอียด</th></tr></thead>
-        <tbody>${rules.map((r) => `<tr><td><b>${esc(r.topic)}</b></td><td>${esc(r.rule)}</td><td>${esc(r.detail)}</td></tr>`).join("")}</tbody></table></div></div>
+        <tbody>${SHEET.rules.map((r) => `<tr><td><b>${esc(r.topic)}</b></td><td>${esc(r.rule)}</td><td>${esc(r.detail)}</td></tr>`).join("")}</tbody></table></div></div>
       <details class="card opt"><summary><b>ของเสริม (ไม่บังคับ): เก็บความทรงจำ</b> <small>เทคนิคถ่ายรูปหิมะและไอเดียบันทึกทริป</small></summary><div class="tbl-wrap"><table class="t"><thead><tr><th>หมวด</th><th>ทำอะไร</th><th>วิธี / เทคนิค</th></tr></thead>
         <tbody>${SHEET.memory.map((m) => `<tr><td>${esc(m.cat)}</td><td><b>${esc(m.item)}</b></td><td>${esc(m.how)}</td></tr>`).join("")}</tbody></table></div></details>`;
   },

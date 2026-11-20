@@ -190,6 +190,11 @@ const App = {
     if (h.startsWith("share=")) this.loadShared(h.slice(6));
     else this.show(h || (S.plan ? "trip" : "setup"));
     $("#btnSet").onclick = () => this.settings();
+    // ปุ่มกลับขึ้นด้านบน: โผล่เมื่อเลื่อนลงเกิน 1 จอ
+    const top = $("#toTop");
+    top.innerHTML = I("arrow-up");
+    addEventListener("scroll", () => { top.hidden = scrollY < innerHeight; }, { passive: true });
+    top.onclick = () => scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
     document.addEventListener("click", (e) => { if (e.target.closest("[data-paste]")) this.pasteLink(); });
     document.addEventListener("keydown", (e) => {
       if (!(e.ctrlKey || e.metaKey) || /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;

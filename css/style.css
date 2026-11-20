@@ -367,6 +367,11 @@ input[type=url], input[type=datetime-local] { border: 1px solid var(--line); bor
 .map-hint.show { opacity: 1; }
 .undo-fab .btn:disabled { opacity: .35; cursor: default; }
 @media (max-width: 900px) { .undo-fab { bottom: calc(76px + env(safe-area-inset-bottom)); } }
+.to-top { position: fixed; right: 12px; bottom: 20px; z-index: 900; width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); color: var(--ink); box-shadow: var(--shadow); cursor: pointer; }
+.to-top[hidden] { display: none; }
+.to-top:hover { color: var(--ice); }
+.to-top .i { width: 20px; height: 20px; }
+@media (max-width: 900px) { .to-top { bottom: calc(76px + env(safe-area-inset-bottom)); } }
 /* เหลือแค่ไอคอน: ข้อความยาวถูกตัด รายการตอนกดยังเห็นชื่อเต็ม */
 .legmode { position: relative; display: inline-grid; place-items: center; width: 1.9em; height: 1.6em; margin-left: 6px; vertical-align: middle; font-size: .875rem; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); }
 .legmode.set { border-color: var(--ice); }
