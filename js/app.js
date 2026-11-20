@@ -194,7 +194,13 @@ const App = {
     const top = $("#toTop");
     top.innerHTML = I("arrow-up");
     addEventListener("scroll", () => { top.hidden = scrollY < innerHeight; }, { passive: true });
-    top.onclick = () => scrollTo({ top: 0, behavior: "smooth" });
+    // เลื่อนเองด้วย requestAnimationFrame: บราวเซอร์บางเครื่องไม่เลื่อนนุ่มให้ (เช่น ปิดเอฟเฟกต์ภาพเคลื่อนไหวใน Windows)
+    top.onclick = () => {
+      const y0 = scrollY, t0 = performance.now(), ms = Math.min(700, 250 + y0 / 10);
+      // behavior instant: กัน CSS scroll-behavior: smooth เลื่อนซ้อนทุกเฟรม
+      const step = (t) => { const p = Math.min(1, (t - t0) / ms); scrollTo({ top: y0 * (1 - p) ** 3, behavior: "instant" }); if (p < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    };
     document.addEventListener("click", (e) => { if (e.target.closest("[data-paste]")) this.pasteLink(); });
     document.addEventListener("keydown", (e) => {
       if (!(e.ctrlKey || e.metaKey) || /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
