@@ -5,8 +5,8 @@ const PREP_IDS = PREP_SUBS.flatMap(([, s]) => s.map(([id]) => id));
 const CAT_ICON = { "เอกสาร": "file-text", "เงิน": "banknote", "เสื้อผ้า-ชั้นใน/กลาง": "shirt", "เสื้อผ้า-ชั้นนอก": "shirt", "หัว-มือ-เท้า": "hand", "ผิวและร่างกาย": "droplet",
   "ยาและสุขภาพ": "pill", "อิเล็กทรอนิกส์": "plug", "ของในรถ": "car", "กระเป๋าและจัดเก็บ": "luggage", "ของจิปาถะ": "paperclip", "เด็กเล็ก": "baby",
   "กิจกรรม": "cable-car", "กล้องและความทรงจำ": "camera", "ขากลับ": "plane-takeoff" };
-const TASK_LINK = { x0: "setup", x3: "drive", x26: "life", x2: "stays", x8: "trip", x9: "trip", x10: "packing", x11: "packing", x13: "drive", x18: "stays", x24: "packing", x33: "drive" };
-const PAGE_NAME = { setup: "ข้อมูลทริป", life: "ใช้ชีวิตที่นั่น", stays: "ที่พัก", trip: "แผนรายวัน", packing: "จัดกระเป๋า", drive: "ขับรถหน้าหนาว" };
+const TASK_LINK = { t1: "budget", x0: "setup", x3: "drive", x26: "life", x2: "stays", x8: "trip", x9: "trip", x10: "packing", x11: "packing", x13: "drive", x18: "stays", x24: "packing", x33: "drive" };
+const PAGE_NAME = { budget: "งบประมาณ", setup: "ข้อมูลทริป", life: "ใช้ชีวิตที่นั่น", stays: "ที่พัก", trip: "แผนรายวัน", packing: "จัดกระเป๋า", drive: "ขับรถหน้าหนาว" };
 // งานที่ติ๊กเองจากข้อมูลในเว็บ: [เงื่อนไข, เหตุผลที่แสดง]
 const TASK_AUTO = {
   x2: [() => tripNights() > 0 && Array.from({ length: tripNights() }, (_, k) => Planner.stayAt(k)).every(Boolean), "กรอกที่พักครบทุกคืนแล้ว"],
