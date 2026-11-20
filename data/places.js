@@ -3629,7 +3629,9 @@ window.PLACES = [
   "tr": {
    "lv": "tour",
    "t": "ทัวร์เช้ามืดจากคุชิโระ/ทสึรุอิ"
-  }
+  },
+  "ref": "https://www.vill.tsurui.lg.jp/soshikikarasagasu/sangyoshinkoka/shokokankogakari/1/tancho/638.html",
+  "url": "https://www.vill.tsurui.lg.jp/soshikikarasagasu/sangyoshinkoka/shokokankogakari/1/tancho/638.html"
  },
  {
   "id": 71,
@@ -10017,13 +10019,13 @@ window.PLACES = [
   "tags": [
    "nature"
   ],
-  "open": "วิ่ง ≈ ปลาย เม.ย.-ต.ค. (ตรวจตาราง)",
-  "closed": "วันไม่วิ่ง",
+  "open": "ยุติการเดินรถ",
+  "closed": "วิ่งเที่ยวสุดท้าย 10 ต.ค. 2026",
   "fee": "ค่าโดยสาร ≈¥700 + ที่นั่งจอง",
   "dur": "1.5 ชม.",
   "hours": 1.5,
   "highlight": "รถไฟตู้เปิดโล่งช้าๆ ผ่านทุ่งพรุคุชิโระ เห็นกวาง นกกระเรียน แม่น้ำคดเคี้ยว",
-  "caution": "",
+  "caution": "ยุติการเดินรถแล้ว (ต.ค. 2026) ไม่ต้องวางแผนไป",
   "best": "กลางวัน",
   "parking": "สถานีคุชิโระ",
   "months": [
@@ -10047,7 +10049,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "ประมาณ",
   "img": "img/places/194.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Norokko-Train_DE10-1660.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Norokko-Train_DE10-1660.jpg",
+  "gone": true,
+  "ref": "https://www.jrhokkaido.co.jp/CM/Info/press/pdf/20260930_KU_Lastrun_torikumi.pdf"
  },
  {
   "hub": "kushiro",
@@ -11057,7 +11061,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/213.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokkaido_Gokoku.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokkaido_Gokoku.JPG",
+  "ref": "http://www.hokkaido-gokoku.org/",
+  "url": "http://www.hokkaido-gokoku.org/"
  },
  {
   "hub": "biei",
@@ -11840,7 +11846,9 @@ window.PLACES = [
   "lat": 43.178312,
   "lng": 141.031339,
   "checked": "2026-11",
-  "acc": "จาก OpenStreetMap"
+  "acc": "จาก OpenStreetMap",
+  "ref": "https://www.city.otaru.lg.jp/docs/2020111600324/",
+  "url": "https://www.city.otaru.lg.jp/docs/2020111600324/"
  },
  {
   "hub": "hakodate",
@@ -11990,7 +11998,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "ประมาณ",
   "img": "img/places/230.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Mt._Yotei_in_snow_%2853370261284%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Mt._Yotei_in_snow_%2853370261284%29.jpg",
+  "ref": "https://www.niseko-ta.jp/news/article/panorama-line-reopened-26/",
+  "url": "https://www.niseko-ta.jp/news/article/panorama-line-reopened-26/"
  },
  {
   "hub": "asahikawa",
@@ -12712,7 +12722,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/243_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Yodobashi-Camera.Multimedia-Sapporo01.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Yodobashi-Camera.Multimedia-Sapporo01.JPG",
+  "ref": "https://www.yodobashi.com/ec/store/0063/",
+  "url": "https://www.yodobashi.com/ec/store/0063/"
  },
  {
   "hub": "sapporo",
@@ -13851,7 +13863,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/261_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kushiro_Riv_1.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kushiro_Riv_1.JPG",
+  "ref": "https://ja.kushiro-lakeakan.com/things_to_do/12480/",
+  "url": "https://ja.kushiro-lakeakan.com/things_to_do/12480/"
  },
  {
   "hub": "abashiri",
@@ -14040,7 +14054,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/264_2.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Chuo_Sapporo_S4W4S4W3_01s4s3200.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Chuo_Sapporo_S4W4S4W3_01s4s3200.jpg",
+  "ref": "https://www.sapporo.travel/en/night-view-guide/spot/susukino/",
+  "url": "https://www.sapporo.travel/en/night-view-guide/spot/susukino/"
  },
  {
   "hub": "sapporo",
@@ -15884,7 +15900,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/296_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Jizo_on_Mount_Maru_in_Sapporo_(18).jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Jizo_on_Mount_Maru_in_Sapporo_(18).jpg",
+  "ref": "https://www.sapporo.travel/choose/keywords/mountain_climbing_in_sapporo/",
+  "url": "https://www.sapporo.travel/choose/keywords/mountain_climbing_in_sapporo/"
  },
  {
   "hub": "toya",
@@ -19541,7 +19559,7 @@ window.PLACES = [
  {
   "hub": "otaru",
   "area": "โอตารุ (ใกล้คลอง)",
-  "name": "อุนกะพลาซ่า (โกดังเก่า/ศูนย์ข้อมูล)",
+  "name": "อุนกะพลาซ่า (โกดังเก่า LeTAO)",
   "en": "Otaru Unga Plaza",
   "ja": "小樽運河プラザ",
   "stars": 1,
@@ -19551,12 +19569,12 @@ window.PLACES = [
    "city",
    "culture"
   ],
-  "open": "≈9:00-18:00",
+  "open": "≈10:00-18:00 (ลานพัก/บาร์ถึง 22:00)",
   "closed": "-",
   "fee": "ฟรี",
   "dur": "20 นาที",
   "hours": 0.35,
-  "highlight": "โกดังหินแห่งแรกของโอตารุ (1890) ศูนย์ข้อมูลท่องเที่ยว ร้านของฝาก คาเฟ่ ห้องน้ำ จุดพักริมคลอง",
+  "highlight": "โกดังหินแห่งแรกของโอตารุ (1890) ตั้งแต่ ต.ค. 2024 เป็นร้าน LeTAO: ขนม ของฝาก คาเฟ่ บาร์ ลานพักฟรี มุมประวัติโอตารุ ริมคลอง",
   "caution": "",
   "best": "ทุกเวลา",
   "parking": "ลานจอดริมคลอง",
@@ -19602,7 +19620,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/357.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%B0%8F%E6%A8%BD%E9%81%8B%E6%B2%B3%E3%83%97%E3%83%A9%E3%82%B6_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%B0%8F%E6%A8%BD%E9%81%8B%E6%B2%B3%E3%83%97%E3%83%A9%E3%82%B6_-_panoramio.jpg",
+  "ref": "https://otaru.gr.jp/shop/letao-unga",
+  "url": "https://otaru.gr.jp/shop/letao-unga"
  },
  {
   "hub": "otaru",
