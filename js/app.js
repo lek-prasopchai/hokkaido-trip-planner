@@ -194,7 +194,7 @@ const App = {
     const top = $("#toTop");
     top.innerHTML = I("arrow-up");
     addEventListener("scroll", () => { top.hidden = scrollY < innerHeight; }, { passive: true });
-    top.onclick = () => scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    top.onclick = () => scrollTo({ top: 0, behavior: "smooth" });
     document.addEventListener("click", (e) => { if (e.target.closest("[data-paste]")) this.pasteLink(); });
     document.addEventListener("keydown", (e) => {
       if (!(e.ctrlKey || e.metaKey) || /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
