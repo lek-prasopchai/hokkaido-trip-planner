@@ -1,4 +1,6 @@
 // หน้า "งบประมาณ": ยอดรวมนับเฉพาะที่กรอกเอง ค่าประมาณจากแผนเป็นแค่ตัวช่วย (กด "ใช้ค่านี้" ได้)
+// เงิน: แสดงทศนิยมได้ถึง 2 ตำแหน่ง (fmtN ปัดเป็นจำนวนเต็ม)
+const fmtM = (n) => (+n).toLocaleString("th-TH", { maximumFractionDigits: 2 });
 const BudgetView = {
   calc() {
     // ไม่ถามจำนวนคน/ระดับที่พัก: รายการที่ขึ้นกับคนแสดงราคาต่อหน่วยเป็นตัวช่วย มีค่ารวม (auto) เฉพาะที่ไม่ขึ้นกับคน เช่น รถ
@@ -82,7 +84,7 @@ const BudgetView = {
     const cats = {};
     B.lines.forEach((l) => l.thb && (cats[l.cat] = (cats[l.cat] || 0) + l.thb));
     const inp = (l, c) => { const o = S.budget[l.key], v = typeof o === "number" ? ((l.cur === "THB") === (c === "b") ? o : "") : o?.[c] ?? "";
-      return `<label class="bin"><span>${c === "b" ? "฿" : "¥"}</span><input type="number" min="0" data-bk="${l.key}" data-c="${c}" value="${v}" aria-label="${esc(l.name)} ${c === "b" ? "บาท" : "เยน"}"></label>`; };
+      return `<label class="bin"><span>${c === "b" ? "฿" : "¥"}</span><input type="number" min="0" step="any" data-bk="${l.key}" data-c="${c}" value="${v}" aria-label="${esc(l.name)} ${c === "b" ? "บาท" : "เยน"}"></label>`; };
     const hint = (l) => l.own || l.mine || !l.note ? (l.key === "reserve" ? `<small class="bnote">${esc(l.note)}</small>` : "")
       : `<div class="bhint">${l.auto > 0 ? `ประมาณ ${l.cur === "JPY" ? `¥${fmtN(l.auto)}` : `${fmtN(l.auto)} ฿`} • ` : ""}${esc(l.note)}${l.auto > 0 ? ` <button class="linkbtn" data-useauto="${l.key}">ใช้ค่านี้</button>` : ""}</div>`;
     const keys = B.lines.filter((l) => l.key !== "reserve").map((l) => l.key);
@@ -98,19 +100,19 @@ const BudgetView = {
       <div class="sec-head"><h1>งบประมาณ</h1>
         <p class="lead">กรอกราคาที่จองแล้วหรือคาดว่าจะจ่าย ยอดรวมนับเฉพาะช่องที่กรอก</p></div>
       <div class="split split-r"><aside class="split-side"><div class="card"><div class="summary">
-        <div class="k"><b>${fmtN(B.total)} ฿</b><span>กรอกแล้ว${S.budgetReserve ? " (รวมสำรอง)" : ""}</span></div>
+        <div class="k"><b>${fmtM(B.total)} ฿</b><span>กรอกแล้ว${S.budgetReserve ? " (รวมสำรอง)" : ""}</span></div>
         <div class="k"><b>${B.todoN ? `${B.todoN} รายการ` : "ครบแล้ว"}</b><span>${B.todoN ? "ยังไม่ได้กรอก" : "ทุกรายการกรอกแล้ว"}</span></div>
-        <div class="k"><b>¥${fmtN(B.yen)} + ${fmtN(B.baht)} ฿</b><span>จ่ายเป็นเยน + จ่ายเป็นบาท</span></div>
+        <div class="k"><b>¥${fmtM(B.yen)} + ${fmtM(B.baht)} ฿</b><span>จ่ายเป็นเยน + จ่ายเป็นบาท</span></div>
         <div class="k"><label class="f">1 เยน = ? บาท<input type="number" step="0.0001" id="rate" value="${S.rate}"></label>
           <label class="small"><input type="checkbox" id="rateAuto" ${S.set.rateAuto ? "checked" : ""}> อัปเดตอัตโนมัติวันละครั้ง</label></div></div>
-        ${B.total ? `<div style="display:flex;height:14px;border-radius:99px;overflow:hidden;margin-top:14px">${Object.entries(cats).map(([c, v], i) => `<div title="${esc(c)} ${fmtN(v)} ฿" style="width:${(v / B.total) * 100}%;background:${colors[i % colors.length]}"></div>`).join("")}</div>
+        ${B.total ? `<div style="display:flex;height:14px;border-radius:99px;overflow:hidden;margin-top:14px">${Object.entries(cats).map(([c, v], i) => `<div title="${esc(c)} ${fmtM(v)} ฿" style="width:${(v / B.total) * 100}%;background:${colors[i % colors.length]}"></div>`).join("")}</div>
         <div class="row" style="margin-top:6px;font-size:.8rem">${Object.entries(cats).map(([c, v], i) => `<span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:${colors[i % colors.length]}"></span> ${esc(c)} ${Math.round((v / B.total) * 100)}%</span>`).join("")}</div>` : ""}</div></aside>
       <div class="split-main">${B.jr ? `<div class="callout info">${B.jr.text}</div>` : ""}
       <div class="card">
         <ul class="blist">${B.lines.map((l) => `${l.key === "reserve" ? `<li class="badd"><button class="btn small" id="bAdd">+ เพิ่มรายการเอง</button>${B.hiddenN ? ` <button class="linkbtn" id="bUnhide">แสดงรายการที่ซ่อน (${B.hiddenN})</button>` : ""}</li>` : ""}<li class="${l.own && !l.mine && l.key !== "reserve" ? "own" : ""}" ${l.key === "reserve" ? "" : `data-key="${l.key}"`}>
           <div>${name(l)}${hint(l)}</div>
-          <div class="bamt">${l.key === "reserve" ? "" : inp(l, "b") + inp(l, "y")}<b class="bthb">${l.own && (l.key !== "reserve" || S.budgetReserve) ? `${fmtN(l.thb)} ฿` : ""}</b></div></li>`).join("")}
-          <li class="btot"><b>รวมที่กรอกแล้ว${S.budgetReserve ? " + สำรอง" : ""}</b><div class="bamt"><span class="mute small">¥${fmtN(B.yen)} + ${fmtN(B.baht)} ฿</span><b class="bthb">${fmtN(B.total)} ฿</b></div></li></ul>
+          <div class="bamt">${l.key === "reserve" ? "" : inp(l, "b") + inp(l, "y")}<b class="bthb">${l.own && (l.key !== "reserve" || S.budgetReserve) ? `${fmtM(l.thb)} ฿` : ""}</b></div></li>`).join("")}
+          <li class="btot"><b>รวมที่กรอกแล้ว${S.budgetReserve ? " + สำรอง" : ""}</b><div class="bamt"><span class="mute small">¥${fmtM(B.yen)} + ${fmtM(B.baht)} ฿</span><b class="bthb">${fmtM(B.total)} ฿</b></div></li></ul>
         <div class="row" style="margin-top:8px"><button class="btn small" id="bReset">ล้างจำนวนเงินที่กรอก</button><span class="mute" style="font-size:.8rem">ค่าประมาณอิงราคา พ.ย. 2026 ไว้ดูภาพรวม ไม่ใช่ใบเสนอราคา</span></div></div></div></div>`;
   },
 
