@@ -699,6 +699,8 @@ const PlanView = {
         ${LocPick.html("ตำแหน่งที่พัก", 'data-s="loc"', s.loc || "", HUB[s.hub])}
         <small class="hint full lp-state">${s.lat ? `${I("map-pin")} ใช้พิกัดจริงคำนวณเวลาเดินทาง` : "ยังไม่มีพิกัด: ระบบใช้จุดกลางเมืองแทน"}</small>
         <label class="f">เมือง<select data-s="hub">${hubOptions(s.hub)}</select><small class="hint">ปักหมุดแล้วเลือกให้เอง</small></label>
+        <label class="f">MAPCODE (ใส่ในระบบนำทางรถเช่า)<input type="text" data-s="mc" inputmode="numeric" value="${esc(s.mc || "")}" placeholder="เช่น 9 523 036*51">
+          <small class="hint">ดูจากหน้าจองหรือ <a href="https://japanmapcode.com/th" target="_blank" rel="noopener">japanmapcode.com</a> (ค้นชื่อที่พัก)${s.mc ? ` • ${mcHtml(s.mc)}` : ""}</small></label>
       </div>${info(HUB[s.hub])}</div>`; };
     // คืนที่ยังไม่จอง (มีแผนแล้ว): รวมคืนติดกันที่เมืองเดียวกัน
     const open = [];

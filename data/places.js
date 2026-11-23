@@ -56,7 +56,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/odori_park/",
   "addrJa": "札幌市中央区大通西1~12丁目",
   "phone": "011-251-0438",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 523 006*32",
+  "mcLL": "43.06102,141.35637"
  },
  {
   "id": 2,
@@ -106,7 +108,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/sapporo_tv_tower/",
   "addrJa": "札幌市中央区大通西1丁目",
   "phone": "011-241-1131",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 523 036*72",
+  "mcLL": "43.061113,141.356448"
  },
  {
   "id": 3,
@@ -157,7 +161,9 @@ window.PLACES = [
   "url": "https://sapporoshi-tokeidai.jp/",
   "addrJa": "札幌市中央区北1条西2丁目",
   "phone": "011-231-0838",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 522 206*01",
+  "mcLL": "43.062554,141.353645"
  },
  {
   "id": 4,
@@ -206,7 +212,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/gourmet/shop/ganso-ramen-yokocho/",
   "url": "http://www.ganso-yokocho.com/",
   "addrJa": "札幌市中央区南5条西3丁目 N・グランデビル1階",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 268*11",
+  "mcLL": "43.05478,141.354293"
  },
  {
   "id": 5,
@@ -256,7 +264,9 @@ window.PLACES = [
   "url": "https://nijomarket.com/",
   "addrJa": "札幌市中央区南3条東1丁目〜東2丁目",
   "phone": "011-222-5308",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 493 613*44",
+  "mcLL": "43.058247,141.35846"
  },
  {
   "id": 6,
@@ -310,7 +320,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/mount_moiwayama/",
   "addrJa": "札幌市中央区伏見5丁目3-7",
   "phone": "011-561-8177",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 400 462*67",
+  "mcLL": "43.031607,141.333097"
  },
  {
   "id": 7,
@@ -364,7 +376,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/okurayama_viewing_point/",
   "addrJa": "札幌市中央区宮の森1274",
   "phone": "011-641-8585(",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 454 742*66",
+  "mcLL": "43.050763,141.285857"
  },
  {
   "id": 8,
@@ -418,7 +432,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/shiroi_koibito_park/",
   "addrJa": "札幌市西区宮の沢2-2-11-36",
   "phone": "011-666-1481(",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 603 301*03",
+  "mcLL": "43.08869,141.27168"
  },
  {
   "id": 9,
@@ -469,7 +485,9 @@ window.PLACES = [
   "url": "https://www.sapporobeer.jp/brewery/s_museum/",
   "addrJa": "札幌市東区北7条東9丁目1-1サッポロガーデンパーク内",
   "phone": "011-748-1876(",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 554 261*16",
+  "mcLL": "43.071408,141.368996"
  },
  {
   "id": 10,
@@ -523,7 +541,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/moerenuma_park/",
   "addrJa": "札幌市東区モエレ沼公園1-1",
   "phone": "011-790-1231",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 741 326*84",
+  "mcLL": "43.122028,141.428547"
  },
  {
   "id": 11,
@@ -578,7 +598,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/hokkaido_shrine/",
   "addrJa": "札幌市中央区宮ヶ丘474",
   "phone": "011-611-0261(",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 487 226*37",
+  "mcLL": "43.05458,141.309201"
  },
  {
   "id": 12,
@@ -632,7 +654,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/historical_village_of_hokkaido/",
   "addrJa": "札幌市厚別区厚別町小野幌50-1",
   "phone": "011-898-2692",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 479 478*64",
+  "mcLL": "43.048335,141.495844"
  },
  {
   "id": 13,
@@ -691,7 +715,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/takino_suzuran_hillside_park_snow_world/",
   "addrJa": "札幌市南区滝野247",
   "phone": "011-592-3333",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "867 571 186*65",
+  "mcLL": "42.912464,141.381374"
  },
  {
   "id": 14,
@@ -752,7 +778,9 @@ window.PLACES = [
   "url": "https://sapporo-teine.com/snow/",
   "addrJa": "オリンピアスキーセンター/札幌市手稲区手稲本町593-17 ハイランドスキーセンター/札幌市手稲区手稲金山172",
   "phone": "011-682-6000",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 324 118*07",
+  "mcLL": "43.086697,141.204206"
  },
  {
   "id": 15,
@@ -806,7 +834,9 @@ window.PLACES = [
   "url": "https://jozankei.jp/",
   "addrJa": "札幌市南区定山渓温泉東3丁目",
   "phone": "011-598-2012(",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "708 755 554*64",
+  "mcLL": "42.96585,141.16701"
  },
  {
   "id": 16,
@@ -850,7 +880,9 @@ window.PLACES = [
    "t": "บัสต่อจากโจซังเค ~15 นาที"
   },
   "ref": "https://www.hoheikyo.co.jp/",
-  "url": "https://www.hoheikyo.co.jp/"
+  "url": "https://www.hoheikyo.co.jp/",
+  "mapcode": "708 694 575*33",
+  "mcLL": "42.949643,141.15615"
  },
  {
   "id": 17,
@@ -900,7 +932,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/otarucanal",
   "url": "https://www.city.otaru.lg.jp/docs/2020100900367/",
   "addrJa": "小樽市港町5 小樽運河",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 690 855*04",
+  "mcLL": "43.202023,141.0006"
  },
  {
   "id": 18,
@@ -946,7 +980,9 @@ window.PLACES = [
   "url": "https://www.otaru-orgel.co.jp/",
   "addrJa": "小樽市住吉町4-1",
   "phone": "0134-22-1108",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 661 521*00",
+  "mcLL": "43.190579,141.007792"
  },
  {
   "id": 19,
@@ -992,7 +1028,9 @@ window.PLACES = [
   "url": "https://kitaichiglass.co.jp/",
   "addrJa": "小樽市堺町7-26",
   "phone": "0134-33-1993",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 661 609*42",
+  "mcLL": "43.191541,141.007302"
  },
  {
   "id": 20,
@@ -1042,7 +1080,9 @@ window.PLACES = [
   "url": "http://otaru-sankaku.com/index.html",
   "addrJa": "北海道小樽市稲穂3丁目10-16",
   "phone": "0134-23-2446",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "164 719 501*51",
+  "mcLL": "43.198542,140.993869"
  },
  {
   "id": 21,
@@ -1097,7 +1137,9 @@ window.PLACES = [
   "url": "https://tenguyama.ckk.chuo-bus.co.jp/",
   "addrJa": "小樽市最上2-16-15",
   "phone": "0134-33-7381",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "164 627 302*17",
+  "mcLL": "43.171959,140.972103"
  },
  {
   "id": 22,
@@ -1148,7 +1190,9 @@ window.PLACES = [
    "lv": "ok",
    "t": "JR ถึงสถานียอยจิ เดิน 3 นาที"
   },
-  "ref": "https://www.nikka.com/distilleries/yoichi/"
+  "ref": "https://www.nikka.com/distilleries/yoichi/",
+  "mapcode": "164 665 035*03",
+  "mcLL": "43.186165,140.789495"
  },
  {
   "id": 23,
@@ -1199,7 +1243,9 @@ window.PLACES = [
    "t": "บัส Chuo จากโอตารุ ~2 ชม. วันละไม่กี่เที่ยว"
   },
   "ref": "https://www.kanko-shakotan.jp/",
-  "url": "https://www.kanko-shakotan.jp/"
+  "url": "https://www.kanko-shakotan.jp/",
+  "mapcode": "932 582 661*87",
+  "mcLL": "43.33357,140.346692"
  },
  {
   "id": 24,
@@ -1253,7 +1299,9 @@ window.PLACES = [
    4
   ],
   "url": "https://grand-hirafu.jp/",
-  "ref": "https://www.grand-hirafu.jp/"
+  "ref": "https://www.grand-hirafu.jp/",
+  "mapcode": "398 414 125*64",
+  "mcLL": "42.861965,140.697889"
  },
  {
   "id": 25,
@@ -1308,7 +1356,9 @@ window.PLACES = [
   "ref": "https://www.niseko-ta.jp/resorts/article/%e3%83%8b%e3%82%bb%e3%82%b3%e9%ab%99%e6%a9%8b%e7%89%a7%e5%a0%b4%e3%80%80%e3%83%9f%e3%83%ab%e3%82%af%e5%b7%a5%e6%88%bf/",
   "addrJa": "北海道虻田郡ニセコ町字曽我888-1",
   "phone": "0136-44-3734",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "398 418 048*23",
+  "mcLL": "42.8613,140.7347"
  },
  {
   "id": 26,
@@ -1355,7 +1405,9 @@ window.PLACES = [
   ],
   "en": "Rusutsu Resort",
   "url": "https://rusutsu.com/",
-  "ref": "https://rusutsu.com/"
+  "ref": "https://rusutsu.com/",
+  "mapcode": "385 287 747*26",
+  "mcLL": "42.750988,140.89552"
  },
  {
   "id": 27,
@@ -1406,7 +1458,9 @@ window.PLACES = [
    "t": "บัสจากคุจจัง ~30 นาที"
   },
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10333.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10333.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10333.html",
+  "mapcode": "385 674 711*13",
+  "mcLL": "42.859,140.869047"
  },
  {
   "id": 28,
@@ -1453,7 +1507,9 @@ window.PLACES = [
   ],
   "en": "Chitose Salmon Aquarium",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10144.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10144.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10144.html",
+  "mapcode": "113 889 586*04",
+  "mcLL": "42.832923,141.659175"
  },
  {
   "id": 29,
@@ -1501,7 +1557,9 @@ window.PLACES = [
   ],
   "en": "New Chitose Airport",
   "ref": "https://www.hokkaido-airports.com/ja/new-chitose/",
-  "url": "https://www.hokkaido-airports.com/ja/new-chitose/"
+  "url": "https://www.hokkaido-airports.com/ja/new-chitose/",
+  "mapcode": "113 742 102*80",
+  "mcLL": "42.786787,141.68296"
  },
  {
   "id": 30,
@@ -1557,7 +1615,9 @@ window.PLACES = [
    2
   ],
   "ref": "https://hyoutou-special.asia/",
-  "url": "https://hyoutou-special.asia/"
+  "url": "https://hyoutou-special.asia/",
+  "mapcode": "867 093 125*66",
+  "mcLL": "42.778595,141.397802"
  },
  {
   "id": 31,
@@ -1596,7 +1656,9 @@ window.PLACES = [
   ],
   "en": "Marukoma Onsen",
   "ref": "https://www.marukoma.co.jp/",
-  "url": "https://www.marukoma.co.jp/"
+  "url": "https://www.marukoma.co.jp/",
+  "mapcode": "708 112 352*56",
+  "mcLL": "42.780523,141.310766"
  },
  {
   "id": 32,
@@ -1648,7 +1710,9 @@ window.PLACES = [
    "lv": "ok",
    "t": "JR ถึงสถานีชิราโออิ เดิน 10 นาที"
   },
-  "ref": "https://ainu-upopoy.go.jp/"
+  "ref": "https://ainu-upopoy.go.jp/",
+  "mapcode": "545 194 821*08",
+  "mcLL": "42.56014,141.366101"
  },
  {
   "id": 33,
@@ -1705,7 +1769,9 @@ window.PLACES = [
   },
   "ref": "https://noboribetsu-spa.jp/spot/spot0034/",
   "addrJa": "北海道登別市登別温泉町",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "603 287 386*63",
+  "mcLL": "42.497572,141.145335"
  },
  {
   "id": 34,
@@ -1759,7 +1825,9 @@ window.PLACES = [
   "ref": "https://noboribetsu-spa.jp/spot/spot0128/",
   "addrJa": "北海道登別市登別温泉町224番",
   "phone": "0143-84-2225",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "603 259 434*66",
+  "mcLL": "42.489723,141.158654"
  },
  {
   "id": 35,
@@ -1807,7 +1875,9 @@ window.PLACES = [
   "en": "Lake Oyunuma",
   "ref": "https://noboribetsu-spa.jp/spot/spot0055/",
   "addrJa": "北海道登別市登別温泉町",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "603 318 003*86",
+  "mcLL": "42.502585,141.147178"
  },
  {
   "id": 36,
@@ -1854,7 +1924,9 @@ window.PLACES = [
   ],
   "en": "Cape Chikyu",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10019.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10019.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10019.html",
+  "mapcode": "159 165 771*84",
+  "mcLL": "42.301286,141.002231"
  },
  {
   "id": 37,
@@ -1908,7 +1980,9 @@ window.PLACES = [
   "url": "https://usuzan.hokkaido.jp/",
   "addrJa": "北海道有珠郡壮瞥町昭和新山",
   "phone": "0142-75-3113",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "321 432 411*41",
+  "mcLL": "42.539664,140.852411"
  },
  {
   "id": 38,
@@ -1958,7 +2032,9 @@ window.PLACES = [
   "url": "http://www.toyako.biz/",
   "addrJa": "北海道虻田郡洞爺湖町成香3−5",
   "phone": "0142-87-2221",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "321 726 761*86",
+  "mcLL": "42.626188,140.799441"
  },
  {
   "id": 39,
@@ -2016,7 +2092,9 @@ window.PLACES = [
   "ref": "https://www.hakobura.jp/spots/398",
   "addrJa": "函館市元町19-7",
   "phone": "0138-23-3105(",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "86 041 004*66",
+  "mcLL": "41.76091,140.7143"
  },
  {
   "id": 40,
@@ -2066,7 +2144,9 @@ window.PLACES = [
   "ref": "https://www.hakobura.jp/spots/899",
   "addrJa": "函館市末広町14-12",
   "phone": "0138-27-5530",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "86 041 583*01",
+  "mcLL": "41.766307,140.716844"
  },
  {
   "id": 41,
@@ -2115,7 +2195,9 @@ window.PLACES = [
   "ref": "https://www.hakobura.jp/spots/694",
   "addrJa": "函館市若松町9番19号",
   "phone": "0120-858-313",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "86 072 312*38",
+  "mcLL": "41.772239,140.724817"
  },
  {
   "id": 42,
@@ -2171,7 +2253,9 @@ window.PLACES = [
   "ref": "https://www.hakobura.jp/spots/470",
   "addrJa": "函館市五稜郭町43-9",
   "phone": "0138-51-4785",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "86 165 057*54",
+  "mcLL": "41.794592,140.753959"
  },
  {
   "id": 43,
@@ -2221,7 +2305,9 @@ window.PLACES = [
   "ref": "https://www.hakobura.jp/spots/478",
   "addrJa": "函館市末広町",
   "phone": "0138-23-5440",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "86 040 418*46",
+  "mcLL": "41.764723,140.712741"
  },
  {
   "id": 44,
@@ -2274,7 +2360,9 @@ window.PLACES = [
   "ref": "https://www.hakobura.jp/spots/362",
   "addrJa": "函館市湯川町3-1-15",
   "phone": "0138-57-7833",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "86 080 514*37",
+  "mcLL": "41.774149,140.789321"
  },
  {
   "id": 45,
@@ -2334,7 +2422,9 @@ window.PLACES = [
   "ref": "https://www.hakobura.jp/spots/348",
   "addrJa": "北海道亀田郡七飯町",
   "phone": "0138-65-2517",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "86 814 848*51",
+  "mcLL": "41.985373,140.657021"
  },
  {
   "id": 46,
@@ -2388,7 +2478,9 @@ window.PLACES = [
   "ref": "https://www.atca.jp/kankouspoy/旭川市旭山動物園/",
   "addrJa": "旭川市東旭川町倉沼",
   "phone": "0166-36-1104",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 357 869*08",
+  "mcLL": "43.768642,142.479273"
  },
  {
   "id": 47,
@@ -2438,7 +2530,9 @@ window.PLACES = [
   "url": "http://www.ramenmura.com/",
   "addrJa": "旭川市永山11条4丁目 パワーズ内",
   "phone": "0166-48-2153",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 410 454*45",
+  "mcLL": "43.781744,142.414101"
  },
  {
   "id": 48,
@@ -2477,7 +2571,9 @@ window.PLACES = [
   ],
   "en": "Otokoyama Sake Brewery Museum",
   "ref": "https://www.otokoyama.com/",
-  "url": "https://www.otokoyama.com/"
+  "url": "https://www.otokoyama.com/",
+  "mapcode": "79 498 693*20",
+  "mcLL": "43.809,142.397"
  },
  {
   "id": 49,
@@ -2533,7 +2629,9 @@ window.PLACES = [
    "lv": "limited",
    "t": "บัส Ideyu จากสถานีอาซาฮิคาวะ ~1.5 ชม. วันละ 3-4 เที่ยว"
   },
-  "ref": "https://asahidake.hokkaido.jp/"
+  "ref": "https://asahidake.hokkaido.jp/",
+  "mapcode": "796 862 566*60",
+  "mcLL": "43.657449,142.811779"
  },
  {
   "id": 50,
@@ -2590,7 +2688,9 @@ window.PLACES = [
   "ref": "https://www.biei-hokkaido.jp/ja/facility/shirogane-blue-pond",
   "url": "https://www.biei-hokkaido.jp/ja/category/blog/sirogane-bluepond",
   "addrJa": "北海道上川郡美瑛町白金",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 568 836*03",
+  "mcLL": "43.49342,142.61182"
  },
  {
   "id": 51,
@@ -2642,7 +2742,9 @@ window.PLACES = [
   },
   "ref": "https://www.biei-hokkaido.jp/ja/facility/ken-merry-tree",
   "addrJa": "北海道上川郡美瑛町大久保協生",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 070 747*52",
+  "mcLL": "43.60915,142.46197"
  },
  {
   "id": 52,
@@ -2700,7 +2802,9 @@ window.PLACES = [
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=385",
   "addrJa": "美瑛町新星第三",
   "phone": "0166-95-2758",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 701 156*30",
+  "mcLL": "43.52903,142.46459"
  },
  {
   "tr": {
@@ -2753,7 +2857,9 @@ window.PLACES = [
   "ref": "https://www.biei-hokkaido.jp/ja/facility/shirahige-waterfalls",
   "url": "https://town.biei.hokkaido.jp/culture/event/illuminate.html",
   "addrJa": "北海道上川郡美瑛町白金",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "796 182 575*40",
+  "mcLL": "43.47461,142.6394"
  },
  {
   "id": 54,
@@ -2798,7 +2904,9 @@ window.PLACES = [
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=363",
   "addrJa": "上富良野町十勝岳温泉",
   "phone": "0167-39-4111",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "901 872 318*14",
+  "mcLL": "43.4137,142.64303"
  },
  {
   "id": 55,
@@ -2852,7 +2960,9 @@ window.PLACES = [
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=2",
   "addrJa": "富良野市中御料 新富良野プリンスホテル内",
   "phone": "0167-22-1111",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "919 553 426*23",
+  "mcLL": "43.32325,142.3562"
  },
  {
   "id": 56,
@@ -2907,7 +3017,9 @@ window.PLACES = [
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=66",
   "addrJa": "富良野市中御料",
   "phone": "0167-22-1111",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "919 552 687*41",
+  "mcLL": "43.32545,142.35391"
  },
  {
   "id": 57,
@@ -2956,7 +3068,9 @@ window.PLACES = [
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=69",
   "addrJa": "富良野市中五区",
   "phone": "0167-23-1156",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "550 840 171*35",
+  "mcLL": "43.32069,142.37708"
  },
  {
   "id": 58,
@@ -3015,7 +3129,9 @@ window.PLACES = [
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=350",
   "addrJa": "中富良野町北星",
   "phone": "0167-39-3939",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 276 889*64",
+  "mcLL": "43.41888,142.42659"
  },
  {
   "id": 59,
@@ -3059,7 +3175,9 @@ window.PLACES = [
   "img": "img/places/59.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Sounkyo_Promenade.JPG",
   "ref": "https://sounkyo.net/hyoubaku/",
-  "url": "https://sounkyo.net/"
+  "url": "https://sounkyo.net/",
+  "mapcode": "623 234 004*64",
+  "mcLL": "43.727487,142.947344"
  },
  {
   "id": 60,
@@ -3111,7 +3229,9 @@ window.PLACES = [
   },
   "ref": "https://sounkyo.net/view/detail.html?content=7",
   "addrJa": "上川町層雲峡",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "623 177 822*43",
+  "mcLL": "43.71851,142.97464"
  },
  {
   "id": 61,
@@ -3169,7 +3289,9 @@ window.PLACES = [
   "ref": "https://sounkyo.net/view/detail.html?content=45",
   "addrJa": "上川町層雲峡温泉",
   "phone": "01658-5-3031",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "623 204 542*74",
+  "mcLL": "43.72413,142.94689"
  },
  {
   "id": 62,
@@ -3218,7 +3340,9 @@ window.PLACES = [
   },
   "img": "img/places/62.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%98%9F%E9%87%8E%E3%83%AA%E3%82%BE%E3%83%BC%E3%83%88_%E3%83%88%E3%83%9E%E3%83%A0_%E3%82%B6%E3%83%BB%E3%82%BF%E3%83%AF%E3%83%BC_-_flickr_14793673407_4d61722e33_o.jpg",
-  "ref": "https://www.snowtomamu.jp/winter/icevillage/"
+  "ref": "https://www.snowtomamu.jp/winter/icevillage/",
+  "mapcode": "608 510 662*08",
+  "mcLL": "43.067054,142.621808"
  },
  {
   "id": 63,
@@ -3271,7 +3395,9 @@ window.PLACES = [
    "t": "อยู่ในรีสอร์ตโทมามุ"
   },
   "ref": "https://www.snowtomamu.jp/winter/",
-  "url": "https://www.snowtomamu.jp/winter/"
+  "url": "https://www.snowtomamu.jp/winter/",
+  "mapcode": "694 867 849*47",
+  "mcLL": "43.07712,142.598886"
  },
  {
   "id": 64,
@@ -3319,7 +3445,9 @@ window.PLACES = [
   ],
   "en": "Tokachigawa Onsen",
   "ref": "https://www.visit-hokkaido.jp/spa/spot/detail_10609.html",
-  "url": "https://www.visit-hokkaido.jp/spa/spot/detail_10609.html"
+  "url": "https://www.visit-hokkaido.jp/spa/spot/detail_10609.html",
+  "mapcode": "369 636 612*22",
+  "mcLL": "42.93334,143.29943"
  },
  {
   "id": 65,
@@ -3369,7 +3497,9 @@ window.PLACES = [
   "url": "https://x.com/en/privacy",
   "addrJa": "帯広市西1条南11丁目19番地",
   "phone": "0155-23-4871",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 624 018*72",
+  "mcLL": "42.91926,143.20128"
  },
  {
   "id": 66,
@@ -3426,7 +3556,9 @@ window.PLACES = [
    3
   ],
   "ref": "https://kotan.jp/",
-  "url": "https://kotan.jp/"
+  "url": "https://kotan.jp/",
+  "mapcode": "702 419 434*35",
+  "mcLL": "43.281539,143.116752"
  },
  {
   "id": 67,
@@ -3484,7 +3616,9 @@ window.PLACES = [
   "url": "http://www.kushiro-shitsugen-np.jp/tenbou/hosooka/",
   "addrJa": "北海道釧路郡釧路町字達古武22-9",
   "phone": "0154-40-4455",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "149 654 674*77",
+  "mcLL": "43.10031,144.45013"
  },
  {
   "id": 68,
@@ -3531,7 +3665,9 @@ window.PLACES = [
   ],
   "en": "Washo Market",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10020.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10020.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10020.html",
+  "mapcode": "149 256 362*88",
+  "mcLL": "42.989329,144.379879"
  },
  {
   "id": 69,
@@ -3580,7 +3716,9 @@ window.PLACES = [
   "url": "https://tancho.marimo.jp/sanc_info.html",
   "addrJa": "北海道阿寒郡鶴居村字中雪裡南",
   "phone": "0154-64-2620",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "556 535 071*37",
+  "mcLL": "43.228272,144.332527"
  },
  {
   "id": 70,
@@ -3631,7 +3769,9 @@ window.PLACES = [
    "t": "ทัวร์เช้ามืดจากคุชิโระ/ทสึรุอิ"
   },
   "ref": "https://www.vill.tsurui.lg.jp/soshikikarasagasu/sangyoshinkoka/shokokankogakari/1/tancho/638.html",
-  "url": "https://www.vill.tsurui.lg.jp/soshikikarasagasu/sangyoshinkoka/shokokankogakari/1/tancho/638.html"
+  "url": "https://www.vill.tsurui.lg.jp/soshikikarasagasu/sangyoshinkoka/shokokankogakari/1/tancho/638.html",
+  "mapcode": "556 385 227*50",
+  "mcLL": "43.18783,144.334091"
  },
  {
   "id": 71,
@@ -3682,7 +3822,9 @@ window.PLACES = [
   "url": "http://aiccgrus.wixsite.com/aiccgrus",
   "addrJa": "北海道釧路市阿寒町上阿寒23-40",
   "phone": "0154-66-4011",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "556 183 821*56",
+  "mcLL": "43.143368,144.149093"
  },
  {
   "id": 72,
@@ -3734,7 +3876,9 @@ window.PLACES = [
   "url": "https://www.akanainu.jp/",
   "addrJa": "北海道釧路市阿寒町阿寒湖温泉4-7-19",
   "phone": "0154-67-2727",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "739 341 668*05",
+  "mcLL": "43.433679,144.089983"
  },
  {
   "id": 73,
@@ -3789,7 +3933,9 @@ window.PLACES = [
    "t": "บัสท่องเที่ยวหน้าหนาวจากคาวายุ / แท็กซี่"
   },
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10484.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10052.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10052.html",
+  "mapcode": "613 781 491*62",
+  "mcLL": "43.557,144.507421"
  },
  {
   "id": 74,
@@ -3836,7 +3982,9 @@ window.PLACES = [
    "t": "เดิน ~40 นาทีจากสถานีคาวายุออนเซ็น / แท็กซี่"
   },
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10481.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10481.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10481.html",
+  "mapcode": "731 683 843*12",
+  "mcLL": "43.610407,144.43864"
  },
  {
   "id": 75,
@@ -3884,7 +4032,9 @@ window.PLACES = [
   ],
   "en": "Sunayu (Lake Kussharo)",
   "ref": "https://www.visit-hokkaido.jp/spa/spot/detail_12084.html",
-  "url": "https://www.visit-hokkaido.jp/spa/spot/detail_12084.html"
+  "url": "https://www.visit-hokkaido.jp/spa/spot/detail_12084.html",
+  "mapcode": "638 148 529*58",
+  "mcLL": "43.623887,144.359557"
  },
  {
   "id": 76,
@@ -3935,7 +4085,9 @@ window.PLACES = [
    "winter": "วิวทะเลสาบคุชชาโระน้ำแข็ง"
   },
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10398.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10398.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10398.html",
+  "mapcode": "638 225 489*56",
+  "mcLL": "43.648569,144.248497"
  },
  {
   "id": 77,
@@ -3981,7 +4133,9 @@ window.PLACES = [
    }
   ],
   "en": "Kawayu Onsen",
-  "ref": "https://www.kawayu-onsen.com/"
+  "ref": "https://www.kawayu-onsen.com/",
+  "mapcode": "731 715 613*65",
+  "mcLL": "43.616371,144.457985"
  },
  {
   "id": 78,
@@ -4043,7 +4197,9 @@ window.PLACES = [
   "ref": "https://visit-abashiri.jp/play/666a64111dd7d0e1423d3e12b650d167eca2ae00.html",
   "addrJa": "北海道網走市南3条東4丁目5-1 道の駅「流氷街道網走」1階",
   "phone": "0152-43-6000",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "305 678 312*52",
+  "mcLL": "44.021939,144.274275"
  },
  {
   "id": 79,
@@ -4097,7 +4253,9 @@ window.PLACES = [
   "ref": "https://visit-abashiri.jp/culture/bffe60c6e31340962c891ed6b119cfde5922bd2b.html",
   "addrJa": "北海道網走市呼人1-1",
   "phone": "0152-45-2411",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "305 583 271*26",
+  "mcLL": "43.996766,144.229598"
  },
  {
   "id": 80,
@@ -4147,7 +4305,9 @@ window.PLACES = [
   "ref": "https://visit-abashiri.jp/culture/b6adc924f120431ef0d673b91a8be0358fcfcbb0.html",
   "addrJa": "北海道網走市天都山244番地3",
   "phone": "0152-43-5951",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "305 584 697*08",
+  "mcLL": "44.000602,144.239657"
  },
  {
   "id": 81,
@@ -4202,7 +4362,9 @@ window.PLACES = [
    "t": "บัส/แท็กซี่จากใจกลางมนเบ็ตสึ"
   },
   "ref": "https://o-tower.co.jp/",
-  "url": "https://o-tower.co.jp/"
+  "url": "https://o-tower.co.jp/",
+  "mapcode": "801 645 053*62",
+  "mcLL": "44.34437,143.377478"
  },
  {
   "id": 82,
@@ -4263,7 +4425,9 @@ window.PLACES = [
    "t": "ทัวร์รับที่โรงแรมในอุโตโระ"
   },
   "ref": "https://www.shiretoko.asia/list/drift_ice_experience",
-  "url": "https://www.shiretoko.asia/list/drift_ice_experience"
+  "url": "https://www.shiretoko.asia/list/drift_ice_experience",
+  "mapcode": "894 854 231*46",
+  "mcLL": "44.071256,144.993586"
  },
  {
   "id": 83,
@@ -4312,7 +4476,9 @@ window.PLACES = [
   "ref": "https://www.shiretoko.asia/detail/scenic/oshinkoshin",
   "addrJa": "斜里郡斜里町ウトロ西",
   "phone": "0152-22-2125",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "894 727 262*86",
+  "mcLL": "44.038101,144.935366"
  },
  {
   "id": 84,
@@ -4371,7 +4537,9 @@ window.PLACES = [
   "ref": "https://www.shiretoko.asia/detail/scenic/shiretoko_goko",
   "addrJa": "斜里郡斜里町遠音別村 字岩宇別549番地",
   "phone": "0152-24-3323",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "757 730 274*82",
+  "mcLL": "44.121763,145.080303"
  },
  {
   "id": 85,
@@ -4431,7 +4599,9 @@ window.PLACES = [
    "t": "ท่าเรือในเมืองราอุสุ (เรือออกเช้า)"
   },
   "ref": "https://www.e-shiretoko.com/",
-  "url": "https://www.e-shiretoko.com/"
+  "url": "https://www.e-shiretoko.com/",
+  "mapcode": "757 383 278*22",
+  "mcLL": "44.021875,145.189743"
  },
  {
   "id": 86,
@@ -4478,7 +4648,9 @@ window.PLACES = [
    "t": "บัส Soya จากสถานีวักกาไน ~50 นาที วันละ 4-5 เที่ยว"
   },
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10140.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10140.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10140.html",
+  "mapcode": "998 067 446*25",
+  "mcLL": "45.522886,141.9366"
  },
  {
   "hub": "sapporo",
@@ -4530,7 +4702,9 @@ window.PLACES = [
   "url": "https://www.hitsujigaoka.jp/",
   "addrJa": "札幌市豊平区羊ケ丘1番地",
   "phone": "011-851-3080",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 258 428*70",
+  "mcLL": "42.9897,141.3987"
  },
  {
   "hub": "sapporo",
@@ -4584,7 +4758,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/maruyama_zoo/",
   "addrJa": "札幌市中央区宮ケ丘3番地1",
   "phone": "011-621-1426",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 457 790*86",
+  "mcLL": "43.051417,141.307417"
  },
  {
   "hub": "sapporo",
@@ -4635,7 +4811,9 @@ window.PLACES = [
   "url": "https://tanukikoji.or.jp/",
   "addrJa": "札幌市中央区南2・3条西1丁目~7丁目",
   "phone": "011-241-5125(",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 534*81",
+  "mcLL": "43.0573,141.353"
  },
  {
   "hub": "sapporo",
@@ -4686,7 +4864,9 @@ window.PLACES = [
   "url": "https://www.jr-tower.com/t38",
   "addrJa": "札幌市中央区北5条西2丁目5",
   "phone": "011-209-5500",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 522 860*63",
+  "mcLL": "43.068611,141.351944"
  },
  {
   "hub": "sapporo",
@@ -4745,7 +4925,9 @@ window.PLACES = [
    "t": "รถไฟใต้ดิน Sakaemachi + บัสรับส่ง"
   },
   "ref": "https://www.snowfes.com/",
-  "url": "https://www.snowfes.com/"
+  "url": "https://www.snowfes.com/",
+  "mapcode": "9 705 536*30",
+  "mcLL": "43.1157,141.3786"
  },
  {
   "hub": "otaru",
@@ -4795,7 +4977,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/letao_honten",
   "addrJa": "小樽市堺町7番16号",
   "phone": "0120-31-4521(9",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 661 669*47",
+  "mcLL": "43.19206,141.00737"
  },
  {
   "hub": "toya",
@@ -4846,7 +5030,9 @@ window.PLACES = [
    "t": "บัสจากโทยะออนเซ็น ~15 นาที วันละไม่กี่เที่ยว"
   },
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10049.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10049.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10049.html",
+  "mapcode": "321 434 725*56",
+  "mcLL": "42.5425,140.864444"
  },
  {
   "hub": "hakodate",
@@ -4893,7 +5079,9 @@ window.PLACES = [
   ],
   "en": "Yunokawa Onsen",
   "ref": "https://hakodate-yunokawa.jp/",
-  "url": "https://hakodate-yunokawa.jp/"
+  "url": "https://hakodate-yunokawa.jp/",
+  "mapcode": "86 109 051*23",
+  "mcLL": "41.7781,140.7856"
  },
  {
   "hub": "hakodate",
@@ -4939,7 +5127,9 @@ window.PLACES = [
   "ref": "https://www.hakobura.jp/spots/504",
   "addrJa": "函館市上湯川町346",
   "phone": "0138-57-3331",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "86 144 214*55",
+  "mcLL": "41.78785,140.822514"
  },
  {
   "hub": "asahikawa",
@@ -4985,7 +5175,9 @@ window.PLACES = [
    }
   ],
   "en": "Snow Crystal Museum",
-  "gone": true
+  "gone": true,
+  "mapcode": "79 367 284*03",
+  "mcLL": "43.771722,142.308472"
  },
  {
   "hub": "furano",
@@ -5027,7 +5219,9 @@ window.PLACES = [
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=291",
   "addrJa": "富良野市幸町13-1",
   "phone": "0167-22-1001",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 001 717*66",
+  "mcLL": "43.34218,142.38711"
  },
  {
   "hub": "biei",
@@ -5072,7 +5266,9 @@ window.PLACES = [
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=442",
   "addrJa": "空知郡上富良野町吹上",
   "phone": "0167-45-6938(",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "796 031 239*03",
+  "mcLL": "43.42955,142.63765"
  },
  {
   "hub": "obihiro",
@@ -5118,7 +5314,9 @@ window.PLACES = [
   "ref": "https://obikan.jp/post_spot/1348/",
   "addrJa": "帯広市西2条南9丁目6",
   "phone": "0120-12-6666",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 624 345*50",
+  "mcLL": "42.92228,143.20032"
  },
  {
   "hub": "kushiro",
@@ -5168,7 +5366,9 @@ window.PLACES = [
   "url": "https://www.moo946.com/",
   "addrJa": "北海道釧路市錦町2-4",
   "phone": "0154-23-0661",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "149 226 465*58",
+  "mcLL": "42.98175,144.3835"
  },
  {
   "hub": "akan",
@@ -5219,7 +5419,9 @@ window.PLACES = [
   "url": "https://www.akanainu.jp/about/ikoro",
   "addrJa": "北海道釧路市阿寒町阿寒湖温泉4-7-84",
   "phone": "0154-67-2727",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "739 341 724*70",
+  "mcLL": "43.4342,144.08899"
  },
  {
   "hub": "abashiri",
@@ -5268,7 +5470,9 @@ window.PLACES = [
   "ref": "https://visit-abashiri.jp/scenery/b1b92ba8835b04de0cdaf87843cb6d0769a68f3d.html",
   "addrJa": "北海道網走市美岬",
   "phone": "0152-44-5849",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "991 036 125*55",
+  "mcLL": "44.09519,144.17234"
  },
  {
   "hub": "utoro",
@@ -5318,7 +5522,9 @@ window.PLACES = [
   "ref": "https://www.shiretoko.asia/detail/scenic/furepe",
   "addrJa": "斜里郡斜里町遠音別村",
   "phone": "0152-22-2125",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "757 632 307*32",
+  "mcLL": "44.097139,145.014556"
  },
  {
   "hub": "monbetsu",
@@ -5366,7 +5572,9 @@ window.PLACES = [
   ],
   "en": "Okhotsk Tower",
   "ref": "https://o-tower.co.jp/",
-  "url": "https://o-tower.co.jp/"
+  "url": "https://o-tower.co.jp/",
+  "mapcode": "801 585 104*27",
+  "mcLL": "44.32839,143.37494"
  },
  {
   "hub": "sapporo",
@@ -5426,7 +5634,9 @@ window.PLACES = [
   "acc": "จาก OpenStreetMap",
   "img": "img/places/105.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:MOAI_image.JPG",
-  "ref": "https://www.takinoreien.com/"
+  "ref": "https://www.takinoreien.com/",
+  "mapcode": "9 013 179*51",
+  "mcLL": "42.920536,141.362742"
  },
  {
   "hub": "sapporo",
@@ -5481,7 +5691,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/sapporo_factory/",
   "url": "https://sapporofactory.jp/",
   "addrJa": "札幌市中央区北2条東4丁目",
-  "phone": "011-207-5000"
+  "phone": "011-207-5000",
+  "mapcode": "9 524 511*63",
+  "mcLL": "43.065556,141.363333"
  },
  {
   "hub": "sapporo",
@@ -5536,7 +5748,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/former_hokkaido_government_office/",
   "url": "https://www.hokkaido-redbrick.jp/",
   "addrJa": "札幌市中央区北3条西6丁目",
-  "phone": "011-206-8390"
+  "phone": "011-206-8390",
+  "mapcode": "9 522 336*81",
+  "mcLL": "43.063944,141.348"
  },
  {
   "hub": "sapporo",
@@ -5591,7 +5805,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/sapporo_art_park/",
   "url": "https://artpark.or.jp/",
   "addrJa": "札幌市南区芸術の森2丁目75",
-  "phone": "011-592-5111"
+  "phone": "011-592-5111",
+  "mapcode": "9 071 244*03",
+  "mcLL": "42.93818,141.33919"
  },
  {
   "hub": "sapporo",
@@ -5651,7 +5867,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/hokkaido_university/",
   "url": "https://www.hokudai.ac.jp/",
   "addrJa": "札幌市北区北8条西5丁目",
-  "phone": "011-716-2111("
+  "phone": "011-716-2111(",
+  "mapcode": "9 580 237*46",
+  "mcLL": "43.07956,141.33732"
  },
  {
   "hub": "sapporo",
@@ -5703,7 +5921,9 @@ window.PLACES = [
   "img": "img/places/110.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:MITSUI_OUTLET_PARK_Sapporo_Kitahiroshima.jpg",
   "ref": "https://mitsui-shopping-park.com/mop/sapporo/",
-  "url": "https://mitsui-shopping-park.com/mop/sapporo/"
+  "url": "https://mitsui-shopping-park.com/mop/sapporo/",
+  "mapcode": "9 207 240*53",
+  "mcLL": "42.971416,141.471309"
  },
  {
   "hub": "sapporo",
@@ -5755,7 +5975,9 @@ window.PLACES = [
   "img": "img/places/111.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:ES_CON_FIELD_HOKKAIDO_exterior_from_south_202607a.jpg",
   "ref": "https://www.hkdballpark.com/",
-  "url": "https://www.hkdballpark.com/"
+  "url": "https://www.hkdballpark.com/",
+  "mapcode": "230 546 431*60",
+  "mcLL": "42.989722,141.549444"
  },
  {
   "hub": "sapporo",
@@ -5809,7 +6031,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/sapporo_central_wholesale_market/",
   "url": "https://www.jyogaishijyo.com/",
   "addrJa": "札幌市中央区北11条西21丁目",
-  "phone": "011-621-7044("
+  "phone": "011-621-7044(",
+  "mapcode": "9 549 090*55",
+  "mcLL": "43.069949,141.321258"
  },
  {
   "hub": "jozankei",
@@ -5856,7 +6080,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/sapporo_kokusai_skiing_resort/",
   "url": "https://www.sapporo-kokusai.jp/",
   "addrJa": "札幌市南区定山渓937番地先",
-  "phone": "011-598-4511"
+  "phone": "011-598-4511",
+  "mapcode": "493 250 341*62",
+  "mcLL": "43.072222,141.082778"
  },
  {
   "hub": "otaru",
@@ -5914,7 +6140,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/otarusuizokukann",
   "url": "https://otaru-aq.jp/",
   "addrJa": "小樽市祝津3-303",
-  "phone": "0134-33-1400"
+  "phone": "0134-33-1400",
+  "mapcode": "493 841 113*41",
+  "mcLL": "43.236806,141.01125"
  },
  {
   "hub": "otaru",
@@ -5965,7 +6193,9 @@ window.PLACES = [
    10
   ],
   "ref": "https://www.kanko-shakotan.jp/",
-  "url": "https://www.kanko-shakotan.jp/"
+  "url": "https://www.kanko-shakotan.jp/",
+  "mapcode": "932 747 442*82",
+  "mcLL": "43.373097,140.477448"
  },
  {
   "hub": "otaru",
@@ -6010,7 +6240,9 @@ window.PLACES = [
   "img": "img/places/116.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Kiroro_Resort.JPG",
   "ref": "https://www.kiroro.co.jp/",
-  "url": "https://www.kiroro.co.jp/"
+  "url": "https://www.kiroro.co.jp/",
+  "mapcode": "493 210 309*05",
+  "mcLL": "43.063621,140.998886"
  },
  {
   "hub": "otaru",
@@ -6064,7 +6296,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/otaru-canal-cruise",
   "url": "https://otaru.cc/",
   "addrJa": "小樽市港町5-4 小樽運河クルーズ",
-  "phone": "0134-31-1733"
+  "phone": "0134-31-1733",
+  "mapcode": "164 689 533*22",
+  "mcLL": "43.19072,140.99436"
  },
  {
   "hub": "otaru",
@@ -6118,7 +6352,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/bankofjapan_otarumuseum",
   "url": "https://www3.boj.or.jp/otaru-m/",
   "addrJa": "小樽市色内1-11-16",
-  "phone": "0134-21-1111"
+  "phone": "0134-21-1111",
+  "mapcode": "493 690 224*04",
+  "mcLL": "43.196194,141.000333"
  },
  {
   "hub": "niseko",
@@ -6166,7 +6402,9 @@ window.PLACES = [
   "img": "img/places/119.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Japan_Hokkaido_south_topographic_map.webp",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10169.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10169.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10169.html",
+  "mapcode": "398 551 197*53",
+  "mcLL": "42.904167,140.592778"
  },
  {
   "hub": "niseko",
@@ -6216,7 +6454,9 @@ window.PLACES = [
   "img": "img/places/120.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Shiribetsu_River.JPG",
   "ref": "https://visit-hokkaido.jp/adventure-travel/traveltrade-press/courses/one-day/rafting-in-shiribetsu-river-niseko/",
-  "url": "https://visit-hokkaido.jp/adventure-travel/traveltrade-press/courses/one-day/rafting-in-shiribetsu-river-niseko/"
+  "url": "https://visit-hokkaido.jp/adventure-travel/traveltrade-press/courses/one-day/rafting-in-shiribetsu-river-niseko/",
+  "mapcode": "398 478 271*54",
+  "mcLL": "42.88,140.73"
  },
  {
   "hub": "chitose",
@@ -6268,7 +6508,9 @@ window.PLACES = [
   "img": "img/places/121.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Chitose_outlet_mall_Rera_entrance01.jpg",
   "ref": "https://www.outlet-rera.com/",
-  "url": "https://www.outlet-rera.com/"
+  "url": "https://www.outlet-rera.com/",
+  "mapcode": "113 831 139*60",
+  "mcLL": "42.811944,141.676667"
  },
  {
   "hub": "shikotsu",
@@ -6327,7 +6569,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/lake_shikotsu/",
   "url": "http://shikotsukovc.sakura.ne.jp/",
   "addrJa": "千歳市支笏湖温泉番外地",
-  "phone": "0123-25-2404"
+  "phone": "0123-25-2404",
+  "mapcode": "867 064 511*08",
+  "mcLL": "42.774,141.405"
  },
  {
   "hub": "noboribetsu",
@@ -6382,7 +6626,9 @@ window.PLACES = [
   "ref": "https://noboribetsu-spa.jp/spot/spot0124/",
   "url": "https://edo-trip.jp/",
   "addrJa": "北海道登別市中登別町53-1",
-  "phone": "0143-83-3311"
+  "phone": "0143-83-3311",
+  "mapcode": "603 169 264*72",
+  "mcLL": "42.463138,141.161505"
  },
  {
   "hub": "noboribetsu",
@@ -6433,7 +6679,9 @@ window.PLACES = [
   "img": "img/places/124.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Noboribetsu_hot_spring_jigokudani.JPG",
   "ref": "https://noboribetsu-spa.jp/spot/spot0068/",
-  "addrJa": "北海道登別市登別温泉町"
+  "addrJa": "北海道登別市登別温泉町",
+  "mapcode": "603 287 111*74",
+  "mcLL": "42.49506,141.14406"
  },
  {
   "hub": "noboribetsu",
@@ -6487,7 +6735,9 @@ window.PLACES = [
   "ref": "https://noboribetsu-spa.jp/spot/spot0131/",
   "url": "https://www.nixe.co.jp/",
   "addrJa": "北海道登別市登別東町1丁目22番地",
-  "phone": "0143-83-3800"
+  "phone": "0143-83-3800",
+  "mapcode": "603 142 249*23",
+  "mcLL": "42.454972,141.182194"
  },
  {
   "hub": "toya",
@@ -6534,7 +6784,9 @@ window.PLACES = [
   "img": "img/places/126.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:130922_Toyako_Onsen_Toyako_Hokkaido_Japan01s3.jpg",
   "ref": "https://www.laketoya.com/event/fireworks/",
-  "url": "https://www.laketoya.com/event/fireworks/"
+  "url": "https://www.laketoya.com/event/fireworks/",
+  "mapcode": "321 452 753*74",
+  "mcLL": "42.55117,140.76411"
  },
  {
   "hub": "hakodate",
@@ -6588,7 +6840,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:MatsumaeCastle.jpg",
   "ref": "https://www.hakobura.jp/spots/544",
   "addrJa": "北海道松前郡松前町字松城",
-  "phone": "0139-42-2216"
+  "phone": "0139-42-2216",
+  "mapcode": "862 058 283*48",
+  "mcLL": "41.430325,140.1086"
  },
  {
   "hub": "hakodate",
@@ -6642,7 +6896,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Old_Public_Hall_of_Hakodate_Ward_Japan02s3.jpg",
   "ref": "https://www.hakobura.jp/spots/512",
   "addrJa": "函館市元町11-13",
-  "phone": "0138-22-1001"
+  "phone": "0138-22-1001",
+  "mapcode": "86 040 435*28",
+  "mcLL": "41.765028,140.708889"
  },
  {
   "hub": "biei",
@@ -6695,7 +6951,9 @@ window.PLACES = [
   "img": "img/places/129.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%9B%9B%E5%AD%A3%E5%BD%A9%E3%81%AE%E4%B8%98-01.JPG",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/shin-ei-no-oka_view-park",
-  "addrJa": "北海道上川郡美瑛町美馬牛新栄"
+  "addrJa": "北海道上川郡美瑛町美馬牛新栄",
+  "mapcode": "349 790 548*22",
+  "mcLL": "43.55767,142.4567"
  },
  {
   "hub": "biei",
@@ -6748,7 +7006,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Tsurumi-ryokuchi1-R.jpg",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=437",
   "addrJa": "美瑛町大久保協生",
-  "phone": "0166-92-4445"
+  "phone": "0166-92-4445",
+  "mapcode": "389 070 253*41",
+  "mcLL": "43.60486,142.45832"
  },
  {
   "hub": "furano",
@@ -6796,7 +7056,9 @@ window.PLACES = [
    "winter": "เนินหิมะขาวสุดตา ถนนลื่น ขับช้า"
   },
   "ref": "https://www.biei-hokkaido.jp/ja/hill-town-biei",
-  "url": "https://www.biei-hokkaido.jp/ja/hill-town-biei"
+  "url": "https://www.biei-hokkaido.jp/ja/hill-town-biei",
+  "mapcode": "349 667 154*85",
+  "mcLL": "43.52058,142.430586"
  },
  {
   "hub": "biei",
@@ -6846,7 +7108,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Kanno-farm_02.jpg",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=438",
   "addrJa": "上富良野町美馬牛峠",
-  "phone": "0167-45-9528"
+  "phone": "0167-45-9528",
+  "mapcode": "349 728 638*86",
+  "mcLL": "43.54168,142.44006"
  },
  {
   "hub": "biei",
@@ -6899,7 +7163,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Mori-no-ryotei-Biei_Shirogane_Onsen_Biei_Hokkaido_Japan02s3.jpg",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=410",
   "addrJa": "上川郡美瑛町白金",
-  "phone": "0166-94-3355"
+  "phone": "0166-94-3355",
+  "mapcode": "349 627 064*51",
+  "mcLL": "43.50302,142.5973"
  },
  {
   "hub": "furano",
@@ -6951,7 +7217,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Hinode-park_Kamifurano_view.jpg",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=440",
   "addrJa": "上富良野町西5線北27号",
-  "phone": "0167-45-9480"
+  "phone": "0167-45-9480",
+  "mapcode": "349 519 360*44",
+  "mcLL": "43.48102,142.4464"
  },
  {
   "hub": "furano",
@@ -6999,7 +7267,9 @@ window.PLACES = [
   ],
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=441",
   "addrJa": "空知郡上富良野町東1線北27号日の出公園",
-  "phone": "0167-39-4200"
+  "phone": "0167-39-4200",
+  "mapcode": "349 463 278*75",
+  "mcLL": "43.46327,142.48188"
  },
  {
   "hub": "furano",
@@ -7039,7 +7309,9 @@ window.PLACES = [
   "img": "img/places/136.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:East_Sussex_UK_locator_map_2010.svg",
   "ref": "https://www.farm-tomita.co.jp/",
-  "url": "https://www.farm-tomita.co.jp/"
+  "url": "https://www.farm-tomita.co.jp/",
+  "mapcode": "349 343 258*60",
+  "mcLL": "43.4297,142.4846"
  },
  {
   "hub": "sounkyo",
@@ -7091,7 +7363,9 @@ window.PLACES = [
   "img": "img/places/137.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Ainu-Cise.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_11445.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_11445.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_11445.html",
+  "mapcode": "623 630 207*00",
+  "mcLL": "43.845858,142.7537"
  },
  {
   "hub": "asahikawa",
@@ -7138,7 +7412,9 @@ window.PLACES = [
    8
   ],
   "ref": "https://www.town.hokuryu.hokkaido.jp/",
-  "url": "https://www.town.hokuryu.hokkaido.jp/"
+  "url": "https://www.town.hokuryu.hokkaido.jp/",
+  "mapcode": "179 810 448*26",
+  "mcLL": "43.73144,141.879"
  },
  {
   "hub": "asahikawa",
@@ -7186,7 +7462,9 @@ window.PLACES = [
   "ref": "https://www.atca.jp/kankouspoy/上野ファーム/",
   "url": "http://www.uenofarm.net/index.php",
   "addrJa": "旭川市永山町16丁目186番地",
-  "phone": "0166-47-8741"
+  "phone": "0166-47-8741",
+  "mapcode": "79 509 755*27",
+  "mcLL": "43.80952,142.48923"
  },
  {
   "hub": "biei",
@@ -7234,7 +7512,9 @@ window.PLACES = [
   "ref": "https://www.biei-hokkaido.jp/ja/facility/zerubu-no-oka-flower-park",
   "url": "http://biei.selfip.com/",
   "addrJa": "北海道上川郡美瑛町大三",
-  "phone": "0166-92-3160"
+  "phone": "0166-92-3160",
+  "mapcode": "389 071 406*05",
+  "mcLL": "43.60612,142.46733"
  },
  {
   "hub": "monbetsu",
@@ -7278,7 +7558,9 @@ window.PLACES = [
   "img": "img/places/141.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Gregarious_moss_phlox_in_Takinoue_Park%2C_Takinoue%2C_Hokkaido.JPG",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_11196.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_11196.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_11196.html",
+  "mapcode": "570 669 713*31",
+  "mcLL": "44.19231,143.07758"
  },
  {
   "hub": "tomamu",
@@ -7327,7 +7609,9 @@ window.PLACES = [
   "img": "img/places/142.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%98%9F%E9%87%8E%E3%83%AA%E3%82%BE%E3%83%BC%E3%83%88_%E3%83%88%E3%83%9E%E3%83%A0_%E3%82%B6%E3%83%BB%E3%82%BF%E3%83%AF%E3%83%BC_-_flickr_14793673407_4d61722e33_o.jpg",
   "ref": "https://www.snowtomamu.jp/summer/unkai/",
-  "url": "https://www.snowtomamu.jp/summer/unkai/"
+  "url": "https://www.snowtomamu.jp/summer/unkai/",
+  "mapcode": "694 867 849*47",
+  "mcLL": "43.07712,142.598886"
  },
  {
   "hub": "obihiro",
@@ -7375,7 +7659,9 @@ window.PLACES = [
   "ref": "https://obikan.jp/post_spot/8547/",
   "url": "https://x.com/en/privacy",
   "addrJa": "清水町字羽帯南10線",
-  "phone": "0156-63-3000"
+  "phone": "0156-63-3000",
+  "mapcode": "608 059 491*12",
+  "mcLL": "42.93212,142.86605"
  },
  {
   "hub": "obihiro",
@@ -7426,7 +7712,9 @@ window.PLACES = [
   "ref": "https://obikan.jp/post_spot/1470/",
   "url": "https://x.com/en/privacy",
   "addrJa": "帯広市稲田町東2線6",
-  "phone": "0155-48-2120"
+  "phone": "0155-48-2120",
+  "mapcode": "124 474 700*47",
+  "mcLL": "42.8841,143.19913"
  },
  {
   "hub": "obihiro",
@@ -7476,7 +7764,9 @@ window.PLACES = [
   "img": "img/places/145.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokkaido-%28Japanese_National_Railway_Shihoro_line%29_Taushubetsu_River_Bridge_-m.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10178.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10178.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10178.html",
+  "mapcode": "679 578 515*67",
+  "mcLL": "43.41552,143.18928"
  },
  {
   "hub": "obihiro",
@@ -7532,7 +7822,9 @@ window.PLACES = [
   "ref": "https://obikan.jp/post_spot/1505/",
   "url": "https://x.com/en/privacy",
   "addrJa": "帯広市西13条南9丁目 帯広競馬場",
-  "phone": "0155-34-0825"
+  "phone": "0155-34-0825",
+  "mapcode": "124 622 183*42",
+  "mcLL": "42.92109,143.18046"
  },
  {
   "hub": "kushiro",
@@ -7575,7 +7867,9 @@ window.PLACES = [
   "img": "img/places/147.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:C11-171_SL-Fuyu-no-Shitsugen-train.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_11290.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_11290.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_11290.html",
+  "mapcode": "149 256 520*65",
+  "mcLL": "42.9906,144.3822"
  },
  {
   "hub": "kawayu",
@@ -7621,7 +7915,9 @@ window.PLACES = [
   "img": "img/places/148.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Kaminoko_ike.JPG",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10417.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10417.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10417.html",
+  "mapcode": "910 216 135*78",
+  "mcLL": "43.645278,144.550278"
  },
  {
   "hub": "akan",
@@ -7669,7 +7965,9 @@ window.PLACES = [
   "img": "img/places/149.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Onneto%2C_-September_2010_a.jpg",
   "ref": "https://ja.kushiro-lakeakan.com/things_to_do/551/",
-  "addrJa": "北海道足寄郡足寄町茂足寄"
+  "addrJa": "北海道足寄郡足寄町茂足寄",
+  "mapcode": "783 761 886*45",
+  "mcLL": "43.38572,143.9673"
  },
  {
   "hub": "utoro",
@@ -7716,7 +8014,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Rausu-dake_01.JPG",
   "ref": "https://www.shiretoko.asia/detail/scenic/shiretoko_touge",
   "addrJa": "目梨郡羅臼町湯ノ沢町",
-  "phone": "0152-22-2125"
+  "phone": "0152-22-2125",
+  "mapcode": "757 493 242*74",
+  "mcLL": "44.054722,145.105"
  },
  {
   "hub": "utoro",
@@ -7765,7 +8065,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Shiretoko_Peninsula_Hokkaido_Japan_SRTM.jpg",
   "ref": "https://www.shiretoko.asia/detail/aurora",
   "addrJa": "斜里町ウトロ東107",
-  "phone": "0152-24-2146"
+  "phone": "0152-24-2146",
+  "mapcode": "894 854 109*72",
+  "mcLL": "44.07,144.993"
  },
  {
   "hub": "abashiri",
@@ -7813,7 +8115,9 @@ window.PLACES = [
    10
   ],
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10264.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10264.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10264.html",
+  "mapcode": "305 755 849*78",
+  "mcLL": "44.0519,144.1653"
  },
  {
   "hub": "abashiri",
@@ -7858,7 +8162,9 @@ window.PLACES = [
   "img": "img/places/153.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Higashimokoto_Phlox_subulata02.JPG",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_11171.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_11171.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_11171.html",
+  "mapcode": "638 712 686*21",
+  "mcLL": "43.78379,144.31157"
  },
  {
   "hub": "abashiri",
@@ -7899,7 +8205,9 @@ window.PLACES = [
   "acc": "ประมาณ",
   "img": "img/places/154.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Greenland_East_Coast_7.jpg",
-  "ref": "https://visit-abashiri.jp/play/9a11b738d963f70b325d0061d9ed2b474d8d2c0f.html"
+  "ref": "https://visit-abashiri.jp/play/9a11b738d963f70b325d0061d9ed2b474d8d2c0f.html",
+  "mapcode": "305 676 155*20",
+  "mcLL": "44.0207,144.2557"
  },
  {
   "hub": "abashiri",
@@ -7946,7 +8254,9 @@ window.PLACES = [
    "winter": "อาจเห็นน้ำแข็งทะเลลอยจากชายหาด ก.พ.–มี.ค. (ร้านปิด)"
   },
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10419.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10419.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10419.html",
+  "mapcode": "958 080 663*52",
+  "mcLL": "43.941944,144.413417"
  },
  {
   "hub": "wakkanai",
@@ -7997,7 +8307,9 @@ window.PLACES = [
    9
   ],
   "ref": "https://www.rishiri-plus.jp/",
-  "url": "https://www.rishiri-plus.jp/"
+  "url": "https://www.rishiri-plus.jp/",
+  "mapcode": "353 877 541*55",
+  "mcLL": "45.4155,141.6797"
  },
  {
   "hub": "wakkanai",
@@ -8050,7 +8362,9 @@ window.PLACES = [
   "img": "img/places/157.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E9%98%B2%E6%B3%A2%E5%A0%A4%E3%83%89%E3%83%BC%E3%83%A0-01.JPG",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10273.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10273.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10273.html",
+  "mapcode": "964 007 153*75",
+  "mcLL": "45.420222,141.680444"
  },
  {
   "hub": "biei",
@@ -8107,7 +8421,9 @@ window.PLACES = [
   "img": "img/places/158.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:The_Christmas-tree_called_in_Biei%2C_Hokkaidou_-_panoramio.jpg",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/christmas-tree",
-  "addrJa": "北海道上川郡美瑛町美馬牛"
+  "addrJa": "北海道上川郡美瑛町美馬牛",
+  "mapcode": "349 788 233*50",
+  "mcLL": "43.55439,142.44422"
  },
  {
   "hub": "biei",
@@ -8180,7 +8496,9 @@ window.PLACES = [
   "img": "img/places/159_1.jpg",
   "imgCredit": "https://www.flickr.com/photos/39846933@N06/3704376696",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/seven-stars-tree",
-  "addrJa": "北海道上川郡美瑛町北瑛"
+  "addrJa": "北海道上川郡美瑛町北瑛",
+  "mapcode": "389 156 208*66",
+  "mcLL": "43.62908,142.42903"
  },
  {
   "hub": "biei",
@@ -8245,7 +8563,9 @@ window.PLACES = [
   "img": "img/places/160_1.jpg",
   "imgCredit": "https://www.flickr.com/photos/48701008@N00/5092615205",
   "ref": "https://www.biei-hokkaido.jp/ja/hill-town-biei",
-  "url": "https://www.biei-hokkaido.jp/ja/hill-town-biei"
+  "url": "https://www.biei-hokkaido.jp/ja/hill-town-biei",
+  "mapcode": "389 127 113*32",
+  "mcLL": "43.62016,142.43595"
  },
  {
   "hub": "biei",
@@ -8296,7 +8616,9 @@ window.PLACES = [
   "img": "img/places/161.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%BB%E3%83%96%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC%E3%81%AE%E4%B8%98_1.jpg",
   "ref": "https://www.biei-hokkaido.jp/ja/hill-town-biei",
-  "url": "https://www.biei-hokkaido.jp/ja/hill-town-biei"
+  "url": "https://www.biei-hokkaido.jp/ja/hill-town-biei",
+  "mapcode": "389 036 260*46",
+  "mcLL": "43.596472,142.426898"
  },
  {
   "hub": "biei",
@@ -8350,7 +8672,9 @@ window.PLACES = [
   "ref": "https://www.biei-hokkaido.jp/ja/facility/takushinkan",
   "url": "https://www.takushinkan.shop/",
   "addrJa": "北海道上川郡美瑛町字拓進",
-  "phone": "0166-92-3355"
+  "phone": "0166-92-3355",
+  "mapcode": "349 730 029*17",
+  "mcLL": "43.53586,142.46278"
  },
  {
   "hub": "biei",
@@ -8398,7 +8722,9 @@ window.PLACES = [
   "img": "img/places/163.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Tokachidake-bogakudai_%E5%8D%81%E5%8B%9D%E5%B2%B3%E6%9C%9B%E5%B2%B3IMG_1192.jpg",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/mt-tokachi-obesevatory",
-  "addrJa": "北海道上川郡美瑛町白金"
+  "addrJa": "北海道上川郡美瑛町白金",
+  "mapcode": "796 093 216*78",
+  "mcLL": "43.44607,142.64797"
  },
  {
   "hub": "furano",
@@ -8461,7 +8787,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Furano_Winery.jpg",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=398",
   "addrJa": "富良野市清水山",
-  "phone": "0167-22-3242"
+  "phone": "0167-22-3242",
+  "mapcode": "349 060 668*70",
+  "mcLL": "43.35858,142.37359"
  },
  {
   "hub": "furano",
@@ -8509,7 +8837,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:130504_Kaze-no-Garden_Furano_Hokkaido_Japan05s.jpg",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=3",
   "addrJa": "富良野市中御料 新富良野プリンスホテル ピクニックガーデン",
-  "phone": "0167-22-1111"
+  "phone": "0167-22-1111",
+  "mapcode": "919 583 607*27",
+  "mcLL": "43.33317,142.35649"
  },
  {
   "hub": "furano",
@@ -8556,7 +8886,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Farm-Tomita.Irodori-no-Hatake01.JPG",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=443",
   "addrJa": "中富良野町宮町1番41号",
-  "phone": "0167-44-2133"
+  "phone": "0167-44-2133",
+  "mapcode": "349 246 815*28",
+  "mcLL": "43.41016,142.42254"
  },
  {
   "hub": "sounkyo",
@@ -8618,7 +8950,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%A7%8B%E5%87%BD%EF%BC%88Autumn_in_valley%EF%BC%89_-_panoramio.jpg",
   "ref": "https://sounkyo.net/view/detail.html?content=10",
   "addrJa": "上川町層雲峡大函",
-  "phone": "01658-2-4058"
+  "phone": "01658-2-4058",
+  "mapcode": "743 692 824*14",
+  "mcLL": "43.70175,143.01689"
  },
  {
   "hub": "asahikawa",
@@ -8666,7 +9000,9 @@ window.PLACES = [
   "img": "img/places/168.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Shikishimaso_in_Tenninkyo_onsen.jpg",
   "ref": "https://higashikawa-town.jp/",
-  "url": "https://higashikawa-town.jp/"
+  "url": "https://higashikawa-town.jp/",
+  "mapcode": "796 739 244*28",
+  "mcLL": "43.621528,142.780556"
  },
  {
   "hub": "sapporo",
@@ -8720,7 +9056,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/hokkaido-museum/",
   "url": "https://www.hm.pref.hokkaido.lg.jp/",
   "addrJa": "札幌市厚別区厚別町小野幌53-2",
-  "phone": "011-898-0466"
+  "phone": "011-898-0466",
+  "mapcode": "139 180 061*65",
+  "mcLL": "43.053,141.496611"
  },
  {
   "hub": "sapporo",
@@ -8779,7 +9117,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/nakajima_park/",
   "url": "http://www.sapporo-park.or.jp/nakajima/",
   "addrJa": "札幌市中央区中島公園1",
-  "phone": "011-511-3924("
+  "phone": "011-511-3924(",
+  "mapcode": "9 432 898*07",
+  "mcLL": "43.043928,141.354198"
  },
  {
   "hub": "sapporo",
@@ -8838,7 +9178,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/maruyama_park/",
   "url": "https://maruyamapark.jp/",
   "addrJa": "札幌市中央区宮ケ丘3",
-  "phone": "011-621-0453("
+  "phone": "011-621-0453(",
+  "mapcode": "9 457 738*63",
+  "mcLL": "43.050833,141.309722"
  },
  {
   "hub": "sapporo",
@@ -8893,7 +9235,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/asahiyama-memorial-park/",
   "url": "http://www.sapporo-park.or.jp/asahiyama/",
   "addrJa": "札幌市中央区界川4丁目",
-  "phone": "011-200-0311("
+  "phone": "011-200-0311(",
+  "mapcode": "9 428 393*63",
+  "mcLL": "43.039444,141.313889"
  },
  {
   "hub": "sapporo",
@@ -8938,7 +9282,9 @@ window.PLACES = [
   "img": "img/places/173.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_television_tower_at_night_IMG_2982.jpg",
   "ref": "https://www.sapporo.travel/event/event-list/munich_christmas_market/",
-  "url": "https://www.sapporo.travel/event/event-list/munich_christmas_market/"
+  "url": "https://www.sapporo.travel/event/event-list/munich_christmas_market/",
+  "mapcode": "9 492 792*68",
+  "mcLL": "43.0597,141.3497"
  },
  {
   "hub": "jozankei",
@@ -8989,7 +9335,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/hoheikyo_dam/",
   "url": "https://www.houheikyou.jp/",
   "addrJa": "札幌市南区定山渓840番地先",
-  "phone": "011-598-3452("
+  "phone": "011-598-3452(",
+  "mapcode": "708 573 536*86",
+  "mcLL": "42.915612,141.153563"
  },
  {
   "hub": "otaru",
@@ -9056,7 +9404,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/otaru_kihinkan",
   "url": "http://www.otaru-kihinkan.jp/",
   "addrJa": "小樽市祝津3丁目63",
-  "phone": "0134-24-0024"
+  "phone": "0134-24-0024",
+  "mapcode": "493 811 373*14",
+  "mcLL": "43.2309,141.00847"
  },
  {
   "hub": "otaru",
@@ -9110,7 +9460,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/otarumuseum_mainbuilding",
   "url": "https://www.city.otaru.lg.jp/docs/2020111300736/",
   "addrJa": "小樽市手宮1丁目3番6号",
-  "phone": "0134-33-2523"
+  "phone": "0134-33-2523",
+  "mapcode": "493 750 078*78",
+  "mcLL": "43.211333,141.001472"
  },
  {
   "hub": "otaru",
@@ -9163,7 +9515,9 @@ window.PLACES = [
   "img": "img/places/177.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%89%8B%E5%AE%AE%E7%B7%9A%E8%B7%A1_-_panoramio.jpg",
   "ref": "https://otaru.gr.jp/shop/temiya-line",
-  "url": "https://www.city.otaru.lg.jp/docs/2020122900031/"
+  "url": "https://www.city.otaru.lg.jp/docs/2020122900031/",
+  "mapcode": "164 719 449*48",
+  "mcLL": "43.1982,140.9962"
  },
  {
   "hub": "niseko",
@@ -9221,7 +9575,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Niseko-Annupuri.JPG",
   "ref": "https://www.niseko-ta.jp/resorts/article/%e3%83%8b%e3%82%bb%e3%82%b3%e3%82%a2%e3%83%b3%e3%83%8c%e3%83%97%e3%83%aa%e5%9b%bd%e9%9a%9b%e3%82%b9%e3%82%ad%e3%83%bc%e5%a0%b4/",
   "addrJa": "北海道虻田郡ニセコ町字ニセコ485",
-  "phone": "0136-58-2080"
+  "phone": "0136-58-2080",
+  "mapcode": "398 378 098*53",
+  "mcLL": "42.853333,140.648611"
  },
  {
   "hub": "niseko",
@@ -9268,7 +9624,9 @@ window.PLACES = [
   "img": "img/places/179.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Goshiki_spa_roten.JPG",
   "ref": "https://www.visit-hokkaido.jp/spa/spot/detail_10601.html",
-  "url": "https://www.visit-hokkaido.jp/spa/spot/detail_10601.html"
+  "url": "https://www.visit-hokkaido.jp/spa/spot/detail_10601.html",
+  "mapcode": "398 436 538*58",
+  "mcLL": "42.873851,140.637472"
  },
  {
   "hub": "chitose",
@@ -9324,7 +9682,9 @@ window.PLACES = [
   "img": "img/places/180.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Northern_Horse_Park_20260703f.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10047.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10047.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10047.html",
+  "mapcode": "113 719 122*14",
+  "mcLL": "42.77875,141.738722"
  },
  {
   "hub": "chitose",
@@ -9377,7 +9737,9 @@ window.PLACES = [
   "img": "img/places/181.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Utonai_Lake_Hokkaido_Japan.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10139.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10139.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10139.html",
+  "mapcode": "113 415 533*66",
+  "mcLL": "42.698889,141.711111"
  },
  {
   "hub": "toya",
@@ -9431,7 +9793,9 @@ window.PLACES = [
   "ref": "https://www.laketoya.com/leisure/",
   "url": "http://www.toyakokisen.com/",
   "addrJa": "北海道虻田郡洞爺湖町洞爺湖温泉36−1",
-  "phone": "0142-75-2137"
+  "phone": "0142-75-2137",
+  "mapcode": "321 518 525*84",
+  "mcLL": "42.565701,140.817253"
  },
  {
   "hub": "toya",
@@ -9484,7 +9848,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:130921_Toyako_Onsen_Toyako_Hokkaido_Japan00s.jpg",
   "ref": "https://www.laketoya.com/leisure/",
   "addrJa": "北海道虻田郡洞爺湖町洞爺湖温泉142−5",
-  "phone": "0142-75-4400"
+  "phone": "0142-75-4400",
+  "mapcode": "321 518 270*55",
+  "mcLL": "42.563307,140.813005"
  },
  {
   "hub": "noboribetsu",
@@ -9529,7 +9895,9 @@ window.PLACES = [
   "img": "img/places/184.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake_Kuttara_1.JPG",
   "ref": "https://noboribetsu-spa.jp/spot/spot0087/",
-  "addrJa": "北海道白老郡白老町虎杖浜"
+  "addrJa": "北海道白老郡白老町虎杖浜",
+  "mapcode": "603 292 643*57",
+  "mcLL": "42.5,141.183333"
  },
  {
   "hub": "noboribetsu",
@@ -9580,7 +9948,9 @@ window.PLACES = [
   "img": "img/places/185.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakucho_Bridge_9076222.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10195.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10195.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10195.html",
+  "mapcode": "159 369 073*41",
+  "mcLL": "42.353278,140.950194"
  },
  {
   "hub": "hakodate",
@@ -9634,7 +10004,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Orthodox_Church_in_snow_20231224a.jpg",
   "ref": "https://www.hakobura.jp/spots/524",
   "addrJa": "函館市元町3-13",
-  "phone": "0138-23-7387"
+  "phone": "0138-23-7387",
+  "mapcode": "86 040 207*25",
+  "mcLL": "41.762778,140.712222"
  },
  {
   "hub": "hakodate",
@@ -9688,7 +10060,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Motomachi_Catholic_Church_in_Hakodate_Hokkaido_Japan01n.jpg",
   "ref": "https://www.hakobura.jp/spots/513",
   "addrJa": "函館市元町15-30",
-  "phone": "0138-22-6877"
+  "phone": "0138-22-6877",
+  "mapcode": "86 040 269*25",
+  "mcLL": "41.763333,140.712778"
  },
  {
   "hub": "hakodate",
@@ -9746,7 +10120,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Former_British_Consulate_in_Hakodate_Hokkaido_Japan01s3.jpg",
   "ref": "https://www.hakobura.jp/spots/507",
   "addrJa": "函館市元町33-14",
-  "phone": "0138-83-1800"
+  "phone": "0138-83-1800",
+  "mapcode": "86 040 561*60",
+  "mcLL": "41.765944,140.710694"
  },
  {
   "hub": "hakodate",
@@ -9800,7 +10176,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Goryokaku_Panorama_1.JPG",
   "ref": "https://www.hakobura.jp/spots/502",
   "addrJa": "函館市五稜郭町44番地",
-  "phone": "0138-51-2864"
+  "phone": "0138-51-2864",
+  "mapcode": "86 166 278*82",
+  "mcLL": "41.7969,140.756961"
  },
  {
   "hub": "obihiro",
@@ -9850,7 +10228,9 @@ window.PLACES = [
    10
   ],
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10451.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10451.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10451.html",
+  "mapcode": "702 389 554*50",
+  "mcLL": "43.274167,143.116667"
  },
  {
   "hub": "obihiro",
@@ -9902,7 +10282,9 @@ window.PLACES = [
   "img": "img/places/191.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Wine_castle_of_Ikeda-Town.jpg",
   "ref": "https://www.tokachi-wine.com/",
-  "url": "https://www.tokachi-wine.com/"
+  "url": "https://www.tokachi-wine.com/",
+  "mapcode": "369 595 882*23",
+  "mcLL": "42.919167,143.457778"
  },
  {
   "hub": "obihiro",
@@ -9957,7 +10339,9 @@ window.PLACES = [
   "ref": "https://obikan.jp/post_spot/1491/",
   "url": "https://x.com/en/privacy",
   "addrJa": "帯広市幸福町東1線",
-  "phone": "0155-22-8600"
+  "phone": "0155-22-8600",
+  "mapcode": "396 844 826*36",
+  "mcLL": "42.74355,143.15902"
  },
  {
   "hub": "obihiro",
@@ -10005,7 +10389,9 @@ window.PLACES = [
   "ref": "https://obikan.jp/post_spot/1473/",
   "url": "https://x.com/en/privacy",
   "addrJa": "幕別町字日新13番地5",
-  "phone": "0155-56-1111"
+  "phone": "0155-56-1111",
+  "mapcode": "124 419 285*50",
+  "mcLL": "42.8634,143.24196"
  },
  {
   "hub": "kushiro",
@@ -10051,7 +10437,9 @@ window.PLACES = [
   "img": "img/places/194.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Norokko-Train_DE10-1660.jpg",
   "gone": true,
-  "ref": "https://www.jrhokkaido.co.jp/CM/Info/press/pdf/20260930_KU_Lastrun_torikumi.pdf"
+  "ref": "https://www.jrhokkaido.co.jp/CM/Info/press/pdf/20260930_KU_Lastrun_torikumi.pdf",
+  "mapcode": "149 256 520*65",
+  "mcLL": "42.9906,144.3822"
  },
  {
   "hub": "kushiro",
@@ -10104,7 +10492,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Kushiro_Marsh.jpg",
   "ref": "https://ja.kushiro-lakeakan.com/things_to_do/3639/",
   "addrJa": "北海道釧路市北斗6-11",
-  "phone": "0154-56-2424"
+  "phone": "0154-56-2424",
+  "mapcode": "149 548 538*11",
+  "mcLL": "43.07404,144.32069"
  },
  {
   "hub": "akan",
@@ -10156,7 +10546,9 @@ window.PLACES = [
   "ref": "https://ja.kushiro-lakeakan.com/things_to_do/3399/",
   "url": "http://www.akankisen.com/",
   "addrJa": "北海道釧路市阿寒町阿寒湖温泉1-5-20",
-  "phone": "0154-67-2511"
+  "phone": "0154-67-2511",
+  "mapcode": "739 342 730*14",
+  "mcLL": "43.43431,144.09903"
  },
  {
   "hub": "kushiro",
@@ -10210,7 +10602,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Nusamai_Bridge_Kushiro.JPG",
   "ref": "https://ja.kushiro-lakeakan.com/things_to_do/3688/",
   "addrJa": "北海道釧路市",
-  "phone": "0154-31-1993"
+  "phone": "0154-31-1993",
+  "mapcode": "149 226 501*82",
+  "mcLL": "42.982144,144.385181"
  },
  {
   "hub": "kushiro",
@@ -10262,7 +10656,9 @@ window.PLACES = [
   "img": "img/places/198.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Nosappu.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10142.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10142.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10142.html",
+  "mapcode": "952 158 823*67",
+  "mcLL": "43.385056,145.816278"
  },
  {
   "hub": "kawayu",
@@ -10310,7 +10706,9 @@ window.PLACES = [
   "img": "img/places/199.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Tsubetsu_pass_2011.JPG",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_12242.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_12242.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_12242.html",
+  "mapcode": "739 837 589*60",
+  "mcLL": "43.566111,144.226389"
  },
  {
   "hub": "utoro",
@@ -10363,7 +10761,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:The_road_leading_to_heaven_01.jpg",
   "ref": "https://www.shiretoko.asia/detail/scenic/road_to_heaven",
   "addrJa": "斜里郡斜里町峰浜",
-  "phone": "0152-22-2125"
+  "phone": "0152-22-2125",
+  "mapcode": "642 559 442*72",
+  "mcLL": "43.906401,144.785545"
  },
  {
   "hub": "rausu",
@@ -10416,7 +10816,9 @@ window.PLACES = [
   "img": "img/places/201.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%86%8A%E3%81%AE%E6%B9%AF.JPG",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10507.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10507.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10507.html",
+  "mapcode": "757 409 483*13",
+  "mcLL": "44.032056,145.155227"
  },
  {
   "hub": "rausu",
@@ -10473,7 +10875,9 @@ window.PLACES = [
   "img": "img/places/202_1.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokkaido-Orca_of_rausu-xl.jpg",
   "ref": "https://www.e-shiretoko.com/",
-  "url": "https://www.e-shiretoko.com/"
+  "url": "https://www.e-shiretoko.com/",
+  "mapcode": "757 383 307*77",
+  "mcLL": "44.0219,145.1897"
  },
  {
   "hub": "rausu",
@@ -10529,7 +10933,9 @@ window.PLACES = [
   "img": "img/places/203.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Notsuke_Peninsula_Hokkaido_Japan_SRTM.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10493.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10493.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10493.html",
+  "mapcode": "941 610 500*70",
+  "mcLL": "43.59031,145.33498"
  },
  {
   "hub": "abashiri",
@@ -10575,7 +10981,9 @@ window.PLACES = [
   "img": "img/places/204.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Wakka_nature_center.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10132.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10132.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10132.html",
+  "mapcode": "525 791 212*06",
+  "mcLL": "44.137782,143.963293"
  },
  {
   "hub": "wakkanai",
@@ -10624,7 +11032,9 @@ window.PLACES = [
    "winter": "ทุ่งหิมะ ศูนย์ข้อมูลปิด"
   },
   "ref": "http://sarobetsu.or.jp/swc/",
-  "url": "http://sarobetsu.or.jp/swc/"
+  "url": "http://sarobetsu.or.jp/swc/",
+  "mapcode": "736 699 058*53",
+  "mcLL": "45.110868,141.703918"
  },
  {
   "hub": "wakkanai",
@@ -10686,7 +11096,9 @@ window.PLACES = [
    "winter": "ทุ่งหิมะ ลมแรงมาก ถนนอาจปิดช่วงพายุ"
   },
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10533.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10533.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10533.html",
+  "mapcode": "805 815 498*35",
+  "mcLL": "45.481809,141.917829"
  },
  {
   "hub": "sapporo",
@@ -10744,7 +11156,9 @@ window.PLACES = [
   "img": "img/places/207.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Fushimi_Inari_jinja.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_11200.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_11200.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_11200.html",
+  "mapcode": "9 399 794*42",
+  "mcLL": "43.034917,141.325333"
  },
  {
   "hub": "sapporo",
@@ -10796,7 +11210,9 @@ window.PLACES = [
   "img": "img/places/208.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokkaido_Jingu_Tongu.JPG",
   "ref": "http://www.hokkaidojingu.or.jp/",
-  "url": "http://www.hokkaidojingu.or.jp/"
+  "url": "http://www.hokkaidojingu.or.jp/",
+  "mapcode": "9 493 834*61",
+  "mcLL": "43.059972,141.361417"
  },
  {
   "hub": "otaru",
@@ -10849,7 +11265,9 @@ window.PLACES = [
   "img": "img/places/209.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Otaru_Suitengu_viee_8.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10194.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10194.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10194.html",
+  "mapcode": "164 689 533*22",
+  "mcLL": "43.19072,140.99436"
  },
  {
   "hub": "otaru",
@@ -10903,7 +11321,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/sumiyoshi-shrine",
   "url": "http://www.otarusumiyoshijinja.or.jp/",
   "addrJa": "小樽市住ノ江2丁目5番1号",
-  "phone": "0134-23-0785"
+  "phone": "0134-23-0785",
+  "mapcode": "493 630 594*44",
+  "mcLL": "43.182944,141.003222"
  },
  {
   "hub": "otaru",
@@ -10955,7 +11375,9 @@ window.PLACES = [
   "img": "img/places/211.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Ryugu_Shrine_of_Otaru.JPG",
   "ref": "https://ryugujinja.jp/",
-  "url": "https://ryugujinja.jp/"
+  "url": "https://ryugujinja.jp/",
+  "mapcode": "164 719 705*85",
+  "mcLL": "43.200556,140.992139"
  },
  {
   "hub": "asahikawa",
@@ -11011,7 +11433,9 @@ window.PLACES = [
   "img": "img/places/212.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:KamikawaJinja.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_13186.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_13186.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_13186.html",
+  "mapcode": "79 314 007*58",
+  "mcLL": "43.752422,142.364728"
  },
  {
   "hub": "asahikawa",
@@ -11063,7 +11487,9 @@ window.PLACES = [
   "img": "img/places/213.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokkaido_Gokoku.JPG",
   "ref": "http://www.hokkaido-gokoku.org/",
-  "url": "http://www.hokkaido-gokoku.org/"
+  "url": "http://www.hokkaido-gokoku.org/",
+  "mapcode": "79 434 254*21",
+  "mcLL": "43.788167,142.36675"
  },
  {
   "hub": "biei",
@@ -11134,7 +11560,9 @@ window.PLACES = [
   "imgCredit": "https://www.flickr.com/photos/12452841@N00/53938235409",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/biei-jinja",
   "addrJa": "美瑛町東町4丁目1-1",
-  "phone": "0166-92-1891"
+  "phone": "0166-92-1891",
+  "mapcode": "349 882 882*01",
+  "mcLL": "43.5856,142.47462"
  },
  {
   "hub": "hakodate",
@@ -11188,7 +11616,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Hachiman_Shrine_in_Nov_2024a.jpg",
   "ref": "https://www.hakobura.jp/spots/496",
   "addrJa": "函館市谷地頭町2-5",
-  "phone": "0138-22-3636"
+  "phone": "0138-22-3636",
+  "mapcode": "86 010 138*36",
+  "mcLL": "41.753861,140.709861"
  },
  {
   "hub": "hakodate",
@@ -11251,7 +11681,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E8%88%B9%E9%AD%82%E7%A5%9E%E7%A4%BE_%E6%96%B0%E5%B1%8B%E6%95%B7%E7%94%BA.jpg",
   "ref": "https://www.hakobura.jp/spots/646",
   "addrJa": "函館市元町7-2",
-  "phone": "0138-23-2306"
+  "phone": "0138-23-2306",
+  "mapcode": "86 040 289*56",
+  "mcLL": "41.763425,140.710049"
  },
  {
   "hub": "hakodate",
@@ -11305,7 +11737,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Yukura_Shrine_in_May_2024.jpg",
   "ref": "https://www.hakobura.jp/spots/516",
   "addrJa": "函館市湯川町2丁目28-1",
-  "phone": "0138-57-8282"
+  "phone": "0138-57-8282",
+  "mapcode": "86 110 490*07",
+  "mcLL": "41.782111,140.791"
  },
  {
   "hub": "obihiro",
@@ -11363,7 +11797,9 @@ window.PLACES = [
   "ref": "https://obikan.jp/post_spot/19537/",
   "url": "https://x.com/en/privacy",
   "addrJa": "帯広市東3条南2丁目1番地",
-  "phone": "0155-23-3955"
+  "phone": "0155-23-3955",
+  "mapcode": "124 655 495*31",
+  "mcLL": "42.93219,143.20877"
  },
  {
   "hub": "chitose",
@@ -11416,7 +11852,9 @@ window.PLACES = [
   "img": "img/places/219.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Tarumaezan_Shrine_-_Gate.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_13094.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_13094.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_13094.html",
+  "mapcode": "113 282 028*54",
+  "mcLL": "42.660886,141.604108"
  },
  {
   "hub": "wakkanai",
@@ -11468,7 +11906,9 @@ window.PLACES = [
   "img": "img/places/220.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%A8%9A%E5%86%85_%E5%8C%97%E9%96%80%E7%A5%9E%E7%A4%BE_-_panoramio.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_11343.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_11343.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_11343.html",
+  "mapcode": "964 006 120*73",
+  "mcLL": "45.42,141.671306"
  },
  {
   "hub": "hakodate",
@@ -11521,7 +11961,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%9D%B1%E6%9C%AC%E9%A1%98%E5%AF%BA%E5%87%BD%E9%A4%A8%E5%88%A5%E9%99%A2_-_panoramio_%281%29.jpg",
   "ref": "https://www.hakobura.jp/spots/526",
   "addrJa": "函館市元町16-15",
-  "phone": "0138-22-0134"
+  "phone": "0138-22-0134",
+  "mapcode": "86 041 213*40",
+  "mcLL": "41.763068,140.714104"
  },
  {
   "hub": "hakodate",
@@ -11574,7 +12016,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Kouryuji.jpg",
   "ref": "https://www.hakobura.jp/spots/520",
   "addrJa": "函館市船見町21-11",
-  "phone": "0138-23-0631"
+  "phone": "0138-23-0631",
+  "mapcode": "86 039 820*47",
+  "mcLL": "41.768611,140.699444"
  },
  {
   "hub": "hakodate",
@@ -11628,7 +12072,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Chinese_Memorial_Hall_Hakodate_Hokkaido_Japan03bs.jpg",
   "ref": "https://www.hakobura.jp/spots/511",
   "addrJa": "函館市大町1-12",
-  "phone": "0138-22-1211"
+  "phone": "0138-22-1211",
+  "mapcode": "86 040 767*25",
+  "mcLL": "41.768028,140.709444"
  },
  {
   "hub": "hakodate",
@@ -11690,7 +12136,9 @@ window.PLACES = [
   "img": "img/places/224_3.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%A1%9C%E5%89%8D%E7%B7%9A%E6%9C%AC%E9%81%93%E4%B8%8A%E9%99%B8%E6%A8%99%E6%BA%96%E6%9C%A8_%E6%9D%BE%E5%89%8D%E5%9F%8E_Apr_23%2C_2008.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10162.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10162.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10162.html",
+  "mapcode": "862 058 428*78",
+  "mcLL": "41.431525,140.107216"
  },
  {
   "hub": "hakodate",
@@ -11748,7 +12196,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Tobetsu_Trappist_Monastery_in_snow_202602.jpg",
   "ref": "https://www.hakobura.jp/spots/528",
   "addrJa": "北斗市三ツ石392",
-  "phone": "0138-75-2108"
+  "phone": "0138-75-2108",
+  "mapcode": "951 248 500*40",
+  "mcLL": "41.740556,140.568861"
  },
  {
   "hub": "sapporo",
@@ -11798,7 +12248,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/226.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Higashi_Honganji_Sapporo_Betsuin.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Higashi_Honganji_Sapporo_Betsuin.JPG",
+  "mapcode": "9 462 664*03",
+  "mcLL": "43.050389,141.3475"
  },
  {
   "hub": "otaru",
@@ -11848,7 +12300,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก OpenStreetMap",
   "ref": "https://www.city.otaru.lg.jp/docs/2020111600324/",
-  "url": "https://www.city.otaru.lg.jp/docs/2020111600324/"
+  "url": "https://www.city.otaru.lg.jp/docs/2020111600324/",
+  "mapcode": "493 634 096*54",
+  "mcLL": "43.178312,141.031339"
  },
  {
   "hub": "hakodate",
@@ -11897,7 +12351,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Cape_Tachimachimisaki.jpg",
   "ref": "https://www.hakobura.jp/spots/587",
   "addrJa": "函館市住吉町",
-  "phone": "0138-23-5440"
+  "phone": "0138-23-5440",
+  "mapcode": "951 296 058*15",
+  "mcLL": "41.744604,140.721037"
  },
  {
   "hub": "noboribetsu",
@@ -11951,7 +12407,9 @@ window.PLACES = [
   "img": "img/places/229.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Mt._Sokuryozan.jpg",
   "ref": "https://www.visit-hokkaido.jp/hokkaidolove/spot/spot0013/",
-  "url": "https://www.visit-hokkaido.jp/hokkaidolove/spot/spot0013/"
+  "url": "https://www.visit-hokkaido.jp/hokkaidolove/spot/spot0013/",
+  "mapcode": "159 250 282*23",
+  "mcLL": "42.321944,140.958056"
  },
  {
   "hub": "niseko",
@@ -12000,7 +12458,9 @@ window.PLACES = [
   "img": "img/places/230.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Mt._Yotei_in_snow_%2853370261284%29.jpg",
   "ref": "https://www.niseko-ta.jp/news/article/panorama-line-reopened-26/",
-  "url": "https://www.niseko-ta.jp/news/article/panorama-line-reopened-26/"
+  "url": "https://www.niseko-ta.jp/news/article/panorama-line-reopened-26/",
+  "mapcode": "398 494 475*53",
+  "mcLL": "42.89,140.62"
  },
  {
   "hub": "asahikawa",
@@ -12047,7 +12507,9 @@ window.PLACES = [
   "ref": "https://www.atca.jp/kankouspoy/嵐山展望台/",
   "url": "http://www.asahikawa-park.or.jp/park/special/arashiyama.html",
   "addrJa": "旭川市江丹別町嵐山・上川郡鷹栖町",
-  "phone": "0166-52-1934("
+  "phone": "0166-52-1934(",
+  "mapcode": "79 456 021*11",
+  "mcLL": "43.794167,142.302222"
  },
  {
   "hub": "asahikawa",
@@ -12104,7 +12566,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Kamuikotan_Asahikawa_18-05-22.jpg",
   "ref": "https://www.atca.jp/kankouspoy/神居古潭/",
   "url": "https://kamuikotan-map.jp/",
-  "addrJa": "旭川市神居町神居古潭"
+  "addrJa": "旭川市神居町神居古潭",
+  "mapcode": "655 519 502*77",
+  "mcLL": "43.731833,142.2025"
  },
  {
   "hub": "furano",
@@ -12153,7 +12617,9 @@ window.PLACES = [
   "checked": "2026-11",
   "acc": "จาก Wikipedia",
   "img": "img/places/233.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Karikachi-Pass.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Karikachi-Pass.jpg",
+  "mapcode": "608 797 007*46",
+  "mcLL": "43.136,142.76497"
  },
  {
   "hub": "rausu",
@@ -12204,7 +12670,9 @@ window.PLACES = [
   "img": "img/places/234.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Kaiyodai.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10497.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10497.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10497.html",
+  "mapcode": "976 104 268*75",
+  "mcLL": "43.613056,144.870556"
  },
  {
   "hub": "utoro",
@@ -12251,7 +12719,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Oronko_Rock_Utoro01s3.jpg",
   "ref": "https://www.shiretoko.asia/detail/scenic/oronkoiwa",
   "addrJa": "斜里郡斜里町ウトロ東",
-  "phone": "0152-22-2125"
+  "phone": "0152-22-2125",
+  "mapcode": "894 854 460*74",
+  "mcLL": "44.073333,144.990556"
  },
  {
   "hub": "utoro",
@@ -12307,7 +12777,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Utoro_02.JPG",
   "ref": "https://www.shiretoko.asia/detail/scenic/yuhidai",
   "addrJa": "斜里郡斜里町ウトロ香川",
-  "phone": "0152-22-2125"
+  "phone": "0152-22-2125",
+  "mapcode": "757 571 167*44",
+  "mcLL": "44.07908,145.00917"
  },
  {
   "hub": "wakkanai",
@@ -12359,7 +12831,9 @@ window.PLACES = [
   "img": "img/places/237.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Wakkanai_Noshappu_Cape_1.JPG",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10277.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10277.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10277.html",
+  "mapcode": "964 092 529*18",
+  "mcLL": "45.448684,141.643211"
  },
  {
   "hub": "obihiro",
@@ -12411,7 +12885,9 @@ window.PLACES = [
   "img": "img/places/238.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Erimo_misaki_01.JPG",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10440.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10440.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10440.html",
+  "mapcode": "765 015 550*10",
+  "mcLL": "41.924444,143.249167"
  },
  {
   "hub": "kushiro",
@@ -12466,7 +12942,9 @@ window.PLACES = [
   "img": "img/places/239.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E9%9C%A7%E5%A4%9A%E5%B8%83%E5%B2%AC%EF%BD%9E%E9%81%A0%E6%9C%9B_-_panoramio.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10473.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10473.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10473.html",
+  "mapcode": "614 560 889*54",
+  "mcLL": "43.07734,145.16793"
  },
  {
   "hub": "sapporo",
@@ -12533,7 +13011,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_STELLAR_PLACE01.jpg",
   "ref": "https://www.sapporo.travel/spot/facility/jr_tower/",
   "addrJa": "札幌市中央区北5条西2丁目",
-  "phone": "011-209-5100"
+  "phone": "011-209-5100",
+  "mapcode": "9 522 797*52",
+  "mcLL": "43.068046,141.350991"
  },
  {
   "hub": "sapporo",
@@ -12604,7 +13084,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/chikaho/",
   "url": "https://www.sapporo-chikamichi.jp/",
   "addrJa": "札幌市中央区北3条~大通 ( 地下鉄南北線「さっぽろ」~「大通」)",
-  "phone": "011-211-6406("
+  "phone": "011-211-6406(",
+  "mapcode": "9 522 147*11",
+  "mcLL": "43.062,141.354"
  },
  {
   "hub": "sapporo",
@@ -12666,7 +13148,9 @@ window.PLACES = [
   "img": "img/places/242_1.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Tanukikoji_01.jpg",
   "ref": "https://www.donki.com/store/shop_detail.php?shop_id=555",
-  "url": "https://www.donki.com/store/shop_detail.php?shop_id=555"
+  "url": "https://www.donki.com/store/shop_detail.php?shop_id=555",
+  "mapcode": "9 492 267*81",
+  "mcLL": "43.054779,141.353817"
  },
  {
   "hub": "sapporo",
@@ -12724,7 +13208,9 @@ window.PLACES = [
   "img": "img/places/243_1.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Yodobashi-Camera.Multimedia-Sapporo01.JPG",
   "ref": "https://www.yodobashi.com/ec/store/0063/",
-  "url": "https://www.yodobashi.com/ec/store/0063/"
+  "url": "https://www.yodobashi.com/ec/store/0063/",
+  "mapcode": "9 522 546*21",
+  "mcLL": "43.066,141.348"
  },
  {
   "hub": "sapporo",
@@ -12789,7 +13275,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:AOAO_SAPPORO_Penguin.jpg",
   "ref": "https://www.sapporo.travel/spot/facility/aoao/",
   "addrJa": "札幌市中央区南2条西3丁目20 moyukSAPPORO 4F",
-  "phone": "011-212-1316"
+  "phone": "011-212-1316",
+  "mapcode": "9 492 596*68",
+  "mcLL": "43.057763,141.353577"
  },
  {
   "hub": "sapporo",
@@ -12858,7 +13346,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/museum_of_modern_art/",
   "url": "https://artmuseum.pref.hokkaido.lg.jp/knb/",
   "addrJa": "札幌市中央区北1条西17丁目",
-  "phone": "011-644-6881"
+  "phone": "011-644-6881",
+  "mapcode": "9 490 813*88",
+  "mcLL": "43.060069,141.330425"
  },
  {
   "hub": "sapporo",
@@ -12929,7 +13419,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/hokkaido_university/",
   "url": "https://www.hokudai.ac.jp/",
   "addrJa": "札幌市北区北8条西5丁目",
-  "phone": "011-716-2111("
+  "phone": "011-716-2111(",
+  "mapcode": "9 552 123*21",
+  "mcLL": "43.07045,141.34715"
  },
  {
   "hub": "sapporo",
@@ -12983,7 +13475,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/hiraoka-park/",
   "url": "https://hiraoka-park.jp/",
   "addrJa": "札幌市清田区平岡公園1-1",
-  "phone": "011-881-7924("
+  "phone": "011-881-7924(",
+  "mapcode": "9 326 381*61",
+  "mcLL": "43.005831,141.468919"
  },
  {
   "hub": "otaru",
@@ -13045,7 +13539,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/sakaimachidori-touristinformationcenter",
   "url": "http://otaru-sakaimachi.com/",
   "addrJa": "小樽堺町6-11",
-  "phone": "0134-27-1133"
+  "phone": "0134-27-1133",
+  "mapcode": "493 691 035*57",
+  "mcLL": "43.194351,141.006072"
  },
  {
   "hub": "otaru",
@@ -13105,7 +13601,9 @@ window.PLACES = [
   "img": "img/places/249_1.jpg",
   "imgCredit": "https://www.flickr.com/photos/40058760@N00/2418771408",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10107.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10107.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10107.html",
+  "mapcode": "493 690 188*22",
+  "mcLL": "43.196,140.9985"
  },
  {
   "hub": "otaru",
@@ -13174,7 +13672,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/nitori-museum-of-art",
   "url": "https://www.nitorihd.co.jp/otaru-art-base/",
   "addrJa": "小樽市色内1丁目3-1",
-  "phone": "0134-31-1033"
+  "phone": "0134-31-1033",
+  "mapcode": "493 690 350*85",
+  "mcLL": "43.197236,141.001864"
  },
  {
   "hub": "otaru",
@@ -13237,7 +13737,9 @@ window.PLACES = [
   "img": "img/places/251_1.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Funamizaka_31499166415_d62859617d_o.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10193.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10193.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10193.html",
+  "mapcode": "164 719 560*03",
+  "mcLL": "43.199241,140.993628"
  },
  {
   "hub": "otaru",
@@ -13295,7 +13797,9 @@ window.PLACES = [
   "img": "img/places/252_2.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Fugoppe_Cave.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10346.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10346.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10346.html",
+  "mapcode": "164 669 762*68",
+  "mcLL": "43.192707,140.82473"
  },
  {
   "hub": "niseko",
@@ -13357,7 +13861,9 @@ window.PLACES = [
   "img": "img/places/253_3.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Mount_Yotei_from_Mount_Shiribetsu.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10334.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10334.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10334.html",
+  "mapcode": "385 547 847*63",
+  "mcLL": "42.826957,140.80674"
  },
  {
   "hub": "shikotsu",
@@ -13415,7 +13921,9 @@ window.PLACES = [
   "img": "img/places/254_1.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake_Shikotsu_Mt_Tarumae01n3200.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10138.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10138.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10138.html",
+  "mapcode": "545 675 529*57",
+  "mcLL": "42.690548,141.376636"
  },
  {
   "hub": "chitose",
@@ -13479,7 +13987,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/255_1.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E5%AF%84%E8%B2%9D%E5%92%96%E5%93%A9%E9%A3%AF_%2847025944004%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E5%AF%84%E8%B2%9D%E5%92%96%E5%93%A9%E9%A3%AF_%2847025944004%29.jpg",
+  "mapcode": "113 164 194*20",
+  "mcLL": "42.629376,141.616858"
  },
  {
   "hub": "chitose",
@@ -13538,7 +14048,9 @@ window.PLACES = [
    5
   ],
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10051.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10051.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10051.html",
+  "mapcode": "551 170 489*76",
+  "mcLL": "42.38201,142.4156"
  },
  {
   "hub": "hakodate",
@@ -13602,7 +14114,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Daimon_Yokocho.jpg",
   "ref": "https://www.hakobura.jp/spots/221",
   "addrJa": "函館市松風町7-5",
-  "phone": "0138-24-0033("
+  "phone": "0138-24-0033(",
+  "mapcode": "86 073 331*85",
+  "mcLL": "41.772393,140.730001"
  },
  {
   "hub": "hakodate",
@@ -13673,7 +14187,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Miharashi_Park_%28Kosetsuen%29_Entei_20181019-001.jpg",
   "ref": "https://www.hakobura.jp/spots/354",
   "addrJa": "函館市見晴町56",
-  "phone": "0138-57-7210"
+  "phone": "0138-57-7210",
+  "mapcode": "86 141 835*61",
+  "mcLL": "41.793444,140.803498"
  },
  {
   "hub": "hakodate",
@@ -13733,7 +14249,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%B1%9F%E5%B7%AE%E3%83%BB%E3%81%84%E3%81%AB%E3%81%97%E3%81%88%E3%81%AE%E8%A1%97%E9%81%93.jpg",
   "ref": "https://www.hakobura.jp/spots/489",
   "addrJa": "北海道檜山郡江差町字中歌町~姥神町",
-  "phone": "0139-52-0117"
+  "phone": "0139-52-0117",
+  "mapcode": "482 390 777*27",
+  "mcLL": "41.868,140.129"
  },
  {
   "hub": "obihiro",
@@ -13794,7 +14312,9 @@ window.PLACES = [
   "ref": "https://obikan.jp/post_spot/2539/",
   "url": "https://x.com/en/privacy",
   "addrJa": "帯広市西1条南10丁目7番地  いきぬき通り北の屋台",
-  "phone": "0155-23-8194"
+  "phone": "0155-23-8194",
+  "mapcode": "124 624 139*73",
+  "mcLL": "42.92035,143.20159"
  },
  {
   "hub": "kushiro",
@@ -13865,7 +14385,9 @@ window.PLACES = [
   "img": "img/places/261_1.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Kushiro_Riv_1.JPG",
   "ref": "https://ja.kushiro-lakeakan.com/things_to_do/12480/",
-  "url": "https://ja.kushiro-lakeakan.com/things_to_do/12480/"
+  "url": "https://ja.kushiro-lakeakan.com/things_to_do/12480/",
+  "mapcode": "576 782 889*62",
+  "mcLL": "43.144,144.518"
  },
  {
   "hub": "abashiri",
@@ -13932,7 +14454,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:130713_Hokkaido_Museum_of_Northern_Peoples_Abashiri_Hokkaido_Japan02s3.jpg",
   "ref": "https://visit-abashiri.jp/culture/59832e2b245fae2df68fd171f9ef5ca4885b34ad.html",
   "addrJa": "北海道網走市字潮見309-1",
-  "phone": "0152-45-3888"
+  "phone": "0152-45-3888",
+  "mapcode": "305 584 217*30",
+  "mcLL": "43.996244,144.239691"
  },
  {
   "hub": "utoro",
@@ -13991,7 +14515,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:140828_Kamuiwakka_Falls_and_Mount_Io_Shiretoko_Hokkaido_Japan02sbs13.jpg",
   "ref": "https://www.shiretoko.asia/detail/scenic/kamuiwakka",
   "addrJa": "斜里郡斜里町遠音別村",
-  "phone": "0152-22-2125"
+  "phone": "0152-22-2125",
+  "mapcode": "757 856 150*68",
+  "mcLL": "44.153856,145.129277"
  },
  {
   "hub": "sapporo",
@@ -14056,7 +14582,9 @@ window.PLACES = [
   "img": "img/places/264_2.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Chuo_Sapporo_S4W4S4W3_01s4s3200.jpg",
   "ref": "https://www.sapporo.travel/en/night-view-guide/spot/susukino/",
-  "url": "https://www.sapporo.travel/en/night-view-guide/spot/susukino/"
+  "url": "https://www.sapporo.travel/en/night-view-guide/spot/susukino/",
+  "mapcode": "9 492 324*07",
+  "mcLL": "43.0553,141.3531"
  },
  {
   "hub": "sapporo",
@@ -14110,7 +14638,9 @@ window.PLACES = [
   "img": "img/places/265_3.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E6%B5%B7%E9%81%93%E3%82%B0%E3%83%AA%E3%83%BC%E3%83%B3%E3%83%A9%E3%83%B3%E3%83%89_-_panoramio.jpg",
   "ref": "https://www.greenland.co.jp/",
-  "url": "https://www.greenland.co.jp/"
+  "url": "https://www.greenland.co.jp/",
+  "mapcode": "180 122 484*88",
+  "mcLL": "43.207,141.764"
  },
  {
   "hub": "shikotsu",
@@ -14162,7 +14692,9 @@ window.PLACES = [
   "img": "img/places/266_1.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:LakeShikotsu-kayaks-GR-Aug15-2016.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10145.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10145.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10145.html",
+  "mapcode": "867 063 599*64",
+  "mcLL": "42.7745,141.4045"
  },
  {
   "hub": "toya",
@@ -14233,7 +14765,9 @@ window.PLACES = [
   "img": "img/places/267_1.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:130921_Toyako_Onsen_Toyako_Hokkaido_Japan00s.jpg",
   "ref": "https://www.laketoya.com/",
-  "url": "https://www.laketoya.com/"
+  "url": "https://www.laketoya.com/",
+  "mapcode": "321 518 317*57",
+  "mcLL": "42.563588,140.817795"
  },
  {
   "hub": "sounkyo",
@@ -14281,7 +14815,9 @@ window.PLACES = [
   "checked": "2026-11",
   "ref": "https://sounkyo.net/view/detail.html?content=71",
   "addrJa": "上川町字菊水841番地8",
-  "phone": "01658-2-4655"
+  "phone": "01658-2-4655",
+  "mapcode": "623 459 480*48",
+  "mcLL": "43.798734,142.821279"
  },
  {
   "hub": "obihiro",
@@ -14346,7 +14882,9 @@ window.PLACES = [
   "ref": "https://obikan.jp/post_spot/10039/",
   "url": "https://x.com/en/privacy",
   "addrJa": "河西郡中札内村常磐西3線249-6",
-  "phone": "0155-63-1000"
+  "phone": "0155-63-1000",
+  "mapcode": "592 388 808*64",
+  "mcLL": "42.69316,143.11239"
  },
  {
   "hub": "monbetsu",
@@ -14404,7 +14942,9 @@ window.PLACES = [
   "img": "img/places/270_1.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Kamiyubetsu-Tulip-Park01.JPG",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_11295.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_11295.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_11295.html",
+  "mapcode": "404 550 664*08",
+  "mcLL": "44.158612,143.580544"
  },
  {
   "hub": "monbetsu",
@@ -14473,7 +15013,9 @@ window.PLACES = [
   "img": "img/places/271_1.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Tokkari_cemter2.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10069.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10069.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10069.html",
+  "mapcode": "801 585 697*47",
+  "mcLL": "44.33393,143.373188"
  },
  {
   "hub": "abashiri",
@@ -14541,7 +15083,9 @@ window.PLACES = [
   "img": "img/places/272_1.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E3%81%8D%E3%81%A4%E3%81%AD%E7%89%A7%E5%A0%B41.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10259.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10259.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10259.html",
+  "mapcode": "402 600 337*44",
+  "mcLL": "43.755734,143.498208"
  },
  {
   "hub": "niseko",
@@ -14608,7 +15152,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki_Niseko_View_Plaza.jpg",
   "ref": "https://www.niseko-ta.jp/resorts/article/%e9%81%93%e3%81%ae%e9%a7%85%e3%83%8b%e3%82%bb%e3%82%b3%e3%83%93%e3%83%a5%e3%83%bc%e3%83%97%e3%83%a9%e3%82%b6/",
   "addrJa": "北海道虻田郡ニセコ町字元町77-10",
-  "phone": "0136-43-2051"
+  "phone": "0136-43-2051",
+  "mapcode": "398 174 592*64",
+  "mcLL": "42.79947,140.702608"
  },
  {
   "hub": "toya",
@@ -14666,7 +15212,9 @@ window.PLACES = [
   "img": "img/places/274_1.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki_Toyako.jpg",
   "ref": "http://www.hokkaido-michinoeki.jp/michinoeki/2974/",
-  "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2974/"
+  "url": "http://www.hokkaido-michinoeki.jp/michinoeki/2974/",
+  "mapcode": "321 879 392*62",
+  "mcLL": "42.664489,140.821991"
  },
  {
   "hub": "biei",
@@ -14735,7 +15283,9 @@ window.PLACES = [
   "ref": "https://www.biei-hokkaido.jp/ja/facility/okanokura",
   "url": "https://bieibussankosha.jp/okanokura",
   "addrJa": "北海道上川郡美瑛町本町1丁目9-21",
-  "phone": "0166-92-0920"
+  "phone": "0166-92-0920",
+  "mapcode": "389 011 693*78",
+  "mcLL": "43.59216,142.46381"
  },
  {
   "hub": "utoro",
@@ -14803,7 +15353,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki_Utoro_sir-etok03s3.jpg",
   "ref": "https://www.shiretoko.asia/detail/tourist/utoromichi",
   "addrJa": "ウトロ西186−8",
-  "phone": "0152-22-5000"
+  "phone": "0152-22-5000",
+  "mapcode": "894 824 881*30",
+  "mcLL": "44.069047,144.990705"
  },
  {
   "hub": "sounkyo",
@@ -14871,7 +15423,9 @@ window.PLACES = [
   "img": "img/places/277_1.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Mikuni_Pass_amountainpath_north.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10513.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_10513.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_10513.html",
+  "mapcode": "743 255 888*46",
+  "mcLL": "43.577339,143.126276"
  },
  {
   "hub": "akan",
@@ -14936,7 +15490,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake_pennke2.jpg",
   "ref": "https://ja.kushiro-lakeakan.com/things_to_do/3734/",
   "addrJa": "北海道釧路市阿寒町阿寒湖畔双岳台",
-  "phone": "0154-67-2505"
+  "phone": "0154-67-2505",
+  "mapcode": "739 447 330*55",
+  "mcLL": "43.455549,144.220967"
  },
  {
   "id": 279,
@@ -14969,7 +15525,9 @@ window.PLACES = [
   "img": "img/places/279.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:KINOTOYA%2C_Sapporo%2C_Hokkaido%2C_Japan%2C_%E6%9C%AD%E5%B9%8C%2C_%E5%8C%97%E6%B5%B7%E9%81%93%2C_%E6%97%A5%E6%9C%AC%2C_%E7%84%BC%E3%81%8D%E3%81%9F%E3%81%A6%E3%83%81%E3%83%BC%E3%82%BA%E3%82%BF%E3%83%AB%E3%83%88%2C_%E3%81%8D%E3%81%AE%E3%81%A8%E3%82%84%2C_%E6%96%B0%E5%8D%83%E6%AD%B3%E7%A9%BA%E6%B8%AF%E5%BA%97%2C_%E3%81%95%E3%81%A3%E3%81%BD%E3%82%8D%E3%81%97%2C_%E3%81%BB%E3%81%A3%E3%81%8B%E3%81%84%E3%81%A9%E3%81%86%2C_%E3%81%AB%E3%81%A3%E3%81%BD%E3%82%93%2C_%E3%81%AB%E3%81%BB%E3%82%93_%2816720983681%29.jpg",
   "ref": "https://www.kinotoya.com/",
-  "url": "https://www.kinotoya.com/"
+  "url": "https://www.kinotoya.com/",
+  "mapcode": "9 522 023*05",
+  "mcLL": "43.06086,141.35275"
  },
  {
   "id": 280,
@@ -15022,7 +15580,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_649/",
   "url": "https://www.instagram.com/honten_pf_sato_do/",
   "addrJa": "札幌市中央区南1条西2丁目 1番地2 木NINARUビル1〜3階",
-  "phone": "011-233-3007"
+  "phone": "011-233-3007",
+  "mapcode": "9 493 722*15",
+  "mcLL": "43.05921,141.355358"
  },
  {
   "id": 281,
@@ -15057,7 +15617,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/kitakaro",
   "url": "https://www.kitakaro.com/ext/tenpo/otaru.html",
   "addrJa": "小樽市堺町7-22",
-  "phone": "0134-31-3464"
+  "phone": "0134-31-3464",
+  "mapcode": "493 661 640*25",
+  "mcLL": "43.191752,141.007419"
  },
  {
   "id": 282,
@@ -15092,7 +15654,9 @@ window.PLACES = [
   "ref": "https://www.laketoya.com/shop/",
   "url": "http://www.wakasaimo.com/",
   "addrJa": "北海道虻田郡洞爺湖町洞爺湖温泉144",
-  "phone": "0142-75-4111"
+  "phone": "0142-75-4111",
+  "mapcode": "321 518 487*14",
+  "mcLL": "42.56543,140.81521"
  },
  {
   "id": 284,
@@ -15126,7 +15690,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:FURANO_Gyunyu_Purin.jpg",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=126",
   "addrJa": "富良野市下御料2156-1",
-  "phone": "0167-22-8005"
+  "phone": "0167-22-8005",
+  "mapcode": "450 029 004*74",
+  "mcLL": "43.33583,142.36417"
  },
  {
   "id": 285,
@@ -15166,7 +15732,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Tomita_Melon_House_202507.jpg",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=357",
   "addrJa": "中富良野町宮町3-32",
-  "phone": "0167-39-3333"
+  "phone": "0167-39-3333",
+  "mapcode": "349 276 770*64",
+  "mcLL": "43.41777,142.42687"
  },
  {
   "hub": "sapporo",
@@ -15234,7 +15802,9 @@ window.PLACES = [
   "img": "img/places/286_1.jpg",
   "imgCredit": "https://www.flickr.com/photos/72548439@N00/21411372478",
   "ref": "https://www.morihico.com/",
-  "url": "https://www.morihico.com/"
+  "url": "https://www.morihico.com/",
+  "mapcode": "9 488 110*61",
+  "mcLL": "43.053312,141.318636"
  },
  {
   "hub": "furano",
@@ -15308,7 +15878,9 @@ window.PLACES = [
   "imgCredit": "https://www.flickr.com/photos/49463587@N05/19730882958",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=4",
   "addrJa": "富良野市中御料 新富良野プリンスホテル内",
-  "phone": "0167-22-1111"
+  "phone": "0167-22-1111",
+  "mapcode": "919 553 438*28",
+  "mcLL": "43.3232,142.35949"
  },
  {
   "hub": "toya",
@@ -15384,7 +15956,9 @@ window.PLACES = [
   "ref": "https://www.laketoya.com/leisure/",
   "url": "http://www.lake-hill.com/",
   "addrJa": "北海道虻田郡洞爺湖町花和127",
-  "phone": "0142-83-3376"
+  "phone": "0142-83-3376",
+  "mapcode": "321 694 504*23",
+  "mcLL": "42.615492,140.78639"
  },
  {
   "hub": "otaru",
@@ -15446,7 +16020,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/ginnokane1-cafe",
   "url": "http://www.ginnokane.jp",
   "addrJa": "小樽市入船1-1-2",
-  "phone": "0134-21-2001"
+  "phone": "0134-21-2001",
+  "mapcode": "493 661 519*81",
+  "mcLL": "43.190582,141.007175"
  },
  {
   "hub": "hakodate",
@@ -15517,7 +16093,9 @@ window.PLACES = [
   "imgCredit": "https://www.flickr.com/photos/87807876@N00/9039251754",
   "ref": "https://www.hakobura.jp/spots/97",
   "addrJa": "函館市元町14-5",
-  "phone": "0138-22-0306"
+  "phone": "0138-22-0306",
+  "mapcode": "86 040 382*51",
+  "mcLL": "41.764269,140.710906"
  },
  {
   "hub": "hakodate",
@@ -15580,7 +16158,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_LUCKY_PIERROT%2C_Hakodate%2C_Hokkaido%2C_Japan%2C_%E5%B9%B8%E9%81%8B%E5%B0%8F%E4%B8%91%E6%BC%A2%E5%A0%A1%2C_%E5%87%BD%E9%A4%A8%2C_%E5%8C%97%E6%B5%B7%E9%81%93%2C_%E6%97%A5%E6%9C%AC%2C_%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%83%94%E3%82%A8%E3%83%AD%2C_%E3%83%99%E3%82%A4%E3%82%A8%E3%83%AA%E3%82%A2%E6%9C%AC%E5%BA%97%2C_%E3%81%AF%E3%81%93%E3%81%A0%E3%81%A6%E3%81%97%2C_%E3%81%BB%E3%81%A3%E3%81%8B%E3%81%84%E3%81%A9%E3%81%86%2C_%E3%81%AB%E3%81%A3%E3%81%BD%E3%82%93%2C_%E3%81%AB%E3%81%BB%E3%82%93_%2816535725909%29.jpg",
   "ref": "https://www.hakobura.jp/spots/71",
   "addrJa": "函館市末広町23-18",
-  "phone": "0138-26-2099"
+  "phone": "0138-26-2099",
+  "mapcode": "86 041 516*04",
+  "mcLL": "41.765794,140.714894"
  },
  {
   "hub": "tomamu",
@@ -15651,7 +16231,9 @@ window.PLACES = [
   "img": "img/places/292_1.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Chapel_on_the_water_2012.jpg",
   "ref": "https://www.snowtomamu.jp/summer/",
-  "url": "https://www.snowtomamu.jp/summer/"
+  "url": "https://www.snowtomamu.jp/summer/",
+  "mapcode": "608 510 318*08",
+  "mcLL": "43.063728,142.626239"
  },
  {
   "hub": "jozankei",
@@ -15725,7 +16307,9 @@ window.PLACES = [
   "img": "img/places/293_1.jpg",
   "imgCredit": "https://commons.wikimedia.org/w/index.php?curid=52268973",
   "ref": "https://jozankei.jp/",
-  "url": "https://jozankei.jp/"
+  "url": "https://jozankei.jp/",
+  "mapcode": "708 754 342*75",
+  "mcLL": "42.963833,141.158148"
  },
  {
   "hub": "otaru",
@@ -15773,7 +16357,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/bluecavesightseeingshioya",
   "url": "https://otaru-bluecave.amebaownd.com",
   "addrJa": "小樽市塩谷1-34-3",
-  "phone": "090-8895-4400"
+  "phone": "090-8895-4400",
+  "mapcode": "164 801 002*70",
+  "mcLL": "43.21912,140.92207"
  },
  {
   "hub": "asahikawa",
@@ -15837,7 +16423,9 @@ window.PLACES = [
    "02-11"
   ],
   "ref": "https://www.atca.jp/kankouspoy/旭川冬まつり/",
-  "addrJa": "石狩川旭橋河畔、常磐公園"
+  "addrJa": "石狩川旭橋河畔、常磐公園",
+  "mapcode": "79 403 377*16",
+  "mcLL": "43.7808,142.3594"
  },
  {
   "hub": "sapporo",
@@ -15902,7 +16490,9 @@ window.PLACES = [
   "img": "img/places/296_1.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Jizo_on_Mount_Maru_in_Sapporo_(18).jpg",
   "ref": "https://www.sapporo.travel/choose/keywords/mountain_climbing_in_sapporo/",
-  "url": "https://www.sapporo.travel/choose/keywords/mountain_climbing_in_sapporo/"
+  "url": "https://www.sapporo.travel/choose/keywords/mountain_climbing_in_sapporo/",
+  "mapcode": "9 458 697*66",
+  "mcLL": "43.0505,141.315"
  },
  {
   "hub": "toya",
@@ -15977,7 +16567,9 @@ window.PLACES = [
   "img": "img/places/297_1.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%96%84%E5%85%89%E5%AF%BA.jpg",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_11239.html",
-  "url": "https://www.visit-hokkaido.jp/spot/detail_11239.html"
+  "url": "https://www.visit-hokkaido.jp/spot/detail_11239.html",
+  "mapcode": "321 364 180*47",
+  "mcLL": "42.52101,140.77994"
  },
  {
   "hub": "hakodate",
@@ -16039,7 +16631,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Ubagami_Shrine_090206.jpg",
   "ref": "https://www.hakobura.jp/spots/499",
   "addrJa": "北海道檜山郡江差町字姥神町99",
-  "phone": "0139-52-1900"
+  "phone": "0139-52-1900",
+  "mapcode": "482 390 613*83",
+  "mcLL": "41.8666,140.1251"
  },
  {
   "hub": "hakodate",
@@ -16102,7 +16696,9 @@ window.PLACES = [
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Heishiiwa_Rock_Esashi.jpg",
   "ref": "https://www.hakobura.jp/spots/590",
   "addrJa": "北海道檜山郡江差町字鴎島",
-  "phone": "0139-52-0117"
+  "phone": "0139-52-0117",
+  "mapcode": "1108 104 697*43",
+  "mcLL": "41.86752,140.11528"
  },
  {
   "hub": "niseko",
@@ -16169,7 +16765,9 @@ window.PLACES = [
   "img": "img/places/300_1.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:Honden_of_Otasan_shrine.JPG",
   "ref": "https://www.visit-hokkaido.jp/korezo/detail/30",
-  "url": "https://www.visit-hokkaido.jp/korezo/detail/30"
+  "url": "https://www.visit-hokkaido.jp/korezo/detail/30",
+  "mapcode": "943 334 724*08",
+  "mcLL": "42.2676,139.781"
  },
  {
   "hub": "biei",
@@ -16235,7 +16833,9 @@ window.PLACES = [
   "imgCredit": "https://www.flickr.com/photos/94693136@N05/53469000487",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/shiki-no-tou-tower",
   "addrJa": "北海道上川郡美瑛町本町4-6-1 MAPCODE:389 011 255",
-  "phone": "0166-92-1111"
+  "phone": "0166-92-1111",
+  "mapcode": "389 011 276*83",
+  "mcLL": "43.58839,142.4645"
  },
  {
   "hub": "furano",
@@ -16297,7 +16897,9 @@ window.PLACES = [
   "img": "img/places/302_1.jpg",
   "imgCredit": "https://www.flickr.com/photos/15958452@N00/83128837",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=482",
-  "addrJa": "空知郡上富良野町東2線北27号 日の出公園"
+  "addrJa": "空知郡上富良野町東2線北27号 日の出公園",
+  "mapcode": "349 463 378*05",
+  "mcLL": "43.46419,142.48457"
  },
  {
   "hub": "sapporo",
@@ -16368,7 +16970,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/303.jpg",
-  "imgCredit": "https://www.flickr.com/photos/57085156@N00/3926128886"
+  "imgCredit": "https://www.flickr.com/photos/57085156@N00/3926128886",
+  "mapcode": "9 403 591*14",
+  "mcLL": "43.03287,141.36067"
  },
  {
   "hub": "sapporo",
@@ -16420,7 +17024,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_339-2/",
   "url": "https://www.menya-saimi.com/",
   "addrJa": "札幌市豊平区美園10条5丁目3番12号",
-  "phone": "011-820-6511"
+  "phone": "011-820-6511",
+  "mapcode": "9 436 007*71",
+  "mcLL": "43.03581,141.38178"
  },
  {
   "hub": "sapporo",
@@ -16488,7 +17094,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/305.jpg",
-  "imgCredit": "https://www.flickr.com/photos/73479994@N00/8026521832"
+  "imgCredit": "https://www.flickr.com/photos/73479994@N00/8026521832",
+  "mapcode": "9 461 744*41",
+  "mcLL": "43.05099,141.34486"
  },
  {
   "hub": "sapporo",
@@ -16536,7 +17144,9 @@ window.PLACES = [
   "lat": 43.05238,
   "lng": 141.3467,
   "acc": "จากที่อยู่ (GSI)",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 462 871*31",
+  "mcLL": "43.05238,141.3467"
  },
  {
   "hub": "sapporo",
@@ -16586,7 +17196,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ (GSI)",
   "checked": "2026-11",
   "ref": "https://s-garaku.com/",
-  "url": "https://s-garaku.com/"
+  "url": "https://s-garaku.com/",
+  "mapcode": "9 493 601*47",
+  "mcLL": "43.05817,141.35512"
  },
  {
   "hub": "sapporo",
@@ -16636,7 +17248,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ (GSI)",
   "checked": "2026-11",
   "ref": "https://suage.info/",
-  "url": "https://suage.info/"
+  "url": "https://suage.info/",
+  "mapcode": "9 492 317*55",
+  "mcLL": "43.05523,141.35098"
  },
  {
   "hub": "sapporo",
@@ -16694,7 +17308,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/309.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Yakiniku_on_braziers_at_%E6%88%90%E5%90%89%E6%80%9D%E6%B1%97_%E3%81%A0%E3%82%8B%E3%81%BE_in_Sapporo%2C_Japan_%28244%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Yakiniku_on_braziers_at_%E6%88%90%E5%90%89%E6%80%9D%E6%B1%97_%E3%81%A0%E3%82%8B%E3%81%BE_in_Sapporo%2C_Japan_%28244%29.jpg",
+  "mapcode": "9 492 203*42",
+  "mcLL": "43.05435,141.35284"
  },
  {
   "hub": "sapporo",
@@ -16746,7 +17362,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_251-2/",
   "url": "http://www.kani-honke.co.jp/",
   "addrJa": "札幌市中央区北三条西2丁目1-18",
-  "phone": "011-222-0018"
+  "phone": "011-222-0018",
+  "mapcode": "9 522 505*05",
+  "mcLL": "43.06531,141.3533"
  },
  {
   "hub": "sapporo",
@@ -16796,7 +17414,9 @@ window.PLACES = [
   "acc": "ประมาณ",
   "checked": "2026-11",
   "ref": "https://www.sushi-hanamaru.com/",
-  "url": "https://www.sushi-hanamaru.com/"
+  "url": "https://www.sushi-hanamaru.com/",
+  "mapcode": "9 522 825*21",
+  "mcLL": "43.0685,141.3505"
  },
  {
   "hub": "sapporo",
@@ -16847,7 +17467,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ (GSI)",
   "checked": "2026-11",
   "ref": "https://www.rokkatei.co.jp/",
-  "url": "https://www.rokkatei.co.jp/"
+  "url": "https://www.rokkatei.co.jp/",
+  "mapcode": "9 522 511*10",
+  "mcLL": "43.06563,141.34677"
  },
  {
   "hub": "sapporo",
@@ -16918,7 +17540,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/313.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:KITAKARO_Sapporo_Honkan_interior_201904.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:KITAKARO_Sapporo_Honkan_interior_201904.jpg",
+  "mapcode": "9 522 130*17",
+  "mcLL": "43.06198,141.34929"
  },
  {
   "hub": "sapporo",
@@ -16969,7 +17593,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ (GSI)",
   "checked": "2026-11",
   "ref": "https://www.sato-suisan.co.jp/",
-  "url": "https://www.sato-suisan.co.jp/"
+  "url": "https://www.sato-suisan.co.jp/",
+  "mapcode": "9 522 588*30",
+  "mcLL": "43.06626,141.35139"
  },
  {
   "hub": "sapporo",
@@ -17022,7 +17648,9 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/dosanko_plaza/",
   "url": "https://dousanhin.jp/store/sapporo/",
   "addrJa": "札幌市北区北6条西4丁目 JR札幌駅西通北口 北海道さっぽろ「食と観光」情報館内",
-  "phone": "011-213-5053"
+  "phone": "011-213-5053",
+  "mapcode": "9 522 728*33",
+  "mcLL": "43.0677,141.3486"
  },
  {
   "hub": "sapporo",
@@ -17088,7 +17716,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/316.jpg",
-  "imgCredit": "https://www.flickr.com/photos/7940758@N07/53128565802"
+  "imgCredit": "https://www.flickr.com/photos/7940758@N07/53128565802",
+  "mapcode": "9 493 843*37",
+  "mcLL": "43.0604,141.3556"
  },
  {
   "hub": "sapporo",
@@ -17148,7 +17778,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/317.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%A4%A7%E9%80%9A%E3%83%93%E3%83%83%E3%82%BB%EF%BC%88ODORI_BISSE%EF%BC%89_-_panoramio_%282%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%A4%A7%E9%80%9A%E3%83%93%E3%83%83%E3%82%BB%EF%BC%88ODORI_BISSE%EF%BC%89_-_panoramio_%282%29.jpg",
+  "mapcode": "9 522 023*05",
+  "mcLL": "43.06086,141.35275"
  },
  {
   "hub": "sapporo",
@@ -17216,7 +17848,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/318.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:PokemonCenter_Sapporo.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:PokemonCenter_Sapporo.jpg",
+  "mapcode": "9 522 759*06",
+  "mcLL": "43.0678,141.3489"
  },
  {
   "hub": "sapporo",
@@ -17281,7 +17915,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/319.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Mitsukoshi_Building_02.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Mitsukoshi_Building_02.jpg",
+  "mapcode": "9 492 715*22",
+  "mcLL": "43.05909,141.35321"
  },
  {
   "hub": "sapporo",
@@ -17341,7 +17977,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/320.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:NORBESA_01.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:NORBESA_01.jpg",
+  "mapcode": "9 492 436*58",
+  "mcLL": "43.05637,141.35071"
  },
  {
   "hub": "sapporo",
@@ -17401,7 +18039,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/321.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Ario_Sapporo.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Ario_Sapporo.jpg",
+  "mapcode": "9 554 205*34",
+  "mcLL": "43.07102,141.37004"
  },
  {
   "hub": "sapporo",
@@ -17457,7 +18097,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/322.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%81%95%E3%81%A3%E3%81%BD%E3%82%8D%E3%81%B0%E3%82%93%E3%81%91%E3%81%84%E3%82%B9%E3%82%AD%E3%83%BC%E5%A0%B42.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%81%95%E3%81%A3%E3%81%BD%E3%82%8D%E3%81%B0%E3%82%93%E3%81%91%E3%81%84%E3%82%B9%E3%82%AD%E3%83%BC%E5%A0%B42.JPG",
+  "mapcode": "9 393 440*66",
+  "mcLL": "43.03133,141.27696"
  },
  {
   "hub": "sapporo",
@@ -17517,7 +18159,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/323.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Moiwayama_Ski_aria.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Moiwayama_Ski_aria.jpg",
+  "mapcode": "9 339 442*40",
+  "mcLL": "43.0149,141.32761"
  },
  {
   "hub": "sapporo",
@@ -17573,7 +18217,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/324.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Fu%27s_snow_area.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Fu%27s_snow_area.jpg",
+  "mapcode": "9 093 677*55",
+  "mcLL": "42.95022,141.27601"
  },
  {
   "hub": "sapporo",
@@ -17647,7 +18293,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/325.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Satoland_center_house.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Satoland_center_house.jpg",
+  "mapcode": "9 740 155*68",
+  "mcLL": "43.12051,141.4144"
  },
  {
   "hub": "sapporo",
@@ -17715,7 +18363,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/326.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Stone_Sign_of_Hokkaido_University_Museum_-_Oct_21%2C_2017.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Stone_Sign_of_Hokkaido_University_Museum_-_Oct_21%2C_2017.jpg",
+  "mapcode": "9 551 314*43",
+  "mcLL": "43.07212,141.34204"
  },
  {
   "hub": "sapporo",
@@ -17783,7 +18433,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/327.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Seishounen_Kagakukan%28Sapporo%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Seishounen_Kagakukan%28Sapporo%29.jpg",
+  "mapcode": "9 447 006*23",
+  "mcLL": "43.03604,141.47295"
  },
  {
   "hub": "sapporo",
@@ -17852,7 +18504,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/328.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:ToyohiragawaSakeKakagukan2004-5.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:ToyohiragawaSakeKakagukan2004-5.jpg",
+  "mapcode": "9 281 738*42",
+  "mcLL": "43.00104,141.34312"
  },
  {
   "hub": "sapporo",
@@ -17921,7 +18575,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/329.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Ainu_Culture_Promotion_Center_201705.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Ainu_Culture_Promotion_Center_201705.jpg",
+  "mapcode": "708 790 103*22",
+  "mcLL": "42.97021,141.20824"
  },
  {
   "hub": "sapporo",
@@ -17990,7 +18646,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/330.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:SapporoShiShiryokan201109.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:SapporoShiShiryokan201109.JPG",
+  "mapcode": "9 490 657*45",
+  "mcLL": "43.05846,141.33728"
  },
  {
   "hub": "sapporo",
@@ -18058,7 +18716,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/331.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Dome.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Dome.jpg",
+  "mapcode": "9 287 265*06",
+  "mcLL": "42.99643,141.39499"
  },
  {
   "hub": "sapporo",
@@ -18131,7 +18791,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/332.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%99%BE%E5%90%88%E3%81%8C%E5%8E%9F%E5%85%AC%E5%9C%92%EF%BC%88Yurigahara_park%EF%BC%89_-_panoramio_%281%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%99%BE%E5%90%88%E3%81%8C%E5%8E%9F%E5%85%AC%E5%9C%92%EF%BC%88Yurigahara_park%EF%BC%89_-_panoramio_%281%29.jpg",
+  "mapcode": "9 764 157*06",
+  "mcLL": "43.12893,141.365"
  },
  {
   "hub": "sapporo",
@@ -18190,7 +18852,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/333.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Yosakoi_Soran_street_dance_festival%2C_Odori_Park%2C_Sapporo%2C_Japan%2C_June_2018_%281%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Yosakoi_Soran_street_dance_festival%2C_Odori_Park%2C_Sapporo%2C_Japan%2C_June_2018_%281%29.jpg",
+  "mapcode": "9 492 815*04",
+  "mcLL": "43.0601,141.3478"
  },
  {
   "hub": "sapporo",
@@ -18252,7 +18916,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/334.jpg",
-  "imgCredit": "https://www.flickr.com/photos/7940758@N07/48487524357"
+  "imgCredit": "https://www.flickr.com/photos/7940758@N07/48487524357",
+  "mapcode": "9 491 801*70",
+  "mcLL": "43.0597,141.344"
  },
  {
   "hub": "sapporo",
@@ -18312,7 +18978,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/335.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%81%95%E3%81%A3%E3%81%BD%E3%82%8D%E3%82%AA%E3%83%BC%E3%82%BF%E3%83%A0%E3%83%95%E3%82%A7%E3%82%B9%E3%83%882009_%283952776473%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%81%95%E3%81%A3%E3%81%BD%E3%82%8D%E3%82%AA%E3%83%BC%E3%82%BF%E3%83%A0%E3%83%95%E3%82%A7%E3%82%B9%E3%83%882009_%283952776473%29.jpg",
+  "mapcode": "9 491 809*22",
+  "mcLL": "43.0599,141.346"
  },
  {
   "hub": "jozankei",
@@ -18372,7 +19040,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/336.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Stone_Statue_of_Miizumi_Jozan.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Stone_Statue_of_Miizumi_Jozan.jpg",
+  "mapcode": "708 755 554*64",
+  "mcLL": "42.96585,141.16701"
  },
  {
   "hub": "jozankei",
@@ -18435,7 +19105,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/337.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%AE%9A%E5%B1%B1%E6%B8%93%E9%9B%AA%E7%81%AF%E8%B7%AF2013%EF%BC%88Jozankei_snow_light_path_2013%EF%BC%89_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%AE%9A%E5%B1%B1%E6%B8%93%E9%9B%AA%E7%81%AF%E8%B7%AF2013%EF%BC%88Jozankei_snow_light_path_2013%EF%BC%89_-_panoramio.jpg",
+  "mapcode": "708 755 554*64",
+  "mcLL": "42.96585,141.16701"
  },
  {
   "hub": "otaru",
@@ -18487,7 +19159,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/masazushi_honten",
   "url": "http://www.masazushi.co.jp/",
   "addrJa": "小樽市花園1丁目1番1号(寿司屋通り)",
-  "phone": "0134-64-1101"
+  "phone": "0134-64-1101",
+  "mapcode": "493 690 011*71",
+  "mcLL": "43.19411,140.9996"
  },
  {
   "hub": "otaru",
@@ -18539,7 +19213,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/isezushi",
   "url": "http://www.isezushi.com/index.html",
   "addrJa": "小樽市稲穂3-15-3",
-  "phone": "0134-23-1425"
+  "phone": "0134-23-1425",
+  "mapcode": "164 719 747*52",
+  "mcLL": "43.20081,140.99545"
  },
  {
   "hub": "otaru",
@@ -18599,7 +19275,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/340.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Wakadorijidainaruto-honten01.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Wakadorijidainaruto-honten01.JPG",
+  "mapcode": "164 719 684*74",
+  "mcLL": "43.20025,140.99486"
  },
  {
   "hub": "otaru",
@@ -18667,7 +19345,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/341.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Otaru_Denuki_Koji_Hokkaido_Japan01s3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Otaru_Denuki_Koji_Hokkaido_Japan01s3.jpg",
+  "mapcode": "493 690 322*51",
+  "mcLL": "43.1969,141.00247"
  },
  {
   "hub": "otaru",
@@ -18718,7 +19398,9 @@ window.PLACES = [
   "checked": "2026-11",
   "ref": "https://otaru.gr.jp/shop/roman_yokotyo",
   "url": "http://otaruyataimura.jp/roman/",
-  "addrJa": "小樽市稲穂1丁目3-9"
+  "addrJa": "小樽市稲穂1丁目3-9",
+  "mapcode": "493 690 067*23",
+  "mcLL": "43.19488,140.99826"
  },
  {
   "hub": "otaru",
@@ -18770,7 +19452,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/otarubeer",
   "url": "http://otarubeer.com/jp/",
   "addrJa": "小樽市港町5-4",
-  "phone": "0134-21-2323"
+  "phone": "0134-21-2323",
+  "mapcode": "493 690 533*28",
+  "mcLL": "43.19903,141.00269"
  },
  {
   "hub": "otaru",
@@ -18839,7 +19523,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/344.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E9%AD%9A%E6%9D%BF%2C_%E9%AD%9A%E6%9D%BF%E6%A6%AE%2C_KAMA%E6%A6%AE%2C_%E5%B0%8F%E6%A8%BD%2C_%E5%8C%97%E6%B5%B7%E9%81%93%2C_%E6%97%A5%E6%9C%AC%2C_Kamaei%2C_Otaru%2C_Hokkaido%2C_Japan%2C_%E3%81%8B%E3%81%BE%E6%A0%84%2C_%E5%B7%A5%E5%A0%B4%E7%9B%B4%E5%A3%B2%E5%BA%97%2C_%E3%81%8A%E3%81%9F%E3%82%8B%E3%81%97%2C_%E3%81%BB%E3%81%A3%E3%81%8B%E3%81%84%E3%81%A9%E3%81%86%2C_%E3%81%AB%E3%81%A3%E3%81%BD%E3%82%93%2C_%E3%81%AB%E3%81%BB%E3%82%93_%2832871713447%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E9%AD%9A%E6%9D%BF%2C_%E9%AD%9A%E6%9D%BF%E6%A6%AE%2C_KAMA%E6%A6%AE%2C_%E5%B0%8F%E6%A8%BD%2C_%E5%8C%97%E6%B5%B7%E9%81%93%2C_%E6%97%A5%E6%9C%AC%2C_Kamaei%2C_Otaru%2C_Hokkaido%2C_Japan%2C_%E3%81%8B%E3%81%BE%E6%A0%84%2C_%E5%B7%A5%E5%A0%B4%E7%9B%B4%E5%A3%B2%E5%BA%97%2C_%E3%81%8A%E3%81%9F%E3%82%8B%E3%81%97%2C_%E3%81%BB%E3%81%A3%E3%81%8B%E3%81%84%E3%81%A9%E3%81%86%2C_%E3%81%AB%E3%81%A3%E3%81%BD%E3%82%93%2C_%E3%81%AB%E3%81%BB%E3%82%93_%2832871713447%29.jpg",
+  "mapcode": "493 691 150*37",
+  "mcLL": "43.19564,141.00478"
  },
  {
   "hub": "otaru",
@@ -18890,7 +19576,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ (GSI)",
   "checked": "2026-11",
   "ref": "https://www.rokkatei.co.jp/",
-  "url": "https://www.rokkatei.co.jp/"
+  "url": "https://www.rokkatei.co.jp/",
+  "mapcode": "493 661 669*47",
+  "mcLL": "43.19206,141.00737"
  },
  {
   "hub": "otaru",
@@ -18942,7 +19630,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/misono",
   "url": "http://www.misono-ice.com/index.html",
   "addrJa": "小樽市稲穂2丁目12-15",
-  "phone": "0134-22-9043"
+  "phone": "0134-22-9043",
+  "mapcode": "164 719 358*35",
+  "mcLL": "43.19731,140.99583"
  },
  {
   "hub": "otaru",
@@ -19010,7 +19700,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/347.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Niikuraya_20110813.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Niikuraya_20110813.jpg",
+  "mapcode": "493 660 820*28",
+  "mcLL": "43.19345,140.99908"
  },
  {
   "hub": "otaru",
@@ -19063,7 +19755,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/tanakasyuzo-kkikogura",
   "url": "http://www.tanakashuzo.com",
   "addrJa": "小樽市信香町2番2号",
-  "phone": "0134-21-2390"
+  "phone": "0134-21-2390",
+  "mapcode": "493 631 899*03",
+  "mcLL": "43.18564,141.01282"
  },
  {
   "hub": "otaru",
@@ -19115,7 +19809,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/hokkaidouwine",
   "url": "http://www.hokkaidowine.com/",
   "addrJa": "小樽市朝里川温泉1丁目130番地",
-  "phone": "0134-34-2187"
+  "phone": "0134-34-2187",
+  "mapcode": "493 543 160*03",
+  "mcLL": "43.15395,141.0242"
  },
  {
   "hub": "otaru",
@@ -19183,7 +19879,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/350.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kitaichi_Venice_Museum-2.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kitaichi_Venice_Museum-2.jpg",
+  "mapcode": "493 691 007*56",
+  "mcLL": "43.19408,141.00659"
  },
  {
   "hub": "otaru",
@@ -19243,7 +19941,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/351.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%B0%8F%E6%A8%BD%E5%B8%82%E7%B7%8F%E5%90%88%E5%8D%9A%E7%89%A9%E9%A4%A8%E9%81%8B%E6%B2%B3%E9%A4%A8.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%B0%8F%E6%A8%BD%E5%B8%82%E7%B7%8F%E5%90%88%E5%8D%9A%E7%89%A9%E9%A4%A8%E9%81%8B%E6%B2%B3%E9%A4%A8.jpg",
+  "mapcode": "493 690 705*54",
+  "mcLL": "43.20053,141.00053"
  },
  {
   "hub": "otaru",
@@ -19307,7 +20007,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/352.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kyu-Nippon-Yusen-Otaru-Branch-20040424.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kyu-Nippon-Yusen-Otaru-Branch-20040424.jpg",
+  "mapcode": "493 720 516*77",
+  "mcLL": "43.20715,140.9982"
  },
  {
   "hub": "otaru",
@@ -19367,7 +20069,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/353.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Otaru_City_Museum_Of_Art_20110817.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Otaru_City_Museum_Of_Art_20110817.jpg",
+  "mapcode": "493 690 312*62",
+  "mcLL": "43.19691,140.99973"
  },
  {
   "hub": "otaru",
@@ -19436,7 +20140,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/354.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%B0%8F%E6%A8%BD_%E5%A4%A7%E6%AD%A3%E7%A1%9D%E5%AD%90%E9%A4%A8.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%B0%8F%E6%A8%BD_%E5%A4%A7%E6%AD%A3%E7%A1%9D%E5%AD%90%E9%A4%A8.jpg",
+  "mapcode": "493 690 322*51",
+  "mcLL": "43.1969,141.00247"
  },
  {
   "hub": "otaru",
@@ -19488,7 +20194,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/kaimeiro",
   "url": "http://www.kaimeiro.com",
   "addrJa": "小樽市堺町1-20",
-  "phone": "0134-23-6505"
+  "phone": "0134-23-6505",
+  "mapcode": "493 690 264*01",
+  "mcLL": "43.19643,141.0031"
  },
  {
   "hub": "otaru",
@@ -19554,7 +20262,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/356.jpg",
-  "imgCredit": "https://www.flickr.com/photos/79578372@N00/15081745175"
+  "imgCredit": "https://www.flickr.com/photos/79578372@N00/15081745175",
+  "mapcode": "493 690 264*01",
+  "mcLL": "43.19643,141.0031"
  },
  {
   "hub": "otaru",
@@ -19622,7 +20332,9 @@ window.PLACES = [
   "img": "img/places/357.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%B0%8F%E6%A8%BD%E9%81%8B%E6%B2%B3%E3%83%97%E3%83%A9%E3%82%B6_-_panoramio.jpg",
   "ref": "https://otaru.gr.jp/shop/letao-unga",
-  "url": "https://otaru.gr.jp/shop/letao-unga"
+  "url": "https://otaru.gr.jp/shop/letao-unga",
+  "mapcode": "493 690 705*54",
+  "mcLL": "43.20053,141.00053"
  },
  {
   "hub": "otaru",
@@ -19694,7 +20406,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/358.jpg",
-  "imgCredit": "https://www.flickr.com/photos/86446746@N00/21490742566"
+  "imgCredit": "https://www.flickr.com/photos/86446746@N00/21490742566",
+  "mapcode": "493 690 876*42",
+  "mcLL": "43.20237,140.99815"
  },
  {
   "hub": "otaru",
@@ -19760,7 +20474,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/359.jpg",
-  "imgCredit": "https://www.flickr.com/photos/94956822@N00/482057679"
+  "imgCredit": "https://www.flickr.com/photos/94956822@N00/482057679",
+  "mapcode": "493 812 846*48",
+  "mcLL": "43.23539,141.01482"
  },
  {
   "hub": "otaru",
@@ -19821,7 +20537,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/360.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Shukutsu%2COtaru_20220626_P2.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Shukutsu%2COtaru_20220626_P2.jpg",
+  "mapcode": "493 841 257*37",
+  "mcLL": "43.23816,141.00949"
  },
  {
   "hub": "otaru",
@@ -19888,7 +20606,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/361.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:130824_Asarigawa_Onsen_Otaru_Hokkaido_Japan01s3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:130824_Asarigawa_Onsen_Otaru_Hokkaido_Japan01s3.jpg",
+  "mapcode": "493 515 097*07",
+  "mcLL": "43.14501,141.04006"
  },
  {
   "hub": "otaru",
@@ -19944,7 +20664,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/362.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Direction_of_Zenibako_from_ONZE_ski_resort%EF%BC%8F_%E3%82%AA%E3%83%BC%E3%83%B3%E3%82%BA%E3%82%B9%E3%82%AD%E3%83%BC%E5%A0%B4%E3%82%88%E3%82%8A%E9%8A%AD%E5%87%BD%E6%96%B9%E9%9D%A2_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Direction_of_Zenibako_from_ONZE_ski_resort%EF%BC%8F_%E3%82%AA%E3%83%BC%E3%83%B3%E3%82%BA%E3%82%B9%E3%82%AD%E3%83%BC%E5%A0%B4%E3%82%88%E3%82%8A%E9%8A%AD%E5%87%BD%E6%96%B9%E9%9D%A2_-_panoramio.jpg",
+  "mapcode": "493 525 304*86",
+  "mcLL": "43.14697,141.12242"
  },
  {
   "hub": "otaru",
@@ -20012,7 +20734,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/363.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:220720_Wing_Bay_Otaru_Otaru_Hokkaido_Japan01s3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:220720_Wing_Bay_Otaru_Otaru_Hokkaido_Japan01s3.jpg",
+  "mapcode": "493 662 019*27",
+  "mcLL": "43.18592,141.01831"
  },
  {
   "hub": "otaru",
@@ -20073,7 +20797,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/364.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%81%8A%E3%82%82%E3%81%97%E3%82%8D%E5%B0%8F%E6%A8%BD%E5%BC%81_%2817179448117%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%81%8A%E3%82%82%E3%81%97%E3%82%8D%E5%B0%8F%E6%A8%BD%E5%BC%81_%2817179448117%29.jpg",
+  "mapcode": "493 690 300*84",
+  "mcLL": "43.197,140.99637"
  },
  {
   "hub": "otaru",
@@ -20122,7 +20848,9 @@ window.PLACES = [
   "ref": "https://otaru.gr.jp/shop/yamamoto_fruits",
   "url": "http://www.fruits-yamamoto.net/",
   "addrJa": "余市郡余市町登町1102-5",
-  "phone": "0135-23-6251"
+  "phone": "0135-23-6251",
+  "mapcode": "164 578 732*76",
+  "mcLL": "43.1674,140.81653"
  },
  {
   "hub": "asahikawa",
@@ -20180,7 +20908,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/366.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Baikohken_Ramen.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Baikohken_Ramen.jpg",
+  "mapcode": "79 343 621*12",
+  "mcLL": "43.76644,142.36049"
  },
  {
   "hub": "asahikawa",
@@ -20247,7 +20977,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/367.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Santoka_Honten.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Santoka_Honten.jpg",
+  "mapcode": "79 343 499*03",
+  "mcLL": "43.76533,142.35988"
  },
  {
   "hub": "asahikawa",
@@ -20309,7 +21041,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/368.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hachiya-Asahikawa-Honten01.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hachiya-Asahikawa-Honten01.JPG",
+  "mapcode": "79 373 143*50",
+  "mcLL": "43.77019,142.36089"
  },
  {
   "hub": "asahikawa",
@@ -20369,7 +21103,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/369.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Asahikawa_ramen_by_orangeobject_in_Asahikawa%2C_Hokkaido.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Asahikawa_ramen_by_orangeobject_in_Asahikawa%2C_Hokkaido.jpg",
+  "mapcode": "79 343 621*12",
+  "mcLL": "43.76644,142.36049"
  },
  {
   "hub": "asahikawa",
@@ -20419,7 +21155,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ (GSI)",
   "checked": "2026-11",
   "ref": "https://www.atca.jp/members/eat/",
-  "addrJa": "旭川市4条通5丁目"
+  "addrJa": "旭川市4条通5丁目",
+  "mapcode": "79 373 099*01",
+  "mcLL": "43.77,142.35712"
  },
  {
   "hub": "asahikawa",
@@ -20469,7 +21207,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ (GSI)",
   "checked": "2026-11",
   "ref": "https://www.atca.jp/members/eat/",
-  "addrJa": "旭川市宮下通11丁目1604-1"
+  "addrJa": "旭川市宮下通11丁目1604-1",
+  "mapcode": "79 344 183*40",
+  "mcLL": "43.76262,142.36385"
  },
  {
   "hub": "asahikawa",
@@ -20520,7 +21260,9 @@ window.PLACES = [
   "checked": "2026-11",
   "ref": "https://www.atca.jp/kankouspoy/５．７小路ふらりーと/",
   "url": "https://www.furari-to.net/",
-  "addrJa": "旭川市5条通7丁目"
+  "addrJa": "旭川市5条通7丁目",
+  "mapcode": "79 373 143*50",
+  "mcLL": "43.77019,142.36089"
  },
  {
   "hub": "asahikawa",
@@ -20579,7 +21321,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/373.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%EF%BC%93%E3%83%BB%EF%BC%96%E8%A1%97.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%EF%BC%93%E3%83%BB%EF%BC%96%E8%A1%97.JPG",
+  "mapcode": "79 343 822*41",
+  "mcLL": "43.76844,142.35803"
  },
  {
   "hub": "asahikawa",
@@ -20651,7 +21395,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/374.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Fuji_Takasago.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Fuji_Takasago.jpg",
+  "mapcode": "79 315 786*22",
+  "mcLL": "43.75985,142.37279"
  },
  {
   "hub": "asahikawa",
@@ -20702,7 +21448,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ (GSI)",
   "checked": "2026-11",
   "ref": "https://www.atca.jp/members/eat/",
-  "addrJa": "旭川市南6条通19丁目"
+  "addrJa": "旭川市南6条通19丁目",
+  "mapcode": "79 315 033*74",
+  "mcLL": "43.75273,142.37221"
  },
  {
   "hub": "asahikawa",
@@ -20769,7 +21517,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/376.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Asahikawa_Hokkaido_Japan.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Asahikawa_Hokkaido_Japan.jpg",
+  "mapcode": "79 343 499*03",
+  "mcLL": "43.76533,142.35988"
  },
  {
   "hub": "asahikawa",
@@ -20838,7 +21588,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/377.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:AEON_Mall_Around_Asahikawa_Station.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:AEON_Mall_Around_Asahikawa_Station.jpg",
+  "mapcode": "79 343 339*25",
+  "mcLL": "43.76397,142.35698"
  },
  {
   "hub": "asahikawa",
@@ -20907,7 +21659,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/378.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Asahikawa_Station_more_misc_-_2022_Aug_10_various_09_06_55_169000.jpeg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Asahikawa_Station_more_misc_-_2022_Aug_10_various_09_06_55_169000.jpeg",
+  "mapcode": "79 314 720*16",
+  "mcLL": "43.75914,142.36301"
  },
  {
   "hub": "asahikawa",
@@ -20960,7 +21714,9 @@ window.PLACES = [
   "ref": "https://www.atca.jp/kankouspoy/旭川デザインセンター/",
   "url": "https://www.asahikawa-kagu.or.jp/",
   "addrJa": "旭川市永山2条10丁目1-35",
-  "phone": "0166-48-4135"
+  "phone": "0166-48-4135",
+  "mapcode": "79 470 639*68",
+  "mcLL": "43.79993,142.41539"
  },
  {
   "hub": "asahikawa",
@@ -21012,7 +21768,9 @@ window.PLACES = [
   "ref": "https://www.atca.jp/kankouspoy/川村カ子トアイヌ記念館/",
   "url": "http://k-aynu-mh.jp/",
   "addrJa": "旭川市北門町11丁目",
-  "phone": "0166-51-2461"
+  "phone": "0166-51-2461",
+  "mapcode": "79 431 204*74",
+  "mcLL": "43.78745,142.3447"
  },
  {
   "hub": "asahikawa",
@@ -21086,7 +21844,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/381.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Tokiwa_Park_in_Asahikawa.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Tokiwa_Park_in_Asahikawa.jpg",
+  "mapcode": "79 373 762*71",
+  "mcLL": "43.77603,142.35803"
  },
  {
   "hub": "asahikawa",
@@ -21150,7 +21910,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/382.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%AF%E3%83%AA%E3%82%B9%E3%82%BF%E3%83%AB%E3%83%9B%E3%83%BC%E3%83%AB%E3%82%B3%E3%83%94%E3%83%BC.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%AF%E3%83%AA%E3%82%B9%E3%82%BF%E3%83%AB%E3%83%9B%E3%83%BC%E3%83%AB%E3%82%B3%E3%83%94%E3%83%BC.JPG",
+  "mapcode": "79 312 740*84",
+  "mcLL": "43.7592,142.35175"
  },
  {
   "hub": "asahikawa",
@@ -21219,7 +21981,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/383.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:AyakoMiuraMemorial.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:AyakoMiuraMemorial.jpg",
+  "mapcode": "79 312 122*56",
+  "mcLL": "43.7535,142.34672"
  },
  {
   "hub": "asahikawa",
@@ -21287,7 +22051,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/384.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E9%8E%AE%E9%8E%AE.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E9%8E%AE%E9%8E%AE.JPG",
+  "mapcode": "79 434 307*67",
+  "mcLL": "43.7885,142.3649"
  },
  {
   "hub": "asahikawa",
@@ -21351,7 +22117,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/385.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%B5%E3%82%A4%E3%83%91%E3%83%AB.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%B5%E3%82%A4%E3%83%91%E3%83%AB.JPG",
+  "mapcode": "79 314 566*67",
+  "mcLL": "43.75738,142.37016"
  },
  {
   "hub": "asahikawa",
@@ -21407,7 +22175,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/386.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%AB%E3%83%A0%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%AF%E3%82%B92.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%AB%E3%83%A0%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%AF%E3%82%B92.JPG",
+  "mapcode": "655 399 731*30",
+  "mcLL": "43.70095,142.19934"
  },
  {
   "hub": "asahikawa",
@@ -21467,7 +22237,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/387.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Santa_Present_Park_%283217050577%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Santa_Present_Park_%283217050577%29.jpg",
+  "mapcode": "79 276 572*42",
+  "mcLL": "43.74958,142.29689"
  },
  {
   "hub": "asahikawa",
@@ -21531,7 +22303,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/388.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Asahidake_spa_Higashikawa_Hokkaido_Japan.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Asahidake_spa_Higashikawa_Hokkaido_Japan.jpg",
+  "mapcode": "796 831 854*88",
+  "mcLL": "43.652,142.8"
  },
  {
   "hub": "asahikawa",
@@ -21583,7 +22357,9 @@ window.PLACES = [
   "ref": "https://www.atca.jp/menberinfo/高砂温泉/",
   "url": "http://www.takasagoonsen.com/",
   "addrJa": "旭川市高砂台8丁目235-1-5",
-  "phone": "0166-61-0227"
+  "phone": "0166-61-0227",
+  "mapcode": "79 309 690*88",
+  "mcLL": "43.7589,142.32112"
  },
  {
   "hub": "asahikawa",
@@ -21627,7 +22403,9 @@ window.PLACES = [
   "acc": "ประมาณ",
   "checked": "2026-11",
   "ref": "https://machiakari.atca.jp/",
-  "url": "https://machiakari.atca.jp/"
+  "url": "https://machiakari.atca.jp/",
+  "mapcode": "79 343 223*00",
+  "mcLL": "43.7628,142.3582"
  },
  {
   "hub": "furano",
@@ -21692,7 +22470,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/391.jpg",
-  "imgCredit": "https://www.flickr.com/photos/40295335@N00/14849462841"
+  "imgCredit": "https://www.flickr.com/photos/40295335@N00/14849462841",
+  "mapcode": "349 032 102*85",
+  "mcLL": "43.34505,142.39114"
  },
  {
   "hub": "furano",
@@ -21743,7 +22523,9 @@ window.PLACES = [
   "checked": "2026-11",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=157",
   "addrJa": "北海道富良野市日の出町11-8",
-  "phone": "0167-23-4784"
+  "phone": "0167-23-4784",
+  "mapcode": "349 032 096*55",
+  "mcLL": "43.34495,142.3895"
  },
  {
   "hub": "furano",
@@ -21794,7 +22576,9 @@ window.PLACES = [
   "checked": "2026-11",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=361",
   "addrJa": "富良野市弥生町1-46",
-  "phone": "0167-23-6969"
+  "phone": "0167-23-6969",
+  "mapcode": "349 001 791*57",
+  "mcLL": "43.34299,142.3826"
  },
  {
   "hub": "furano",
@@ -21853,7 +22637,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/394.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Furano_Wine_House.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Furano_Wine_House.jpg",
+  "mapcode": "349 060 365*46",
+  "mcLL": "43.35597,142.37277"
  },
  {
   "hub": "furano",
@@ -21918,7 +22704,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/395.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%AB%E3%83%B3%E3%83%91%E3%83%BC%E3%83%8A%E5%85%AD%E8%8A%B1%E4%BA%AD_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%AB%E3%83%B3%E3%83%91%E3%83%BC%E3%83%8A%E5%85%AD%E8%8A%B1%E4%BA%AD_-_panoramio.jpg",
+  "mapcode": "349 090 412*63",
+  "mcLL": "43.36445,142.37738"
  },
  {
   "hub": "furano",
@@ -21982,7 +22770,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/396.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:SAKURAKO_-_Furano_Jam_Garden._%2837916216836%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:SAKURAKO_-_Furano_Jam_Garden._%2837916216836%29.jpg",
+  "mapcode": "550 803 272*78",
+  "mcLL": "43.30498,142.56354"
  },
  {
   "hub": "furano",
@@ -22041,7 +22831,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/397.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Goro%27s_First_House.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Goro%27s_First_House.JPG",
+  "mapcode": "550 833 336*02",
+  "mcLL": "43.314,142.56457"
  },
  {
   "hub": "furano",
@@ -22096,7 +22888,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/398.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%BB%83%E6%9D%90%E3%81%AE%E5%AE%B6%EF%BC%88Reuse_home%EF%BC%89_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%BB%83%E6%9D%90%E3%81%AE%E5%AE%B6%EF%BC%88Reuse_home%EF%BC%89_-_panoramio.jpg",
+  "mapcode": "550 798 052*56",
+  "mcLL": "43.30273,142.52728"
  },
  {
   "hub": "furano",
@@ -22160,7 +22954,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/399.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E9%BA%93%E9%83%B7%E3%81%AE%E6%A3%AE_%E5%85%A5%E3%82%8A%E5%8F%A3%E6%9C%A8%E3%81%AE%E7%9C%8B%E6%9D%BFP6220385.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E9%BA%93%E9%83%B7%E3%81%AE%E6%A3%AE_%E5%85%A5%E3%82%8A%E5%8F%A3%E6%9C%A8%E3%81%AE%E7%9C%8B%E6%9D%BFP6220385.jpg",
+  "mapcode": "550 830 219*28",
+  "mcLL": "43.31293,142.54031"
  },
  {
   "hub": "furano",
@@ -22220,7 +23016,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/400.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Furano_drama-kan_Furano_Hokkaido_Japan01s3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Furano_drama-kan_Furano_Hokkaido_Japan01s3.jpg",
+  "mapcode": "919 553 454*80",
+  "mcLL": "43.32339,142.35563"
  },
  {
   "hub": "furano",
@@ -22279,7 +23077,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/401.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Soh%27s_BAR_Furano_Hokkaido_Japan01n.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Soh%27s_BAR_Furano_Hokkaido_Japan01n.jpg",
+  "mapcode": "919 553 379*56",
+  "mcLL": "43.32245,142.3598"
  },
  {
   "hub": "furano",
@@ -22324,7 +23124,9 @@ window.PLACES = [
   "acc": "จากหมุดแผนที่บนเว็บทางการ",
   "checked": "2026-11",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=477",
-  "addrJa": "北海道富良野市"
+  "addrJa": "北海道富良野市",
+  "mapcode": "919 552 628*82",
+  "mcLL": "43.32483,142.35395"
  },
  {
   "hub": "furano",
@@ -22381,7 +23183,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/403.jpg",
-  "imgCredit": "https://www.flickr.com/photos/56944727@N00/2726059087"
+  "imgCredit": "https://www.flickr.com/photos/56944727@N00/2726059087",
+  "mapcode": "349 032 360*75",
+  "mcLL": "43.34744,142.388"
  },
  {
   "hub": "furano",
@@ -22436,7 +23240,9 @@ window.PLACES = [
   "checked": "2026-11",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=147",
   "addrJa": "富良野市島の下",
-  "phone": "0167-22-5700"
+  "phone": "0167-22-5700",
+  "mapcode": "450 116 608*18",
+  "mcLL": "43.36645,142.34023"
  },
  {
   "hub": "furano",
@@ -22488,7 +23294,9 @@ window.PLACES = [
   "checked": "2026-11",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=596",
   "addrJa": "中富良野町東1線北4号",
-  "phone": "0167-44-3035"
+  "phone": "0167-44-3035",
+  "mapcode": "349 122 259*22",
+  "mcLL": "43.37159,142.39309"
  },
  {
   "hub": "furano",
@@ -22541,7 +23349,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/406.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%83%9D%E3%83%97%E3%83%A9%E3%83%95%E3%82%A1%E3%83%BC%E3%83%A0_%286015499860%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%83%9D%E3%83%97%E3%83%A9%E3%83%95%E3%82%A1%E3%83%BC%E3%83%A0_%286015499860%29.jpg",
+  "mapcode": "349 308 749*67",
+  "mcLL": "43.42578,142.44601"
  },
  {
   "hub": "furano",
@@ -22612,7 +23422,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/407.jpg",
-  "imgCredit": "https://www.flickr.com/photos/92154034@N00/38580252350"
+  "imgCredit": "https://www.flickr.com/photos/92154034@N00/38580252350",
+  "mapcode": "796 032 434*68",
+  "mcLL": "43.43135,142.64177"
  },
  {
   "hub": "furano",
@@ -22663,7 +23475,9 @@ window.PLACES = [
   "checked": "2026-11",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=369",
   "addrJa": "上富良野町東4線北26号",
-  "phone": "0167-45-6181"
+  "phone": "0167-45-6181",
+  "mapcode": "349 434 047*73",
+  "mcLL": "43.45278,142.49275"
  },
  {
   "hub": "furano",
@@ -22717,7 +23531,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/409.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E8%A6%B3%E8%A6%A7%E8%BB%8A_-_panoramio_-_pakku.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E8%A6%B3%E8%A6%A7%E8%BB%8A_-_panoramio_-_pakku.jpg",
+  "mapcode": "349 639 702*30",
+  "mcLL": "43.51735,142.44959"
  },
  {
   "hub": "furano",
@@ -22773,7 +23589,9 @@ window.PLACES = [
   "checked": "2026-11",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=606",
   "addrJa": "北海道富良野市北の峰町10-22",
-  "phone": "0167-22-1311"
+  "phone": "0167-22-1311",
+  "mapcode": "450 029 724*46",
+  "mcLL": "43.34264,142.36415"
  },
  {
   "hub": "biei",
@@ -22833,7 +23651,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/411.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Vegitable_Shop_%5E_Restaurant_JA%E3%81%B3%E3%81%88%E3%81%84%E7%BE%8E%E7%91%9B%E9%81%B8%E6%9E%9C_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Vegitable_Shop_%5E_Restaurant_JA%E3%81%B3%E3%81%88%E3%81%84%E7%BE%8E%E7%91%9B%E9%81%B8%E6%9E%9C_-_panoramio.jpg",
+  "mapcode": "389 010 637*51",
+  "mcLL": "43.5916,142.45648"
  },
  {
   "hub": "biei",
@@ -22885,7 +23705,9 @@ window.PLACES = [
   "ref": "https://www.biei-hokkaido.jp/ja/facility/junpei",
   "url": "https://youshokutocafejyunpei.com/",
   "addrJa": "北海道上川郡美瑛町本町4丁目",
-  "phone": "0166-92-1028"
+  "phone": "0166-92-1028",
+  "mapcode": "389 011 379*05",
+  "mcLL": "43.58918,142.46816"
  },
  {
   "hub": "biei",
@@ -22938,7 +23760,9 @@ window.PLACES = [
   "ref": "https://www.biei-hokkaido.jp/ja/facility/farm-restaurant-chiyoda",
   "url": "https://biei-fm.co.jp/",
   "addrJa": "北海道上川郡美瑛町字水沢春日台第一",
-  "phone": "0166-92-1718"
+  "phone": "0166-92-1718",
+  "mapcode": "349 734 148*31",
+  "mcLL": "43.53709,142.49573"
  },
  {
   "hub": "biei",
@@ -23003,7 +23827,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/414.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki-Biei_Shirogane-biruke.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki-Biei_Shirogane-biruke.jpg",
+  "mapcode": "349 627 033*16",
+  "mcLL": "43.50279,142.59719"
  },
  {
   "hub": "biei",
@@ -23069,7 +23895,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/415.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Biei_Hokkaido.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Biei_Hokkaido.jpg",
+  "mapcode": "349 790 529*75",
+  "mcLL": "43.55713,142.45994"
  },
  {
   "hub": "sounkyo",
@@ -23136,7 +23964,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/416.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sounkyo_Promenade.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sounkyo_Promenade.JPG",
+  "mapcode": "623 234 004*64",
+  "mcLL": "43.72749,142.94734"
  },
  {
   "hub": "hakodate",
@@ -23199,7 +24029,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/417.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hasegawa_Store.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hasegawa_Store.jpg",
+  "mapcode": "86 041 486*32",
+  "mcLL": "41.76559,140.71484"
  },
  {
   "id": 418,
@@ -23234,7 +24066,9 @@ window.PLACES = [
   "phone": "08018843206",
   "url": "https://higashi-asaichi.jp/higashi/",
   "ref": "https://www.sapporo.travel/facility/higahon/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 462 692*32",
+  "mcLL": "43.05076,141.34691"
  },
  {
   "id": 419,
@@ -23267,7 +24101,9 @@ window.PLACES = [
   "addrJa": "札幌市中央区南3条東2丁目4 二条GCビル401号室 お問合せ [email protected]",
   "url": "https://sites.google.com/view/sekkado/top",
   "ref": "https://www.sapporo.travel/facility/kimono-rental-sekkado/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 493 616*14",
+  "mcLL": "43.05814,141.3593"
  },
  {
   "id": 420,
@@ -23310,7 +24146,9 @@ window.PLACES = [
   "phone": "011-598-4050",
   "url": "https://jozankei-farm.com/",
   "ref": "https://www.sapporo.travel/spot/facility/jozankei-waiwai-farm/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "708 633 728*63",
+  "mcLL": "42.93418,141.14865"
  },
  {
   "id": 421,
@@ -23344,7 +24182,9 @@ window.PLACES = [
   "url": "https://www.friluftsliv.website/",
   "ref": "https://www.sapporo.travel/spot/facility/friluftsliv/",
   "checked": "2026-11",
-  "caution": "เว็บทางการไม่ระบุเวลาเปิด ตรวจก่อนไป"
+  "caution": "เว็บทางการไม่ระบุเวลาเปิด ตรวจก่อนไป",
+  "mapcode": "708 754 528*06",
+  "mcLL": "42.96559,141.15974"
  },
  {
   "id": 422,
@@ -23394,7 +24234,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/422.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Akarenga_terrace_201511.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Akarenga_terrace_201511.JPG",
+  "mapcode": "9 522 315*81",
+  "mcLL": "43.06368,141.35049"
  },
  {
   "id": 423,
@@ -23429,7 +24271,9 @@ window.PLACES = [
   "phone": "011-221-0567",
   "url": "https://www.tanukiya.co.jp/",
   "ref": "https://www.sapporo.travel/spot/facility/tanukiya/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 501*66",
+  "mcLL": "43.05688,141.35222"
  },
  {
   "id": 424,
@@ -23463,7 +24307,9 @@ window.PLACES = [
   "phone": "011-611-8333",
   "url": "https://www.marukame.com/",
   "ref": "https://www.sapporo.travel/spot/facility/salmon-specialty-store-sake-no-marukame/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 488 550*73",
+  "mcLL": "43.05751,141.31593"
  },
  {
   "id": 425,
@@ -23512,7 +24358,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/425.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hoheikan2004-5.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hoheikan2004-5.jpg",
+  "mapcode": "9 462 169*05",
+  "mcLL": "43.04559,141.35164"
  },
  {
   "id": 426,
@@ -23571,7 +24419,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/426.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Summit_of_Mount_Sankaku_%28Minami-ku%2C_Sapporo%29.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Summit_of_Mount_Sankaku_%28Minami-ku%2C_Sapporo%29.JPG",
+  "mapcode": "9 484 567*53",
+  "mcLL": "43.0575,141.28713"
  },
  {
   "id": 427,
@@ -23614,7 +24464,9 @@ window.PLACES = [
   "addrJa": "札幌市豊平区平岸1条18丁目、2条16〜17丁目",
   "url": "https://www2.wagmap.jp/sapporo_koen/detail?fid=450004-1",
   "ref": "https://www.sapporo.travel/spot/facility/tenjinyama-park/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 374 211*27",
+  "mcLL": "43.02124,141.36327"
  },
  {
   "id": 428,
@@ -23664,7 +24516,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/428.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Senshuan.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Senshuan.JPG",
+  "mapcode": "9 492 477*26",
+  "mcLL": "43.05679,141.35381"
  },
  {
   "id": 429,
@@ -23707,7 +24561,9 @@ window.PLACES = [
   "url": "https://amuse-sports.com/",
   "ref": "https://www.sapporo.travel/spot/facility/amuse-sports/",
   "checked": "2026-11",
-  "caution": "เว็บทางการไม่ระบุเวลาเปิด ตรวจก่อนไป"
+  "caution": "เว็บทางการไม่ระบุเวลาเปิด ตรวจก่อนไป",
+  "mapcode": "9 522 482*80",
+  "mcLL": "43.06535,141.34685"
  },
  {
   "id": 430,
@@ -23742,7 +24598,9 @@ window.PLACES = [
   "phone": "011-303-3333",
   "url": "https://www.d-department.com/",
   "ref": "https://www.sapporo.travel/spot/facility/d-and-department/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 490 634*61",
+  "mcLL": "43.05832,141.33087"
  },
  {
   "id": 431,
@@ -23776,7 +24634,9 @@ window.PLACES = [
   "phone": "011-206-0710",
   "url": "https://at-siesta.com/",
   "ref": "https://www.sapporo.travel/spot/facility/siesta-labo/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 491 544*60",
+  "mcLL": "43.05748,141.33916"
  },
  {
   "id": 432,
@@ -23826,7 +24686,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/432.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Miyanomori_ski_jump.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Miyanomori_ski_jump.jpg",
+  "mapcode": "9 425 552*85",
+  "mcLL": "43.04088,141.29126"
  },
  {
   "id": 433,
@@ -23861,7 +24723,9 @@ window.PLACES = [
   "phone": "011-221-7570",
   "url": "http://www.nipponseishu.co.jp/museum/",
   "ref": "https://www.sapporo.travel/spot/facility/chitosetsuru/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 494 696*63",
+  "mcLL": "43.05889,141.36473"
  },
  {
   "id": 434,
@@ -23911,7 +24775,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/434.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sanpiaza_Suizokukan.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sanpiaza_Suizokukan.jpg",
+  "mapcode": "9 447 121*50",
+  "mcLL": "43.03693,141.47156"
  },
  {
   "id": 435,
@@ -23961,7 +24827,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/435.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sanpiaza.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sanpiaza.jpg",
+  "mapcode": "9 447 332*55",
+  "mcLL": "43.03885,141.4718"
  },
  {
   "id": 436,
@@ -24017,7 +24885,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/436.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Racecource_Main_Gate.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Racecource_Main_Gate.jpg",
+  "mapcode": "9 579 076*72",
+  "mcLL": "43.07805,141.3259"
  },
  {
   "id": 437,
@@ -24051,7 +24921,9 @@ window.PLACES = [
   "phone": "011-596-5778",
   "url": "https://hakkenzanwine.com/",
   "ref": "https://www.sapporo.travel/spot/facility/hakkenzan_winery/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "708 763 557*02",
+  "mcLL": "42.96595,141.23444"
  },
  {
   "id": 438,
@@ -24085,7 +24957,9 @@ window.PLACES = [
   "phone": "011-593-8700",
   "url": "https://www.sapporo-fujino-winery.com/",
   "ref": "https://www.sapporo.travel/spot/facility/sapporo_fujino_winery/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 097 681*11",
+  "mcLL": "42.95037,141.3107"
  },
  {
   "id": 439,
@@ -24142,7 +25016,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/439.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hut_of_Hakkenzan.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hut_of_Hakkenzan.JPG",
+  "mapcode": "708 764 522*83",
+  "mcLL": "42.96565,141.24132"
  },
  {
   "id": 440,
@@ -24184,7 +25060,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/440.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Museum_Activity_Center.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Museum_Activity_Center.jpg",
+  "mapcode": "9 375 100*72",
+  "mcLL": "43.02002,141.37424"
  },
  {
   "id": 441,
@@ -24240,7 +25118,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/441.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Mount_Soranuma_Trailhead.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Mount_Soranuma_Trailhead.JPG",
+  "mapcode": "708 405 476*60",
+  "mcLL": "42.86498,141.25362"
  },
  {
   "id": 442,
@@ -24296,7 +25176,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/442.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Toyohira_Park_west_entrance.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Toyohira_Park_west_entrance.JPG",
+  "mapcode": "9 435 805*14",
+  "mcLL": "43.04316,141.37846"
  },
  {
   "id": 443,
@@ -24329,7 +25211,9 @@ window.PLACES = [
   "addrJa": "札幌市清田区清田1条1丁目2-1",
   "url": "https://www.hokkaido.ccbc.co.jp/",
   "ref": "https://www.sapporo.travel/spot/facility/hokkaido_coca_cola_bottling/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 322 461*61",
+  "mcLL": "43.00665,141.43282"
  },
  {
   "id": 444,
@@ -24379,7 +25263,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/444.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kitara_Sapporo01n4272.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kitara_Sapporo01n4272.jpg",
+  "mapcode": "9 462 109*34",
+  "mcLL": "43.04519,141.3517"
  },
  {
   "id": 445,
@@ -24430,7 +25316,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/445.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hongo_Shin_Memorial_Museum_of_Sculpture%2C_Sapporo_-_Main_Hall.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hongo_Shin_Memorial_Museum_of_Sculpture%2C_Sapporo_-_Main_Hall.jpg",
+  "mapcode": "9 485 323*42",
+  "mcLL": "43.05548,141.2945"
  },
  {
   "id": 446,
@@ -24479,7 +25367,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/446.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Koganeyu_Katsura_Fudo.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Koganeyu_Katsura_Fudo.JPG",
+  "mapcode": "708 761 838*87",
+  "mcLL": "42.96838,141.22078"
  },
  {
   "id": 447,
@@ -24531,7 +25421,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/447.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:500m%E7%BE%8E%E8%A1%93%E9%A4%A8.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:500m%E7%BE%8E%E8%A1%93%E9%A4%A8.jpg",
+  "mapcode": "9 523 006*32",
+  "mcLL": "43.06102,141.35637"
  },
  {
   "id": 448,
@@ -24581,7 +25473,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/448.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Makomanai_Ice_Arena.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Makomanai_Ice_Arena.jpg",
+  "mapcode": "9 281 257*78",
+  "mcLL": "42.99637,141.34285"
  },
  {
   "id": 449,
@@ -24638,7 +25532,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/449.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Maeda_2003_0815.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Maeda_2003_0815.JPG",
+  "mapcode": "9 811 241*27",
+  "mcLL": "43.1465,141.25494"
  },
  {
   "id": 450,
@@ -24698,7 +25594,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/450.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%9C%AD%E5%B9%8C%E8%BE%B2%E5%AD%A6%E6%A0%A1%E7%AC%AC2%E8%BE%B2%E5%A0%B4.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%9C%AD%E5%B9%8C%E8%BE%B2%E5%AD%A6%E6%A0%A1%E7%AC%AC2%E8%BE%B2%E5%A0%B4.jpg",
+  "mapcode": "9 581 575*06",
+  "mcLL": "43.08282,141.33946"
  },
  {
   "id": 451,
@@ -24741,7 +25639,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/451.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Milk_carton_tower_%2852656604%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Milk_carton_tower_%2852656604%29.jpg",
+  "mapcode": "9 556 324*04",
+  "mcLL": "43.07204,141.38643"
  },
  {
   "id": 452,
@@ -24791,7 +25691,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/452.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:HOKKAIDO_100YEARS_MEMORIAL_TOWER_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:HOKKAIDO_100YEARS_MEMORIAL_TOWER_-_panoramio.jpg",
+  "mapcode": "9 509 147*32",
+  "mcLL": "43.05381,141.49551"
  },
  {
   "id": 453,
@@ -24825,7 +25727,9 @@ window.PLACES = [
   "phone": "011-588-6666",
   "url": "http://www.oda-kikin.com/rokka.html",
   "ref": "https://www.sapporo.travel/spot/facility/rokka_library/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 282 445*03",
+  "mcLL": "42.99816,141.35333"
  },
  {
   "id": 454,
@@ -24875,7 +25779,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/454.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Waterworks_Museum.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sapporo_Waterworks_Museum.JPG",
+  "mapcode": "9 399 718*76",
+  "mcLL": "43.03384,141.32928"
  },
  {
   "id": 455,
@@ -24925,7 +25831,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/455.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:131103_Seikatei_Sapporo_Hokkaido_Japan01s3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:131103_Seikatei_Sapporo_Hokkaido_Japan01s3.jpg",
+  "mapcode": "9 521 893*68",
+  "mcLL": "43.06887,141.34442"
  },
  {
   "id": 456,
@@ -24974,7 +25882,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/456.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Soseigawa_Park%2C_April_2018.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Soseigawa_Park%2C_April_2018.jpg",
+  "mapcode": "9 493 849*78",
+  "mcLL": "43.06026,141.3573"
  },
  {
   "id": 457,
@@ -25034,7 +25944,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/457.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%A8%E3%83%89%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%BB%E3%83%80%E3%83%B3%E8%A8%98%E5%BF%B5%E9%A4%A8.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%A8%E3%83%89%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%BB%E3%83%80%E3%83%B3%E8%A8%98%E5%BF%B5%E9%A4%A8.jpg",
+  "mapcode": "9 252 229*65",
+  "mcLL": "42.98773,141.35164"
  },
  {
   "id": 458,
@@ -25086,7 +25998,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/458.jpg",
-  "imgCredit": "https://www.flickr.com/photos/22508531@N08/44602145112"
+  "imgCredit": "https://www.flickr.com/photos/22508531@N08/44602145112",
+  "mapcode": "9 455 630*76",
+  "mcLL": "43.04993,141.28815"
  },
  {
   "id": 459,
@@ -25128,7 +26042,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/459.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Junichi_Watanabe_Bungakukan01bs5s3200.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Junichi_Watanabe_Bungakukan01bs5s3200.jpg",
+  "mapcode": "9 462 017*87",
+  "mcLL": "43.0442,141.35106"
  },
  {
   "id": 460,
@@ -25178,7 +26094,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/460.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokkaido_Governor%27s_Official_Residence_002.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokkaido_Governor%27s_Official_Residence_002.JPG",
+  "mapcode": "9 490 789*50",
+  "mcLL": "43.05969,141.33215"
  },
  {
   "id": 461,
@@ -25220,7 +26138,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/461.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kaederu_2._7_%28Hokkaido_Ritsumin_Activities_Center%29.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kaederu_2._7_%28Hokkaido_Ritsumin_Activities_Center%29.JPG",
+  "mapcode": "9 521 268*64",
+  "mcLL": "43.06305,141.34586"
  },
  {
   "id": 462,
@@ -25280,7 +26200,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/462.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:NishiokaSuigenchiShusuiTo2004-4.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:NishiokaSuigenchiShusuiTo2004-4.jpg",
+  "mapcode": "9 225 686*60",
+  "mcLL": "42.98361,141.37861"
  },
  {
   "id": 463,
@@ -25322,7 +26244,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/463.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%9C%AD%E5%B9%8C%E3%81%AE%E6%96%87%E5%AD%A6%E9%A4%A8.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%9C%AD%E5%B9%8C%E3%81%AE%E6%96%87%E5%AD%A6%E9%A4%A8.JPG",
+  "mapcode": "9 463 245*32",
+  "mcLL": "43.04657,141.35609"
  },
  {
   "id": 464,
@@ -25372,7 +26296,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/464.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E4%B8%89%E5%B2%B8%E5%A5%BD%E5%A4%AA%E9%83%8E.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E4%B8%89%E5%B2%B8%E5%A5%BD%E5%A4%AA%E9%83%8E.JPG",
+  "mapcode": "9 520 073*60",
+  "mcLL": "43.06136,141.33334"
  },
  {
   "id": 465,
@@ -25430,7 +26356,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/465.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Ishiyama2004_0505_2.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Ishiyama2004_0505_2.JPG",
+  "mapcode": "9 129 267*22",
+  "mcLL": "42.95491,141.32878"
  },
  {
   "id": 466,
@@ -25481,7 +26409,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/466.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%97%A7%E6%B0%B8%E5%B1%B1%E6%AD%A6%E5%9B%9B%E9%83%8E%E9%82%B81.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%97%A7%E6%B0%B8%E5%B1%B1%E6%AD%A6%E5%9B%9B%E9%83%8E%E9%82%B81.JPG",
+  "mapcode": "9 524 515*07",
+  "mcLL": "43.06559,141.36449"
  },
  {
   "id": 467,
@@ -25515,7 +26445,9 @@ window.PLACES = [
   "phone": "011-210-0411",
   "url": "http://www.ebikani.co.jp/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_302/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 317*55",
+  "mcLL": "43.05523,141.35098"
  },
  {
   "id": 468,
@@ -25549,7 +26481,9 @@ window.PLACES = [
   "phone": "011-552-4029",
   "url": "http://じんぎすかん.net",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_183-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 138*33",
+  "mcLL": "43.05381,141.35138"
  },
  {
   "id": 469,
@@ -25583,7 +26517,9 @@ window.PLACES = [
   "phone": "050-5385-3490",
   "url": "https://zangi.fuhdo.jp/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_616/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 552 158*13",
+  "mcLL": "43.07066,141.34871"
  },
  {
   "id": 470,
@@ -25617,7 +26553,9 @@ window.PLACES = [
   "phone": "011-215-1441",
   "url": "http://www.kaiyoutei.co.jp/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_284-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 287*54",
+  "mcLL": "43.055,141.35106"
  },
  {
   "id": 471,
@@ -25650,7 +26588,9 @@ window.PLACES = [
   "phone": "011-521-8989",
   "url": "http://www.oosuke.co.jp/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_303-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 493 214*31",
+  "mcLL": "43.05461,141.35586"
  },
  {
   "id": 472,
@@ -25683,7 +26623,9 @@ window.PLACES = [
   "phone": "011-222-8940",
   "url": "https://hachikyo.com/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_194-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 477*26",
+  "mcLL": "43.05679,141.35381"
  },
  {
   "id": 473,
@@ -25717,7 +26659,9 @@ window.PLACES = [
   "phone": "011-211-1170",
   "url": "https://tabelog.com/hokkaido/A0101/A010103/1058075/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_879/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 346*16",
+  "mcLL": "43.05558,141.35092"
  },
  {
   "id": 474,
@@ -25751,7 +26695,9 @@ window.PLACES = [
   "phone": "011-520-4333",
   "url": "https://oosuke.co.jp/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_299-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 084*45",
+  "mcLL": "43.05318,141.35313"
  },
  {
   "id": 475,
@@ -25784,7 +26730,9 @@ window.PLACES = [
   "addrJa": "札幌市中央区南5条西3丁目 元祖さっぽろラーメン横丁内",
   "phone": "011-518-2394",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_25-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 239*27",
+  "mcLL": "43.05457,141.35439"
  },
  {
   "id": 476,
@@ -25818,7 +26766,9 @@ window.PLACES = [
   "phone": "011-852-1271",
   "url": "https://sheepgenghis.jp",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_236/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 287 265*06",
+  "mcLL": "42.99643,141.39499"
  },
  {
   "id": 477,
@@ -25851,7 +26801,9 @@ window.PLACES = [
   "phone": "011-219-2989",
   "url": "https://www.matsuo1956.jp/shop/minami1/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_101-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 738*74",
+  "mcLL": "43.05916,141.35152"
  },
  {
   "id": 478,
@@ -25884,7 +26836,9 @@ window.PLACES = [
   "addrJa": "札幌市中央区南4条西4丁目松岡ビル5階",
   "phone": "050-5462-1611",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_307-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 322*10",
+  "mcLL": "43.05533,141.35259"
  },
  {
   "id": 479,
@@ -25917,7 +26871,9 @@ window.PLACES = [
   "addrJa": "札幌市西区発寒12条2丁目8番2号",
   "phone": "070-5606-2330",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_848/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 636 152*77",
+  "mcLL": "43.0955,141.29707"
  },
  {
   "id": 480,
@@ -25959,7 +26915,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/480.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Miyoshino_tanuki.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Miyoshino_tanuki.jpg",
+  "mapcode": "9 493 512*08",
+  "mcLL": "43.05729,141.35525"
  },
  {
   "id": 481,
@@ -25993,7 +26951,9 @@ window.PLACES = [
   "phone": "011-251-1573",
   "url": "https://www.hokkaido-sapporolion.jp/shop/beerlion/tanukikoji.html",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_83-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 493 572*84",
+  "mcLL": "43.05788,141.35522"
  },
  {
   "id": 482,
@@ -26027,7 +26987,9 @@ window.PLACES = [
   "phone": "011-722-5511",
   "url": "https://www.instagram.com/ameyasano.2/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_111-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 553 225*55",
+  "mcLL": "43.07104,141.35877"
  },
  {
   "id": 483,
@@ -26061,7 +27023,9 @@ window.PLACES = [
   "phone": "011-621-3545",
   "url": "http://www.kitanogurume.co.jp/shokudo",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_173-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 548 176*57",
+  "mcLL": "43.07049,141.32022"
  },
  {
   "id": 484,
@@ -26095,7 +27059,9 @@ window.PLACES = [
   "phone": "011-251-1366",
   "url": "https://www.sekkatei.com/index.php",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_102-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 441*34",
+  "mcLL": "43.05658,141.35225"
  },
  {
   "id": 485,
@@ -26129,7 +27095,9 @@ window.PLACES = [
   "phone": "011-261-5188",
   "url": "http://www.izakaya-rukku.com",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_198-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 519*02",
+  "mcLL": "43.05732,141.34885"
  },
  {
   "id": 486,
@@ -26163,7 +27131,9 @@ window.PLACES = [
   "phone": "011-513-0677",
   "url": "https://jingisuezoya.jp.net/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_549/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 239*27",
+  "mcLL": "43.05457,141.35439"
  },
  {
   "id": 487,
@@ -26197,7 +27167,9 @@ window.PLACES = [
   "phone": "011-551-1011",
   "url": "http://juttetsu.jp",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_109-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 462 830*25",
+  "mcLL": "43.05179,141.35184"
  },
  {
   "id": 488,
@@ -26230,7 +27202,9 @@ window.PLACES = [
   "addrJa": "札幌市中央区南5条西3丁目 元祖さっぽろラーメン横丁内",
   "phone": "011-522-5868",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_21-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 239*27",
+  "mcLL": "43.05457,141.35439"
  },
  {
   "id": 489,
@@ -26263,7 +27237,9 @@ window.PLACES = [
   "addrJa": "札幌市中央区南4条西2丁目11",
   "phone": "011-222-1117",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_345-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 493 393*13",
+  "mcLL": "43.05622,141.35564"
  },
  {
   "id": 490,
@@ -26297,7 +27273,9 @@ window.PLACES = [
   "phone": "0113983428",
   "url": "https://teineramen.com/shop_single_04.html",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_799/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 291 834*67",
+  "mcLL": "43.00162,141.4281"
  },
  {
   "id": 491,
@@ -26331,7 +27309,9 @@ window.PLACES = [
   "phone": "011-552-4601",
   "url": "http://www.sapporo-keyaki.jp/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_250-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 493 090*42",
+  "mcLL": "43.05353,141.35478"
  },
  {
   "id": 492,
@@ -26364,7 +27344,9 @@ window.PLACES = [
   "addrJa": "札幌市中央区大通西2丁目都心ビルB3F",
   "phone": "011-221-4220",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_332-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 522 029*60",
+  "mcLL": "43.0608,141.35445"
  },
  {
   "id": 493,
@@ -26398,7 +27380,9 @@ window.PLACES = [
   "phone": "011-839-2039",
   "url": "https://www.potapota15.com/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_642/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 596*28",
+  "mcLL": "43.05795,141.3535"
  },
  {
   "id": 494,
@@ -26432,7 +27416,9 @@ window.PLACES = [
   "phone": "0115966922",
   "url": "https://zingisukan-yuhi.owst.jp/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_577-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 493 393*13",
+  "mcLL": "43.05622,141.35564"
  },
  {
   "id": 495,
@@ -26466,7 +27452,9 @@ window.PLACES = [
   "phone": "011-577-9626",
   "url": "https://ozawa.360cvt.com/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_331-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 495 537*75",
+  "mcLL": "43.05716,141.37894"
  },
  {
   "id": 496,
@@ -26517,7 +27505,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/496.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:PICANTE%2C_Sapporo%2C_Hokkaido%2C_Japan%2C_%E6%B9%AF%E5%92%96%E5%93%A9%2C_%E6%9C%AD%E5%B9%8C%2C_%E5%8C%97%E6%B5%B7%E9%81%93%2C_%E6%97%A5%E6%9C%AC%2C_%E6%9C%AD%E5%B9%8C%E3%82%B9%E3%83%BC%E3%83%97%E3%82%AB%E3%83%AA%E3%82%A3%E5%B0%82%E9%96%80%E5%BA%97%2C_%E3%83%94%E3%82%AB%E3%83%B3%E3%83%86%E3%82%A3%2C_%E3%81%95%E3%81%A3%E3%81%BD%E3%82%8D%E3%81%97%2C_%E3%81%BB%E3%81%A3%E3%81%8B%E3%81%84%E3%81%A9%E3%81%86%2C_%E3%81%AB%E3%81%A3%E3%81%BD%E3%82%93%2C_%E3%81%AB%E3%81%BB%E3%82%93_%2816102265543%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:PICANTE%2C_Sapporo%2C_Hokkaido%2C_Japan%2C_%E6%B9%AF%E5%92%96%E5%93%A9%2C_%E6%9C%AD%E5%B9%8C%2C_%E5%8C%97%E6%B5%B7%E9%81%93%2C_%E6%97%A5%E6%9C%AC%2C_%E6%9C%AD%E5%B9%8C%E3%82%B9%E3%83%BC%E3%83%97%E3%82%AB%E3%83%AA%E3%82%A3%E5%B0%82%E9%96%80%E5%BA%97%2C_%E3%83%94%E3%82%AB%E3%83%B3%E3%83%86%E3%82%A3%2C_%E3%81%95%E3%81%A3%E3%81%BD%E3%82%8D%E3%81%97%2C_%E3%81%BB%E3%81%A3%E3%81%8B%E3%81%84%E3%81%A9%E3%81%86%2C_%E3%81%AB%E3%81%A3%E3%81%BD%E3%82%93%2C_%E3%81%AB%E3%81%BB%E3%82%93_%2816102265543%29.jpg",
+  "mapcode": "9 552 789*32",
+  "mcLL": "43.07658,141.34885"
  },
  {
   "id": 497,
@@ -26567,7 +27557,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/497.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%B5%B7%E8%86%BD%E4%B8%BC%2C_%E6%B5%B7%E8%86%BD%E7%B2%A5%2C_%E6%B5%B7%E8%86%BD%E8%9B%8B%E6%8D%B2%2C_%E7%84%97%E7%83%A4%E6%B5%B7%E8%86%BD%2C_%E6%9D%91%E4%B8%8A%E6%B5%B7%E8%86%BD%2C_%E6%9C%AD%E5%B9%8C%2C_%E5%8C%97%E6%B5%B7%E9%81%93%2C_%E6%97%A5%E6%9C%AC%2C_Uni_Murakami%2C_Sapporo%2C_Hokkaido%2C_Japan%2C_%E5%87%BD%E9%A4%A8%E3%81%86%E3%81%AB%2C_%E3%82%80%E3%82%89%E3%81%8B%E3%81%BF%2C_%E3%81%95%E3%81%A3%E3%81%BD%E3%82%8D%E3%81%97%2C_%E3%81%BB%E3%81%A3%E3%81%8B%E3%81%84%E3%81%A9%E3%81%86%2C_%E3%81%AB%E3%81%A3%E3%81%BD%E3%82%93%2C_%E3%81%AB%E3%81%BB%E3%82%93_%2832871711757%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%B5%B7%E8%86%BD%E4%B8%BC%2C_%E6%B5%B7%E8%86%BD%E7%B2%A5%2C_%E6%B5%B7%E8%86%BD%E8%9B%8B%E6%8D%B2%2C_%E7%84%97%E7%83%A4%E6%B5%B7%E8%86%BD%2C_%E6%9D%91%E4%B8%8A%E6%B5%B7%E8%86%BD%2C_%E6%9C%AD%E5%B9%8C%2C_%E5%8C%97%E6%B5%B7%E9%81%93%2C_%E6%97%A5%E6%9C%AC%2C_Uni_Murakami%2C_Sapporo%2C_Hokkaido%2C_Japan%2C_%E5%87%BD%E9%A4%A8%E3%81%86%E3%81%AB%2C_%E3%82%80%E3%82%89%E3%81%8B%E3%81%BF%2C_%E3%81%95%E3%81%A3%E3%81%BD%E3%82%8D%E3%81%97%2C_%E3%81%BB%E3%81%A3%E3%81%8B%E3%81%84%E3%81%A9%E3%81%86%2C_%E3%81%AB%E3%81%A3%E3%81%BD%E3%82%93%2C_%E3%81%AB%E3%81%BB%E3%82%93_%2832871711757%29.jpg",
+  "mapcode": "9 522 434*26",
+  "mcLL": "43.06486,141.3502"
  },
  {
   "id": 498,
@@ -26601,7 +27593,9 @@ window.PLACES = [
   "phone": "050-5486-4429",
   "url": "http://r.gnavi.co.jp/6sfnes5x0000/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_121-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 144*60",
+  "mcLL": "43.05358,141.35306"
  },
  {
   "id": 499,
@@ -26635,7 +27629,9 @@ window.PLACES = [
   "phone": "011-207-5889",
   "url": "http://www.sapporocoffeekan.co.jp/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_237-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 522 207*62",
+  "mcLL": "43.0625,141.35385"
  },
  {
   "id": 500,
@@ -26669,7 +27665,9 @@ window.PLACES = [
   "phone": "011-864-8800",
   "url": "http://www.magicspice.net/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_329-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 440 572*68",
+  "mcLL": "43.0411,141.41357"
  },
  {
   "id": 501,
@@ -26711,7 +27709,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/501.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%9C%AD%E5%B9%8C%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3%E9%BA%BA%E5%B1%8B%E3%81%B2%E3%81%90%E3%81%BE%E5%95%86%E5%BA%97.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%9C%AD%E5%B9%8C%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3%E9%BA%BA%E5%B1%8B%E3%81%B2%E3%81%90%E3%81%BE%E5%95%86%E5%BA%97.jpg",
+  "mapcode": "9 492 239*27",
+  "mcLL": "43.05457,141.35439"
  },
  {
   "id": 502,
@@ -26745,7 +27745,9 @@ window.PLACES = [
   "phone": "011-219-3199",
   "url": "https://ichiryuan.com/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_308-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 523 630*00",
+  "mcLL": "43.06672,141.35472"
  },
  {
   "id": 503,
@@ -26779,7 +27781,9 @@ window.PLACES = [
   "phone": "011-219-6455",
   "url": "https://tabelog.com/hokkaido/A0101/A010103/1000194/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_128-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 358*08",
+  "mcLL": "43.05561,141.35413"
  },
  {
   "id": 504,
@@ -26821,7 +27825,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/504.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kirin_beer-en_Sapporo01n4272.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kirin_beer-en_Sapporo01n4272.jpg",
+  "mapcode": "9 492 412*22",
+  "mcLL": "43.05631,141.35237"
  },
  {
   "id": 505,
@@ -26855,7 +27861,9 @@ window.PLACES = [
   "phone": "011-531-3575",
   "url": "http://sushisekiguchi.com/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_231-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 203*42",
+  "mcLL": "43.05435,141.35284"
  },
  {
   "id": 506,
@@ -26889,7 +27897,9 @@ window.PLACES = [
   "phone": "011-511-0403",
   "url": "http://www.houryu.co.jp/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_338-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 493 090*42",
+  "mcLL": "43.05353,141.35478"
  },
  {
   "id": 507,
@@ -26923,7 +27933,9 @@ window.PLACES = [
   "phone": "011-563-2228",
   "url": "https://hitosara.com/0006032847/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_648/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 209*04",
+  "mcLL": "43.05425,141.35448"
  },
  {
   "id": 508,
@@ -26957,7 +27969,9 @@ window.PLACES = [
   "phone": "0112220298",
   "url": "https://steak-wine-ishizaki.jp/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_626/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 358*08",
+  "mcLL": "43.05561,141.35413"
  },
  {
   "id": 509,
@@ -26991,7 +28005,9 @@ window.PLACES = [
   "phone": "011-231-0377",
   "url": "http://www.ajino-sanpei.com/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_130-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 685*33",
+  "mcLL": "43.05881,141.35335"
  },
  {
   "id": 510,
@@ -27025,7 +28041,9 @@ window.PLACES = [
   "phone": "011-219-8338",
   "url": "https://www.gdiningsapporo.com/gourmet/tavern/uozakura_saki/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_77-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 447*37",
+  "mcLL": "43.05653,141.35393"
  },
  {
   "id": 511,
@@ -27059,7 +28077,9 @@ window.PLACES = [
   "phone": "080-8286-3289",
   "url": "https://22percent-market.jp/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_79-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 522 047*61",
+  "mcLL": "43.06107,141.35115"
  },
  {
   "id": 512,
@@ -27108,7 +28128,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/512.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%99%BD%E6%A8%BA%E5%B1%B1%E8%8D%98%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%99%BD%E6%A8%BA%E5%B1%B1%E8%8D%98%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3.jpg",
+  "mapcode": "9 492 239*27",
+  "mcLL": "43.05457,141.35439"
  },
  {
   "id": 513,
@@ -27142,7 +28164,9 @@ window.PLACES = [
   "phone": "011-520-9100",
   "url": "https://hinokisapporo.com/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_129-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 203*42",
+  "mcLL": "43.05435,141.35284"
  },
  {
   "id": 514,
@@ -27176,7 +28200,9 @@ window.PLACES = [
   "phone": "011-241-4646",
   "url": "http://koropokkuru.co.jp/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_103-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 322*10",
+  "mcLL": "43.05533,141.35259"
  },
  {
   "id": 515,
@@ -27210,7 +28236,9 @@ window.PLACES = [
   "phone": "011-758-8758",
   "url": "http://cocoro-soupcurry.com/ja/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_80-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 582 181*16",
+  "mcLL": "43.07919,141.34676"
  },
  {
   "id": 516,
@@ -27244,7 +28272,9 @@ window.PLACES = [
   "phone": "011-218-7777",
   "url": "https://www.instagram.com/cafeouchi/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_330/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 394*37",
+  "mcLL": "43.05624,141.34752"
  },
  {
   "id": 517,
@@ -27278,7 +28308,9 @@ window.PLACES = [
   "phone": "011-512-0238",
   "url": "https://ajino-hitsujigaoka.com/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_328-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 144*60",
+  "mcLL": "43.05358,141.35306"
  },
  {
   "id": 518,
@@ -27312,7 +28344,9 @@ window.PLACES = [
   "phone": "011-219-1235",
   "url": "http://curryshop-s.com/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_117-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 441*34",
+  "mcLL": "43.05658,141.35225"
  },
  {
   "id": 519,
@@ -27358,7 +28392,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/519.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%A5%A5%E8%8A%9D%E5%95%86%E5%BA%97_%285059803410%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%A5%A5%E8%8A%9D%E5%95%86%E5%BA%97_%285059803410%29.jpg",
+  "mapcode": "9 523 630*00",
+  "mcLL": "43.06672,141.35472"
  },
  {
   "id": 520,
@@ -27392,7 +28428,9 @@ window.PLACES = [
   "phone": "011-521-0888",
   "url": "https://suginome.jp",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_344-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 168*12",
+  "mcLL": "43.054,141.35146"
  },
  {
   "id": 521,
@@ -27425,7 +28463,9 @@ window.PLACES = [
   "addrJa": "札幌市中央区南5条西3丁目 元祖さっぽろラーメン横丁内",
   "phone": "011-513-1208",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_29/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 239*27",
+  "mcLL": "43.05457,141.35439"
  },
  {
   "id": 522,
@@ -27459,7 +28499,9 @@ window.PLACES = [
   "phone": "011-823-2211",
   "url": "https://011bros.com/shop/hiragishi",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_50-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 405 748*16",
+  "mcLL": "43.03421,141.37926"
  },
  {
   "id": 523,
@@ -27493,7 +28535,9 @@ window.PLACES = [
   "phone": "011-513-3548",
   "url": "https://www.sukiyaki-sankousha.jp/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_310-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 493 364*85",
+  "mcLL": "43.05587,141.3557"
  },
  {
   "id": 524,
@@ -27527,7 +28571,9 @@ window.PLACES = [
   "phone": "011-221-1260",
   "url": "http://www.kofuji.com/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_260-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 522 350*64",
+  "mcLL": "43.06388,141.35199"
  },
  {
   "id": 525,
@@ -27561,7 +28607,9 @@ window.PLACES = [
   "phone": "011-522-5340",
   "url": "http://elizabethgyoza.com/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_348/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 493 430*46",
+  "mcLL": "43.05653,141.35761"
  },
  {
   "id": 526,
@@ -27602,7 +28650,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/526.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%89%E3%81%A3%E3%81%8D%E3%82%87_2011_%285427654935%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%89%E3%81%A3%E3%81%8D%E3%82%87_2011_%285427654935%29.jpg",
+  "mapcode": "9 577 283*67",
+  "mcLL": "43.07994,141.30837"
  },
  {
   "id": 527,
@@ -27636,7 +28686,9 @@ window.PLACES = [
   "phone": "011-521-3046",
   "url": "http://www.hyousetsu.co.jp/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_205-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 493 214*31",
+  "mcLL": "43.05461,141.35586"
  },
  {
   "id": 528,
@@ -27670,7 +28722,9 @@ window.PLACES = [
   "phone": "011-600-6674",
   "url": "https://izakaya-marukawa.com/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_885/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 412*22",
+  "mcLL": "43.05631,141.35237"
  },
  {
   "id": 529,
@@ -27704,7 +28758,9 @@ window.PLACES = [
   "phone": "011-376-1618",
   "url": "http://www.aiirocurry.com",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_42-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 317 240*07",
+  "mcLL": "43.00476,141.38808"
  },
  {
   "id": 530,
@@ -27737,7 +28793,9 @@ window.PLACES = [
   "addrJa": "札幌市清田区北野3条3丁目15-30アーバンスクエア北野1F",
   "phone": "011-376-0730",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_340-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 322 778*88",
+  "mcLL": "43.00951,141.43738"
  },
  {
   "id": 531,
@@ -27783,7 +28841,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/531.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E9%9B%AA%E5%8D%B0%E3%83%91%E3%83%BC%E3%83%A9%E3%83%BC%E3%81%AE%E3%82%BD%E3%83%95%E3%83%88%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%A01.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E9%9B%AA%E5%8D%B0%E3%83%91%E3%83%BC%E3%83%A9%E3%83%BC%E3%81%AE%E3%82%BD%E3%83%95%E3%83%88%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%A01.jpg",
+  "mapcode": "9 522 349*67",
+  "mcLL": "43.06384,141.35169"
  },
  {
   "id": 532,
@@ -27817,7 +28877,9 @@ window.PLACES = [
   "phone": "011-251-8721",
   "url": "https://www.gyu-ishizaki.com/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_605/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 477*26",
+  "mcLL": "43.05679,141.35381"
  },
  {
   "id": 533,
@@ -27850,7 +28912,9 @@ window.PLACES = [
   "addrJa": "札幌市中央区北11条西22丁目1-26",
   "phone": "011-640-2333",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_600-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 548 147*34",
+  "mcLL": "43.07045,141.32059"
  },
  {
   "id": 534,
@@ -27884,7 +28948,9 @@ window.PLACES = [
   "phone": "011-871-6341",
   "url": "http://www.sapporo634.com/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_297-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 501 474*77",
+  "mcLL": "43.0566,141.42818"
  },
  {
   "id": 535,
@@ -27919,7 +28985,9 @@ window.PLACES = [
   "phone": "011-231-1500",
   "url": "https://www.gyokusuien.co.jp",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_873/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 493 852*82",
+  "mcLL": "43.06036,141.35792"
  },
  {
   "id": 536,
@@ -27952,7 +29020,9 @@ window.PLACES = [
   "phone": "011-532-7887",
   "url": "https://g-nanda.com/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_615/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 493 214*31",
+  "mcLL": "43.05461,141.35586"
  },
  {
   "id": 537,
@@ -27986,7 +29056,9 @@ window.PLACES = [
   "phone": "050-5486-7707",
   "url": "https://ha6f801.gorp.jp/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_72-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 522 505*05",
+  "mcLL": "43.06531,141.3533"
  },
  {
   "id": 538,
@@ -28020,7 +29092,9 @@ window.PLACES = [
   "phone": "011-233-4614",
   "url": "https://kunizushi.com/index.html",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_352/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 522 201*77",
+  "mcLL": "43.06244,141.35236"
  },
  {
   "id": 539,
@@ -28054,7 +29128,9 @@ window.PLACES = [
   "phone": "011-252-7373",
   "url": "https://www.sapporokanikosen.com/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_107-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 493 733*53",
+  "mcLL": "43.05918,141.35823"
  },
  {
   "id": 540,
@@ -28088,7 +29164,9 @@ window.PLACES = [
   "phone": "011-351-6395",
   "url": "https://antochato.com/",
   "ref": "https://www.sapporo.travel/gourmet/shop/shop_849/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 493 453*08",
+  "mcLL": "43.05674,141.35553"
  },
  {
   "id": 541,
@@ -28122,7 +29200,9 @@ window.PLACES = [
   "phone": "011-590-6654",
   "url": "https://yamanokazemachi.com/about/",
   "ref": "https://www.sapporo.travel/gourmet/shop/yamanokazemachi/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "708 785 312*18",
+  "mcLL": "42.972,141.16647"
  },
  {
   "id": 542,
@@ -28156,7 +29236,9 @@ window.PLACES = [
   "phone": "011-598-2142(",
   "url": "https://www.jyozankei-daiichi.co.jp/sakano_ueno_monaka/",
   "ref": "https://www.sapporo.travel/gourmet/shop/sakano_ueno_monaka/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "708 754 807*17",
+  "mcLL": "42.96809,141.16237"
  },
  {
   "id": 543,
@@ -28190,7 +29272,9 @@ window.PLACES = [
   "phone": "011-596-9131",
   "url": "https://amenohito.com/yuki/",
   "ref": "https://www.sapporo.travel/gourmet/shop/amenohiyukinohi/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "708 785 428*64",
+  "mcLL": "42.97306,141.16534"
  },
  {
   "id": 544,
@@ -28224,7 +29308,9 @@ window.PLACES = [
   "phone": "011-512-5993",
   "url": "https://www.s-sandwich.com/",
   "ref": "https://www.sapporo.travel/gourmet/shop/sandria/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 461 598*62",
+  "mcLL": "43.04944,141.34582"
  },
  {
   "id": 545,
@@ -28267,7 +29353,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/545.jpg",
-  "imgCredit": "https://www.flickr.com/photos/7940758@N07/45387226355"
+  "imgCredit": "https://www.flickr.com/photos/7940758@N07/45387226355",
+  "mapcode": "9 522 315*81",
+  "mcLL": "43.06368,141.35049"
  },
  {
   "id": 546,
@@ -28301,7 +29389,9 @@ window.PLACES = [
   "phone": "050-5488-8035",
   "url": "https://ha6u000.gorp.jp/",
   "ref": "https://www.sapporo.travel/gourmet/shop/meidai-nigirimeshi-rice-ball/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 084*45",
+  "mcLL": "43.05318,141.35313"
  },
  {
   "id": 547,
@@ -28335,7 +29425,9 @@ window.PLACES = [
   "phone": "050-5486-2934",
   "url": "https://kissyou.gorp.jp/",
   "ref": "https://www.sapporo.travel/gourmet/shop/local_sake_izakaya_kissyou/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 522 166*68",
+  "mcLL": "43.06221,141.35082"
  },
  {
   "id": 548,
@@ -28369,7 +29461,9 @@ window.PLACES = [
   "phone": "011-522-5100",
   "url": "http://kobayashi-honten.co.jp/funaba",
   "ref": "https://www.sapporo.travel/gourmet/shop/local_sake_izakaya_maruta_nanabangura/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 346*16",
+  "mcLL": "43.05558,141.35092"
  },
  {
   "id": 549,
@@ -28403,7 +29497,9 @@ window.PLACES = [
   "phone": "011-218-5311",
   "url": "https://moonsunbrewing.jp/",
   "ref": "https://www.sapporo.travel/gourmet/shop/moon-and-sun-craft-beer-brewery-and-bar/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 493 584*60",
+  "mcLL": "43.05775,141.3586"
  },
  {
   "id": 550,
@@ -28444,7 +29540,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/550.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kindaitei.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kindaitei.jpg",
+  "mapcode": "514 283 485*71",
+  "mcLL": "43.24857,141.35622"
  },
  {
   "id": 551,
@@ -28494,7 +29592,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/551.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:220722_THE_CAFE_of_Miyakoshiya_Coffee_Sapporo_Hokkaido_Japan01s5.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:220722_THE_CAFE_of_Miyakoshiya_Coffee_Sapporo_Hokkaido_Japan01s5.jpg",
+  "mapcode": "9 488 131*25",
+  "mcLL": "43.05375,141.31601"
  },
  {
   "id": 552,
@@ -28527,7 +29627,9 @@ window.PLACES = [
   "addrJa": "札幌市中央区南4条西1丁目",
   "phone": "011-261-2320",
   "ref": "https://www.sapporo.travel/gourmet/shop/ice-cream-penguin-dou/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 493 400*87",
+  "mcLL": "43.05614,141.35744"
  },
  {
   "id": 553,
@@ -28561,7 +29663,9 @@ window.PLACES = [
   "phone": "011-592-5151",
   "url": "https://www.karinju.com/",
   "ref": "https://www.sapporo.travel/gourmet/shop/gelato-sapporo-karinju/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 131 830*38",
+  "mcLL": "42.96017,141.3436"
  },
  {
   "id": 554,
@@ -28604,7 +29708,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/554.jpg",
-  "imgCredit": "https://www.flickr.com/photos/76144963@N00/16040157925"
+  "imgCredit": "https://www.flickr.com/photos/76144963@N00/16040157925",
+  "mapcode": "9 492 441*34",
+  "mcLL": "43.05658,141.35225"
  },
  {
   "id": 555,
@@ -28638,7 +29744,9 @@ window.PLACES = [
   "phone": "011-251-1087",
   "url": "https://twitter.com/kalahana7",
   "ref": "https://www.sapporo.travel/gourmet/shop/kalahana/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "9 492 454*28",
+  "mcLL": "43.05681,141.34738"
  },
  {
   "id": 556,
@@ -28676,7 +29784,9 @@ window.PLACES = [
   "phone": "0134-31-3041",
   "url": "http://www.uedabussan.co.jp",
   "ref": "https://otaru.gr.jp/shop/yanshu",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 691 007*56",
+  "mcLL": "43.19408,141.00659"
  },
  {
   "id": 557,
@@ -28715,7 +29825,9 @@ window.PLACES = [
   "phone": "050-3628-1983",
   "url": "https://www.livelyhotels.com/ja/unwindotaru/theball/",
   "ref": "https://otaru.gr.jp/shop/the-ball-otaru",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 690 346*21",
+  "mcLL": "43.19735,141.00079"
  },
  {
   "id": 558,
@@ -28753,7 +29865,9 @@ window.PLACES = [
   "phone": "0134-25-4040",
   "url": "http://www.shikamazushi.co.jp/",
   "ref": "https://otaru.gr.jp/shop/shikamazushi",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 660 794*00",
+  "mcLL": "43.1931,141.00032"
  },
  {
   "id": 559,
@@ -28787,7 +29901,9 @@ window.PLACES = [
   "phone": "0134-33-0232",
   "url": "http://www.fujizushi.co.jp",
   "ref": "https://otaru.gr.jp/shop/fujizushi",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 691 007*56",
+  "mcLL": "43.19408,141.00659"
  },
  {
   "id": 560,
@@ -28839,7 +29955,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/560.jpg",
-  "imgCredit": "https://www.flickr.com/photos/11641353@N07/2237454575"
+  "imgCredit": "https://www.flickr.com/photos/11641353@N07/2237454575",
+  "mapcode": "493 690 346*21",
+  "mcLL": "43.19735,141.00079"
  },
  {
   "id": 561,
@@ -28886,7 +30004,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/561.jpg",
-  "imgCredit": "https://www.flickr.com/photos/7940758@N07/51757035365"
+  "imgCredit": "https://www.flickr.com/photos/7940758@N07/51757035365",
+  "mapcode": "493 691 007*56",
+  "mcLL": "43.19408,141.00659"
  },
  {
   "id": 562,
@@ -28924,7 +30044,9 @@ window.PLACES = [
   "phone": "0134-22-4730",
   "url": "https://hitosara.com/0005019223/",
   "ref": "https://otaru.gr.jp/shop/robataya-tsurukichi-honten",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 660 728*27",
+  "mcLL": "43.19259,140.99857"
  },
  {
   "id": 563,
@@ -28961,7 +30083,9 @@ window.PLACES = [
   "addrJa": "小樽市東雲町2-4",
   "phone": "0134-65-5588",
   "ref": "https://otaru.gr.jp/shop/otaru-kaisen-shinkai",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 690 108*84",
+  "mcLL": "43.19506,141.00134"
  },
  {
   "id": 564,
@@ -29007,7 +30131,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/564.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Amato-Otaru.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Amato-Otaru.JPG",
+  "mapcode": "493 690 210*73",
+  "mcLL": "43.19608,140.99651"
  },
  {
   "id": 565,
@@ -29045,7 +30171,9 @@ window.PLACES = [
   "phone": "0134-32-0680",
   "url": "http://otaru-hao.com/",
   "ref": "https://otaru.gr.jp/shop/cyuukaresutoran-hao",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 690 441*62",
+  "mcLL": "43.19802,141.00221"
  },
  {
   "id": 566,
@@ -29083,7 +30211,9 @@ window.PLACES = [
   "phone": "0134-61-1478",
   "url": "http://www.otaru-poseidon.jp/",
   "ref": "https://otaru.gr.jp/shop/otaru-poseidon",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 661 875*82",
+  "mcLL": "43.19395,141.006"
  },
  {
   "id": 567,
@@ -29118,7 +30248,9 @@ window.PLACES = [
   "phone": "0134-33-5610",
   "url": "http://www.goldstone.co.jp",
   "ref": "https://otaru.gr.jp/shop/goldstone-cafe",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 720 189*32",
+  "mcLL": "43.20433,140.99889"
  },
  {
   "id": 568,
@@ -29156,7 +30288,9 @@ window.PLACES = [
   "phone": "0134-64-5593",
   "url": "http://www.donburi.jp",
   "ref": "https://otaru.gr.jp/shop/donburichaya-sakaimachi",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 691 150*37",
+  "mcLL": "43.19564,141.00478"
  },
  {
   "id": 569,
@@ -29210,7 +30344,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/569.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%B5%B7%E9%AE%AE%E4%B8%BC%2C_%E5%85%AB%E8%A7%92%E9%AD%9A%E7%94%9F%E9%AD%9A%E7%89%87%2C_%E6%BB%9D%E6%B3%A2%E9%A3%9F%E5%A0%82%2C_%E6%BB%9D%E6%B3%A2%E5%95%86%E5%BA%97%2C_%E5%8C%97%E3%81%AE%E3%81%A9%E3%82%93%E3%81%B6%E3%82%8A%E5%B1%8B%2C_%E4%B8%89%E8%A7%92%E5%B8%82%E5%A0%B4%2C_%E5%B0%8F%E6%A8%BD%2C_%E5%8C%97%E6%B5%B7%E9%81%93%2C_%E6%97%A5%E6%9C%AC%2C_Otaru%2C_Hokkaido%2C_Japan%2C_%E3%81%8A%E3%81%9F%E3%82%8B%E3%81%97%2C_%E3%81%BB%E3%81%A3%E3%81%8B%E3%81%84%E3%81%A9%E3%81%86%2C_%E3%81%AB%E3%81%A3%E3%81%BD%E3%82%93%2C_%E3%81%AB%E3%81%BB%E3%82%93_%2832871715037%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%B5%B7%E9%AE%AE%E4%B8%BC%2C_%E5%85%AB%E8%A7%92%E9%AD%9A%E7%94%9F%E9%AD%9A%E7%89%87%2C_%E6%BB%9D%E6%B3%A2%E9%A3%9F%E5%A0%82%2C_%E6%BB%9D%E6%B3%A2%E5%95%86%E5%BA%97%2C_%E5%8C%97%E3%81%AE%E3%81%A9%E3%82%93%E3%81%B6%E3%82%8A%E5%B1%8B%2C_%E4%B8%89%E8%A7%92%E5%B8%82%E5%A0%B4%2C_%E5%B0%8F%E6%A8%BD%2C_%E5%8C%97%E6%B5%B7%E9%81%93%2C_%E6%97%A5%E6%9C%AC%2C_Otaru%2C_Hokkaido%2C_Japan%2C_%E3%81%8A%E3%81%9F%E3%82%8B%E3%81%97%2C_%E3%81%BB%E3%81%A3%E3%81%8B%E3%81%84%E3%81%A9%E3%81%86%2C_%E3%81%AB%E3%81%A3%E3%81%BD%E3%82%93%2C_%E3%81%AB%E3%81%BB%E3%82%93_%2832871715037%29.jpg",
+  "mapcode": "164 719 501*33",
+  "mcLL": "43.19878,140.99391"
  },
  {
   "id": 570,
@@ -29248,7 +30384,9 @@ window.PLACES = [
   "phone": "0134-33-3773",
   "url": "http://www.otarusushi.com/nihonbashi/",
   "ref": "https://otaru.gr.jp/shop/nihonbashi",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 690 071*07",
+  "mcLL": "43.19473,140.99951"
  },
  {
   "id": 571,
@@ -29282,7 +30420,9 @@ window.PLACES = [
   "phone": "0134-28-2333",
   "url": "https://restaurant-ao.com/",
   "ref": "https://otaru.gr.jp/shop/restaurant-ao",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "164 739 897*24",
+  "mcLL": "43.2107,140.91219"
  },
  {
   "id": 572,
@@ -29319,7 +30459,9 @@ window.PLACES = [
   "addrJa": "小樽市花園1-8-1",
   "phone": "0134-33-4664",
   "ref": "https://otaru.gr.jp/shop/kurage",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 660 728*27",
+  "mcLL": "43.19259,140.99857"
  },
  {
   "id": 573,
@@ -29357,7 +30499,9 @@ window.PLACES = [
   "phone": "0134-26-6464",
   "url": "https://otaru-hokushoan.jp/",
   "ref": "https://otaru.gr.jp/shop/otaru_hokushoan",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 690 551*01",
+  "mcLL": "43.19921,140.99951"
  },
  {
   "id": 574,
@@ -29394,7 +30538,9 @@ window.PLACES = [
   "addrJa": "北海道小樽市色内1-5-16 1F",
   "phone": "0134-21-7600",
   "ref": "https://otaru.gr.jp/shop/otaru-urokobanya",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 690 555*83",
+  "mcLL": "43.19925,141.00049"
  },
  {
   "id": 575,
@@ -29444,7 +30590,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/575.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Nabeyaki_udon_at_Yabuhan_Soba_%E5%B0%8F%E6%A8%BD%E8%95%8E%E9%BA%A6%E5%B1%8B_%E7%B1%94%E5%8D%8A_in_Otaru%2C_Hokkaido%2C_Japan_%2874%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Nabeyaki_udon_at_Yabuhan_Soba_%E5%B0%8F%E6%A8%BD%E8%95%8E%E9%BA%A6%E5%B1%8B_%E7%B1%94%E5%8D%8A_in_Otaru%2C_Hokkaido%2C_Japan_%2874%29.jpg",
+  "mapcode": "164 719 267*12",
+  "mcLL": "43.19647,140.99564"
  },
  {
   "id": 576,
@@ -29481,7 +30629,9 @@ window.PLACES = [
   "addrJa": "小樽市稲穂1丁目4-15",
   "url": "http://otaruyataimura.jp/",
   "ref": "https://otaru.gr.jp/shop/otaruyataimura-rengayokocho",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 690 067*23",
+  "mcLL": "43.19488,140.99826"
  },
  {
   "id": 577,
@@ -29519,7 +30669,9 @@ window.PLACES = [
   "phone": "0134-22-9652",
   "url": "http://otaru-takeda.com",
   "ref": "https://otaru.gr.jp/shop/otaru-takeda",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "164 719 501*33",
+  "mcLL": "43.19878,140.99391"
  },
  {
   "id": 578,
@@ -29553,7 +30705,9 @@ window.PLACES = [
   "phone": "0134-24-0000",
   "url": "http://www.kahisakan.jp/",
   "ref": "https://otaru.gr.jp/shop/kahisakan",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 691 007*56",
+  "mcLL": "43.19408,141.00659"
  },
  {
   "id": 579,
@@ -29590,7 +30744,9 @@ window.PLACES = [
   "addrJa": "小樽市稲穂1-3-6 サンモール商店街内",
   "phone": "0134-33-3500",
   "ref": "https://otaru.gr.jp/shop/newsanko",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 690 158*48",
+  "mcLL": "43.1957,140.9987"
  },
  {
   "id": 580,
@@ -29628,7 +30784,9 @@ window.PLACES = [
   "phone": "0134-31-4511",
   "url": "https://www.letao-brand.jp/shop/nouvellems/",
   "ref": "https://otaru.gr.jp/shop/nouvelle-vague",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 661 875*82",
+  "mcLL": "43.19395,141.006"
  },
  {
   "id": 581,
@@ -29680,7 +30838,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/581.jpg",
-  "imgCredit": "https://www.flickr.com/photos/7940758@N07/51756400353"
+  "imgCredit": "https://www.flickr.com/photos/7940758@N07/51756400353",
+  "mapcode": "493 691 150*37",
+  "mcLL": "43.19564,141.00478"
  },
  {
   "id": 582,
@@ -29718,7 +30878,9 @@ window.PLACES = [
   "phone": "0134-23-1540",
   "url": "https://otaru-yamatoya.net/",
   "ref": "https://otaru.gr.jp/shop/otaru-yamatoya",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "164 719 599*85",
+  "mcLL": "43.19945,140.996"
  },
  {
   "id": 583,
@@ -29769,7 +30931,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/583.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Former_Kubo_Store01s3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Former_Kubo_Store01s3.jpg",
+  "mapcode": "493 661 875*82",
+  "mcLL": "43.19395,141.006"
  },
  {
   "id": 584,
@@ -29807,7 +30971,9 @@ window.PLACES = [
   "phone": "0134-23-9727",
   "url": "https://www.otaruezoya.com/",
   "ref": "https://otaru.gr.jp/shop/otaru_ezoya",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 690 175*52",
+  "mcLL": "43.19552,141.00323"
  },
  {
   "id": 585,
@@ -29841,7 +31007,9 @@ window.PLACES = [
   "phone": "0134-64-1159",
   "url": "https://www.instagram.com/takeda_no_zangi",
   "ref": "https://otaru.gr.jp/shop/takedanozangi",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 661 875*82",
+  "mcLL": "43.19395,141.006"
  },
  {
   "id": 586,
@@ -29891,7 +31059,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/586.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Otaru_ShinNantaruMarket_2.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Otaru_ShinNantaruMarket_2.JPG",
+  "mapcode": "493 662 300*37",
+  "mcLL": "43.18872,141.01312"
  },
  {
   "id": 587,
@@ -29928,7 +31098,9 @@ window.PLACES = [
   "addrJa": "小樽市色内1-6-18",
   "phone": "0134-27-5123",
   "ref": "https://otaru.gr.jp/shop/yamanaka-farm-otarushop",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 690 551*01",
+  "mcLL": "43.19921,140.99951"
  },
  {
   "id": 588,
@@ -29962,7 +31134,9 @@ window.PLACES = [
   "phone": "090-4406-8603",
   "url": "https://www.instagram.com/otarumeowlegend",
   "ref": "https://otaru.gr.jp/shop/nekodensetsu-no-machi",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 690 259*53",
+  "mcLL": "43.19635,141.00159"
  },
  {
   "id": 589,
@@ -30002,7 +31176,9 @@ window.PLACES = [
   "phone": "0135-32-2285",
   "url": "http://www.sakuranboyama.net/",
   "ref": "https://otaru.gr.jp/shop/sakuranboyamafarm",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "654 449 076*45",
+  "mcLL": "43.11983,140.74263"
  },
  {
   "id": 590,
@@ -30040,7 +31216,9 @@ window.PLACES = [
   "phone": "0134-29-0119",
   "url": "http://www.shobobanya.jp/index.html",
   "ref": "https://otaru.gr.jp/shop/shobobanya",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 660 542*38",
+  "mcLL": "43.19096,140.99695"
  },
  {
   "id": 591,
@@ -30074,7 +31252,9 @@ window.PLACES = [
   "phone": "0134-25-1505",
   "url": "https://www.otaru-takenosushi.net/",
   "ref": "https://otaru.gr.jp/shop/takenosushi",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 690 175*52",
+  "mcLL": "43.19552,141.00323"
  },
  {
   "id": 592,
@@ -30112,7 +31292,9 @@ window.PLACES = [
   "phone": "0134-33-2626",
   "url": "https://syodai.jp/",
   "ref": "https://otaru.gr.jp/shop/syodai",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 661 109*07",
+  "mcLL": "43.18666,141.01006"
  },
  {
   "id": 593,
@@ -30146,7 +31328,9 @@ window.PLACES = [
   "phone": "0134-54-8287",
   "url": "http://hitosara.com/0006054706/",
   "ref": "https://otaru.gr.jp/shop/tororian",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 604 134*62",
+  "mcLL": "43.17027,141.03361"
  },
  {
   "id": 594,
@@ -30200,7 +31384,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/594.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Nitori_Otaru_Art_Base_01.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Nitori_Otaru_Art_Base_01.jpg",
+  "mapcode": "493 690 441*62",
+  "mcLL": "43.19802,141.00221"
  },
  {
   "id": 595,
@@ -30242,7 +31428,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/595.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Otaru_City_Temiya_Cavern_Preservation_Center.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Otaru_City_Temiya_Cavern_Preservation_Center.jpg",
+  "mapcode": "493 750 074*86",
+  "mcLL": "43.2114,141.0002"
  },
  {
   "id": 596,
@@ -30289,7 +31477,9 @@ window.PLACES = [
   "phone": "0134-29-3131",
   "url": "http://otaru-kankousen.jp/",
   "ref": "https://otaru.gr.jp/shop/kankousen",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 720 045*13",
+  "mcLL": "43.20285,141.00066"
  },
  {
   "id": 597,
@@ -30336,7 +31526,9 @@ window.PLACES = [
   "phone": "0134-23-8942",
   "url": "https://tuusen.com",
   "ref": "https://otaru.gr.jp/shop/tuusen-co-ltd",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 720 189*32",
+  "mcLL": "43.20433,140.99889"
  },
  {
   "id": 598,
@@ -30383,7 +31575,9 @@ window.PLACES = [
   "phone": "090-7621-1092",
   "url": "http://otaru-gb.jp/",
   "ref": "https://otaru.gr.jp/shop/otaruglassboar",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 812 846*48",
+  "mcLL": "43.23539,141.01482"
  },
  {
   "id": 599,
@@ -30429,7 +31623,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/599.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Noh_Stage_Otaru.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Noh_Stage_Otaru.jpg",
+  "mapcode": "164 659 845*12",
+  "mcLL": "43.18536,140.98955"
  },
  {
   "id": 600,
@@ -30481,7 +31677,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/600.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E8%8C%A8%E6%9C%A8%E5%AE%B6%E4%B8%AD%E5%87%BA%E5%BC%B5%E7%95%AA%E5%B1%8B.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E8%8C%A8%E6%9C%A8%E5%AE%B6%E4%B8%AD%E5%87%BA%E5%BC%B5%E7%95%AA%E5%B1%8B.jpg",
+  "mapcode": "493 811 860*42",
+  "mcLL": "43.23542,141.01036"
  },
  {
   "id": 601,
@@ -30526,7 +31724,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/601.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%97%A7%E5%B0%8F%E6%A8%BD%E5%80%89%E5%BA%AB%EF%BC%882024%E5%B9%B4%E9%81%8B%E6%B2%B3%E3%83%97%E3%83%A9%E3%82%B6%E6%99%82%E4%BB%A3%EF%BC%89.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%97%A7%E5%B0%8F%E6%A8%BD%E5%80%89%E5%BA%AB%EF%BC%882024%E5%B9%B4%E9%81%8B%E6%B2%B3%E3%83%97%E3%83%A9%E3%82%B6%E6%99%82%E4%BB%A3%EF%BC%89.jpg",
+  "mapcode": "493 690 533*28",
+  "mcLL": "43.19903,141.00269"
  },
  {
   "id": 602,
@@ -30580,7 +31780,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/602.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:220721_Former_Naniwa_Warehouse_Otaru_Hokkaido_Japan03s3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:220721_Former_Naniwa_Warehouse_Otaru_Hokkaido_Japan03s3.jpg",
+  "mapcode": "493 690 358*43",
+  "mcLL": "43.19739,141.00429"
  },
  {
   "id": 603,
@@ -30617,7 +31819,9 @@ window.PLACES = [
   "addrJa": "小樽市稲穂2丁目2番7号 小町屋ビル2階",
   "phone": "080-8627-5761",
   "ref": "https://otaru.gr.jp/shop/rent-kimono_otarukomachi",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 690 217*37",
+  "mcLL": "43.19622,140.99838"
  },
  {
   "id": 604,
@@ -30651,7 +31855,9 @@ window.PLACES = [
   "phone": "0134-62-4635",
   "url": "http://www.jphorseriding.com/haruka/",
   "ref": "https://otaru.gr.jp/shop/haruka_horseranch",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 495 650*10",
+  "mcLL": "43.14173,141.12707"
  },
  {
   "id": 605,
@@ -30685,7 +31891,9 @@ window.PLACES = [
   "phone": "0134-25-1415",
   "url": "https://asaharaglass.com/contact/",
   "ref": "https://otaru.gr.jp/shop/asaharaglassblowing",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "164 599 705*21",
+  "mcLL": "43.16736,140.9922"
  },
  {
   "id": 606,
@@ -30727,7 +31935,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/606.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Niikuraya_20150813.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Niikuraya_20150813.jpg",
+  "mapcode": "493 660 847*82",
+  "mcLL": "43.19369,140.99824"
  },
  {
   "id": 607,
@@ -30783,7 +31993,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/607.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kitaichi_glass.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kitaichi_glass.JPG",
+  "mapcode": "493 661 669*47",
+  "mcLL": "43.19206,141.00737"
  },
  {
   "id": 608,
@@ -30817,7 +32029,9 @@ window.PLACES = [
   "phone": "0570-043-011",
   "url": "https://www.nagasakiya.co.jp/store/shop_detail.php?shop_id=221",
   "ref": "https://otaru.gr.jp/shop/nagazakiya-donkihote",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "164 719 386*58",
+  "mcLL": "43.19743,140.99519"
  },
  {
   "id": 609,
@@ -30856,7 +32070,9 @@ window.PLACES = [
   "phone": "0134-33-5248",
   "url": "http://www.hokkaido-miyage.jp",
   "ref": "https://otaru.gr.jp/shop/kobushiya-otaru",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "493 691 007*56",
+  "mcLL": "43.19408,141.00659"
  },
  {
   "id": 610,
@@ -30893,7 +32109,9 @@ window.PLACES = [
   "addrJa": "富良野市朝日町1-35 (ナチュラクスホテル内)",
   "phone": "0167-22-1777",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=49",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 032 368*33",
+  "mcLL": "43.3477,142.39016"
  },
  {
   "id": 611,
@@ -30925,7 +32143,9 @@ window.PLACES = [
   "addrJa": "富良野市中五区",
   "phone": "0167-23-1156",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=70",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "550 840 173*43",
+  "mcLL": "43.32075,142.37775"
  },
  {
   "id": 612,
@@ -30972,7 +32192,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/612.jpg",
-  "imgCredit": "https://www.flickr.com/photos/64408374@N05/25798034614"
+  "imgCredit": "https://www.flickr.com/photos/64408374@N05/25798034614",
+  "mapcode": "450 058 386*01",
+  "mcLL": "43.34756,142.36187"
  },
  {
   "id": 613,
@@ -31005,7 +32227,9 @@ window.PLACES = [
   "addrJa": "富良野市東麓郷の3",
   "phone": "0167-29-2288",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=90",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "550 802 306*67",
+  "mcLL": "43.30524,142.55629"
  },
  {
   "id": 614,
@@ -31037,7 +32261,9 @@ window.PLACES = [
   "addrJa": "富良野市下五区",
   "phone": "0167-22-8929",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=97",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "550 871 824*64",
+  "mcLL": "43.33499,142.38352"
  },
  {
   "id": 615,
@@ -31070,7 +32296,9 @@ window.PLACES = [
   "addrJa": "富良野市下五区",
   "phone": "0167-22-8929",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=98",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "550 871 824*10",
+  "mcLL": "43.33506,142.38361"
  },
  {
   "id": 616,
@@ -31103,7 +32331,9 @@ window.PLACES = [
   "addrJa": "富良野市麓郷市街地の3",
   "phone": "0167-39-9088",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=99",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "550 798 046*17",
+  "mcLL": "43.30281,142.52583"
  },
  {
   "id": 617,
@@ -31145,7 +32375,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/617.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%83%95%E3%83%A9%E3%83%8E%E3%83%9E%E3%83%AB%E3%82%B7%E3%82%A7%E5%A4%96%E8%A6%B3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%83%95%E3%83%A9%E3%83%8E%E3%83%9E%E3%83%AB%E3%82%B7%E3%82%A7%E5%A4%96%E8%A6%B3.jpg",
+  "mapcode": "349 001 717*38",
+  "mcLL": "43.34237,142.38709"
  },
  {
   "id": 618,
@@ -31184,7 +32416,9 @@ window.PLACES = [
   "addrJa": "富良野市中五区",
   "phone": "090-2055-3926",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=112",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "550 781 470*07",
+  "mcLL": "43.30671,142.38521"
  },
  {
   "id": 619,
@@ -31221,7 +32455,9 @@ window.PLACES = [
   "addrJa": "富良野市朝日町4-7",
   "phone": "0167-22-2042",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=123",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 032 361*15",
+  "mcLL": "43.34752,142.38828"
  },
  {
   "id": 620,
@@ -31254,7 +32490,9 @@ window.PLACES = [
   "addrJa": "富良野市学田3区",
   "phone": "0167-22-2043",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=136",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "450 059 183*40",
+  "mcLL": "43.34599,142.36387"
  },
  {
   "id": 621,
@@ -31287,7 +32525,9 @@ window.PLACES = [
   "addrJa": "富良野市本町4-3",
   "phone": "0167-22-2514",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=153",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 031 386*27",
+  "mcLL": "43.34762,142.38678"
  },
  {
   "id": 622,
@@ -31320,7 +32560,9 @@ window.PLACES = [
   "addrJa": "富良野市朝日町1-24",
   "phone": "0167-23-2617",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=155",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 032 397*61",
+  "mcLL": "43.34776,142.38991"
  },
  {
   "id": 623,
@@ -31353,7 +32595,9 @@ window.PLACES = [
   "addrJa": "富良野市北の峰町20-29",
   "phone": "0167-22-5599",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=158",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "450 058 119*08",
+  "mcLL": "43.34506,142.36264"
  },
  {
   "id": 624,
@@ -31390,7 +32634,9 @@ window.PLACES = [
   "addrJa": "富良野市日の出町7-18",
   "phone": "0167-22-2484",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=159",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 032 243*40",
+  "mcLL": "43.34654,142.38887"
  },
  {
   "id": 625,
@@ -31423,7 +32669,9 @@ window.PLACES = [
   "addrJa": "富良野市幸町5-1",
   "phone": "0167-23-1234",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=160",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 031 088*46",
+  "mcLL": "43.34486,142.38747"
  },
  {
   "id": 626,
@@ -31456,7 +32704,9 @@ window.PLACES = [
   "addrJa": "富良野市若松町9-6",
   "phone": "0167-22-0070",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=161",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 031 019*31",
+  "mcLL": "43.34432,142.38493"
  },
  {
   "id": 627,
@@ -31489,7 +32739,9 @@ window.PLACES = [
   "addrJa": "富良野市朝日町4-14",
   "phone": "0167-39-1810",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=163",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 032 423*62",
+  "mcLL": "43.34805,142.38875"
  },
  {
   "id": 628,
@@ -31526,7 +32778,9 @@ window.PLACES = [
   "addrJa": "富良野市朝日町1-19",
   "phone": "0167-22-2376",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=171",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 032 337*43",
+  "mcLL": "43.34742,142.38997"
  },
  {
   "id": 629,
@@ -31563,7 +32817,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市本町7-1",
   "phone": "0167-23-1189",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=173",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 032 180*31",
+  "mcLL": "43.34598,142.38799"
  },
  {
   "id": 630,
@@ -31600,7 +32856,9 @@ window.PLACES = [
   "addrJa": "富良野市山部中町2-61",
   "phone": "0167-56-7727",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=174",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "450 059 030*46",
+  "mcLL": "43.34458,142.36303"
  },
  {
   "id": 631,
@@ -31637,7 +32895,9 @@ window.PLACES = [
   "addrJa": "富良野市本町1-14",
   "phone": "0167-22-2636",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=175",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 032 242*27",
+  "mcLL": "43.34651,142.38844"
  },
  {
   "id": 632,
@@ -31678,7 +32938,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/632.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%9F%B3%E8%87%BC%E6%8C%BD%E3%81%8D%E4%B8%AD%E8%8F%AF%E3%81%9D%E3%81%B0%EF%BC%88%E5%AF%8C%E8%89%AF%E9%87%8E%E3%81%A8%E3%81%BF%E5%B7%9D%EF%BC%89.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%9F%B3%E8%87%BC%E6%8C%BD%E3%81%8D%E4%B8%AD%E8%8F%AF%E3%81%9D%E3%81%B0%EF%BC%88%E5%AF%8C%E8%89%AF%E9%87%8E%E3%81%A8%E3%81%BF%E5%B7%9D%EF%BC%89.jpg",
+  "mapcode": "550 768 851*26",
+  "mcLL": "43.30208,142.52423"
  },
  {
   "id": 633,
@@ -31715,7 +32977,9 @@ window.PLACES = [
   "addrJa": "富良野市北の峰町3-38",
   "phone": "0167-22-5752",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=186",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "450 029 863*15",
+  "mcLL": "43.34364,142.36939"
  },
  {
   "id": 634,
@@ -31748,7 +33012,9 @@ window.PLACES = [
   "addrJa": "富良野市朝日町3-11",
   "phone": "0167-22-5540",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=190",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 032 454*87",
+  "mcLL": "43.34837,142.38901"
  },
  {
   "id": 635,
@@ -31781,7 +33047,9 @@ window.PLACES = [
   "addrJa": "富良野市緑町9-20",
   "phone": "0167-22-1045",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=191",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "550 873 692*30",
+  "mcLL": "43.33406,142.39684"
  },
  {
   "id": 636,
@@ -31814,7 +33082,9 @@ window.PLACES = [
   "addrJa": "富良野市日の出町12-29",
   "phone": "0167-22-0067",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=193",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 032 153*08",
+  "mcLL": "43.34562,142.38875"
  },
  {
   "id": 637,
@@ -31851,7 +33121,9 @@ window.PLACES = [
   "addrJa": "富良野市花園町2-12",
   "phone": "0167-22-4365",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=195",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 062 039*83",
+  "mcLL": "43.35287,142.39036"
  },
  {
   "id": 638,
@@ -31908,7 +33180,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/638.jpg",
-  "imgCredit": "https://www.flickr.com/photos/12452841@N00/53939766316"
+  "imgCredit": "https://www.flickr.com/photos/12452841@N00/53939766316",
+  "mapcode": "349 007 774*62",
+  "mcLL": "43.34278,142.43625"
  },
  {
   "id": 639,
@@ -31951,7 +33225,9 @@ window.PLACES = [
   "addrJa": "中富良野町べべルイ",
   "phone": "090-1302-1422",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=354",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 199 044*60",
+  "mcLL": "43.38608,142.53348"
  },
  {
   "id": 640,
@@ -31990,7 +33266,9 @@ window.PLACES = [
   "addrJa": "中富良野町東5線北4号",
   "phone": "0167-44-4625",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=358",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 401 422*02",
+  "mcLL": "43.44815,142.46347"
  },
  {
   "id": 641,
@@ -32031,7 +33309,9 @@ window.PLACES = [
   "addrJa": "中富良野町北星2",
   "phone": "0167-39-3333",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=360",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 276 741*42",
+  "mcLL": "43.41768,142.42716"
  },
  {
   "id": 642,
@@ -32076,7 +33356,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/642.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Furanui_spa_2011.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Furanui_spa_2011.JPG",
+  "mapcode": "349 432 749*66",
+  "mcLL": "43.45911,142.47932"
  },
  {
   "id": 643,
@@ -32118,7 +33400,9 @@ window.PLACES = [
   "addrJa": "上富良野町深山峠",
   "phone": "0167-45-3157(4",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=371",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 639 877*68",
+  "mcLL": "43.51885,142.44817"
  },
  {
   "id": 644,
@@ -32151,7 +33435,9 @@ window.PLACES = [
   "addrJa": "南富良野町幾寅155番",
   "phone": "0167-52-3108",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=391",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "550 324 771*13",
+  "mcLL": "43.17624,142.57721"
  },
  {
   "id": 645,
@@ -32212,7 +33498,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/645.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Torinuma-park_6300074%E9%B3%A5%E6%B2%BC%E5%85%AC%E5%9C%92.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Torinuma-park_6300074%E9%B3%A5%E6%B2%BC%E5%85%AC%E5%9C%92.jpg",
+  "mapcode": "349 007 622*00",
+  "mcLL": "43.34145,142.43573"
  },
  {
   "id": 646,
@@ -32251,7 +33539,9 @@ window.PLACES = [
   "addrJa": "上富良野町西9線北34号",
   "phone": "0167-45-6810",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=439",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 669 011*36",
+  "mcLL": "43.51926,142.44932"
  },
  {
   "id": 647,
@@ -32284,7 +33574,9 @@ window.PLACES = [
   "acc": "จากหมุดแผนที่บนเว็บทางการ",
   "addrJa": "北海道富良野市下御料",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=495",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "450 029 438*78",
+  "mcLL": "43.33969,142.36801"
  },
  {
   "id": 648,
@@ -32317,7 +33609,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市山部南町2番10号",
   "phone": "0167-42-3900",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=497",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "550 541 363*44",
+  "mcLL": "43.23938,142.38058"
  },
  {
   "id": 649,
@@ -32351,7 +33645,9 @@ window.PLACES = [
   "addrJa": "富良野市山部南町6番27号",
   "phone": "080-5725-2843",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=498",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "550 541 406*22",
+  "mcLL": "43.23965,142.38393"
  },
  {
   "id": 650,
@@ -32409,7 +33705,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/650.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:View_from_Rokugo_Hill%2C_Furano_20250726b.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:View_from_Rokugo_Hill%2C_Furano_20250726b.jpg",
+  "mapcode": "550 774 847*53",
+  "mcLL": "43.30195,142.57311"
  },
  {
   "id": 651,
@@ -32446,7 +33744,9 @@ window.PLACES = [
   "addrJa": "富良野市幸町10-1",
   "phone": "0167-22-0385",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=502",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 001 896*86",
+  "mcLL": "43.34392,142.38674"
  },
  {
   "id": 652,
@@ -32479,7 +33779,9 @@ window.PLACES = [
   "addrJa": "北海道空知郡中富良野町奈江",
   "phone": "0167-44-4477",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=526",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 331 397*27",
+  "mcLL": "43.43124,142.38148"
  },
  {
   "id": 653,
@@ -32516,7 +33818,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市朝日町6-5",
   "phone": "0167-56-7690",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=538",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 031 418*14",
+  "mcLL": "43.34787,142.3875"
  },
  {
   "id": 654,
@@ -32553,7 +33857,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市西学田二区",
   "phone": "0167-22-1266",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=552",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 120 083*78",
+  "mcLL": "43.3697,142.37774"
  },
  {
   "id": 655,
@@ -32590,7 +33896,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市末広町8番1号",
   "phone": "0167-56-7508",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=553",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 001 656*00",
+  "mcLL": "43.34173,142.38683"
  },
  {
   "id": 656,
@@ -32627,7 +33935,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市幸町8番5号 フラノマルシェ2 内",
   "phone": "0167-56-7412",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=564",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 001 748*46",
+  "mcLL": "43.34264,142.38748"
  },
  {
   "id": 657,
@@ -32666,7 +33976,9 @@ window.PLACES = [
   "addrJa": "北海道芦別市上芦別町469番地",
   "phone": "0124-23-0654",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=570",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "450 518 755*45",
+  "mcLL": "43.48454,142.18941"
  },
  {
   "id": 658,
@@ -32703,7 +34015,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市本町2-27",
   "phone": "0167-56-9083",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=581",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 032 331*58",
+  "mcLL": "43.34721,142.38809"
  },
  {
   "id": 659,
@@ -32745,7 +34059,9 @@ window.PLACES = [
   "addrJa": "北海道空知郡中富良野町東4線北6号",
   "phone": "0167-44-3980",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=587",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 095 862*61",
+  "mcLL": "43.36858,142.41908"
  },
  {
   "id": 660,
@@ -32778,7 +34094,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市中御料(新富良野プリンスホテル敷地内)",
   "phone": "0167-22-1123",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=594",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "919 553 550*05",
+  "mcLL": "43.32421,142.35736"
  },
  {
   "id": 661,
@@ -32811,7 +34129,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市住吉町4-45",
   "phone": "0167-23-6069",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=597",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 032 597*67",
+  "mcLL": "43.3494,142.39547"
  },
  {
   "id": 662,
@@ -32848,7 +34168,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市朝日町5-14",
   "phone": "0167-23-8666",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=602",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 032 546*54",
+  "mcLL": "43.34918,142.38954"
  },
  {
   "id": 663,
@@ -32881,7 +34203,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市北の峰町13-26",
   "phone": "0167-56-7102",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=608",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "450 029 720*18",
+  "mcLL": "43.34258,142.36301"
  },
  {
   "id": 664,
@@ -32917,7 +34241,9 @@ window.PLACES = [
   "acc": "จากหมุดแผนที่บนเว็บทางการ",
   "addrJa": "北海道富良野市本町6-27",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=617",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 031 469*12",
+  "mcLL": "43.34843,142.38494"
  },
  {
   "id": 665,
@@ -32957,7 +34283,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市字中五区",
   "phone": "0167-22-3468(",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=620",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "550 781 493*43",
+  "mcLL": "43.30713,142.38332"
  },
  {
   "id": 666,
@@ -32994,7 +34322,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市日の出町7-20",
   "phone": "0167-56-9467",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=622",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 032 274*12",
+  "mcLL": "43.34676,142.38911"
  },
  {
   "id": 667,
@@ -33027,7 +34357,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市花園町1番3号",
   "phone": "090-9433-9906",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=623",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 062 365*51",
+  "mcLL": "43.3558,142.38927"
  },
  {
   "id": 668,
@@ -33060,7 +34392,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市北の峰町22-27",
   "phone": "0167-56-7839",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=624",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "450 059 030*41",
+  "mcLL": "43.3446,142.36307"
  },
  {
   "id": 669,
@@ -33097,7 +34431,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市幸町8番5号 フラノマルシェ2外(5条通り側)",
   "phone": "0167-56-7429",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=627",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 002 750*35",
+  "mcLL": "43.3429,142.38793"
  },
  {
   "id": 670,
@@ -33134,7 +34470,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市朝日町4番22号",
   "phone": "0120-883-029",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=653",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 032 393*60",
+  "mcLL": "43.34774,142.38879"
  },
  {
   "id": 671,
@@ -33171,7 +34509,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市日の出町 12-1 日の出ビル 1 階 2",
   "phone": "011-600-0324",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=662",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 032 126*24",
+  "mcLL": "43.34547,142.38955"
  },
  {
   "id": 672,
@@ -33208,7 +34548,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市朝日町2番2号",
   "phone": "0167-56-7415",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=663",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 032 307*23",
+  "mcLL": "43.34713,142.38981"
  },
  {
   "id": 673,
@@ -33240,7 +34582,9 @@ window.PLACES = [
   "acc": "จากหมุดแผนที่บนเว็บทางการ",
   "addrJa": "北海道富良野市北の峰町4-59",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=664",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "450 029 767*04",
+  "mcLL": "43.34288,142.36769"
  },
  {
   "id": 674,
@@ -33282,7 +34626,9 @@ window.PLACES = [
   "addrJa": "北海道空知郡上富良野町東6線北18号「東中公園内」",
   "phone": "0167-45-6627",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=665",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 282 237*83",
+  "mcLL": "43.41287,142.47867"
  },
  {
   "id": 675,
@@ -33315,7 +34661,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市幸町8-32",
   "phone": "07089587805",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=668",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 001 839*36",
+  "mcLL": "43.34345,142.38768"
  },
  {
   "id": 676,
@@ -33348,7 +34696,9 @@ window.PLACES = [
   "addrJa": "北海道富良野市北の峰町22-29",
   "phone": "0167-23-1880",
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=671",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "450 059 061*85",
+  "mcLL": "43.34475,142.3631"
  },
  {
   "id": 677,
@@ -33401,7 +34751,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/677.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Okuhate510-2_Biei_20130915.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Okuhate510-2_Biei_20130915.jpg",
+  "mapcode": "389 010 381*08",
+  "mcLL": "43.5892,142.4604"
  },
  {
   "id": 678,
@@ -33444,7 +34796,9 @@ window.PLACES = [
   "phone": "0166-92-3229(",
   "url": "https://aruunopain.cafe",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/aruu-no-pain",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 039 462*02",
+  "mcLL": "43.5984,142.44956"
  },
  {
   "id": 679,
@@ -33477,7 +34831,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町幸町4丁目3−16",
   "phone": "0166-85-7522",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/ende-cafe%ef%bc%88%e3%82%a8%e3%83%b3%e3%83%87%e3%82%ab%e3%83%95%e3%82%a7%ef%bc%89",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 012 158*87",
+  "mcLL": "43.58722,142.47341"
  },
  {
   "id": 680,
@@ -33515,7 +34871,9 @@ window.PLACES = [
   "phone": "0166-74-8825",
   "url": "https://namaste-hokkaido.com/biei/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/namaste",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 010 352*61",
+  "mcLL": "43.58883,142.46073"
  },
  {
   "id": 681,
@@ -33556,7 +34914,9 @@ window.PLACES = [
   "acc": "จากหมุดแผนที่บนเว็บทางการ",
   "addrJa": "北海道上川郡美瑛町大村(字)村山",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/gelato-studio-okanomilge",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 039 216*07",
+  "mcLL": "43.59612,142.44797"
  },
  {
   "id": 682,
@@ -33590,7 +34950,9 @@ window.PLACES = [
   "phone": "0166-92-8558",
   "url": "https://www.santouka.co.jp/shop-jp/hokkaido/area01-006",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/ramen-santouka-biei",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 010 571*55",
+  "mcLL": "43.59102,142.45475"
  },
  {
   "id": 683,
@@ -33628,7 +34990,9 @@ window.PLACES = [
   "phone": "0166-92-5531",
   "url": "https://koeru-biei.com/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/koeru",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 010 594*82",
+  "mcLL": "43.59117,142.46112"
  },
  {
   "id": 684,
@@ -33665,7 +35029,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町栄町1-2-22",
   "phone": "0166-76-4301",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/gio",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 010 506*73",
+  "mcLL": "43.59026,142.46189"
  },
  {
   "id": 685,
@@ -33702,7 +35068,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町本町1丁目3-9",
   "phone": "0166-92-1463",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/uoten",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 011 571*33",
+  "mcLL": "43.59128,142.4632"
  },
  {
   "id": 686,
@@ -33740,7 +35108,9 @@ window.PLACES = [
   "phone": "0166-95-2052",
   "url": "http://www.gosh-coffee.com/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/home-roasted-coffee-shop-gosh",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 728 351*50",
+  "mcLL": "43.53884,142.44366"
  },
  {
   "id": 687,
@@ -33773,7 +35143,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町丸山2丁目5-21(町営球場前) 美瑛駅より2km",
   "phone": "0166-92-2008",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/kinoiinakama",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 882 779*36",
+  "mcLL": "43.58456,142.47932"
  },
  {
   "id": 688,
@@ -33808,7 +35180,9 @@ window.PLACES = [
   "phone": "070-7587-3817",
   "url": "http://nipek.net/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/atelier-nipek-cafegallery",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 677 594*50",
+  "mcLL": "43.52441,142.5195"
  },
  {
   "id": 689,
@@ -33845,7 +35219,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町本町1丁目5-8 bI.yell BF",
   "phone": "070-5282-1733",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/byakko",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 010 566*73",
+  "mcLL": "43.59081,142.46191"
  },
  {
   "id": 690,
@@ -33878,7 +35254,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町五稜第一",
   "phone": "0166-68-7821",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/ries-cafe",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 123 625*23",
+  "mcLL": "43.62489,142.40311"
  },
  {
   "id": 691,
@@ -33916,7 +35294,9 @@ window.PLACES = [
   "phone": "0166-92-1447",
   "url": "http://www.biei.com/kitakouboh/index-folder/index02.html",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/kita-kouboh",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 011 272*88",
+  "mcLL": "43.58836,142.46335"
  },
  {
   "id": 692,
@@ -33953,7 +35333,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町中町3丁目4-8",
   "phone": "070-8906-3399",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/sumiyakihanabi",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 011 743*71",
+  "mcLL": "43.59244,142.46943"
  },
  {
   "id": 693,
@@ -33986,7 +35368,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町旭第1",
   "phone": "0166-92-0819",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/glass-crafts-darte",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 213 704*25",
+  "mcLL": "43.65066,142.40002"
  },
  {
   "id": 694,
@@ -34031,7 +35415,9 @@ window.PLACES = [
   "phone": "080-8851-9371",
   "url": "https://marukita-farm.com/index.php",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/marukita",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 725 424*03",
+  "mcLL": "43.53981,142.41404"
  },
  {
   "id": 695,
@@ -34068,7 +35454,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町旭町1丁目1-4",
   "phone": "0166-73-9621",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/cyai",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 041 046*34",
+  "mcLL": "43.59462,142.46741"
  },
  {
   "id": 696,
@@ -34105,7 +35493,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町栄町1丁目",
   "phone": "0166-92-1844",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/tsuboya-biei-2",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 010 506*03",
+  "mcLL": "43.59036,142.46181"
  },
  {
   "id": 697,
@@ -34142,7 +35532,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町中町1丁目4-17",
   "phone": "0166-73-5653",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/kingbear-biei",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 011 793*25",
+  "mcLL": "43.59315,142.46642"
  },
  {
   "id": 698,
@@ -34185,7 +35577,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町白金ビルケの森",
   "phone": "0166-94-3131",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/restaurant-komugibatake-to-aoiike",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 627 121*20",
+  "mcLL": "43.50377,142.59645"
  },
  {
   "id": 699,
@@ -34222,7 +35616,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町北町2丁目2−13",
   "phone": "0166-74-8274",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/hanabito",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 040 017*04",
+  "mcLL": "43.59423,142.45934"
  },
  {
   "id": 700,
@@ -34256,7 +35652,9 @@ window.PLACES = [
   "phone": "0166-92-5317",
   "url": "https://www.merle-de-biei.com/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/merle",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 095 420*51",
+  "mcLL": "43.61465,142.41286"
  },
  {
   "id": 701,
@@ -34294,7 +35692,9 @@ window.PLACES = [
   "phone": "090-1611-5109",
   "url": "http://suzuranplus.com/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/suzuranplus",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 011 636*46",
+  "mcLL": "43.59178,142.46467"
  },
  {
   "id": 702,
@@ -34332,7 +35732,9 @@ window.PLACES = [
   "phone": "0166-92-1807",
   "url": "https://www.abete.jp",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/italian-cafe-abete",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 010 796*55",
+  "mcLL": "43.59296,142.45892"
  },
  {
   "id": 703,
@@ -34375,7 +35777,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/703.jpg",
-  "imgCredit": "https://www.flickr.com/photos/92481623@N00/44264301734"
+  "imgCredit": "https://www.flickr.com/photos/92481623@N00/44264301734",
+  "mapcode": "389 038 744*35",
+  "mcLL": "43.60094,142.44457"
  },
  {
   "id": 704,
@@ -34409,7 +35813,9 @@ window.PLACES = [
   "phone": "0166-92-5820",
   "url": "http://biei-blanc.sakura.ne.jp/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/restaurant-blanc-rouge",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 068 200*81",
+  "mcLL": "43.60419,142.44343"
  },
  {
   "id": 705,
@@ -34447,7 +35853,9 @@ window.PLACES = [
   "phone": "0166-64-6252",
   "url": "https://suzuran.coffee/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/suzuran",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 011 638*08",
+  "mcLL": "43.59169,142.4651"
  },
  {
   "id": 706,
@@ -34490,7 +35898,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町美沢共生",
   "phone": "0166-92-0077",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/viva-biei",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 768 235*34",
+  "mcLL": "43.54629,142.52823"
  },
  {
   "id": 707,
@@ -34527,7 +35937,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町中町1丁目4−34",
   "phone": "080-4505-9983",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/suinokago",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 011 698*36",
+  "mcLL": "43.59233,142.46516"
  },
  {
   "id": 708,
@@ -34563,7 +35975,9 @@ window.PLACES = [
   "acc": "จากหมุดแผนที่บนเว็บทางการ",
   "addrJa": "北海道上川郡美瑛町本町1丁目7-1",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/potato%ef%bc%86co",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 011 601*17",
+  "mcLL": "43.59141,142.46333"
  },
  {
   "id": 709,
@@ -34616,7 +36030,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/709.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sunflower_farm_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sunflower_farm_-_panoramio.jpg",
+  "mapcode": "349 704 395*12",
+  "mcLL": "43.53118,142.48936"
  },
  {
   "id": 710,
@@ -34649,7 +36065,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町花園1丁目4-18",
   "phone": "0166-92-5246",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/omusubiya-hanazonotaro",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 009 168*12",
+  "mcLL": "43.58729,142.45132"
  },
  {
   "id": 711,
@@ -34691,7 +36109,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町美馬牛新栄",
   "url": "https://bieicoffee.base.shop/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/bieicoffee-cafe",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 790 588*00",
+  "mcLL": "43.55783,142.4596"
  },
  {
   "id": 712,
@@ -34732,7 +36152,9 @@ window.PLACES = [
   "acc": "จากหมุดแผนที่บนเว็บทางการ",
   "addrJa": "北海道上川郡美瑛町福富瑛進",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/cafe-uphill-biei",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 792 895*25",
+  "mcLL": "43.56065,142.47807"
  },
  {
   "id": 713,
@@ -34774,7 +36196,9 @@ window.PLACES = [
   "addrJa": "北海道 上川郡美瑛町字留辺蘂第2 美瑛町 西美体験交流館",
   "url": "https://r.goope.jp/seibi/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/seibinomori",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 785 686*87",
+  "mcLL": "43.55862,142.42009"
  },
  {
   "id": 714,
@@ -34811,7 +36235,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町西町1丁目2-10",
   "phone": "0166-73-8601",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/biei2go",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 010 318*78",
+  "mcLL": "43.58855,142.45965"
  },
  {
   "id": 715,
@@ -34848,7 +36274,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町中町1丁目4-14",
   "phone": "080-4777-5848",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/chikaranoshokudo",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 011 760*58",
+  "mcLL": "43.59271,142.46557"
  },
  {
   "id": 716,
@@ -34885,7 +36313,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町寿町3丁目1-2",
   "phone": "0166-92-5696",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/patisserie-toriko-2",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 881 885*58",
+  "mcLL": "43.58551,142.46698"
  },
  {
   "id": 717,
@@ -34927,7 +36357,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町美沢共生",
   "phone": "0166-92-5151",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/photogallery-fukeikan",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 770 139*88",
+  "mcLL": "43.54533,142.54308"
  },
  {
   "id": 718,
@@ -34968,7 +36400,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町北町2丁目",
   "phone": "0166-92-5006",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/biei-furusato-market",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 010 880*01",
+  "mcLL": "43.59393,142.45739"
  },
  {
   "id": 719,
@@ -35002,7 +36436,9 @@ window.PLACES = [
   "phone": "0166-94-3354",
   "url": "http://www.kaikukiln.com/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/kaikukiln",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 626 047*03",
+  "mcLL": "43.50285,142.59265"
  },
  {
   "id": 720,
@@ -35048,7 +36484,9 @@ window.PLACES = [
   "phone": "0166-92-1609",
   "url": "http://www.ootori.jp",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/potetofactory",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 101 372*40",
+  "mcLL": "43.61431,142.46634"
  },
  {
   "id": 721,
@@ -35082,7 +36520,9 @@ window.PLACES = [
   "phone": "0166-92-8500",
   "url": "http://www.bieiland.com/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/abe-shunichi-gallery",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 070 429*67",
+  "mcLL": "43.60629,142.45712"
  },
  {
   "id": 722,
@@ -35116,7 +36556,9 @@ window.PLACES = [
   "phone": "0166-95-2066(",
   "url": "http://www.biei.org/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/haruo-kikuchi-photo-gallery",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 070 432*25",
+  "mcLL": "43.60649,142.45779"
  },
  {
   "id": 723,
@@ -35149,7 +36591,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町新区画",
   "phone": "090-9529-7922",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/atelier-pot-pourri",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 045 329*66",
+  "mcLL": "43.59686,142.50431"
  },
  {
   "id": 724,
@@ -35191,7 +36635,9 @@ window.PLACES = [
   "phone": "0166-92-4321",
   "url": "https://www.town.biei.hokkaido.jp/facility/aiwotsumuhito.html",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/facility_aiwotsumuhito",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 038 732*42",
+  "mcLL": "43.60099,142.44131"
  },
  {
   "id": 725,
@@ -35232,7 +36678,9 @@ window.PLACES = [
   "phone": "0166-95-2868",
   "url": "https://w-yazi.wixsite.com/vieiimpressionists",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/garden%ef%bc%86oil-paintings-gallery",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 702 511*62",
+  "mcLL": "43.53221,142.47152"
  },
  {
   "id": 726,
@@ -35275,7 +36723,9 @@ window.PLACES = [
   "phone": "0166-95-2888",
   "url": "http://www.waneibunkasha.com/sinseikan.html",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/shinsei-kan",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 672 244*00",
+  "mcLL": "43.52144,142.47238"
  },
  {
   "id": 727,
@@ -35318,7 +36768,9 @@ window.PLACES = [
   "phone": "0166-92-1718",
   "url": "https://fureai-sc.org/about/hill/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/chiyoda-no-oka-obesevatory",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 734 752*51",
+  "mcLL": "43.54273,142.48841"
  },
  {
   "id": 728,
@@ -35373,7 +36825,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/728.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Biei.Seidai-Dam-Park01.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Biei.Seidai-Dam-Park01.JPG",
+  "mapcode": "389 107 355*46",
+  "mcLL": "43.61398,142.51994"
  },
  {
   "id": 729,
@@ -35411,7 +36865,9 @@ window.PLACES = [
   "phone": "0166-74-6116",
   "url": "https://town.biei.hokkaido.jp/culture/misora/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/regional-studies-hall-misora",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 011 249*78",
+  "mcLL": "43.588,142.46549"
  },
  {
   "id": 730,
@@ -35453,7 +36909,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町福富瑛進",
   "phone": "0166-68-7550",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/garden-praise",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 792 328*53",
+  "mcLL": "43.55526,142.47894"
  },
  {
   "id": 731,
@@ -35487,7 +36945,9 @@ window.PLACES = [
   "phone": "0166-92-0707",
   "url": "https://rmqsx071.wixsite.com/bieiowl/menu",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/traditional-cafe-and-restaurant-ouru-no-mori",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 062 739*34",
+  "mcLL": "43.60932,142.39324"
  },
  {
   "id": 732,
@@ -35530,7 +36990,9 @@ window.PLACES = [
   "phone": "0166-92-8100",
   "url": "http://bi-ble.jp/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/restaurant-bi-ble",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 157 408*15",
+  "mcLL": "43.6311,142.43466"
  },
  {
   "id": 733,
@@ -35564,7 +37026,9 @@ window.PLACES = [
   "phone": "0166-74-8307",
   "url": "https://cafebiei.com/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/kitchen_hitosaji",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 070 461*44",
+  "mcLL": "43.60684,142.45777"
  },
  {
   "id": 734,
@@ -35598,7 +37062,9 @@ window.PLACES = [
   "phone": "0166-73-5725",
   "url": "http://betweenthebread.jp/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/between-the-bread",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 627 094*48",
+  "mcLL": "43.50347,142.59743"
  },
  {
   "id": 735,
@@ -35639,7 +37105,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/735.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sheep_outside_Dairy_Farm_-_Biei_-_Hokkaido_-_Japan_%2848023339128%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sheep_outside_Dairy_Farm_-_Biei_-_Hokkaido_-_Japan_%2848023339128%29.jpg",
+  "mapcode": "349 642 294*04",
+  "mcLL": "43.5134,142.47796"
  },
  {
   "id": 736,
@@ -35677,7 +37145,9 @@ window.PLACES = [
   "phone": "0166-92-5660",
   "url": "https://asahimachicoffee.wixsite.com/mysite",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/asahimachicoffee",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 041 048*48",
+  "mcLL": "43.59457,142.46798"
  },
  {
   "id": 737,
@@ -35715,7 +37185,9 @@ window.PLACES = [
   "phone": "0166-74-8870",
   "url": "https://www.arbolito.jp/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/arbolito",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 011 420*47",
+  "mcLL": "43.58981,142.46304"
  },
  {
   "id": 738,
@@ -35752,7 +37224,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町中町1丁目8番20号",
   "phone": "0166-73-8405",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/kameturu",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 011 846*13",
+  "mcLL": "43.59369,142.46469"
  },
  {
   "id": 739,
@@ -35786,7 +37260,9 @@ window.PLACES = [
   "phone": "0166-74-8855",
   "url": "https://www.biei.blue/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/yuinomori",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 704 395*12",
+  "mcLL": "43.53118,142.48936"
  },
  {
   "id": 740,
@@ -35824,7 +37300,9 @@ window.PLACES = [
   "phone": "0166-92-0358",
   "url": "https://takumiya358.com",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/takumiya",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 011 603*76",
+  "mcLL": "43.59129,142.46384"
  },
  {
   "id": 741,
@@ -35862,7 +37340,9 @@ window.PLACES = [
   "phone": "0166-92-0398",
   "url": "https://www.snakaranavi.net/shop.php?sno=7175",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/bears-cafe",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 011 363*08",
+  "mcLL": "43.58921,142.46373"
  },
  {
   "id": 742,
@@ -35899,7 +37379,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町栄町2丁目",
   "phone": "0166-92-1171",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/masa-chan-zushi",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 010 383*73",
+  "mcLL": "43.58915,142.46107"
  },
  {
   "id": 743,
@@ -35937,7 +37419,9 @@ window.PLACES = [
   "phone": "0166-92-3741",
   "url": "http://bieiokiraku.sakura.ne.jp/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/cafe-restaurant-okiraku-tei",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 010 414*43",
+  "mcLL": "43.58962,142.46135"
  },
  {
   "id": 744,
@@ -35971,7 +37455,9 @@ window.PLACES = [
   "phone": "0166-68-7700",
   "url": "https://gomasoba-tsuruki.com/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/sesame-soba-tsuruki",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 010 572*81",
+  "mcLL": "43.59114,142.45507"
  },
  {
   "id": 745,
@@ -36005,7 +37491,9 @@ window.PLACES = [
   "phone": "0166-92-2953",
   "url": "https://www.hobbito.com/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/handmade-ham-and-sausage-shop-hobbito",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 653 897*75",
+  "mcLL": "43.51881,142.57047"
  },
  {
   "id": 746,
@@ -36049,7 +37537,9 @@ window.PLACES = [
   "phone": "0166-92-3489",
   "url": "http://cafedelapaix-biei.com/",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/cafe-de-la-paix",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 680 727*75",
+  "mcLL": "43.52577,142.53993"
  },
  {
   "id": 747,
@@ -36092,7 +37582,9 @@ window.PLACES = [
   "phone": "0166-92-5961",
   "url": "http://funashiro966.com/mustache_boss.html",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/mustache-boss-and-funashiro-store",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 769 123*53",
+  "mcLL": "43.54526,142.53034"
  },
  {
   "id": 748,
@@ -36125,7 +37617,9 @@ window.PLACES = [
   "addrJa": "上川郡美瑛町美沢共和",
   "phone": "0166-92-1806",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/hand-made-pasta-dagurasufua",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 855 126*04",
+  "mcLL": "43.57034,142.49795"
  },
  {
   "id": 749,
@@ -36162,7 +37656,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町美馬牛北3丁目",
   "phone": "0166-95-2923",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/coffee-and-tea-house-la-malta",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 728 502*17",
+  "mcLL": "43.5403,142.44415"
  },
  {
   "id": 750,
@@ -36195,7 +37691,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町新星第3",
   "phone": "0166-76-5377",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/mugiironooka",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 701 213*26",
+  "mcLL": "43.52956,142.46366"
  },
  {
   "id": 751,
@@ -36241,7 +37739,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡美瑛町美馬牛南1丁目5−50",
   "phone": "0166-73-4865",
   "ref": "https://www.biei-hokkaido.jp/ja/facility/bread-shop-likka-lokka",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "349 729 033*78",
+  "mcLL": "43.53606,142.44716"
  },
  {
   "id": 752,
@@ -36285,7 +37785,9 @@ window.PLACES = [
   "phone": "0166-55-9779",
   "url": "http://www.asahikawa-park.or.jp/facilities/park/yasouen.html",
   "ref": "https://www.atca.jp/kankouspoy/北邦野草園/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 427 663*05",
+  "mcLL": "43.79192,142.3054"
  },
  {
   "id": 753,
@@ -36333,7 +37835,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/753.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Asahi_Bridge.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Asahi_Bridge.jpg",
+  "mapcode": "79 373 893*66",
+  "mcLL": "43.77712,142.36099"
  },
  {
   "id": 754,
@@ -36384,7 +37888,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/754.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Otokoyama-Park02.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Otokoyama-Park02.JPG",
+  "mapcode": "79 625 872*11",
+  "mcLL": "43.84389,142.45524"
  },
  {
   "id": 755,
@@ -36443,7 +37949,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/755.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kaguraoka_Park%2C_Asahikawa_City%2C_Hokkaido%2C_Japan_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kaguraoka_Park%2C_Asahikawa_City%2C_Hokkaido%2C_Japan_-_panoramio.jpg",
+  "mapcode": "79 284 610*86",
+  "mcLL": "43.74971,142.3656"
  },
  {
   "id": 756,
@@ -36478,7 +37986,9 @@ window.PLACES = [
   "phone": "0166-23-3000(",
   "url": "https://ada-jp.org/kuraimu.html",
   "ref": "https://www.atca.jp/kankouspoy/蔵囲夢/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 344 183*40",
+  "mcLL": "43.76262,142.36385"
  },
  {
   "id": 757,
@@ -36528,7 +38038,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/757.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Asahikawa_Museum_of_Sculpture.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Asahikawa_Museum_of_Sculpture.JPG",
+  "mapcode": "79 494 280*67",
+  "mcLL": "43.8049,142.36574"
  },
  {
   "id": 758,
@@ -36572,7 +38084,9 @@ window.PLACES = [
   "phone": "0166-52-1934(",
   "url": "http://www.asahikawa-park.or.jp/park/special/asahiyama.html",
   "ref": "https://www.atca.jp/kankouspoy/旭山公園/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 357 236*02",
+  "mcLL": "43.76284,142.47843"
  },
  {
   "id": 759,
@@ -36606,7 +38120,9 @@ window.PLACES = [
   "phone": "0166-62-8910",
   "url": "http://www.manyo.co.jp/asahikawa/",
   "ref": "https://www.atca.jp/menberinfo/旭川高砂台万葉の湯/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 367 023*26",
+  "mcLL": "43.76923,142.3109"
  },
  {
   "id": 760,
@@ -36649,7 +38165,9 @@ window.PLACES = [
   "phone": "0166-61-0211",
   "url": "https://www.city.asahikawa.hokkaido.jp/kurashi/364/374/385/index.html",
   "ref": "https://www.atca.jp/kankouspoy/旭川市農業センター（花菜里ランド）/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 193 556*41",
+  "mcLL": "43.72429,142.35916"
  },
  {
   "id": 761,
@@ -36683,7 +38201,9 @@ window.PLACES = [
   "addrJa": "旭川市宮下通8丁目3番1号 (JR旭川駅東コンコース)",
   "url": "http://www.city.asahikawa.hokkaido.jp/kankou/2400/d053770.html",
   "ref": "https://www.atca.jp/menberinfo/旭川観光物産情報センター/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 312*47",
+  "mcLL": "43.76368,142.35805"
  },
  {
   "id": 762,
@@ -36727,7 +38247,9 @@ window.PLACES = [
   "phone": "0166-50-3388(",
   "url": "http://www.kitanoarashiyama.com/",
   "ref": "https://www.atca.jp/menberinfo/北の嵐山/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 427 894*84",
+  "mcLL": "43.79392,142.3112"
  },
  {
   "id": 763,
@@ -36760,7 +38282,9 @@ window.PLACES = [
   "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
   "addrJa": "旭川市宮下通~5条通14・15丁目",
   "ref": "https://www.atca.jp/kankouspoy/銀座商店街/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 345 392*88",
+  "mcLL": "43.76446,142.3717"
  },
  {
   "id": 764,
@@ -36806,7 +38330,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/764.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E3%81%AE%E6%81%B5%E3%81%BF_%E9%A3%9F%E3%81%B9%E3%83%9E%E3%83%AB%E3%82%B7%E3%82%A72019.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E3%81%AE%E6%81%B5%E3%81%BF_%E9%A3%9F%E3%81%B9%E3%83%9E%E3%83%AB%E3%82%B7%E3%82%A72019.jpg",
+  "mapcode": "79 343 282*73",
+  "mcLL": "43.7633,142.358"
  },
  {
   "id": 765,
@@ -36849,7 +38375,9 @@ window.PLACES = [
   "phone": "0166-36-2323",
   "url": "https://r.goope.jp/heisonkinenkan/about",
   "ref": "https://www.atca.jp/kankouspoy/旭川兵村記念館/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 383 046*00",
+  "mcLL": "43.76945,142.44237"
  },
  {
   "id": 766,
@@ -36902,7 +38430,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/766.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%AB%E3%83%A0%E3%82%A4%E3%81%AE%E6%9D%9C%E5%85%AC%E5%9C%92.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%AB%E3%83%A0%E3%82%A4%E3%81%AE%E6%9D%9C%E5%85%AC%E5%9C%92.jpg",
+  "mapcode": "79 278 194*21",
+  "mcLL": "43.74593,142.31675"
  },
  {
   "id": 767,
@@ -36936,7 +38466,9 @@ window.PLACES = [
   "phone": "(0166-52-0694)",
   "url": "http://www.asahikawa-park.or.jp/park/synthesis/syunkoudai.html",
   "ref": "https://www.atca.jp/kankouspoy/春光台公園/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 492 464*54",
+  "mcLL": "43.80662,142.35008"
  },
  {
   "id": 768,
@@ -36970,7 +38502,9 @@ window.PLACES = [
   "phone": "0166-85-4700",
   "url": "http://yuyupippu.com/",
   "ref": "https://www.atca.jp/menberinfo/遊湯ぴっぷ/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "470 059 266*68",
+  "mcLL": "43.92963,142.49509"
  },
  {
   "id": 769,
@@ -37004,7 +38538,9 @@ window.PLACES = [
   "phone": "0166-75-4237",
   "url": "https://rinsan-fukyu.jp/facility-introduction/koropokkuru",
   "ref": "https://www.atca.jp/kankouspoy/木路歩来（コロポックル）/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 105 433*13",
+  "mcLL": "43.6981,142.37497"
  },
  {
   "id": 770,
@@ -37040,7 +38576,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市3条通6丁目本通",
   "ref": "https://www.atca.jp/kankouspoy/すずらん小路/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 822*41",
+  "mcLL": "43.76844,142.35803"
  },
  {
   "id": 771,
@@ -37076,7 +38614,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市4条通6丁目",
   "ref": "https://www.atca.jp/kankouspoy/パリ街/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 373 045*20",
+  "mcLL": "43.76955,142.35866"
  },
  {
   "id": 772,
@@ -37109,7 +38649,9 @@ window.PLACES = [
   "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
   "addrJa": "旭川市1条通〜6条通18丁目",
   "ref": "https://www.atca.jp/kankouspoy/旭川4条駅高架下の通り/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 345 347*82",
+  "mcLL": "43.76392,142.37584"
  },
  {
   "id": 773,
@@ -37149,7 +38691,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/773.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Asahikawa-Isen.2jo2019.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Asahikawa-Isen.2jo2019.JPG",
+  "mapcode": "79 343 645*67",
+  "mcLL": "43.76655,142.35878"
  },
  {
   "id": 774,
@@ -37181,7 +38725,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市東旭川北1条6丁目10-27",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 383 170*43",
+  "mcLL": "43.77068,142.44356"
  },
  {
   "id": 775,
@@ -37213,7 +38759,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市2条通7丁目2・3仲通り プラネット2・7",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 676*60",
+  "mcLL": "43.76687,142.35902"
  },
  {
   "id": 776,
@@ -37245,7 +38793,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市4条通15丁目",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 345 514*08",
+  "mcLL": "43.76557,142.37233"
  },
  {
   "id": 777,
@@ -37277,7 +38827,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市3条通7丁目",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 798*78",
+  "mcLL": "43.76798,142.35965"
  },
  {
   "id": 778,
@@ -37309,7 +38861,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市忠和6条7丁目1-17",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 369 189*57",
+  "mcLL": "43.77073,142.3237"
  },
  {
   "id": 779,
@@ -37341,7 +38895,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市3条通8丁目",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 744*25",
+  "mcLL": "43.76756,142.36112"
  },
  {
   "id": 780,
@@ -37373,7 +38929,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市3条通7丁目右7号",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 798*78",
+  "mcLL": "43.76798,142.35965"
  },
  {
   "id": 781,
@@ -37405,7 +38963,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市3条通7丁目左10(買物公園通り)",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 829*51",
+  "mcLL": "43.76826,142.35979"
  },
  {
   "id": 782,
@@ -37437,7 +38997,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市旭神2条5丁目7-17",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 227 706*48",
+  "mcLL": "43.734,142.39243"
  },
  {
   "id": 783,
@@ -37469,7 +39031,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市5条通8丁目右4号",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 373 088*03",
+  "mcLL": "43.76978,142.36235"
  },
  {
   "id": 784,
@@ -37501,7 +39065,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市忠和5条8丁目1-1",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 369 117*66",
+  "mcLL": "43.76988,142.32875"
  },
  {
   "id": 785,
@@ -37533,7 +39099,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市3条通5丁目634-3コジビル1階",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 373 008*87",
+  "mcLL": "43.76914,142.35675"
  },
  {
   "id": 786,
@@ -37565,7 +39133,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市1条通4丁目",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 342 687*40",
+  "mcLL": "43.76706,142.35384"
  },
  {
   "id": 787,
@@ -37616,7 +39186,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/787.jpg",
-  "imgCredit": "https://www.flickr.com/photos/25667919@N04/2413749845"
+  "imgCredit": "https://www.flickr.com/photos/25667919@N04/2413749845",
+  "mapcode": "79 465 625*74",
+  "mcLL": "43.79967,142.37831"
  },
  {
   "id": 788,
@@ -37648,7 +39220,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市7条通7丁目七福ビル",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 373 387*53",
+  "mcLL": "43.77244,142.36198"
  },
  {
   "id": 789,
@@ -37680,7 +39254,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市1条通7丁目左1号",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 584*16",
+  "mcLL": "43.76608,142.35858"
  },
  {
   "id": 790,
@@ -37712,7 +39288,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市東旭川町上兵村452-2",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 354 588*71",
+  "mcLL": "43.76603,142.45138"
  },
  {
   "id": 791,
@@ -37744,7 +39322,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市3条通7丁目つかさビル1F",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 798*78",
+  "mcLL": "43.76798,142.35965"
  },
  {
   "id": 792,
@@ -37776,7 +39356,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市5条通8丁目旭川はれて屋台村",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 373 088*03",
+  "mcLL": "43.76978,142.36235"
  },
  {
   "id": 793,
@@ -37808,7 +39390,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市春光1条8丁目11-5",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 465 625*42",
+  "mcLL": "43.79985,142.37825"
  },
  {
   "id": 794,
@@ -37840,7 +39424,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市3条通7丁目山田ビル1F",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 798*78",
+  "mcLL": "43.76798,142.35965"
  },
  {
   "id": 795,
@@ -37872,7 +39458,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市4条通9丁目1704-31",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 344 781*55",
+  "mcLL": "43.76795,142.36307"
  },
  {
   "id": 796,
@@ -37904,7 +39492,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市4条通19丁目左10号",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 345 356*55",
+  "mcLL": "43.76379,142.37836"
  },
  {
   "id": 797,
@@ -37936,7 +39526,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市常盤通2丁目",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 373 746*67",
+  "mcLL": "43.77573,142.36185"
  },
  {
   "id": 798,
@@ -37968,7 +39560,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市北門町9丁目2644-6",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 432 038*85",
+  "mcLL": "43.78609,142.34836"
  },
  {
   "id": 799,
@@ -38000,7 +39594,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市5条通8丁目右1号",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 373 088*03",
+  "mcLL": "43.76978,142.36235"
  },
  {
   "id": 800,
@@ -38032,7 +39628,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市4条通8丁目左3号関東ビル1F",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 866*83",
+  "mcLL": "43.76866,142.36173"
  },
  {
   "id": 801,
@@ -38064,7 +39662,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市3条通7丁目谷内写真館ビル1階",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 798*78",
+  "mcLL": "43.76798,142.35965"
  },
  {
   "id": 802,
@@ -38096,7 +39696,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市3条通6丁目左10号",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 822*41",
+  "mcLL": "43.76844,142.35803"
  },
  {
   "id": 803,
@@ -38129,7 +39731,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市5条通16丁目1099番地",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 345 582*22",
+  "mcLL": "43.76624,142.37447"
  },
  {
   "id": 804,
@@ -38161,7 +39765,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市金星町1-2-13",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 404 047*21",
+  "mcLL": "43.77787,142.36757"
  },
  {
   "id": 805,
@@ -38193,7 +39799,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI ระดับเลขที่)",
   "addrJa": "東川町南町1-5-6",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 406 283*53",
+  "mcLL": "43.69663,142.50809"
  },
  {
   "id": 806,
@@ -38235,7 +39843,9 @@ window.PLACES = [
   "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
   "addrJa": "東神楽町東2線16号97番地",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 025 016*18",
+  "mcLL": "43.6692,142.45909"
  },
  {
   "id": 807,
@@ -38267,7 +39877,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市東光11条2丁目4番22号",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 287 099*78",
+  "mcLL": "43.74493,142.39047"
  },
  {
   "id": 808,
@@ -38299,7 +39911,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "上川郡東川町南町3丁目3-2",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 377 790*52",
+  "mcLL": "43.69301,142.51556"
  },
  {
   "id": 809,
@@ -38340,7 +39954,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市永山町16丁目186番地",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 509 755*27",
+  "mcLL": "43.80952,142.48923"
  },
  {
   "id": 810,
@@ -38372,7 +39988,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市東旭川町倉沼45-6",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 357 870*60",
+  "mcLL": "43.76881,142.47124"
  },
  {
   "id": 811,
@@ -38404,7 +40022,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市常盤通2丁目1970−1",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 373 777*86",
+  "mcLL": "43.77609,142.362"
  },
  {
   "id": 812,
@@ -38436,7 +40056,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市豊岡11条5丁目5-4",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 349 854*56",
+  "mcLL": "43.7685,142.40837"
  },
  {
   "id": 813,
@@ -38468,7 +40090,9 @@ window.PLACES = [
   "acc": "ประมาณ (ระดับตำบลจากที่อยู่ทางการ)",
   "addrJa": "旭川市東旭川町東桜岡52-2",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 707 426*82",
+  "mcLL": "43.78144,142.51445"
  },
  {
   "id": 814,
@@ -38500,7 +40124,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市緑町19丁目",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 429 507*67",
+  "mcLL": "43.79015,142.32878"
  },
  {
   "id": 815,
@@ -38532,7 +40158,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市5条通9丁目",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 374 033*76",
+  "mcLL": "43.76934,142.36386"
  },
  {
   "id": 816,
@@ -38564,7 +40192,9 @@ window.PLACES = [
   "acc": "ประมาณ (ระดับตำบลจากที่อยู่ทางการ)",
   "addrJa": "旭川市東旭川町東桜岡52-2",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "389 707 426*82",
+  "mcLL": "43.78144,142.51445"
  },
  {
   "id": 817,
@@ -38596,7 +40226,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市5条通8丁目左2号",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 373 088*03",
+  "mcLL": "43.76978,142.36235"
  },
  {
   "id": 818,
@@ -38628,7 +40260,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市7条通6丁目アートホテル旭川15階",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 373 412*18",
+  "mcLL": "43.77278,142.36076"
  },
  {
   "id": 819,
@@ -38660,7 +40294,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市2条通8丁目",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 621*12",
+  "mcLL": "43.76644,142.36049"
  },
  {
   "id": 820,
@@ -38692,7 +40328,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市神楽岡6条6丁目",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 255 455*81",
+  "mcLL": "43.74003,142.37259"
  },
  {
   "id": 821,
@@ -38724,7 +40362,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市5条通7丁目 5・7小路ふらりーと",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 373 143*50",
+  "mcLL": "43.77019,142.36089"
  },
  {
   "id": 822,
@@ -38756,7 +40396,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市2条通7丁目244番地 今井ビル 1F",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 676*60",
+  "mcLL": "43.76687,142.35902"
  },
  {
   "id": 823,
@@ -38788,7 +40430,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市3条通6丁目右10号",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 822*41",
+  "mcLL": "43.76844,142.35803"
  },
  {
   "id": 824,
@@ -38820,7 +40464,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市3条通6丁目 アークヒルズ4F",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 822*41",
+  "mcLL": "43.76844,142.35803"
  },
  {
   "id": 825,
@@ -38852,7 +40498,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市3条通6丁目右10号 昭和通り",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 822*41",
+  "mcLL": "43.76844,142.35803"
  },
  {
   "id": 826,
@@ -38884,7 +40532,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市2条通5丁目左7号",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 755*85",
+  "mcLL": "43.76776,142.35586"
  },
  {
   "id": 827,
@@ -38916,7 +40566,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市3条通6丁目右6号",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 822*41",
+  "mcLL": "43.76844,142.35803"
  },
  {
   "id": 828,
@@ -38948,7 +40600,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市2条通6丁目 エンドレス2・6地下",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 343 700*31",
+  "mcLL": "43.76732,142.35741"
  },
  {
   "id": 829,
@@ -38980,7 +40634,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市4条通7丁目",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 373 020*71",
+  "mcLL": "43.76908,142.36026"
  },
  {
   "id": 830,
@@ -39012,7 +40668,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市5条通8丁目1253-1 旭川屋台村はれて内",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 373 118*13",
+  "mcLL": "43.77005,142.36247"
  },
  {
   "id": 838,
@@ -39044,7 +40702,9 @@ window.PLACES = [
   "acc": "จากที่อยู่ทางการ (GSI)",
   "addrJa": "旭川市5条通9丁目右1号",
   "ref": "https://www.atca.jp/members/eat/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "79 374 033*76",
+  "mcLL": "43.76934,142.36386"
  },
  {
   "id": 839,
@@ -39099,7 +40759,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/839.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Goryokaku_Panorama_1.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Goryokaku_Panorama_1.JPG",
+  "mapcode": "86 166 303*10",
+  "mcLL": "41.79715,140.75578"
  },
  {
   "id": 840,
@@ -39153,7 +40815,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/840.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Motomachi_Park_Hakodate_Hokkaido_pref_Japan01n.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Motomachi_Park_Hakodate_Hokkaido_pref_Japan01n.jpg",
+  "mapcode": "86 040 498*54",
+  "mcLL": "41.76542,140.70979"
  },
  {
   "id": 841,
@@ -39207,7 +40871,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/841.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kyu-Soumatei.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kyu-Soumatei.jpg",
+  "mapcode": "86 040 471*43",
+  "mcLL": "41.76534,140.71078"
  },
  {
   "id": 842,
@@ -39261,7 +40927,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/842.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Meiji-kan.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Meiji-kan.jpg",
+  "mapcode": "86 041 620*36",
+  "mcLL": "41.76666,140.71876"
  },
  {
   "id": 843,
@@ -39314,7 +40982,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/843.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Exhibition_room_of_Mashu_Maru_as_museum_ship.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Exhibition_room_of_Mashu_Maru_as_museum_ship.jpg",
+  "mapcode": "86 072 391*13",
+  "mcLL": "41.773,140.72189"
  },
  {
   "id": 844,
@@ -39363,7 +41033,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/844.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_City_Museum_of_Northern_Peoples01n.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_City_Museum_of_Northern_Peoples01n.jpg",
+  "mapcode": "86 040 686*80",
+  "mcLL": "41.76715,140.71198"
  },
  {
   "id": 845,
@@ -39416,7 +41088,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/845.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_City_Museum_in_May_2024.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_City_Museum_in_May_2024.jpg",
+  "mapcode": "86 011 365*08",
+  "mcLL": "41.75603,140.71455"
  },
  {
   "id": 846,
@@ -39469,7 +41143,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/846.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_City_Museum_of_Literature02n.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_City_Museum_of_Literature02n.jpg",
+  "mapcode": "86 041 570*12",
+  "mcLL": "41.76634,140.71324"
  },
  {
   "id": 847,
@@ -39522,7 +41198,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/847.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Museum_of_Art_Hokkaido_Japan01n.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Museum_of_Art_Hokkaido_Japan01n.jpg",
+  "mapcode": "86 135 839*66",
+  "mcLL": "41.79341,140.75459"
  },
  {
   "id": 848,
@@ -39576,7 +41254,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/848.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Daisan-zaka_Slope_Hakodate_Hokkaido_Japan03n.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Daisan-zaka_Slope_Hakodate_Hokkaido_Japan03n.jpg",
+  "mapcode": "86 041 397*27",
+  "mcLL": "41.76472,140.71509"
  },
  {
   "id": 849,
@@ -39630,7 +41310,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/849.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Nijukken-zaka_at_night.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Nijukken-zaka_at_night.jpg",
+  "mapcode": "86 041 340*58",
+  "mcLL": "41.76401,140.71584"
  },
  {
   "id": 850,
@@ -39683,7 +41365,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/850.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_gaijin-bochi.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_gaijin-bochi.JPG",
+  "mapcode": "86 039 752*34",
+  "mcLL": "41.76809,140.6971"
  },
  {
   "id": 851,
@@ -39721,7 +41405,9 @@ window.PLACES = [
   "addrJa": "函館市日乃出町25",
   "phone": "0138-23-5440",
   "ref": "https://www.hakobura.jp/spots/607",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "86 075 357*88",
+  "mcLL": "41.77244,140.7539"
  },
  {
   "id": 852,
@@ -39774,7 +41460,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/852.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki_jyoumonRoman.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki_jyoumonRoman.JPG",
+  "mapcode": "744 053 054*53",
+  "mcLL": "41.92792,140.94475"
  },
  {
   "id": 853,
@@ -39828,7 +41516,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/853.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Administrative_building_of_%C5%8Cfune_Site.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Administrative_building_of_%C5%8Cfune_Site.jpg",
+  "mapcode": "744 141 642*33",
+  "mcLL": "41.95864,140.92483"
  },
  {
   "id": 854,
@@ -39885,7 +41575,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/854.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%81%B5%E5%B1%B1.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%81%B5%E5%B1%B1.jpg",
+  "mapcode": "875 185 158*66",
+  "mcLL": "41.80398,141.16537"
  },
  {
   "id": 855,
@@ -39934,7 +41626,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/855.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_city_tram_hai-4_20090921.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_city_tram_hai-4_20090921.jpg",
+  "mapcode": "86 108 597*31",
+  "mcLL": "41.78307,140.77904"
  },
  {
   "id": 856,
@@ -39993,7 +41687,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/856.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Conductor_Hakodate_Haikara.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Conductor_Hakodate_Haikara.jpg",
+  "mapcode": "86 108 597*31",
+  "mcLL": "41.78307,140.77904"
  },
  {
   "id": 857,
@@ -40043,7 +41739,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/857.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Park.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Park.jpg",
+  "mapcode": "86 011 370*21",
+  "mcLL": "41.75614,140.71592"
  },
  {
   "id": 858,
@@ -40092,7 +41790,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/858.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%81%AF%E3%81%93%E3%81%A0%E3%81%A6%E8%87%AA%E7%94%B1%E5%B8%82%E5%A0%B4%EF%BC%88%E5%8C%97%E6%B5%B7%E9%81%93%E5%87%BD%E9%A4%A8%E5%B8%82%E6%96%B0%E5%B7%9D%E7%94%BA%EF%BC%8920250628-P1069689.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%81%AF%E3%81%93%E3%81%A0%E3%81%A6%E8%87%AA%E7%94%B1%E5%B8%82%E5%A0%B4%EF%BC%88%E5%8C%97%E6%B5%B7%E9%81%93%E5%87%BD%E9%A4%A8%E5%B8%82%E6%96%B0%E5%B7%9D%E7%94%BA%EF%BC%8920250628-P1069689.jpg",
+  "mapcode": "86 073 467*67",
+  "mcLL": "41.77341,140.73462"
  },
  {
   "id": 859,
@@ -40146,7 +41846,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/859.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Nishi_Hatoba_20231223.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hakodate_Nishi_Hatoba_20231223.jpg",
+  "mapcode": "86 041 577*43",
+  "mcLL": "41.76644,140.71523"
  },
  {
   "id": 860,
@@ -40196,7 +41898,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/860.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:View_from_Hakodate_Nanae_Gondola.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:View_from_Hakodate_Nanae_Gondola.jpg",
+  "mapcode": "86 855 062*58",
+  "mcLL": "41.98647,140.74695"
  },
  {
   "id": 861,
@@ -40253,7 +41957,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/861.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%81%8D%E3%81%98%E3%81%B2%E3%81%8D%E9%AB%98%E5%8E%9F_%E3%83%91%E3%83%8E%E3%83%A9%E3%83%9E%E5%B1%95%E6%9C%9B%E5%8F%B0%E3%82%88%E3%82%8A_1_%2851384741489%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%81%8D%E3%81%98%E3%81%B2%E3%81%8D%E9%AB%98%E5%8E%9F_%E3%83%91%E3%83%8E%E3%83%A9%E3%83%9E%E5%B1%95%E6%9C%9B%E5%8F%B0%E3%82%88%E3%82%8A_1_%2851384741489%29.jpg",
+  "mapcode": "490 014 575*30",
+  "mcLL": "41.92472,140.61458"
  },
  {
   "id": 862,
@@ -40303,7 +42009,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/862.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Gelende_in_Hakodate_Nanae_Snowpark_%28Jan_2026%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Gelende_in_Hakodate_Nanae_Snowpark_%28Jan_2026%29.jpg",
+  "mapcode": "86 855 156*15",
+  "mcLL": "41.98736,140.74823"
  },
  {
   "id": 863,
@@ -40340,7 +42048,9 @@ window.PLACES = [
   "addrJa": "北海道亀田郡七飯町上藤城11",
   "phone": "0138-65-8170",
   "ref": "https://www.hakobura.jp/spots/714",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "86 547 844*08",
+  "mcLL": "41.91045,140.68095"
  },
  {
   "id": 864,
@@ -40382,7 +42092,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/864.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki_jyoumonRoman.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki_jyoumonRoman.JPG",
+  "mapcode": "744 053 054*68",
+  "mcLL": "41.92788,140.9448"
  },
  {
   "id": 865,
@@ -40432,7 +42144,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/865.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Shikabe_Geyser_01.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Shikabe_Geyser_01.jpg",
+  "mapcode": "744 400 093*10",
+  "mcLL": "42.02851,140.83077"
  },
  {
   "id": 866,
@@ -40483,7 +42197,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/866.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:JP-01_Hakodate_Ajisai-ramen.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:JP-01_Hakodate_Ajisai-ramen.jpg",
+  "mapcode": "86 165 054*01",
+  "mcLL": "41.79464,140.75323"
  },
  {
   "id": 867,
@@ -40537,7 +42253,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/867.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%83%AC%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3%E9%9B%AA%E6%B2%B3%E4%BA%AD%EF%BC%88%E4%BA%94%E5%B3%B6%E8%BB%92%E6%9C%AC%E5%BA%97%EF%BC%8920231201-IMG_8583.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%83%AC%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3%E9%9B%AA%E6%B2%B3%E4%BA%AD%EF%BC%88%E4%BA%94%E5%B3%B6%E8%BB%92%E6%9C%AC%E5%BA%97%EF%BC%8920231201-IMG_8583.jpg",
+  "mapcode": "86 041 309*76",
+  "mcLL": "41.76369,140.71579"
  },
  {
   "id": 868,
@@ -40575,7 +42293,9 @@ window.PLACES = [
   "addrJa": "函館市末広町23-15",
   "phone": "0138-22-0643",
   "ref": "https://www.hakobura.jp/spots/47",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "86 041 545*62",
+  "mcLL": "41.76597,140.71456"
  },
  {
   "id": 869,
@@ -40631,7 +42351,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/869.jpg",
-  "imgCredit": "https://www.flickr.com/photos/91049143@N00/16721831165"
+  "imgCredit": "https://www.flickr.com/photos/91049143@N00/16721831165",
+  "mapcode": "86 072 372*60",
+  "mcLL": "41.7726,140.72487"
  },
  {
   "id": 870,
@@ -40668,7 +42390,9 @@ window.PLACES = [
   "addrJa": "函館市末広町14-12",
   "phone": "0138-27-1010",
   "ref": "https://www.hakobura.jp/spots/119",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "86 041 611*16",
+  "mcLL": "41.76657,140.71635"
  },
  {
   "id": 871,
@@ -40701,7 +42425,9 @@ window.PLACES = [
   "addrJa": "函館市宇賀浦町14-4",
   "phone": "0138-32-4455",
   "ref": "https://www.hakobura.jp/spots/159",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "86 074 177*24",
+  "mcLL": "41.77087,140.74563"
  },
  {
   "id": 872,
@@ -40739,7 +42465,9 @@ window.PLACES = [
   "addrJa": "函館市宝来町9-4",
   "phone": "0138-27-3300",
   "ref": "https://www.hakobura.jp/spots/88",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "86 011 890*41",
+  "mcLL": "41.76086,140.71886"
  },
  {
   "id": 873,
@@ -40775,7 +42503,9 @@ window.PLACES = [
   "addrJa": "函館市豊川町11-5 金森赤レンガ倉庫BAYはこだて内",
   "phone": "0138-84-5677",
   "ref": "https://www.hakobura.jp/spots/698",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "86 041 645*88",
+  "mcLL": "41.76686,140.71723"
  },
  {
   "id": 874,
@@ -40812,7 +42542,9 @@ window.PLACES = [
   "addrJa": "函館市末広町13-9 金森洋物館内",
   "phone": "0138-27-1240",
   "ref": "https://www.hakobura.jp/spots/695",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "86 041 614*55",
+  "mcLL": "41.76646,140.71695"
  },
  {
   "id": 875,
@@ -40854,7 +42586,9 @@ window.PLACES = [
   "addrJa": "発着地:帯広市西2条南10丁目20‐3 ホテルヌプカ前",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/20328/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 624 135*72",
+  "mcLL": "42.92037,143.20045"
  },
  {
   "id": 876,
@@ -40895,7 +42629,9 @@ window.PLACES = [
   "phone": "080-2864-0635",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/19741/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 625 257*02",
+  "mcLL": "42.92156,143.20925"
  },
  {
   "id": 877,
@@ -40946,7 +42682,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/877.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:131012_Midorigaoka_Park_Obihiro_Hokkaido_Japan02s3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:131012_Midorigaoka_Park_Obihiro_Hokkaido_Japan02s3.jpg",
+  "mapcode": "124 562 318*04",
+  "mcLL": "42.90547,143.18459"
  },
  {
   "id": 878,
@@ -41005,7 +42743,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/878.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Obihiro_ZOO.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Obihiro_ZOO.jpg",
+  "mapcode": "124 532 761*35",
+  "mcLL": "42.90132,143.1826"
  },
  {
   "id": 879,
@@ -41050,7 +42790,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/879.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Beet_museum.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Beet_museum.JPG",
+  "mapcode": "124 503 489*70",
+  "mcLL": "42.89033,143.1905"
  },
  {
   "id": 880,
@@ -41093,7 +42835,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/880.jpg",
-  "imgCredit": "https://www.flickr.com/photos/52093670@N03/6308006628"
+  "imgCredit": "https://www.flickr.com/photos/52093670@N03/6308006628",
+  "mapcode": "424 155 225*17",
+  "mcLL": "43.04622,143.16719"
  },
  {
   "id": 881,
@@ -41136,7 +42880,9 @@ window.PLACES = [
   "phone": "0155-24-2434",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/1468/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 562 159*55",
+  "mcLL": "42.90391,143.18193"
  },
  {
   "id": 882,
@@ -41178,7 +42924,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/882.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Yachiyo_Farm_in_Obihiro%2C_Hokkaido%286013812233%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Yachiyo_Farm_in_Obihiro%2C_Hokkaido%286013812233%29.jpg",
+  "mapcode": "592 551 176*31",
+  "mcLL": "42.73748,142.97019"
  },
  {
   "id": 883,
@@ -41232,7 +42980,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/883.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%84%9B%E5%9B%BD%E9%A7%85I.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%84%9B%E5%9B%BD%E9%A7%85I.JPG",
+  "mapcode": "124 323 038*14",
+  "mcLL": "42.83629,143.19026"
  },
  {
   "id": 884,
@@ -41292,7 +43042,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/884.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:131013_Nakasatsunai_Art_Village_Hokkaido_Japan00s3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:131013_Nakasatsunai_Art_Village_Hokkaido_Japan00s3.jpg",
+  "mapcode": "396 634 085*62",
+  "mcLL": "42.67818,143.16149"
  },
  {
   "id": 885,
@@ -41336,7 +43088,9 @@ window.PLACES = [
   "phone": "0155-53-4780",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/19281/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 351 055*88",
+  "mcLL": "42.84459,143.17807"
  },
  {
   "id": 886,
@@ -41370,7 +43124,9 @@ window.PLACES = [
   "phone": "0155-29-4821(",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/4860/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 321 832*72",
+  "mcLL": "42.84343,143.1774"
  },
  {
   "id": 887,
@@ -41420,7 +43176,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/887.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Obihiro_Racecourse_Museum_of_Horses.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Obihiro_Racecourse_Museum_of_Horses.jpg",
+  "mapcode": "124 622 219*38",
+  "mcLL": "42.92134,143.18203"
  },
  {
   "id": 888,
@@ -41463,7 +43221,9 @@ window.PLACES = [
   "phone": "0155-64-2244",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/10318/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 139 120*76",
+  "mcLL": "42.78697,143.15467"
  },
  {
   "id": 889,
@@ -41496,7 +43256,9 @@ window.PLACES = [
   "phone": "0155-22-8600",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/1486/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "396 811 363*52",
+  "mcLL": "42.73093,143.13028"
  },
  {
   "id": 890,
@@ -41530,7 +43292,9 @@ window.PLACES = [
   "phone": "0155-66-9227",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/20340/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 595 155*58",
+  "mcLL": "42.91228,143.20584"
  },
  {
   "id": 891,
@@ -41579,7 +43343,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/891.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:131012_Hokkaido_Obihiro_Museum_of_Art01s3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:131012_Hokkaido_Obihiro_Museum_of_Art01s3.jpg",
+  "mapcode": "124 562 223*47",
+  "mcLL": "42.90465,143.18329"
  },
  {
   "id": 892,
@@ -41621,7 +43387,9 @@ window.PLACES = [
   "phone": "0155-22-8600",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/1485/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "592 289 882*60",
+  "mcLL": "42.66896,143.03292"
  },
  {
   "id": 893,
@@ -41655,7 +43423,9 @@ window.PLACES = [
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/1500/",
   "checked": "2026-11",
-  "caution": "เว็บทางการไม่ระบุเวลาเปิด ตรวจก่อนไป"
+  "caution": "เว็บทางการไม่ระบุเวลาเปิด ตรวจก่อนไป",
+  "mapcode": "592 437 558*37",
+  "mcLL": "42.70773,143.01797"
  },
  {
   "id": 894,
@@ -41690,7 +43460,9 @@ window.PLACES = [
   "phone": "0155-67-6061",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/20067/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 624 820*32",
+  "mcLL": "42.92692,143.19898"
  },
  {
   "id": 895,
@@ -41734,7 +43506,9 @@ window.PLACES = [
   "phone": "0155-24-2437",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/1477/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 532 822*14",
+  "mcLL": "42.90185,143.18304"
  },
  {
   "id": 896,
@@ -41775,7 +43549,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/896.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:131012_Obihiro_Centennial_City_Museum01s3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:131012_Obihiro_Centennial_City_Museum01s3.jpg",
+  "mapcode": "124 562 496*17",
+  "mcLL": "42.90705,143.18415"
  },
  {
   "id": 897,
@@ -41809,7 +43585,9 @@ window.PLACES = [
   "phone": "0155-21-0101",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/13107/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 593 146*10",
+  "mcLL": "42.91208,143.19521"
  },
  {
   "id": 898,
@@ -41850,7 +43628,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/898.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Ryugetsu_Sweetpia_Garden.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Ryugetsu_Sweetpia_Garden.JPG",
+  "mapcode": "124 801 589*10",
+  "mcLL": "42.97458,143.17659"
  },
  {
   "id": 899,
@@ -41893,7 +43673,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/899.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%80%8C%E3%81%A8%E3%81%8B%E3%81%A1%E3%82%80%E3%82%89%E3%80%8D%E3%81%AB%E3%81%82%E3%82%8B%E3%80%8C%E5%8D%81%E5%8B%9D%E8%BC%93%E9%A6%AC%E7%A5%9E%E7%A4%BE%E3%80%8D%EF%BC%882016%E5%B9%B41%E6%9C%881%E6%97%A5%EF%BC%89.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%80%8C%E3%81%A8%E3%81%8B%E3%81%A1%E3%82%80%E3%82%89%E3%80%8D%E3%81%AB%E3%81%82%E3%82%8B%E3%80%8C%E5%8D%81%E5%8B%9D%E8%BC%93%E9%A6%AC%E7%A5%9E%E7%A4%BE%E3%80%8D%EF%BC%882016%E5%B9%B41%E6%9C%881%E6%97%A5%EF%BC%89.JPG",
+  "mapcode": "124 622 195*45",
+  "mcLL": "42.92104,143.18378"
  },
  {
   "id": 900,
@@ -41927,7 +43709,9 @@ window.PLACES = [
   "phone": "0155-37-2500",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/1465/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 646 418*36",
+  "mcLL": "42.9313,143.13736"
  },
  {
   "id": 901,
@@ -41987,7 +43771,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/901.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E8%8A%B1%E3%81%AE%E5%BE%84%E3%81%A8%E3%83%AC%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3%E3%80%8C%E3%83%95%E3%83%A9%E3%83%AF%E3%83%BC%E3%83%8F%E3%83%BC%E3%83%84%E3%80%8D.png"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E8%8A%B1%E3%81%AE%E5%BE%84%E3%81%A8%E3%83%AC%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3%E3%80%8C%E3%83%95%E3%83%A9%E3%83%AF%E3%83%BC%E3%83%8F%E3%83%BC%E3%83%84%E3%80%8D.png",
+  "mapcode": "124 039 080*27",
+  "mcLL": "42.76162,143.07676"
  },
  {
   "id": 902,
@@ -42022,7 +43808,9 @@ window.PLACES = [
   "phone": "0155-22-7666",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/1462/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 594 737*81",
+  "mcLL": "42.91764,143.2009"
  },
  {
   "id": 903,
@@ -42059,7 +43847,9 @@ window.PLACES = [
   "phone": "0155-23-4700",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/15506/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 656 057*51",
+  "mcLL": "42.92783,143.22033"
  },
  {
   "id": 904,
@@ -42093,7 +43883,9 @@ window.PLACES = [
   "phone": "0155-67-5959",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/20770/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "396 571 089*84",
+  "mcLL": "42.66158,143.13758"
  },
  {
   "id": 905,
@@ -42127,7 +43919,9 @@ window.PLACES = [
   "phone": "0155-23-4659",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/1372/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 624 080*57",
+  "mcLL": "42.91975,143.20173"
  },
  {
   "id": 906,
@@ -42161,7 +43955,9 @@ window.PLACES = [
   "phone": "0155-67-4659",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/1374/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 503 361*88",
+  "mcLL": "42.88932,143.18805"
  },
  {
   "id": 907,
@@ -42195,7 +43991,9 @@ window.PLACES = [
   "phone": "0155-23-2101",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/1352/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 624 382*14",
+  "mcLL": "42.92269,143.20246"
  },
  {
   "id": 908,
@@ -42228,7 +44026,9 @@ window.PLACES = [
   "phone": "0155-24-4358",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/1008/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 596 367*83",
+  "mcLL": "42.91433,143.21476"
  },
  {
   "id": 909,
@@ -42270,7 +44070,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/909.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Tokachi_Butadon_Ippin_Butadon.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Tokachi_Butadon_Ippin_Butadon.jpg",
+  "mapcode": "124 587 223*16",
+  "mcLL": "42.91288,143.14162"
  },
  {
   "id": 910,
@@ -42307,7 +44109,9 @@ window.PLACES = [
   "phone": "0155-20-1818",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/4237/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 624 067*74",
+  "mcLL": "42.91979,143.19829"
  },
  {
   "id": 911,
@@ -42349,7 +44153,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/911.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Confectionery_Cranberry.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Confectionery_Cranberry.jpg",
+  "mapcode": "124 624 734*54",
+  "mcLL": "42.92593,143.20007"
  },
  {
   "id": 912,
@@ -42383,7 +44189,9 @@ window.PLACES = [
   "phone": "0155-22-6151",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/963/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 594 895*20",
+  "mcLL": "42.91913,143.20307"
  },
  {
   "id": 913,
@@ -42417,7 +44225,9 @@ window.PLACES = [
   "phone": "0156-64-5888",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/8551/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "608 745 745*78",
+  "mcLL": "43.12586,142.83658"
  },
  {
   "id": 914,
@@ -42452,7 +44262,9 @@ window.PLACES = [
   "phone": "01564-2-3923",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/8579/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "424 793 822*86",
+  "mcLL": "43.22673,143.23279"
  },
  {
   "id": 915,
@@ -42487,7 +44299,9 @@ window.PLACES = [
   "phone": "090-9751-9106",
   "url": "https://x.com/en/privacy",
   "ref": "https://obikan.jp/post_spot/24511/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "124 624 129*40",
+  "mcLL": "42.9205,143.19883"
  },
  {
   "id": 916,
@@ -42535,7 +44349,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/916.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Arishima_Takeo_Memorial_Museum_-_Aug_25%2C_2016_%284%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Arishima_Takeo_Memorial_Museum_-_Aug_25%2C_2016_%284%29.jpg",
+  "mapcode": "398 204 868*47",
+  "mcLL": "42.81042,140.70437"
  },
  {
   "id": 917,
@@ -42582,7 +44398,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/917.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Annupuri_Gondola_-_Jumbo_1st_Quad_Lift_-_Dream_1st_Quad_Lift.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Annupuri_Gondola_-_Jumbo_1st_Quad_Lift_-_Dream_1st_Quad_Lift.jpg",
+  "mapcode": "398 378 098*53",
+  "mcLL": "42.85333,140.64861"
  },
  {
   "id": 918,
@@ -42637,7 +44455,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/918.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Niseko_Gondola_and_Hilton_Niseko_Village.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Niseko_Gondola_and_Hilton_Niseko_Village.jpg",
+  "mapcode": "398 351 256*41",
+  "mcLL": "42.84656,140.67603"
  },
  {
   "id": 919,
@@ -42688,7 +44508,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/919.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Niseko-Moiwa.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Niseko-Moiwa.jpg",
+  "mapcode": "398 376 306*36",
+  "mcLL": "42.85542,140.63146"
  },
  {
   "id": 920,
@@ -42727,7 +44549,9 @@ window.PLACES = [
   "addrJa": "北海道虻田郡ニセコ町東山温泉",
   "phone": "0136-44-2211",
   "ref": "https://www.niseko-ta.jp/resorts/article/%e3%83%8b%e3%82%bb%e3%82%b3%e3%83%93%e3%83%ac%e3%83%83%e3%82%b8%e3%80%8c%e3%83%94%e3%83%a5%e3%82%a2%e3%80%8d/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "398 351 256*41",
+  "mcLL": "42.84656,140.67603"
  },
  {
   "id": 921,
@@ -42765,7 +44589,9 @@ window.PLACES = [
   "addrJa": "北海道虻田郡ニセコ町字中央通60-4",
   "phone": "0136-43-2882",
   "ref": "https://www.niseko-ta.jp/resorts/article/%e5%8c%97%e6%b5%b7%e9%81%93%e3%83%a9%e3%82%a4%e3%82%aa%e3%83%b3%e3%82%a2%e3%83%89%e3%83%99%e3%83%b3%e3%83%81%e3%83%a3%e3%83%bc-7/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "398 202 678*85",
+  "mcLL": "42.80866,140.68468"
  },
  {
   "id": 922,
@@ -42798,7 +44624,9 @@ window.PLACES = [
   "addrJa": "北海道虻田郡ニセコ町字曽我859-5",
   "phone": "0136-55-8128",
   "ref": "https://www.niseko-ta.jp/resorts/article/oac-outdoor-amusement-campany/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "398 291 666*83",
+  "mcLL": "42.83372,140.67305"
  },
  {
   "id": 923,
@@ -42843,7 +44671,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/923.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Niseko_ekimae_onsen_Kiranoyu.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Niseko_ekimae_onsen_Kiranoyu.JPG",
+  "mapcode": "398 202 708*05",
+  "mcLL": "42.80893,140.68476"
  },
  {
   "id": 924,
@@ -42876,7 +44706,9 @@ window.PLACES = [
   "addrJa": "北海道磯谷郡蘭越町字湯里680",
   "phone": "0136-58-2328",
   "ref": "https://www.niseko-ta.jp/resorts/article/%e8%98%ad%e8%b6%8a%e7%94%ba%e4%ba%a4%e6%b5%81%e4%bf%83%e9%80%b2%e3%82%bb%e3%83%b3%e3%82%bf%e3%83%bc%e3%80%80%e9%9b%aa%e7%a7%a9%e7%88%b6/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "398 432 036*17",
+  "mcLL": "42.86949,140.59825"
  },
  {
   "id": 925,
@@ -42908,7 +44740,9 @@ window.PLACES = [
   "addrJa": "北海道磯谷郡蘭越町昆布町114-5",
   "phone": "0136-58-2131",
   "ref": "https://www.niseko-ta.jp/resorts/article/%e8%98%ad%e8%b6%8a%e7%94%ba%e4%ba%a4%e6%b5%81%e4%bf%83%e9%80%b2%e3%82%bb%e3%83%b3%e3%82%bf%e3%83%bc%e3%80%80%e5%b9%bd%e6%b3%89%e9%96%a3/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "398 162 394*87",
+  "mcLL": "42.79783,140.59752"
  },
  {
   "id": 926,
@@ -42953,7 +44787,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/926.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Makkari_spa_2011.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Makkari_spa_2011.JPG",
+  "mapcode": "385 333 503*84",
+  "mcLL": "42.76538,140.7778"
  },
  {
   "id": 927,
@@ -42986,7 +44822,9 @@ window.PLACES = [
   "addrJa": "北海道虻田郡ニセコ町字曽我806-13",
   "phone": "0136-43-2552",
   "ref": "https://www.niseko-ta.jp/resorts/article/%e3%81%8c%e3%82%89%e3%81%99%e3%82%ae%e3%83%a3%e3%83%a9%e3%83%aa%e3%83%bc%e7%ab%a5%e5%a4%a2-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "398 291 627*38",
+  "mcLL": "42.83323,140.67895"
  },
  {
   "id": 928,
@@ -43019,7 +44857,9 @@ window.PLACES = [
   "addrJa": "北海道虻田郡ニセコ町近藤425番地6",
   "phone": "0136-44-2188",
   "ref": "https://www.niseko-ta.jp/resorts/article/%e3%83%8b%e3%82%bb%e3%82%b3%e3%83%81%e3%83%bc%e3%82%ba%e5%b7%a5%e6%88%bf-2/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "398 179 554*01",
+  "mcLL": "42.79923,140.74206"
  },
  {
   "id": 929,
@@ -43052,7 +44892,9 @@ window.PLACES = [
   "addrJa": "北海道虻田郡ニセコ町字曽我888-",
   "phone": "0136-55-8852",
   "ref": "https://www.niseko-ta.jp/resorts/article/%e3%83%86%e3%82%b9%e3%83%88%e6%8a%95%e7%a8%bf/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "398 418 048*23",
+  "mcLL": "42.8613,140.7347"
  },
  {
   "id": 930,
@@ -43103,7 +44945,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/930.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Japan_Crane_Reserve_00.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Japan_Crane_Reserve_00.jpg",
+  "mapcode": "630 504 390*18",
+  "mcLL": "43.05628,144.1962"
  },
  {
   "id": 931,
@@ -43154,7 +44998,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/931.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kushiro_Zoo_-_West_gate_-_2024_May_12_B.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kushiro_Zoo_-_West_gate_-_2024_May_12_B.jpg",
+  "mapcode": "630 598 415*11",
+  "mcLL": "43.08127,144.23654"
  },
  {
   "id": 932,
@@ -43204,7 +45050,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/932.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Grus_japonensis_Tsurui_Tsurumidai.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Grus_japonensis_Tsurui_Tsurumidai.jpg",
+  "mapcode": "556 353 143*61",
+  "mcLL": "43.17868,144.31921"
  },
  {
   "id": 933,
@@ -43238,7 +45086,9 @@ window.PLACES = [
   "phone": "0154-65-2323",
   "url": "http://www.kushiro-shitsugen-np.jp/kansatu/onnenaiv/",
   "ref": "https://ja.kushiro-lakeakan.com/things_to_do/3643/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "149 669 833*25",
+  "mcLL": "43.11021,144.32739"
  },
  {
   "id": 934,
@@ -43288,7 +45138,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/934.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%B3%E3%83%83%E3%82%BF%E3%83%AD%E6%B9%BF%E5%8E%9F%E5%B1%95%E6%9C%9B%E5%8F%B0_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%82%B3%E3%83%83%E3%82%BF%E3%83%AD%E6%B9%BF%E5%8E%9F%E5%B1%95%E6%9C%9B%E5%8F%B0_-_panoramio.jpg",
+  "mapcode": "900 086 522*42",
+  "mcLL": "43.19084,144.46616"
  },
  {
   "id": 935,
@@ -43332,7 +45184,9 @@ window.PLACES = [
   "phone": "015-485-2111",
   "url": "http://www.kushiro-shitsugen-np.jp/tenbou/sarubo/",
   "ref": "https://ja.kushiro-lakeakan.com/things_to_do/3656/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "576 870 426*21",
+  "mcLL": "43.16499,144.49771"
  },
  {
   "id": 936,
@@ -43365,7 +45219,9 @@ window.PLACES = [
   "addrJa": "北海道釧路郡釧路町達古武",
   "url": "http://www.kushiro-shitsugen-np.jp/sansaku/yumegaoka/",
   "ref": "https://ja.kushiro-lakeakan.com/things_to_do/3637/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "149 716 642*75",
+  "mcLL": "43.1167,144.46617"
  },
  {
   "id": 937,
@@ -43425,7 +45281,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/937.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokuto_dwelling_replica.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hokuto_dwelling_replica.JPG",
+  "mapcode": "149 519 706*48",
+  "mcLL": "43.06747,144.32563"
  },
  {
   "id": 938,
@@ -43472,7 +45330,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/938.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kushiro_Museum.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kushiro_Museum.jpg",
+  "mapcode": "149 198 567*57",
+  "mcLL": "42.97422,144.40357"
  },
  {
   "id": 939,
@@ -43526,7 +45386,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/939.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kushiro_Art_Museum_Hokkaido_Japan01s5.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kushiro_Art_Museum_Hokkaido_Japan01s5.jpg",
+  "mapcode": "149 226 541*13",
+  "mcLL": "42.98272,144.37983"
  },
  {
   "id": 940,
@@ -43572,7 +45434,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/940.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kobunkan_Kushiro_Hokkaido_Japan01bs.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kobunkan_Kushiro_Hokkaido_Japan01bs.jpg",
+  "mapcode": "149 226 280*08",
+  "mcLL": "42.98018,144.38221"
  },
  {
   "id": 941,
@@ -43615,7 +45479,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/941.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Yonemachi_Observation_Tower.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Yonemachi_Observation_Tower.JPG",
+  "mapcode": "149 195 404*38",
+  "mcLL": "42.97306,144.37499"
  },
  {
   "id": 942,
@@ -43657,7 +45523,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/942.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%8E%B3%E5%B3%B6%E7%A5%9E%E7%A4%BE%28%E9%87%A7%E8%B7%AF%E5%B8%82%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E5%8E%B3%E5%B3%B6%E7%A5%9E%E7%A4%BE%28%E9%87%A7%E8%B7%AF%E5%B8%82%29.jpg",
+  "mapcode": "149 195 274*33",
+  "mcLL": "42.97197,144.37222"
  },
  {
   "id": 943,
@@ -43703,7 +45571,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/943.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake_Harutori_-_Kushiro_Hokkaido_-_2024_May_12_various_22_27_04_745000.jpeg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake_Harutori_-_Kushiro_Hokkaido_-_2024_May_12_various_22_27_04_745000.jpeg",
+  "mapcode": "149 229 039*88",
+  "mcLL": "42.97796,144.40684"
  },
  {
   "id": 944,
@@ -43745,7 +45615,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/944.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kushiro_Coal_Mine_2011.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kushiro_Coal_Mine_2011.jpg",
+  "mapcode": "149 171 883*03",
+  "mcLL": "42.96909,144.42473"
  },
  {
   "id": 945,
@@ -43789,7 +45661,9 @@ window.PLACES = [
   "phone": "0154-41-7511",
   "url": "http://www.icom946.com/crane/",
   "ref": "https://ja.kushiro-lakeakan.com/things_to_do/3443/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "149 226 464*38",
+  "mcLL": "42.98194,144.3833"
  },
  {
   "id": 946,
@@ -43836,7 +45710,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/946.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Akan%28michinoeki%29.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Akan%28michinoeki%29.JPG",
+  "mapcode": "556 212 026*87",
+  "mcLL": "43.1443,144.14495"
  },
  {
   "id": 947,
@@ -43879,7 +45755,9 @@ window.PLACES = [
   "phone": "0154-67-2511",
   "url": "http://www.akankisen.com/exMarimo.html",
   "ref": "https://ja.kushiro-lakeakan.com/things_to_do/2880/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "739 493 044*18",
+  "mcLL": "43.46955,144.1084"
  },
  {
   "id": 948,
@@ -43928,7 +45806,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/948.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E9%98%BF%E5%AF%92%E6%B9%96%E3%83%9C%E3%83%83%E3%82%B1.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E9%98%BF%E5%AF%92%E6%B9%96%E3%83%9C%E3%83%83%E3%82%B1.JPG",
+  "mapcode": "739 372 046*40",
+  "mcLL": "43.43631,144.10066"
  },
  {
   "id": 949,
@@ -43973,7 +45853,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/949.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%A7%8B%E3%81%AE%E6%BB%9D%E8%A6%8B%E6%A9%8B_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%A7%8B%E3%81%AE%E6%BB%9D%E8%A6%8B%E6%A9%8B_-_panoramio.jpg",
+  "mapcode": "739 347 580*46",
+  "mcLL": "43.43294,144.14064"
  },
  {
   "id": 950,
@@ -44022,7 +45904,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/950.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Soukodai.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Soukodai.jpg",
+  "mapcode": "739 415 452*56",
+  "mcLL": "43.44833,144.20489"
  },
  {
   "id": 951,
@@ -44054,7 +45938,9 @@ window.PLACES = [
   "acc": "จากหมุดแผนที่บนเว็บทางการ",
   "addrJa": "北海道釧路市阿寒町阿寒湖温泉1丁目4−25",
   "ref": "https://ja.kushiro-lakeakan.com/things_to_do/19187/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "739 342 672*40",
+  "mcLL": "43.43381,144.09954"
  },
  {
   "id": 952,
@@ -44117,7 +46003,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/952.jpg",
-  "imgCredit": "https://www.flickr.com/photos/12452841@N00/53924912262"
+  "imgCredit": "https://www.flickr.com/photos/12452841@N00/53924912262",
+  "mapcode": "739 342 730*42",
+  "mcLL": "43.43439,144.09896"
  },
  {
   "id": 953,
@@ -44156,7 +46044,9 @@ window.PLACES = [
   "phone": "0154-67-2881",
   "url": "http://akan-ski.com/",
   "ref": "https://ja.kushiro-lakeakan.com/things_to_do/3385/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "739 310 651*60",
+  "mcLL": "43.42502,144.0853"
  },
  {
   "id": 954,
@@ -44190,7 +46080,9 @@ window.PLACES = [
   "phone": "0154-41-3100",
   "url": "http://www.fukutsukasa.jp/",
   "ref": "https://ja.kushiro-lakeakan.com/eat_souvenir/4598/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "149 227 089*86",
+  "mcLL": "42.97821,144.39576"
  },
  {
   "id": 955,
@@ -44225,7 +46117,9 @@ window.PLACES = [
   "phone": "050-3461-2229",
   "url": "http://doremifasora.jp/",
   "ref": "https://ja.kushiro-lakeakan.com/eat_souvenir/5158/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "556 534 240*13",
+  "mcLL": "43.22989,144.32121"
  },
  {
   "id": 956,
@@ -44276,7 +46170,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/956.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake-akan_and_Mt-ahoro.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake-akan_and_Mt-ahoro.jpg",
+  "mapcode": "739 402 787*27",
+  "mcLL": "43.45155,144.09799"
  },
  {
   "id": 957,
@@ -44309,7 +46205,9 @@ window.PLACES = [
   "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
   "addrJa": "北海道登別市登別温泉町",
   "ref": "https://noboribetsu-spa.jp/spot/spot1001/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "603 287 386*63",
+  "mcLL": "42.497572,141.145335"
  },
  {
   "id": 958,
@@ -44349,7 +46247,9 @@ window.PLACES = [
   "addrJa": "北海道登別市登別温泉町",
   "url": "https://noboribetsu-spa.zaiko.io/e/onihanabi2026",
   "ref": "https://noboribetsu-spa.jp/spot/spot1005/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "603 287 386*63",
+  "mcLL": "42.497572,141.145335"
  },
  {
   "id": 959,
@@ -44381,7 +46281,9 @@ window.PLACES = [
   "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
   "addrJa": "北海道登別市登別温泉町",
   "ref": "https://noboribetsu-spa.jp/spot/spot0103/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "603 257 891*24",
+  "mcLL": "42.49414,141.14389"
  },
  {
   "id": 960,
@@ -44421,7 +46323,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/960.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Spa_Noboribetu%EF%BC%8F%E7%99%BB%E5%88%A5%E6%B8%A9%E6%B3%89%E8%A1%97%E3%83%BB%E9%96%93%E6%AC%A0%E6%B3%89_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Spa_Noboribetu%EF%BC%8F%E7%99%BB%E5%88%A5%E6%B8%A9%E6%B3%89%E8%A1%97%E3%83%BB%E9%96%93%E6%AC%A0%E6%B3%89_-_panoramio.jpg",
+  "mapcode": "603 287 081*48",
+  "mcLL": "42.49493,141.144"
  },
  {
   "id": 961,
@@ -44461,7 +46365,9 @@ window.PLACES = [
   "acc": "จาก OpenStreetMap (ชื่อสถานที่)",
   "addrJa": "北海道登別市登別温泉町",
   "ref": "https://noboribetsu-spa.jp/spot/spot0063/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "603 288 879*68",
+  "mcLL": "42.50226,141.1489"
  },
  {
   "id": 962,
@@ -44497,7 +46403,9 @@ window.PLACES = [
   "acc": "ประมาณ (ระดับตำบลจากที่อยู่ทางการ)",
   "addrJa": "北海道登別市中登別町",
   "ref": "https://noboribetsu-spa.jp/spot/spot0082/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "603 169 855*17",
+  "mcLL": "42.4687,141.15906"
  },
  {
   "id": 963,
@@ -44537,7 +46445,9 @@ window.PLACES = [
   "phone": "0143-84-2872",
   "url": "https://sanlaiva.com/",
   "ref": "https://noboribetsu-spa.jp/spot/spot0151/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "603 372 629*02",
+  "mcLL": "42.52489,141.10446"
  },
  {
   "id": 964,
@@ -44570,7 +46480,9 @@ window.PLACES = [
   "addrJa": "北海道登別市登別温泉町29",
   "phone": "0143-84-2415",
   "ref": "https://noboribetsu-spa.jp/spot/spot0189/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "603 257 709*37",
+  "mcLL": "42.49241,141.14342"
  },
  {
   "id": 965,
@@ -44613,7 +46525,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/965.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Toyako_volcano_science_museum.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Toyako_volcano_science_museum.JPG",
+  "mapcode": "321 518 091*36",
+  "mcLL": "42.56184,140.81343"
  },
  {
   "id": 966,
@@ -44673,7 +46587,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/966.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Usu_Volcano_%28Damage_of_2000_eruption%29.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Usu_Volcano_%28Damage_of_2000_eruption%29.jpg",
+  "mapcode": "321 486 889*18",
+  "mcLL": "42.56066,140.80181"
  },
  {
   "id": 967,
@@ -44724,7 +46640,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/967.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Pier_of_the_Toya-ko_Museum_by_tiseb.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Pier_of_the_Toya-ko_Museum_by_tiseb.jpg",
+  "mapcode": "321 641 234*65",
+  "mcLL": "42.5961,140.84477"
  },
  {
   "id": 968,
@@ -44773,7 +46691,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/968.jpg",
-  "imgCredit": "https://www.flickr.com/photos/67646766@N07/34711946151"
+  "imgCredit": "https://www.flickr.com/photos/67646766@N07/34711946151",
+  "mapcode": "321 517 613*58",
+  "mcLL": "42.56641,140.8083"
  },
  {
   "id": 969,
@@ -44814,7 +46734,9 @@ window.PLACES = [
   "phone": "0142-66-2333",
   "url": "http://www.kudamonomura.com/",
   "ref": "https://www.laketoya.com/leisure/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "321 529 060*70",
+  "mcLL": "42.5614,140.9049"
  },
  {
   "id": 970,
@@ -44849,7 +46771,9 @@ window.PLACES = [
   "phone": "0142-73-2455",
   "url": "http://www.jphorseriding.com/toya",
   "ref": "https://www.laketoya.com/leisure/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "321 604 840*13",
+  "mcLL": "42.59374,140.7799"
  },
  {
   "id": 971,
@@ -44892,7 +46816,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/971.jpg",
-  "imgCredit": "https://www.flickr.com/photos/66696891@N07/6072835330"
+  "imgCredit": "https://www.flickr.com/photos/66696891@N07/6072835330",
+  "mapcode": "321 518 471*73",
+  "mcLL": "42.56504,140.81906"
  },
  {
   "id": 972,
@@ -44926,7 +46852,9 @@ window.PLACES = [
   "phone": "0142-75-2608",
   "url": "http://okadaya-toya.com/",
   "ref": "https://www.laketoya.com/shop/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "321 518 529*62",
+  "mcLL": "42.56559,140.81838"
  },
  {
   "id": 973,
@@ -44976,7 +46904,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/973.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%98%AD%E5%92%8C%E6%96%B0%E5%B1%B1%E7%86%8A%E7%89%A7%E5%A0%B4.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%98%AD%E5%92%8C%E6%96%B0%E5%B1%B1%E7%86%8A%E7%89%A7%E5%A0%B4.jpg",
+  "mapcode": "321 433 295*38",
+  "mcLL": "42.53855,140.86173"
  },
  {
   "id": 974,
@@ -45011,7 +46941,9 @@ window.PLACES = [
   "phone": "0142-75-3262",
   "url": "http://glagla.jp/",
   "ref": "https://www.laketoya.com/leisure/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "321 634 238*81",
+  "mcLL": "42.59621,140.78752"
  },
  {
   "id": 975,
@@ -45060,7 +46992,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/975.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:2013%E5%B9%B44%E6%9C%88%E3%83%A2%E3%83%A8%E3%83%AD%E8%B2%9D%E5%A1%9A%E9%A4%A8.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:2013%E5%B9%B44%E6%9C%88%E3%83%A2%E3%83%A8%E3%83%AD%E8%B2%9D%E5%A1%9A%E9%A4%A8.jpg",
+  "mapcode": "305 677 567*36",
+  "mcLL": "44.02428,144.27022"
  },
  {
   "id": 976,
@@ -45101,7 +47035,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/976.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kitahama_station02.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kitahama_station02.JPG",
+  "mapcode": "305 447 654*35",
+  "mcLL": "43.95846,144.35269"
  },
  {
   "id": 977,
@@ -45134,7 +47070,9 @@ window.PLACES = [
   "addrJa": "北海道網走市豊郷",
   "phone": "0152-44-5849",
   "ref": "https://visit-abashiri.jp/scenery/61d5fa3747a9528144fb73cb982b82fa5aa55cbe.html",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "305 376 417*58",
+  "mcLL": "43.9394,144.26177"
  },
  {
   "id": 978,
@@ -45189,7 +47127,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/978.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:130714_Okhotsk_Chipmunk_Park_Abashiri_Hokkaido_Japan01s3.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:130714_Okhotsk_Chipmunk_Park_Abashiri_Hokkaido_Japan01s3.jpg",
+  "mapcode": "305 459 019*43",
+  "mcLL": "43.961,144.20144"
  },
  {
   "id": 979,
@@ -45244,7 +47184,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/979.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake_Tofutsu1.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake_Tofutsu1.jpg",
+  "mapcode": "305 448 015*73",
+  "mcLL": "43.95249,144.35866"
  },
  {
   "id": 980,
@@ -45286,7 +47228,9 @@ window.PLACES = [
   "addrJa": "北海道網走市三眺24",
   "phone": "0152-44-5849",
   "ref": "https://visit-abashiri.jp/scenery/c1148c70831b8242829f5c871e6fd34653ab985b.html",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "305 612 546*86",
+  "mcLL": "44.00753,144.22263"
  },
  {
   "id": 981,
@@ -45336,7 +47280,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/981.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:130713_Lake_Abashiri_view_from_Mount_Tento_in_Abashiri_Hokkaido_Japan01n.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:130713_Lake_Abashiri_view_from_Mount_Tento_in_Abashiri_Hokkaido_Japan01n.jpg",
+  "mapcode": "305 584 698*38",
+  "mcLL": "44.00069,144.23992"
  },
  {
   "id": 982,
@@ -45385,7 +47331,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/982.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Abashiri_City_Folk_Museum01s5.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Abashiri_City_Folk_Museum01s5.jpg",
+  "mapcode": "305 647 651*66",
+  "mcLL": "44.01659,144.26855"
  },
  {
   "id": 983,
@@ -45433,7 +47381,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/983.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hana-Tento-Flower-Park2023.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Hana-Tento-Flower-Park2023.JPG",
+  "mapcode": "305 553 207*43",
+  "mcLL": "43.98768,144.23699"
  },
  {
   "id": 984,
@@ -45476,7 +47426,9 @@ window.PLACES = [
   "addrJa": "網走市呼人28-3",
   "phone": "0152-48-2550",
   "ref": "https://visit-abashiri.jp/play/b04dafe0cc594f5ed7430b823064267f052a9f68.html",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "305 552 280*77",
+  "mcLL": "43.98827,144.22398"
  },
  {
   "id": 985,
@@ -45514,7 +47466,9 @@ window.PLACES = [
   "addrJa": "網走市字呼人823-2地先 国有地",
   "phone": "0152-44-5849",
   "ref": "https://visit-abashiri.jp/play/f862280e62c9e298c6a293df59a7202507fa8fb3.html",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "305 552 734*77",
+  "mcLL": "43.99243,144.22508"
  },
  {
   "id": 986,
@@ -45555,7 +47509,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/986.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Yakiniku-Abashiri-Beer-Kan01.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Yakiniku-Abashiri-Beer-Kan01.JPG",
+  "mapcode": "305 676 295*78",
+  "mcLL": "44.02161,144.26141"
  },
  {
   "id": 987,
@@ -45588,7 +47544,9 @@ window.PLACES = [
   "addrJa": "北海道網走市字藻琴225番地",
   "phone": "0152-46-2121",
   "ref": "https://visit-abashiri.jp/meal/3de282929ffbd696215c50f525bdc3a1bb33689f.html",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "305 502 236*06",
+  "mcLL": "43.97114,144.31163"
  },
  {
   "id": 988,
@@ -45637,7 +47595,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/988.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:140828_Cape_Puyuni_Hokkaido_Japan04s.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:140828_Cape_Puyuni_Hokkaido_Japan04s.jpg",
+  "mapcode": "757 601 320*35",
+  "mcLL": "44.08873,145.00985"
  },
  {
   "id": 989,
@@ -45682,7 +47642,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/989.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Shiretoko_National_Park_Nature_Center.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Shiretoko_National_Park_Nature_Center.jpg",
+  "mapcode": "757 603 607*04",
+  "mcLL": "44.0915,145.02298"
  },
  {
   "id": 990,
@@ -45727,7 +47689,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/990.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Shiretoko_World_Heritage_Conservation_Center01n.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Shiretoko_World_Heritage_Conservation_Center01n.jpg",
+  "mapcode": "894 854 043*45",
+  "mcLL": "44.06957,144.99134"
  },
  {
   "id": 991,
@@ -45777,7 +47741,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/991.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Shiretoko_Museum_-_entrance.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Shiretoko_Museum_-_entrance.jpg",
+  "mapcode": "642 576 304*86",
+  "mcLL": "43.91365,144.67206"
  },
  {
   "id": 992,
@@ -45822,7 +47788,9 @@ window.PLACES = [
   "addrJa": "斜里町朝日町11−2 アルプ通り",
   "phone": "0152-23-4000",
   "ref": "https://www.shiretoko.asia/detail/tourist/alp",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "642 546 798*27",
+  "mcLL": "43.90987,144.67596"
  },
  {
   "id": 993,
@@ -45868,7 +47836,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/993.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%96%9C%E9%87%8C%E7%94%BA%E3%82%A6%E3%83%8A%E3%83%99%E3%83%84%E3%82%B9%E3%82%AD%E3%83%BC%E5%A0%B4.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%96%9C%E9%87%8C%E7%94%BA%E3%82%A6%E3%83%8A%E3%83%99%E3%83%84%E3%82%B9%E3%82%AD%E3%83%BC%E5%A0%B4.JPG",
+  "mapcode": "642 622 718*40",
+  "mcLL": "43.92574,144.81221"
  },
  {
   "id": 994,
@@ -45907,7 +47877,9 @@ window.PLACES = [
   "addrJa": "斜里郡斜里町以久科北",
   "phone": "0152-22-2125",
   "ref": "https://www.shiretoko.asia/detail/scenic/ikushina",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "642 580 827*37",
+  "mcLL": "43.91847,144.70911"
  },
  {
   "id": 995,
@@ -45940,7 +47912,9 @@ window.PLACES = [
   "addrJa": "斜里郡斜里町来運",
   "phone": "0152-22-2125",
   "ref": "https://www.shiretoko.asia/detail/scenic/raiun",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "642 272 736*88",
+  "mcLL": "43.83426,144.64203"
  },
  {
   "id": 996,
@@ -45980,7 +47954,9 @@ window.PLACES = [
   "addrJa": "斜里町ウトロ東429",
   "phone": "0152-24-2811",
   "ref": "https://www.shiretoko.asia/detail/tourist/yuhidainoyu",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "757 540 340*55",
+  "mcLL": "44.07216,144.99865"
  },
  {
   "id": 997,
@@ -46013,7 +47989,9 @@ window.PLACES = [
   "addrJa": "斜里町ウトロ西121",
   "phone": "0152-24-2671",
   "ref": "https://www.shiretoko.asia/detail/kaninoya",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "894 854 321*63",
+  "mcLL": "44.07196,144.99351"
  },
  {
   "id": 998,
@@ -46046,7 +48024,9 @@ window.PLACES = [
   "addrJa": "斜里町ウトロ西176-10",
   "phone": "0152-24-3557",
   "ref": "https://www.shiretoko.asia/detail/namishibuki",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "894 824 663*17",
+  "mcLL": "44.06698,144.98861"
  },
  {
   "id": 999,
@@ -46093,7 +48073,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/999.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%B4%85%E8%91%89%E8%B0%B7%E3%81%B8%E3%81%AE%E8%B7%AF_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E7%B4%85%E8%91%89%E8%B0%B7%E3%81%B8%E3%81%AE%E8%B7%AF_-_panoramio.jpg",
+  "mapcode": "623 204 778*20",
+  "mcLL": "43.72625,142.9539"
  },
  {
   "id": 1000,
@@ -46134,7 +48116,9 @@ window.PLACES = [
   "acc": "จากหมุดแผนที่บนเว็บทางการ",
   "addrJa": "上川町層雲峡温泉",
   "ref": "https://sounkyo.net/view/detail.html?content=6",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "623 204 570*56",
+  "mcLL": "43.72435,142.94611"
  },
  {
   "id": 1001,
@@ -46188,7 +48172,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/1001.jpg",
-  "imgCredit": "https://www.flickr.com/photos/11641353@N07/2869308733"
+  "imgCredit": "https://www.flickr.com/photos/11641353@N07/2869308733",
+  "mapcode": "623 025 202*64",
+  "mcLL": "43.67083,142.96067"
  },
  {
   "id": 1002,
@@ -46228,7 +48214,9 @@ window.PLACES = [
   "addrJa": "上川郡上川町層雲峡",
   "phone": "01658-2-4058",
   "ref": "https://sounkyo.net/view/detail.html?content=47",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "970 727 725*38",
+  "mcLL": "43.62599,142.9309"
  },
  {
   "id": 1003,
@@ -46273,7 +48261,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/1003.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sounkyo_Visitor_Center.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Sounkyo_Visitor_Center.jpg",
+  "mapcode": "623 204 601*25",
+  "mcLL": "43.72482,142.94635"
  },
  {
   "id": 1004,
@@ -46314,7 +48304,9 @@ window.PLACES = [
   "addrJa": "上川町層雲峡",
   "phone": "01658-5-3005",
   "ref": "https://sounkyo.net/eat/detail.html?content=75",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "623 203 862*70",
+  "mcLL": "43.72688,142.94408"
  },
  {
   "id": 1005,
@@ -46347,7 +48339,9 @@ window.PLACES = [
   "addrJa": "上川郡上川町層雲峡",
   "phone": "090-8895-4573",
   "ref": "https://sounkyo.net/eat/detail.html?content=34",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "623 204 840*45",
+  "mcLL": "43.72704,142.94625"
  },
  {
   "id": 1006,
@@ -46380,7 +48374,9 @@ window.PLACES = [
   "addrJa": "北海道上川郡上川町旭町25-1",
   "phone": "01658-7-7380",
   "ref": "https://sounkyo.net/buy/detail.html?content=74",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "623 603 765*52",
+  "mcLL": "43.84275,142.77526"
  },
  {
   "id": 1007,
@@ -46425,7 +48421,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/1007.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kawayu_Eco-Museum_Center.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Kawayu_Eco-Museum_Center.jpg",
+  "mapcode": "731 802 228*15",
+  "mcLL": "43.63786,144.43446"
  },
  {
   "id": 1008,
@@ -46459,7 +48457,9 @@ window.PLACES = [
   "phone": "015-483-2924",
   "url": "https://www.masyuko.or.jp/sumo/",
   "ref": "https://www.kawayu-onsen.com/attractions/788/",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "731 773 841*32",
+  "mcLL": "43.63551,144.43799"
  },
  {
   "id": 1009,
@@ -46505,7 +48505,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/1009.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Rausu_Visitor_Center.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Rausu_Visitor_Center.jpg",
+  "mapcode": "757 409 505*15",
+  "mcLL": "44.03199,145.16132"
  },
  {
   "id": 1010,
@@ -46538,7 +48540,9 @@ window.PLACES = [
   "addrJa": "北海道目梨郡羅臼町湯の沢町",
   "phone": "0153-87-2828",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10502.html",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "757 409 620*13",
+  "mcLL": "44.03317,145.15997"
  },
  {
   "id": 1011,
@@ -46587,7 +48591,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/1011.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Rausu_Kunashiri_Observatory_Deck_2.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Rausu_Kunashiri_Observatory_Deck_2.jpg",
+  "mapcode": "757 352 535*64",
+  "mcLL": "44.01557,145.1863"
  },
  {
   "id": 1012,
@@ -46634,7 +48640,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/1012.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Seseki_spa.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Seseki_spa.JPG",
+  "mapcode": "974 352 089*23",
+  "mcLL": "44.17824,145.31226"
  },
  {
   "id": 1013,
@@ -46676,7 +48684,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/1013.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki_Okhotsk_monbetsu.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Michinoeki_Okhotsk_monbetsu.jpg",
+  "mapcode": "801 585 104*01",
+  "mcLL": "44.3283,143.37504"
  },
  {
   "id": 1014,
@@ -46726,7 +48736,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/1014.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%94%AF%E7%AC%8F%E6%B9%96_%E5%B1%B1%E7%B7%9A%E9%89%84%E6%A9%8B_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:%E6%94%AF%E7%AC%8F%E6%B9%96_%E5%B1%B1%E7%B7%9A%E9%89%84%E6%A9%8B_-_panoramio.jpg",
+  "mapcode": "867 063 236*58",
+  "mcLL": "42.77113,141.4035"
  },
  {
   "id": 1015,
@@ -46784,7 +48796,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/1015.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake_Okotanpe.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake_Okotanpe.jpg",
+  "mapcode": "708 167 820*67",
+  "mcLL": "42.80164,141.2659"
  },
  {
   "id": 1016,
@@ -46825,7 +48839,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/1016.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Ororon_Line_-_panoramio.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Ororon_Line_-_panoramio.jpg",
+  "mapcode": "353 664 746*20",
+  "mcLL": "45.35904,141.66168"
  },
  {
   "id": 1017,
@@ -46875,7 +48891,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/1017.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Exploitation_100years_commemoration_tower.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Exploitation_100years_commemoration_tower.JPG",
+  "mapcode": "353 875 662*34",
+  "mcLL": "45.41686,141.66345"
  },
  {
   "id": 1018,
@@ -46924,7 +48942,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/1018.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:WAKKANAI-FUKKOUICHIBA.JPG"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:WAKKANAI-FUKKOUICHIBA.JPG",
+  "mapcode": "353 846 709*15",
+  "mcLL": "45.40865,141.67655"
  },
  {
   "id": 1019,
@@ -46965,7 +48985,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/1019.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Wakkanai_Noshappu_aquarium.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Wakkanai_Noshappu_aquarium.jpg",
+  "mapcode": "964 092 595*04",
+  "mcLL": "45.44925,141.64485"
  },
  {
   "id": 1020,
@@ -47006,7 +49028,9 @@ window.PLACES = [
   "addrJa": "北海道利尻郡利尻富士町鴛泊富士野",
   "phone": "0163-82-1114",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_10393.html",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "714 581 875*74",
+  "mcLL": "45.25194,141.21443"
  },
  {
   "id": 1021,
@@ -47048,7 +49072,9 @@ window.PLACES = [
   "addrJa": "北海道礼文郡礼文町香深奮部",
   "phone": "0163-86-1001",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_11401.html",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "854 110 012*73",
+  "mcLL": "45.27723,141.04137"
  },
  {
   "id": 1022,
@@ -47106,7 +49132,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/1022.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Cape_Sukai.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Cape_Sukai.jpg",
+  "mapcode": "854 583 113*31",
+  "mcLL": "45.41151,140.98603"
  },
  {
   "id": 1023,
@@ -47163,7 +49191,9 @@ window.PLACES = [
    }
   ],
   "img": "img/places/1023.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:SukotonCape_RebunIsland_Hokkaido_Japan_JUL2014.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:SukotonCape_RebunIsland_Hokkaido_Japan_JUL2014.jpg",
+  "mapcode": "854 761 347*40",
+  "mcLL": "45.46373,140.96774"
  },
  {
   "id": 1024,
@@ -47196,7 +49226,9 @@ window.PLACES = [
   "addrJa": "北海道千歳市支笏湖温泉番外地",
   "phone": "0123-25-2404",
   "ref": "https://www.visit-hokkaido.jp/spot/detail_12912.html",
-  "checked": "2026-11"
+  "checked": "2026-11",
+  "mapcode": "867 063 418*57",
+  "mcLL": "42.77275,141.40413"
  },
  {
   "id": 1025,
@@ -47245,6 +49277,8 @@ window.PLACES = [
    }
   ],
   "img": "img/places/1025.jpg",
-  "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake_Shikotsu51n3200.jpg"
+  "imgCredit": "https://commons.wikimedia.org/wiki/File:Lake_Shikotsu51n3200.jpg",
+  "mapcode": "867 063 659*82",
+  "mcLL": "42.77514,141.40434"
  }
 ];

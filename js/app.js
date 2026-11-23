@@ -208,6 +208,11 @@ const App = {
       if (redo || k === "z") { e.preventDefault(); redo ? Hist.redo() : Hist.undo(); }
     });
     document.addEventListener("click", (e) => { const b = e.target.closest("[data-hist]"); if (b) Hist[b.dataset.hist](); });
+    // ปุ่มคัดลอก (เช่น MAPCODE ไปใส่ในระบบนำทางรถเช่า)
+    document.addEventListener("click", async (e) => {
+      const b = e.target.closest("[data-copy]"); if (!b) return;
+      try { await navigator.clipboard.writeText(b.dataset.copy); toast(`คัดลอก ${b.dataset.copy} แล้ว`); } catch { toast(b.dataset.copy); }
+    });
     refreshRate();
     // ไม่ลง service worker ตอนพัฒนาบน localhost (ไฟล์เก่าค้าง cache): ใส่ ?sw=1 เพื่อทดสอบออฟไลน์
     const dev = /^(localhost|127\.)/.test(location.hostname) && !location.search.includes("sw=1");

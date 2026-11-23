@@ -123,7 +123,7 @@ const PlacesView = {
     const more = [row("วันหยุด", esc(p.closed === "-" ? "" : p.closed || p.closedDays)),
       Planner.usedModes().has("car") ? row("ที่จอดรถ", esc(p.parking === "-" ? "" : p.parking)) : "", transit ? "" : row("รถไฟ/บัส", trTxt),
       String(p.acc || "").startsWith("ประมาณ") ? row("ตำแหน่งบนแผนที่", "ประมาณ: ใช้ปุ่มรีวิว Google Maps เพื่อดูตำแหน่งจริง") : "",
-      row("ชื่อญี่ปุ่น", esc(p.ja)), row("ที่อยู่", esc(p.addrJa)), row("โทร", esc(p.phone)), row("MAPCODE", esc(p.mapcode)),
+      row("ชื่อญี่ปุ่น", esc(p.ja)), row("ที่อยู่", esc(p.addrJa)), row("โทร", esc(p.phone)), row("MAPCODE", p.mapcode && mcHtml(p.mapcode)),
       row("ตรวจข้อมูล", esc(p.checked || "พ.ย. 2026 (ประมาณ)") + (p.ref ? ` • <a href="${esc(p.ref)}" target="_blank" rel="noopener">แหล่งข้อมูลทางการ (${esc(new URL(p.ref).hostname.replace(/^www\./, ""))})</a>` : ""))].join("");
     Modal.open(`
       ${imgs.length ? `<div class="gal">${imgs.map((x, i) => `<img src="${x.img}" alt="" loading="lazy" data-gi="${i}">`).join("")}</div>` : ""}

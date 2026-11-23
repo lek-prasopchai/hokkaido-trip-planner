@@ -3,6 +3,7 @@ const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const fmtN = (n) => Math.round(n).toLocaleString("th-TH");
+const mcHtml = (mc) => `<b class="mc">${esc(mc)}</b> <button type="button" class="linkbtn" data-copy="${esc(mc)}" aria-label="คัดลอก MAPCODE ${esc(mc)}">${I("copy")} คัดลอก</button>`;
 const fmtH = (h) => { const m = Math.round(h * 60); return m < 60 ? `${m} นาที` : `${Math.floor(m / 60)} ชม.${m % 60 ? ` ${m % 60} น.` : ""}`; };
 const fmtT = (h) => { const m = Math.round(h * 60); return `${String(Math.floor(m / 60) % 24).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`; };
 const parseT = (s) => { const [a, b] = String(s || "0:0").split(":").map(Number); return a + (b || 0) / 60; };
