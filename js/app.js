@@ -165,7 +165,7 @@ const App = {
       if (!sh || sh.v !== 2 || !sh.trip) throw new Error("ลิงก์ไม่ถูกต้อง");
       this.shared = sh;
       this.viewOnly = true;
-      S = Store.merge({ ...Store.load(), trip: sh.trip, plan: sh.plan });
+      S = Store.merge({ ...Store.load(), trip: sh.trip, plan: sh.plan, ...pickBudget(sh) }); // ลิงก์เก่าไม่มีงบ: ใช้งบของเครื่องนี้
       const b = $("#viewBanner");
       b.hidden = false;
       // iPhone: Safari กับแอปหน้าโฮมเก็บข้อมูลแยกกัน และลิงก์เปิดเข้าแอปไม่ได้ จึงบอกทางเอาลิงก์ไปวางในแอป
@@ -174,7 +174,7 @@ const App = {
         ${toApp ? `<span class="mute-inv small" style="flex-basis:100%">ใช้แอปหน้าโฮม? <button class="linkbtn" id="vbLink" style="color:inherit;text-decoration:underline">คัดลอกลิงก์</button> แล้วกด "วางลิงก์แผน" ในแอป</span>` : ""}`;
       if (toApp) $("#vbLink").onclick = async () => { try { await navigator.clipboard.writeText(`${location.origin}${location.pathname}#share=${code}`); toast("คัดลอกแล้ว เปิดแอปแล้วกด วางลิงก์แผน"); } catch { toast("คัดลอกไม่ได้ กดค้างที่ลิงก์ในแชตแทน"); } };
       $("#vbCopy").onclick = () => {
-        if (Store.load().plan && !confirm("แทนที่แผนปัจจุบันของคุณด้วยแผนนี้?")) return;
+        if (Store.load().plan && !confirm(`แทนที่แผนปัจจุบันของคุณด้วยแผนนี้?${"budget" in sh ? " (งบประมาณจะถูกแทนที่ด้วย)" : ""}`)) return;
         this.viewOnly = false; b.hidden = true; save(); toast("บันทึกเป็นแผนของคุณแล้ว"); this.renderAll();
       };
       $("#vbBack").onclick = () => { this.viewOnly = false; S = Store.load(); b.hidden = true; this.renderAll(); };

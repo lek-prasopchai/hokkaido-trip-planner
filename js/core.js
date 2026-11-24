@@ -135,13 +135,13 @@ let S = Store.load();
 const save = (count) => { Hist.flush(); return Store.save(count); };
 const tripNights = () => Math.max(0, daysBetween(S.trip.start, S.trip.end));
 
+// ข้อมูลหน้างบ: ไปกับลิงก์แชร์ และอยู่ในประวัติย้อนกลับ
+const BUDGET_KEYS = ["budget", "budgetX", "budgetHide", "budgetOrder", "budgetReserve", "budgetPeople", "budgetPer", "budgetCur"];
+const pickBudget = (o) => Object.fromEntries(BUDGET_KEYS.filter((k) => k in o).map((k) => [k, o[k]]));
 // ย้อนกลับ/ทำซ้ำ (undo/redo) เก็บสำเนาทริป+แผน+งบก่อนแก้แต่ละครั้ง • แก้ใหม่แล้วทำซ้ำของเก่าไม่ได้
 const Hist = {
   stack: [], fut: [],
-  snap() {
-    const { trip, plan, budget, budgetX, budgetHide, budgetOrder, budgetReserve, budgetPeople, budgetPer, budgetCur } = S;
-    return JSON.stringify({ trip, plan, budget, budgetX, budgetHide, budgetOrder, budgetReserve, budgetPeople, budgetPer, budgetCur });
-  },
+  snap() { return JSON.stringify({ trip: S.trip, plan: S.plan, ...pickBudget(S) }); },
   push(b = this.snap()) { this.stack.push(b); if (this.stack.length > 30) this.stack.shift(); this.fut = []; },
   // track: จำสำเนาไว้ก่อน แล้วเก็บเข้าประวัติตอน save() (ก่อนวาดหน้าใหม่ ปุ่มย้อนกลับจึงขึ้นทันที) เฉพาะเมื่อมีอะไรเปลี่ยนจริง
   pend: null,
@@ -459,7 +459,7 @@ const Share = {
     return JSON.parse(txt);
   },
   async link() {
-    const code = await this.pack({ v: 2, trip: S.trip, plan: S.plan });
+    const code = await this.pack({ v: 2, trip: S.trip, plan: S.plan, ...pickBudget(S) });
     return `${location.origin}${location.pathname}#share=${code}`;
   },
 };
