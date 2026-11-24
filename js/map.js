@@ -154,7 +154,7 @@ function labelIcon(html, bg = "#142033") {
 function placePopup(p, extra = "") {
   const n = placeImgs(p).length, id = JSON.stringify(p.id ?? "");
   if (!p.stars) return `<div class="pop"><b>${esc(p.name)}</b>${extra}</div>`; // จุดของฉัน
-  const meta = `<span class="stars">${"★".repeat(p.stars)}</span> ${esc(p.type)} • ${I("timer")} ${esc(p.dur)} • ${esc(p.fee)}`;
+  const meta = `${p.rv ? gmTxt(p) + " • " : ""}${esc(p.type)} • ${I("timer")} ${esc(p.dur)} • ${esc(p.fee)}`;
   return `<div class="pop">${p.img ? `<img src="${p.img}" alt="" loading="lazy" onclick='Lightbox.place(${id})' title="กดดูรูปใหญ่${n > 1 ? ` (${n} รูป)` : ""}">` : ""}
     <b>${nameHtml(p)}</b><div>${meta}</div>
     <div class="hl">${esc(p.highlight || p.signature || "")}</div>${extra}
@@ -276,8 +276,8 @@ const TripMap = {
     const pw = Math.max(140, Math.min(260, M.map.getSize().x - 125)); // จอแคบ: ป๊อปอัปไม่กว้างเกินแผนที่ (หักที่ปุ่มซูม 52 + ขอบป๊อปอัป ~60 + เว้นขวา)
     for (const p of list) {
       if (!p.lat) continue;
-      const border = inPlan.has(p.id) ? "#2f8a57" : wish.has(p.id) ? WISH_C : p.stars === 3 ? "#c8374a" : p.stars === 2 ? "#2c6e9b" : "#9aa5b1";
-      const ic = I(TAG_ICON[p.tags[0]] || "map-pin"), st = p.stars || 1;
+      const border = inPlan.has(p.id) ? "#2f8a57" : wish.has(p.id) ? WISH_C : ["#9aa5b1", "#2c6e9b", "#c8374a"][rvTier(p) - 1];
+      const ic = I(TAG_ICON[p.tags[0]] || "map-pin"), st = rvTier(p);
       M.markers[p.id] = L.marker([p.lat, p.lng], { icon: pin(ic, border, "emo s" + st), zIndexOffset: st * 100 })
         .bindPopup(placePopup(p, S.plan && !inPlan.has(p.id) ? `<div class="pop-add">${addSelect(p.id)}</div>` : ""), { maxWidth: pw, minWidth: Math.min(200, pw), autoPanPaddingTopLeft: L.point(52, 58), autoPanPaddingBottomRight: L.point(10, 50) }).addTo(group);
       M.bounds.push([p.lat, p.lng]);

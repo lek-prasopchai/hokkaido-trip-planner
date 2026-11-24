@@ -8,7 +8,7 @@ const listView = () => (S.set.view || (matchMedia("(max-width: 899px)").matches 
 const viewToggle = (n) => `<div class="row list-head"><span class="mute">${n}</span><span class="spacer"></span><div class="seg no-print">${[["list", "รายการ"], ["card", "การ์ดมีรูป"]].map(([k, v]) => `<button data-view="${k}" class="${listView() === (k === "list") ? "on" : ""}">${v}</button>`).join("")}</div></div>`;
 // แถวสั้น: รูปเล็ก ชื่อ ข้อมูลบรรทัดเดียว ปุ่มใส่แผน • กดชื่อ/รูป = เปิดรายละเอียด
 const locBtn = (id) => `<button class="btn small loc" data-locate="${id}" title="ดูบนแผนที่" aria-label="ดูบนแผนที่">${I("map-pin")}</button>`;
-const lrow = (x, attr, sub, inPlan) => `<div class="lrow ${inPlan ? "in" : ""}"><span class="lth" ${attr}>${x.img ? `<img src="${x.img}" alt="" loading="lazy">` : I("map-pin")}</span>
+const lrow = (x, attr, sub, inPlan) => `<div class="lrow ${inPlan ? "in" : ""}"><span class="lth" ${attr}>${x.img ? `<img src="${x.img}" alt="" loading="lazy">` : x.lat ? miniMap(x, 15) : I("map-pin")}</span>
   <div class="lmain" ${attr}><b>${esc(names(x)[0])}</b><small>${sub}</small></div><div class="lact">${x.lat ? locBtn(x.id) : ""}${inPlan ? `<span class="badge b-good">วันที่ ${inPlan}</span>` : addSelect(x.id)}</div></div>`;
 document.addEventListener("click", (e) => {
   const v = e.target.closest("[data-view]")?.dataset.view;
@@ -26,11 +26,12 @@ const reviewLinks = (p) => {
     ${p.url ? `<a class="btn small" href="${esc(p.url)}" target="_blank" rel="noopener">${I("globe")} เว็บไซต์ทางการ</a>` : `<a class="btn small" href="${gUrl(q + " 公式")}" target="_blank" rel="noopener">${I("globe")} ค้นเว็บทางการ</a>`}`;
 };
 
-// ร้านอาหาร/คาเฟ่รายร้าน 1 ดาว (ไม่ใช่ตลาด/ย่าน • ร้านดัง ★★ ขึ้นไปยังแสดง)
-const isEatery = (p) => p.stars < 2 && /^(อาหาร|คาเฟ่)/.test(p.type);
+const rvBadge = (p) => p.rv ? ` <span class="badge b-mute" title="Google Maps (ดึงไว้ พ.ย. 2026)">${gmTxt(p)}</span>` : "";
+// ร้านอาหาร/คาเฟ่รายร้านที่รีวิว Google ไม่ถึง 1,000 (ไม่ใช่ตลาด/ย่าน)
+const isEatery = (p) => (p.rv || 0) < 1000 && /^(อาหาร|คาเฟ่)/.test(p.type);
 const PlacesView = {
-  M: null, lim: 30, f: { region: "", tag: "", stars: 0, q: "", season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, sort: "stars" },
-  F0: { region: "", tag: "", stars: 0, season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, sort: "stars" },
+  M: null, lim: 30, f: { region: "", tag: "", rv: 0, q: "", season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, sort: "rv" },
+  F0: { region: "", tag: "", rv: 0, season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, sort: "rv" },
 
   // มุมมองแผนที่ตอนนี้ (ยังไม่วาดหมุด/พับอยู่ = null → ซูมให้เห็นผลทั้งหมด)
   view() { const m = this.M?.map; return this.M?.drawn && m.getContainer().isConnected && m.getSize().x ? { c: m.getCenter(), z: m.getZoom() } : null; },
@@ -52,8 +53,8 @@ const PlacesView = {
           ${Object.entries(SEASONS).map(([k, s]) => `<option value="${k}" ${f.season === k ? "selected" : ""}>${s.name}</option>`).join("")}</select>
         <select data-f="region"><option value="">ทุกภูมิภาค</option>${regions.map((r) => `<option ${r === f.region ? "selected" : ""}>${esc(r)}</option>`).join("")}</select>
         <select data-f="tag"><option value="">ทุกความสนใจ</option>${Object.entries(INTEREST).map(([k, v]) => `<option value="${k}" ${k === f.tag ? "selected" : ""}>${v}</option>`).join("")}</select>
-        <select data-f="stars"><option value="0">ทุกระดับ</option><option value="3" ${f.stars == 3 ? "selected" : ""}>★★★ ไฮไลต์เท่านั้น</option><option value="2" ${f.stars == 2 ? "selected" : ""}>★★ ขึ้นไป</option></select>
-        <select data-f="sort"><option value="stars" ${f.sort === "stars" ? "selected" : ""}>เรียง: ดังสุด</option><option value="near" ${f.sort === "near" ? "selected" : ""}>เรียง: ใกล้ที่พักในแผน</option></select>
+        <select data-f="rv" aria-label="จำนวนรีวิว Google Maps"><option value="0">รีวิว Google: ทั้งหมด</option>${[10000, 5000, 1000, 100].map((n) => `<option value="${n}" ${f.rv == n ? "selected" : ""}>รีวิว Google ${n.toLocaleString()}+</option>`).join("")}</select>
+        <select data-f="sort"><option value="rv" ${f.sort === "rv" ? "selected" : ""}>เรียง: รีวิว Google มากสุด</option><option value="near" ${f.sort === "near" ? "selected" : ""}>เรียง: ใกล้ที่พักในแผน</option></select>
       </div><div class="row" style="margin-top:6px">
         <label class="chk"><input type="checkbox" data-f="transit" ${f.transit ? "checked" : ""}> ไปด้วยรถไฟ/บัสได้</label>
         <label class="chk"><input type="checkbox" data-f="free" ${f.free ? "checked" : ""}> ฟรี</label>
@@ -63,9 +64,9 @@ const PlacesView = {
         <button class="linkbtn" data-freset ${nOn ? "" : "hidden"}>ล้างตัวกรอง</button></div></details></div>
       <aside class="split-side"><details class="card mapbox fold-card" ${foldAttr("pmap")} id="pMapCard"><summary><h2>${I("map")} แผนที่</h2></summary><div class="map" id="placesMap"></div>
       <div class="map-legend">${Object.entries(TAG_ICON).map(([k, v]) => `<span>${I(v)} ${INTEREST[k]}</span>`).join("")}
-        <span><i class="ring" style="border-color:#c8374a"></i>★★★ ไฮไลต์</span><span><i class="ring" style="border-color:#2c6e9b"></i>★★ ดีถ้าผ่าน</span><span><i class="ring" style="border-color:#9aa5b1"></i>★ ถ้ามีเวลา</span>
+        <span><i class="ring" style="border-color:#c8374a"></i>รีวิว 10,000+</span><span><i class="ring" style="border-color:#2c6e9b"></i>รีวิว 1,000+</span><span><i class="ring" style="border-color:#9aa5b1"></i>รีวิวน้อยกว่า 1,000</span>
         <span><i class="ring" style="border-color:${WISH_C}"></i>อยากไป</span><span><i class="ring" style="border-color:#2f8a57"></i>อยู่ในแผนแล้ว</span>
-        <small class="mute legend-note">ดาว = ความเห็นของเว็บว่าคุ้มแค่ไหน ไม่ใช่คะแนนรีวิว (ดูรีวิวจริงที่ปุ่ม รีวิว Google Maps)</small></div></details></aside>
+        <small class="mute legend-note">★ คะแนนและจำนวนรีวิวจาก Google Maps (ปัดเลข ดึงไว้ พ.ย. 2026)</small></div></details></aside>
       <div class="split-main" id="placeList"></div></div>${PlanView.undoBtn()}`;
     this.M = makeMap($("#placesMap"));
     $("#pMapCard").addEventListener("toggle", (e) => { if (e.target.open) setTimeout(() => TripMap.drawPlaces(this.M, this.filtered(), this.view() || this.keep), 0); }); // สร้างตอนพับอยู่ ขนาด 0
@@ -77,20 +78,20 @@ const PlacesView = {
     const ms = f.season === "trip" ? tripMonths() : f.season ? SEASONS[f.season].m : null;
     const bases = S.plan ? [...new Set(S.plan.bases)].map((b) => point(b)) : [HUB.sapporo];
     const near = (p) => Math.min(...bases.map((b) => km(b, p)));
-    return PLACES.filter((p) => !p.gone && (!f.region || p.region === f.region) && (!f.tag || p.tags.includes(f.tag)) && p.stars >= f.stars
+    return PLACES.filter((p) => !p.gone && (!f.region || p.region === f.region) && (!f.tag || p.tags.includes(f.tag)) && (p.rv || 0) >= f.rv
       && (!q || [p.name, p.area, p.ja, p.en, p.type, p.highlight, p.kw].join(" ").toLowerCase().includes(q))
       && (!ms || ms.some((m) => monthsOf(p).includes(m)))
       && (!f.transit || ["ok", "limited", "tour"].includes(access(p))) && (!f.free || !p.feeYen) && (!f.inplan || plan[p.id]) && (!f.wish || S.plan?.wish.includes(p.id)) && (!f.evening || p.evening)
       && (f.eat || !isEatery(p) || q || f.tag === "food" || plan[p.id] || S.plan?.wish.includes(p.id))) // ร้านอาหารซ่อนไว้ก่อน (เยอะมาก) ค้นชื่อ/เลือกความสนใจอาหาร/อยู่ในแผนแล้วยังเห็น
-      .sort((a, b) => f.sort === "near" ? near(a) - near(b) : b.stars - a.stars || ({ "ดังมาก": 0, "ดัง": 1 }[a.pop] ?? 2) - ({ "ดังมาก": 0, "ดัง": 1 }[b.pop] ?? 2) || a.id - b.id);
+      .sort((a, b) => f.sort === "near" ? near(a) - near(b) : (b.rv || 0) - (a.rv || 0) || a.id - b.id);
   },
 
   card(p, plan) {
     const n = placeImgs(p).length;
     return `<div class="card pcard ${plan[p.id] ? "in" : ""}" id="pl-${p.id}">
-      <div class="ph" data-lb="${p.id}">${p.img ? `<img src="${p.img}" alt="${esc(p.name)}" loading="lazy">${n > 1 ? `<span class="cnt">${I("camera")} ${n}</span>` : ""}` : I(TAG_ICON[p.tags[0]] || "map-pin")}<span class="sea">${seasonBadges(p)}</span></div>
-      <div class="row" style="gap:6px"><span class="stars">${"★".repeat(p.stars)}</span><span class="badge b-mute">${esc(p.type)}</span>
-        ${p.pop === "คนรู้จักน้อย" ? '<span class="badge b-info">คนรู้จักน้อย</span>' : ""}${p.season ? `<span class="badge b-fest">เฉพาะ ${esc(p.season.join("-"))}</span>` : monthsOf(p).length < 12 ? `<span class="badge b-warn">${monthRange(monthsOf(p))}</span>` : p.peak ? `<span class="badge b-mute">ดีสุด ${monthRange(p.peak)}</span>` : ""}</div>
+      <div class="ph" ${p.img ? `data-lb="${p.id}"` : ""}>${!p.img && p.lat ? miniMap(p) : p.img ? `<img src="${p.img}" alt="${esc(p.name)}" loading="lazy">${n > 1 ? `<span class="cnt">${I("camera")} ${n}</span>` : ""}` : I(TAG_ICON[p.tags[0]] || "map-pin")}<span class="sea">${seasonBadges(p)}</span></div>
+      <div class="row" style="gap:6px"><span class="badge b-mute">${esc(p.type)}</span>${rvBadge(p)}
+        ${p.season ? `<span class="badge b-fest">เฉพาะ ${esc(p.season.join("-"))}</span>` : monthsOf(p).length < 12 ? `<span class="badge b-warn">${monthRange(monthsOf(p))}</span>` : p.peak ? `<span class="badge b-mute">ดีสุด ${monthRange(p.peak)}</span>` : ""}</div>
       <h4 data-detail="${p.id}">${nameHtml(p)}</h4>
       <div class="meta"><span>${I("map-pin")} ${esc(p.area)}</span><span>${I("timer")} ${esc(p.dur)}</span><span>${I("banknote")} ${esc(p.fee)}</span><span>${access(p) === "ok" ? I("train-front") + " รถไฟ/บัสได้" : access(p) === "car" ? I("car") + " ต้องมีรถ/ทัวร์" : I("bus") + " " + ACCESS_TXT[access(p)]}</span></div>
       <div class="hl">${esc(p.highlight)}</div>
@@ -102,7 +103,7 @@ const PlacesView = {
     const L = this.filtered(), plan = inPlanMap();
     const rows = L.slice(0, this.lim);
     $("#placeList").innerHTML = `${viewToggle(L.length + " ที่")}${listView()
-      ? `<div class="card llist">${rows.map((p) => lrow(p, `data-detail="${p.id}"`, `<span class="stars">${"★".repeat(p.stars)}</span> ${esc(p.area)} • ${esc(p.dur)} • ${esc(p.fee)}`, plan[p.id])).join("")}</div>`
+      ? `<div class="card llist">${rows.map((p) => lrow(p, `data-detail="${p.id}"`, `${rvBadge(p)} ${esc(p.area)} • ${esc(p.dur)} • ${esc(p.fee)}`, plan[p.id])).join("")}</div>`
       : `<div class="grid g3">${rows.map((p) => this.card(p, plan)).join("")}</div>`}
       ${L.length > this.lim ? `<div class="more"><button class="btn" data-more>แสดงเพิ่ม (เหลืออีก ${L.length - this.lim} ที่)</button></div>` : ""}`;
     if (refit) this.keep = null;
@@ -128,7 +129,7 @@ const PlacesView = {
     Modal.open(`
       ${imgs.length ? `<div class="gal">${imgs.map((x, i) => `<img src="${x.img}" alt="" loading="lazy" data-gi="${i}">`).join("")}</div>` : ""}
       <h2 style="margin-top:12px">${nameHtml(p)}</h2>
-      <div class="row" style="gap:6px">${p.stars ? `<span class="stars">${"★".repeat(p.stars)}</span>` : ""}<span class="badge b-mute">${esc(p.type)}</span><span class="badge b-mute">${I("map-pin")} ${esc(p.area || HUB[p.hub]?.name || "")}</span>
+      <div class="row" style="gap:6px"><span class="badge b-mute">${esc(p.type)}</span>${rvBadge(p)}<span class="badge b-mute">${I("map-pin")} ${esc(p.area || HUB[p.hub]?.name || "")}</span>
         <span class="sea-inline">${seasonBadges(p)} ${p.peak ? `เปิดทั้งปี • ดีสุด ${monthRange(p.peak)}` : monthRange(monthsOf(p))}</span>${plan[id] ? `<span class="badge b-good">อยู่ในวันที่ ${plan[id]}</span>` : ""}</div>
       <p class="d-hl">${esc(p.highlight || "")}</p>
       ${(S.plan && !plan[id]) || (App.cur === "places" && p.lat) ? `<div class="row d-act">${S.plan && !plan[id] ? addSelect(id) : ""}${App.cur === "places" && p.lat ? `<button class="btn small" data-locate="${p.id}">${I("map-pin")} ดูบนแผนที่</button>` : ""}</div>` : ""}
@@ -178,7 +179,7 @@ const PlacesView = {
       if (e.target.closest("[data-freset]")) { Object.assign(this.f, this.F0); this.lim = 30; this.render(true); } });
     this.syncF = () => { const n = Object.keys(this.F0).filter((k) => this.f[k] !== this.F0[k]).length, b = sec.querySelector(".f-n"); b.hidden = !n; b.textContent = n; sec.querySelector("[data-freset]").hidden = !n; };
     const sec = $('[data-sec="places"]');
-    const upd = (el) => { this.f[el.dataset.f] = el.type === "checkbox" ? el.checked : el.dataset.f === "stars" ? +el.value : el.value; this.lim = 30; this.list(true); this.syncF(); };
+    const upd = (el) => { this.f[el.dataset.f] = el.type === "checkbox" ? el.checked : el.dataset.f === "rv" ? +el.value : el.value; this.lim = 30; this.list(true); this.syncF(); };
     sec.addEventListener("input", (ev) => { if (ev.target.dataset.f === "q") upd(ev.target); });
     sec.addEventListener("change", (ev) => {
       const el = ev.target;

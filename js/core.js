@@ -8,6 +8,10 @@ const fmtH = (h) => { const m = Math.round(h * 60); return m < 60 ? `${m} นา
 const fmtT = (h) => { const m = Math.round(h * 60); return `${String(Math.floor(m / 60) % 24).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`; };
 const parseT = (s) => { const [a, b] = String(s || "0:0").split(":").map(Number); return a + (b || 0) / 60; };
 const mapsUrl = (q) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+// ความดัง = ข้อมูล Google Maps ที่ดึงไว้ (tools/gm_reviews.js): rv = จำนวนรีวิว (ปัดแล้ว) • gr = คะแนนดาว
+const rvTxt = (n) => n >= 1000 ? `${+(n / 1000).toFixed(n < 10000 ? 1 : 0)}k` : String(n);
+const gmTxt = (p) => p.rv ? `${p.gr ? "★" + p.gr.toFixed(1) + " · " : ""}${rvTxt(p.rv)} รีวิว` : "";
+const rvTier = (p) => p.rv >= 10000 ? 3 : p.rv >= 1000 ? 2 : 1; // หมุดแผนที่: 10,000+ / 1,000+ / ที่เหลือ
 const llUrl = (p) => `https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lng}`;
 // เปิดผลค้นหาภายนอก (ไม่ดึงรูป/รีวิวมาเก็บ เพราะติดลิขสิทธิ์และข้อตกลงการใช้งาน)
 const gimgUrl = (q) => `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(q)}`;
@@ -370,6 +374,16 @@ function names(p) {
 const nameHtml = (p) => { const [a, ...b] = names(p); return `${esc(a)}${b.map((x) => `<span class="alt">${esc(x)}</span>`).join("")}`; };
 
 // ---------- ดูรูปใหญ่ (หลายรูปต่อสถานที่) ----------
+// ไม่มีรูป: ภาพดาวเทียมรอบจุด (Esri ชุดเดียวกับแผนที่) 5×3 ไทล์ จัดให้จุดอยู่กลางกรอบ + หมุด
+function miniMap(p, z = 16) {
+  const n = 2 ** z, s = Math.sin((p.lat * Math.PI) / 180);
+  const x = ((p.lng + 180) / 360) * n, y = (0.5 - Math.log((1 + s) / (1 - s)) / (4 * Math.PI)) * n;
+  const tx = Math.floor(x), ty = Math.floor(y), ox = Math.round((x - tx) * 256), oy = Math.round((y - ty) * 256);
+  let h = "";
+  for (let i = -2; i <= 2; i++) for (let j = -1; j <= 1; j++) // กว้าง 5 แผ่น: การ์ดจอใหญ่กว้างเกิน 768px
+    h += `<img src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/${z}/${ty + j}/${tx + i}" alt="" loading="lazy" style="left:calc(50% + ${i * 256 - ox}px);top:calc(50% + ${j * 256 - oy}px)">`;
+  return `<span class="mini" title="ยังไม่มีรูป: ภาพดาวเทียมบริเวณนี้ (Esri)">${h}${I("map-pin", "mini-pin")}</span>`;
+}
 const placeImgs = (p) => p.imgs?.length ? p.imgs : p.img ? [{ img: p.img, credit: p.imgCredit }] : [];
 const Lightbox = {
   list: [], i: 0, title: "",

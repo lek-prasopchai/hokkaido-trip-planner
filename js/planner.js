@@ -429,7 +429,7 @@ const Planner = {
   // ---- เติมสถานที่อัตโนมัติ ----
   placeScore(p, i) {
     const t = S.trip, iso = this.dayIso(i);
-    let s = p.stars * 10 + ({ "ดังมาก": 3, "ดัง": 2 }[p.pop] || 1);
+    let s = Math.log10((p.rv || 0) + 10) * 8; // รีวิว Google 0 → 8, 1,000 → 24, 20,000 → 34
     s += p.tags.filter((k) => t.interests.includes(k)).length * 8;
     if (this.modeOf(i) === "transit") { const a = access(p); s -= a === "car" ? 100 : a === "limited" ? 6 : a === "tour" ? 3 : 0; }
     if (p.best && /หน้าร้อน|นอกฤดูหนาว/.test(p.best) && isWinter(iso)) s -= 30;

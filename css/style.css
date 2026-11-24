@@ -1030,3 +1030,11 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
 .hk-tour .driver-popover-navigation-btns button + button { margin-inline-start: 8px; }
 .hk-tour .driver-popover-arrow-side-left { border-left-color: var(--paper); } .hk-tour .driver-popover-arrow-side-right { border-right-color: var(--paper); }
 .hk-tour .driver-popover-arrow-side-top { border-top-color: var(--paper); } .hk-tour .driver-popover-arrow-side-bottom { border-bottom-color: var(--paper); }
+
+/* แผนที่ย่อแทนรูป (miniMap): ไทล์ 256px วางเองให้จุดอยู่กลางกรอบ */
+.mini { position: absolute; inset: 0; overflow: hidden; background: #dfe8f0; }
+.pcard .ph .mini img, .lth .mini img { position: absolute; width: 256px; height: 256px; max-width: none; object-fit: fill; }
+.mini .mini-pin { position: absolute; left: 50%; top: 50%; width: 30px; height: 30px; transform: translate(-50%, -100%); color: #fff; fill: #c8374a; filter: drop-shadow(0 1px 2px rgba(0,0,0,.6)); }
+.lth { position: relative; }
+.lth .mini-pin { width: 20px; height: 20px; }
+.ph:not([data-lb]) { cursor: default; }

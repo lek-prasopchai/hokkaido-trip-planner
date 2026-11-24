@@ -230,7 +230,7 @@ const PlanView = {
 
   // ---- เลือกสถานที่จากฐานข้อมูล: ขึ้นรายการให้เลือกทันที พิมพ์กรองได้ทั้งไทย/อังกฤษ/ญี่ปุ่น ----
   pickPlace(head, recs, skip, onPick, onOther) {
-    const row = (p) => `<button class="btn" data-pick="${p.id}">${p.img ? `<img src="${p.img}" alt="" loading="lazy">` : `<span>${I("map-pin")}</span>`}<b>${nameHtml(p)}</b><small>${esc(p.area || "")}${p.stars ? " • " + "★".repeat(p.stars) : ""}</small></button>`;
+    const row = (p) => `<button class="btn" data-pick="${p.id}">${p.img ? `<img src="${p.img}" alt="" loading="lazy">` : `<span>${I("map-pin")}</span>`}<b>${nameHtml(p)}</b><small>${esc(p.area || "")}${p.rv ? " • " + gmTxt(p) : ""}</small></button>`;
     const list = (q) => {
       const t = q.trim().toLowerCase();
       const L = t ? PLACES.filter((p) => !p.gone && !skip.has(p.id) && [p.name, p.en, p.ja, p.area].some((n) => n?.toLowerCase().includes(t))).slice(0, 40) : recs;
@@ -248,7 +248,7 @@ const PlanView = {
   pickWish() {
     const skip = new Set([...Planner.usedSet(-1), ...S.plan.wish]);
     this.pickPlace(`<h2>${I("heart")} เพิ่มที่อยากไป</h2><div class="row" style="margin-bottom:10px"><button class="btn small" data-m="custom">${I("star")} จุดของฉัน (ร้าน/ปักหมุดเอง)</button></div>`,
-      PLACES.filter((p) => !p.gone && !skip.has(p.id)).sort((a, b) => b.stars - a.stars).slice(0, 30), skip, (id) => this.addTo(id, "wish"),
+      PLACES.filter((p) => !p.gone && !skip.has(p.id)).sort((a, b) => (b.rv || 0) - (a.rv || 0)).slice(0, 30), skip, (id) => this.addTo(id, "wish"),
       (ev) => { if (ev.target.closest("[data-m]")) { Modal.close(); this.addCustom("wish"); } });
   },
 
