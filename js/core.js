@@ -132,14 +132,21 @@ const Store = {
   },
 };
 let S = Store.load();
-const save = (count) => Store.save(count);
+const save = (count) => { Hist.flush(); return Store.save(count); };
 const tripNights = () => Math.max(0, daysBetween(S.trip.start, S.trip.end));
 
-// ย้อนกลับ/ทำซ้ำ (undo/redo) เก็บสำเนาทริป+แผนก่อนแก้แต่ละครั้ง • แก้ใหม่แล้วทำซ้ำของเก่าไม่ได้
+// ย้อนกลับ/ทำซ้ำ (undo/redo) เก็บสำเนาทริป+แผน+งบก่อนแก้แต่ละครั้ง • แก้ใหม่แล้วทำซ้ำของเก่าไม่ได้
 const Hist = {
   stack: [], fut: [],
-  snap() { return JSON.stringify({ trip: S.trip, plan: S.plan }); },
-  push() { this.stack.push(this.snap()); if (this.stack.length > 30) this.stack.shift(); this.fut = []; },
+  snap() {
+    const { trip, plan, budget, budgetX, budgetHide, budgetOrder, budgetReserve, budgetPeople, budgetPer, budgetCur } = S;
+    return JSON.stringify({ trip, plan, budget, budgetX, budgetHide, budgetOrder, budgetReserve, budgetPeople, budgetPer, budgetCur });
+  },
+  push(b = this.snap()) { this.stack.push(b); if (this.stack.length > 30) this.stack.shift(); this.fut = []; },
+  // track: จำสำเนาไว้ก่อน แล้วเก็บเข้าประวัติตอน save() (ก่อนวาดหน้าใหม่ ปุ่มย้อนกลับจึงขึ้นทันที) เฉพาะเมื่อมีอะไรเปลี่ยนจริง
+  pend: null,
+  track(fn) { return (e) => { this.pend = this.snap(); try { fn(e); } finally { this.pend = null; } }; },
+  flush() { const b = this.pend; this.pend = null; if (b != null && b !== this.snap()) this.push(b); },
   move(from, to, none, done) {
     const s = from.pop();
     if (!s) return toast(none);

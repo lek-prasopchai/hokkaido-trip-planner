@@ -123,14 +123,14 @@ const BudgetView = {
           <label class="small"><input type="checkbox" id="rateAuto" ${S.set.rateAuto ? "checked" : ""}> อัปเดตอัตโนมัติวันละครั้ง</label>
           <button class="linkbtn" id="bReset">ล้างจำนวนเงินที่กรอก</button></div>
         <p class="mute small bnote">ค่าประมาณอิงราคา พ.ย. 2026 ไว้ดูภาพรวม ไม่ใช่ใบเสนอราคา</p></div>
-      <div class="bbar"><span>รวม <b>${fmtM(B.total)} ฿</b></span>${ppl > 1 ? `<span>คนละ <b>${fmtM(B.total / ppl)} ฿</b></span>` : ""}</div></div></div>`;
+      <div class="bbar"><span>รวม <b>${fmtM(B.total)} ฿</b></span>${ppl > 1 ? `<span>คนละ <b>${fmtM(B.total / ppl)} ฿</b></span>` : ""}</div></div></div>${PlanView.undoBtn()}`;
   },
 
   setPpl(n) { S.budgetPeople = Math.max(1, Math.min(50, Math.round(n) || 1)); save(); App.renderAll(); },
 
   bind() {
     const sec = $('[data-sec="budget"]');
-    sec.addEventListener("change", (e) => {
+    sec.addEventListener("change", Hist.track((e) => {
       const el = e.target;
       if (el.id === "rate") { S.rate = Math.max(0.01, +el.value || 0.23); S.set.rateAuto = false; save(); App.renderAll(); return; }
       if (el.id === "bPpl") { this.setPpl(+el.value); return; }
@@ -143,7 +143,7 @@ const BudgetView = {
         if (o.b == null && o.y == null) delete S.budget[k]; else S.budget[k] = o;
         save(); App.renderAll();
       }
-    });
+    }));
     // เปลี่ยนลำดับ: ลากที่จับ (เมาส์/นิ้ว) หรือกดลูกศรขึ้น/ลงบนที่จับ
     const keysNow = () => this.calc().lines.filter((l) => l.key !== "reserve").map((l) => l.key);
     // ย้าย k ไปไว้ก่อน/หลัง ref
@@ -152,6 +152,7 @@ const BudgetView = {
       const keys = keysNow().filter((x) => x !== k), i = keys.indexOf(ref);
       if (i < 0) return false;
       keys.splice(after ? i + 1 : i, 0, k);
+      Hist.pend = Hist.snap();
       S.budgetOrder = [...keys, ...S.budgetOrder.filter((x) => !keys.includes(x))]; // เก็บลำดับของรายการที่ซ่อนอยู่ไว้ด้วย
       save(); App.renderAll(); return true;
     };
@@ -183,7 +184,7 @@ const BudgetView = {
       g.addEventListener("pointermove", mv); g.addEventListener("pointerup", up); g.addEventListener("pointercancel", up);
     });
     sec.addEventListener("input", (e) => { const id = e.target.dataset.bxname, x = id && S.budgetX.find((y) => y.id === id); if (x) { x.name = e.target.value; save(false); } });
-    sec.addEventListener("click", (e) => {
+    sec.addEventListener("click", Hist.track((e) => {
       const el = e.target.closest("button"); if (!el) return;
       if (el.id === "bReset" && confirm("ล้างจำนวนเงินที่กรอกทั้งหมด? (รายการที่เพิ่มเองยังอยู่)")) { S.budget = {}; save(); App.renderAll(); }
       else if (el.dataset.ppl) this.setPpl(Math.max(1, S.budgetPeople || 1) + +el.dataset.ppl);
@@ -207,6 +208,6 @@ const BudgetView = {
         if (S.budget[id] && !confirm("ลบรายการนี้และจำนวนเงิน?")) return;
         S.budgetX = S.budgetX.filter((x) => x.id !== id); delete S.budget[id]; save(); App.renderAll();
       }
-    });
+    }));
   },
 };
