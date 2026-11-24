@@ -74,7 +74,7 @@ const num = (s) => +String(s).replace(/[^\d]/g, "");
       hit = c.filter((x) => x.exact)[0] || c.filter((x) => x.d < 3).sort((a, b) => b.n - a.n)[0] || null;
     }
     const d = hit?.ll ? km(p.lat, p.lng, ...hit.ll) : null;
-    const res = hit ? { q, gname: hit.name, n: hit.n || null, g: +hit.g || null, km: d && +d.toFixed(2), kind: r.kind } : { q, n: null };
+    const res = hit ? { q, gname: hit.name, n: hit.n || null, g: +hit.g || null, km: d && +d.toFixed(2), ll: hit.ll?.map((v) => +v.toFixed(5)), kind: r.kind } : { q, n: null };
     done[p.id] = arg === "retry" && bad(res) ? { ...done[p.id], retried: true } : res;
     console.log(p.id, q, "→", JSON.stringify(done[p.id]));
     fs.writeFileSync(OUT, JSON.stringify(done, null, 1));
