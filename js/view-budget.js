@@ -84,9 +84,6 @@ const BudgetView = {
 
   render() {
     const B = this.calc(), ppl = B.ppl, list = B.lines.filter((l) => l.key !== "reserve"), res = B.lines.find((l) => l.key === "reserve");
-    const CATS = ["เดินทาง", "ที่พัก", "รถ", "รถไฟ/บัส", "กิน เที่ยว ช้อป", "อื่นๆ"];
-    const cats = {};
-    B.lines.forEach((l) => l.thb && (cats[l.cat] = (cats[l.cat] || 0) + l.thb));
     const raw = (l) => { const o = S.budget[l.key]; return typeof o === "number" ? { [l.cur === "THB" ? "b" : "y"]: o } : o || {}; };
     const sym = (c) => (c === "b" ? "฿" : "¥"), word = (c) => (c === "b" ? "บาท" : "เยน");
     // ช่องเดียวต่อรายการ + ปุ่มสลับ ฿/¥ • จ่ายสองสกุลจริง: "+ เยน/บาท" เปิดช่องที่สอง
@@ -106,8 +103,7 @@ const BudgetView = {
     const row = (l) => `<li class="${l.own ? "own" : ""}" data-key="${l.key}">${grip(l)}
       <div class="bmain">${name(l)}${perBtn(l)}${hint(l)}</div>
       <div class="bamt">${inputs(l)}<b class="bthb">${l.own ? `${fmtM(l.thb)} ฿` : ""}</b></div>${del(l)}</li>`;
-    const groups = CATS.map((c) => [c, list.filter((l) => l.cat === c)]).filter(([, ls]) => ls.length);
-    const filled = list.filter((l) => l.own).length, colors = ["#2c6e9b", "#c8374a", "#2f8a57", "#b7791f", "#7b4fb5", "#0f8b8d", "#6a994e", "#3d5a80", "#8a817c"];
+    const filled = list.filter((l) => l.own).length;
     $('[data-sec="budget"]').innerHTML = `
       <div class="sec-head"><h1>งบประมาณ</h1>
         <p class="lead">กรอกราคาที่จองแล้วหรือคาดว่าจะจ่าย ยอดรวมนับเฉพาะช่องที่กรอก</p></div>
@@ -116,13 +112,10 @@ const BudgetView = {
           ${ppl > 1 ? `<div class="bsum-each">ตกคนละ <b>${fmtM(B.total / ppl)} ฿</b></div>` : ""}
           ${B.yen && B.baht ? `<small class="mute">จ่ายเป็นเยน ¥${fmtM(B.yen)} + บาท ${fmtM(B.baht)} ฿</small>` : ""}</div>
         <div class="bsum-row"><span>ไปกี่คน</span><div class="bstep"><button type="button" data-ppl="-1" aria-label="ลดจำนวนคน" ${ppl < 2 ? "disabled" : ""}>−</button><input type="number" min="1" step="1" inputmode="numeric" id="bPpl" value="${ppl}" aria-label="จำนวนคน"><button type="button" data-ppl="1" aria-label="เพิ่มจำนวนคน">+</button></div></div>
-        <div class="bsum-row bprog"><span>กรอกแล้ว ${filled} จาก ${list.length} รายการ</span><i><em style="width:${list.length ? (filled / list.length) * 100 : 0}%"></em></i></div>
-        ${B.total ? `<div class="bcat-bar">${Object.entries(cats).map(([c, v], i) => `<div title="${esc(c)} ${fmtM(v)} ฿" style="width:${(v / B.total) * 100}%;background:${colors[i % colors.length]}"></div>`).join("")}</div>
-        <div class="bcat-legend">${Object.entries(cats).map(([c, v], i) => `<span><i style="background:${colors[i % colors.length]}"></i>${esc(c)} ${Math.round((v / B.total) * 100)}%</span>`).join("")}</div>` : ""}</div></aside>
+        <div class="bsum-row bprog"><span>กรอกแล้ว ${filled} จาก ${list.length} รายการ</span><i><em style="width:${list.length ? (filled / list.length) * 100 : 0}%"></em></i></div></div></aside>
       <div class="split-main">${B.jr ? `<div class="callout info">${B.jr.text}</div>` : ""}
       <div class="card bcard">
-        ${groups.map(([c, ls]) => { const sum = ls.reduce((a, l) => a + l.thb, 0);
-          return `<section class="bgrp"><h3><span>${esc(c)}</span>${sum ? `<b>${fmtM(sum)} ฿</b>` : ""}</h3><ul class="blist">${ls.map(row).join("")}</ul></section>`; }).join("")}
+        <ul class="blist">${list.map(row).join("")}</ul>
         <div class="badd"><button class="btn small" id="bAdd">+ เพิ่มรายการเอง</button>${B.hiddenN ? ` <button class="linkbtn" id="bUnhide">แสดงรายการที่ซ่อน (${B.hiddenN})</button>` : ""}</div>
         <div class="bres"><label class="row"><input type="checkbox" id="bRes" ${S.budgetReserve ? "checked" : ""}> <b>${esc(res.name)}</b></label><b class="bthb">${S.budgetReserve && res.thb ? `${fmtM(res.thb)} ฿` : ""}</b><small class="mute">${esc(res.note)}</small></div>
         <div class="btot"><b>รวม${ppl > 1 ? "ทั้งกลุ่ม" : ""}${S.budgetReserve ? " + สำรอง" : ""}</b><b class="bthb">${fmtM(B.total)} ฿</b></div>
@@ -153,7 +146,7 @@ const BudgetView = {
     });
     // เปลี่ยนลำดับ: ลากที่จับ (เมาส์/นิ้ว) หรือกดลูกศรขึ้น/ลงบนที่จับ
     const keysNow = () => this.calc().lines.filter((l) => l.key !== "reserve").map((l) => l.key);
-    // ย้าย k ไปไว้ก่อน/หลัง ref (ลำดับรวมทุกหมวด แต่ลาก/กดลูกศรได้เฉพาะในหมวดเดียวกัน)
+    // ย้าย k ไปไว้ก่อน/หลัง ref
     const place = (k, ref, after) => {
       if (!ref || ref === k) return false;
       const keys = keysNow().filter((x) => x !== k), i = keys.indexOf(ref);

@@ -1041,11 +1041,9 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
 .bper { font: inherit; font-size: .75rem; padding: 2px 8px; min-height: 28px; border-radius: 99px; border: 1px solid var(--line, #ccd); background: transparent; color: var(--mute); cursor: pointer; white-space: nowrap; }
 .bper.on { border-color: #2c6e9b; color: #2c6e9b; }
 
-/* ---------- งบประมาณ (จัดใหม่ พ.ย. 2026): หมวด + แถวละช่องเดียว + สรุปติดจอ ---------- */
-.bcard { padding-top: 6px; }
-.bgrp + .bgrp { margin-top: 10px; }
-.bgrp h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin: 12px 0 2px; font-size: .8rem; font-weight: 700; letter-spacing: .02em; color: var(--mute); text-transform: none; }
-.bgrp h3 b { color: var(--ink); font-variant-numeric: tabular-nums; }
+/* ---------- งบประมาณ (จัดใหม่ พ.ย. 2026): แถวละช่องเดียว + สรุปติดจอ ---------- */
+.bcard { padding-top: 4px; }
+.bcard > .blist > li:first-child { border-top: 0; }
 .blist li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; grid-template-areas: "grip main amt del"; gap: 4px 10px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
 .blist li > .bgrip { grid-area: grip; margin-left: -8px; }
 .blist .bmain { grid-area: main; min-width: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; }
@@ -1094,9 +1092,6 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
 .bprog { flex-wrap: wrap; }
 .bprog i { flex-basis: 100%; height: 6px; border-radius: 99px; background: var(--bg); overflow: hidden; }
 .bprog em { display: block; height: 100%; background: var(--good, #2f8a57); border-radius: 99px; }
-.bcat-bar { display: flex; height: 12px; border-radius: 99px; overflow: hidden; }
-.bcat-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: .8rem; margin-top: -6px; }
-.bcat-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 4px; vertical-align: -1px; }
 .bbar { display: none; }
 @media (max-width: 640px) {
   .blist li { grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "grip main del" ". amt amt"; padding: 10px 0 12px; }
