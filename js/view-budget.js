@@ -55,10 +55,10 @@ const BudgetView = {
       add("local", "รถไฟ/บัส", "รถไฟใต้ดิน/บัสในเมือง/แท็กซี่", "JPY", 0, `≈¥${fmtN(D.transitLocalYenDay)} ต่อคนต่อวัน × ${trEv.length} วัน`);
     }
     const stops = ev.flatMap((e) => e.stops), fees = stops.reduce((a, id) => a + PLACE[id].feeYen, 0);
-    add("fees", "เที่ยว", "ค่าเข้า / กระเช้า / เรือ", "JPY", 0, S.plan ? `≈¥${fmtN(fees)} ต่อผู้ใหญ่ รวม ${stops.length} ที่ในแผน` : "ยังไม่มีแผน");
-    add("food", "อาหาร", "อาหาร", "JPY", 0, `≈${yr(D.foodYen[0], D.foodYen[2])} ต่อคนต่อวัน × ${days} วัน`);
-    add("souv", "ช้อปปิ้ง", "ของฝาก / ช้อปปิ้ง", "JPY", 0, `≈¥${fmtN(D.souvenirYen)} ต่อคน`);
-    add("gear", "ของ", "ของที่ต้องซื้อเตรียมตัว", "THB", 0, "เสื้อกันหนาว บูท ฯลฯ");
+    add("fees", "กิน เที่ยว ช้อป", "ค่าเข้า / กระเช้า / เรือ", "JPY", 0, S.plan ? `≈¥${fmtN(fees)} ต่อผู้ใหญ่ รวม ${stops.length} ที่ในแผน` : "ยังไม่มีแผน");
+    add("food", "กิน เที่ยว ช้อป", "อาหาร", "JPY", 0, `≈${yr(D.foodYen[0], D.foodYen[2])} ต่อคนต่อวัน × ${days} วัน`);
+    add("souv", "กิน เที่ยว ช้อป", "ของฝาก / ช้อปปิ้ง", "JPY", 0, `≈¥${fmtN(D.souvenirYen)} ต่อคน`);
+    add("gear", "อื่นๆ", "ของที่ต้องซื้อเตรียมตัว", "THB", 0, "เสื้อกันหนาว บูท ฯลฯ");
     // รายการที่เพิ่มเอง (ทัวร์ ค่าสกี ฯลฯ): ไม่มีค่าประมาณ จำนวนเงินเก็บใน S.budget[id] เหมือนรายการอื่น
     S.budgetX.forEach((x) => { add(x.id, "อื่นๆ", x.name, "THB", 0, ""); L[L.length - 1].mine = true; });
     // แต่ละรายการจ่ายเป็นบาท เยน หรือทั้งสองได้: S.budget[key] = { b, y } (ค่าเก่าเป็นตัวเลขเดียว = สกุลเงินตั้งต้นของรายการ)
@@ -83,49 +83,64 @@ const BudgetView = {
   },
 
   render() {
-    const B = this.calc();
+    const B = this.calc(), ppl = B.ppl, list = B.lines.filter((l) => l.key !== "reserve"), res = B.lines.find((l) => l.key === "reserve");
+    const CATS = ["เดินทาง", "ที่พัก", "รถ", "รถไฟ/บัส", "กิน เที่ยว ช้อป", "อื่นๆ"];
     const cats = {};
     B.lines.forEach((l) => l.thb && (cats[l.cat] = (cats[l.cat] || 0) + l.thb));
-    const inp = (l, c) => { const o = S.budget[l.key], v = typeof o === "number" ? ((l.cur === "THB") === (c === "b") ? o : "") : o?.[c] ?? "";
-      return `<label class="bin"><span>${c === "b" ? "฿" : "¥"}</span><input type="number" min="0" step="any" data-bk="${l.key}" data-c="${c}" value="${v}" aria-label="${esc(l.name)} ${c === "b" ? "บาท" : "เยน"}"></label>`; };
-    const hint = (l) => l.own || l.mine || !l.note ? (l.key === "reserve" ? `<small class="bnote">${esc(l.note)}</small>` : "")
-      : `<div class="bhint">${l.auto > 0 ? `ประมาณ ${l.cur === "JPY" ? `¥${fmtN(l.auto)}` : `${fmtN(l.auto)} ฿`} • ` : ""}${esc(l.note)}${l.auto > 0 ? ` <button class="linkbtn" data-useauto="${l.key}">ใช้ค่านี้</button>` : ""}</div>`;
-    const keys = B.lines.filter((l) => l.key !== "reserve").map((l) => l.key);
-    const tools = (l, x) => `<span class="it-tools">${x}</span>`;
+    const raw = (l) => { const o = S.budget[l.key]; return typeof o === "number" ? { [l.cur === "THB" ? "b" : "y"]: o } : o || {}; };
+    const sym = (c) => (c === "b" ? "฿" : "¥"), word = (c) => (c === "b" ? "บาท" : "เยน");
+    // ช่องเดียวต่อรายการ + ปุ่มสลับ ฿/¥ • จ่ายสองสกุลจริง: "+ เยน/บาท" เปิดช่องที่สอง
+    const field = (l, c, sw) => `<label class="bin">${sw ? `<button type="button" class="bcur" data-bcur="${l.key}" title="กดสลับบาท/เยน" aria-label="สกุลเงิน${word(c)} กดเพื่อสลับ">${sym(c)}</button>` : `<span class="bcur">${sym(c)}</span>`}<input type="number" inputmode="decimal" min="0" step="any" data-bk="${l.key}" data-c="${c}" value="${raw(l)[c] ?? ""}" placeholder="0" aria-label="${esc(l.name)} ${word(c)}${l.per && ppl > 1 ? " ต่อคน" : ""}"></label>`;
+    const inputs = (l) => {
+      const o = raw(l), has = ["b", "y"].filter((c) => o[c] != null);
+      if (has.length === 2 || (has.length && this.more === l.key)) return field(l, "b") + field(l, "y");
+      const c = has[0] || S.budgetCur[l.key] || (l.cur === "THB" ? "b" : "y"), d = c === "b" ? "y" : "b";
+      return field(l, c, true) + (has.length ? `<button type="button" class="linkbtn bmore" data-bmore="${l.key}" data-c="${d}" title="จ่ายบางส่วนเป็น${word(d)}">+ ${word(d)}</button>` : "");
+    };
+    const hint = (l) => l.own || l.mine || !l.note ? "" : `<div class="bhint">${l.auto > 0 ? `ประมาณ ${l.cur === "JPY" ? `¥${fmtN(l.auto)}` : `${fmtN(l.auto)} ฿`} • ` : ""}${esc(l.note)}${l.auto > 0 ? ` <button class="linkbtn" data-useauto="${l.key}">ใช้ค่านี้</button>` : ""}</div>`;
+    const perBtn = (l) => ppl < 2 ? "" : `<button type="button" class="bper ${l.per ? "on" : ""}" data-bper="${l.key}" title="กดสลับ: ช่องที่กรอกเป็นราคาต่อคน หรือยอดทั้งกลุ่ม">${l.per ? `ต่อคน ×${ppl}` : "ทั้งกลุ่ม"}</button>`;
     const grip = (l) => `<button class="bgrip" data-bgrip="${l.key}" aria-label="ย้ายลำดับ ${esc(l.name)} (ลาก หรือกดลูกศรขึ้น/ลง)" title="ลากเพื่อเปลี่ยนลำดับ">${I("grip-vertical")}</button>`;
-    const name = (l) => l.key === "reserve"
-      ? `<label class="row bx"><input type="checkbox" id="bRes" ${S.budgetReserve ? "checked" : ""}> <b>${esc(l.name)}</b></label>`
-      : l.mine
-      ? `<div class="row bx">${grip(l)}<input type="text" data-bxname="${l.key}" value="${esc(l.name)}" placeholder="ชื่อรายการ เช่น ทัวร์ Drift Ice" aria-label="ชื่อรายการ">${tools(l, `<button data-bxdel="${l.key}" title="ลบรายการ" aria-label="ลบรายการ ${esc(l.name)}">${I("x")}</button>`)}</div>`
-      : `<div class="row bx">${grip(l)}<b>${esc(l.name)}</b><span class="spacer"></span>${tools(l, `<button data-bhide="${l.key}" title="ไม่ใช้รายการนี้" aria-label="ซ่อน ${esc(l.name)}">${I("x")}</button>`)}</div>`;
-    const colors = ["#2c6e9b", "#c8374a", "#2f8a57", "#b7791f", "#7b4fb5", "#0f8b8d", "#6a994e", "#3d5a80", "#8a817c"];
+    const del = (l) => l.mine ? `<button class="bdel" data-bxdel="${l.key}" title="ลบรายการ" aria-label="ลบรายการ ${esc(l.name)}">${I("x")}</button>`
+      : `<button class="bdel" data-bhide="${l.key}" title="ไม่ใช้รายการนี้" aria-label="ซ่อน ${esc(l.name)}">${I("x")}</button>`;
+    const name = (l) => l.mine ? `<input type="text" class="bxname" data-bxname="${l.key}" value="${esc(l.name)}" placeholder="ชื่อรายการ เช่น ทัวร์ Drift Ice" aria-label="ชื่อรายการ">` : `<b>${esc(l.name)}</b>`;
+    const row = (l) => `<li class="${l.own ? "own" : ""}" data-key="${l.key}">${grip(l)}
+      <div class="bmain">${name(l)}${perBtn(l)}${hint(l)}</div>
+      <div class="bamt">${inputs(l)}<b class="bthb">${l.own ? `${fmtM(l.thb)} ฿` : ""}</b></div>${del(l)}</li>`;
+    const groups = CATS.map((c) => [c, list.filter((l) => l.cat === c)]).filter(([, ls]) => ls.length);
+    const filled = list.filter((l) => l.own).length, colors = ["#2c6e9b", "#c8374a", "#2f8a57", "#b7791f", "#7b4fb5", "#0f8b8d", "#6a994e", "#3d5a80", "#8a817c"];
     $('[data-sec="budget"]').innerHTML = `
       <div class="sec-head"><h1>งบประมาณ</h1>
-        <p class="lead">กรอกราคาที่จองแล้วหรือคาดว่าจะจ่าย ยอดรวมนับเฉพาะช่องที่กรอก • ไปหลายคน: ใส่จำนวนคน แล้วแต่ละรายการเลือกว่ากรอกเป็น "ต่อคน" หรือ "ทั้งกลุ่ม"</p></div>
-      <div class="split split-r"><aside class="split-side"><div class="card"><div class="summary">
-        <div class="k"><b>${fmtM(B.total)} ฿</b><span>กรอกแล้ว${B.ppl > 1 ? " ทั้งกลุ่ม" : ""}${S.budgetReserve ? " (รวมสำรอง)" : ""}</span></div>
-        <div class="k"><label class="f">ไปกี่คน<input type="number" min="1" step="1" id="bPpl" value="${B.ppl}"></label>${B.ppl > 1 ? `<span>ตกคนละ <b>${fmtM(B.total / B.ppl)} ฿</b></span>` : ""}</div>
-        <div class="k"><b>${B.todoN ? `${B.todoN} รายการ` : "ครบแล้ว"}</b><span>${B.todoN ? "ยังไม่ได้กรอก" : "ทุกรายการกรอกแล้ว"}</span></div>
-        <div class="k"><b>¥${fmtM(B.yen)} + ${fmtM(B.baht)} ฿</b><span>จ่ายเป็นเยน + จ่ายเป็นบาท</span></div>
-        <div class="k"><label class="f">1 เยน = ? บาท<input type="number" step="0.0001" id="rate" value="${S.rate}"></label>
-          <label class="small"><input type="checkbox" id="rateAuto" ${S.set.rateAuto ? "checked" : ""}> อัปเดตอัตโนมัติวันละครั้ง</label></div></div>
-        ${B.total ? `<div style="display:flex;height:14px;border-radius:99px;overflow:hidden;margin-top:14px">${Object.entries(cats).map(([c, v], i) => `<div title="${esc(c)} ${fmtM(v)} ฿" style="width:${(v / B.total) * 100}%;background:${colors[i % colors.length]}"></div>`).join("")}</div>
-        <div class="row" style="margin-top:6px;font-size:.8rem">${Object.entries(cats).map(([c, v], i) => `<span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:${colors[i % colors.length]}"></span> ${esc(c)} ${Math.round((v / B.total) * 100)}%</span>`).join("")}</div>` : ""}</div></aside>
+        <p class="lead">กรอกราคาที่จองแล้วหรือคาดว่าจะจ่าย ยอดรวมนับเฉพาะช่องที่กรอก</p></div>
+      <div class="split split-r"><aside class="split-side"><div class="card bsum">
+        <div class="bsum-total"><span>รวม${ppl > 1 ? "ทั้งกลุ่ม" : ""}${S.budgetReserve ? " (รวมสำรอง)" : ""}</span><b>${fmtM(B.total)} ฿</b>
+          ${ppl > 1 ? `<div class="bsum-each">ตกคนละ <b>${fmtM(B.total / ppl)} ฿</b></div>` : ""}
+          ${B.yen && B.baht ? `<small class="mute">จ่ายเป็นเยน ¥${fmtM(B.yen)} + บาท ${fmtM(B.baht)} ฿</small>` : ""}</div>
+        <div class="bsum-row"><span>ไปกี่คน</span><div class="bstep"><button type="button" data-ppl="-1" aria-label="ลดจำนวนคน" ${ppl < 2 ? "disabled" : ""}>−</button><input type="number" min="1" step="1" inputmode="numeric" id="bPpl" value="${ppl}" aria-label="จำนวนคน"><button type="button" data-ppl="1" aria-label="เพิ่มจำนวนคน">+</button></div></div>
+        <div class="bsum-row bprog"><span>กรอกแล้ว ${filled} จาก ${list.length} รายการ</span><i><em style="width:${list.length ? (filled / list.length) * 100 : 0}%"></em></i></div>
+        ${B.total ? `<div class="bcat-bar">${Object.entries(cats).map(([c, v], i) => `<div title="${esc(c)} ${fmtM(v)} ฿" style="width:${(v / B.total) * 100}%;background:${colors[i % colors.length]}"></div>`).join("")}</div>
+        <div class="bcat-legend">${Object.entries(cats).map(([c, v], i) => `<span><i style="background:${colors[i % colors.length]}"></i>${esc(c)} ${Math.round((v / B.total) * 100)}%</span>`).join("")}</div>` : ""}</div></aside>
       <div class="split-main">${B.jr ? `<div class="callout info">${B.jr.text}</div>` : ""}
-      <div class="card">
-        <ul class="blist">${B.lines.map((l) => `${l.key === "reserve" ? `<li class="badd"><button class="btn small" id="bAdd">+ เพิ่มรายการเอง</button>${B.hiddenN ? ` <button class="linkbtn" id="bUnhide">แสดงรายการที่ซ่อน (${B.hiddenN})</button>` : ""}</li>` : ""}<li class="${l.own && !l.mine && l.key !== "reserve" ? "own" : ""}" ${l.key === "reserve" ? "" : `data-key="${l.key}"`}>
-          <div>${name(l)}${hint(l)}</div>
-          <div class="bamt">${l.key === "reserve" ? "" : inp(l, "b") + inp(l, "y")}<b class="bthb">${l.own && (l.key !== "reserve" || S.budgetReserve) ? `${fmtM(l.thb)} ฿` : ""}</b>${l.key === "reserve" || B.ppl < 2 ? "" : `<button class="bper ${l.per ? "on" : ""}" data-bper="${l.key}" title="กดสลับ: ช่องที่กรอกเป็นราคาต่อคน หรือยอดทั้งกลุ่ม">${l.per ? `ต่อคน ×${B.ppl}` : "ทั้งกลุ่ม"}</button>`}</div></li>`).join("")}
-          <li class="btot"><b>รวมที่กรอกแล้ว${S.budgetReserve ? " + สำรอง" : ""}</b><div class="bamt"><span class="mute small">¥${fmtM(B.yen)} + ${fmtM(B.baht)} ฿</span><b class="bthb">${fmtM(B.total)} ฿</b></div></li></ul>
-        <div class="row" style="margin-top:8px"><button class="btn small" id="bReset">ล้างจำนวนเงินที่กรอก</button><span class="mute" style="font-size:.8rem">ค่าประมาณอิงราคา พ.ย. 2026 ไว้ดูภาพรวม ไม่ใช่ใบเสนอราคา</span></div></div></div></div>`;
+      <div class="card bcard">
+        ${groups.map(([c, ls]) => { const sum = ls.reduce((a, l) => a + l.thb, 0);
+          return `<section class="bgrp"><h3><span>${esc(c)}</span>${sum ? `<b>${fmtM(sum)} ฿</b>` : ""}</h3><ul class="blist">${ls.map(row).join("")}</ul></section>`; }).join("")}
+        <div class="badd"><button class="btn small" id="bAdd">+ เพิ่มรายการเอง</button>${B.hiddenN ? ` <button class="linkbtn" id="bUnhide">แสดงรายการที่ซ่อน (${B.hiddenN})</button>` : ""}</div>
+        <div class="bres"><label class="row"><input type="checkbox" id="bRes" ${S.budgetReserve ? "checked" : ""}> <b>${esc(res.name)}</b></label><b class="bthb">${S.budgetReserve && res.thb ? `${fmtM(res.thb)} ฿` : ""}</b><small class="mute">${esc(res.note)}</small></div>
+        <div class="btot"><b>รวม${ppl > 1 ? "ทั้งกลุ่ม" : ""}${S.budgetReserve ? " + สำรอง" : ""}</b><b class="bthb">${fmtM(B.total)} ฿</b></div>
+        <div class="bfoot"><label class="brate">1 เยน = <input type="number" step="0.0001" id="rate" value="${S.rate}" aria-label="อัตราแลกเปลี่ยน บาทต่อเยน"> บาท</label>
+          <label class="small"><input type="checkbox" id="rateAuto" ${S.set.rateAuto ? "checked" : ""}> อัปเดตอัตโนมัติวันละครั้ง</label>
+          <button class="linkbtn" id="bReset">ล้างจำนวนเงินที่กรอก</button></div>
+        <p class="mute small bnote">ค่าประมาณอิงราคา พ.ย. 2026 ไว้ดูภาพรวม ไม่ใช่ใบเสนอราคา</p></div>
+      <div class="bbar"><span>รวม <b>${fmtM(B.total)} ฿</b></span>${ppl > 1 ? `<span>คนละ <b>${fmtM(B.total / ppl)} ฿</b></span>` : ""}</div></div></div>`;
   },
+
+  setPpl(n) { S.budgetPeople = Math.max(1, Math.min(50, Math.round(n) || 1)); save(); App.renderAll(); },
 
   bind() {
     const sec = $('[data-sec="budget"]');
     sec.addEventListener("change", (e) => {
       const el = e.target;
       if (el.id === "rate") { S.rate = Math.max(0.01, +el.value || 0.23); S.set.rateAuto = false; save(); App.renderAll(); return; }
-      if (el.id === "bPpl") { S.budgetPeople = Math.max(1, Math.round(+el.value) || 1); save(); App.renderAll(); return; }
+      if (el.id === "bPpl") { this.setPpl(+el.value); return; }
       if (el.id === "bRes") { S.budgetReserve = el.checked; save(); App.renderAll(); return; }
       if (el.id === "rateAuto") { S.set.rateAuto = el.checked; if (el.checked) { S.rateAt = 0; refreshRate(); } save(); App.renderAll(); return; }
       if (el.dataset.bk) {
@@ -138,22 +153,26 @@ const BudgetView = {
     });
     // เปลี่ยนลำดับ: ลากที่จับ (เมาส์/นิ้ว) หรือกดลูกศรขึ้น/ลงบนที่จับ
     const keysNow = () => this.calc().lines.filter((l) => l.key !== "reserve").map((l) => l.key);
-    const moveTo = (k, j) => {
-      const keys = keysNow(), i = keys.indexOf(k);
-      if (j < 0 || j >= keys.length || j === i) return false;
-      keys.splice(j, 0, keys.splice(i, 1)[0]);
+    // ย้าย k ไปไว้ก่อน/หลัง ref (ลำดับรวมทุกหมวด แต่ลาก/กดลูกศรได้เฉพาะในหมวดเดียวกัน)
+    const place = (k, ref, after) => {
+      if (!ref || ref === k) return false;
+      const keys = keysNow().filter((x) => x !== k), i = keys.indexOf(ref);
+      if (i < 0) return false;
+      keys.splice(after ? i + 1 : i, 0, k);
       S.budgetOrder = [...keys, ...S.budgetOrder.filter((x) => !keys.includes(x))]; // เก็บลำดับของรายการที่ซ่อนอยู่ไว้ด้วย
       save(); App.renderAll(); return true;
     };
+    const grpKeys = (k) => [...sec.querySelector(`li[data-key="${k}"]`).parentElement.children].map((r) => r.dataset.key);
     sec.addEventListener("keydown", (e) => {
       const k = e.target.dataset?.bgrip; if (!k || !["ArrowUp", "ArrowDown"].includes(e.key)) return;
       e.preventDefault();
-      if (moveTo(k, keysNow().indexOf(k) + (e.key === "ArrowUp" ? -1 : 1))) sec.querySelector(`[data-bgrip="${k}"]`)?.focus();
+      const g = grpKeys(k), i = g.indexOf(k), up = e.key === "ArrowUp";
+      if (place(k, g[i + (up ? -1 : 1)], !up)) sec.querySelector(`[data-bgrip="${k}"]`)?.focus();
     });
     sec.addEventListener("pointerdown", (e) => {
       const g = e.target.closest("[data-bgrip]"); if (!g || e.button > 0) return;
       e.preventDefault();
-      const k = g.dataset.bgrip, li = g.closest("li"), rows = [...sec.querySelectorAll(".blist li[data-key]")];
+      const k = g.dataset.bgrip, li = g.closest("li"), rows = [...li.parentElement.children];
       let to = rows.indexOf(li);
       li.classList.add("dragging"); g.setPointerCapture(e.pointerId);
       const mark = (y) => {
@@ -164,8 +183,8 @@ const BudgetView = {
       const up = () => {
         g.removeEventListener("pointermove", mv); g.removeEventListener("pointerup", up); g.removeEventListener("pointercancel", up);
         rows.forEach((r) => r.classList.remove("dragging", "drop-before", "drop-after"));
-        const from = rows.indexOf(li);
-        moveTo(k, to > from ? to - 1 : to);
+        const ref = rows[to], last = rows.filter((r) => r !== li).pop();
+        if (ref) place(k, ref.dataset.key, false); else if (last) place(k, last.dataset.key, true);
       };
       const mv = (ev) => mark(ev.clientY);
       g.addEventListener("pointermove", mv); g.addEventListener("pointerup", up); g.addEventListener("pointercancel", up);
@@ -174,6 +193,14 @@ const BudgetView = {
     sec.addEventListener("click", (e) => {
       const el = e.target.closest("button"); if (!el) return;
       if (el.id === "bReset" && confirm("ล้างจำนวนเงินที่กรอกทั้งหมด? (รายการที่เพิ่มเองยังอยู่)")) { S.budget = {}; save(); App.renderAll(); }
+      else if (el.dataset.ppl) this.setPpl(Math.max(1, S.budgetPeople || 1) + +el.dataset.ppl);
+      else if (el.dataset.bcur) { // สลับสกุล: มีตัวเลขแล้ว = ย้ายตัวเลขไปอีกสกุล • ยังว่าง = จำว่าจะกรอกสกุลไหน
+        const k = el.dataset.bcur, l = this.calc().lines.find((x) => x.key === k), old = S.budget[k];
+        const o = typeof old === "number" ? { [l.cur === "THB" ? "b" : "y"]: old } : { ...old };
+        const c = o.b != null ? "b" : o.y != null ? "y" : S.budgetCur[k] || (l.cur === "THB" ? "b" : "y"), d = c === "b" ? "y" : "b";
+        if (o[c] != null) { o[d] = o[c]; delete o[c]; S.budget[k] = o; }
+        S.budgetCur[k] = d; save(); App.renderAll(); sec.querySelector(`[data-bcur="${k}"]`)?.focus();
+      } else if (el.dataset.bmore) { this.more = el.dataset.bmore; App.renderAll(); sec.querySelector(`[data-bk="${el.dataset.bmore}"][data-c="${el.dataset.c}"]`)?.focus(); }
       else if (el.dataset.bper) { const l = this.calc().lines.find((x) => x.key === el.dataset.bper); S.budgetPer[l.key] = !l.per; save(); App.renderAll(); }
       else if (el.dataset.useauto) { const l = this.calc().lines.find((x) => x.key === el.dataset.useauto); S.budget[l.key] = { [l.cur === "THB" ? "b" : "y"]: l.auto }; save(); App.renderAll(); }
       else if (el.dataset.bhide) { S.budgetHide.push(el.dataset.bhide); delete S.budget[el.dataset.bhide]; save(); App.renderAll(); }

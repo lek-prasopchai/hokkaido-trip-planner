@@ -90,7 +90,7 @@ const Store = {
         pace: "balanced", interests: ["city", "food", "nature", "onsen"], mode: "car",
         firstDay: "auto", buf: { ...BUF }, rent: {}, stays: [], // stays = ที่พักที่จอง { id: "stay:…", hub, name, from, to (วันเช็กอิน/เช็กเอาท์), checkIn, checkOut, loc, lat, lng } // รถเช่า { p: รับ, r: คืน } = { day, time, loc, lat, lng } ว่าง = สนามบิน วันแรก/วันสุดท้าย
       },
-      plan: null, prep: {}, packing: {}, budget: {}, budgetX: [], budgetHide: [], budgetOrder: [], budgetReserve: true, budgetPeople: 1, budgetPer: {}, rate: 0.23, rateAt: 0,
+      plan: null, prep: {}, packing: {}, budget: {}, budgetX: [], budgetHide: [], budgetOrder: [], budgetReserve: true, budgetPeople: 1, budgetPer: {}, budgetCur: {}, rate: 0.23, rateAt: 0,
       set: { lang: "en", langV: 2, theme: "auto", font: "m", slack: 0, maxDrive: "", dayStart: "", dayEnd: "", rateAuto: true, snow: "new", maxStops: "", autoMeal: true },
     };
   },

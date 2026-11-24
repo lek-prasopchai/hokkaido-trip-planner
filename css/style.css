@@ -575,7 +575,6 @@ details.adv > summary { cursor: pointer; color: var(--ice); font-size: .875rem; 
 /* งบประมาณ: แต่ละรายการกรอกได้ทั้งบาทและเยน */
 .blist { list-style: none; margin: 0; padding: 0; }
 .blist li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 14px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
-.blist li.own > div:first-child b::after { content: " • กรอกเอง"; color: var(--ice); font-size: .8rem; font-weight: 600; }
 .bamt { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
 .bin { display: inline-flex; align-items: center; gap: 3px; color: var(--mute); font-size: .875rem; }
 .bin input { width: 92px; text-align: right; }
@@ -1041,3 +1040,74 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
 /* งบ: ปุ่มสลับ ต่อคน/ทั้งกลุ่ม */
 .bper { font: inherit; font-size: .75rem; padding: 2px 8px; min-height: 28px; border-radius: 99px; border: 1px solid var(--line, #ccd); background: transparent; color: var(--mute); cursor: pointer; white-space: nowrap; }
 .bper.on { border-color: #2c6e9b; color: #2c6e9b; }
+
+/* ---------- งบประมาณ (จัดใหม่ พ.ย. 2026): หมวด + แถวละช่องเดียว + สรุปติดจอ ---------- */
+.bcard { padding-top: 6px; }
+.bgrp + .bgrp { margin-top: 10px; }
+.bgrp h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin: 12px 0 2px; font-size: .8rem; font-weight: 700; letter-spacing: .02em; color: var(--mute); text-transform: none; }
+.bgrp h3 b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.blist li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; grid-template-areas: "grip main amt del"; gap: 4px 10px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+.blist li > .bgrip { grid-area: grip; margin-left: -8px; }
+.blist .bmain { grid-area: main; min-width: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; }
+.blist .bmain > b { font-size: 1rem; }
+.blist .bmain .bhint { flex-basis: 100%; margin: 0; font-size: .8rem; line-height: 1.45; }
+.blist .bxname { flex: 1 1 180px; min-width: 0; font-weight: 600; }
+.blist .bamt { grid-area: amt; display: flex; align-items: center; justify-content: flex-end; gap: 6px; flex-wrap: nowrap; }
+.blist .bdel { grid-area: del; flex: none; width: 32px; height: 32px; display: grid; place-items: center; border: 0; border-radius: 8px; background: none; color: var(--mute); cursor: pointer; opacity: .55; }
+.blist .bdel:hover { opacity: 1; background: var(--red-soft); color: var(--red); }
+.blist .bdel .i { width: 16px; height: 16px; }
+.bin { display: inline-flex; align-items: stretch; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); overflow: hidden; }
+.bin:focus-within { border-color: var(--ice); box-shadow: 0 0 0 2px var(--ice-soft); }
+.bin .bcur { flex: none; display: grid; place-items: center; min-width: 30px; padding: 0 6px; border: 0; border-right: 1px solid var(--line); background: var(--bg); color: var(--ink2); font: inherit; font-weight: 700; }
+.bin button.bcur { cursor: pointer; }
+.bin button.bcur:hover { color: var(--ice); }
+.bin input { width: 96px; border: 0; border-radius: 0; padding: 7px 8px; text-align: right; background: transparent; box-shadow: none; outline: none; font-variant-numeric: tabular-nums; }
+.blist .bmore { font-size: .8rem; white-space: nowrap; }
+.blist .bthb { min-width: 92px; text-align: right; font-variant-numeric: tabular-nums; }
+.blist li.own .bmain > b { color: var(--ink); }
+.blist li:not(.own) .bthb:empty::before { content: "—"; color: var(--line); }
+.bper { font: inherit; font-size: .75rem; line-height: 1; padding: 4px 9px; min-height: 24px; border-radius: 99px; border: 1px solid var(--line); background: transparent; color: var(--mute); cursor: pointer; white-space: nowrap; }
+.bper.on { border-color: var(--ice); color: var(--ice); background: var(--ice-soft); }
+.badd { padding: 12px 0 4px; border-top: 1px solid var(--line); margin-top: 10px; }
+.bres { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+.bres label { gap: 8px; cursor: pointer; }
+.bres small { grid-column: 1 / -1; }
+.bres .bthb, .btot .bthb { text-align: right; font-variant-numeric: tabular-nums; }
+.btot { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-top: 2px solid var(--ink) !important; font-size: 1.1rem; }
+.bfoot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding-top: 10px; border-top: 1px solid var(--line); font-size: .875rem; color: var(--ink2); }
+.brate { display: inline-flex; align-items: center; gap: 6px; }
+.brate input { width: 84px; }
+.bfoot #bReset { margin-left: auto; color: var(--mute); }
+.bcard > .bnote { margin: 8px 0 0; font-size: .8rem; }
+/* สรุป */
+.bsum { display: grid; gap: 14px; }
+.bsum-total span { display: block; font-size: .875rem; color: var(--mute); }
+.bsum-total > b { display: block; font-size: 2rem; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.bsum-each { font-size: 1.05rem; margin-top: 2px; }
+.bsum-total small { display: block; margin-top: 4px; font-size: .8rem; }
+.bsum-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 12px; border-top: 1px solid var(--line); font-size: .9rem; }
+.bstep { display: inline-flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.bstep button { width: 40px; min-height: 40px; border: 0; background: var(--bg); color: var(--ink); font-size: 1.2rem; cursor: pointer; }
+.bstep button:disabled { opacity: .35; cursor: default; }
+.bstep input { width: 48px; border: 0; border-radius: 0; text-align: center; font-weight: 700; -moz-appearance: textfield; }
+.bstep input::-webkit-inner-spin-button { display: none; }
+.bprog { flex-wrap: wrap; }
+.bprog i { flex-basis: 100%; height: 6px; border-radius: 99px; background: var(--bg); overflow: hidden; }
+.bprog em { display: block; height: 100%; background: var(--good, #2f8a57); border-radius: 99px; }
+.bcat-bar { display: flex; height: 12px; border-radius: 99px; overflow: hidden; }
+.bcat-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: .8rem; margin-top: -6px; }
+.bcat-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 4px; vertical-align: -1px; }
+.bbar { display: none; }
+@media (max-width: 640px) {
+  .blist li { grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "grip main del" ". amt amt"; padding: 10px 0 12px; }
+  .blist .bamt { justify-content: flex-start; flex-wrap: wrap; }
+  .blist .bthb { margin-left: auto; min-width: 0; }
+  .bin input { width: 110px; font-size: 16px; }
+  .bsum-total > b { font-size: 1.6rem; }
+}
+@media (max-width: 900px) {
+  /* ยอดรวมติดเหนือแถบเมนูล่าง ระหว่างเลื่อนดูรายการ */
+  .bbar { display: flex; gap: 16px; justify-content: space-between; position: sticky; bottom: calc(68px + env(safe-area-inset-bottom)); z-index: 5;
+    margin: 12px -4px 0; padding: 10px 60px 10px 14px; border-radius: 12px; background: var(--top); color: #fff; box-shadow: var(--shadow); font-size: .9rem; }
+  .bbar b { font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+}
