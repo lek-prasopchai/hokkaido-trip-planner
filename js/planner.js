@@ -249,8 +249,10 @@ const Planner = {
     const add = (lvl, text, tight) => checks.push({ lvl, text, tight }); // tight = เรื่องเวลาไม่พอ/ยาวเกิน (ป้าย "แน่น")
     let driveH = 0, kmSum = 0, darkRisk = false, prev = opts.live ? opts.live.from : from, lateRural = false, noFuel = false;
     // it.lh = ผู้ใช้กำหนดเวลาเดินทางมาที่นี่เอง (ชม.) แทนที่ระบบคำนวณ • auto = ค่าที่ระบบคำนวณ
+    // วันรับ/คืนรถที่สาขา: รถอยู่กับเรา ไม่ได้จอดที่พัก ห้ามใช้กฎ "จอดรถที่พักในเมือง"
+    const withCar = !!(rentP || rentR);
     const legTo = (toId, m, it, home) => {
-      const L = this.leg(prev, toId, m, iso, !!(it ? it.m : home === "back" ? day.bm : home ? day.hm : null));
+      const L = this.leg(prev, toId, m, iso, withCar || !!(it ? it.m : home === "back" ? day.bm : home ? day.hm : null));
       return it?.lh ? { ...L, h: it.lh, drive: L.h ? L.drive * it.lh / L.h : 0, est: false, fixed: true, auto: L.h } : L;
     };
     let noCar = false; // เลือกขับรถตอนที่ไม่มีรถ (นอกช่วงเช่า / ก่อนรับ / หลังคืน)

@@ -116,6 +116,15 @@ assert(meals.every((x) => x.t >= 10.5 && x.t <= 15), "มื้อกลาง�
   assert.strictEqual(Planner.needAirport("car"), need0, "นัดคืนหลังเส้นตาย");
   Object.assign(t, JSON.parse(keep));
 }
+// วันรับรถที่สาขาในเมือง: หลังรับรถต้องขับ ไม่ใช่ "จอดรถไว้ที่พัก"
+{
+  trip({ start: "2027-01-15", end: "2027-01-22", mode: "car", rent: { p: { day: 1, time: "10:00", lat: 43.0687, lng: 141.3508 }, r: { day: 7 } },
+    stays: [{ id: "stay:t1", hub: "sapporo", name: "T", from: "2027-01-15", to: "2027-01-22" }] });
+  Planner.createFromStays(true);
+  const city = (i) => Planner.evaluate(i).tl.filter((x) => x.kind === "move" && x.city).length;
+  assert.strictEqual(city(1), 0, "วันรับรถ: ห้ามจอดรถไว้ที่พัก");
+  assert(city(2) > 0, "วันอื่นในซัปโปโรยังจอดรถที่พักได้");
+}
 // แชร์ลิงก์: แพ็กแล้วแกะได้เหมือนเดิม (แบบไม่บีบอัด ใน node)
 (async () => {
   const code = await Share.pack({ v: 2, trip: S.trip, plan: S.plan });
