@@ -471,7 +471,8 @@ details.hubinfo[open] > summary { margin-bottom: 8px; }
   /* ตัวกรองหลายแถวไม่ต้องลอยตาม: บังรายการครึ่งจอบนมือถือ */
   .filters { position: static; }
   .filters .row { gap: 6px; }
-  .filters select { flex: 1 1 calc(50% - 6px); min-width: 0; }
+  /* ตัดชื่อยาว (เช่น อาซาฮิคาวะ / บิเอ / ...) ไม่ให้ iOS นับเป็นความกว้างหน้า จนซูมออกแล้วเห็นที่ว่างขวา */
+  .filters select { flex: 1 1 calc(50% - 6px); min-width: 0; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .filters input[type="search"] { flex: 1 1 100% !important; }
   .bt input { width: 84px !important; }
 }
@@ -1031,8 +1032,7 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
 .hk-tour .driver-popover-arrow-side-top { border-top-color: var(--paper); } .hk-tour .driver-popover-arrow-side-bottom { border-bottom-color: var(--paper); }
 
 /* แผนที่ย่อแทนรูป (miniMap): ไทล์ 256px วางเองให้จุดอยู่กลางกรอบ */
-/* contain: paint กันไทล์ 1280px ที่ล้นไปขยายความกว้างหน้าบนมือถือ (ซูมออกแล้วเห็นที่ว่างขวา) */
-.mini { position: absolute; inset: 0; overflow: hidden; contain: paint; background: #dfe8f0; }
+.mini { position: absolute; inset: 0; overflow: hidden; background: #dfe8f0; }
 .pcard .ph .mini img, .lth .mini img { position: absolute; width: 256px; height: 256px; max-width: none; object-fit: fill; }
 .mini .mini-pin { position: absolute; left: 50%; top: 50%; width: 30px; height: 30px; transform: translate(-50%, -100%); color: #fff; fill: #c8374a; filter: drop-shadow(0 1px 2px rgba(0,0,0,.6)); }
 .lth { position: relative; }
