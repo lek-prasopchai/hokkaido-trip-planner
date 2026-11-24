@@ -1038,3 +1038,6 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
 .lth { position: relative; }
 .lth .mini-pin { width: 20px; height: 20px; }
 .ph:not([data-lb]) { cursor: default; }
+/* งบ: ปุ่มสลับ ต่อคน/ทั้งกลุ่ม */
+.bper { font: inherit; font-size: .75rem; padding: 2px 8px; min-height: 28px; border-radius: 99px; border: 1px solid var(--line, #ccd); background: transparent; color: var(--mute); cursor: pointer; white-space: nowrap; }
+.bper.on { border-color: #2c6e9b; color: #2c6e9b; }

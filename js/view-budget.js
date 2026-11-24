@@ -10,7 +10,9 @@ const BudgetView = {
     const carDays = carIdx.length ? carIdx[carIdx.length - 1] - carIdx[0] + 1 : 0; // เช่าต่อเนื่องตั้งแต่วันแรกถึงวันสุดท้ายที่ใช้รถ
     const carKm = ev.filter((e) => e.mode === "car").reduce((a, e) => a + e.km, 0) || (S.plan ? 0 : 120 * carDays);
     const L = [];
-    const add = (key, cat, name, cur, auto, note) => L.push({ key, cat, name, cur, auto: Math.round(auto), note });
+    // per = รายการที่ปกติจ่ายต่อคน (ตั๋ว ประกัน อาหาร ฯลฯ) กรอกราคาคนเดียวแล้วคูณจำนวนคน • นอกนั้นกรอกยอดทั้งกลุ่ม • สลับเองได้ (S.budgetPer)
+    const PER = ["flight", "ins", "esim", "rail", "local", "fees", "food", "souv", "gear"];
+    const add = (key, cat, name, cur, auto, note) => L.push({ key, cat, name, cur, auto: Math.round(auto), note, per: S.budgetPer[key] ?? PER.includes(key) });
     const yr = (a, b) => `¥${fmtN(a)}–${fmtN(b)}`;
 
     add("flight", "เดินทาง", "ตั๋วเครื่องบินไป-กลับ", "THB", 0, `≈${fmtN(D.flightTHB)} บาท ต่อคน (บินตรงช่วงหน้าหนาว)`);
@@ -66,16 +68,17 @@ const BudgetView = {
       if (o && (o.b != null || o.y != null)) return { b: o.b || 0, y: o.y || 0, own: true };
       return { b: 0, y: 0, own: false };
     };
-    const fill = (l) => { Object.assign(l, split(l)); l.thb = l.b + l.y * S.rate; };
+    const ppl = Math.max(1, S.budgetPeople || 1);
+    const fill = (l) => { Object.assign(l, split(l)); l.x = l.per ? ppl : 1; l.b *= l.x; l.y *= l.x; l.thb = l.b + l.y * S.rate; }; // b/y/thb = ยอดทั้งกลุ่ม
     const hidden = new Set(S.budgetHide);
     // ลำดับที่ผู้ใช้จัดเอง (S.budgetOrder) ก่อน รายการที่ยังไม่เคยจัด (เช่น ค่ารถเพิ่งมีเพราะเปลี่ยนแผน) ต่อท้ายตามลำดับเดิม
     const pos = (k) => { const i = S.budgetOrder.indexOf(k); return i < 0 ? 1e3 + L.findIndex((l) => l.key === k) : i; };
     const shown = L.filter((l) => !hidden.has(l.key)).sort((a, b) => pos(a.key) - pos(b.key)).map((l) => (fill(l), l));
     const sub = shown.reduce((a, l) => a + l.thb, 0), r = S.budgetReserve ? (sub * D.reservePct) / 100 : 0;
     add("reserve", "สำรอง", `เงินสำรอง ${D.reservePct}%`, "THB", 0, S.budgetReserve ? "คิดจากยอดที่กรอกแล้ว เผื่อพายุ เลื่อนไฟลต์ ค่ารักษา" : "ไม่นับรวม (ติ๊กเพื่อนับ)");
-    const res = Object.assign(L[L.length - 1], { b: r, y: 0, thb: r, own: true });
+    const res = Object.assign(L[L.length - 1], { b: r, y: 0, thb: r, own: true, per: false, x: 1 });
     shown.push(res);
-    return { lines: shown, hiddenN: hidden.size, total: sub + r, todoN: shown.filter((l) => !l.own).length,
+    return { lines: shown, hiddenN: hidden.size, total: sub + r, ppl, todoN: shown.filter((l) => !l.own).length,
       yen: shown.reduce((a, l) => a + l.y, 0), baht: shown.reduce((a, l) => a + l.b, 0), jr };
   },
 
@@ -98,9 +101,10 @@ const BudgetView = {
     const colors = ["#2c6e9b", "#c8374a", "#2f8a57", "#b7791f", "#7b4fb5", "#0f8b8d", "#6a994e", "#3d5a80", "#8a817c"];
     $('[data-sec="budget"]').innerHTML = `
       <div class="sec-head"><h1>งบประมาณ</h1>
-        <p class="lead">กรอกราคาที่จองแล้วหรือคาดว่าจะจ่าย ยอดรวมนับเฉพาะช่องที่กรอก</p></div>
+        <p class="lead">กรอกราคาที่จองแล้วหรือคาดว่าจะจ่าย ยอดรวมนับเฉพาะช่องที่กรอก • ไปหลายคน: ใส่จำนวนคน แล้วแต่ละรายการเลือกว่ากรอกเป็น "ต่อคน" หรือ "ทั้งกลุ่ม"</p></div>
       <div class="split split-r"><aside class="split-side"><div class="card"><div class="summary">
-        <div class="k"><b>${fmtM(B.total)} ฿</b><span>กรอกแล้ว${S.budgetReserve ? " (รวมสำรอง)" : ""}</span></div>
+        <div class="k"><b>${fmtM(B.total)} ฿</b><span>กรอกแล้ว${B.ppl > 1 ? " ทั้งกลุ่ม" : ""}${S.budgetReserve ? " (รวมสำรอง)" : ""}</span></div>
+        <div class="k"><label class="f">ไปกี่คน<input type="number" min="1" step="1" id="bPpl" value="${B.ppl}"></label>${B.ppl > 1 ? `<span>ตกคนละ <b>${fmtM(B.total / B.ppl)} ฿</b></span>` : ""}</div>
         <div class="k"><b>${B.todoN ? `${B.todoN} รายการ` : "ครบแล้ว"}</b><span>${B.todoN ? "ยังไม่ได้กรอก" : "ทุกรายการกรอกแล้ว"}</span></div>
         <div class="k"><b>¥${fmtM(B.yen)} + ${fmtM(B.baht)} ฿</b><span>จ่ายเป็นเยน + จ่ายเป็นบาท</span></div>
         <div class="k"><label class="f">1 เยน = ? บาท<input type="number" step="0.0001" id="rate" value="${S.rate}"></label>
@@ -111,7 +115,7 @@ const BudgetView = {
       <div class="card">
         <ul class="blist">${B.lines.map((l) => `${l.key === "reserve" ? `<li class="badd"><button class="btn small" id="bAdd">+ เพิ่มรายการเอง</button>${B.hiddenN ? ` <button class="linkbtn" id="bUnhide">แสดงรายการที่ซ่อน (${B.hiddenN})</button>` : ""}</li>` : ""}<li class="${l.own && !l.mine && l.key !== "reserve" ? "own" : ""}" ${l.key === "reserve" ? "" : `data-key="${l.key}"`}>
           <div>${name(l)}${hint(l)}</div>
-          <div class="bamt">${l.key === "reserve" ? "" : inp(l, "b") + inp(l, "y")}<b class="bthb">${l.own && (l.key !== "reserve" || S.budgetReserve) ? `${fmtM(l.thb)} ฿` : ""}</b></div></li>`).join("")}
+          <div class="bamt">${l.key === "reserve" ? "" : inp(l, "b") + inp(l, "y")}<b class="bthb">${l.own && (l.key !== "reserve" || S.budgetReserve) ? `${fmtM(l.thb)} ฿` : ""}</b>${l.key === "reserve" || B.ppl < 2 ? "" : `<button class="bper ${l.per ? "on" : ""}" data-bper="${l.key}" title="กดสลับ: ช่องที่กรอกเป็นราคาต่อคน หรือยอดทั้งกลุ่ม">${l.per ? `ต่อคน ×${B.ppl}` : "ทั้งกลุ่ม"}</button>`}</div></li>`).join("")}
           <li class="btot"><b>รวมที่กรอกแล้ว${S.budgetReserve ? " + สำรอง" : ""}</b><div class="bamt"><span class="mute small">¥${fmtM(B.yen)} + ${fmtM(B.baht)} ฿</span><b class="bthb">${fmtM(B.total)} ฿</b></div></li></ul>
         <div class="row" style="margin-top:8px"><button class="btn small" id="bReset">ล้างจำนวนเงินที่กรอก</button><span class="mute" style="font-size:.8rem">ค่าประมาณอิงราคา พ.ย. 2026 ไว้ดูภาพรวม ไม่ใช่ใบเสนอราคา</span></div></div></div></div>`;
   },
@@ -121,6 +125,7 @@ const BudgetView = {
     sec.addEventListener("change", (e) => {
       const el = e.target;
       if (el.id === "rate") { S.rate = Math.max(0.01, +el.value || 0.23); S.set.rateAuto = false; save(); App.renderAll(); return; }
+      if (el.id === "bPpl") { S.budgetPeople = Math.max(1, Math.round(+el.value) || 1); save(); App.renderAll(); return; }
       if (el.id === "bRes") { S.budgetReserve = el.checked; save(); App.renderAll(); return; }
       if (el.id === "rateAuto") { S.set.rateAuto = el.checked; if (el.checked) { S.rateAt = 0; refreshRate(); } save(); App.renderAll(); return; }
       if (el.dataset.bk) {
@@ -169,6 +174,7 @@ const BudgetView = {
     sec.addEventListener("click", (e) => {
       const el = e.target.closest("button"); if (!el) return;
       if (el.id === "bReset" && confirm("ล้างจำนวนเงินที่กรอกทั้งหมด? (รายการที่เพิ่มเองยังอยู่)")) { S.budget = {}; save(); App.renderAll(); }
+      else if (el.dataset.bper) { const l = this.calc().lines.find((x) => x.key === el.dataset.bper); S.budgetPer[l.key] = !l.per; save(); App.renderAll(); }
       else if (el.dataset.useauto) { const l = this.calc().lines.find((x) => x.key === el.dataset.useauto); S.budget[l.key] = { [l.cur === "THB" ? "b" : "y"]: l.auto }; save(); App.renderAll(); }
       else if (el.dataset.bhide) { S.budgetHide.push(el.dataset.bhide); delete S.budget[el.dataset.bhide]; save(); App.renderAll(); }
       else if (el.id === "bUnhide") { S.budgetHide = []; save(); App.renderAll(); }
