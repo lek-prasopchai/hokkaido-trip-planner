@@ -210,7 +210,11 @@ const PlanView = {
       ${this.undoBtn()}`;
     this.mountMap(evals);
     // แผนที่ที่สร้างตอนกล่องพับอยู่มีขนาด 0: เปิดแล้วต้องวัดขนาดใหม่
-    $("#mapCard").addEventListener("toggle", (e) => { if (e.target.open) setTimeout(() => { this.M.map.invalidateSize(); TripMap.drawPlan(this.M, this.evals, this.focus); }, 0); });
+    // กล่องที่สร้างใหม่แบบเปิดอยู่ก็ยิง toggle ทุกครั้งที่วาดหน้าใหม่: ซูมให้เห็นทั้งหมดเฉพาะตอนผู้ใช้เปิดกล่องจากที่พับไว้ (แก้แผนแล้วไม่ซูมกลับ)
+    $("#mapCard").addEventListener("toggle", (e) => {
+      const was = this.mapOpen; this.mapOpen = e.target.open;
+      if (e.target.open && !was) setTimeout(() => { this.M.map.invalidateSize(); TripMap.drawPlan(this.M, this.evals, this.focus); }, 0);
+    });
     Weather.fill(sec);
     this.bindDrag(sec);
     RoadTime.flush(() => App.renderAll());
