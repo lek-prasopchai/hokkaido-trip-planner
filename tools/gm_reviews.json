@@ -193,12 +193,16 @@
   "kind": "place"
  },
  "25": {
-  "q": "ニセコ高橋牧場 ミルク工房",
+  "q": "高橋牧場 ニセコミルク工房",
   "gname": "高橋牧場 ニセコミルク工房",
   "n": 3879,
   "g": 4.2,
   "km": 5.55,
-  "kind": "place"
+  "ll": [
+   42.83677,
+   140.67544
+  ],
+  "kind": "list"
  },
  "26": {
   "q": "ルスツリゾート",
@@ -302,7 +306,7 @@
   "kind": "place"
  },
  "39": {
-  "q": "Mount Hakodate Ropeway",
+  "q": "函館山ロープウェイ株式会社",
   "n": null
  },
  "40": {
@@ -1389,10 +1393,11 @@
  "173": {
   "q": "ミュンヘン・クリスマス市",
   "gname": "大通公園西３丁目",
-  "n": 95,
+  "n": null,
   "g": 4.5,
   "km": 0.26,
-  "kind": "list"
+  "kind": "list",
+  "note": "matched a different Google place (checked by eye)"
  },
  "174": {
   "q": "豊平峡ダム",
@@ -2075,10 +2080,11 @@
  "259": {
   "q": "Esashi Iniwa Kaido Street",
   "gname": "ホテルニューえさし",
-  "n": 220,
+  "n": null,
   "g": 3.3,
   "km": 0.45,
-  "kind": "list"
+  "kind": "list",
+  "note": "matched a different Google place (checked by eye)"
  },
  "260": {
   "q": "北の屋台",
@@ -2415,10 +2421,11 @@
  "302": {
   "q": "北の大文字",
   "gname": "日の出公園駐車場",
-  "n": 6,
+  "n": null,
   "g": 3.5,
   "km": 0.53,
-  "kind": "place"
+  "kind": "place",
+  "note": "matched a different Google place (checked by eye)"
  },
  "303": {
   "q": "札幌すみれ 中の島本店",
@@ -2679,10 +2686,11 @@
  "335": {
   "q": "さっぽろオータムフェスト",
   "gname": "大通公園西７丁目",
-  "n": 111,
+  "n": null,
   "g": 4.2,
   "km": 0.06,
-  "kind": "place"
+  "kind": "place",
+  "note": "matched a different Google place (checked by eye)"
  },
  "336": {
   "q": "定山源泉公園",
@@ -2987,10 +2995,11 @@
  "373": {
   "q": "３・６街",
   "gname": "カラオケまねきねこ 旭川さんろく街店",
-  "n": 128,
+  "n": null,
   "g": 3.6,
   "km": 0.1,
-  "kind": "list"
+  "kind": "list",
+  "note": "matched a different Google place (checked by eye)"
  },
  "374": {
   "q": "高砂酒造 明治酒蔵",
@@ -3406,10 +3415,11 @@
  "424": {
   "q": "鮭乃丸亀",
   "gname": "丸亀 円山本店",
-  "n": 135,
+  "n": null,
   "g": 4.2,
   "km": 0.03,
-  "kind": "list"
+  "kind": "list",
+  "note": "matched a different Google place (checked by eye)"
  },
  "425": {
   "q": "豊平館",
@@ -5126,10 +5136,11 @@
  "637": {
   "q": "富良野たにじん",
   "gname": "ジンギスカン盆賊衆(ボンゾク)",
-  "n": 216,
+  "n": null,
   "g": 4.4,
   "km": 0.01,
-  "kind": "list"
+  "kind": "list",
+  "note": "matched a different Google place (checked by eye)"
  },
  "638": {
   "q": "FURANO BURGER",
@@ -5150,10 +5161,11 @@
  "640": {
   "q": "Terasaka Farm Melon",
   "gname": "ファーム富良野",
-  "n": 20,
+  "n": null,
   "g": 3,
   "km": 1.67,
-  "kind": "list"
+  "kind": "list",
+  "note": "matched a different Google place (checked by eye)"
  },
  "641": {
   "q": "カフェメローネ",
@@ -6125,10 +6137,11 @@
  "762": {
   "q": "Kita no Arashiyama Craft Village",
   "gname": "｢アイヌ文化の森 伝承のコタン｣資料館",
-  "n": 24,
+  "n": null,
   "g": 4.2,
   "km": 0.34,
-  "kind": "list"
+  "kind": "list",
+  "note": "matched a different Google place (checked by eye)"
  },
  "763": {
   "q": "銀座商店街",
@@ -6671,10 +6684,11 @@
  "830": {
   "q": "BAR クラフトビールと地酒",
   "gname": "HUG",
-  "n": 34,
+  "n": null,
   "g": 4.4,
   "km": 0.28,
-  "kind": "list"
+  "kind": "list",
+  "note": "matched a different Google place (checked by eye)"
  },
  "838": {
   "q": "すき焼 三光舎",
@@ -7990,10 +8004,11 @@
  "1002": {
   "q": "高原温泉沼巡りコース",
   "gname": "大雪高原山荘",
-  "n": 306,
+  "n": null,
   "g": 4.5,
   "km": 0.04,
-  "kind": "place"
+  "kind": "place",
+  "note": "matched a different Google place (checked by eye)"
  },
  "1003": {
   "q": "層雲峡ビジターセンター",

@@ -1373,9 +1373,9 @@ window.PLACES = [
   "evening": false,
   "parking": "ฟรี",
   "ja": "ニセコ高橋牧場 ミルク工房",
-  "lat": 42.8613,
-  "lng": 140.7347,
-  "acc": "ใกล้เคียง (เติมมือ)",
+  "lat": 42.83677,
+  "lng": 140.67544,
+  "acc": "จากหมุด Google Maps (หมุดเดิมแค่ประมาณ ห่าง >1 กม.)",
   "imgs": [
    {
     "img": "img/places/25_1.jpg",
@@ -1403,8 +1403,10 @@ window.PLACES = [
   "addrJa": "北海道虻田郡ニセコ町字曽我888-1",
   "phone": "0136-44-3734",
   "checked": "2026-11",
-  "mapcode": "398 418 048*23",
-  "mcLL": "42.8613,140.7347"
+  "mapcode": "398 321 104*13",
+  "mcLL": "42.83677,140.67544",
+  "rv": 3900,
+  "gr": 4.2
  },
  {
   "id": 26,
@@ -9590,9 +9592,7 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/event/event-list/munich_christmas_market/",
   "url": "https://www.sapporo.travel/event/event-list/munich_christmas_market/",
   "mapcode": "9 492 792*68",
-  "mcLL": "43.0597,141.3497",
-  "rv": 95,
-  "gr": 4.5
+  "mcLL": "43.0597,141.3497"
  },
  {
   "hub": "jozankei",
@@ -14721,9 +14721,7 @@ window.PLACES = [
   "addrJa": "北海道檜山郡江差町字中歌町~姥神町",
   "phone": "0139-52-0117",
   "mapcode": "482 390 777*27",
-  "mcLL": "41.868,140.129",
-  "rv": 220,
-  "gr": 3.3
+  "mcLL": "41.868,140.129"
  },
  {
   "hub": "obihiro",
@@ -17453,9 +17451,7 @@ window.PLACES = [
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=482",
   "addrJa": "空知郡上富良野町東2線北27号 日の出公園",
   "mapcode": "349 463 378*05",
-  "mcLL": "43.46419,142.48457",
-  "rv": 6,
-  "gr": 3.5
+  "mcLL": "43.46419,142.48457"
  },
  {
   "hub": "sapporo",
@@ -19598,9 +19594,7 @@ window.PLACES = [
   "img": "img/places/335.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%E3%81%95%E3%81%A3%E3%81%BD%E3%82%8D%E3%82%AA%E3%83%BC%E3%82%BF%E3%83%A0%E3%83%95%E3%82%A7%E3%82%B9%E3%83%882009_%283952776473%29.jpg",
   "mapcode": "9 491 809*22",
-  "mcLL": "43.0599,141.346",
-  "rv": 110,
-  "gr": 4.2
+  "mcLL": "43.0599,141.346"
  },
  {
   "hub": "jozankei",
@@ -22009,9 +22003,7 @@ window.PLACES = [
   "img": "img/places/373.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%EF%BC%93%E3%83%BB%EF%BC%96%E8%A1%97.JPG",
   "mapcode": "79 343 822*41",
-  "mcLL": "43.76844,142.35803",
-  "rv": 130,
-  "gr": 3.6
+  "mcLL": "43.76844,142.35803"
  },
  {
   "hub": "asahikawa",
@@ -25091,9 +25083,7 @@ window.PLACES = [
   "ref": "https://www.sapporo.travel/spot/facility/salmon-specialty-store-sake-no-marukame/",
   "checked": "2026-11",
   "mapcode": "9 488 550*73",
-  "mcLL": "43.05751,141.31593",
-  "rv": 140,
-  "gr": 4.2
+  "mcLL": "43.05751,141.31593"
  },
  {
   "id": 425,
@@ -34309,9 +34299,7 @@ window.PLACES = [
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=195",
   "checked": "2026-11",
   "mapcode": "349 062 039*83",
-  "mcLL": "43.35287,142.39036",
-  "rv": 220,
-  "gr": 4.4
+  "mcLL": "43.35287,142.39036"
  },
  {
   "id": 638,
@@ -34460,9 +34448,7 @@ window.PLACES = [
   "ref": "https://www.furanotourism.com/jp/spot/spot_D.php?id=358",
   "checked": "2026-11",
   "mapcode": "349 401 422*02",
-  "mcLL": "43.44815,142.46347",
-  "rv": 20,
-  "gr": 3
+  "mcLL": "43.44815,142.46347"
  },
  {
   "id": 641,
@@ -39669,9 +39655,7 @@ window.PLACES = [
   "ref": "https://www.atca.jp/menberinfo/北の嵐山/",
   "checked": "2026-11",
   "mapcode": "79 427 894*84",
-  "mcLL": "43.79392,142.3112",
-  "rv": 24,
-  "gr": 4.2
+  "mcLL": "43.79392,142.3112"
  },
  {
   "id": 763,
@@ -42216,9 +42200,7 @@ window.PLACES = [
   "ref": "https://www.atca.jp/members/eat/",
   "checked": "2026-11",
   "mapcode": "79 373 118*13",
-  "mcLL": "43.77005,142.36247",
-  "rv": 34,
-  "gr": 4.4
+  "mcLL": "43.77005,142.36247"
  },
  {
   "id": 838,
@@ -50070,9 +50052,7 @@ window.PLACES = [
   "ref": "https://sounkyo.net/view/detail.html?content=47",
   "checked": "2026-11",
   "mapcode": "970 727 725*38",
-  "mcLL": "43.62599,142.9309",
-  "rv": 310,
-  "gr": 4.5
+  "mcLL": "43.62599,142.9309"
  },
  {
   "id": 1003,
