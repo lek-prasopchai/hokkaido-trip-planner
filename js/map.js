@@ -227,6 +227,7 @@ const TripMap = {
   // แผนที่ใหญ่หน้าวางแผน: focus = เลขวัน หรือ null = ทั้งทริป
   // keep = แก้แผนแล้ววาดใหม่: ไม่ซูม/เลื่อนแผนที่กลับ (ผู้ใช้อาจซูมดูอยู่)
   drawPlan(M, evals, focus = null, keep = false) {
+    M.drawn = true; M.drawnFocus = focus; // ทุกทางที่วาด (เลือกวันบนแผนที่ด้วย): แก้แผนครั้งถัดไปจะรู้ว่ามุมมองนี้วาดแล้ว ไม่ซูมกลับ
     M.layer.clearLayers();
     M.bounds = [];
     const inPlan = new Set(evals.flatMap((e) => e.stops));
