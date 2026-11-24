@@ -471,8 +471,7 @@ details.hubinfo[open] > summary { margin-bottom: 8px; }
   /* ตัวกรองหลายแถวไม่ต้องลอยตาม: บังรายการครึ่งจอบนมือถือ */
   .filters { position: static; }
   .filters .row { gap: 6px; }
-  /* ตัดชื่อยาว (เช่น อาซาฮิคาวะ / บิเอ / ...) ไม่ให้ iOS นับเป็นความกว้างหน้า จนซูมออกแล้วเห็นที่ว่างขวา */
-  .filters select { flex: 1 1 calc(50% - 6px); min-width: 0; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .filters select { flex: 1 1 calc(50% - 6px); min-width: 0; }
   .filters input[type="search"] { flex: 1 1 100% !important; }
   .bt input { width: 84px !important; }
 }
@@ -610,6 +609,8 @@ h2, h3 { font-weight: 600; }
 .lead { color: var(--ink2); line-height: 1.65; }
 
 /* ช่องกรอก */
+/* ตัดตัวเลือกที่ชื่อยาว (เช่น อาซาฮิคาวะ / บิเอ / ...) ไม่ให้ iOS นับเป็นความกว้างหน้า จนซูมออกแล้วเห็นที่ว่างขวา */
+select { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 input[type=text], input[type=number], input[type=date], input[type=time], input[type=search], input[type=url], input[type=datetime-local], select, textarea {
   border-color: var(--line2); background-color: var(--field); border-radius: 9px; transition: border-color .15s, box-shadow .15s; }
 input[type=text], input[type=number], input[type=date], input[type=time], input[type=search], input[type=url], input[type=datetime-local], select { min-height: var(--ctl); }
