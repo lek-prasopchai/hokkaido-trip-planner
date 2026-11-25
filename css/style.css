@@ -292,7 +292,7 @@ textarea { width: 100%; resize: vertical; border: 1px solid var(--line); border-
 .tl li.it[draggable="true"] { cursor: grab; }
 .tl li.dragging { opacity: .4; }
 .tl li.drop-before { box-shadow: inset 0 3px 0 var(--ice); }
-.tl .nm, [data-detail], select { cursor: pointer; } /* ทุกที่ที่กดดูรายละเอียดได้ + ดรอปดาวน์ */
+.tl .nm, [data-detail], select, label:has(> input[type=checkbox], > input[type=radio]) { cursor: pointer; } /* ทุกที่ที่กดดูรายละเอียดได้ + ดรอปดาวน์ + ข้อความข้างช่องติ๊ก */
 .tl .nm:hover { color: var(--ice); }
 .tl .note { font-size: .8rem; color: var(--ink2); background: var(--warn-soft); border-radius: 6px; padding: 2px 8px; margin-top: 3px; display: inline-block; }
 .it-tools { display: flex; gap: 2px; align-self: center; }
