@@ -158,7 +158,10 @@ const Hist = {
 };
 
 function toast(msg) {
-  const t = $("#toast");
+  // dialog แบบ modal อยู่ชั้นบนสุด (top layer) ทับ z-index ทุกอัน: ย้าย toast เข้าไปใน dialog ที่เปิดอยู่
+  const t = (toast.el ??= $("#toast"));
+  const host = $(".lb[open]") || $("dialog[open]") || document.body;
+  if (t.parentNode !== host) host.appendChild(t);
   t.textContent = msg; t.classList.add("show");
   clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove("show"), 2800);
 }
