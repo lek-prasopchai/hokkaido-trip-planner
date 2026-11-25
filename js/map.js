@@ -318,7 +318,7 @@ const LocPick = {
   },
   // attrs = แอตทริบิวต์ของ input (id/data-*), c = จุดกลางแผนที่ถ้ายังไม่มีพิกัด
   html(label, attrs, value = "", c = null) {
-    return `<div class="lp"${c ? ` data-c="${c.lat},${c.lng}"` : ""}><label class="f">${label}<input type="text" ${attrs} value="${esc(value)}" placeholder="ลิงก์ Google Maps หรือ 43.06, 141.35"></label>
+    return `<div class="lp"${c ? ` data-c="${c.lat},${c.lng}"` : ""}><label class="f">${label}<input type="text" data-clear ${attrs} value="${esc(value)}" placeholder="ลิงก์ Google Maps หรือ 43.06, 141.35"></label>
       <div class="row lp-btns"><button type="button" class="btn small" data-lp="map">${I("map-pin")} เลือกบนแผนที่</button></div>
       <div class="lp-pick" hidden><div class="lp-find"><input type="search" placeholder="ชื่อร้าน/สถานที่/ที่อยู่ (อังกฤษ/ญี่ปุ่น)" enterkeyhint="search"><button type="button" class="btn small" data-lp="find">${I("search")}</button></div>
         <div class="lp-res"></div><div class="lp-map"></div></div></div>`;

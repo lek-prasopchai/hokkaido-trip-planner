@@ -218,6 +218,12 @@ const App = {
       b.textContent = ok ? "✓ คัดลอกแล้ว" : "คัดลอกไม่ได้ กดค้างที่ตัวเลขแทน";
       b._t = setTimeout(() => (b.innerHTML = b._html), 1800);
     });
+    // ปุ่มล้าง (X) ที่ CSS วาดไว้ขวาสุดของช่องค้นหา: กดโดน 32px ขวา หรือกด Esc
+    const clearable = (el) => el?.matches?.("input[type=search], input[data-clear]") && el.value;
+    const clear = (el) => { el.value = ""; el.focus(); el.dispatchEvent(new Event("input", { bubbles: true })); el.dispatchEvent(new Event("change", { bubbles: true })); };
+    document.addEventListener("click", (e) => { const el = e.target; if (clearable(el) && e.offsetX > el.clientWidth - 32) clear(el); });
+    document.addEventListener("pointermove", (e) => { const el = e.target; if (el.matches?.("input[type=search], input[data-clear]")) el.style.cursor = clearable(el) && e.offsetX > el.clientWidth - 32 ? "pointer" : ""; });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && clearable(e.target)) { e.preventDefault(); e.stopPropagation(); clear(e.target); } }, true);
     refreshRate();
     // ไม่ลง service worker ตอนพัฒนาบน localhost (ไฟล์เก่าค้าง cache): ใส่ ?sw=1 เพื่อทดสอบออฟไลน์
     const dev = /^(localhost|127\.)/.test(location.hostname) && !location.search.includes("sw=1");
