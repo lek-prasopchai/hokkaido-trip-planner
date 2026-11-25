@@ -3,7 +3,7 @@
 // - โค้ด/ข้อมูล: ไฟล์มี ?v= ไม่เปลี่ยนเนื้อหา จึง cache ตรงเวอร์ชัน (ไม่ ignoreSearch ไม่งั้นได้ไฟล์เก่ามาแทนเวอร์ชันใหม่)
 // - รูป: cache-first เก็บเฉพาะรูปที่เคยเปิดดู (ไม่มีปุ่มดาวน์โหลดทั้งหมดแล้ว)
 // - tile แผนที่: cache-first จำกัดจำนวน / API (อากาศ อัตราแลกเงิน เส้นทาง): network-first
-const V = "hk-v2-272"; // เปลี่ยนด้วย node tools/bump.js (พร้อม ?v= ใน index.html)
+const V = "hk-v2-273"; // เปลี่ยนด้วย node tools/bump.js (พร้อม ?v= ใน index.html)
 const SHELL = [
   "./", "index.html", "css/style.css", "manifest.webmanifest", "img/icon.svg", "img/icon-192.png", "img/icon-180.png",
   "vendor/leaflet/leaflet.css", "vendor/leaflet/leaflet.js", "vendor/markercluster/leaflet.markercluster.js",

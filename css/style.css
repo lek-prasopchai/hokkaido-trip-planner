@@ -505,6 +505,7 @@ b.over { background: none; }
 .lp { grid-column: 1 / -1; }
 .lp-btns { gap: 6px; margin-top: 6px; }
 .lp-map { height: 280px; margin-top: 8px; border-radius: 10px; border: 1px solid var(--line); }
+body:not(.leaflet-dragging) .lp-map.leaflet-grab { cursor: crosshair; } /* คลิกเพื่อปักหมุด • ตอนลากยังเป็นมือกำ */
 @media print { .lp-btns, .lp-map { display: none !important; } }
 .lp-pick { margin-top: 8px; }
 .lp-find { display: flex; gap: 6px; }
