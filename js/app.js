@@ -211,7 +211,12 @@ const App = {
     // ปุ่มคัดลอก (เช่น MAPCODE ไปใส่ในระบบนำทางรถเช่า)
     document.addEventListener("click", async (e) => {
       const b = e.target.closest("[data-copy]"); if (!b) return;
-      try { await navigator.clipboard.writeText(b.dataset.copy); toast(`คัดลอก ${b.dataset.copy} แล้ว`); } catch { toast(b.dataset.copy); }
+      let ok = true;
+      try { await navigator.clipboard.writeText(b.dataset.copy); toast(`คัดลอก ${b.dataset.copy} แล้ว`); } catch { ok = false; toast(b.dataset.copy); }
+      // toast อยู่ใต้ <dialog> ที่เปิดแบบ modal จึงบอกผลที่ตัวปุ่มด้วย
+      clearTimeout(b._t); b._html ??= b.innerHTML;
+      b.textContent = ok ? "✓ คัดลอกแล้ว" : "คัดลอกไม่ได้ กดค้างที่ตัวเลขแทน";
+      b._t = setTimeout(() => (b.innerHTML = b._html), 1800);
     });
     refreshRate();
     // ไม่ลง service worker ตอนพัฒนาบน localhost (ไฟล์เก่าค้าง cache): ใส่ ?sw=1 เพื่อทดสอบออฟไลน์
