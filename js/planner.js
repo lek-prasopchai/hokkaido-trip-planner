@@ -194,17 +194,15 @@ const Planner = {
   },
 
   // เวลาเดินทางระหว่าง 2 จุด ตามโหมด (รวมตัวคูณหิมะตามเดือน + เวลาเผื่อจากหน้าตั้งค่า)
-  // force = ผู้ใช้เลือกโหมดนี้เอง: ไม่สลับให้อัตโนมัติ (จอดรถที่พักในเมือง / ใกล้มากเลยเดิน)
+  // force = ผู้ใช้เลือกโหมดนี้เอง: ไม่สลับให้อัตโนมัติ (ใกล้มากเลยเดิน)
   leg(a, b, mode, iso, force) {
     if (a === b) return { h: 0, km: 0, drive: 0 };
     const pa = point(a), pb = point(b);
     if (!pa?.lat || !pb?.lat) return { h: 0, km: 0, drive: 0 };
     const slack = 1 + (+S.set.slack || 0) / 100;
-    const ha0 = hubOf(a), d0 = km(pa, pb);
+    const d0 = km(pa, pb);
     if (mode === "walk") return { h: (d0 * 1.3 / 4 + 0.05) * slack, km: Math.round(d0 * 10) / 10, drive: 0, walk: true };
     if (mode === "taxi") { const d = driveLeg(a, b), f = winterF(iso || S.trip.start, "some") * slack; return { h: d.h * f + 0.1, km: d.km, drive: 0, taxi: true, est: d.est }; }
-    // ในเมืองใหญ่ (ซัปโปโร ฮาโกดาเตะ ฯลฯ) จอดรถที่พักแล้วเดิน/รถไฟใต้ดิน ไม่นับเป็นเวลาขับ
-    if (mode === "car" && !force && HUB[ha0]?.city && ha0 === hubOf(b) && d0 < 8 && !AIR[a] && !AIR[b]) return { h: (d0 / 15 + 0.2) * slack, km: Math.round(d0), drive: 0, local: true, city: true };
     if (mode === "car") {
       const d = driveLeg(a, b), f = winterF(iso || S.trip.start) * slack;
       return { h: d.h * f, km: d.km, drive: d.h * f, high: d.high && isWinter(iso || S.trip.start), risk: d.risk, est: d.est, noFuel: d.noFuel };
@@ -249,10 +247,8 @@ const Planner = {
     const add = (lvl, text, tight) => checks.push({ lvl, text, tight }); // tight = เรื่องเวลาไม่พอ/ยาวเกิน (ป้าย "แน่น")
     let driveH = 0, kmSum = 0, darkRisk = false, prev = opts.live ? opts.live.from : from, lateRural = false, noFuel = false;
     // it.lh = ผู้ใช้กำหนดเวลาเดินทางมาที่นี่เอง (ชม.) แทนที่ระบบคำนวณ • auto = ค่าที่ระบบคำนวณ
-    // วันรับ/คืนรถที่สาขา: รถอยู่กับเรา ไม่ได้จอดที่พัก ห้ามใช้กฎ "จอดรถที่พักในเมือง"
-    const withCar = !!(rentP || rentR);
     const legTo = (toId, m, it, home) => {
-      const L = this.leg(prev, toId, m, iso, withCar || !!(it ? it.m : home === "back" ? day.bm : home ? day.hm : null));
+      const L = this.leg(prev, toId, m, iso, !!(it ? it.m : home === "back" ? day.bm : home ? day.hm : null));
       return it?.lh ? { ...L, h: it.lh, drive: L.h ? L.drive * it.lh / L.h : 0, est: false, fixed: true, auto: L.h } : L;
     };
     let noCar = false; // เลือกขับรถตอนที่ไม่มีรถ (นอกช่วงเช่า / ก่อนรับ / หลังคืน)

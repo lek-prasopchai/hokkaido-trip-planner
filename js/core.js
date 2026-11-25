@@ -447,9 +447,11 @@ const Modal = {
   close() { $("#modal")?.close(); },
 };
 // ลากคลุมข้อความแล้วปล่อยเมาส์นอกกล่อง: เบราว์เซอร์ยิง click ที่ตัว dialog เหมือนคลิกฉากหลัง → ทิ้ง click นั้น (ปิดเฉพาะเมื่อกดลงที่ฉากหลังจริง)
-let downAt = null;
-document.addEventListener("pointerdown", (e) => { downAt = e.target; }, true);
-window.addEventListener("click", (e) => { if (e.target.tagName === "DIALOG" && downAt !== e.target) e.stopImmediatePropagation(); }, true);
+if (typeof document !== "undefined") { // selftest รันใน node ไม่มี DOM
+  let downAt = null;
+  document.addEventListener("pointerdown", (e) => { downAt = e.target; }, true);
+  window.addEventListener("click", (e) => { if (e.target.tagName === "DIALOG" && downAt !== e.target) e.stopImmediatePropagation(); }, true);
+}
 // ---------- แชร์แผนเป็นลิงก์ (บีบอัดใส่ใน #share=) ----------
 const b64u = { enc: (u8) => btoa(String.fromCharCode(...u8)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, ""),
   dec: (s) => Uint8Array.from(atob(s.replace(/-/g, "+").replace(/_/g, "/")), (c) => c.charCodeAt(0)) };

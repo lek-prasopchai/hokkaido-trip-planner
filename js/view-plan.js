@@ -264,7 +264,7 @@ const PlanView = {
       <div class="gt-axis"><span></span><div>${[6, 9, 12, 15, 18, 21, 24, ...(x1 > 24 ? [x1] : [])].map((h) => `<b style="left:${pos(h)}%">${h > 24 ? "+" + (h - 24) : h}</b>`).join("")}</div></div>
       ${evals.map((e) => `<div class="gt-row" data-goto="${e.i}" tabindex="0"><span class="gt-lbl ${e.lvl}">D${e.i + 1} <small>${thDate(e.iso, false).replace(/ \d+$/, "")}</small></span>
         <div class="gt-track"><i class="dark" style="left:${pos(e.sun.set)}%;right:0"></i><i class="dark" style="left:0;width:${pos(e.sun.rise)}%"></i>
-        ${e.tl.map((x) => x.kind === "move" ? seg(x.mode === "car" && !x.city ? "mv" : "mv tr", x.t, x.h, `${fmtT(x.t)} ${LEG_MODE[x.mode]?.name || ""} ${fmtH(x.h)} → ${short(x.to)}`)
+        ${e.tl.map((x) => x.kind === "move" ? seg(x.mode === "car" ? "mv" : "mv tr", x.t, x.h, `${fmtT(x.t)} ${LEG_MODE[x.mode]?.name || ""} ${fmtH(x.h)} → ${short(x.to)}`)
           : x.kind === "visit" ? seg(S.plan.custom[x.id]?.meal ? "ml" : x.night ? "vs nt" : "vs", x.t, x.h, `${fmtT(x.t)} ${pname(x.id)}`)
           : x.kind === "wait" ? seg("wt", x.t, x.h, `${fmtT(x.t)} รอ ${fmtH(x.h)}`) : "").join("")}
         <i class="end" style="left:${pos(e.end)}%" title="จบวัน ${fmtT(e.end)}"></i></div>
@@ -302,13 +302,13 @@ const PlanView = {
 
   dayCard(e) {
     const N = tripNights(), i = e.i, day = S.plan.days[i];
-    const mvIcon = (x) => I(x.city || x.walk ? "footprints" : LEG_MODE[x.mode]?.ic || "car");
+    const mvIcon = (x) => I(x.walk ? "footprints" : LEG_MODE[x.mode]?.ic || "car");
     const rows = e.tl.map((x, k0) => {
       if (x.kind === "move") {
         if (x.est) RoadTime.ask(point(x.from), point(x.to)); // เส้นตรง × 1.3: ขอเวลาถนนจริงมาแทน
         // ค่าแท็กซี่ฮอกไกโด: เริ่ม ~¥600-700 แล้ว ~¥300-400/กม. (ยังไม่รวมรอ/ติดหิมะ) ปัดหลักร้อย
         const fare = (b, k) => (Math.round((b + x.km * k) / 100) * 100).toLocaleString();
-        const what = x.walk ? `เดิน ${fmtH(x.h)} · ${x.km} กม.` : x.taxi ? `แท็กซี่ ${fmtH(x.h)} · ${x.km} กม. · ≈¥${fare(600, 300)}-${fare(700, 400)}` : x.city ? `เดิน/รถไฟใต้ดิน/แท็กซี่ ${fmtH(x.h)} (จอดรถไว้ที่พัก)` : x.mode === "car" ? `ขับ ${fmtH(x.h)} · ${x.km} กม.${x.est ? " (≈)" : ""}` : x.noTransit ? `ไม่มีรถไฟ/บัสตรง ${fmtH(x.h)} (แท็กซี่/รถ)` : x.local ? `รถไฟ/บัสในเมือง ${fmtH(x.h)} (≈)` : `รถไฟ/บัส ${fmtH(x.h)}${x.by ? " · " + esc(x.by.join(" → ")) : ""}`;
+        const what = x.walk ? `เดิน ${fmtH(x.h)} · ${x.km} กม.` : x.taxi ? `แท็กซี่ ${fmtH(x.h)} · ${x.km} กม. · ≈¥${fare(600, 300)}-${fare(700, 400)}` : x.mode === "car" ? `ขับ ${fmtH(x.h)} · ${x.km} กม.${x.est ? " (≈)" : ""}` : x.noTransit ? `ไม่มีรถไฟ/บัสตรง ${fmtH(x.h)} (แท็กซี่/รถ)` : x.local ? `รถไฟ/บัสในเมือง ${fmtH(x.h)} (≈)` : `รถไฟ/บัส ${fmtH(x.h)}${x.by ? " · " + esc(x.by.join(" → ")) : ""}`;
         const rk = x.it?.rent, k = x.it && !rk ? S.plan.days[i].items.indexOf(x.it) : -1, cur = rk ? day[`r${rk}m`] : k >= 0 ? x.it.m : x.home === "back" ? day.bm : x.home ? day.hm : null;
         const lm = LEG_MODE[cur || x.mode];
         // แสดงแค่ไอคอน มี select โปร่งใสทับไว้ให้กดเปลี่ยน
