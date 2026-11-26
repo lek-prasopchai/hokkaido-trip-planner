@@ -30,8 +30,8 @@ const rvBadge = (p) => p.rv ? ` <span class="badge b-mute" title="Google Maps (�
 // ร้านอาหาร/คาเฟ่รายร้านที่รีวิว Google ไม่ถึง 1,000 (ไม่ใช่ตลาด/ย่าน)
 const isEatery = (p) => (p.rv || 0) < 1000 && /^(อาหาร|คาเฟ่)/.test(p.type);
 const PlacesView = {
-  M: null, lim: 30, f: { region: "", tag: "", rv: 0, q: "", season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, sort: "rv" },
-  F0: { region: "", tag: "", rv: 0, season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, sort: "rv" },
+  M: null, lim: 30, f: { region: "", tag: "", rvOff: "", q: "", season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, sort: "rv" },
+  F0: { region: "", tag: "", rvOff: "", season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, sort: "rv" },
 
   // มุมมองแผนที่ตอนนี้ (ยังไม่วาดหมุด/พับอยู่ = null → ซูมให้เห็นผลทั้งหมด)
   view() { const m = this.M?.map; return this.M?.drawn && m.getContainer().isConnected && m.getSize().x ? { c: m.getCenter(), z: m.getZoom() } : null; },
@@ -53,9 +53,10 @@ const PlacesView = {
           ${Object.entries(SEASONS).map(([k, s]) => `<option value="${k}" ${f.season === k ? "selected" : ""}>${s.name}</option>`).join("")}</select>
         <select data-f="region"><option value="">ทุกภูมิภาค</option>${regions.map((r) => `<option ${r === f.region ? "selected" : ""}>${esc(r)}</option>`).join("")}</select>
         <select data-f="tag"><option value="">ทุกความสนใจ</option>${Object.entries(INTEREST).map(([k, v]) => `<option value="${k}" ${k === f.tag ? "selected" : ""}>${v}</option>`).join("")}</select>
-        <select data-f="rv" aria-label="จำนวนรีวิว Google Maps"><option value="0">รีวิว Google: ทั้งหมด</option>${RV_CUT.map((n, i) => `<option value="${n}" ${f.rv == n ? "selected" : ""}>รีวิว Google ${n.toLocaleString()}+ (หมุด${RV_NAME[i + 1]}${i < RV_CUT.length - 1 ? "ขึ้นไป" : ""})</option>`).reverse().join("")}</select>
         <select data-f="sort"><option value="rv" ${f.sort === "rv" ? "selected" : ""}>เรียง: รีวิว Google มากสุด</option><option value="near" ${f.sort === "near" ? "selected" : ""}>เรียง: ใกล้ที่พักในแผน</option></select>
-      </div><div class="row" style="margin-top:6px">
+      </div><div class="rvchips" role="group" aria-label="จำนวนรีวิว Google Maps (กดเพื่อซ่อน/แสดง)"><span class="mute">รีวิว Google</span>
+        ${RV_C.map((c, i) => `<button class="chip rvchip" data-rvt="${i + 1}" aria-pressed="${!f.rvOff.includes(i + 1)}"><i class="ring" style="border-color:${c}"></i>${rvLbl(i)}</button>`).reverse().join("")}</div>
+      <div class="row" style="margin-top:6px">
         <label class="chk"><input type="checkbox" data-f="transit" ${f.transit ? "checked" : ""}> ไปด้วยรถไฟ/บัสได้</label>
         <label class="chk"><input type="checkbox" data-f="free" ${f.free ? "checked" : ""}> ฟรี</label>
         <label class="chk"><input type="checkbox" data-f="evening" ${f.evening ? "checked" : ""}> เที่ยวตอนค่ำได้</label>
@@ -64,7 +65,7 @@ const PlacesView = {
         <button class="linkbtn" data-freset ${nOn ? "" : "hidden"}>ล้างตัวกรอง</button></div></details></div>
       <aside class="split-side"><details class="card mapbox fold-card" ${foldAttr("pmap")} id="pMapCard"><summary><h2>${I("map")} แผนที่</h2></summary><div class="map" id="placesMap"></div>
       <div class="map-legend">${Object.entries(TAG_ICON).map(([k, v]) => `<span>${I(v)} ${INTEREST[k]}</span>`).join("")}
-        ${RV_C.map((c, i) => `<span><i class="ring" style="border-color:${c}"></i>${i ? `รีวิว ${RV_CUT[i - 1].toLocaleString()}+` : `รีวิวน้อยกว่า ${RV_CUT[0]}`}</span>`).reverse().join("")}
+        ${RV_C.map((c, i) => `<span><i class="ring" style="border-color:${c}"></i>รีวิว ${rvLbl(i)}</span>`).reverse().join("")}
         <span><i class="ring" style="border-color:${WISH_C}"></i>อยากไป</span><span><i class="ring" style="border-color:#2f8a57"></i>อยู่ในแผนแล้ว</span>
         <small class="mute legend-note">★ คะแนนและจำนวนรีวิวจาก Google Maps (ปัดเลข ดึงไว้ พ.ย. 2026)</small></div></details></aside>
       <div class="split-main" id="placeList"></div></div>${PlanView.undoBtn()}`;
@@ -78,7 +79,7 @@ const PlacesView = {
     const ms = f.season === "trip" ? tripMonths() : f.season ? SEASONS[f.season].m : null;
     const bases = S.plan ? [...new Set(S.plan.bases)].map((b) => point(b)) : [HUB.sapporo];
     const near = (p) => Math.min(...bases.map((b) => km(b, p)));
-    return PLACES.filter((p) => !p.gone && (!f.region || p.region === f.region) && (!f.tag || p.tags.includes(f.tag)) && (p.rv || 0) >= f.rv
+    return PLACES.filter((p) => !p.gone && (!f.region || p.region === f.region) && (!f.tag || p.tags.includes(f.tag)) && !f.rvOff.includes(rvTier(p))
       && (!q || [p.name, p.area, p.ja, p.en, p.type, p.highlight, p.kw].join(" ").toLowerCase().includes(q))
       && (!ms || ms.some((m) => monthsOf(p).includes(m)))
       && (!f.transit || ["ok", "limited", "tour"].includes(access(p))) && (!f.free || !p.feeYen) && (!f.inplan || plan[p.id]) && (!f.wish || S.plan?.wish.includes(p.id)) && (!f.evening || p.evening)
@@ -176,10 +177,12 @@ const PlacesView = {
   bind() {
     $('[data-sec="places"]').addEventListener("click", (e) => {
       if (e.target.closest("[data-more]")) { this.lim += 60; this.list(); }
+      const rt = e.target.closest("[data-rvt]")?.dataset.rvt;
+      if (rt) { const f = this.f; f.rvOff = f.rvOff.includes(rt) ? f.rvOff.replace(rt, "") : f.rvOff + rt; e.target.closest("[data-rvt]").setAttribute("aria-pressed", !f.rvOff.includes(rt)); this.lim = 30; this.list(true); this.syncF(); }
       if (e.target.closest("[data-freset]")) { Object.assign(this.f, this.F0); this.lim = 30; this.render(true); } });
     this.syncF = () => { const n = Object.keys(this.F0).filter((k) => this.f[k] !== this.F0[k]).length, b = sec.querySelector(".f-n"); b.hidden = !n; b.textContent = n; sec.querySelector("[data-freset]").hidden = !n; };
     const sec = $('[data-sec="places"]');
-    const upd = (el) => { this.f[el.dataset.f] = el.type === "checkbox" ? el.checked : el.dataset.f === "rv" ? +el.value : el.value; this.lim = 30; this.list(true); this.syncF(); };
+    const upd = (el) => { this.f[el.dataset.f] = el.type === "checkbox" ? el.checked : el.value; this.lim = 30; this.list(true); this.syncF(); };
     sec.addEventListener("input", (ev) => { if (ev.target.dataset.f === "q") upd(ev.target); });
     sec.addEventListener("change", (ev) => {
       const el = ev.target;
