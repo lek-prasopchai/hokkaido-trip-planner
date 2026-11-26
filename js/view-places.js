@@ -53,7 +53,7 @@ const PlacesView = {
           ${Object.entries(SEASONS).map(([k, s]) => `<option value="${k}" ${f.season === k ? "selected" : ""}>${s.name}</option>`).join("")}</select>
         <select data-f="region"><option value="">ทุกภูมิภาค</option>${regions.map((r) => `<option ${r === f.region ? "selected" : ""}>${esc(r)}</option>`).join("")}</select>
         <select data-f="tag"><option value="">ทุกความสนใจ</option>${Object.entries(INTEREST).map(([k, v]) => `<option value="${k}" ${k === f.tag ? "selected" : ""}>${v}</option>`).join("")}</select>
-        <select data-f="rv" aria-label="จำนวนรีวิว Google Maps"><option value="0">รีวิว Google: ทั้งหมด</option>${[10000, 5000, 1000, 100].map((n) => `<option value="${n}" ${f.rv == n ? "selected" : ""}>รีวิว Google ${n.toLocaleString()}+</option>`).join("")}</select>
+        <select data-f="rv" aria-label="จำนวนรีวิว Google Maps"><option value="0">รีวิว Google: ทั้งหมด</option>${RV_CUT.map((n, i) => `<option value="${n}" ${f.rv == n ? "selected" : ""}>รีวิว Google ${n.toLocaleString()}+ (หมุด${RV_NAME[i + 1]}${i < RV_CUT.length - 1 ? "ขึ้นไป" : ""})</option>`).reverse().join("")}</select>
         <select data-f="sort"><option value="rv" ${f.sort === "rv" ? "selected" : ""}>เรียง: รีวิว Google มากสุด</option><option value="near" ${f.sort === "near" ? "selected" : ""}>เรียง: ใกล้ที่พักในแผน</option></select>
       </div><div class="row" style="margin-top:6px">
         <label class="chk"><input type="checkbox" data-f="transit" ${f.transit ? "checked" : ""}> ไปด้วยรถไฟ/บัสได้</label>
@@ -64,7 +64,7 @@ const PlacesView = {
         <button class="linkbtn" data-freset ${nOn ? "" : "hidden"}>ล้างตัวกรอง</button></div></details></div>
       <aside class="split-side"><details class="card mapbox fold-card" ${foldAttr("pmap")} id="pMapCard"><summary><h2>${I("map")} แผนที่</h2></summary><div class="map" id="placesMap"></div>
       <div class="map-legend">${Object.entries(TAG_ICON).map(([k, v]) => `<span>${I(v)} ${INTEREST[k]}</span>`).join("")}
-        <span><i class="ring" style="border-color:#c8374a"></i>รีวิว 10,000+</span><span><i class="ring" style="border-color:#2c6e9b"></i>รีวิว 1,000+</span><span><i class="ring" style="border-color:#9aa5b1"></i>รีวิวน้อยกว่า 1,000</span>
+        ${RV_C.map((c, i) => `<span><i class="ring" style="border-color:${c}"></i>${i ? `รีวิว ${RV_CUT[i - 1].toLocaleString()}+` : `รีวิวน้อยกว่า ${RV_CUT[0]}`}</span>`).reverse().join("")}
         <span><i class="ring" style="border-color:${WISH_C}"></i>อยากไป</span><span><i class="ring" style="border-color:#2f8a57"></i>อยู่ในแผนแล้ว</span>
         <small class="mute legend-note">★ คะแนนและจำนวนรีวิวจาก Google Maps (ปัดเลข ดึงไว้ พ.ย. 2026)</small></div></details></aside>
       <div class="split-main" id="placeList"></div></div>${PlanView.undoBtn()}`;

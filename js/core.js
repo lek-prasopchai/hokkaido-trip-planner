@@ -11,7 +11,10 @@ const mapsUrl = (q) => `https://www.google.com/maps/search/?api=1&query=${encode
 // ความดัง = ข้อมูล Google Maps ที่ดึงไว้ (tools/gm_reviews.js): rv = จำนวนรีวิว (ปัดแล้ว) • gr = คะแนนดาว
 const rvTxt = (n) => n >= 1000 ? `${+(n / 1000).toFixed(n < 10000 ? 1 : 0)}k` : String(n);
 const gmTxt = (p) => p.rv ? `${p.gr ? "★" + p.gr.toFixed(1) + " · " : ""}${rvTxt(p.rv)} รีวิว` : "";
-const rvTier = (p) => p.rv >= 10000 ? 3 : p.rv >= 1000 ? 2 : 1; // หมุดแผนที่: 10,000+ / 1,000+ / ที่เหลือ
+// ขั้นรีวิว 1–5 ใช้ร่วมกัน: สี/ขนาดหมุดแผนที่ คำอธิบายสัญลักษณ์ และตัวกรอง (ตัดให้แต่ละขั้นมีจำนวนที่พอๆ กัน)
+const RV_CUT = [100, 500, 2000, 5000];
+const RV_C = ["#9aa5b1", "#5aa9d6", "#2c6e9b", "#7b4fb5", "#c8374a"], RV_NAME = ["เทา", "ฟ้า", "น้ำเงิน", "ม่วง", "แดง"];
+const rvTier = (p) => 1 + RV_CUT.filter((n) => (p.rv || 0) >= n).length;
 const llUrl = (p) => `https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lng}`;
 // เปิดผลค้นหาภายนอก (ไม่ดึงรูป/รีวิวมาเก็บ เพราะติดลิขสิทธิ์และข้อตกลงการใช้งาน)
 const gimgUrl = (q) => `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(q)}`;
