@@ -20,6 +20,8 @@ const llUrl = (p) => `https://www.google.com/maps/search/?api=1&query=${p.lat},$
 // เปิดผลค้นหาภายนอก (ไม่ดึงรูป/รีวิวมาเก็บ เพราะติดลิขสิทธิ์และข้อตกลงการใช้งาน)
 const gimgUrl = (q) => `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(q)}`;
 const gUrl = (q) => `https://www.google.com/search?q=${encodeURIComponent(q)}`;
+// Tabelog ค้นไม่เจอถ้าชื่อมี (คำอ่าน) หรือท้าย " - ชื่ออังกฤษ/ชื่อรอง" เลยตัดออกก่อน
+const tbUrl = (q) => { q = encodeURIComponent(q.replace(/[(（].*?[)）]/g, "").replace(/\s*[-–|｜/].*$/, "").trim()); return `https://tabelog.com/hokkaido/rstLst/?vs=1&sk=${q}&sw=${q}`; };
 const ytUrl = (q) => `https://www.youtube.com/results?search_query=${encodeURIComponent(q)}`;
 const ttUrl = (q) => `https://www.tiktok.com/search?q=${encodeURIComponent(q)}`;
 // Instagram ค้นด้วยคำไม่ได้ ใช้แฮชแท็กชื่อญี่ปุ่น (ตัดวงเล็บ ช่องว่าง เครื่องหมาย ออก)

@@ -15,6 +15,8 @@ const cache = fs.existsSync(CACHE) ? JSON.parse(fs.readFileSync(CACHE, "utf8")) 
 
 const km = (a, b, c, d) => { const R = Math.PI / 180, x = Math.sin((c - a) * R / 2) ** 2 + Math.cos(a * R) * Math.cos(c * R) * Math.sin((d - b) * R / 2) ** 2; return 12742 * Math.asin(Math.sqrt(x)); };
 const hw = (s) => String(s || "").normalize("NFKC");
+// หน้า obikan.jp ฝังโพสต์ X ไว้ ลิงก์ privacy ของ X เลยถูกเก็บเป็นเว็บร้าน (50 จุด) ตัดทิ้ง
+const site = (s) => (s.site && !/\/privacy/.test(s.site) ? s.site : undefined);
 
 // ---------- แปลงข้อความญี่ปุ่น → ไทย ----------
 function hours(s) {
@@ -256,7 +258,7 @@ if (dupFix.length) throw new Error("FIX มีคีย์ซ้ำ: " + dupFix.
     const p = byId[id];
     if (!p) continue;
     p.ref = s.ref; nRef++;
-    if (!p.url && s.site) p.url = s.site;
+    if (!p.url && site(s)) p.url = site(s);
     if (s.addr && !p.addrJa) p.addrJa = hw(s.addr).replace(/〒?\d{3}-\d{4}\s*/, "").slice(0, 60);
     if (s.phone && !p.phone) p.phone = hw(s.phone).match(/[\d\-()]{9,}/)?.[0] || undefined;
     if (+id >= 303) { // รอบ 5 (ค่าเดา): ใช้เวลา/วันหยุดทางการ
@@ -324,7 +326,7 @@ if (dupFix.length) throw new Error("FIX มีคีย์ซ้ำ: " + dupFix.
       best: o.b || (r.opts.includes("ev") ? "ค่ำ" : food ? (/คาเฟ่/.test(r.type) ? "บ่าย" : "เที่ยง") : "กลางวัน"),
       parking: parking(s.park), months, tr: transit(s.access), evening: r.opts.split(",").includes("ev"),
       feeYen: 0, lat: +g[0].toFixed(5), lng: +g[1].toFixed(5), acc: pin ? "จากหมุดแผนที่บนเว็บทางการ" : pre ? "จากที่อยู่ทางการ (GSI)" : "ประมาณ (ระดับตำบลจากที่อยู่ทางการ)",
-      addrJa: hw(s.addr).replace(/〒?\d{3}-\d{4}\s*/, "").slice(0, 60), phone: hw(s.phone).match(/[\d\-()]{9,}/)?.[0], url: s.site || undefined, ref: s.ref, checked: SRC.checked,
+      addrJa: hw(s.addr).replace(/〒?\d{3}-\d{4}\s*/, "").slice(0, 60), phone: hw(s.phone).match(/[\d\-()]{9,}/)?.[0], url: site(s), ref: s.ref, checked: SRC.checked,
     };
     p.feeYen = conv.feeYen;
     for (const k of Object.keys(p)) if (p[k] === undefined || p[k] === "") if (k !== "caution" && k !== "parking") delete p[k];
