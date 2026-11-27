@@ -440,6 +440,11 @@ button:focus-visible, summary:focus-visible, .legmode:focus-within { outline: 2p
 .rvchips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 6px; font-size: .875rem; }
 .rvchip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; }
 .rvchip[aria-pressed="false"] { opacity: .45; text-decoration: line-through; }
+/* ตัวกรองเปิด/ปิด (หน้าสถานที่): หัวข้อกว้างเท่ากันทุกแถว ปุ่มที่เปิดอยู่เป็นสีฟ้าเต็ม */
+.rvchips > .mute { min-width: 6.5em; }
+.fchips { display: flex; flex-wrap: wrap; gap: 6px; flex: 1 1 0; min-width: 0; }
+.fchip[aria-pressed="true"] { background: var(--ice); border-color: var(--ice); color: var(--on); }
+.list-head .f-sort { width: auto; min-height: 30px; padding: 2px 28px 2px 10px; font-size: .8125rem; }
 .rvchip i.ring, .map-legend i.ring { display: inline-block; flex: none; width: 12px; height: 12px; border: 2.5px solid; border-radius: 50%; background: transparent; }
 .map-days button.on:not([style]) { color: var(--on); }
 .btn.primary small, .btn.primary .mute, .btn.red small { color: inherit; }
@@ -1123,5 +1128,7 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
 @media (max-width: 599px) {
   .rvchips { gap: 4px; }
   .rvchips > .mute { flex-basis: 100%; }
+  .list-head { gap: 6px; }
+  .list-head .f-sort { padding-right: 22px; }
   .rvchip { flex: 1 1 auto; justify-content: center; gap: 4px; padding: 4px 2px; font-size: .8125rem; white-space: nowrap; }
 }

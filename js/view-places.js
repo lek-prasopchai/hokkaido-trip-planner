@@ -5,7 +5,7 @@ const inPlanMap = () => { const m = {}; if (S.plan) S.plan.days.forEach((d, i) =
 const addSelect = (id) => S.plan ? `<select data-addto="${esc(id)}" class="addsel ${S.plan.wish.includes(id) ? "wished" : ""}"><option value="">${S.plan.wish.includes(id) ? "♡ อยากไปแล้ว" : "+ ใส่ในแผน"}</option><option value="auto">วันที่เหมาะที่สุด</option>${S.plan.wish.includes(id) ? "" : '<option value="wish">♡ อยากไป (เลือกวันทีหลัง)</option>'}${S.plan.days.map((_, i) => `<option value="${i}">วันที่ ${i + 1} (${esc(short(Planner.ends(i).to))})</option>`).join("")}${S.plan.wish.includes(id) ? '<option value="unwish">✕ เอาออกจากอยากไป</option>' : ""}</select>` : "";
 // มุมมองรายการสั้น (ค่าเริ่มต้นบนมือถือ) / การ์ดมีรูป: จำไว้ใน S.set.view
 const listView = () => (S.set.view || (matchMedia("(max-width: 899px)").matches ? "list" : "card")) === "list";
-const viewToggle = (n) => `<div class="row list-head"><span class="mute">${n}</span><span class="spacer"></span><div class="seg no-print">${[["list", "รายการ"], ["card", "การ์ดมีรูป"]].map(([k, v]) => `<button data-view="${k}" class="${listView() === (k === "list") ? "on" : ""}">${v}</button>`).join("")}</div></div>`;
+const viewToggle = (n, mid = "") => `<div class="row list-head"><span class="mute">${n}</span><span class="spacer"></span>${mid}<div class="seg no-print">${[["list", "รายการ"], ["card", "การ์ดมีรูป"]].map(([k, v]) => `<button data-view="${k}" class="${listView() === (k === "list") ? "on" : ""}">${v}</button>`).join("")}</div></div>`;
 // แถวสั้น: รูปเล็ก ชื่อ ข้อมูลบรรทัดเดียว ปุ่มใส่แผน • กดชื่อ/รูป = เปิดรายละเอียด
 const locBtn = (id) => `<button class="btn small loc" data-locate="${id}" title="ดูบนแผนที่" aria-label="ดูบนแผนที่">${I("map-pin")}</button>`;
 const lrow = (x, attr, sub, inPlan) => `<div class="lrow ${inPlan ? "in" : ""}"><span class="lth" ${attr}>${x.img ? `<img src="${x.img}" alt="" loading="lazy">` : x.lat ? miniMap(x, 15) : I("map-pin")}</span>
@@ -31,6 +31,8 @@ const rvBadge = (p) => p.rv ? ` <span class="badge b-mute" title="Google Maps (�
 const hyBadge = (p) => p.hyaku ? ` <span class="badge b-info" title="ติดรายชื่อ Tabelog 百名店 ปี ${p.hyaku}">百名店 ${p.hyaku}</span>` : "";
 // ร้านอาหาร/คาเฟ่รายร้านที่รีวิว Google ไม่ถึง 1,000 (ไม่ใช่ตลาด/ย่าน) ยกเว้นร้าน 百名店 ที่แสดงเสมอ
 const isEatery = (p) => !p.hyaku && (p.rv || 0) < 1000 && /^(อาหาร|คาเฟ่)/.test(p.type);
+// แถวตัวกรองเปิด/ปิด: หัวข้อ + ปุ่ม (กดแล้วเปิดตัวกรองนั้น)
+const fGrp = (label, items) => `<div class="rvchips fgrp" role="group" aria-label="${label}"><span class="mute">${label}</span><span class="fchips">${items.map(([k, v]) => `<button class="chip fchip" data-ft="${k}" aria-pressed="${!!PlacesView.f[k]}">${v}</button>`).join("")}</span></div>`;
 const PlacesView = {
   M: null, lim: 30, f: { region: "", tag: "", rvOff: "", q: "", season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, hyaku: false, sort: "rv" },
   F0: { region: "", tag: "", rvOff: "", season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, hyaku: false, sort: "rv" },
@@ -43,29 +45,23 @@ const PlacesView = {
     const sec = $('[data-sec="places"]');
     const regions = [...new Set(PLACES.map((p) => p.region))], f = this.f;
     this.keep = refit ? null : this.view();
-    const nOn = Object.keys(this.F0).filter((k) => f[k] !== this.F0[k]).length;
+    const nOn = Object.keys(this.F0).filter((k) => k !== "sort" && f[k] !== this.F0[k]).length;
     sec.innerHTML = `
       <div class="sec-head"><h1>สถานที่เที่ยว</h1>
         <p class="lead">${PLACES.length} สถานที่ทั่วฮอกไกโด · เวลาและราคาเป็นค่าประมาณ</p></div>
       <div class="split"><div class="split-top filters no-print">
-        <div class="f-search"><input type="search" class="f-q" aria-label="ค้นหาสถานที่" placeholder="ค้นหาชื่อ ไทย/อังกฤษ/ญี่ปุ่น..." data-f="q" value="${esc(f.q)}">
-        <div class="row" style="margin-top:6px;gap:4px 14px"><label class="chk"><input type="checkbox" data-f="eat" ${f.eat ? "checked" : ""}> ร้านอาหารทั้งหมด (+${PLACES.filter(isEatery).length})</label>
-        <label class="chk" title="ร้านที่ติดรายชื่อ Tabelog 百名店"><input type="checkbox" data-f="hyaku" ${f.hyaku ? "checked" : ""}> เฉพาะ 百名店 (${PLACES.filter((p) => p.hyaku).length})</label></div></div>
+        <div class="f-search"><input type="search" class="f-q" aria-label="ค้นหาสถานที่" placeholder="ค้นหาชื่อ ไทย/อังกฤษ/ญี่ปุ่น..." data-f="q" value="${esc(f.q)}"></div>
         <details class="f-more" ${foldAttr("pfilter")}><summary>${I("sliders-horizontal")} ตัวกรอง <span class="badge b-info f-n" ${nOn ? "" : "hidden"}>${nOn}</span></summary><div class="row">
         <select data-f="season"><option value="trip" ${f.season === "trip" ? "selected" : ""}>ช่วงทริป (${tripMonths().map((m) => MO[m - 1]).join(", ")})</option><option value="" ${!f.season ? "selected" : ""}>ทุกฤดู</option>
           ${Object.entries(SEASONS).map(([k, s]) => `<option value="${k}" ${f.season === k ? "selected" : ""}>${s.name}</option>`).join("")}</select>
         <select data-f="region"><option value="">ทุกภูมิภาค</option>${regions.map((r) => `<option ${r === f.region ? "selected" : ""}>${esc(r)}</option>`).join("")}</select>
         <select data-f="tag"><option value="">ทุกความสนใจ</option>${Object.entries(INTEREST).map(([k, v]) => `<option value="${k}" ${k === f.tag ? "selected" : ""}>${v}</option>`).join("")}</select>
-        <select data-f="sort"><option value="rv" ${f.sort === "rv" ? "selected" : ""}>เรียง: รีวิว Google มากสุด</option><option value="near" ${f.sort === "near" ? "selected" : ""}>เรียง: ใกล้ที่พักในแผน</option></select>
       </div><div class="rvchips" role="group" aria-label="จำนวนรีวิว Google Maps (กดเพื่อซ่อน/แสดง)"><span class="mute">รีวิว Google</span>
         ${RV_C.map((c, i) => `<button class="chip rvchip" data-rvt="${i + 1}" aria-pressed="${!f.rvOff.includes(i + 1)}"><i class="ring" style="border-color:${c}"></i>${rvLbl(i)}</button>`).reverse().join("")}</div>
-      <div class="row" style="margin-top:6px">
-        <label class="chk"><input type="checkbox" data-f="transit" ${f.transit ? "checked" : ""}> ไปด้วยรถไฟ/บัสได้</label>
-        <label class="chk"><input type="checkbox" data-f="free" ${f.free ? "checked" : ""}> ฟรี</label>
-        <label class="chk"><input type="checkbox" data-f="evening" ${f.evening ? "checked" : ""}> เที่ยวตอนค่ำได้</label>
-        ${S.plan ? `<label class="chk"><input type="checkbox" data-f="inplan" ${f.inplan ? "checked" : ""}> เฉพาะที่อยู่ในแผน</label>
-        <label class="chk"><input type="checkbox" data-f="wish" ${f.wish ? "checked" : ""}> เฉพาะที่อยากไป</label>` : ""}
-        <button class="linkbtn" data-freset ${nOn ? "" : "hidden"}>ล้างตัวกรอง</button></div></details></div>
+      ${fGrp("ร้านอาหาร", [["eat", `ทั้งหมด (+${PLACES.filter(isEatery).length})`], ["hyaku", `เฉพาะ 百名店 (${PLACES.filter((p) => p.hyaku).length})`]])}
+      ${fGrp("เงื่อนไข", [["transit", "ไปรถไฟ/บัสได้"], ["free", "ฟรี"], ["evening", "เที่ยวค่ำได้"]])}
+      ${S.plan ? fGrp("ของฉัน", [["inplan", "อยู่ในแผน"], ["wish", "อยากไป"]]) : ""}
+      <div class="row"><button class="linkbtn" data-freset ${nOn ? "" : "hidden"}>ล้างตัวกรอง</button></div></details></div>
       <aside class="split-side"><details class="card mapbox fold-card" ${foldAttr("pmap")} id="pMapCard"><summary><h2>${I("map")} แผนที่</h2></summary><div class="map" id="placesMap"></div>
       <div class="map-legend">${Object.entries(TAG_ICON).map(([k, v]) => `<span>${I(v)} ${INTEREST[k]}</span>`).join("")}
         ${RV_C.map((c, i) => `<span><i class="ring" style="border-color:${c}"></i>รีวิว ${rvLbl(i)}</span>`).reverse().join("")}
@@ -106,7 +102,7 @@ const PlacesView = {
   list(refit = false) {
     const L = this.filtered(), plan = inPlanMap();
     const rows = L.slice(0, this.lim);
-    $("#placeList").innerHTML = `${viewToggle(L.length + " ที่")}${listView()
+    $("#placeList").innerHTML = `${viewToggle(L.length + " ที่", `<select data-f="sort" class="f-sort" aria-label="เรียงลำดับ"><option value="rv" ${this.f.sort === "rv" ? "selected" : ""}>รีวิวเยอะสุด</option><option value="near" ${this.f.sort === "near" ? "selected" : ""}>ใกล้ที่พัก</option></select>`)}${listView()
       ? `<div class="card llist">${rows.map((p) => lrow(p, `data-detail="${p.id}"`, `${rvBadge(p)}${hyBadge(p)} ${esc(p.area)} • ${esc(p.dur)} • ${esc(p.fee)}`, plan[p.id])).join("")}</div>`
       : `<div class="grid g3">${rows.map((p) => this.card(p, plan)).join("")}</div>`}
       ${L.length > this.lim ? `<div class="more"><button class="btn" data-more>แสดงเพิ่ม (เหลืออีก ${L.length - this.lim} ที่)</button></div>` : ""}`;
@@ -182,8 +178,10 @@ const PlacesView = {
       if (e.target.closest("[data-more]")) { this.lim += 60; this.list(); }
       const rt = e.target.closest("[data-rvt]")?.dataset.rvt;
       if (rt) { const f = this.f; f.rvOff = f.rvOff.includes(rt) ? f.rvOff.replace(rt, "") : f.rvOff + rt; e.target.closest("[data-rvt]").setAttribute("aria-pressed", !f.rvOff.includes(rt)); this.lim = 30; this.list(true); this.syncF(); }
+      const ft = e.target.closest("[data-ft]");
+      if (ft) { const k = ft.dataset.ft; this.f[k] = !this.f[k]; ft.setAttribute("aria-pressed", this.f[k]); this.lim = 30; this.list(true); this.syncF(); }
       if (e.target.closest("[data-freset]")) { Object.assign(this.f, this.F0); this.lim = 30; this.render(true); } });
-    this.syncF = () => { const n = Object.keys(this.F0).filter((k) => this.f[k] !== this.F0[k]).length, b = sec.querySelector(".f-n"); b.hidden = !n; b.textContent = n; sec.querySelector("[data-freset]").hidden = !n; };
+    this.syncF = () => { const n = Object.keys(this.F0).filter((k) => k !== "sort" && this.f[k] !== this.F0[k]).length, b = sec.querySelector(".f-n"); b.hidden = !n; b.textContent = n; sec.querySelector("[data-freset]").hidden = !n; };
     const sec = $('[data-sec="places"]');
     const upd = (el) => { this.f[el.dataset.f] = el.type === "checkbox" ? el.checked : el.value; this.lim = 30; this.list(true); this.syncF(); };
     sec.addEventListener("input", (ev) => { if (ev.target.dataset.f === "q") upd(ev.target); });
