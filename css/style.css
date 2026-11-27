@@ -172,7 +172,7 @@ table.t { width: 100%; border-collapse: collapse; font-size: .875rem; }
 .pcard .cau { font-size: .8rem; color: var(--warn); }
 .pcard .act { margin-top: auto; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
 .pcard.in { border-color: var(--good); }
-.filters { position: sticky; top: var(--toph); z-index: 5; background: var(--bg); padding: 10px 0; }
+.filters { background: var(--bg); padding: 10px 0; }
 
 /* ---------- packing ---------- */
 .pk-cat { margin-bottom: 18px; }
@@ -441,7 +441,15 @@ button:focus-visible, summary:focus-visible, .legmode:focus-within { outline: 2p
 .rvchip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; }
 .rvchip[aria-pressed="false"] { opacity: .45; text-decoration: line-through; }
 /* ตัวกรองเปิด/ปิด (หน้าสถานที่): หัวข้อกว้างเท่ากันทุกแถว ปุ่มที่เปิดอยู่เป็นสีฟ้าเต็ม */
-.rvchips > .mute { min-width: 6.5em; }
+.fchiprows { margin-top: 8px; }
+.fchiprows > .rvchips { margin-top: 0; }
+.fchiprows > .rvchips + .rvchips { margin-top: 6px; }
+/* จอกว้าง: กลุ่มปุ่มเรียงต่อกันในบรรทัด (หัวข้ออยู่หน้าปุ่ม) เต็มแล้วค่อยขึ้นบรรทัดใหม่ */
+@media (min-width: 900px) {
+  .fchiprows { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; }
+  .fchiprows > .rvchips + .rvchips { margin-top: 0; }
+  .fchiprows .fchips { flex: none; }
+}
 .fchips { display: flex; flex-wrap: wrap; gap: 6px; flex: 1 1 0; min-width: 0; }
 .fchip[aria-pressed="true"] { background: var(--ice); border-color: var(--ice); color: var(--on); }
 .list-head .f-sort { width: auto; min-height: 30px; padding: 2px 28px 2px 10px; font-size: .8125rem; }
@@ -479,7 +487,6 @@ details.hubinfo[open] > summary { margin-bottom: 8px; }
   .summary .k:nth-child(n+3) { border-top: 1px solid var(--line); }
   .summary .k b { font-size: 1.1rem; }
   /* ตัวกรองหลายแถวไม่ต้องลอยตาม: บังรายการครึ่งจอบนมือถือ */
-  .filters { position: static; }
   .filters .row { gap: 6px; }
   .filters select { flex: 1 1 calc(50% - 6px); min-width: 0; }
   .filters input[type="search"] { flex: 1 1 100% !important; }
@@ -725,7 +732,6 @@ input[type=text], input[type=number], input[type=date], input[type=time], input[
 /* ปุ่มจัดการรายการในวัน: แสดงตลอด ไม่ต้องชี้เมาส์ก่อน */
 @media (hover: hover) and (pointer: fine) and (min-width: 900px) { .tl li.it .it-tools { opacity: 1; } }
 /* จอกว้าง: ตัวกรองไม่ลอยตาม จะได้ไม่บังแผนที่ด้านขวา */
-@media (min-width: 1200px) { .split-top.filters { position: static; } }
 @media (max-width: 520px) { .lact .addsel { max-width: 104px; } }
 .maplbl small { opacity: 1; }
 

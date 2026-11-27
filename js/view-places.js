@@ -56,12 +56,12 @@ const PlacesView = {
           ${Object.entries(SEASONS).map(([k, s]) => `<option value="${k}" ${f.season === k ? "selected" : ""}>${s.name}</option>`).join("")}</select>
         <select data-f="region"><option value="">ทุกภูมิภาค</option>${regions.map((r) => `<option ${r === f.region ? "selected" : ""}>${esc(r)}</option>`).join("")}</select>
         <select data-f="tag"><option value="">ทุกความสนใจ</option>${Object.entries(INTEREST).map(([k, v]) => `<option value="${k}" ${k === f.tag ? "selected" : ""}>${v}</option>`).join("")}</select>
-      </div><div class="rvchips" role="group" aria-label="จำนวนรีวิว Google Maps (กดเพื่อซ่อน/แสดง)"><span class="mute">รีวิว Google</span>
+      </div><div class="fchiprows"><div class="rvchips" role="group" aria-label="จำนวนรีวิว Google Maps (กดเพื่อซ่อน/แสดง)"><span class="mute">รีวิว Google</span>
         ${RV_C.map((c, i) => `<button class="chip rvchip" data-rvt="${i + 1}" aria-pressed="${!f.rvOff.includes(i + 1)}"><i class="ring" style="border-color:${c}"></i>${rvLbl(i)}</button>`).reverse().join("")}</div>
       ${fGrp("ร้านอาหาร", [["eat", `ทั้งหมด (+${PLACES.filter(isEatery).length})`], ["hyaku", `เฉพาะ 百名店 (${PLACES.filter((p) => p.hyaku).length})`]])}
       ${fGrp("เงื่อนไข", [["transit", "ไปรถไฟ/บัสได้"], ["free", "ฟรี"], ["evening", "เที่ยวค่ำได้"]])}
       ${S.plan ? fGrp("ของฉัน", [["inplan", "อยู่ในแผน"], ["wish", "อยากไป"]]) : ""}
-      <div class="row"><button class="linkbtn" data-freset ${nOn ? "" : "hidden"}>ล้างตัวกรอง</button></div></details></div>
+      <button class="linkbtn" data-freset ${nOn ? "" : "hidden"}>ล้างตัวกรอง</button></div></details></div>
       <aside class="split-side"><details class="card mapbox fold-card" ${foldAttr("pmap")} id="pMapCard"><summary><h2>${I("map")} แผนที่</h2></summary><div class="map" id="placesMap"></div>
       <div class="map-legend">${Object.entries(TAG_ICON).map(([k, v]) => `<span>${I(v)} ${INTEREST[k]}</span>`).join("")}
         ${RV_C.map((c, i) => `<span><i class="ring" style="border-color:${c}"></i>รีวิว ${rvLbl(i)}</span>`).reverse().join("")}
