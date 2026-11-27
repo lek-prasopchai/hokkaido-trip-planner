@@ -28,11 +28,12 @@ const reviewLinks = (p) => {
 };
 
 const rvBadge = (p) => p.rv ? ` <span class="badge b-mute" title="Google Maps (ดึงไว้ พ.ย. 2026)">${gmTxt(p)}</span>` : "";
+const hyBadge = (p) => p.hyaku ? ` <span class="badge b-info" title="ติดรายชื่อ Tabelog 百名店 ปี ${p.hyaku}">百名店 ${p.hyaku}</span>` : "";
 // ร้านอาหาร/คาเฟ่รายร้านที่รีวิว Google ไม่ถึง 1,000 (ไม่ใช่ตลาด/ย่าน)
 const isEatery = (p) => (p.rv || 0) < 1000 && /^(อาหาร|คาเฟ่)/.test(p.type);
 const PlacesView = {
-  M: null, lim: 30, f: { region: "", tag: "", rvOff: "", q: "", season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, sort: "rv" },
-  F0: { region: "", tag: "", rvOff: "", season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, sort: "rv" },
+  M: null, lim: 30, f: { region: "", tag: "", rvOff: "", q: "", season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, hyaku: false, sort: "rv" },
+  F0: { region: "", tag: "", rvOff: "", season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, hyaku: false, sort: "rv" },
 
   // มุมมองแผนที่ตอนนี้ (ยังไม่วาดหมุด/พับอยู่ = null → ซูมให้เห็นผลทั้งหมด)
   view() { const m = this.M?.map; return this.M?.drawn && m.getContainer().isConnected && m.getSize().x ? { c: m.getCenter(), z: m.getZoom() } : null; },
@@ -61,6 +62,7 @@ const PlacesView = {
         <label class="chk"><input type="checkbox" data-f="transit" ${f.transit ? "checked" : ""}> ไปด้วยรถไฟ/บัสได้</label>
         <label class="chk"><input type="checkbox" data-f="free" ${f.free ? "checked" : ""}> ฟรี</label>
         <label class="chk"><input type="checkbox" data-f="evening" ${f.evening ? "checked" : ""}> เที่ยวตอนค่ำได้</label>
+        <label class="chk"><input type="checkbox" data-f="hyaku" ${f.hyaku ? "checked" : ""}> ร้าน 百名店 Tabelog (${PLACES.filter((p) => p.hyaku).length})</label>
         ${S.plan ? `<label class="chk"><input type="checkbox" data-f="inplan" ${f.inplan ? "checked" : ""}> เฉพาะที่อยู่ในแผน</label>
         <label class="chk"><input type="checkbox" data-f="wish" ${f.wish ? "checked" : ""}> เฉพาะที่อยากไป</label>` : ""}
         <button class="linkbtn" data-freset ${nOn ? "" : "hidden"}>ล้างตัวกรอง</button></div></details></div>
@@ -83,8 +85,8 @@ const PlacesView = {
     return PLACES.filter((p) => !p.gone && (!f.region || p.region === f.region) && (!f.tag || p.tags.includes(f.tag)) && !f.rvOff.includes(rvTier(p))
       && (!q || [p.name, p.area, p.ja, p.en, p.type, p.highlight, p.kw].join(" ").toLowerCase().includes(q))
       && (!ms || ms.some((m) => monthsOf(p).includes(m)))
-      && (!f.transit || ["ok", "limited", "tour"].includes(access(p))) && (!f.free || !p.feeYen) && (!f.inplan || plan[p.id]) && (!f.wish || S.plan?.wish.includes(p.id)) && (!f.evening || p.evening)
-      && (f.eat || !isEatery(p) || q || f.tag === "food" || plan[p.id] || S.plan?.wish.includes(p.id))) // ร้านอาหารซ่อนไว้ก่อน (เยอะมาก) ค้นชื่อ/เลือกความสนใจอาหาร/อยู่ในแผนแล้วยังเห็น
+      && (!f.transit || ["ok", "limited", "tour"].includes(access(p))) && (!f.free || !p.feeYen) && (!f.inplan || plan[p.id]) && (!f.wish || S.plan?.wish.includes(p.id)) && (!f.evening || p.evening) && (!f.hyaku || p.hyaku)
+      && (f.eat || f.hyaku || !isEatery(p) || q || f.tag === "food" || plan[p.id] || S.plan?.wish.includes(p.id))) // ร้านอาหารซ่อนไว้ก่อน (เยอะมาก) ค้นชื่อ/เลือกความสนใจอาหาร/อยู่ในแผนแล้วยังเห็น
       .sort((a, b) => f.sort === "near" ? near(a) - near(b) : (b.rv || 0) - (a.rv || 0) || a.id - b.id);
   },
 
@@ -92,7 +94,7 @@ const PlacesView = {
     const n = placeImgs(p).length;
     return `<div class="card pcard ${plan[p.id] ? "in" : ""}" id="pl-${p.id}">
       <div class="ph" ${p.img ? `data-lb="${p.id}"` : ""}>${!p.img && p.lat ? miniMap(p) : p.img ? `<img src="${p.img}" alt="${esc(p.name)}" loading="lazy">${n > 1 ? `<span class="cnt">${I("camera")} ${n}</span>` : ""}` : I(TAG_ICON[p.tags[0]] || "map-pin")}<span class="sea">${seasonBadges(p)}</span></div>
-      <div class="row" style="gap:6px"><span class="badge b-mute">${esc(p.type)}</span>${rvBadge(p)}
+      <div class="row" style="gap:6px"><span class="badge b-mute">${esc(p.type)}</span>${rvBadge(p)}${hyBadge(p)}
         ${p.season ? `<span class="badge b-fest">เฉพาะ ${esc(p.season.join("-"))}</span>` : monthsOf(p).length < 12 ? `<span class="badge b-warn">${monthRange(monthsOf(p))}</span>` : p.peak ? `<span class="badge b-mute">ดีสุด ${monthRange(p.peak)}</span>` : ""}</div>
       <h4 data-detail="${p.id}">${nameHtml(p)}</h4>
       <div class="meta"><span>${I("map-pin")} ${esc(p.area)}</span><span>${I("timer")} ${esc(p.dur)}</span><span>${I("banknote")} ${esc(p.fee)}</span><span>${access(p) === "ok" ? I("train-front") + " รถไฟ/บัสได้" : access(p) === "car" ? I("car") + " ต้องมีรถ/ทัวร์" : I("bus") + " " + ACCESS_TXT[access(p)]}</span></div>
@@ -105,7 +107,7 @@ const PlacesView = {
     const L = this.filtered(), plan = inPlanMap();
     const rows = L.slice(0, this.lim);
     $("#placeList").innerHTML = `${viewToggle(L.length + " ที่")}${listView()
-      ? `<div class="card llist">${rows.map((p) => lrow(p, `data-detail="${p.id}"`, `${rvBadge(p)} ${esc(p.area)} • ${esc(p.dur)} • ${esc(p.fee)}`, plan[p.id])).join("")}</div>`
+      ? `<div class="card llist">${rows.map((p) => lrow(p, `data-detail="${p.id}"`, `${rvBadge(p)}${hyBadge(p)} ${esc(p.area)} • ${esc(p.dur)} • ${esc(p.fee)}`, plan[p.id])).join("")}</div>`
       : `<div class="grid g3">${rows.map((p) => this.card(p, plan)).join("")}</div>`}
       ${L.length > this.lim ? `<div class="more"><button class="btn" data-more>แสดงเพิ่ม (เหลืออีก ${L.length - this.lim} ที่)</button></div>` : ""}`;
     if (refit) this.keep = null;
@@ -131,7 +133,7 @@ const PlacesView = {
     Modal.open(`
       ${imgs.length ? `<div class="gal">${imgs.map((x, i) => `<img src="${x.img}" alt="" loading="lazy" data-gi="${i}">`).join("")}</div>` : ""}
       <h2 style="margin-top:12px">${nameHtml(p)}</h2>
-      <div class="row" style="gap:6px"><span class="badge b-mute">${esc(p.type)}</span>${rvBadge(p)}<span class="badge b-mute">${I("map-pin")} ${esc(p.area || HUB[p.hub]?.name || "")}</span>
+      <div class="row" style="gap:6px"><span class="badge b-mute">${esc(p.type)}</span>${rvBadge(p)}${hyBadge(p)}<span class="badge b-mute">${I("map-pin")} ${esc(p.area || HUB[p.hub]?.name || "")}</span>
         <span class="sea-inline">${seasonBadges(p)} ${p.peak ? `เปิดทั้งปี • ดีสุด ${monthRange(p.peak)}` : monthRange(monthsOf(p))}</span>${plan[id] ? `<span class="badge b-good">อยู่ในวันที่ ${plan[id]}</span>` : ""}</div>
       <p class="d-hl">${esc(p.highlight || "")}</p>
       ${(S.plan && !plan[id]) || (App.cur === "places" && p.lat) ? `<div class="row d-act">${S.plan && !plan[id] ? addSelect(id) : ""}${App.cur === "places" && p.lat ? `<button class="btn small" data-locate="${p.id}">${I("map-pin")} ดูบนแผนที่</button>` : ""}</div>` : ""}

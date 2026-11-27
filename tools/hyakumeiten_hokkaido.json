@@ -1,0 +1,2993 @@
+{
+ "source": "award.tabelog.com/hyakumeiten (ดึงชื่อร้านเท่านั้น 2026-11-27)",
+ "shops": [
+  {
+   "tabelog": "1000001",
+   "name": "バーやまざき",
+   "area": "すすきの（市営）駅",
+   "region": "A0101",
+   "lists": [
+    "bar"
+   ]
+  },
+  {
+   "tabelog": "1000004",
+   "name": "バー・プルーフ",
+   "area": "狸小路駅",
+   "region": "A0101",
+   "lists": [
+    "bar"
+   ]
+  },
+  {
+   "tabelog": "1000005",
+   "name": "レストラン コートドール",
+   "area": "西２８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "french_east"
+   ]
+  },
+  {
+   "tabelog": "1000006",
+   "name": "金寿司",
+   "area": "バスセンター前駅",
+   "region": "A0101",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1000008",
+   "name": "伊勢鮨",
+   "area": "小樽市",
+   "region": "A0106",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1000011",
+   "name": "らぁめん 千寿",
+   "area": "西８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000018",
+   "name": "麺屋 彩未",
+   "area": "美園駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000020",
+   "name": "ドゥ・エルミタアヂュ",
+   "area": "狸小路駅",
+   "region": "A0101",
+   "lists": [
+    "bar"
+   ]
+  },
+  {
+   "tabelog": "1000022",
+   "name": "レストラン・モリエール",
+   "area": "西２８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "french_east"
+   ]
+  },
+  {
+   "tabelog": "1000023",
+   "name": "トトリ 本店",
+   "area": "資生館小学校前駅",
+   "region": "A0101",
+   "lists": [
+    "yakiniku_east"
+   ]
+  },
+  {
+   "tabelog": "1000026",
+   "name": "さえら",
+   "area": "大通駅",
+   "region": "A0101",
+   "lists": [
+    "kissaten"
+   ]
+  },
+  {
+   "tabelog": "1000031",
+   "name": "さっぽろ純連 札幌店",
+   "area": "澄川駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000041",
+   "name": "まる鮨",
+   "area": "東本願寺前駅",
+   "region": "A0101",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1000049",
+   "name": "オーベルジュ・ド・リル サッポロ",
+   "area": "円山公園駅",
+   "region": "A0101",
+   "lists": [
+    "french_east"
+   ]
+  },
+  {
+   "tabelog": "1000059",
+   "name": "旭川ラーメン ななし",
+   "area": "琴似（ＪＲ）駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000060",
+   "name": "ピカンティ",
+   "area": "北１２条駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1000063",
+   "name": "唯我独尊",
+   "area": "富良野市",
+   "region": "A0104",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1000080",
+   "name": "森彦",
+   "area": "円山公園駅",
+   "region": "A0101",
+   "lists": [
+    "cafe_east"
+   ]
+  },
+  {
+   "tabelog": "1000090",
+   "name": "らーめんや天金 四条店",
+   "area": "旭川市",
+   "region": "A0104",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000134",
+   "name": "すみれ 中の島本店",
+   "area": "中の島駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000150",
+   "name": "けやき すすきの本店",
+   "area": "豊水すすきの駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000154",
+   "name": "パティスリーシイヤ",
+   "area": "西２８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "sweets_east"
+   ]
+  },
+  {
+   "tabelog": "1000162",
+   "name": "クロック",
+   "area": "札幌市中央区",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1000163",
+   "name": "マジックスパイス 札幌本店",
+   "area": "南郷７丁目駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1000164",
+   "name": "らっきょ",
+   "area": "琴似（ＪＲ）駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1000174",
+   "name": "木多郎 澄川本店",
+   "area": "澄川駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1000183",
+   "name": "ラ・サンテ",
+   "area": "西２８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "french_east"
+   ]
+  },
+  {
+   "tabelog": "1000194",
+   "name": "ミルク村 SAPPORO本店",
+   "area": "すすきの（市営）駅",
+   "region": "A0101",
+   "lists": [
+    "ice_gelato"
+   ]
+  },
+  {
+   "tabelog": "1000247",
+   "name": "三光舎",
+   "area": "豊水すすきの駅",
+   "region": "A0101",
+   "lists": [
+    "sukiyaki_shabushabu"
+   ]
+  },
+  {
+   "tabelog": "1000269",
+   "name": "蜂屋 五条創業店",
+   "area": "旭川市",
+   "region": "A0104",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000281",
+   "name": "らーめん五丈原 本店",
+   "area": "東本願寺前駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000282",
+   "name": "らーめん初代 小樽本店",
+   "area": "小樽市",
+   "region": "A0106",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000314",
+   "name": "旭川らぅめん青葉 本店",
+   "area": "旭川市",
+   "region": "A0104",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000316",
+   "name": "味の三平",
+   "area": "西４丁目駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000337",
+   "name": "ラーメン櫻島 本店",
+   "area": "札幌市西区",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000343",
+   "name": "アイスクリームパーラー美園",
+   "area": "小樽市",
+   "region": "A0106",
+   "lists": [
+    "ice_gelato"
+   ]
+  },
+  {
+   "tabelog": "1000366",
+   "name": "あじさい 本店",
+   "area": "函館市",
+   "region": "A0105",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000368",
+   "name": "あじさい 新千歳空港店",
+   "area": "千歳市",
+   "region": "A0107",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000426",
+   "name": "魚菜",
+   "area": "狸小路駅",
+   "region": "A0101",
+   "lists": [
+    "izakaya_east"
+   ]
+  },
+  {
+   "tabelog": "1000456",
+   "name": "ラーメン信月",
+   "area": "すすきの（市営）駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000457",
+   "name": "鮨処 有馬",
+   "area": "狸小路駅",
+   "region": "A0101",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1000468",
+   "name": "北山龍",
+   "area": "麻生駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000476",
+   "name": "村上カレー店・プルプル",
+   "area": "中央区役所前駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1000533",
+   "name": "ラーメン専門 つるや",
+   "area": "旭川市",
+   "region": "A0104",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000587",
+   "name": "ベンベラ・ネットワークカンパニー",
+   "area": "西８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1000635",
+   "name": "gopのアナグラ",
+   "area": "札幌市西区",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1000645",
+   "name": "鮨菜 和喜智",
+   "area": "円山公園駅",
+   "region": "A0101",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1000649",
+   "name": "手打蕎麦のたぐと",
+   "area": "発寒南駅",
+   "region": "A0101",
+   "lists": [
+    "soba_east"
+   ]
+  },
+  {
+   "tabelog": "1000683",
+   "name": "ルッカパイパイ",
+   "area": "平岸（札幌市営）駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1000687",
+   "name": "カレー リーブス",
+   "area": "札幌市豊平区",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1000796",
+   "name": "小野木",
+   "area": "旭川市",
+   "region": "A0104",
+   "lists": [
+    "toriryori"
+   ]
+  },
+  {
+   "tabelog": "1000799",
+   "name": "狼スープ",
+   "area": "中島公園駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000900",
+   "name": "ウエモンズ ハート",
+   "area": "帯広市",
+   "region": "A0111",
+   "lists": [
+    "ice_gelato"
+   ]
+  },
+  {
+   "tabelog": "1000904",
+   "name": "らーめん みかん",
+   "area": "小樽市",
+   "region": "A0106",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000912",
+   "name": "らーめんサッポロ 赤星",
+   "area": "西８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1000940",
+   "name": "菓子工房フラノデリス",
+   "area": "富良野市",
+   "region": "A0104",
+   "lists": [
+    "sweets_east"
+   ]
+  },
+  {
+   "tabelog": "1001086",
+   "name": "レークヒル・ファーム",
+   "area": "虻田郡洞爺湖町",
+   "region": "A0108",
+   "lists": [
+    "ice_gelato"
+   ]
+  },
+  {
+   "tabelog": "1001152",
+   "name": "山中牧場",
+   "area": "余市郡赤井川村",
+   "region": "A0106",
+   "lists": [
+    "ice_gelato"
+   ]
+  },
+  {
+   "tabelog": "1001190",
+   "name": "ラーメン札幌一粒庵",
+   "area": "さっぽろ（札幌市営）駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1001212",
+   "name": "くりーむ童話",
+   "area": "川上郡弟子屈町",
+   "region": "A0112",
+   "lists": [
+    "ice_gelato"
+   ]
+  },
+  {
+   "tabelog": "1001222",
+   "name": "ポトフ",
+   "area": "札幌市清田区",
+   "region": "A0101",
+   "lists": [
+    "yoshoku_east"
+   ]
+  },
+  {
+   "tabelog": "1001347",
+   "name": "まるたかラーメン",
+   "area": "北１２条駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1001467",
+   "name": "民宿 青塚食堂",
+   "area": "小樽市",
+   "region": "A0106",
+   "lists": [
+    "shokudo"
+   ]
+  },
+  {
+   "tabelog": "1001576",
+   "name": "四代 嘉心",
+   "area": "西１８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "wagashi_east"
+   ]
+  },
+  {
+   "tabelog": "1001719",
+   "name": "鮨みなと",
+   "area": "旭川市",
+   "region": "A0104",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1001849",
+   "name": "喜来登",
+   "area": "資生館小学校前駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1001904",
+   "name": "醤油屋本店 サンピアザ店",
+   "area": "新さっぽろ駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1001916",
+   "name": "ターラ",
+   "area": "西４丁目駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1002116",
+   "name": "こく一番 ラーメン みどりや",
+   "area": "ロープウェイ入口駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1002169",
+   "name": "こうひいはうす",
+   "area": "ロープウェイ入口駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1002186",
+   "name": "カラバトカリー",
+   "area": "札幌市南区",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1002197",
+   "name": "ポレポレ",
+   "area": "南郷１８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1002207",
+   "name": "エノテカ・ラ・リコルマ",
+   "area": "函館市",
+   "region": "A0105",
+   "lists": [
+    "italian_east"
+   ]
+  },
+  {
+   "tabelog": "1002223",
+   "name": "ファーム富田",
+   "area": "空知郡中富良野町",
+   "region": "A0104",
+   "lists": [
+    "ice_gelato"
+   ]
+  },
+  {
+   "tabelog": "1002533",
+   "name": "鮨処いちい",
+   "area": "すすきの（市電）駅",
+   "region": "A0101",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1002540",
+   "name": "札幌 凡の風",
+   "area": "西線９条旭山公園通駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1002587",
+   "name": "ラーメン専門 ひまわり",
+   "area": "旭川市",
+   "region": "A0104",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1002644",
+   "name": "すゝき野 鮨金",
+   "area": "すすきの（市電）駅",
+   "region": "A0101",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1002718",
+   "name": "まつ久ら",
+   "area": "豊水すすきの駅",
+   "region": "A0101",
+   "lists": [
+    "japanese_east"
+   ]
+  },
+  {
+   "tabelog": "1002793",
+   "name": "らーめん 信玄 南６条店",
+   "area": "東本願寺前駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1002853",
+   "name": "ステーキ＆ワイン いしざき",
+   "area": "すすきの（市営）駅",
+   "region": "A0101",
+   "lists": [
+    "steak_east"
+   ]
+  },
+  {
+   "tabelog": "1002914",
+   "name": "すき焼 しゃぶしゃぶ 牛のいしざき",
+   "area": "狸小路駅",
+   "region": "A0101",
+   "lists": [
+    "sukiyaki_shabushabu"
+   ]
+  },
+  {
+   "tabelog": "1003065",
+   "name": "タイガーカレー",
+   "area": "北２４条駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1003072",
+   "name": "メディスンマン",
+   "area": "中島公園通駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1003302",
+   "name": "蜂屋 旭川本店",
+   "area": "旭川市",
+   "region": "A0104",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1003308",
+   "name": "ルヒエル",
+   "area": "虻田郡倶知安町",
+   "region": "A0106",
+   "lists": [
+    "ice_gelato"
+   ]
+  },
+  {
+   "tabelog": "1003320",
+   "name": "レッドチリ",
+   "area": "西２８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1003356",
+   "name": "カレー オハナ",
+   "area": "新道東駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1003362",
+   "name": "阿佐利 本店",
+   "area": "函館市",
+   "region": "A0105",
+   "lists": [
+    "sukiyaki_shabushabu"
+   ]
+  },
+  {
+   "tabelog": "1003486",
+   "name": "伊達 翁",
+   "area": "伊達市",
+   "region": "A0108",
+   "lists": [
+    "soba_east"
+   ]
+  },
+  {
+   "tabelog": "1003490",
+   "name": "味の大王 総本店",
+   "area": "苫小牧市",
+   "region": "A0108",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1003584",
+   "name": "山嵐 本店",
+   "area": "平岸（札幌市営）駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1003673",
+   "name": "生姜ラーメン みづの",
+   "area": "旭川市",
+   "region": "A0104",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1003784",
+   "name": "海味 はちきょう 本店",
+   "area": "すすきの（市営）駅",
+   "region": "A0101",
+   "lists": [
+    "izakaya_east"
+   ]
+  },
+  {
+   "tabelog": "1003973",
+   "name": "めんめ",
+   "area": "資生館小学校前駅",
+   "region": "A0101",
+   "lists": [
+    "izakaya_east"
+   ]
+  },
+  {
+   "tabelog": "1004170",
+   "name": "あらとん 本店",
+   "area": "二十四軒駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1004285",
+   "name": "スープカリー ヒリヒリ2号",
+   "area": "さっぽろ（札幌市営）駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1004357",
+   "name": "ラーメン まるひら",
+   "area": "釧路市",
+   "region": "A0112",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1004362",
+   "name": "味特 本店",
+   "area": "旭川市",
+   "region": "A0104",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1004447",
+   "name": "カリーハウス コロンボ",
+   "area": "さっぽろ（札幌市営）駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1004612",
+   "name": "味の大王 室蘭本店",
+   "area": "室蘭市",
+   "region": "A0108",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1004828",
+   "name": "鉄板焼 石狩",
+   "area": "さっぽろ（札幌市営）駅",
+   "region": "A0101",
+   "lists": [
+    "steak_east"
+   ]
+  },
+  {
+   "tabelog": "1004842",
+   "name": "元祖札幌ラーメン もぐら",
+   "area": "すすきの（市営）駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1004868",
+   "name": "麺屋 雪風 すすきの店",
+   "area": "東本願寺前駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1004949",
+   "name": "エグ・ヴィヴ",
+   "area": "小樽市",
+   "region": "A0106",
+   "lists": [
+    "bread_east"
+   ]
+  },
+  {
+   "tabelog": "1005175",
+   "name": "とわいらいと",
+   "area": "南郷１８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "yoshoku_east"
+   ]
+  },
+  {
+   "tabelog": "1005335",
+   "name": "バローレ",
+   "area": "上川郡美瑛町",
+   "region": "A0104",
+   "lists": [
+    "italian_east"
+   ]
+  },
+  {
+   "tabelog": "1005336",
+   "name": "レストラン・アスペルジュ",
+   "area": "上川郡美瑛町",
+   "region": "A0104",
+   "lists": [
+    "french_east"
+   ]
+  },
+  {
+   "tabelog": "1005374",
+   "name": "ひげ男爵",
+   "area": "バスセンター前駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1005543",
+   "name": "いし豆",
+   "area": "虻田郡真狩村",
+   "region": "A0106",
+   "lists": [
+    "soba_east"
+   ]
+  },
+  {
+   "tabelog": "1005718",
+   "name": "鮨処 美な味",
+   "area": "函館市",
+   "region": "A0105",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1006004",
+   "name": "スープカリー スアゲ プラス",
+   "area": "すすきの（市電）駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1006022",
+   "name": "らあめん 新",
+   "area": "東本願寺前駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1006102",
+   "name": "やきだんご 銀月",
+   "area": "函館市",
+   "region": "A0105",
+   "lists": [
+    "wagashi_east"
+   ]
+  },
+  {
+   "tabelog": "1006116",
+   "name": "デリー 札幌店",
+   "area": "狸小路駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1006201",
+   "name": "餃子 すぐるや",
+   "area": "豊水すすきの駅",
+   "region": "A0101",
+   "lists": [
+    "gyoza"
+   ]
+  },
+  {
+   "tabelog": "1006291",
+   "name": "眞麺 穂高",
+   "area": "大谷地駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1006357",
+   "name": "SOUP CURRY KING 本店",
+   "area": "南平岸駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1006995",
+   "name": "花丸",
+   "area": "札幌市清田区",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1007020",
+   "name": "沼の家",
+   "area": "亀田郡七飯町",
+   "region": "A0105",
+   "lists": [
+    "wagashi_east"
+   ]
+  },
+  {
+   "tabelog": "1007034",
+   "name": "みえ田",
+   "area": "すすきの（市営）駅",
+   "region": "A0101",
+   "lists": [
+    "japanese_east"
+   ]
+  },
+  {
+   "tabelog": "1007040",
+   "name": "ブランジェリー ラ・フォンティヌ・ドゥ・ルルド",
+   "area": "札幌市中央区",
+   "region": "A0101",
+   "lists": [
+    "bread_east"
+   ]
+  },
+  {
+   "tabelog": "1007155",
+   "name": "Gelateria Rimo 網走本店",
+   "area": "網走市",
+   "region": "A0110",
+   "lists": [
+    "ice_gelato"
+   ]
+  },
+  {
+   "tabelog": "1007287",
+   "name": "滋養軒",
+   "area": "函館市",
+   "region": "A0105",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1007364",
+   "name": "ザ バー ナノ フェムト",
+   "area": "すすきの（市営）駅",
+   "region": "A0101",
+   "lists": [
+    "bar"
+   ]
+  },
+  {
+   "tabelog": "1007557",
+   "name": "山中牧場 小樽店",
+   "area": "小樽市",
+   "region": "A0106",
+   "lists": [
+    "ice_gelato"
+   ]
+  },
+  {
+   "tabelog": "1007709",
+   "name": "らーめん工房 魚一",
+   "area": "釧路市",
+   "region": "A0112",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1007888",
+   "name": "スープカリー ヒリヒリオオドオリ",
+   "area": "西４丁目駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1007919",
+   "name": "らーめん佳",
+   "area": "月寒中央駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1007981",
+   "name": "西屯田通りスープカレー本舗",
+   "area": "西線９条旭山公園通駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1008058",
+   "name": "しの平",
+   "area": "狸小路駅",
+   "region": "A0101",
+   "lists": [
+    "sukiyaki_shabushabu"
+   ]
+  },
+  {
+   "tabelog": "1008098",
+   "name": "はこだて ふさや 大門店",
+   "area": "函館市",
+   "region": "A0105",
+   "lists": [
+    "okonomiyaki"
+   ]
+  },
+  {
+   "tabelog": "1008130",
+   "name": "元祖インドカレー 小いけ",
+   "area": "函館市",
+   "region": "A0105",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1009050",
+   "name": "すみれ 札幌すすきの店",
+   "area": "すすきの（市営）駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1009164",
+   "name": "恵庭 おとん食堂",
+   "area": "恵庭市",
+   "region": "A0107",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1009451",
+   "name": "定食 めし屋",
+   "area": "二十四軒駅",
+   "region": "A0101",
+   "lists": [
+    "shokudo"
+   ]
+  },
+  {
+   "tabelog": "1009504",
+   "name": "いせのじょう",
+   "area": "菊水駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1009525",
+   "name": "麺や けせらせら",
+   "area": "百合が原駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1009634",
+   "name": "麺屋 菜々兵衛 本店",
+   "area": "平和駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1009667",
+   "name": "札幌スープカレー専門店エスパーイトウ 八軒総本店",
+   "area": "八軒駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1009680",
+   "name": "手作りハンバーグ工房Toshi",
+   "area": "西４丁目駅",
+   "region": "A0101",
+   "lists": [
+    "yoshoku_east"
+   ]
+  },
+  {
+   "tabelog": "1009886",
+   "name": "麺屋 高橋",
+   "area": "札幌市豊平区",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1010526",
+   "name": "二代目 佐平次",
+   "area": "函館市",
+   "region": "A0105",
+   "lists": [
+    "izakaya_east"
+   ]
+  },
+  {
+   "tabelog": "1013145",
+   "name": "くりや",
+   "area": "南郷７丁目駅",
+   "region": "A0101",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1014060",
+   "name": "ラ クチーナ ヴェンティトレ",
+   "area": "函館市",
+   "region": "A0105",
+   "lists": [
+    "italian_east"
+   ]
+  },
+  {
+   "tabelog": "1016052",
+   "name": "味道広路",
+   "area": "夕張郡栗山町",
+   "region": "A0107",
+   "lists": [
+    "japanese_east"
+   ]
+  },
+  {
+   "tabelog": "1016743",
+   "name": "ふらのや",
+   "area": "富良野市",
+   "region": "A0104",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1020986",
+   "name": "はこだて塩らーめん　しなの",
+   "area": "函館市",
+   "region": "A0105",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1021428",
+   "name": "麦音",
+   "area": "帯広市",
+   "region": "A0111",
+   "lists": [
+    "bread_east"
+   ]
+  },
+  {
+   "tabelog": "1024014",
+   "name": "虎",
+   "area": "札幌市清田区",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1024063",
+   "name": "一文字カリー店",
+   "area": "南郷１８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1024277",
+   "name": "ノースコンチネント MACHI NO NAKA",
+   "area": "大通駅",
+   "region": "A0101",
+   "lists": [
+    "yoshoku_east"
+   ]
+  },
+  {
+   "tabelog": "1024348",
+   "name": "とみたメロンハウス",
+   "area": "空知郡中富良野町",
+   "region": "A0104",
+   "lists": [
+    "sweets_east"
+   ]
+  },
+  {
+   "tabelog": "1024540",
+   "name": "ZORA",
+   "area": "西８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1025000",
+   "name": "スパイス ポット 菊水本店",
+   "area": "菊水駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1025001",
+   "name": "ピカンティ 札幌駅前店",
+   "area": "さっぽろ（札幌市営）駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1025072",
+   "name": "えびそば一幻 総本店",
+   "area": "東本願寺前駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1025101",
+   "name": "マタレー 円山店",
+   "area": "円山公園駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1026155",
+   "name": "アンジェリック ヴォヤージュ 本店",
+   "area": "函館市",
+   "region": "A0105",
+   "lists": [
+    "sweets_east"
+   ]
+  },
+  {
+   "tabelog": "1026411",
+   "name": "麺や 麗",
+   "area": "千歳市",
+   "region": "A0107",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1026753",
+   "name": "我流麺舞 飛燕",
+   "area": "札幌市豊平区",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1028192",
+   "name": "春一家 三代目 麺宿 本店",
+   "area": "美園駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1028665",
+   "name": "AKI NAGAO",
+   "area": "すすきの（市営）駅",
+   "region": "A0101",
+   "lists": [
+    "french_east"
+   ]
+  },
+  {
+   "tabelog": "1029291",
+   "name": "IOrI",
+   "area": "千歳市",
+   "region": "A0107",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1029487",
+   "name": "五○堂",
+   "area": "山鼻９条駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1029696",
+   "name": "カリーヤ！コング",
+   "area": "静修学園前駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1029733",
+   "name": "棗",
+   "area": "資生館小学校前駅",
+   "region": "A0101",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1030080",
+   "name": "あかつき",
+   "area": "北見市",
+   "region": "A0110",
+   "lists": [
+    "okonomiyaki"
+   ]
+  },
+  {
+   "tabelog": "1030202",
+   "name": "花小路 さわ田",
+   "area": "東本願寺前駅",
+   "region": "A0101",
+   "lists": [
+    "japanese_east"
+   ]
+  },
+  {
+   "tabelog": "1030240",
+   "name": "麺や 亀陣",
+   "area": "太平駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1030289",
+   "name": "札幌つけ麺 札幌ラーメン 風来堂",
+   "area": "豊平公園駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1030424",
+   "name": "濱田商店",
+   "area": "目梨郡羅臼町",
+   "region": "A0112",
+   "lists": [
+    "shokudo"
+   ]
+  },
+  {
+   "tabelog": "1030580",
+   "name": "田久鮓",
+   "area": "すすきの（市営）駅",
+   "region": "A0101",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1030914",
+   "name": "四代目麺処 ゆうじ",
+   "area": "新琴似駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1031158",
+   "name": "ピッツェリア ダ マッシモ",
+   "area": "平和駅",
+   "region": "A0101",
+   "lists": [
+    "pizza"
+   ]
+  },
+  {
+   "tabelog": "1031618",
+   "name": "カレーのふらのや",
+   "area": "森林公園駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1034338",
+   "name": "えびそば一幻 新千歳空港店",
+   "area": "千歳市",
+   "region": "A0107",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1034361",
+   "name": "北海道牛乳カステラ",
+   "area": "牛乳カステラ",
+   "region": "A0107",
+   "lists": [
+    "wagashi_east"
+   ]
+  },
+  {
+   "tabelog": "1034478",
+   "name": "いそのかづお",
+   "area": "資生館小学校前駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1034629",
+   "name": "ミルク&パフェ よつ葉ホワイトコージ 新千歳空港店",
+   "area": "千歳市",
+   "region": "A0107",
+   "lists": [
+    "ice_gelato"
+   ]
+  },
+  {
+   "tabelog": "1034678",
+   "name": "MEN-EIJI HIRAGISHI BASE",
+   "area": "南平岸駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1034722",
+   "name": "美瑛選果 新千歳空港店",
+   "area": "千歳市",
+   "region": "A0107",
+   "lists": [
+    "bread_east"
+   ]
+  },
+  {
+   "tabelog": "1035490",
+   "name": "未来カレー こりす",
+   "area": "資生館小学校前駅",
+   "region": "A0101",
+   "lists": [
+    "asia_ethnic_east"
+   ]
+  },
+  {
+   "tabelog": "1036118",
+   "name": "麺屋 おざわ",
+   "area": "菊水駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1037079",
+   "name": "スープカレー トムトムキキル",
+   "area": "札幌市清田区",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1037103",
+   "name": "シロクマ食堂",
+   "area": "小樽市",
+   "region": "A0106",
+   "lists": [
+    "shokudo"
+   ]
+  },
+  {
+   "tabelog": "1038229",
+   "name": "ラーメン 木曜日",
+   "area": "西線９条旭山公園通駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1038603",
+   "name": "寿し ひでたか",
+   "area": "すすきの（市営）駅",
+   "region": "A0101",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1039493",
+   "name": "らーめん ほっぺ家",
+   "area": "東区役所前駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1040041",
+   "name": "麺屋 すずらん",
+   "area": "すすきの（市電）駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1040487",
+   "name": "ブーランジェリー コロン 本店",
+   "area": "バスセンター前駅",
+   "region": "A0101",
+   "lists": [
+    "bread_east"
+   ]
+  },
+  {
+   "tabelog": "1041032",
+   "name": "コクミンショクドウ",
+   "area": "太平駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1041313",
+   "name": "さっぽろ純連 北31条店",
+   "area": "北３４条駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1041432",
+   "name": "カプセルモンスター",
+   "area": "西１５丁目駅",
+   "region": "A0101",
+   "lists": [
+    "sweets_east"
+   ]
+  },
+  {
+   "tabelog": "1041731",
+   "name": "ラーメン二郎  札幌店",
+   "area": "さっぽろ（札幌市営）駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1041798",
+   "name": "ミルティーロ",
+   "area": "千歳市",
+   "region": "A0107",
+   "lists": [
+    "ice_gelato"
+   ]
+  },
+  {
+   "tabelog": "1041827",
+   "name": "欧風カレーKEN",
+   "area": "北１３条東駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1041930",
+   "name": "スープカリー 奥芝商店  駅前創成寺",
+   "area": "さっぽろ（札幌市営）駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1042561",
+   "name": "ピッツェリア  Tuka",
+   "area": "河西郡更別村",
+   "region": "A0111",
+   "lists": [
+    "pizza"
+   ]
+  },
+  {
+   "tabelog": "1042590",
+   "name": "らーめん心繋",
+   "area": "南郷７丁目駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1042872",
+   "name": "札幌味噌ラーメン専門店 けやき 新千歳空港店",
+   "area": "千歳市",
+   "region": "A0107",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1043647",
+   "name": "中華そば うさぎ",
+   "area": "北２４条駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1043997",
+   "name": "ロワゾー・パー・マツナガ",
+   "area": "函館市",
+   "region": "A0105",
+   "lists": [
+    "french_east"
+   ]
+  },
+  {
+   "tabelog": "1044227",
+   "name": "るこっく",
+   "area": "豊水すすきの駅",
+   "region": "A0101",
+   "lists": [
+    "toriryori"
+   ]
+  },
+  {
+   "tabelog": "1044255",
+   "name": "酒日和 縁屋",
+   "area": "豊水すすきの駅",
+   "region": "A0101",
+   "lists": [
+    "izakaya_east"
+   ]
+  },
+  {
+   "tabelog": "1044404",
+   "name": "SAKURA BROWN",
+   "area": "琴似（札幌市営）駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1044756",
+   "name": "ひろ志",
+   "area": "狸小路駅",
+   "region": "A0101",
+   "lists": [
+    "izakaya_east"
+   ]
+  },
+  {
+   "tabelog": "1045278",
+   "name": "雨は、やさしく",
+   "area": "札幌市白石区",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1045430",
+   "name": "鮨ノ蔵",
+   "area": "狸小路駅",
+   "region": "A0101",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1045656",
+   "name": "テアトロ ディ マッサ",
+   "area": "西８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "italian_east"
+   ]
+  },
+  {
+   "tabelog": "1046794",
+   "name": "NIKUSYO taku ohira",
+   "area": "すすきの（市電）駅",
+   "region": "A0101",
+   "lists": [
+    "yakiniku_east"
+   ]
+  },
+  {
+   "tabelog": "1047150",
+   "name": "ステーキ＆ハンバーグ ひげ 札幌南5条本店",
+   "area": "資生館小学校前駅",
+   "region": "A0101",
+   "lists": [
+    "yoshoku_east"
+   ]
+  },
+  {
+   "tabelog": "1047534",
+   "name": "キリン",
+   "area": "資生館小学校前駅",
+   "region": "A0101",
+   "lists": [
+    "gyoza"
+   ]
+  },
+  {
+   "tabelog": "1047747",
+   "name": "らーめん空 新千歳空港店",
+   "area": "千歳市",
+   "region": "A0107",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1047890",
+   "name": "こまつ",
+   "area": "札幌市中央区",
+   "region": "A0101",
+   "lists": [
+    "japanese_east"
+   ]
+  },
+  {
+   "tabelog": "1048079",
+   "name": "天ぷらあら木",
+   "area": "豊水すすきの駅",
+   "region": "A0101",
+   "lists": [
+    "tempura"
+   ]
+  },
+  {
+   "tabelog": "1048553",
+   "name": "さっぽろルーカレーNAGAMIYA",
+   "area": "西１５丁目駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1048816",
+   "name": "ゴーシェ",
+   "area": "西８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "french_east"
+   ]
+  },
+  {
+   "tabelog": "1048956",
+   "name": "ラーメン屋 切田製麺",
+   "area": "大通駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1049040",
+   "name": "中華そば カリフォルニア",
+   "area": "菊水駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1049128",
+   "name": "黒岩咖哩飯店",
+   "area": "西８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1049135",
+   "name": "らーめん優月",
+   "area": "環状通東駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1049322",
+   "name": "麺屋 169",
+   "area": "静修学園前駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1049376",
+   "name": "北の華 はやし",
+   "area": "千歳市",
+   "region": "A0107",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1049380",
+   "name": "南インド料理DAL",
+   "area": "帯広市",
+   "region": "A0111",
+   "lists": [
+    "asia_ethnic_east"
+   ]
+  },
+  {
+   "tabelog": "1049808",
+   "name": "アジアンスープカリー べす",
+   "area": "白石（ＪＲ北海道）駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1050112",
+   "name": "曉",
+   "area": "中央区役所前駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1050715",
+   "name": "Spice&mill",
+   "area": "南郷１３丁目駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1050775",
+   "name": "175°DENO〜担担麺〜 札幌北口店",
+   "area": "札幌（ＪＲ）駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1051002",
+   "name": "鮨 おくの",
+   "area": "滝川市",
+   "region": "A0107",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1051218",
+   "name": "ふじ屋 NOODLE",
+   "area": "すすきの（市営）駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1051245",
+   "name": "TAKAO",
+   "area": "円山公園駅",
+   "region": "A0101",
+   "lists": [
+    "italian_east"
+   ]
+  },
+  {
+   "tabelog": "1051736",
+   "name": "八乃木",
+   "area": "発寒駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1052247",
+   "name": "Cao★マンガイ",
+   "area": "すすきの（市電）駅",
+   "region": "A0101",
+   "lists": [
+    "asia_ethnic_east"
+   ]
+  },
+  {
+   "tabelog": "1052435",
+   "name": "E-itou Curry 平岸本店",
+   "area": "中の島駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1052811",
+   "name": "バーンズ",
+   "area": "札幌市中央区",
+   "region": "A0101",
+   "lists": [
+    "ice_gelato"
+   ]
+  },
+  {
+   "tabelog": "1052940",
+   "name": "焼肉リゾートハワイ",
+   "area": "すすきの（市電）駅",
+   "region": "A0101",
+   "lists": [
+    "yakiniku_east"
+   ]
+  },
+  {
+   "tabelog": "1053112",
+   "name": "温味",
+   "area": "中島公園通駅",
+   "region": "A0101",
+   "lists": [
+    "japanese_east"
+   ]
+  },
+  {
+   "tabelog": "1053270",
+   "name": "SOI maruyama",
+   "area": "円山公園駅",
+   "region": "A0101",
+   "lists": [
+    "asia_ethnic_east"
+   ]
+  },
+  {
+   "tabelog": "1053675",
+   "name": "東雲",
+   "area": "円山公園駅",
+   "region": "A0101",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1054162",
+   "name": "寿司・中国料理 福禄寿",
+   "area": "大通駅",
+   "region": "A0101",
+   "lists": [
+    "chinese_east"
+   ]
+  },
+  {
+   "tabelog": "1054392",
+   "name": "【カレー専門店】円山教授。",
+   "area": "西１８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1054761",
+   "name": "創作四川料理 廣明",
+   "area": "苫小牧市",
+   "region": "A0108",
+   "lists": [
+    "chinese_east"
+   ]
+  },
+  {
+   "tabelog": "1055157",
+   "name": "和だしらぁめん うめきち",
+   "area": "豊水すすきの駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1055662",
+   "name": "SOUP CURRY KING セントラル",
+   "area": "狸小路駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1055732",
+   "name": "セミーナ",
+   "area": "西８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "italian_east"
+   ]
+  },
+  {
+   "tabelog": "1055806",
+   "name": "雨は、やさしく NO,2",
+   "area": "北１３条東駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1055967",
+   "name": "アジャンタインドカリ店",
+   "area": "札幌市中央区",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1056051",
+   "name": "RAMEN RS 改",
+   "area": "札幌市清田区",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1056128",
+   "name": "らー麺 山さわ",
+   "area": "白石（札幌市営）駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1056336",
+   "name": "麺や hide",
+   "area": "札幌市北区",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1056693",
+   "name": "スープカレー店 34",
+   "area": "豊平公園駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1057186",
+   "name": "余市SAGRA",
+   "area": "余市郡余市町",
+   "region": "A0106",
+   "lists": [
+    "italian_east"
+   ]
+  },
+  {
+   "tabelog": "1057270",
+   "name": "トラットリア ダ オクムラ",
+   "area": "狸小路駅",
+   "region": "A0101",
+   "lists": [
+    "italian_east"
+   ]
+  },
+  {
+   "tabelog": "1057657",
+   "name": "姫沙羅",
+   "area": "西線９条旭山公園通駅",
+   "region": "A0101",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1057715",
+   "name": "Japanese Ramen Noodle Lab Q",
+   "area": "さっぽろ（札幌市営）駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1057726",
+   "name": "マガーリ",
+   "area": "西１５丁目駅",
+   "region": "A0101",
+   "lists": [
+    "italian_east"
+   ]
+  },
+  {
+   "tabelog": "1058800",
+   "name": "飲茶 はるのそら",
+   "area": "西８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "chinese_east"
+   ]
+  },
+  {
+   "tabelog": "1058838",
+   "name": "ソウルストア",
+   "area": "資生館小学校前駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1059562",
+   "name": "わかさいも 新千歳空港店",
+   "area": "千歳市",
+   "region": "A0107",
+   "lists": [
+    "wagashi_east"
+   ]
+  },
+  {
+   "tabelog": "1060134",
+   "name": "御料理 ふじ田",
+   "area": "西線６条駅",
+   "region": "A0101",
+   "lists": [
+    "japanese_east"
+   ]
+  },
+  {
+   "tabelog": "1060249",
+   "name": "カリーサボイ",
+   "area": "札幌（ＪＲ）駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1060348",
+   "name": "札幌らーめん輝風 すすきの店",
+   "area": "すすきの（市営）駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1060543",
+   "name": "中国料理 もみぢ",
+   "area": "資生館小学校前駅",
+   "region": "A0101",
+   "lists": [
+    "chinese_east"
+   ]
+  },
+  {
+   "tabelog": "1060608",
+   "name": "欧風カリー ドモン",
+   "area": "豊平公園駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1060867",
+   "name": "炭火焼肉 ホルモン にく式",
+   "area": "麻生駅",
+   "region": "A0101",
+   "lists": [
+    "yakiniku_east"
+   ]
+  },
+  {
+   "tabelog": "1060884",
+   "name": "壽山",
+   "area": "西１８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "japanese_east"
+   ]
+  },
+  {
+   "tabelog": "1060900",
+   "name": "ユニヴェール エス",
+   "area": "琴似（札幌市営）駅",
+   "region": "A0101",
+   "lists": [
+    "yoshoku_east"
+   ]
+  },
+  {
+   "tabelog": "1061234",
+   "name": "アグリスケープ",
+   "area": "札幌市西区",
+   "region": "A0101",
+   "lists": [
+    "creative_innovative"
+   ]
+  },
+  {
+   "tabelog": "1061277",
+   "name": "霜止出苗",
+   "area": "中島公園駅",
+   "region": "A0101",
+   "lists": [
+    "creative_innovative"
+   ]
+  },
+  {
+   "tabelog": "1061471",
+   "name": "カレー魂 デストロイヤー",
+   "area": "北１２条駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1061580",
+   "name": "札幌麺屋 美椿",
+   "area": "発寒中央駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1062715",
+   "name": "スープカレー しゃば蔵",
+   "area": "大通駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1062910",
+   "name": "春香楼 広小路店",
+   "area": "帯広市",
+   "region": "A0111",
+   "lists": [
+    "chinese_east"
+   ]
+  },
+  {
+   "tabelog": "1063138",
+   "name": "焼鳥 そると",
+   "area": "西１５丁目駅",
+   "region": "A0101",
+   "lists": [
+    "yakitori_east"
+   ]
+  },
+  {
+   "tabelog": "1063472",
+   "name": "meli melo",
+   "area": "狸小路駅",
+   "region": "A0101",
+   "lists": [
+    "french_east"
+   ]
+  },
+  {
+   "tabelog": "1063629",
+   "name": "みち草バザール",
+   "area": "西線６条駅",
+   "region": "A0101",
+   "lists": [
+    "asia_ethnic_east"
+   ]
+  },
+  {
+   "tabelog": "1063675",
+   "name": "Hot Spice Shop Hood Dog",
+   "area": "豊水すすきの駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1063705",
+   "name": "札幌 Fuji屋",
+   "area": "東区役所前駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1063971",
+   "name": "モリエール モンターニュ",
+   "area": "虻田郡倶知安町",
+   "region": "A0106",
+   "lists": [
+    "french_east"
+   ]
+  },
+  {
+   "tabelog": "1064076",
+   "name": "スペイン料理BOQUERIA",
+   "area": "資生館小学校前駅",
+   "region": "A0101",
+   "lists": [
+    "spanish"
+   ]
+  },
+  {
+   "tabelog": "1064202",
+   "name": "パルコ フィエラ",
+   "area": "稲穂駅",
+   "region": "A0101",
+   "lists": [
+    "italian_east"
+   ]
+  },
+  {
+   "tabelog": "1064256",
+   "name": "ミルクスタンド 北海道興農社",
+   "area": "千歳市",
+   "region": "A0107",
+   "lists": [
+    "ice_gelato"
+   ]
+  },
+  {
+   "tabelog": "1064448",
+   "name": "スープカレー トレジャー",
+   "area": "狸小路駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1064481",
+   "name": "マリヨンヌ",
+   "area": "帯広市",
+   "region": "A0111",
+   "lists": [
+    "french_east"
+   ]
+  },
+  {
+   "tabelog": "1064822",
+   "name": "フェネトレ",
+   "area": "標津郡中標津町",
+   "region": "A0112",
+   "lists": [
+    "french_east"
+   ]
+  },
+  {
+   "tabelog": "1064856",
+   "name": "ル・ミュゼ・イデア",
+   "area": "札幌市中央区",
+   "region": "A0101",
+   "lists": [
+    "french_east"
+   ]
+  },
+  {
+   "tabelog": "1064968",
+   "name": "スープカレー スアゲ4",
+   "area": "さっぽろ（札幌市営）駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1065131",
+   "name": "メゾン フジヤ ハコダテ",
+   "area": "函館市",
+   "region": "A0105",
+   "lists": [
+    "french_east"
+   ]
+  },
+  {
+   "tabelog": "1065227",
+   "name": "RAMEN ROOM 18",
+   "area": "函館市",
+   "region": "A0105",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1065304",
+   "name": "イン カリー",
+   "area": "琴似（札幌市営）駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1065366",
+   "name": "炭火焼肉 肉刺し にく式 南郷18丁目店",
+   "area": "南郷１８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "yakiniku_east"
+   ]
+  },
+  {
+   "tabelog": "1065828",
+   "name": "Yoichi LOOP",
+   "area": "余市郡余市町",
+   "region": "A0106",
+   "lists": [
+    "creative_innovative"
+   ]
+  },
+  {
+   "tabelog": "1065867",
+   "name": "弐ノ蔵",
+   "area": "円山公園駅",
+   "region": "A0101",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1066208",
+   "name": "か～るま～る",
+   "area": "白石（ＪＲ北海道）駅",
+   "region": "A0101",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1066732",
+   "name": "鶏白湯そば 燠",
+   "area": "菊水駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1067374",
+   "name": "天ぷら成",
+   "area": "すすきの（市電）駅",
+   "region": "A0101",
+   "lists": [
+    "tempura"
+   ]
+  },
+  {
+   "tabelog": "1067548",
+   "name": "麺処まるは BEYOND",
+   "area": "南平岸駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1067801",
+   "name": "炭火焼肉 焼きしゃぶ にく式 琴似店",
+   "area": "琴似（札幌市営）駅",
+   "region": "A0101",
+   "lists": [
+    "yakiniku_east"
+   ]
+  },
+  {
+   "tabelog": "1068431",
+   "name": "焼肉 グルマンズいとう",
+   "area": "すすきの（市営）駅",
+   "region": "A0101",
+   "lists": [
+    "yakiniku_east"
+   ]
+  },
+  {
+   "tabelog": "1068608",
+   "name": "焼肉ホルモン 風土.",
+   "area": "すすきの（市電）駅",
+   "region": "A0101",
+   "lists": [
+    "yakiniku_east"
+   ]
+  },
+  {
+   "tabelog": "1069008",
+   "name": "麺処 玖",
+   "area": "南郷７丁目駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1069358",
+   "name": "斗香庵 SHINKOTONI",
+   "area": "札幌市北区",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1069655",
+   "name": "スープカレー GARAKU 千歳店",
+   "area": "千歳市",
+   "region": "A0107",
+   "lists": [
+    "curry_east"
+   ]
+  },
+  {
+   "tabelog": "1069668",
+   "name": "やまさ和",
+   "area": "中央区役所前駅",
+   "region": "A0101",
+   "lists": [
+    "toriryori"
+   ]
+  },
+  {
+   "tabelog": "1069943",
+   "name": "北海道焼肉 北うし",
+   "area": "焼肉 北うし",
+   "region": "A0101",
+   "lists": [
+    "yakiniku_east"
+   ]
+  },
+  {
+   "tabelog": "1070050",
+   "name": "支那そば 鋳",
+   "area": "円山公園駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1070261",
+   "name": "麺 鍾馗",
+   "area": "北２４条駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1070319",
+   "name": "鉄板焼 漆",
+   "area": "すすきの（市営）駅",
+   "region": "A0101",
+   "lists": [
+    "steak_east"
+   ]
+  },
+  {
+   "tabelog": "1070618",
+   "name": "洋食コノヨシ 清田区北野店",
+   "area": "南郷１８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "yoshoku_east"
+   ]
+  },
+  {
+   "tabelog": "1070763",
+   "name": "焼鳥 ひげぼうず",
+   "area": "資生館小学校前駅",
+   "region": "A0101",
+   "lists": [
+    "yakitori_east"
+   ]
+  },
+  {
+   "tabelog": "1071005",
+   "name": "道産羊肉割烹 ラムぴりか",
+   "area": "豊水すすきの駅",
+   "region": "A0101",
+   "lists": [
+    "sukiyaki_shabushabu"
+   ]
+  },
+  {
+   "tabelog": "1071538",
+   "name": "バル ESTARICO",
+   "area": "すすきの（市営）駅",
+   "region": "A0101",
+   "lists": [
+    "spanish"
+   ]
+  },
+  {
+   "tabelog": "1071934",
+   "name": "鮨 草平",
+   "area": "円山公園駅",
+   "region": "A0101",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1072351",
+   "name": "local Chinese food シーファン",
+   "area": "資生館小学校前駅",
+   "region": "A0101",
+   "lists": [
+    "chinese_east"
+   ]
+  },
+  {
+   "tabelog": "1073214",
+   "name": "すし宮川",
+   "area": "西２８丁目駅",
+   "region": "A0101",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1073448",
+   "name": "鮨 しょう太",
+   "area": "大通駅",
+   "region": "A0101",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1073555",
+   "name": "すし 開",
+   "area": "円山公園駅",
+   "region": "A0101",
+   "lists": [
+    "sushi_east"
+   ]
+  },
+  {
+   "tabelog": "1073561",
+   "name": "旬菜旬魚 たじま",
+   "area": "函館市",
+   "region": "A0105",
+   "lists": [
+    "izakaya_east"
+   ]
+  },
+  {
+   "tabelog": "1073732",
+   "name": "NOUILLES JAPONAISE とくいち",
+   "area": "二十四軒駅",
+   "region": "A0101",
+   "lists": [
+    "ramen_hokkaido"
+   ]
+  },
+  {
+   "tabelog": "1073906",
+   "name": "ムーガタ専門店 サワディー",
+   "area": "豊水すすきの駅",
+   "region": "A0101",
+   "lists": [
+    "asia_ethnic_east"
+   ]
+  },
+  {
+   "tabelog": "1073958",
+   "name": "うに専門店 世壱屋 函館朝市店",
+   "area": "函館市",
+   "region": "A0105",
+   "lists": [
+    "shokudo"
+   ]
+  },
+  {
+   "tabelog": "1074020",
+   "name": "Qmin",
+   "area": "中島公園駅",
+   "region": "A0101",
+   "lists": [
+    "asia_ethnic_east"
+   ]
+  },
+  {
+   "tabelog": "1075214",
+   "name": "薄野 肉海鮮炉端 芯々",
+   "area": "すすきの（市電）駅",
+   "region": "A0101",
+   "lists": [
+    "izakaya_east"
+   ]
+  },
+  {
+   "tabelog": "1075368",
+   "name": "コルツ",
+   "area": "函館市",
+   "region": "A0105",
+   "lists": [
+    "italian_east"
+   ]
+  },
+  {
+   "tabelog": "1076206",
+   "name": "灯",
+   "area": "すすきの（市電）駅",
+   "region": "A0101",
+   "lists": [
+    "izakaya_east"
+   ]
+  },
+  {
+   "tabelog": "1077075",
+   "name": "すすきの焼肉きらく",
+   "area": "東本願寺前駅",
+   "region": "A0101",
+   "lists": [
+    "yakiniku_east"
+   ]
+  },
+  {
+   "tabelog": "1077658",
+   "name": "炭火焼肉 にく式 すすきの店",
+   "area": "すすきの（市電）駅",
+   "region": "A0101",
+   "lists": [
+    "yakiniku_east"
+   ]
+  },
+  {
+   "tabelog": "1079755",
+   "name": "羊と饂飩",
+   "area": "すすきの（市営）駅",
+   "region": "A0101",
+   "lists": [
+    "sukiyaki_shabushabu"
+   ]
+  },
+  {
+   "tabelog": "1080758",
+   "name": "MAKIBI YUI",
+   "area": "豊水すすきの駅",
+   "region": "A0101",
+   "lists": [
+    "izakaya_east"
+   ]
+  },
+  {
+   "tabelog": "1082667",
+   "name": "焼肉 神楽 すすきの本店",
+   "area": "すすきの（市電）駅",
+   "region": "A0101",
+   "lists": [
+    "yakiniku_east"
+   ]
+  },
+  {
+   "tabelog": "1083734",
+   "name": "焼肉処 肉八クロベ",
+   "area": "新札幌駅",
+   "region": "A0101",
+   "lists": [
+    "yakiniku_east"
+   ]
+  }
+ ]
+}
