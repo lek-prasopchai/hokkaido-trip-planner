@@ -13,7 +13,7 @@ const rvTxt = (n) => n >= 1000 ? `${+(n / 1000).toFixed(n < 10000 ? 1 : 0)}k` : 
 const gmTxt = (p) => p.rv ? `${p.gr ? "★" + p.gr.toFixed(1) + " · " : ""}${rvTxt(p.rv)} รีวิว` : "";
 // ขั้นรีวิว 1–5 ใช้ร่วมกัน: สี/ขนาดหมุดแผนที่ คำอธิบายสัญลักษณ์ และตัวกรอง (ตัดให้แต่ละขั้นมีจำนวนที่พอๆ กัน)
 const RV_CUT = [100, 500, 2000, 5000];
-const RV_C = ["#a8a29e", "#5aa9d6", "#2c6e9b", "#7b4fb5", "#c8374a"];
+const RV_C = ["#8a847f", "#5aa9d6", "#2c6e9b", "#7b4fb5", "#c8374a"];
 const rvLbl = (i) => i ? `${RV_CUT[i - 1].toLocaleString()}+` : `&lt;${RV_CUT[0]}`; // i = ขั้น - 1
 const rvTier = (p) => 1 + RV_CUT.filter((n) => (p.rv || 0) >= n).length;
 const llUrl = (p) => `https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lng}`;
