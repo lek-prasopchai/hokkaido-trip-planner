@@ -29,8 +29,8 @@ const reviewLinks = (p) => {
 
 const rvBadge = (p) => p.rv ? ` <span class="badge b-mute" title="Google Maps (ดึงไว้ พ.ย. 2026)">${gmTxt(p)}</span>` : "";
 const hyBadge = (p) => p.hyaku ? ` <span class="badge b-info" title="ติดรายชื่อ Tabelog 百名店 ปี ${p.hyaku}">百名店 ${p.hyaku}</span>` : "";
-// ร้านอาหาร/คาเฟ่รายร้านที่รีวิว Google ไม่ถึง 1,000 (ไม่ใช่ตลาด/ย่าน)
-const isEatery = (p) => (p.rv || 0) < 1000 && /^(อาหาร|คาเฟ่)/.test(p.type);
+// ร้านอาหาร/คาเฟ่รายร้านที่รีวิว Google ไม่ถึง 1,000 (ไม่ใช่ตลาด/ย่าน) ยกเว้นร้าน 百名店 ที่แสดงเสมอ
+const isEatery = (p) => !p.hyaku && (p.rv || 0) < 1000 && /^(อาหาร|คาเฟ่)/.test(p.type);
 const PlacesView = {
   M: null, lim: 30, f: { region: "", tag: "", rvOff: "", q: "", season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, hyaku: false, sort: "rv" },
   F0: { region: "", tag: "", rvOff: "", season: "trip", transit: false, free: false, inplan: false, wish: false, evening: false, eat: false, hyaku: false, sort: "rv" },
@@ -49,7 +49,8 @@ const PlacesView = {
         <p class="lead">${PLACES.length} สถานที่ทั่วฮอกไกโด · เวลาและราคาเป็นค่าประมาณ</p></div>
       <div class="split"><div class="split-top filters no-print">
         <div class="f-search"><input type="search" class="f-q" aria-label="ค้นหาสถานที่" placeholder="ค้นหาชื่อ ไทย/อังกฤษ/ญี่ปุ่น..." data-f="q" value="${esc(f.q)}">
-        <label class="chk f-eat" style="margin-top:6px"><input type="checkbox" data-f="eat" ${f.eat ? "checked" : ""}> แสดงร้านอาหาร/คาเฟ่ (${PLACES.filter(isEatery).length} ร้าน)</label></div>
+        <div class="row" style="margin-top:6px;gap:4px 14px"><label class="chk"><input type="checkbox" data-f="eat" ${f.eat ? "checked" : ""}> ร้านอาหารทั้งหมด (+${PLACES.filter(isEatery).length})</label>
+        <label class="chk" title="ร้านที่ติดรายชื่อ Tabelog 百名店"><input type="checkbox" data-f="hyaku" ${f.hyaku ? "checked" : ""}> เฉพาะ 百名店 (${PLACES.filter((p) => p.hyaku).length})</label></div></div>
         <details class="f-more" ${foldAttr("pfilter")}><summary>${I("sliders-horizontal")} ตัวกรอง <span class="badge b-info f-n" ${nOn ? "" : "hidden"}>${nOn}</span></summary><div class="row">
         <select data-f="season"><option value="trip" ${f.season === "trip" ? "selected" : ""}>ช่วงทริป (${tripMonths().map((m) => MO[m - 1]).join(", ")})</option><option value="" ${!f.season ? "selected" : ""}>ทุกฤดู</option>
           ${Object.entries(SEASONS).map(([k, s]) => `<option value="${k}" ${f.season === k ? "selected" : ""}>${s.name}</option>`).join("")}</select>
@@ -62,7 +63,6 @@ const PlacesView = {
         <label class="chk"><input type="checkbox" data-f="transit" ${f.transit ? "checked" : ""}> ไปด้วยรถไฟ/บัสได้</label>
         <label class="chk"><input type="checkbox" data-f="free" ${f.free ? "checked" : ""}> ฟรี</label>
         <label class="chk"><input type="checkbox" data-f="evening" ${f.evening ? "checked" : ""}> เที่ยวตอนค่ำได้</label>
-        <label class="chk"><input type="checkbox" data-f="hyaku" ${f.hyaku ? "checked" : ""}> ร้าน 百名店 Tabelog (${PLACES.filter((p) => p.hyaku).length})</label>
         ${S.plan ? `<label class="chk"><input type="checkbox" data-f="inplan" ${f.inplan ? "checked" : ""}> เฉพาะที่อยู่ในแผน</label>
         <label class="chk"><input type="checkbox" data-f="wish" ${f.wish ? "checked" : ""}> เฉพาะที่อยากไป</label>` : ""}
         <button class="linkbtn" data-freset ${nOn ? "" : "hidden"}>ล้างตัวกรอง</button></div></details></div>
@@ -86,7 +86,7 @@ const PlacesView = {
       && (!q || [p.name, p.area, p.ja, p.en, p.type, p.highlight, p.kw].join(" ").toLowerCase().includes(q))
       && (!ms || ms.some((m) => monthsOf(p).includes(m)))
       && (!f.transit || ["ok", "limited", "tour"].includes(access(p))) && (!f.free || !p.feeYen) && (!f.inplan || plan[p.id]) && (!f.wish || S.plan?.wish.includes(p.id)) && (!f.evening || p.evening) && (!f.hyaku || p.hyaku)
-      && (f.eat || f.hyaku || !isEatery(p) || q || f.tag === "food" || plan[p.id] || S.plan?.wish.includes(p.id))) // ร้านอาหารซ่อนไว้ก่อน (เยอะมาก) ค้นชื่อ/เลือกความสนใจอาหาร/อยู่ในแผนแล้วยังเห็น
+      && (f.eat || !isEatery(p) || q || f.tag === "food" || plan[p.id] || S.plan?.wish.includes(p.id))) // ร้านอาหารซ่อนไว้ก่อน (เยอะมาก) ค้นชื่อ/เลือกความสนใจอาหาร/อยู่ในแผนแล้วยังเห็น
       .sort((a, b) => f.sort === "near" ? near(a) - near(b) : (b.rv || 0) - (a.rv || 0) || a.id - b.id);
   },
 
