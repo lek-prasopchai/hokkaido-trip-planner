@@ -437,20 +437,31 @@ button:focus-visible, summary:focus-visible, .legmode:focus-within { outline: 2p
 /* กดแล้วยุบลงเล็กน้อย ให้รู้ว่ากดติด */
 .btn:active:not(:disabled), .it-tools button:active:not(:disabled), .seg button:active { transform: translateY(1px); }
 .btn { transition: background-color .15s, border-color .15s, color .15s, transform .08s; }
-.rvchips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 6px; font-size: .875rem; }
 .rvchip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; }
 .rvchip[aria-pressed="false"] { opacity: .45; text-decoration: line-through; }
-/* ตัวกรองเปิด/ปิด (หน้าสถานที่): หัวข้อกว้างเท่ากันทุกแถว ปุ่มที่เปิดอยู่เป็นสีฟ้าเต็ม */
-.fchiprows { margin-top: 8px; }
-.fchiprows > .rvchips { margin-top: 0; }
-.fchiprows > .rvchips + .rvchips { margin-top: 6px; }
-/* จอกว้าง: กลุ่มปุ่มเรียงต่อกันในบรรทัด (หัวข้ออยู่หน้าปุ่ม) เต็มแล้วค่อยขึ้นบรรทัดใหม่ */
-@media (min-width: 900px) {
-  .fchiprows { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; }
-  .fchiprows > .rvchips + .rvchips { margin-top: 0; }
-  .fchiprows .fchips { flex: none; }
+/* ตัวกรองหน้าสถานที่: แถบค้นหา + ปุ่ม "ตัวกรอง" • กล่องตัวกรองเป็นตาราง หัวข้อซ้าย ตัวเลือกขวา • ป้ายตัวกรองที่เปิดอยู่ใต้แถบ */
+.f-bar { display: flex; gap: 8px; }
+.f-bar .f-q { flex: 1 1 auto; width: auto; min-width: 0; min-height: var(--ctl); }
+.f-tgl { flex: none; gap: 6px; }
+.f-tgl[aria-expanded="true"] { border-color: var(--ice); color: var(--ice); }
+.f-panel { margin-top: 8px; padding: 14px 16px; }
+.f-sel { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.f-sel select { width: 100%; min-width: 0; }
+.f-grid { display: grid; grid-template-columns: max-content 1fr; gap: 10px 18px; align-items: center; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+.f-l { font-size: .875rem; color: var(--mute); }
+.f-c { display: flex; flex-wrap: wrap; gap: 6px; font-size: .875rem; }
+.f-foot { display: flex; align-items: center; gap: 8px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+.f-active { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.f-active:empty, .f-panel:not([hidden]) + .f-active { display: none; }
+.f-pill { display: inline-flex; align-items: center; gap: 4px; background: var(--ice-soft); border-color: transparent; color: var(--ice); font-size: .8125rem; }
+.f-pill svg { width: 14px; height: 14px; }
+@media (max-width: 599px) {
+  .f-panel { padding: 12px; }
+  .f-sel { grid-template-columns: 1fr 1fr; }
+  .f-sel select[data-f="season"] { grid-column: 1 / -1; }
+  .f-grid { grid-template-columns: 1fr; gap: 6px; }
+  .f-c + .f-l { margin-top: 6px; }
 }
-.fchips { display: flex; flex-wrap: wrap; gap: 6px; flex: 1 1 0; min-width: 0; }
 .fchip[aria-pressed="true"] { background: var(--ice); border-color: var(--ice); color: var(--on); }
 .list-head .f-sort { width: auto; min-height: 30px; padding: 2px 28px 2px 10px; font-size: .8125rem; }
 .rvchip i.ring, .map-legend i.ring { display: inline-block; flex: none; width: 12px; height: 12px; border: 2.5px solid; border-radius: 50%; background: transparent; }
@@ -486,10 +497,6 @@ details.hubinfo[open] > summary { margin-bottom: 8px; }
   .summary .k:nth-child(even) { border-left: 1px solid var(--line); padding-left: 14px; }
   .summary .k:nth-child(n+3) { border-top: 1px solid var(--line); }
   .summary .k b { font-size: 1.1rem; }
-  /* ตัวกรองหลายแถวไม่ต้องลอยตาม: บังรายการครึ่งจอบนมือถือ */
-  .filters .row { gap: 6px; }
-  .filters select { flex: 1 1 calc(50% - 6px); min-width: 0; }
-  .filters input[type="search"] { flex: 1 1 100% !important; }
   .bt input { width: 84px !important; }
 }
 
@@ -668,13 +675,6 @@ input[type=checkbox], input[type=radio] { width: 16px; height: 16px; cursor: poi
 .card { border-radius: var(--r); }
 .sec-head { margin-bottom: 20px; }
 
-/* ตัวกรองสถานที่: จอกว้างให้ช่องเท่ากัน */
-@media (min-width: 900px) {
-  .filters .row > select { flex: 1 1 140px; min-width: 0; }
-  .filters .row > select[data-f="season"] { flex-basis: 190px; }
-  .filters .row > input[type=search] { flex: 2 1 240px !important; }
-}
-
 /* มือถือ */
 @media (max-width: 900px) {
   :root { --ctl: 44px; }
@@ -830,27 +830,12 @@ html.has-map-full, html.has-map-full body { overflow: hidden; }
 .fact > b { font-weight: 600; font-size: .9375rem; line-height: 1.45; }
 .d-more { margin: 4px 0 10px; }
 .d-links { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
-.filters .f-q { width: 100%; }
-.f-more { margin-top: 8px; }
-.f-more > summary { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; color: var(--ice); font-weight: 600; min-height: 36px; list-style: none; }
-.f-more > summary::-webkit-details-marker { display: none; }
-.f-more .row { margin-top: 6px; gap: 8px; }
-.f-more .row + .row { margin-top: 8px; }
-@media (min-width: 900px) {
-  .f-more > summary { display: none; }
-  .filters { display: grid; grid-template-columns: minmax(200px, 1.4fr) 5fr; gap: 0 8px; align-items: start; }
-  .filters .f-more { margin-top: 0; }
-  .filters .f-more .row:first-child { margin-top: 0; }
-}
 [hidden] { display: none !important; }
 @media (max-width: 380px) { .fact { grid-template-columns: 7.5em 1fr; } }
 
 /* ---------- รอบแก้: หัววันแตะพับ, รูปการ์ดเต็มช่อง, ตัวกรองแนวเดียว, คำอธิบายงบเล็กกว่าหัวข้อ ---------- */
 .pcard .ph { margin: -18px -20px 8px; }
 @media (max-width: 900px) { .pcard .ph { margin: -14px -16px 8px; } }
-.filters .f-q { min-height: var(--ctl); }
-.f-more > .row:first-of-type { margin-top: 0; }
-@media (min-width: 900px) { .filters { align-items: start; } .f-more > .row:first-of-type { margin-top: 0; } }
 .blist .bhint { font-size: .875rem; color: var(--mute); margin-top: 2px; line-height: 1.5; }
 .blist .bx b { font-size: 1rem; }
 @media screen and (max-width: 899px) {
@@ -1028,7 +1013,6 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
     content: ""; position: absolute;
     top: min(0px, calc(50% - 22px)); bottom: min(0px, calc(50% - 22px));
     left: min(0px, calc(50% - 22px)); right: min(0px, calc(50% - 22px)); }
-  .f-more > summary { min-height: 44px; } /* ตัวกรองเปิดแล้วช่องเลือกอยู่ชิดใต้: สูงจริง 44 แทนการขยายพื้นที่กดทับช่อง */
   .day-tools textarea { position: relative; z-index: 1; } /* ช่องโน้ตอยู่ติดปุ่มจัดการวัน: พื้นที่กดของปุ่มต้องไม่ทับช่องพิมพ์ */
   /* ปุ่มกลุ่ม: ไม่ตัดขอบ ให้พื้นที่กดล้นออกได้ ใช้มุมโค้งที่ปุ่มหัว/ท้ายแทน */
   .seg { overflow: visible; }
@@ -1132,8 +1116,6 @@ input[type="time"]::-webkit-date-and-time-value, input[type="date"]::-webkit-dat
 }
 /* จอแคบ: ป้ายขึ้นบรรทัดเอง ปุ่มสีห้าปุ่มพอดีบรรทัดเดียว */
 @media (max-width: 599px) {
-  .rvchips { gap: 4px; }
-  .rvchips > .mute { flex-basis: 100%; }
   .list-head { gap: 6px; }
   .list-head .f-sort { padding-right: 22px; }
   .rvchip { flex: 1 1 auto; justify-content: center; gap: 4px; padding: 4px 2px; font-size: .8125rem; white-space: nowrap; }
