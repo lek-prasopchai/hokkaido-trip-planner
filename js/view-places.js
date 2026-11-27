@@ -64,7 +64,7 @@ const PlacesView = {
           ${fRow("ร้านอาหาร", [["eat", `ทั้งหมด (+${PLACES.filter(isEatery).length})`], ["hyaku", `เฉพาะ 百名店 (${PLACES.filter((p) => p.hyaku).length})`]])}
           ${fRow("เงื่อนไข", [["transit"], ["free"], ["evening"]])}
           ${S.plan ? fRow("ของฉัน", [["inplan"], ["wish"]]) : ""}</div>
-          <div class="f-foot"><button class="linkbtn" data-freset ${nOn ? "" : "hidden"}>ล้างตัวกรองทั้งหมด</button><span class="spacer"></span><button class="btn primary small" data-ftgl>ดูผล <span class="f-go"></span></button></div></div>
+          <div class="f-foot"><button class="linkbtn" data-freset ${nOn ? "" : "hidden"}>ล้างตัวกรองทั้งหมด</button><span class="spacer"></span><button class="btn primary small" data-ftgl>เสร็จ</button></div></div>
         <div class="f-active">${this.pills()}</div></div>
       <aside class="split-side"><details class="card mapbox fold-card" ${foldAttr("pmap")} id="pMapCard"><summary><h2>${I("map")} แผนที่</h2></summary><div class="map" id="placesMap"></div>
       <div class="map-legend">${Object.entries(TAG_ICON).map(([k, v]) => `<span>${I(v)} ${INTEREST[k]}</span>`).join("")}
@@ -116,7 +116,6 @@ const PlacesView = {
 
   list(refit = false) {
     const L = this.filtered(), plan = inPlanMap();
-    $(".f-go").textContent = `(${L.length} ที่)`;
     const rows = L.slice(0, this.lim);
     $("#placeList").innerHTML = `${viewToggle(L.length + " ที่", `<select data-f="sort" class="f-sort" aria-label="เรียงลำดับ"><option value="rv" ${this.f.sort === "rv" ? "selected" : ""}>รีวิวเยอะสุด</option><option value="near" ${this.f.sort === "near" ? "selected" : ""}>ใกล้ที่พัก</option></select>`)}${listView()
       ? `<div class="card llist">${rows.map((p) => lrow(p, `data-detail="${p.id}"`, `${rvBadge(p)}${hyBadge(p)} ${esc(p.area)} • ${esc(p.dur)} • ${esc(p.fee)}`, plan[p.id])).join("")}</div>`
