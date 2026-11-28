@@ -72,6 +72,7 @@ window.PLACES = [
   "pop": "ดัง",
   "type": "จุดชมวิว",
   "tags": [
+   "city",
    "nature"
   ],
   "open": "≈9:00-22:00",
@@ -346,6 +347,7 @@ window.PLACES = [
   "pop": "ดัง",
   "type": "จุดชมวิว / กีฬา",
   "tags": [
+   "snow",
    "nature"
   ],
   "open": "≈9:00-17:00 (พ.ย.-เม.ย.) / 8:30-18:00 (เม.ย.-ต.ค.)",
@@ -517,6 +519,7 @@ window.PLACES = [
   "pop": "คนรู้จักน้อย",
   "type": "สวน / ศิลปะ",
   "tags": [
+   "nature",
    "city"
   ],
   "open": "สวนตลอดวัน / พีระมิดแก้ว 9:00-17:00",
@@ -2287,9 +2290,9 @@ window.PLACES = [
   "pop": "ดังมาก",
   "type": "ประวัติศาสตร์ / จุดชมวิว",
   "tags": [
+   "culture",
    "nature",
-   "city",
-   "culture"
+   "city"
   ],
   "open": "≈9:00-18:00",
   "closed": "-",
@@ -4417,6 +4420,7 @@ window.PLACES = [
   "pop": "ดัง",
   "type": "พิพิธภัณฑ์",
   "tags": [
+   "culture",
    "city",
    "nature"
   ],
@@ -4824,8 +4828,8 @@ window.PLACES = [
   "pop": "ดัง",
   "type": "จุดชมวิว / ประวัติศาสตร์",
   "tags": [
-   "city",
    "nature",
+   "city",
    "culture"
   ],
   "open": "≈9:00-17:00",
@@ -7575,6 +7579,7 @@ window.PLACES = [
   "pop": "คนรู้จักน้อย",
   "type": "พิพิธภัณฑ์",
   "tags": [
+   "culture",
    "city"
   ],
   "open": "≈9:00-17:00",
@@ -26690,6 +26695,7 @@ window.PLACES = [
   "pop": "คนรู้จักน้อย",
   "type": "สวน",
   "tags": [
+   "nature",
    "city"
   ],
   "open": "ตลอดเวลา",
@@ -26807,8 +26813,8 @@ window.PLACES = [
   "pop": "คนรู้จักน้อย",
   "type": "พิพิธภัณฑ์",
   "tags": [
-   "snow",
-   "culture"
+   "culture",
+   "snow"
   ],
   "open": "≈9:00-18:00, 9:30-17:00 (ตามฤดู/วัน)",
   "closed": "-",

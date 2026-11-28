@@ -10,6 +10,14 @@ const TILE_SOURCES = { // ตัวแรก = ค่าเริ่มต้น
   "แผนที่ญี่ปุ่น (ป้ายญี่ปุ่น)": ["https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png", '<a href="https://maps.gsi.go.jp/development/ichiran.html">地理院タイル</a>'],
 };
 const TAG_ICON = { festival: "party-popper", nature: "mountain-snow", flower: "flower", onsen: "bath", snow: "snowflake", food: "soup", city: "building-2", culture: "landmark", animals: "paw-print" };
+// แท็กหยาบเกินสำหรับไอคอน (ร้านแก้วเป็น culture, คาเฟ่เป็น food) เลยดู type ประกอบ
+function placeIcon(p) {
+  const t = p.type || "", k = p.tags[0];
+  if (/^(ช้อปปิ้ง|ตลาด)/.test(t) && k !== "festival") return "store";
+  if (k === "food") return /คาเฟ่/.test(t) ? "coffee" : /^โรงงาน/.test(t) ? "factory" : /^ฟาร์ม/.test(t) ? "tractor" : "soup";
+  if (k === "snow") return /^สกี/.test(t) ? "cable-car" : "snowflake";
+  return TAG_ICON[k] || "map-pin";
+}
 const MAPS = []; // แผนที่ทุกอันในหน้า ใช้ปรับขนาดใหม่เมื่อเปิดหน้านั้น
 
 function makeMap(el, { small = false } = {}) {
@@ -257,7 +265,7 @@ const TripMap = {
       if (fIso ? !inSeason(p, fIso) : !inSeason(p, iso) && !inSeason(p, addDays(iso, evals.length - 1))) continue;
       if (!segs.some(([a, b]) => segKm(p, a, b) <= NEAR_KM)) continue;
       const btn = fIso ? `PlanView.addTo(${p.id},${focus})">+ ใส่วันที่ ${focus + 1}` : `PlanView.quickAdd(${p.id})">+ เพิ่มเข้าแผน`;
-      mks.push(L.marker([p.lat, p.lng], { icon: pin(I(TAG_ICON[p.tags[0]] || "map-pin"), "#8a96a3", "emo near") })
+      mks.push(L.marker([p.lat, p.lng], { icon: pin(I(placeIcon(p)), "#8a96a3", "emo near") })
         .bindTooltip(esc(pname(p.id)), { direction: "top", offset: [0, -10] })
         .bindPopup(() => placePopup(p, `<button class="btn small" style="margin:4px 0" onclick="${btn}</button>`), { maxWidth: 260 }));
     }
@@ -300,7 +308,7 @@ const TripMap = {
     for (const p of list) {
       if (!p.lat) continue;
       const border = inPlan.has(p.id) ? "#2f8a57" : wish.has(p.id) ? WISH_C : RV_C[rvTier(p) - 1];
-      const ic = I(TAG_ICON[p.tags[0]] || "map-pin"), st = rvTier(p);
+      const ic = I(placeIcon(p)), st = rvTier(p);
       M.markers[p.id] = L.marker([p.lat, p.lng], { icon: pin(ic, border, "emo s" + st), zIndexOffset: st * 100 })
         .bindPopup(placePopup(p, S.plan && !inPlan.has(p.id) ? `<div class="pop-add">${addSelect(p.id)}</div>` : ""), { maxWidth: pw, minWidth: Math.min(200, pw), autoPanPaddingTopLeft: L.point(52, 58), autoPanPaddingBottomRight: L.point(10, 50) }).addTo(group);
       M.bounds.push([p.lat, p.lng]);

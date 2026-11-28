@@ -104,7 +104,7 @@ const PlacesView = {
   card(p, plan) {
     const n = placeImgs(p).length;
     return `<div class="card pcard ${plan[p.id] ? "in" : ""}" id="pl-${p.id}">
-      <div class="ph" ${p.img ? `data-lb="${p.id}"` : ""}>${!p.img && p.lat ? miniMap(p) : p.img ? `<img src="${p.img}" alt="${esc(p.name)}" loading="lazy">${n > 1 ? `<span class="cnt">${I("camera")} ${n}</span>` : ""}` : I(TAG_ICON[p.tags[0]] || "map-pin")}<span class="sea">${seasonBadges(p)}</span></div>
+      <div class="ph" ${p.img ? `data-lb="${p.id}"` : ""}>${!p.img && p.lat ? miniMap(p) : p.img ? `<img src="${p.img}" alt="${esc(p.name)}" loading="lazy">${n > 1 ? `<span class="cnt">${I("camera")} ${n}</span>` : ""}` : I(placeIcon(p))}<span class="sea">${seasonBadges(p)}</span></div>
       <div class="row" style="gap:6px"><span class="badge b-mute">${esc(p.type)}</span>${rvBadge(p)}${hyBadge(p)}
         ${p.season ? `<span class="badge b-fest">เฉพาะ ${esc(p.season.join("-"))}</span>` : monthsOf(p).length < 12 ? `<span class="badge b-warn">${monthRange(monthsOf(p))}</span>` : p.peak ? `<span class="badge b-mute">ดีสุด ${monthRange(p.peak)}</span>` : ""}</div>
       <h4 data-detail="${p.id}">${nameHtml(p)}</h4>
