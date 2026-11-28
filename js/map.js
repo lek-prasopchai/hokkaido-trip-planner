@@ -231,14 +231,15 @@ const TripMap = {
     M.layer.clearLayers();
     M.bounds = [];
     const inPlan = new Set(evals.flatMap((e) => e.stops));
-    if (focus === null) {
-      const iso = evals[0]?.iso || S.trip.start;
-      for (const p of PLACES) {
-        if (!inSeason(p, iso) && !inSeason(p, addDays(iso, evals.length - 1))) continue;
-        if (!p.lat || p.gone || inPlan.has(p.id)) continue;
-        L.circleMarker([p.lat, p.lng], { radius: 4, color: "#fff", weight: 1, fillColor: "#7d8996", fillOpacity: 0.8 })
-          .bindPopup(placePopup(p, `<button class="btn small" style="margin:4px 0" onclick="PlanView.quickAdd(${p.id})">+ เพิ่มเข้าแผน</button>`), { maxWidth: 260 }).addTo(M.layer);
-      }
+    // ที่อื่นที่ยังไม่อยู่ในแผน (จุดเทา): ทั้งทริป = ปุ่มหาวันให้เอง • ดูรายวัน = เปิดวันนั้น + ปุ่มใส่ท้ายวันนั้น
+    const iso = evals[0]?.iso || S.trip.start;
+    const fIso = focus === null ? null : evals[focus]?.iso || addDays(iso, focus);
+    for (const p of PLACES) {
+      if (fIso ? !inSeason(p, fIso) : !inSeason(p, iso) && !inSeason(p, addDays(iso, evals.length - 1))) continue;
+      if (!p.lat || p.gone || inPlan.has(p.id)) continue;
+      const btn = fIso ? `PlanView.addTo(${p.id},${focus})">+ ใส่วันที่ ${focus + 1}` : `PlanView.quickAdd(${p.id})">+ เพิ่มเข้าแผน`;
+      L.circleMarker([p.lat, p.lng], { radius: 4, color: "#fff", weight: 1, fillColor: "#7d8996", fillOpacity: 0.8 })
+        .bindPopup(placePopup(p, `<button class="btn small" style="margin:4px 0" onclick="${btn}</button>`), { maxWidth: 260 }).addTo(M.layer);
     }
     evals.forEach((e) => {
       const on = focus === null || focus === e.i;
