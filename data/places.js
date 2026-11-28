@@ -126,8 +126,8 @@ window.PLACES = [
   "pop": "ดังมาก",
   "type": "ประวัติศาสตร์",
   "tags": [
-   "city",
-   "culture"
+   "culture",
+   "city"
   ],
   "open": "8:45-17:10",
   "closed": "1-3 ม.ค.",
@@ -634,6 +634,7 @@ window.PLACES = [
   "pop": "คนรู้จักน้อย",
   "type": "พิพิธภัณฑ์กลางแจ้ง",
   "tags": [
+   "culture",
    "city"
   ],
   "open": "≈9:00-16:30 (ต.ค.-เม.ย.) / 9:00-17:00 (พ.ค.-ก.ย.)",
@@ -1524,6 +1525,7 @@ window.PLACES = [
   "pop": "คนรู้จักน้อย",
   "type": "พิพิธภัณฑ์",
   "tags": [
+   "animals",
    "city"
   ],
   "open": "≈9:00-17:00",
@@ -1728,8 +1730,8 @@ window.PLACES = [
   "pop": "ดัง",
   "type": "พิพิธภัณฑ์ / วัฒนธรรม",
   "tags": [
-   "city",
-   "culture"
+   "culture",
+   "city"
   ],
   "open": "≈9:00-17:00",
   "closed": "จันทร์",
@@ -2632,6 +2634,7 @@ window.PLACES = [
   "pop": "คนรู้จักน้อย",
   "type": "พิพิธภัณฑ์",
   "tags": [
+   "culture",
    "city"
   ],
   "open": "≈9:00-17:00",
@@ -3858,8 +3861,8 @@ window.PLACES = [
   "pop": "คนรู้จักน้อย",
   "type": "สัตว์ป่า / ถ่ายรูป",
   "tags": [
-   "nature",
-   "animals"
+   "animals",
+   "nature"
   ],
   "open": "พระอาทิตย์ขึ้น",
   "closed": "-",
@@ -3913,8 +3916,8 @@ window.PLACES = [
   "pop": "ดัง",
   "type": "สัตว์ป่า / พิพิธภัณฑ์",
   "tags": [
-   "city",
-   "animals"
+   "animals",
+   "city"
   ],
   "open": "≈9:00-17:00",
   "closed": "-",
@@ -4355,6 +4358,7 @@ window.PLACES = [
   "pop": "ดัง",
   "type": "พิพิธภัณฑ์",
   "tags": [
+   "culture",
    "city"
   ],
   "open": "≈9:00-17:00",
@@ -4707,8 +4711,8 @@ window.PLACES = [
   "pop": "คนรู้จักน้อย",
   "type": "ล่องเรือ สัตว์ป่า",
   "tags": [
-   "nature",
-   "animals"
+   "animals",
+   "nature"
   ],
   "open": "เช้า ก.พ.-มี.ค. (ตรวจ)",
   "closed": "ขึ้นกับน้ำแข็ง/อากาศ",
@@ -5265,8 +5269,8 @@ window.PLACES = [
   "pop": "ดัง",
   "type": "ประวัติศาสตร์",
   "tags": [
-   "city",
-   "culture"
+   "culture",
+   "city"
   ],
   "open": "≈9:00-16:00 (ธ.ค.-ก.พ.) / 8:30-17:00 (พ.ค.-ก.ย.)",
   "closed": "29 ธ.ค.-2 ม.ค.",
@@ -5562,8 +5566,8 @@ window.PLACES = [
   "pop": "คนรู้จักน้อย",
   "type": "วัฒนธรรม",
   "tags": [
-   "city",
-   "culture"
+   "culture",
+   "city"
   ],
   "open": "≈20:00-21:30 (รอบ 20:00 และ 21:00 • เสาร์-อาทิตย์มีรอบ 15:00)",
   "closed": "-",
@@ -5776,10 +5780,10 @@ window.PLACES = [
   "pop": "ดังมาก",
   "type": "ศิลปะ / ศาสนา",
   "tags": [
+   "culture",
    "city",
    "nature",
-   "flower",
-   "culture"
+   "flower"
   ],
   "open": "≈9:00-16:00 (หน้าหนาว) / ≈9:00-17:00",
   "closed": "-",
@@ -5899,8 +5903,8 @@ window.PLACES = [
   "pop": "ดัง",
   "type": "ประวัติศาสตร์",
   "tags": [
-   "city",
-   "culture"
+   "culture",
+   "city"
   ],
   "open": "≈8:45-18:00",
   "closed": "ตรวจ",
@@ -5958,6 +5962,7 @@ window.PLACES = [
   "pop": "คนรู้จักน้อย",
   "type": "ศิลปะ / สวน",
   "tags": [
+   "culture",
    "city",
    "nature"
   ],
@@ -6522,6 +6527,7 @@ window.PLACES = [
   "pop": "คนรู้จักน้อย",
   "type": "พิพิธภัณฑ์",
   "tags": [
+   "culture",
    "city"
   ],
   "open": "≈10:00-17:00 (ธ.ค.-มี.ค.) / 9:30-17:00 (เม.ย.-พ.ย.)",
@@ -6805,8 +6811,8 @@ window.PLACES = [
   "pop": "ดัง",
   "type": "สวนสนุก / วัฒนธรรม",
   "tags": [
-   "city",
-   "culture"
+   "culture",
+   "city"
   ],
   "open": "≈9:00-16:00",
   "closed": "-",
@@ -7026,9 +7032,9 @@ window.PLACES = [
   "pop": "ดัง",
   "type": "ประวัติศาสตร์ / ซากุระ",
   "tags": [
+   "culture",
    "city",
-   "flower",
-   "culture"
+   "flower"
   ],
   "open": "≈9:00-17:00 (เม.ย.-ธ.ค.)",
   "closed": "ปิด 11 ธ.ค.-10 เม.ย.",
@@ -7084,8 +7090,8 @@ window.PLACES = [
   "pop": "ดัง",
   "type": "ประวัติศาสตร์",
   "tags": [
-   "city",
-   "culture"
+   "culture",
+   "city"
   ],
   "open": "≈9:00-17:00 (พ.ย.-มี.ค.) / 9:00-18:00 (เม.ย.-ต.ค.)",
   "closed": "31 ธ.ค.-3 ม.ค.",
@@ -8299,8 +8305,8 @@ window.PLACES = [
   "pop": "ดัง",
   "type": "ล่องเรือ สัตว์ป่า",
   "tags": [
-   "nature",
-   "animals"
+   "animals",
+   "nature"
   ],
   "open": "≈ เม.ย.-ต.ค. หลายรอบต่อวัน",
   "closed": "-",
@@ -8598,8 +8604,8 @@ window.PLACES = [
   "pop": "คนรู้จักน้อย",
   "type": "ประวัติศาสตร์",
   "tags": [
-   "city",
-   "culture"
+   "culture",
+   "city"
   ],
   "open": "ตลอดเวลา",
   "closed": "-",
@@ -8917,6 +8923,7 @@ window.PLACES = [
   "pop": "คนรู้จักน้อย",
   "type": "พิพิธภัณฑ์ / ศิลปะ",
   "tags": [
+   "culture",
    "city",
    "nature"
   ],
@@ -9311,6 +9318,7 @@ window.PLACES = [
   "pop": "คนรู้จักน้อย",
   "type": "พิพิธภัณฑ์",
   "tags": [
+   "culture",
    "city"
   ],
   "open": "≈9:30-16:30 (ต.ค.-เม.ย.) / 9:30-17:00 (พ.ค.-ก.ย.)",
@@ -9656,8 +9664,8 @@ window.PLACES = [
   "pop": "คนรู้จักน้อย",
   "type": "ประวัติศาสตร์",
   "tags": [
-   "city",
-   "culture"
+   "culture",
+   "city"
   ],
   "open": "≈9:00-16:00 (พ.ย.-มี.ค.) / 9:00-17:00 (เม.ย.-ต.ค.)",
   "closed": "1-7 ม.ค.",
@@ -9727,6 +9735,7 @@ window.PLACES = [
   "pop": "คนรู้จักน้อย",
   "type": "พิพิธภัณฑ์",
   "tags": [
+   "culture",
    "city"
   ],
   "open": "≈9:30-17:00",
@@ -9785,8 +9794,8 @@ window.PLACES = [
   "pop": "คนรู้จักน้อย",
   "type": "ประวัติศาสตร์ / ถ่ายรูป",
   "tags": [
-   "city",
-   "culture"
+   "culture",
+   "city"
   ],
   "open": "ตลอดเวลา",
   "closed": "-",
@@ -10407,9 +10416,9 @@ window.PLACES = [
   "pop": "ดัง",
   "type": "ประวัติศาสตร์ / คาเฟ่",
   "tags": [
+   "culture",
    "city",
-   "food",
-   "culture"
+   "food"
   ],
   "open": "≈9:00-17:00 (พ.ย.-มี.ค.) / 9:00-19:00 (เม.ย.-ต.ค.)",
   "closed": "31 ธ.ค.-1 ม.ค.",
@@ -10469,8 +10478,8 @@ window.PLACES = [
   "pop": "ดัง",
   "type": "ประวัติศาสตร์",
   "tags": [
-   "city",
-   "culture"
+   "culture",
+   "city"
   ],
   "open": "≈9:00-17:00 (พ.ย.-มี.ค.) / 9:00-18:00 (เม.ย.-ต.ค.)",
   "closed": "31 ธ.ค.-1 ม.ค.",
@@ -10637,8 +10646,8 @@ window.PLACES = [
   "pop": "ดัง",
   "type": "ประวัติศาสตร์ / ถ่ายรูป",
   "tags": [
-   "city",
-   "culture"
+   "culture",
+   "city"
   ],
   "open": "ตลอดเวลา",
   "closed": "-",
@@ -13658,8 +13667,8 @@ window.PLACES = [
   "pop": "ดัง",
   "type": "พิพิธภัณฑ์",
   "tags": [
-   "city",
-   "animals"
+   "animals",
+   "city"
   ],
   "open": "≈10:00–22:00 (เข้าก่อนปิด 1 ชม.)",
   "closed": "-",

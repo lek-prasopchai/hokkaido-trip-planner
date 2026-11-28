@@ -9,7 +9,7 @@ const TILE_SOURCES = { // ตัวแรก = ค่าเริ่มต้น
   "ภาพถ่ายดาวเทียม": ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", "Imagery &copy; Esri"],
   "แผนที่ญี่ปุ่น (ป้ายญี่ปุ่น)": ["https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png", '<a href="https://maps.gsi.go.jp/development/ichiran.html">地理院タイル</a>'],
 };
-const TAG_ICON = { festival: "party-popper", nature: "mountain-snow", flower: "flower", onsen: "bath", snow: "cable-car", food: "soup", city: "building-2", culture: "landmark", animals: "paw-print" };
+const TAG_ICON = { festival: "party-popper", nature: "mountain-snow", flower: "flower", onsen: "bath", snow: "snowflake", food: "soup", city: "building-2", culture: "landmark", animals: "paw-print" };
 const MAPS = []; // แผนที่ทุกอันในหน้า ใช้ปรับขนาดใหม่เมื่อเปิดหน้านั้น
 
 function makeMap(el, { small = false } = {}) {
