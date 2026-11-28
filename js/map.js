@@ -251,15 +251,17 @@ const TripMap = {
     });
     const near = L.markerClusterGroup({ maxClusterRadius: 38, showCoverageOnHover: false, spiderfyOnMaxZoom: true,
       iconCreateFunction: (c) => L.divIcon({ html: `<div><span>+${c.getChildCount()}</span></div>`, className: "marker-cluster near-cl", iconSize: L.point(34, 34) }) }).addTo(M.layer);
+    const mks = [];
     for (const p of PLACES) {
       if (!p.lat || p.gone || inPlan.has(p.id)) continue;
       if (fIso ? !inSeason(p, fIso) : !inSeason(p, iso) && !inSeason(p, addDays(iso, evals.length - 1))) continue;
       if (!segs.some(([a, b]) => segKm(p, a, b) <= NEAR_KM)) continue;
       const btn = fIso ? `PlanView.addTo(${p.id},${focus})">+ ใส่วันที่ ${focus + 1}` : `PlanView.quickAdd(${p.id})">+ เพิ่มเข้าแผน`;
-      L.marker([p.lat, p.lng], { icon: pin(I(TAG_ICON[p.tags[0]] || "map-pin"), "#8a96a3", "emo near") })
+      mks.push(L.marker([p.lat, p.lng], { icon: pin(I(TAG_ICON[p.tags[0]] || "map-pin"), "#8a96a3", "emo near") })
         .bindTooltip(esc(pname(p.id)), { direction: "top", offset: [0, -10] })
-        .bindPopup(placePopup(p, `<button class="btn small" style="margin:4px 0" onclick="${btn}</button>`), { maxWidth: 260 }).addTo(near);
+        .bindPopup(() => placePopup(p, `<button class="btn small" style="margin:4px 0" onclick="${btn}</button>`), { maxWidth: 260 }));
     }
+    near.addLayers(mks); // ใส่ทีเดียวทั้งชุด: ใส่ทีละหมุดกลุ่มจะคำนวณใหม่ทุกครั้ง (มือถือช้าหน่วงวินาทีกว่า)
     evals.forEach((e) => {
       const on = focus === null || focus === e.i;
       const color = DAY_COLORS[e.i % DAY_COLORS.length];
