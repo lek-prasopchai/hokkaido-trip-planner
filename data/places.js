@@ -15793,7 +15793,8 @@ window.PLACES = [
   "mapcode": "389 011 693*78",
   "mcLL": "43.59216,142.46381",
   "rv": 2200,
-  "gr": 3.6
+  "gr": 3.6,
+  "icon": "store"
  },
  {
   "hub": "utoro",
@@ -15865,7 +15866,8 @@ window.PLACES = [
   "mapcode": "894 824 881*30",
   "mcLL": "44.069047,144.990705",
   "rv": 3300,
-  "gr": 3.9
+  "gr": 3.9,
+  "icon": "store"
  },
  {
   "hub": "sounkyo",
@@ -20093,7 +20095,8 @@ window.PLACES = [
   "mapcode": "493 690 533*28",
   "mcLL": "43.19903,141.00269",
   "rv": 3900,
-  "gr": 4.1
+  "gr": 4.1,
+  "icon": "beer"
  },
  {
   "hub": "otaru",
@@ -21905,7 +21908,8 @@ window.PLACES = [
   "mapcode": "79 344 183*40",
   "mcLL": "43.76262,142.36385",
   "rv": 860,
-  "gr": 3.9
+  "gr": 3.9,
+  "icon": "beer"
  },
  {
   "hub": "asahikawa",
@@ -22021,7 +22025,8 @@ window.PLACES = [
   "img": "img/places/373.jpg",
   "imgCredit": "https://commons.wikimedia.org/wiki/File:%EF%BC%93%E3%83%BB%EF%BC%96%E8%A1%97.JPG",
   "mapcode": "79 343 822*41",
-  "mcLL": "43.76844,142.35803"
+  "mcLL": "43.76844,142.35803",
+  "icon": "beer"
  },
  {
   "hub": "asahikawa",
@@ -23379,7 +23384,8 @@ window.PLACES = [
   "mapcode": "349 060 365*46",
   "mcLL": "43.35597,142.37277",
   "rv": 920,
-  "gr": 4.2
+  "gr": 4.2,
+  "icon": "wine"
  },
  {
   "hub": "furano",
@@ -23833,7 +23839,8 @@ window.PLACES = [
   "mapcode": "919 553 379*56",
   "mcLL": "43.32245,142.3598",
   "rv": 140,
-  "gr": 4.4
+  "gr": 4.4,
+  "icon": "beer"
  },
  {
   "hub": "furano",
@@ -26448,8 +26455,8 @@ window.PLACES = [
   "pop": "คนรู้จักน้อย",
   "type": "พิพิธภัณฑ์",
   "tags": [
-   "food",
-   "culture"
+   "culture",
+   "food"
   ],
   "open": "ตรวจเวลาเปิด (ดูเว็บ)",
   "closed": "ตรวจ",
@@ -27851,7 +27858,8 @@ window.PLACES = [
   "mapcode": "9 493 572*84",
   "mcLL": "43.05788,141.35522",
   "rv": 1200,
-  "gr": 3.9
+  "gr": 3.9,
+  "icon": "beer"
  },
  {
   "id": 482,
@@ -30548,7 +30556,8 @@ window.PLACES = [
   "mapcode": "9 493 584*60",
   "mcLL": "43.05775,141.3586",
   "rv": 660,
-  "gr": 4.3
+  "gr": 4.3,
+  "icon": "beer"
  },
  {
   "id": 550,
@@ -30807,7 +30816,8 @@ window.PLACES = [
   "mapcode": "9 492 454*28",
   "mcLL": "43.05681,141.34738",
   "rv": 230,
-  "gr": 4.6
+  "gr": 4.6,
+  "icon": "beer"
  },
  {
   "id": 556,
@@ -31028,7 +31038,8 @@ window.PLACES = [
   "mapcode": "493 690 346*21",
   "mcLL": "43.19735,141.00079",
   "rv": 790,
-  "gr": 4.1
+  "gr": 4.1,
+  "icon": "wine"
  },
  {
   "id": 561,
@@ -40037,7 +40048,8 @@ window.PLACES = [
   "mapcode": "79 343 822*41",
   "mcLL": "43.76844,142.35803",
   "rv": 12,
-  "gr": 3.9
+  "gr": 3.9,
+  "icon": "beer"
  },
  {
   "id": 771,
@@ -40077,7 +40089,8 @@ window.PLACES = [
   "mapcode": "79 373 045*20",
   "mcLL": "43.76955,142.35866",
   "rv": 6,
-  "gr": 4
+  "gr": 4,
+  "icon": "beer"
  },
  {
   "id": 772,
@@ -42243,7 +42256,8 @@ window.PLACES = [
   "ref": "https://www.atca.jp/members/eat/",
   "checked": "2026-11",
   "mapcode": "79 373 118*13",
-  "mcLL": "43.77005,142.36247"
+  "mcLL": "43.77005,142.36247",
+  "icon": "beer"
  },
  {
   "id": 838,
@@ -44024,7 +44038,8 @@ window.PLACES = [
   "mapcode": "86 041 611*16",
   "mcLL": "41.76657,140.71635",
   "rv": 2900,
-  "gr": 4
+  "gr": 4,
+  "icon": "beer"
  },
  {
   "id": 871,
@@ -44229,7 +44244,8 @@ window.PLACES = [
   "mapcode": "124 624 135*72",
   "mcLL": "42.92037,143.20045",
   "rv": 69,
-  "gr": 4.7
+  "gr": 4.7,
+  "icon": "beer"
  },
  {
   "id": 876,

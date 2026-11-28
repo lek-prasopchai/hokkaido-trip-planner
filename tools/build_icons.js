@@ -8,7 +8,7 @@ landmark paw-print map-pin star moon hotel plane clock timer ban triangle-alert 
 navigation heart notebook-pen circle-pause arrow-left-right clipboard-list store fuel life-buoy circle-check
 skip-forward image globe play music camera banknote bus soup file-text shirt hand droplet pill plug smartphone
 luggage paperclip baby plane-takeoff package refresh-ccw arrow-up-down stamp cloud-snow route arrow-up arrow-down
-pencil x redo-2 link grip-vertical maximize-2 minimize-2 sliders-horizontal signpost square-parking shopping-cart copy coffee factory tractor`.split(/\s+/);
+pencil x redo-2 link grip-vertical maximize-2 minimize-2 sliders-horizontal signpost square-parking shopping-cart copy coffee factory tractor beer wine`.split(/\s+/);
 
 (async () => {
   const out = {};

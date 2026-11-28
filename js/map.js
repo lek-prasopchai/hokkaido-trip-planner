@@ -12,6 +12,7 @@ const TILE_SOURCES = { // ตัวแรก = ค่าเริ่มต้น
 const TAG_ICON = { festival: "party-popper", nature: "mountain-snow", flower: "flower", onsen: "bath", snow: "snowflake", food: "soup", city: "building-2", culture: "landmark", animals: "paw-print" };
 // แท็กหยาบเกินสำหรับไอคอน (ร้านแก้วเป็น culture, คาเฟ่เป็น food) เลยดู type ประกอบ
 function placeIcon(p) {
+  if (p.icon) return p.icon;
   const t = p.type || "", k = p.tags[0];
   if (/^(ช้อปปิ้ง|ตลาด)/.test(t) && k !== "festival") return "store";
   if (k === "food") return /คาเฟ่/.test(t) ? "coffee" : /^โรงงาน/.test(t) ? "factory" : /^ฟาร์ม/.test(t) ? "tractor" : "soup";
