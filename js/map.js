@@ -199,6 +199,17 @@ function dayPoints(e) {
   return pts;
 }
 
+// ระยะ (กม.) จากจุด p ถึงเส้นตรง a→b • shortcut: ใช้เส้นตรงไม่ใช่เส้นถนนจริง ถนนอ้อมมากค่อยเทียบกับ geometry ของ Route
+const NEAR_KM = 10;
+function segKm(p, a, b) {
+  const kx = 111.32 * Math.cos(p.lat * Math.PI / 180), ky = 110.57;
+  const ax = (a.lng - p.lng) * kx, ay = (a.lat - p.lat) * ky, bx = (b.lng - p.lng) * kx, by = (b.lat - p.lat) * ky;
+  const dx = bx - ax, dy = by - ay, L2 = dx * dx + dy * dy;
+  const t = L2 ? Math.max(0, Math.min(1, -(ax * dx + ay * dy) / L2)) : 0;
+  return Math.hypot(ax + t * dx, ay + t * dy);
+}
+console.assert(Math.abs(segKm({ lat: 43, lng: 141.1 }, { lat: 43, lng: 141 }, { lat: 43, lng: 141.2 })) < 0.01 && segKm({ lat: 43.09, lng: 141 }, { lat: 43, lng: 141 }, { lat: 43, lng: 141.2 }) > 9.9);
+
 function drawDayRoute(M, e, color, { faded = false, weight = 4 } = {}) {
   const pts = dayPoints(e);
   if (pts.length < 2) return;
@@ -231,15 +242,23 @@ const TripMap = {
     M.layer.clearLayers();
     M.bounds = [];
     const inPlan = new Set(evals.flatMap((e) => e.stops));
-    // ที่อื่นที่ยังไม่อยู่ในแผน (จุดเทา): ทั้งทริป = ปุ่มหาวันให้เอง • ดูรายวัน = เปิดวันนั้น + ปุ่มใส่ท้ายวันนั้น
+    // ที่อื่นที่ยังไม่อยู่ในแผน ใกล้เส้นทาง ≤ NEAR_KM: หมุดไอคอนประเภทสีจาง • ทั้งทริป = ปุ่มหาวันให้เอง • ดูรายวัน = ปุ่มใส่ท้ายวันนั้น
     const iso = evals[0]?.iso || S.trip.start;
     const fIso = focus === null ? null : evals[focus]?.iso || addDays(iso, focus);
+    const segs = (focus === null ? evals : evals.filter((e) => e.i === focus)).flatMap((e) => {
+      const ps = dayPoints(e).filter((p) => p.lat);
+      return ps.slice(1).map((b, k) => [ps[k], b]);
+    });
+    const near = L.markerClusterGroup({ maxClusterRadius: 38, showCoverageOnHover: false, spiderfyOnMaxZoom: true,
+      iconCreateFunction: (c) => L.divIcon({ html: `<div><span>+${c.getChildCount()}</span></div>`, className: "marker-cluster near-cl", iconSize: L.point(34, 34) }) }).addTo(M.layer);
     for (const p of PLACES) {
-      if (fIso ? !inSeason(p, fIso) : !inSeason(p, iso) && !inSeason(p, addDays(iso, evals.length - 1))) continue;
       if (!p.lat || p.gone || inPlan.has(p.id)) continue;
+      if (fIso ? !inSeason(p, fIso) : !inSeason(p, iso) && !inSeason(p, addDays(iso, evals.length - 1))) continue;
+      if (!segs.some(([a, b]) => segKm(p, a, b) <= NEAR_KM)) continue;
       const btn = fIso ? `PlanView.addTo(${p.id},${focus})">+ ใส่วันที่ ${focus + 1}` : `PlanView.quickAdd(${p.id})">+ เพิ่มเข้าแผน`;
-      L.circleMarker([p.lat, p.lng], { radius: 4, color: "#fff", weight: 1, fillColor: "#7d8996", fillOpacity: 0.8 })
-        .bindPopup(placePopup(p, `<button class="btn small" style="margin:4px 0" onclick="${btn}</button>`), { maxWidth: 260 }).addTo(M.layer);
+      L.marker([p.lat, p.lng], { icon: pin(I(TAG_ICON[p.tags[0]] || "map-pin"), "#8a96a3", "emo near") })
+        .bindTooltip(esc(pname(p.id)), { direction: "top", offset: [0, -10] })
+        .bindPopup(placePopup(p, `<button class="btn small" style="margin:4px 0" onclick="${btn}</button>`), { maxWidth: 260 }).addTo(near);
     }
     evals.forEach((e) => {
       const on = focus === null || focus === e.i;
